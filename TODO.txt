@@ -1,0 +1,17 @@
+short term:
+-static grid map
+-1 hero sprite
+-1 enemy sprite
+-1 wall sprite
+
+
+medium term
+-items
+-UI equipment
+-UI bags
+-UI spells
+-UI status
+
+
+long term:
+-proc gen maps
