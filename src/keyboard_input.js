@@ -1,8 +1,6 @@
-import * as Howl from '../libs/howler.core.js';
-
 
 var sound = new Howl ({
-    src: ['swish_2.wav'],
+    src: ['../assets/swish_2.wav'],
     html5: true
 });
 
