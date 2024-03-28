@@ -1,10 +1,6 @@
 import {sprite} from "./index.js"
 
 
-socket.onmessage = function(event) {
-    sound.play();
-    console.log("Message from server: ", event.data);
-};
 
 var socket =  new WebSocket("ws://www.saycum.com/ws");
 
@@ -13,6 +9,10 @@ var sound = new Howl ({
     html5: true
 });
 
+socket.onmessage = function(event) {
+    sound.play();
+    console.log("Message from server: ", event.data);
+};
 
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
