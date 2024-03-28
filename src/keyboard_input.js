@@ -1,5 +1,6 @@
 import {sprite} from "./index.js"
 
+var socket =  new WebSocket("ws://www.saycum.com/ws");
 
 var sound = new Howl ({
     src: ['../assets/swish_2.wav'],
@@ -15,7 +16,7 @@ document.addEventListener("keydown", (event) => {
         // do not alert when only Control key is pressed.
         return;
     }
-    
+
         if (keyName === "w") {
             sprite.y -= 5;
             return;
@@ -36,14 +37,21 @@ document.addEventListener("keydown", (event) => {
             return;
         }
 
+        if (keyName === "space") {
+            sound.play();
+            socket.send("The Spacebar has been pressed");            
+            return;
+        }
+
         if (event.ctrlKey) {
         // Even though event.key is not 'Control' (e.g., 'a' is pressed),
         // event.ctrlKey may be true if Ctrl key is pressed at the same time.
             sound.play();                
         } 
-        else {
+        // W, A, S, D || UP, DOWN, LEFT, RIGHT
+        // 1, 2, 4, 5, 6, etc... TO CAST SPELLS
+        // B, C, P, I, etc... UI BUTTONS
 
-        }
     }, 
     false,
 );

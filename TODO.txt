@@ -1,11 +1,29 @@
+-multiple players per world working together
+-psuedo turn based like final fantasy 7
+-keep it single page
+
+gamey
+-items like throwing, but they need to be very strong or even 
+    necessary otherwise people won't use them
+-XP
+-skills get weaker against higher level enemies 
+    as you level up you need to put more points into them to keep effective
+    but they stay effeective against low level enemies
+    means you are strong at low levels and then have to specialize later
+-have the viewport sit in the window with the UI elements below 
+    and the name of the game above
+
+
 short term:
 -static grid map
--1 hero sprite
--1 enemy sprite
--1 wall sprite
+-camera
+-ascii graphics to start
+-come up with a list of spells
+-mouse input
+-splash screen
+-generate/enter world
 
-
-medium term
+medium term:
 -items
 -UI equipment
 -UI bags
@@ -14,4 +32,9 @@ medium term
 
 
 long term:
+-store world state in db
 -proc gen maps
+-collision detection
+-simple enemy AI
+
+
