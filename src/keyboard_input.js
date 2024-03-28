@@ -1,5 +1,11 @@
 import {sprite} from "./index.js"
 
+
+socket.onmessage = function(event) {
+    sound.play();
+    console.log("Message from server: ", event.data);
+};
+
 var socket =  new WebSocket("ws://www.saycum.com/ws");
 
 var sound = new Howl ({
@@ -33,13 +39,6 @@ document.addEventListener("keydown", (event) => {
     
     
     if (keyName === "Enter") {
-        sound.play();
-        socket.send("The Spacebar has been pressed");            
-        return;
-    }
-
-
-    if (event.shiftKey) {
         sound.play();
         socket.send("The Spacebar has been pressed");            
         return;
