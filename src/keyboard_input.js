@@ -14,24 +14,28 @@ document.addEventListener("keydown", (event) => {
     
     if (keyName === "w") {
         player.y -= cell_size;
+        // socket.send("1w");       
         //send to server
         return;
     }
     
     if (keyName === "a") {
         player.x -= cell_size;
+        // socket.send("1a");       
         //send to server
         return;
     }
     
     if (keyName === "s") {
         player.y += cell_size;
+        // socket.send("1s");       
         //send to server
         return;
     }
     
     if (keyName === "d") {
         player.x += cell_size;
+        // socket.send("1d");       
         //send to server
         return;
     }
