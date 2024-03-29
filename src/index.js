@@ -1,23 +1,15 @@
-import {map} from "./receive.js"
-
-
 const app = new PIXI.Application();
 await app.init({ width: 480, height: 480 })
 document.body.appendChild(app.canvas);
 
-let mapString = ""; 
-for (let i = 0; i < 20; i++) {
-    for (let j = 0; j < 20; j++) {
-        mapString += map[i][j];
-    }
-}
-
-let mapDisplay = [];
-for (let i = 0; i < 20; i++) {
-    mapDisplay[i] = new PIXI.Text(mapString.substring((i * 20), ((i * 20) + 20)), {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
-    mapDisplay[i].y = i * 24;  // Assuming each cell is 24 pixels tall
-    app.stage.addChild(mapDisplay[i]);
-}
+// let mapString = ""; 
+// for (let i = 0; i < 20; i++) {
+//     for (let j = 0; j < 20; j++) {
+//         mapString += map[i][j];
+//     }
+// }
+;
+let player;
 
 function createTextWithBackground(textString, style, backgroundColor) {
     // Create the text object
@@ -36,10 +28,20 @@ function createTextWithBackground(textString, style, backgroundColor) {
 
     return container;
 }
+let mapDisplay = [];
 
-// Usage:
-let player = createTextWithBackground("H", {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001);
+function MakeMap(mapString, mapWidth) {
+    console.log(mapString);
+    for (let i = 0; i < 20; i++) {
+        mapDisplay[i] = new PIXI.Text(mapString.substring((i * mapWidth), ((i * mapWidth) + mapWidth)), {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
+        mapDisplay[i].y = i * 24;  // Assuming each cell is 24 pixels tall
+        app.stage.addChild(mapDisplay[i]);
+    }
+}
+
+player = createTextWithBackground("H", {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001);
 app.stage.addChild(player);
+// Usage:
 
 // Add a ticker callback to move the sprite back and forth
 let elapsed = 0.0;
@@ -49,4 +51,4 @@ let elapsed = 0.0;
     //     // sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;D
     // });
     
-export { player }
+export { player, MakeMap }
