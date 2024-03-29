@@ -35,8 +35,8 @@ function MakeMap(mapString, mapWidth) {
         mapDisplay[i] = new PIXI.Text(object, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
         mapDisplay[i].y = i * 24;  // Assuming each cell is 24 pixels tall
         app.stage.addChild(mapDisplay[i]);
-        
-        // render units on the map
+
+        // sent floor under units
         for (let j = 0; j < mapWidth; j++) {
             let object = mapString.substring([(i * mapWidth)], (i * mapWidth) + mapWidth);
 
@@ -44,30 +44,41 @@ function MakeMap(mapString, mapWidth) {
                 fill.push(createTextWithBackground('.', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
                 fill[fill.length - 1].x = j * 24;  // Assuming each cell is 24 pixels tall
                 fill[fill.length - 1].y = i * 24;  // Assuming each cell is 24 pixels tall
-                app.stage.addChild(fill[fill.length - 1]);
-                
-                player = createTextWithBackground('H', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001);
-                player.x = j * 24;
-                player.y = i * 24;
-                app.stage.addChild(player);
             }
+                app.stage.addChild(fill[fill.length - 1]);
             else if (object[j] === 'g') {
                 fill.push(createTextWithBackground('.', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
                 fill[fill.length - 1].x = j * 24;  // Assuming each cell is 24 pixels tall
                 fill[fill.length - 1].y = i * 24;  // Assuming each cell is 24 pixels tall
                 app.stage.addChild(fill[fill.length - 1]);
-
-                enemies.push(createTextWithBackground('g', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
-                enemies[enemies.length - 1].x = j * 24
-                enemies[enemies.length - 1].y = i * 24
-                app.stage.addChild(enemies[enemies.length - 1]);
             }
             else if (object[j] === 'o') {
                 fill.push(createTextWithBackground('.', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
                 fill[fill.length - 1].x = j * 24;  // Assuming each cell is 24 pixels tall
                 fill[fill.length - 1].y = i * 24;  // Assuming each cell is 24 pixels tall
                 app.stage.addChild(fill[fill.length - 1]);
+            }
+        }
+    }
 
+    // render units on the map
+    for (let i = 0; i < mapWidth; i++) {
+        for (let j = 0; j < mapWidth; j++) {
+            let object = mapString.substring([(i * mapWidth)], (i * mapWidth) + mapWidth);
+
+            if (object[j] === 'H') {
+                player = createTextWithBackground('H', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001);
+                player.x = j * 24;
+                player.y = i * 24;
+                app.stage.addChild(player);
+            }
+            else if (object[j] === 'g') {
+                enemies.push(createTextWithBackground('g', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
+                enemies[enemies.length - 1].x = j * 24
+                enemies[enemies.length - 1].y = i * 24
+                app.stage.addChild(enemies[enemies.length - 1]);
+            }
+            else if (object[j] === 'o') {
                 objects.push(createTextWithBackground('o', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
                 objects[objects.length - 1].x = j * 24
                 objects[objects.length - 1].y = i * 24
