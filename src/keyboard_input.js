@@ -1,18 +1,12 @@
 import {sprite} from "./index.js"
+import {socket} from "./receive.js"
 
-
-
-var socket =  new WebSocket("ws://www.saycum.com/ws");
 
 var sound = new Howl ({
     src: ['../assets/swish_2.wav'],
     html5: true
 });
 
-socket.onmessage = function(event) {
-    sound.play();
-    console.log("Message from server: ", event.data);
-};
 
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
