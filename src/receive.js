@@ -19,8 +19,10 @@ socket.onmessage = function(event) {
     }
     
     else if (type === "1") {
-        
+        console.log(data.substring(0, 2));
         let mapWidth = data.substring(0, 2)
+        
+        console.log(data.substring(2));
         let serverMap = data.substring(2);
         // map data
         for (let i = 0; i < mapWidth; i++) {
