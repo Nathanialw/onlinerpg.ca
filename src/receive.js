@@ -3,8 +3,9 @@ export var socket =  new WebSocket("ws://www.saycum.com/ws");
 let map = [[]];
 
 socket.onmessage = function(event) {    
-    if (event.data.emty())
+    if (event.data.empty()) {
         return
+    }
 
     // [0] type
     // if map [1][2] map size
