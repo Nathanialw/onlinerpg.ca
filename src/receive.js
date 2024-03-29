@@ -3,7 +3,7 @@ export var socket =  new WebSocket("ws://www.saycum.com/ws");
 let map = [[]];
 
 socket.onmessage = function(event) {    
-    if (event.data.empty()) {
+    if (event.data === 0) {
         return
     }
 
