@@ -19,12 +19,10 @@ socket.onmessage = function(event) {
     }
     
     else if (type === "1") {
-        console.log(data.substring(0, 2));
-        let mapWidth = data.substring(0, 2)
-        
-        console.log(data.substring(2));
+        let mapWidth = parseInt(data.substring(0, 2), 10);
         let serverMap = data.substring(2);
         // map data
+        map = new Array(mapWidth).fill().map(() => new Array(mapWidth));
         for (let i = 0; i < mapWidth; i++) {
             for (let j = 0; j < mapWidth; j++) {
                 map[i][j] = serverMap[(i * mapWidth) + j];
