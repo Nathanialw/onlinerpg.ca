@@ -44,8 +44,8 @@ function MakeMap(mapString, mapWidth) {
                 fill.push(createTextWithBackground('.', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
                 fill[fill.length - 1].x = j * 24;  // Assuming each cell is 24 pixels tall
                 fill[fill.length - 1].y = i * 24;  // Assuming each cell is 24 pixels tall
-            }
                 app.stage.addChild(fill[fill.length - 1]);
+            }
             else if (object[j] === 'g') {
                 fill.push(createTextWithBackground('.', {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001));
                 fill[fill.length - 1].x = j * 24;  // Assuming each cell is 24 pixels tall
