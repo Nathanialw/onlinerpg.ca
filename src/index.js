@@ -1,21 +1,52 @@
+import {map} from "./receive.js"
+
 
 const app = new PIXI.Application();
-await app.init({ width: 640, height: 360 })
+await app.init({ width: 480, height: 480 })
 document.body.appendChild(app.canvas);
 
-// Create the sprite and add it to the stage
-await PIXI.Assets.load('../assets/sample.png');
+let mapString = ""; 
+for (let i = 0; i < 20; i++) {
+    for (let j = 0; j < 20; j++) {
+        mapString += map[i][j];
+    }
+}
 
-let sprite = PIXI.Sprite.from('../assets/sample.png');
+let mapDisplay = [];
+for (let i = 0; i < 20; i++) {
+    mapDisplay[i] = new PIXI.Text(mapString.substring((i * 20), ((i * 20) + 20)), {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
+    mapDisplay[i].y = i * 24;  // Assuming each cell is 24 pixels tall
+    app.stage.addChild(mapDisplay[i]);
+}
 
-app.stage.addChild(sprite);
+function createTextWithBackground(textString, style, backgroundColor) {
+    // Create the text object
+    let text = new PIXI.Text(textString, style);
+
+    // Create a new Graphics object and draw a rectangle on it
+    let background = new PIXI.Graphics();
+    background.beginFill(backgroundColor);
+    background.drawRect(0, 0, text.width, text.height);
+    background.endFill();
+
+    // Create a container and add the background and text to it
+    let container = new PIXI.Container();
+    container.addChild(background);
+    container.addChild(text);
+
+    return container;
+}
+
+// Usage:
+let player = createTextWithBackground("H", {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001);
+app.stage.addChild(player);
 
 // Add a ticker callback to move the sprite back and forth
 let elapsed = 0.0;
 
 // app.ticker.add((ticker) => {
     //     // elapsed += ticker.deltaTime;
-    //     // sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
+    //     // sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;D
     // });
     
-export { sprite }
+export { player }

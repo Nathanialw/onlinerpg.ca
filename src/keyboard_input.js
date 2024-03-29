@@ -1,4 +1,4 @@
-import {sprite} from "./index.js"
+import {player} from "./index.js"
 import {socket} from "./receive.js"
 
 
@@ -7,30 +7,34 @@ var sound = new Howl ({
     html5: true
 });
 
+const cell_size = 24;
 
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
     
     if (keyName === "w") {
-        sprite.y -= 5;
+        player.y -= cell_size;
+        //send to server
         return;
     }
     
     if (keyName === "a") {
-        sprite.x -= 5;
+        player.x -= cell_size;
+        //send to server
         return;
     }
     
     if (keyName === "s") {
-        sprite.y += 5;
+        player.y += cell_size;
+        //send to server
         return;
     }
     
     if (keyName === "d") {
-        sprite.x += 5;
+        player.x += cell_size;
+        //send to server
         return;
     }
-    
     
     if (keyName === "Enter") {
         sound.play();
