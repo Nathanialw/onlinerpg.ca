@@ -15,7 +15,7 @@
     <section class="signup-form">
         <h2>Sign Up</h2>
         <div class="signup-form-form">
-            <form action="signup.php" method="post"> 
+            <form action="" method="post"> 
                 <input type="text" name="name" placeholder="Fill name...">
                 <input type="text" name="email" placeholder="Email...">
                 <input type="text" name="uid" placeholder="Username...">
