@@ -19,7 +19,8 @@
 
 <?php
     if (isset($_POST["submit"])) {
-        include '/var/www/saycum.com/private/signup.h.php';
+        $_POST = array_map('trim', $_POST);
+        include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
     }
     echo "9";
 
