@@ -16,12 +16,12 @@
                 <!-- <a href="../scripts/index.php"></a> -->
                 <ul>
                 <li><a href="index.php">Home</a></li> 
-                <li><a href="../private/scripts/discover.php">About Us</a></li> 
-                <li><a href="../private/scripts/blog.php">Find Blogs</a></li> 
+                <li><a href="discover.php">About Us</a></li> 
+                <li><a href="blog.php">Find Blogs</a></li> 
                 <?php 
                     if (isset($_SESSION["useruid"])) {
                         echo "<li><a href='profile.php'>Profile Page</a></li>";
-                        echo "<li><a href='../private/scripts/includes/logout.h.php'>Log Out</a></li>";
+                        echo "<li><a href='logout.php'>Log Out</a></li>";
                     }
                     else {
                         echo "<li><a href='signup.php'>Sign Up</a></li>";
