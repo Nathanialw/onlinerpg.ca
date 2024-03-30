@@ -12,30 +12,30 @@ if (isset($_POST['submit'])) {
     require_once 'functions.h.php';
 
     if (emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) !== false) {
-        header("Location: ../signup.php?error=emptyinput");
+        header("Location: ../../../public/signup.php?error=emptyinput");
         exit();
     }
     if (invalidUid($username) !== false) {
-        header("Location: ../signup.php?error=invaliduid");
+        header("Location: ../../../public/signup.php?error=invaliduid");
         exit();
     }
     if (invalidEmail($email) !== false) {
-        header("Location: ../signup.php?error=invalidemail");
+        header("Location: ../../../public/signup.php?error=invalidemail");
         exit();
     }
     if (pwdMatch($pwd, $pwdRepeat) !== false) {
-        header("Location: ../signup.php?error=passwordsdontmatch");
+        header("Location: ../../../public/signup.php?error=passwordsdontmatch");
         exit();
     }
     if (uidExists($conn, $username, $email) !== false) {
-        header("Location: ../signup.php?error=usernametaken");
+        header("Location: ../../../public/signup.php?error=usernametaken");
         exit();
     }
 
     createUsers($conn, $name, $email, $username, $pwd);
 }
 else {
-    header("Location: ../signup.php");
+    header("Location: ../../../public/signup.php");
     exit();
 }
 
