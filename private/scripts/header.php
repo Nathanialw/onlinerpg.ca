@@ -14,7 +14,7 @@
             <div class="wrapper">
                 <!-- <a href="../scripts/index.php"></a> -->
                 <ul>
-                <li><a href="../../public/index.php">Home</a></li> 
+                <li><a href="./public/index.php">Home</a></li> 
                 <li><a href="discover.php">About Us</a></li> 
                 <li><a href="blog.php">Find Blogs</a></li> 
                 <?php 

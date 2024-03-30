@@ -5,7 +5,7 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap&display=swap">
         <link rel="stylesheet" href="css/style.css">
     </head>
 
