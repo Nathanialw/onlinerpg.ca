@@ -19,7 +19,7 @@
 
 <?php
     if (isset($_POST["submit"])) {
-        include '/var/www/saycum.com/private/scripts/includes/signup.h.php';
+        include '/var/www/saycum.com/private/signup.h.php';
     }
 
 
