@@ -1,7 +1,8 @@
 import {Move} from "../movement/movement.js"
 
 var sound = new Howl ({
-    src: ['../assets/sounds/swish_2.wav'],
+    
+    src: ['../../assets/sounds/swish_2.wav'],
     html5: true
 });
 
