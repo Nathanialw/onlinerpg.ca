@@ -21,7 +21,7 @@
     if (isset($_POST["submit"])) {
         include '/var/www/saycum.com/private/signup.h.php';
     }
-
+    echo "9";
 
     if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput") {
