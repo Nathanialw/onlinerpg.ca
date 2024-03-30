@@ -1,6 +1,15 @@
 <?php
-    include 'header.php'
+    include 'header.php';
 
+    if (isset($_POST["submit"])) {
+        $_POST = array_map('trim', $_POST);
+        echo $_POST["name"];
+        echo $_POST["email"];
+        echo $_POST["uid"];
+        echo $_POST["pwd"];
+        echo $_POST["pwdrepeat"];
+        // include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
+    }
 
 ?>
 
@@ -20,15 +29,6 @@
 
 <?php
 
-    if (isset($_POST["submit"])) {
-        $_POST = array_map('trim', $_POST);
-        echo $_POST["name"];
-        echo $_POST["email"];
-        echo $_POST["uid"];
-        echo $_POST["pwd"];
-        echo $_POST["pwdrepeat"];
-        // include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
-    }
 
     if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput") {
