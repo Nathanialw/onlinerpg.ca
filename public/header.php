@@ -5,7 +5,9 @@
 <!doctype html>
 <html>
     <head>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script> WebFont.load({google: {families: ['Press Start 2P']}});</script>
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"> -->
         <link rel="stylesheet" href="css/style.css">
     </head>
 
@@ -30,14 +32,8 @@
                 </ul>
             </div>
         </nav>
-        
-        <script>
-            WebFont.load({
-                google: {
-                families: ['Press Start 2P']
-                }
-            });
-        </script>
+
+
         <!-- main content -->
         <div class="wrapper">
             
