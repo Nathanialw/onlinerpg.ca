@@ -5,7 +5,7 @@
     <section class="signup-form">
         <h2>Sign Up</h2>
         <div class="signup-form-form">
-            <form action="../private/scripts/includes/signup.h.php" method="post"> 
+            <form action="signup.php" method="post"> 
                 <input type="text" name="name" placeholder="Fill name...">
                 <input type="text" name="email" placeholder="Email...">
                 <input type="text" name="uid" placeholder="Username...">
@@ -18,6 +18,11 @@
 
 
 <?php
+    if (isset($_POST["submit"])) {
+        include '/var/www/saycum.com/private/scripts/includes/signup.h.php';
+    }
+
+
     if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput") {
             echo "<p>Fill in all fields!</p>";
