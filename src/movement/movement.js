@@ -31,6 +31,7 @@ function Move(keyName) {
         //send to server
         return true;
     }
+    return false;
 }
 
 export {Move}

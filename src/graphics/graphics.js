@@ -1,5 +1,5 @@
 const app = new PIXI.Application();
-await app.init({ width: 480, height: 480 })
+await app.init({ width: 2376, height: 2352 })
 document.body.appendChild(app.canvas);
 
 function createTextWithBackground(textString, style, backgroundColor) {

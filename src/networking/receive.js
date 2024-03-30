@@ -1,4 +1,4 @@
-import {Make_Map} from '../map/map.js';
+import {Make_Map, Populate_Map} from '../map/map.js';
 export var socket =  new WebSocket("ws://www.saycum.com/ws");
 
 
@@ -20,11 +20,12 @@ socket.onmessage = function(event) {
         let mapWidth = parseInt(data.substring(0, 2), 10);
         let serverMap = data.substring(2);
         Make_Map(serverMap, mapWidth);
+        
     }
 
     //update units on map position
     else if (type === "2") {
-        let units = event.data;
+        Populate_Map(objects);
     }
     
 };
