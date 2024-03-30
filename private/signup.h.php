@@ -5,10 +5,15 @@ echo "0";
 if (isset($_POST['submit'])) {
     echo "1.5";
     $name = $_POST['name'];
+    echo $name;
     $email = $_POST['email'];
+    echo $email;
     $username = $_POST['uid'];
+    echo $username;
     $pwd = $_POST['pwd'];
+    echo $pwd;
     $pwdRepeat = $_POST['pwdrepeat'];
+    echo $pwdRepeat;
     
     require_once 'dbh.h.php';
     require_once 'functions.h.php';
