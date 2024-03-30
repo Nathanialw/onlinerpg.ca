@@ -1,22 +1,11 @@
 <?php
     include 'header.php';
-
-    if (isset($_POST["submit"])) {
-        $_POST = array_map('trim', $_POST);
-        echo $_POST["name"];
-        echo $_POST["email"];
-        echo $_POST["uid"];
-        echo $_POST["pwd"];
-        echo $_POST["pwdrepeat"];
-        // include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
-    }
-
 ?>
 
     <section class="signup-form">
         <h2>Sign Up</h2>
         <div class="signup-form-form">
-            <form action="" method="post"> 
+            <form action="signupIntermediate.php" method="post"> 
                 <input type="text" name="name" placeholder="Fill name...">
                 <input type="text" name="email" placeholder="Email...">
                 <input type="text" name="uid" placeholder="Username...">
