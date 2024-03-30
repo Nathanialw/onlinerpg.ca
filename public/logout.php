@@ -1,4 +1,4 @@
 <?php
-    include '../private/scripts/includes/logout.h.php'
+    include 'includes/logout.h.php'
 
 ?>

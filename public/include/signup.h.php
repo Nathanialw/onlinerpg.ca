@@ -21,34 +21,34 @@ if (isset($_POST['submit'])) {
     echo "1";
     if (emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) !== false) {
         echo "2";
-        header("Location: ../public/signup.php?error=emptyinput");
+        header("Location: ../signup.php?error=emptyinput");
         exit();
     }
     if (invalidUid($username) !== false) {
         echo "3";
-        header("Location: ../public/signup.php?error=invaliduid");
+        header("Location: ../signup.php?error=invaliduid");
         exit();
     }
     if (invalidEmail($email) !== false) {
         echo "4";
-        header("Location: ../public/signup.php?error=invalidemail");
+        header("Location: ../signup.php?error=invalidemail");
         exit();
     }
     if (pwdMatch($pwd, $pwdRepeat) !== false) {
         echo "5";
-        header("Location: ../public/signup.php?error=passwordsdontmatch");
+        header("Location: ../signup.php?error=passwordsdontmatch");
         exit();
     }
     if (uidExists($conn, $username, $email) !== false) {
         echo "6";
-        header("Location: ../public/signup.php?error=usernametaken");
+        header("Location: ../signup.php?error=usernametaken");
         exit();
     }
     echo "7";
     createUsers($conn, $name, $email, $username, $pwd);
 }
 else {
-    header("Location: ../public/signup.php");
+    header("Location: ../signup.php");
     echo "8";
     exit();
 }
