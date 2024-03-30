@@ -25,7 +25,7 @@ socket.onmessage = function(event) {
 
     //update units on map position
     else if (type === "2") {
-        Populate_Map(objects);
+        Populate_Map(data);
     }
     
 };
