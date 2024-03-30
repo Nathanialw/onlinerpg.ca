@@ -34,10 +34,10 @@ let fill = [];
 
 
 
-export function Make_Map() {
+export function Make_Map(serverMap, mapWidth) {
     for (let i = 0; i < mapWidth; i++) {
         //render lines of the map
-        let object = mapString.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
+        let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
         mapDisplay[i] = Create_Map_Line(object, i);
 
         // sent floor under units
@@ -54,10 +54,10 @@ export function Make_Map() {
         }
     }
 
-    // render units on the map
+    // render units on the map, ensure they are rendered on top of the floor
     for (let i = 0; i < mapWidth; i++) {
         for (let j = 0; j < mapWidth; j++) {
-            let object = mapString.substring([(i * mapWidth)], (i * mapWidth) + mapWidth);
+            let object = serverMap.substring([(i * mapWidth)], (i * mapWidth) + mapWidth);
             
             if (object[j] === 'H') {
                 Set_Player(Create_Object(object[j], j, i));
