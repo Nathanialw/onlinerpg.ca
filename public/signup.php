@@ -8,7 +8,7 @@
         echo $_POST["uid"];
         echo $_POST["pwd"];
         echo $_POST["pwdrepeat"];
-        include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
+        // include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
     }
 ?>
 
@@ -27,6 +27,9 @@
     </section> 
 
 <?php
+
+
+
     if (isset($_GET["error"])) {
         if ($_GET["error"] == "emptyinput") {
             echo "<p>Fill in all fields!</p>";
