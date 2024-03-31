@@ -3,9 +3,6 @@
 if (isset($_POST["submit"])) {
     $username = $_POST["uid"];
     $pwd = $_POST["pwd"];
-    // $name = $_POST["name"];
-    // $email = $_POST["email"];
-    // $pwdrepeat = $_POST["pwdrepeat"];
 
     require_once 'dbh.h.php';
     require_once 'functions.h.php';
@@ -15,7 +12,7 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    loginUser($conn, $username, $pwd);
+    // loginUser($conn, $username, $pwd);
 }
 else {
     header("location: ../login.php");
