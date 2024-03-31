@@ -38,8 +38,7 @@
         else if ($check == 5) {
             header("Location: ../signup.php?error=usernametaken");
             exit();
-        }        
-    
+        }      
     }
 ?>
 
