@@ -1,7 +1,7 @@
 <?php
 
 
-funtion CheckSubmit($_POST) {
+function CheckSubmit($_POST) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $username = $_POST['uid'];
