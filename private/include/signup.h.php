@@ -1,10 +1,10 @@
 <?php
 
+require_once 'dbh.h.php';
+require_once 'functions.h.php';
 
 function CheckSubmit($name, $email, $username, $pwd, $pwdRepeat) {
 
-    require_once 'dbh.h.php';
-    require_once 'functions.h.php';
     
     if (emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) !== false) {
        return 1;
