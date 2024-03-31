@@ -1,20 +1,13 @@
 <?php
+require_once 'dbh.h.php';
+require_once 'functions.h.php';
 
-if (isset($_POST["submit"])) {
-    $username = $_POST["uid"];
-    $pwd = $_POST["pwd"];
-
-    require_once 'dbh.h.php';
-    require_once 'functions.h.php';
+function Login($username, $pwd) {
 
     if (emptyInputLogin($username, $pwd) !== false) {
-        header("location: ../login.php?error=emptyinput");
-        exit();
+        return true;
     }
-
+    
     // loginUser($conn, $username, $pwd);
-}
-else {
-    header("location: ../login.php");
-    exit();
+    return false;
 }
