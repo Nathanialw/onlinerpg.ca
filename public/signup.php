@@ -2,18 +2,51 @@
     include 'header.php';
 
     if (isset($_POST["submit"])) {
+        include '/var/www/saycum.com/private/include/signup.h.php';
         // Sanitize form data
-        $_POST = array_map('trim', $_POST);
-
+    
         // Include the file that processes the form data
-        include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
+        
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $username = $_POST['uid'];
+        $pwd = $_POST['pwd'];
+        $pwdRepeat = $_POST['pwdrepeat'];
+        
+        $check = CheckSubmit($name, $email, $username, $pwd, $pwdRepeat);
+            
+        if ($check == 0) {
+            header("Location: ../signup.php");
+            exit();
+        }
+        else if ($check == 1 ) {
+            header("Location: ../signup.php?error=emptyinput");
+            exit();   
+        }
+        else if ($check == 2) {
+            header("Location: ../signup.php?error=invaliduid");
+            exit();
+        }
+        else if ($check == 3) {
+            header("Location: ../signup.php?error=invalidemail");
+            exit();
+        }
+        else if ($check == 4) {
+            header("Location: ../signup.php?error=passwordsdontmatch");
+            exit();
+        }
+        else if ($check == 5) {
+            header("Location: ../signup.php?error=usernametaken");
+            exit();
+        }        
+    
     }
 ?>
 
     <section class="signup-form">
         <h2>Sign Up</h2>
         <div class="signup-form-form">
-            <form action="include/signup.h.php" method="post"> 
+            <form action="" method="post"> 
                 <input type="text" name="name" placeholder="Fill name...">
                 <input type="text" name="email" placeholder="Email...">
                 <input type="text" name="uid" placeholder="Username...">
