@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
     else if ($check == 4) {
         header("Location: ../signup.php?error=passwordsdontmatch");
         exit();
-
+    }
     else if ($check == 5) {
         header("Location: ../signup.php?error=usernametaken");
         exit();
