@@ -1,5 +1,5 @@
 <?php
-    include 'header.php'
+    include 'header.php';
 
     if (isset($_POST["submit"])) {
         include '/var/www/saycum.com/private/include/login.h.php';
@@ -15,8 +15,7 @@
             header("location: ../login.php");
             exit();
         }
-    }
-    
+    }    
 ?>
 
 
