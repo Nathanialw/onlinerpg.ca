@@ -1,8 +1,8 @@
 <?php
 
-include '/var/www/saycum.com/private/include/signup.h.php';
 
 if (isset($_POST["submit"])) {
+    include '/var/www/saycum.com/private/include/signup.h.php';
     // Sanitize form data
 
     // Include the file that processes the form data

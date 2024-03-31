@@ -1,9 +1,10 @@
 <?php
 
-include '/var/www/saycum.com/private/include/login.h.php';
 
 
 if (isset($_POST["submit"])) {
+    include '/var/www/saycum.com/private/include/login.h.php';
+    
     $username = $_POST["uid"];
     $pwd = $_POST["pwd"];
     
