@@ -5,7 +5,8 @@ require_once 'functions.h.php';
 function Login($username, $pwd) {
 
     if (emptyInputLogin($username, $pwd) !== false) {
-        return true;
+        header("location: login.php?error=emptyinput");
+        exit();
     }
     
     // loginUser($conn, $username, $pwd);
