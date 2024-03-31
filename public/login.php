@@ -3,17 +3,9 @@
 
     if (isset($_POST["submit"])) {
         include '/var/www/saycum.com/private/include/login.h.php';
-        
         $username = $_POST["uid"];
         $pwd = $_POST["pwd"];
-        
-        if (Login($username, $pwd) !== false) {
-        
-        }
-        else {
-            header("location: ../login.php");
-            exit();
-        }
+        Login($username, $pwd);        
     }    
 ?>
 

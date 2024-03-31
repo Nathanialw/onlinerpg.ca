@@ -10,5 +10,6 @@ function Login($username, $pwd) {
     }
     
     // loginUser($conn, $username, $pwd);
-    return false;
+    header("location: ../login.php");
+    exit();
 }
