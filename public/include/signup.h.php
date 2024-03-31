@@ -1,40 +1,38 @@
 <?php
 
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $username = $_POST['uid'];
-    $pwd = $_POST['pwd'];
-    $pwdRepeat = $_POST['pwdrepeat'];
-    
-    require_once 'dbh.h.php';
-    require_once 'functions.h.php';
-    
-    if (emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) !== false) {
-        header("Location: ../signup.php?error=emptyinput");
-        exit();
-    }
-    if (invalidUid($username) !== false) {
-        header("Location: ../signup.php?error=invaliduid");
-        exit();
-    }
-    if (invalidEmail($email) !== false) {
-        header("Location: ../signup.php?error=invalidemail");
-        exit();
-    }
-    if (pwdMatch($pwd, $pwdRepeat) !== false) {
-        header("Location: ../signup.php?error=passwordsdontmatch");
-        exit();
-    }
-    // if (uidExists($conn, $username, $email) !== false) {
-    //     header("Location: ../signup.php?error=usernametaken");
-    //     exit();
-    // }
-    // createUsers($conn, $name, $email, $username, $pwd);
-}
-else {
-    header("Location: ../signup.php");
-    exit();
-}
+if (isset($_POST["submit"])) {
+    // Sanitize form data
+    $_POST = array_map('trim', $_POST);
 
+    // Include the file that processes the form data
+    include '/var/www/saycum.com/private/include/signup.h.php';
     
+    if ($check = CheckSubmit($_POST)) {
+        
+        if (check == 1 ) {
+            header("Location: ../signup.php?error=emptyinput");
+            exit();   
+        }
+        else if (check == 2) {
+            header("Location: ../signup.php?error=invaliduid");
+            exit();
+        }
+        else if (check == 3) {
+            header("Location: ../signup.php?error=invalidemail");
+            exit();
+        }
+        else if (check == 4) {
+            header("Location: ../signup.php?error=passwordsdontmatch");
+            exit();
+        }
+        // else if (check == 5) {
+        //     header("Location: ../signup.php?error=usernametaken");
+        //     exit();
+        // }        
+    }
+    
+    else {
+        header("Location: ../signup.php");
+        exit();
+    }
+}
