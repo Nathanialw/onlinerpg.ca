@@ -1,13 +1,20 @@
 <?php
 
+include '/var/www/saycum.com/private/include/signup.h.php';
+
 if (isset($_POST["submit"])) {
     // Sanitize form data
-    $_POST = array_map('trim', $_POST);
 
     // Include the file that processes the form data
-    include '/var/www/saycum.com/private/include/signup.h.php';
     
-    if ($check = CheckSubmit($_POST)) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $username = $_POST['uid'];
+    $pwd = $_POST['pwd'];
+    $pwdRepeat = $_POST['pwdrepeat'];
+    
+
+    if ($check = CheckSubmit($name, $email, $username, $pwd, $pwdRepeat)) {
         
         if (check == 1 ) {
             header("Location: ../signup.php?error=emptyinput");
@@ -30,7 +37,7 @@ if (isset($_POST["submit"])) {
         //     exit();
         // }        
     }
-    
+
     else {
         header("Location: ../signup.php");
         exit();

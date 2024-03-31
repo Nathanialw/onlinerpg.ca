@@ -28,6 +28,7 @@ function CheckSubmit($_POST) {
     //     exit();
     // }
     // createUsers($conn, $name, $email, $username, $pwd);
+    return 0;
 }
 
 
