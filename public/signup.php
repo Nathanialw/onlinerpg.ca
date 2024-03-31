@@ -1,11 +1,19 @@
 <?php
     include 'header.php';
+
+    if (isset($_POST["submit"])) {
+        // Sanitize form data
+        $_POST = array_map('trim', $_POST);
+
+        // Include the file that processes the form data
+        include '/var/www/server/privatefolder/scripts/includes/signup.h.php';
+    }
 ?>
 
     <section class="signup-form">
         <h2>Sign Up</h2>
         <div class="signup-form-form">
-            <form action=" include/signup.h.php" method="post"> 
+            <form action="" method="post"> 
                 <input type="text" name="name" placeholder="Fill name...">
                 <input type="text" name="email" placeholder="Email...">
                 <input type="text" name="uid" placeholder="Username...">
