@@ -18,6 +18,7 @@
                 <li><a href="index.php">Home</a></li> 
                 <li><a href="discover.php">About Us</a></li> 
                 <li><a href="blog.php">Find Blogs</a></li> 
+                <li><a href="goapp/index.html">Find Blogs</a></li> 
                 <?php 
                     if (isset($_SESSION["useruid"])) {
                         echo "<li><a href='profile.php'>Profile Page</a></li>";
