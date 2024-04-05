@@ -1,0 +1,7 @@
+-grid map:
+    -every cell has an enum value that says
+        what is on the cell
+
+-on connect:
+    -send the client the map information
+    -create/load player object for the client
