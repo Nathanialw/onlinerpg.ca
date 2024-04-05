@@ -11,7 +11,7 @@ type PageData struct {
 }
 
 func main() {
-	http.HandleFunc("/goapp/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/goapp", func(w http.ResponseWriter, r *http.Request) {
 		data := PageData{
 			Title: "My Page Title",
 			Body:  "Welcome to my website!",
