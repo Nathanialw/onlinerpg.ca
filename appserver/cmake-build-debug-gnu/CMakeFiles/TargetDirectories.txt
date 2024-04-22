@@ -1,3 +1,0 @@
-/home/nathanial/Workspace/Browser-Roguelike/appserver/cmake-build-debug-gnu/CMakeFiles/BrowserRPG.dir
-/home/nathanial/Workspace/Browser-Roguelike/appserver/cmake-build-debug-gnu/CMakeFiles/edit_cache.dir
-/home/nathanial/Workspace/Browser-Roguelike/appserver/cmake-build-debug-gnu/CMakeFiles/rebuild_cache.dir

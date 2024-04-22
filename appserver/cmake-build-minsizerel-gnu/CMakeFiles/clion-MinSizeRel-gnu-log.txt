@@ -1,4 +1,0 @@
-/snap/clion/274/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_MAKE_PROGRAM=/snap/clion/274/bin/ninja/linux/x64/ninja -DCMAKE_CXX_COMPILER=/usr/local/gcc-13.2.0/bin/gcc-13.2.0 -G Ninja -S /home/nathanial/Workspace/Browser-Roguelike/appserver -B /home/nathanial/Workspace/Browser-Roguelike/appserver/cmake-build-minsizerel-gnu
--- Configuring done (0.0s)
--- Generating done (0.0s)
--- Build files have been written to: /home/nathanial/Workspace/Browser-Roguelike/appserver/cmake-build-minsizerel-gnu
