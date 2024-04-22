@@ -1,9 +1,8 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.17)
 project(BrowserRPG)
 
 set(CMAKE_CXX_STANDARD 23)
 
-include_directories(lib)
 include_directories(src/networking)
 include_directories(src/map)
 include_directories(src/objects/units)

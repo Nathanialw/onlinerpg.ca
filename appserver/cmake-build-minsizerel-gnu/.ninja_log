@@ -1,0 +1,5 @@
+# ninja log v5
+1	210	1713812963245856959	CMakeFiles/BrowserRPG.dir/src/utils/utils.cpp.o	72c0ed45bb56c575
+1	221	1713812963253857052	CMakeFiles/BrowserRPG.dir/src/map/map.cpp.o	4090264291a9d07
+1	253	1713812963285857424	CMakeFiles/BrowserRPG.dir/src/server/main.cpp.o	bfd9fefd977d2e6d
+1	393	1713812963425859048	CMakeFiles/BrowserRPG.dir/src/objects/units/units.cpp.o	2928636303ac5492

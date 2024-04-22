@@ -1,8 +1,8 @@
 
 #include "string"
 
-#include <websocketpp/config/asio_no_tls.hpp>
-#include <websocketpp/server.hpp>
+#include "websocketpp/config/asio_no_tls.hpp"
+#include "websocketpp/server.hpp"
 
 #include "map.h"
 #include "receiving.h"
@@ -37,7 +37,7 @@ namespace Network {
     print_server.send(hdl, response, websocketpp::frame::opcode::text);
 
     //this will place Entities on a map with every connect, what we want to do is run this on startup then send the map that's already in memory
-    print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
+    //print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
   }
 
   void On_close(websocketpp::connection_hdl hdl) {
