@@ -52,7 +52,7 @@ namespace Units {
   std::string Random_Entities(char entityType, int numEntities) {
     std::string group;
     reRoll:
-    auto placement = Random_Placement();
+    Placement placement = Random_Placement();
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
       if (!Add_Object(group, placement.x + i, placement.y + i))
@@ -80,43 +80,51 @@ namespace Units {
   }
 
 
+  //  static std::vector<std::string> unitsOnMap;
+  static std::string unitsOnMap;
+
   void Init() {
-      Unit player{};
-      player.x = 0;
-      player.y = 0;
-      player.type = PLAYER;
-      units.push_back(player);
+    Unit player{};
+    player.x = 0;
+    player.y = 0;
+    player.type = PLAYER;
+    units.push_back(player);
 
-      Unit enemy{};
-      enemy.x = 5;
-      enemy.y = 5;
-      enemy.type = ENEMY;
-      units.push_back(enemy);
-      //unitsOnMap.push_back(Place_Entities_On_Map());
-    }
+    Unit enemy{};
+    enemy.x = 5;
+    enemy.y = 5;
+    enemy.type = ENEMY;
+    units.push_back(enemy);
+    //unitsOnMap.push_back(Place_Entities_On_Map());
+    unitsOnMap = Place_Entities_On_Map();
+  }
 
-    void Move(int x, int y) {
-      for (auto & unit : units) {
-        if (unit.type == PLAYER) {
-          unit.x += x;
-          unit.y += y;
-        }
+std::string Send_Units() {
+    return unitsOnMap;
+  }
+
+  void Move(int x, int y) {
+    for (auto & unit : units) {
+      if (unit.type == PLAYER) {
+        unit.x += x;
+        unit.y += y;
       }
     }
+  }
 
-    void Attack(int x, int y) {
-      for (auto & unit : units) {
-        if (unit.x == x && unit.y == y) {
-          Die();
-        }
+  void Attack(int x, int y) {
+    for (auto & unit : units) {
+      if (unit.x == x && unit.y == y) {
+        Die();
       }
     }
+  }
 
-    void Die() {
-      for (auto & unit : units) {
-        if (unit.type == PLAYER) {
-          units.erase(units.begin());
-        }
+  void Die() {
+    for (auto & unit : units) {
+      if (unit.type == PLAYER) {
+        units.erase(units.begin());
       }
     }
+  }
 }

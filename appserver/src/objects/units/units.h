@@ -26,9 +26,9 @@ namespace Units {
   };
 
   static std::vector<Unit> units;
-  static std::vector<std::string> unitsOnMap;
 
-  std::string Place_Entities_On_Map();
+
+  std::string Send_Units();
   void Init();
   void Move(int x, int y);
   void Attack(int x, int y);
