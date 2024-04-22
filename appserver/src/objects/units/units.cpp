@@ -92,7 +92,7 @@ namespace Units {
       enemy.y = 5;
       enemy.type = ENEMY;
       units.push_back(enemy);
-      unitsOnMap.emplace_back(Place_Entities_On_Map());
+      unitsOnMap.push_back(Place_Entities_On_Map());
     }
 
     void Move(int x, int y) {
