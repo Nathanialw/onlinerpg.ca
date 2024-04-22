@@ -1,3 +1,4 @@
+
 let player;
 let enemies = []
 let objects = []

@@ -2,6 +2,25 @@
 -psuedo turn based like final fantasy 7
 -keep it single page
 
+constraints
+-attacks are linear spells/arrows, instant spells, and melee instant
+-enemies walk direct at and attack, no AI
+-only NSEW movement
+-only ASCI chars
+-relatively small maps (256x256 tiles?)
+-simple goal go deeper into the dungeon get loot
+-can only click on one unit at a time
+-minimal UI
+  player frame
+  target frame
+  spells
+  bag
+  stats
+-simple grid collision
+-fixed damage (mayvbe random damage later)
+  -possible random damage added on a server response after an attack (Seal of Command-like)
+
+
 gamey
 -items like throwing, but they need to be very strong or even 
     necessary otherwise people won't use them

@@ -80,7 +80,6 @@ namespace Units {
   }
 
 
-
   void Init() {
       Unit player{};
       player.x = 0;
@@ -93,6 +92,7 @@ namespace Units {
       enemy.y = 5;
       enemy.type = ENEMY;
       units.push_back(enemy);
+      unitsOnMap.emplace_back(Place_Entities_On_Map());
     }
 
     void Move(int x, int y) {
