@@ -40,12 +40,14 @@ namespace Network {
     if (!Units::unitsOnMap.empty()) {
       response = "sending units: ";
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
+//      print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
+      print_server.send(hdl, Units::Place_Entities_On_Map(), websocketpp::frame::opcode::text);
     }
     else {
       response = "failed to send units: ";
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
+//      print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
+      print_server.send(hdl, Units::Place_Entities_On_Map(), websocketpp::frame::opcode::text);
     }
   }
 
