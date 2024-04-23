@@ -8,6 +8,7 @@ constraints
 -only NSEW movement
 -only ASCI chars
 -relatively small maps (256x256 tiles?)
+  only send 8x8 chunk of the map at a time to the browser (8cells x 8cells x 8(char size) = 512 bytes/1500bytes per request)
 -simple goal go deeper into the dungeon get loot
 -can only click on one unit at a time
 -minimal UI

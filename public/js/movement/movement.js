@@ -2,6 +2,10 @@ import {socket} from "../networking/receive.js"
 import {Move_Player} from "../objects/objects.js"
 const cell_size = 24;
 
+//up movement locally
+//send movement to server
+//recieve position from server
+//replace local with server position of they aren't the same
 
 function Move(keyName) {
     if (keyName === "w") {

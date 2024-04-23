@@ -1,18 +1,23 @@
 import {Move} from "../movement/movement.js"
 
 var sound = new Howl ({
-    
     src: ['../../assets/sounds/swish_2.wav'],
     html5: true
 });
 
-
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
+
+    //use a hash map instead
     
     if (Move(keyName)) {
         return; 
     }
+
+    //if cast spell
+    //if attack
+    //if insteract
+    //if UI? maybe
     
     if (keyName === "Enter") {
         sound.play();

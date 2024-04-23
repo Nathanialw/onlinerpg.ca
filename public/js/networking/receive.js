@@ -9,6 +9,15 @@ socket.onmessage = function(event) {
 
     let type = event.data[0];
     let data = event.data.substring(1);
+
+    //need to use a hash map
+    
+    //populate map on startup
+
+    //on periodic update
+      //update positions
+      //update damage
+      //get new chunk to emplace in map array
     
     //message
     if (type === "0") {

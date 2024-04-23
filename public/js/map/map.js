@@ -4,6 +4,9 @@ import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 let mapDisplay = [];
 let fill = [];
 
+//should be saved as character data
+let visionRadius = 8;
+
 // for testing start
 
 // let mapString = "\
@@ -113,7 +116,7 @@ let fill = [];
 // for testing end
 
 
-
+// instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 export function Make_Map(serverMap, mapWidth) {
     for (let i = 0; i < mapWidth; i++) {
         //render lines of the map
@@ -121,18 +124,35 @@ export function Make_Map(serverMap, mapWidth) {
         mapDisplay[i] = Create_Map_Line(object, i);
     }
 }
-    
+
+function gg(i) {
+    Set_player
+}
+
+let Update = {
+    H: Set_Player,
+    g: Set_Enemies,
+    o: Set_Objects,
+}
+
+// I should use a seperate function to grab the correct substring from the unitOnMap string
 export function Populate_Map(unitOnMap) {
     for (let i = 0; i < unitOnMap.length; i+=5) {
         let object = Create_Object(unitOnMap[i], unitOnMap.substring(i+1,i+3), unitOnMap.substring(i+3,i+5));
-        if (unitOnMap[i] === 'H') {
-            Set_Player(object);
-        }
-        else if (unitOnMap[i] === 'g') {
-            Set_Enemies(object);
-        }
-        else if (unitOnMap[i] === 'o') {
-            Set_Objects(object);
-        }
+
+	Update[unitOnMap[i]](object)
+
+
+	//use a hashmap here instead og branching
+//        if (unitOnMap[i] === 'H') {
+//            Set_Player(object);
+//        }
+//        else if (unitOnMap[i] === 'g') {
+//            Set_Enemies(object);
+//        }
+//        else if (unitOnMap[i] === 'o') {
+//            Set_Objects(object);
+	//        }
+	
     }
 }
