@@ -3,10 +3,13 @@ var websocket =  new WebSocket("ws://www.saycum.com/ws");
 
 export function socket() {
     if (websocket.readystate === websocket.OPEN) {
-	return websocket;
+	console.log("socket is open")
     } else {
+	console.log("socket was closed")
 	websocket =  new WebSocket("ws://www.saycum.com/ws");
+	console.log("socket is open")
     }
+    return websocket
 }
 
 function Message(data) {
