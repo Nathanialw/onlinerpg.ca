@@ -10,8 +10,7 @@ const cell_size = 24;
 function Move(keyName) {
     if (keyName === "w") {
         Move_Player(0, -cell_size);
-        let websocket = socket()
-	websocket.send("1w");       
+        socket().send("1w");       
         //send to server
         return true;
     }
