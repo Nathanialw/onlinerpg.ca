@@ -125,10 +125,6 @@ export function Make_Map(serverMap, mapWidth) {
     }
 }
 
-function gg(i) {
-    Set_player
-}
-
 let Update = {
     H: Set_Player,
     g: Set_Enemies,
@@ -139,20 +135,6 @@ let Update = {
 export function Populate_Map(unitOnMap) {
     for (let i = 0; i < unitOnMap.length; i+=5) {
         let object = Create_Object(unitOnMap[i], unitOnMap.substring(i+1,i+3), unitOnMap.substring(i+3,i+5));
-
 	Update[unitOnMap[i]](object)
-
-
-	//use a hashmap here instead og branching
-//        if (unitOnMap[i] === 'H') {
-//            Set_Player(object);
-//        }
-//        else if (unitOnMap[i] === 'g') {
-//            Set_Enemies(object);
-//        }
-//        else if (unitOnMap[i] === 'o') {
-//            Set_Objects(object);
-	//        }
-	
     }
 }
