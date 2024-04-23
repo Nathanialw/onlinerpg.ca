@@ -2,7 +2,7 @@ import {Make_Map, Populate_Map} from '../map/map.js';
 var websocket = socket()
 
 export function socket() {
-    if (websocket.readystate === WebSocket.OPEN) {
+    if (websocket.readyState === WebSocket.OPEN) {
 	console.log("socket is open")
     } else {
 	console.log("socket was closed")
