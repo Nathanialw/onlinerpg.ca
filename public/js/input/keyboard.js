@@ -23,7 +23,7 @@ document.addEventListener("keydown", (event) => {
     const keyName = event.key;
 
     //use a hash map instead
-    if (Update[keyname]()) {
+    if (Update[keyname](keyName)) {
 	return;
     }
 
