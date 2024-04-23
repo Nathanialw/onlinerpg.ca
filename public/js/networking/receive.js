@@ -1,5 +1,5 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
-var websocket =  new WebSocket("ws://www.saycum.com/ws");
+var websocket = new WebSocket("ws://www.saycum.com/ws");
 
 export function socket() {
     if (websocket.readyState === WebSocket.OPEN) {
@@ -28,7 +28,7 @@ let Update = {
     2: Populate_Map,
 }
 
-socket.onmessage = function(event) {    
+websocket.onmessage = function(event) {    
     if (event.data === 0) {
         return
     }
