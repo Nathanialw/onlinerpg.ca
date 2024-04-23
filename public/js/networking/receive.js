@@ -28,29 +28,10 @@ socket.onmessage = function(event) {
     //need to use a hash map
     Update[type](data);
     
-    //populate map on startup
     
+    //populate map on startup
     //on periodic update
       //update positions
       //update damage
       //get new chunk to emplace in map array
-    
-   // //message
-   // if (type === "0") {
-   //     console.log(data);
-   // }
-   // 
-   // //map
-   // else if (type === "1") {
-   //     let mapWidth = parseInt(data.substring(0, 2), 10);
-   //     let serverMap = data.substring(2);
-   //     Make_Map(serverMap, mapWidth);
-   //     
-   // }
-//
-//    //update units on map position
-//    else if (type === "2") {
-//        Populate_Map(data);
-//    }
-//    
 };

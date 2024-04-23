@@ -5,30 +5,40 @@ var sound = new Howl ({
     html5: true
 });
 
+function SoundPlay(keyName) {
+    sound.play;
+    return true
+}
+
+
+let Update = {
+    Enter: SoundPlay,
+    a: Move,
+    w: Move,
+    s: Move,
+    d: Move,
+}
+
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
 
     //use a hash map instead
-    
-    if (Move(keyName)) {
-        return; 
+    if (Update[keyname]()) {
+	return;
     }
 
     //if cast spell
     //if attack
     //if insteract
     //if UI? maybe
-    
-    if (keyName === "Enter") {
-        sound.play();
-        return;
-    }
 
-    if (event.ctrlKey) {
+	
+    //this is a bool so it can be used as a modifier
+//    if (event.ctrlKey) {
     // Even though event.key is not 'Control' (e.g., 'a' is pressed),
     // event.ctrlKey may be true if Ctrl key is pressed at the same time.
-        return;            
-    }
+  //      return;            
+ //   }
 
     // W, A, S, D || UP, DOWN, LEFT, RIGHT
     // 1, 2, 4, 5, 6, etc... TO CAST SPELLS
