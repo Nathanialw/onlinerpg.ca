@@ -1,5 +1,5 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
-var websocket = socket()
+var websocket =  new WebSocket("ws://www.saycum.com/ws");
 
 export function socket() {
     if (websocket.readyState === WebSocket.OPEN) {
