@@ -6,7 +6,7 @@ export function socket() {
 	if (websocket.readyState === WebSocket.OPEN) {
 	    resolve("socket open")
 	}
-	else if (websocket.readystate === WebSocket.Connecting ){
+	else if (websocket.readyState === WebSocket.CONNECTING ){
 	    resolve("socket connecting")
 	}
 	else {
