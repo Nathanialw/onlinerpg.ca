@@ -13,7 +13,13 @@ let promise = new Promise((resolve, reject) => {
 
 export function socket() {
     //needs to wait for it to connect before it returns
-    return promise.then((message) => { return websocket }).catch((message) => { return websocket})
+    return promise.then((message) => {
+	console.log(message)
+	return websocket
+    }).catch((message) => {
+	console.log(message)
+	return websocket
+    })
 }
 
 function Message(data) {
