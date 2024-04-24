@@ -1,5 +1,6 @@
 <?php
     include 'header.php';
+    include 'body.php';
 
     if (isset($_POST["submit"])) {
         include '/var/www/saycum.com/private/include/signup.h.php';

@@ -1,3 +1,5 @@
+'use strict'
+
 import {Create_Object, Create_Map_Line} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 

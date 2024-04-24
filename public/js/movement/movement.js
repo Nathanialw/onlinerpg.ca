@@ -1,3 +1,5 @@
+'use strict'
+
 import {socket} from "../networking/receive.js"
 import {Move_Player} from "../objects/objects.js"
 const cell_size = 24;

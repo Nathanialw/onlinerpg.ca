@@ -1,3 +1,5 @@
+'use strict'
+
 import {Make_Map, Populate_Map} from '../map/map.js';
 var websocket = new WebSocket("ws://www.saycum.com/ws");
 
@@ -10,6 +12,7 @@ export function socket() {
     }
     else {
         websocket = new WebSocket("ws://www.saycum.com/ws");
+        console.log("reconnecting websocket")
         return { websocket: websocket, isConnected: false };
     }
 }

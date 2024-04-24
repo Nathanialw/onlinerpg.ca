@@ -3,6 +3,11 @@
     include_once 'header.php';
 ?>
 
+<?php
+    include 'body.php';
+?>
+
+
 <h1>Browser RPG</h1>
 
 <?php 

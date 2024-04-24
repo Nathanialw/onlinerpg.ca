@@ -1,3 +1,5 @@
+'use strict'
+
 import {Move} from "../movement/movement.js"
 
 var sound = new Howl ({
