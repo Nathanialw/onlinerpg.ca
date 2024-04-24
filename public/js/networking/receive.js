@@ -6,10 +6,13 @@ export function socket() {
 	if (websocket.readyState === WebSocket.OPEN) {
 	    resolve("socket open")
 	}
+	else if (websocket.readystate === WebSocket.Connecting ){
+	    resolve("socket connecting")
+	}
 	else {
 	    websocket = new WebSocket("ws://www.saycum.com/ws");
 	    reject("new socket opened")
-	}    
+	}
     })
     //needs to wait for it to connect before it returns
     promise.then((message) => {
