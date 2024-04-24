@@ -15,15 +15,13 @@ export async function socket() {
 	}
     })
     //needs to wait for it to connect before it returns
-    promise.then((message) => {
+    return promise.then((message) => {
 	    console.log(message)
-	return websocket
+	    return websocket
     }).catch((message) => {
 	    console.log(message)
-	return websocket
+	    return websocket
     })
-    
-    return websocket
 }
 
 function Message(data) {
