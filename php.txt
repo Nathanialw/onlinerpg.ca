@@ -1,0 +1,7 @@
+
+
+//to prevent XXS attacks always with this when you use a GET
+$error = htmlspecialchars($_GET["error"]);
+
+
+

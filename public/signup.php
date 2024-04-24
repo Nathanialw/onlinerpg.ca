@@ -33,25 +33,26 @@
 
 
     if (isset($_GET["error"])) {
-        if ($_GET["error"] == "emptyinput") {
+        $error = htmlspecialchars($_GET["error"]);
+        if ($error == "emptyinput") {
             echo "<p>Fill in all fields!</p>";
         }
-        else if ($_GET["error"] == "invaliduid") {
+        else if ($error == "invaliduid") {
             echo "<p>Choose a proper username!</p>";
         }
-        else if ($_GET["error"] == "invalidemail") {
+        else if ($error == "invalidemail") {
             echo "<p>Choose a proper email!</p>";
         }
-        else if ($_GET["error"] == "passwordsdontmatch") {
+        else if ($error == "passwordsdontmatch") {
             echo "<p>Passwords do not match!</p>";
         }
-        else if ($_GET["error"] == "stmtfailed") {
+        else if ($error == "stmtfailed") {
             echo "<p>Something went wrong, try again!</p>";
         }
-        else if ($_GET["error"] == "usernametaken") {
+        else if ($error == "usernametaken") {
             echo "<p>Username already taken!</p>";
         }
-        else if ($_GET["error"] == "none") {
+        else if ($error == "none") {
             echo "<p>You have signed up, Welcome!</p>";
         }
     }
