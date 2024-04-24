@@ -30,7 +30,7 @@ let Update = {
     2: Populate_Map,
 }
 
-socket().onmessage = function(event) {    
+socket().websocket.onmessage = function(event) {    
     if (event.data === 0) {
         return
     }
