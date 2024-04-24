@@ -1,8 +1,8 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
 var websocket = new WebSocket("ws://www.saycum.com/ws");
 
-export function socket() {
-    let promise = new Promise((resolve, reject) => {
+export async function socket() {
+    let promise = await new Promise((resolve, reject) => {
 	if (websocket.readyState === WebSocket.OPEN) {
 	    resolve("socket open")
 	}
@@ -16,10 +16,10 @@ export function socket() {
     })
     //needs to wait for it to connect before it returns
     promise.then((message) => {
-	console.log(message)
+	    console.log(message)
 	return websocket
     }).catch((message) => {
-	console.log(message)
+	    console.log(message)
 	return websocket
     })
     
