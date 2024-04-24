@@ -19,6 +19,11 @@ let Update = {
     d: Move,
 }
 
+document.addEventListener("keypress", (event) => {
+    //key held down
+
+})
+			  
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
 
@@ -35,7 +40,7 @@ document.addEventListener("keydown", (event) => {
     // W, A, S, D || UP, DOWN, LEFT, RIGHT
     // 1, 2, 4, 5, 6, etc... TO CAST SPELLS
     // B, C, P, I, etc... UI BUTTONS
-}, false,);
+});
 
 document.addEventListener("keyup", (event) => {
     const keyName = event.key;
@@ -45,4 +50,4 @@ document.addEventListener("keyup", (event) => {
     if (keyName === "Control") {
 	
     }
-}, false,);
+});

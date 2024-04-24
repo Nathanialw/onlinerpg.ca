@@ -20,6 +20,8 @@ constraints
 -simple grid collision
 -fixed damage (mayvbe random damage later)
   -possible random damage added on a server response after an attack (Seal of Command-like)
+-dialogue box to show happenings (enemy deaths, acquired items)
+
 
 
 gamey

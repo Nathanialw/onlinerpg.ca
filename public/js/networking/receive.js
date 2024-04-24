@@ -1,15 +1,19 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
 var websocket = new WebSocket("ws://www.saycum.com/ws");
 
-export function socket() {
+let promise = new Promise((resolve, reject) => {
     if (websocket.readyState === WebSocket.OPEN) {
-	console.log("socket is open")
-    } else {
-	console.log("socket was closed")
-	websocket = new WebSocket("ws://www.saycum.com/ws");
-	console.log("socket is open")
+	resolve("socket open")
     }
-    return websocket
+    else {
+	websocket = new WebSocket("ws://www.saycum.com/ws");
+	reject("new socket opened")
+    }    
+})
+
+export function socket() {
+    //needs to wait for it to connect before it returns
+    return promise.then((message) => { return websocket }).catch((message) => { return websocket})
 }
 
 function Message(data) {
@@ -28,7 +32,7 @@ let Update = {
     2: Populate_Map,
 }
 
-websocket.onmessage = function(event) {    
+socket().onmessage = function(event) {    
     if (event.data === 0) {
         return
     }
