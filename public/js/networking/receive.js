@@ -1,17 +1,16 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
 var websocket = new WebSocket("ws://www.saycum.com/ws");
 
-let promise = new Promise((resolve, reject) => {
-    if (websocket.readyState === WebSocket.OPEN) {
-	resolve("socket open")
-    }
-    else {
-	websocket = new WebSocket("ws://www.saycum.com/ws");
-	reject("new socket opened")
-    }    
-})
-
 export function socket() {
+    let promise = new Promise((resolve, reject) => {
+	if (websocket.readyState === WebSocket.OPEN) {
+	    resolve("socket open")
+	}
+	else {
+	    websocket = new WebSocket("ws://www.saycum.com/ws");
+	    reject("new socket opened")
+	}    
+    })
     //needs to wait for it to connect before it returns
     return promise.then((message) => {
 	console.log(message)
