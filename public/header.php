@@ -33,7 +33,4 @@
             </div>
         </nav>
 
-
-        <!-- main content -->
-        <div class="wrapper">
             

@@ -3,7 +3,9 @@
 ?>
 
 
-
+<?php
+    include 'body.php'
+?>
 
 
 <?php
