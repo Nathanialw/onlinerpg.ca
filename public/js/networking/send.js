@@ -2,8 +2,8 @@
 
 
 const request = new XMLHttpRequest()
-method = "GET"
-url = "www.saycum.com"
+const method = "GET"
+const url = "www.onlinerpg.ca"
 request.open(method, url, true)
 request.send()
 request.log(request)

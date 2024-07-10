@@ -7,7 +7,7 @@
 <?php
 
     if (isset($_POST["submit"])) {
-        include '/var/www/saycum.com/private/include/login.h.php';
+        include '/var/www/onlinerpg.ca/private/include/login.h.php';
         $username = $_POST["uid"];
         $pwd = $_POST["pwd"];
         Login($username, $pwd);        
