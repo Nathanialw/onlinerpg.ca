@@ -3,7 +3,7 @@
     include 'body.php';
 
     if (isset($_POST["submit"])) {
-        include '/var/www/saycum.com/private/include/signup.h.php';
+        include '/var/www/onlinerpg.ca/private/include/signup.h.php';
     
         $name = $_POST['name'];
         $email = $_POST['email'];
