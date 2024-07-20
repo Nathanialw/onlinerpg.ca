@@ -1,0 +1,7 @@
+For the webserver:
+    cd webserver
+    go build -o webserver/webserver
+
+
+For the Appserver:
+    //
