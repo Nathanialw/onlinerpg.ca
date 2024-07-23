@@ -52,3 +52,4 @@ func productHandler(w http.ResponseWriter, r *http.Request) {
 func usersHandler(w http.ResponseWriter, r *http.Request) {
 	// Handle requests for the user API here
 }
+``
