@@ -1,4 +1,3 @@
-chmod +x update.sh
 git checkout -- *
 git pull
 chmod +x /var/www/onlinerpg.ca/webserver/webserver/webserver
