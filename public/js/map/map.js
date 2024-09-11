@@ -128,6 +128,7 @@ export function Make_Map(serverMap, mapWidth) {
 }
 
 let Update = {
+    H: Set_Player,
     g: Set_Enemies,
     o: Set_Objects,
 }
@@ -136,11 +137,6 @@ let Update = {
 export function Populate_Map(unitOnMap) {
     for (let i = 0; i < unitOnMap.length; i+=5) {
         let object = Create_Object(unitOnMap[i], unitOnMap.substring(i+1,i+3), unitOnMap.substring(i+3,i+5));
-        if (unitOnMap[i] === '@') {
-            Set_Player(object);
-        }
-        else {
-	        Update[unitOnMap[i]](object)
-        }
+	    Update[unitOnMap[i]](object)
     }
 }
