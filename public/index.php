@@ -14,19 +14,17 @@
     if (isset($_SESSION["useruid"])) {
         $useruid = htmlspecialchars($_SESSION["useruid"]);
         echo "<p>Hello there " . "$useruid" . "</p>";
+        //<!-- the game map -->
+        include 'game.php';
+        //<!-- the game interface -->
+        
+        //<!-- the game chat -->
+        
     }
     ?>
 
-    
-<?php
-    include 'game.php';
-?>
 
-<!-- the game map -->
 
-<!-- the game interface -->
-
-<!-- the game chat -->
 
 <?php
     include_once 'footer.php';
