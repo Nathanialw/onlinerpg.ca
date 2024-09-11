@@ -43,6 +43,7 @@ namespace Network {
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
 //      print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
 
+    print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
     //print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
   }
 
