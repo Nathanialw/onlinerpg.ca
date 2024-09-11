@@ -3,6 +3,11 @@ footer {
   background: var(--primary-500);
 }
 
+footer {
+  position: fixed;  
+  bottom: 0;
+}
+
 .footer {
   bottom: 0;
 
