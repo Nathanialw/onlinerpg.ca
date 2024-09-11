@@ -32,10 +32,11 @@ namespace Network {
     //client will get all the uIDs for all other units on the map and store them and himself in the unordered_map
 
     //response = "0Map: ";
-    print_server.send(hdl, std::to_string(Warrior::Stats().vision), websocketpp::frame::opcode::text);
+    //print_server.send(hdl, std::to_string(Warrior::Stats().vision), websocketpp::frame::opcode::text);
 
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
-    print_server.send(hdl, Map::SendMapSegment(3,4,Warrior::Stats().vision), websocketpp::frame::opcode::text);
+    //print_server.send(hdl, Map::SendMapSegment(3,4,Warrior::Stats().vision), websocketpp::frame::opcode::text);
+    print_server.send(hdl, Map::Send(), websocketpp::frame::opcode::text);
 
     //this will place Entities on a map with every connect, what we want to do is run this on startup then send the map that's already in memory
 //    response = "0sending units: ";
