@@ -9,16 +9,19 @@
         <script> WebFont.load({google: {families: ['Press Start 2P']}});</script>
         
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon"       href="/assets/icons/css/all.css" title="icons" />
-        <link rel="stylesheet" href="/assets/icons/css/all.css" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon"       href="/assets/icons/css/all.css" title="icons"/>
+        <link rel="stylesheet" href="/assets/icons/css/all.css"/>
         
         <link rel="stylesheet" href="/css/normalize.css">
         <link rel="stylesheet" href="/css/account.css">
         <link rel="stylesheet" href="/css/nav.css" />
-        <link rel="stylesheet" href="/css/footer.css" />
-        <link rel="stylesheet" href="/css/style.css" />        
+        <link rel="stylesheet" href="/css/footer.css"/>
+        <link rel="stylesheet" href="/css/style.css"/>
+        
+        <script src="/js/frontend/nav.js"></script>
+        <script src="/js/frontend/footer.js"></script>
     </head>
 
     <body>
