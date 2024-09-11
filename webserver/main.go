@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/julienschmidt/httprouter"
 	"html/template"
 	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 type PageData struct {
@@ -33,7 +34,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		Title: "My Page Title",
 		Body:  "Welcome to my dwebsite!",
 	}
-	tmpl, err := template.ParseFiles("template.html")
+	tmpl, err := template.ParseFiles("templates/template.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -52,4 +53,3 @@ func productHandler(w http.ResponseWriter, r *http.Request) {
 func usersHandler(w http.ResponseWriter, r *http.Request) {
 	// Handle requests for the user API here
 }
-``

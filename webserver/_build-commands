@@ -1,0 +1,9 @@
+For the webserver:
+    cd webserver
+    go build -o app/main
+
+    go build -buildvcs=false -o app/main
+    go build -buildvcs=false -o app/winmain.exe
+
+For the Appserver:
+    //

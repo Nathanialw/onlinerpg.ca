@@ -1,0 +1,40 @@
+
+.profile-img {
+    max-width: 250px;
+}
+
+.account-links {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.account-btns {
+    margin: 0 auto;
+    width: 20%;
+    margin-top: 3rem;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-info {
+    font-size: 1rem;
+    line-height: 0;
+}
+
+.account-btn {
+    margin-top: 0.5rem;
+}
+
+.sub-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-links {
+    max-width: 400px;
+}

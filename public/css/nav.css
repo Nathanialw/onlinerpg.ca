@@ -1,0 +1,91 @@
+/* nav bar */
+
+nav {
+}
+
+.nav-center {
+  margin: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.5rem;
+}
+
+.logo {
+  text-transform: uppercase;
+  color: var(--primary-500);
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0;
+  padding-left: 0.75rem;
+}
+
+.bars {
+  background: transparent;
+  border: transparent;
+  color: var(--primary-500);
+  font-size: 3.5rem;
+  transition: var(--transition);
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+.bars:hover {
+  cursor: pointer;
+  color: var(--primary-300);
+}
+
+.nav-links {
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.nav-links a {
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+  font-weight: 600;
+  transition: var(--transition);
+  display: block;
+  padding: 0.45rem 1rem;
+  font-size: 1.50rem;
+}
+
+.nav-links a:hover {
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  background: var(--primary-500);
+  color: var(--white);
+}
+
+.show-links {
+  /* this needs to be dymanic, based on the height of the links */
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    height: 3.50rem;
+  }
+
+  .bars {
+    display: none;
+  }
+
+  .nav-center {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-links {
+    align-self: stretch;
+    display: flex;
+    height: auto;
+  }
+}
