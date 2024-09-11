@@ -2,6 +2,7 @@
 
 import {Make_Map, Populate_Map} from '../map/map.js';
 //import {websocket} from './socket.js';
+
 function CreateWebsocket() {
     let tempsocket = new WebSocket("ws://www.onlinerpg.ca/ws");
     tempsocket.onopen = () => {
@@ -40,7 +41,7 @@ export function socket() {
         websocket = CreateWebsocket();
         console.log("reconnecting websocket...");
         return { websocket: websocket, isConnected: false };
-    }
+    }    
 }
 
 function Message(data) {
@@ -77,3 +78,10 @@ socket().websocket.onmessage = function(event) {
       //update damage
       //get new chunk to emplace in map array
 };
+
+socket().websocket.onclose = function(event) {
+    console.log("WebSocket connection closed, attempting to reconnect...");
+    setTimeout(() => {
+        websocket = CreateWebsocket();
+    }, 1000); // Attempt to reconnect after 1 second
+}
