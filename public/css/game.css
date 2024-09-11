@@ -6,7 +6,7 @@
     transform: translate(-50%, -50%);
 }
 
-.content {
+.splashContent {
     /* center content */
     display: block;
     margin: 0 auto;
