@@ -14,7 +14,6 @@
         <link rel="icon"       href="/assets/icons/css/all.css" title="icons"/>
         <link rel="stylesheet" href="/assets/icons/css/all.css"/>
         
-        <link rel="stylesheet" href="/css/normalize.css">
         <link rel="stylesheet" href="/css/account.css">
         <link rel="stylesheet" href="/css/nav.css" />
         <link rel="stylesheet" href="/css/footer.css"/>
@@ -25,7 +24,7 @@
     <body>
         <script src="/js/frontend/nav.js"></script>
         <script src="/js/frontend/footer.js"></script>
-        
+
         <nav>
             <div class="wrapper">
                 <!-- <a href="../scripts/index.php"></a> -->
