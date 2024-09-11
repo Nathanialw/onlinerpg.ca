@@ -9,7 +9,7 @@
 
 <section>
     <h1 class="wrapper">Browser RPG</h1>
-    <button type="submit" name="startGame" id="startGame btn">Start!</button>
+    <button type="submit" name="startGame" id="startGame" class="wrapper btn btn-submit">Start!</button>
 </section>
 
 <?php 
@@ -23,7 +23,8 @@
     //     //<!-- the game chat -->
         
     // }
-    if (isset($_POST["startGame"])) {
+    $_POST["startGame"]) {
+        echo "<p>Hello there</p>";
         include 'game.php';
     }
     ?>
