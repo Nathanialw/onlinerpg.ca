@@ -11,7 +11,7 @@ export function socket() {
         return { websocket: websocket, isConnected: false };
     }
     else {
-        websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+        //websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
         console.log("reconnecting websocket")
         return { websocket: websocket, isConnected: false };
     }
