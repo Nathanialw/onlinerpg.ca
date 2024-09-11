@@ -13,7 +13,6 @@ function SoundPlay(keyName) {
     return true
 }
 
-
 let Update = {
     Enter: SoundPlay,
     a: Move,
@@ -24,7 +23,6 @@ let Update = {
 
 document.addEventListener("keypress", (event) => {
     //key held down
-
 })
 			  
 document.addEventListener("keydown", (event) => {
@@ -32,7 +30,7 @@ document.addEventListener("keydown", (event) => {
 
     //use a hash map instead
     if (Update[keyName](keyName)) {
-	return;
+	    return;
     }
 
     //if cast spell
