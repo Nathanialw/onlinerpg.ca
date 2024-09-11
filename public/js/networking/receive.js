@@ -1,7 +1,8 @@
 'use strict'
 
 import {Make_Map, Populate_Map} from '../map/map.js';
-import {websocket} from './socket.js';
+//import {websocket} from './socket.js';
+var websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
 
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
@@ -11,7 +12,7 @@ export function socket() {
         return { websocket: websocket, isConnected: false };
     }
     else {
-        //websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+        websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
         console.log("reconnecting websocket")
         return { websocket: websocket, isConnected: false };
     }
