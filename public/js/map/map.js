@@ -7,7 +7,7 @@ let mapDisplay = [];
 let fill = [];
 
 //should be saved as character data
-let visionRadius = 8;
+let visionRadius = 6;
 
 // for testing start
 

@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 include_directories(src/networking)
 include_directories(src/map)
 include_directories(src/objects/units)
+include_directories(src/objects/units/class)
 
 add_executable(BrowserRPG
 
@@ -18,4 +19,5 @@ add_executable(BrowserRPG
         src/map/map.cpp
         src/objects/units/units.cpp
         src/utils/utils.cpp
+        src/objects/units/class/warrior.cpp
 )
