@@ -29,6 +29,9 @@
     if (isset($_POST["startGame"])) {
         include 'game.php';
     }    
+    elseif (isset($_POST["restartGame"])) {
+        include 'game.php';        
+    }
     else {
         echo "<form method='post'>
                 <input type='submit' name='startGame' id='startGame' class='wrapper btn btn-submit' value='Start Game'/>

@@ -5,7 +5,7 @@ import {closeGame} from '../frontend/game.js';
 //import {websocket} from './socket.js';
 
 let websocket;
-let reconnectInterval = 2500; // 1 second
+let reconnectInterval = 1000; // 1 second
 
 function createWebSocket() {
     websocket = new WebSocket("ws://www.onlinerpg.ca/ws");

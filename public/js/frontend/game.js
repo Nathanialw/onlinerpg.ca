@@ -8,4 +8,8 @@ document.getElementById('gameCanvas').appendChild(app.canvas);
 export function closeGame() {
     app.destroy(true, {children: true, texture: true, baseTexture: true});
     document.getElementById('gameCanvas').removeChild(app.canvas);    
+    document.getElementById('gameCanvas').innerHTML(`<form method='post'>
+                <input type='submit' name='restartGame' id='restartGame' class='wrapper btn btn-submit' value='Restart Game'/>
+            </form>`);
+    
 }
