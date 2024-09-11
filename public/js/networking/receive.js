@@ -1,49 +1,67 @@
 'use strict'
 
 import {Make_Map, Populate_Map} from '../map/map.js';
+import {closeGame} from '../frontend/game.js';
 //import {websocket} from './socket.js';
 
-function CreateWebsocket() {
-    let tempsocket = new WebSocket("ws://www.onlinerpg.ca/ws");
-    tempsocket.onopen = () => {
+let websocket;
+let reconnectInterval = 2500; // 1 second
+
+function createWebSocket() {
+    websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+
+    websocket.onopen = () => {
         console.log("WebSocket connection opened");
     };
-    tempsocket.onclose = () => {
+
+    websocket.onclose = () => {
         console.log("WebSocket connection closed, attempting to reconnect...");
         setTimeout(() => {
-            websocket = CreateWebsocket();
-        }, 1000); // Attempt to reconnect after 1 second
+            createWebSocket();
+        }, reconnectInterval);
     };
+
+    websocket.onerror = (error) => {
+        console.error("WebSocket error:", error);
+        websocket.close();
+    };
+
+    websocket.onmessage = (event) => {
+        console.log("WebSocket message received:", event.data);
+        // Handle incoming messages here
+    };
+
     setInterval(() => {
-        if (tempsocket.readyState === WebSocket.OPEN) {
-            tempsocket.send(JSON.stringify({ event: "ping" }));
+        if (websocket.readyState === WebSocket.OPEN) {
+            websocket.send(JSON.stringify({ event: "ping" }));
         }
     }, 2500);
-    return tempsocket;
 }
 
-var websocket = CreateWebsocket();
+createWebSocket();
 
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
         return { websocket: websocket, isConnected: true };
-    }
-    else if (websocket && websocket.readyState === WebSocket.CONNECTING) {
-        console.log("connecting websocket...");
+    } else if (websocket && websocket.readyState === WebSocket.CONNECTING) {
+        console.log("Connecting WebSocket...");
+        return { websocket: websocket, isConnected: false };
+    } else if (websocket && (websocket.readyState === WebSocket.CLOSING || websocket.readyState === WebSocket.CLOSED)) {
+        console.log("Reconnecting WebSocket...");
+        createWebSocket();
+        return { websocket: websocket, isConnected: false };
+    } else {
+        createWebSocket();
+        console.log("Reconnecting WebSocket...");
         return { websocket: websocket, isConnected: false };
     }
-    else if (websocket && (websocket.readyState === WebSocket.CLOSING || websocket.readyState === WebSocket.CLOSED)) {
-        console.log("reconnecting websocket...");
-        websocket = CreateWebsocket();
-        return { websocket: websocket, isConnected: false };
-    }
-    else {
-        websocket = CreateWebsocket();
-        console.log("reconnecting websocket...");
-        return { websocket: websocket, isConnected: false };
-    }    
 }
 
+export function closeWebSocket() {
+    if (websocket) {
+        websocket.close();
+    }
+}
 function Message(data) {
     console.log(data)
 }
@@ -80,8 +98,5 @@ socket().websocket.onmessage = function(event) {
 };
 
 socket().websocket.onclose = function(event) {
-    console.log("WebSocket connection closed, attempting to reconnect...");
-    setTimeout(() => {
-        websocket = CreateWebsocket();
-    }, 1000); // Attempt to reconnect after 1 second
+    closeGame();
 }
