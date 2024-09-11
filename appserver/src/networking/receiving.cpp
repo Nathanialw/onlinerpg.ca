@@ -110,7 +110,7 @@ namespace Network {
                 Units::Move(-1, 0);
         }
         else {
-            response = "pinging";
+            response = "0pinging";
             print_server.send(hdl, response, websocketpp::frame::opcode::text);
         }
     }
