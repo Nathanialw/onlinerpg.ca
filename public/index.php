@@ -8,7 +8,7 @@
 ?>
 
 
-<h1>Browser RPG</h1>
+<h1 class="wrapper">Browser RPG</h1>
 
 <?php 
     if (isset($_SESSION["useruid"])) {
