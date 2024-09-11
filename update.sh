@@ -6,5 +6,5 @@ sudo service rpgwebserver restart
 sudo service rpgwebserver status
 
 chmod +x /var/www/onlinerpg.ca/appserver/cmake-build-minsizerel/BrowserRPG
-sudo service rpgwebserver restart
-sudo service rpgwebserver status
+sudo service rpgserver restart
+sudo service rpgserver status
