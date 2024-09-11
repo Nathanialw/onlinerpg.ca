@@ -1,7 +1,6 @@
 .vscode/*
 package-lock.json 
 package.json 
-TODO.txt
 .gitignore
 appserver/cmake-build-debug/*
 appserver/cmake-build-release/*
