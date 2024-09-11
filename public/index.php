@@ -8,12 +8,7 @@
 ?>
 
 <h1 class="wrapper">Browser RPG</h1>
-<!-- // if (!isset($_POST["startGame"])) { -->
-
-<!-- // } -->
-<!-- // ?> -->
-
-
+<p class="wrapper">Welcome to the Browser RPG game. This is a simple text-based game where you can explore the world, fight monsters, and interact with other players. To get started, click the "Start Game" button below.</p>
 
 <?php 
     // if (isset($_SESSION["useruid"])) {
@@ -33,9 +28,9 @@
         include 'game.php';        
     }
     else {
-        echo "<form method='post'>
+        echo "<section><form method='post'>
                 <input type='submit' name='startGame' id='startGame' class='wrapper btn btn-submit' value='Start Game'/>
-            </form>";
+            </form></section>";
     }
 ?>
 

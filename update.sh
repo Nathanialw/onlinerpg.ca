@@ -1,9 +1,10 @@
 git checkout -- *
 git pull
 
-chmod +x /var/www/onlinerpg.ca/webserver/webserver/webserver
-sudo service rpgwebserver restart
-sudo service rpgwebserver status
+#thusfar unused
+#chmod +x /var/www/onlinerpg.ca/webserver/webserver/webserver
+#sudo service rpgwebserver restart
+#sudo service rpgwebserver status
 
 chmod +x /var/www/onlinerpg.ca/appserver/cmake-build-minsizerel/BrowserRPG
 sudo service rpgserver restart
