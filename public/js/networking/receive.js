@@ -3,9 +3,9 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
 //import {websocket} from './socket.js';
 function CreateWebsocket() {
-    websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+    let tempsocket = new WebSocket("ws://www.onlinerpg.ca/ws");
     setInterval(() => websocket.send(JSON.stringify({ event: "ping" })), 10000);
-    return websocket;
+    return tempsocket;
 }
 var websocket = CreateWebsocket();
 
