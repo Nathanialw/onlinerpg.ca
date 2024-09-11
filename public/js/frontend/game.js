@@ -1,4 +1,4 @@
-import { swoosh, CreateSound } from "../sound/sound";
+import { swoosh, CreateSound } from "../sound/sound.js";
 swoosh = CreateSound();
 
 export const app = new PIXI.Application();
