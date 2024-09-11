@@ -20,11 +20,12 @@
         <link rel="stylesheet" href="/css/footer.css"/>
         <link rel="stylesheet" href="/css/style.css"/>
         
+    </head>
+    
+    <body>
         <script src="/js/frontend/nav.js"></script>
         <script src="/js/frontend/footer.js"></script>
-    </head>
-
-    <body>
+        
         <nav>
             <div class="wrapper">
                 <!-- <a href="../scripts/index.php"></a> -->
