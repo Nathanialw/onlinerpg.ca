@@ -3,7 +3,7 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
 
 //create on game start
-//var websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+var websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
 
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
