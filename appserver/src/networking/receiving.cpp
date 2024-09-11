@@ -30,15 +30,13 @@ namespace Network {
     //client will get his uID and store it
     //client will get all the uIDs for all other units on the map and store them and himself in the unordered_map
 
-    response = "0Map: ";
-    print_server.send(hdl, response, websocketpp::frame::opcode::text);
+    //response = "0Map: ";
+//    print_server.send(hdl, response, websocketpp::frame::opcode::text);
     print_server.send(hdl, Map::Send(), websocketpp::frame::opcode::text);
-    response = "0Units: ";
-    print_server.send(hdl, response, websocketpp::frame::opcode::text);
 
     //this will place Entities on a map with every connect, what we want to do is run this on startup then send the map that's already in memory
-    response = "0sending units: ";
-    print_server.send(hdl, response, websocketpp::frame::opcode::text);
+//    response = "0sending units: ";
+//    print_server.send(hdl, response, websocketpp::frame::opcode::text);
 //      print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
     print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
   }
@@ -85,16 +83,13 @@ namespace Network {
               << std::endl;
 
      //keep websocket alive
-      std::string response = "";
-
-
-      //    update the server units on the map
+      std::string response;
 
 
     //[0] message type [1-2] ID (uint16_t stored as 2 chars) [3] message;
     //ie: 1a2w;
     if (!msg->get_payload().empty()) {
-        if (msg->get_payload()[0] == '1') {
+        if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.
             //move player
             std::string direction = &msg->get_payload()[1];
             Units::Update(direction);
