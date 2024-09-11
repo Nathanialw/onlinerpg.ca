@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(BrowserRPG)
 
+#websocketpp will currently only compile with C++17
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src/networking)

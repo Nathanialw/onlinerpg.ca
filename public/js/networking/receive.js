@@ -1,9 +1,7 @@
 'use strict'
 
 import {Make_Map, Populate_Map} from '../map/map.js';
-
-//create on game start
-var websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+import {websocket} from 'socket.js';
 
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
