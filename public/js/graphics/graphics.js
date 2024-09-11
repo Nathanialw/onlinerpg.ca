@@ -1,6 +1,6 @@
 'use strict'
 
-import {app} from '../graphics/graphics.js';
+import {app} from '../frontend/game.js';
 
 //const app = new PIXI.Application();
 // await app.init({ width: 2376, height: 2352 })
