@@ -34,8 +34,8 @@
     else {
         echo "
         <form method="post">
-            <input type="submit" name="startGame" id="startGame" class="wrapper btn btn-submit">Start!</button>
-        </form>`    
+            <input type="submit" name="startGame" id="startGame" class="wrapper btn btn-submit" value="Start Game"/>
+        </form>    
         ";
     }
 
