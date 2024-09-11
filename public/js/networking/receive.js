@@ -1,7 +1,7 @@
 'use strict'
 
 import {Make_Map, Populate_Map} from '../map/map.js';
-import {websocket} from '/socket.js';
+import {websocket} from './socket.js';
 
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
