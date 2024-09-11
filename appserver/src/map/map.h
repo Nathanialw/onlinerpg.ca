@@ -14,6 +14,6 @@ namespace Map {
 
 
   void Init();
-  std::string SendMapSegment(const int &x, const int &y, const int &visionRadius);
+  std::string SendMapSegment(const int x, const int y, const int visionRadius);
   std::string Send();
 }

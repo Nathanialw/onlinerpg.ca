@@ -35,7 +35,7 @@ namespace Map {
     return message;
   }
 
-  std::string SendMapSegment(const int &x, const int &y, const int &visionRadius) {
+  std::string SendMapSegment(const int x, const int y, const int visionRadius) {
     std::string mapSegment = "1";
     mapSegment += std::to_string(visionRadius * 2 + 1);
 
