@@ -15,6 +15,11 @@
         $useruid = htmlspecialchars($_SESSION["useruid"]);
         echo "<p>Hello there " . "$useruid" . "</p>";
     }
+    ?>
+
+    
+<?php
+    include 'game.php';
 ?>
 
 <!-- the game map -->
