@@ -1,13 +1,17 @@
 .wrapper {
+    display: block;
+    margin: 0 auto;
+    position: absolute;
     left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #gameCanvas {
     display: block;
     margin: 0 auto;
-    /* center */
     position: absolute;
     top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     
-    transform: translate(-50%, -50%);    
 }
