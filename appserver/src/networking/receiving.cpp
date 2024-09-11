@@ -84,16 +84,16 @@ namespace Network {
     std::cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message: " << msg->get_payload()
               << std::endl;
-
+      std::string response = "0I hear you pressing: ";
+      response.append(&msg->get_payload()[1]);
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
     //    update the server units on the map
 
     //[0] message type [1-2] ID (uint16_t stored as 2 chars) [3] message;
     //ie: 1a2w;
     if (!msg->get_payload().empty()) {
       if (msg->get_payload()[0] == '1') {
-          std::string response = "0I hear you pressing: ";
-          response.append(&msg->get_payload()[1]);
-          print_server.send(hdl, response, websocketpp::frame::opcode::text);
+
         //move player
         if (msg->get_payload()[1] == 'w')
           Units::Move(0, 1);
