@@ -1,1 +1,1 @@
-<div id="gameCanvas"></div>
+<div id="gameCanvas" class="footer"></div>
