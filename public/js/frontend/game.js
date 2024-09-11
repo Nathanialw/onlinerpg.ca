@@ -1,5 +1,5 @@
-import { swoosh, CreateSound } from "../sound/sound.js";
-swoosh = CreateSound();
+import { Init } from "../sound/sound.js";
+Init();
 
 export const app = new PIXI.Application();
 await app.init({ width: 288, height: 288 })
