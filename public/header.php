@@ -22,18 +22,23 @@
     </head>
     
     <body>
-        <script src="/js/frontend/nav.js"></script>
-        <script src="/js/frontend/footer.js"></script>
-
+       
+        <div class='navbar'>
+            <a href='/'><h4 class='logo'>logo</h4></a>
+            <button type='button' class='bars' id='bars'>
+                <i class='fa fa-bars'></i>
+            </button>
+        </div>
+        
         <nav>
-            <div class="wrapper">
+            <div class="wrapper"">
                 <!-- <a href="../scripts/index.php"></a> -->
-                <ul>
-                <li><a href="index.php">Home</a></li> 
-                <li><a href="discover.php">About Us</a></li> 
-                <li><a href="blog.php">Find Blogs</a></li> 
-                <li><a href="/goapp">Go App</a></li> 
-                <?php 
+                <ul class='nav-links' id='nav-links'>
+                    <li><a href="index.php">Home</a></li> 
+                    <li><a href="discover.php">About Us</a></li> 
+                    <li><a href="blog.php">Find Blogs</a></li> 
+                    <li><a href="/goapp">Go App</a></li> 
+                    <?php 
                     if (isset($_SESSION["useruid"])) {
                         echo "<li><a href='profile.php'>Profile Page</a></li>";
                         echo "<li><a href='logout.php'>Log Out</a></li>";
@@ -42,9 +47,11 @@
                         echo "<li><a href='signup.php'>Sign Up</a></li>";
                         echo "<li><a href='login.php'>Log in</a></li>";
                     }
-                ?>
+                    ?>
                 </ul>
             </div>
         </nav>
+        
+        <script src="/js/frontend/nav.js"></script>
 
             

@@ -8,6 +8,7 @@ var sound = new Howl ({
 });
 
 function SoundPlay(keyName) {
+    console.log("SoundPlay");
     sound.play;
     return true
 }

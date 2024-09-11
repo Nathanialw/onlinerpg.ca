@@ -10,6 +10,8 @@
 			</ul>
 		</div>
 	</footer>
+	<script src="/js/frontend/footer.js"></script>
+
 </html>
 
     
