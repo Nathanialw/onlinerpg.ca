@@ -9,6 +9,7 @@
 .splashContent {
     /* center content */
     text-align: center;
+    width: 100%;
 }
 
 #gameCanvas {
