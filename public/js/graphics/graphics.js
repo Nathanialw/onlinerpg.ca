@@ -1,8 +1,10 @@
-const app = new PIXI.Application();
-// await app.init({ width: 2376, height: 2352 })
-await app.init({ width: 640, height: 640 })
+import {app} from '../graphics/graphics.js';
 
-document.getElementById('gameCanvas').appendChild(app.canvas);
+//const app = new PIXI.Application();
+// await app.init({ width: 2376, height: 2352 })
+// await app.init({ width: 640, height: 640 })
+
+// document.getElementById('gameCanvas').appendChild(app.canvas);
 
 function createTextWithBackground(textString, style, backgroundColor) {
     // Create the text object
