@@ -29,6 +29,7 @@ namespace Units {
 
 
   std::string Send_Units();
+  void Update(std::string &msg);
   void Init();
   void Move(int x, int y);
   void Attack(int x, int y);

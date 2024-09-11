@@ -127,4 +127,15 @@ std::string Send_Units() {
       }
     }
   }
+
+  void Update(std::string &msg) {
+    switch (msg[1]) {
+        case 'w': Units::Move(0, 1); break;
+        case 'a': Units::Move(0, -1); break;
+        case 's': Units::Move(1, 0); break;
+        case 'd': Units::Move(-1, 0); break;
+    }
+
+  }
+
 }

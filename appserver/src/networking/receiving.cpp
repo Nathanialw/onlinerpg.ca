@@ -95,19 +95,15 @@ namespace Network {
     //ie: 1a2w;
     if (!msg->get_payload().empty()) {
         if (msg->get_payload()[0] == '1') {
+            //move player
+            std::string direction = &msg->get_payload()[1];
+            Units::Update(direction);
+            //Map::Send();
+            //Units::Send_Units();
+
             response = "0I hear you pressing: ";
             response.append(&msg->get_payload()[1]);
             print_server.send(hdl, response, websocketpp::frame::opcode::text);
-
-            //move player
-            if (msg->get_payload()[1] == 'w')
-                Units::Move(0, 1);
-            else if (msg->get_payload()[1] == 'a')
-                Units::Move(0, -1);
-            else if (msg->get_payload()[1] == 's')
-                Units::Move(1, 0);
-            else if (msg->get_payload()[1] == 'd')
-                Units::Move(-1, 0);
         }
         else {
             response = "0pinging";
