@@ -1,3 +1,5 @@
+'use strict'
+
 import {app} from '../graphics/graphics.js';
 
 //const app = new PIXI.Application();
