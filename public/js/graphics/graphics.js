@@ -1,6 +1,6 @@
 const app = new PIXI.Application();
 await app.init({ width: 2376, height: 2352 })
-document.footer.insertBefore(app.canvas);
+document.body.appendChild(app.canvas);
 
 function createTextWithBackground(textString, style, backgroundColor) {
     // Create the text object
