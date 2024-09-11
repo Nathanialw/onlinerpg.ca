@@ -79,32 +79,40 @@ namespace Network {
   }
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
-    //I will need to send this somewhere to get parsed and decide what the response should be
-
-    std::cout << "on_message called with hdl: " << hdl.lock().get()
+      //I will need to send this somewhere to get parsed and decide what the response should be
+      std::cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message: " << msg->get_payload()
               << std::endl;
 
-    //    update the server units on the map
+     //keep websocket alive
+      std::string response = "";
+
+
+      //    update the server units on the map
+
 
     //[0] message type [1-2] ID (uint16_t stored as 2 chars) [3] message;
     //ie: 1a2w;
     if (!msg->get_payload().empty()) {
-      if (msg->get_payload()[0] == '1') {
-          std::string response = "0I hear you pressing: ";
-          response.append(&msg->get_payload()[1]);
-          print_server.send(hdl, response, websocketpp::frame::opcode::text);
+        if (msg->get_payload()[0] == '1') {
+            response = "0I hear you pressing: ";
+            response.append(&msg->get_payload()[1]);
+            print_server.send(hdl, response, websocketpp::frame::opcode::text);
 
-        //move player
-        if (msg->get_payload()[1] == 'w')
-          Units::Move(0, 1);
-        else if (msg->get_payload()[1] == 'a')
-          Units::Move(0, -1);
-        else if (msg->get_payload()[1] == 's')
-          Units::Move(1, 0);
-        else if (msg->get_payload()[1] == 'd')
-          Units::Move(-1, 0);
-      };
+            //move player
+            if (msg->get_payload()[1] == 'w')
+                Units::Move(0, 1);
+            else if (msg->get_payload()[1] == 'a')
+                Units::Move(0, -1);
+            else if (msg->get_payload()[1] == 's')
+                Units::Move(1, 0);
+            else if (msg->get_payload()[1] == 'd')
+                Units::Move(-1, 0);
+        }
+        else {
+            response = "pinging";
+            print_server.send(hdl, response, websocketpp::frame::opcode::text);
+        }
     }
     //when a player moves, send the new position to all the clients except the one that sent it right away
 
