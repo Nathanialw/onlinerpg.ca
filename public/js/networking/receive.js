@@ -9,6 +9,7 @@ export function socket() {
         return { websocket: websocket, isConnected: true };
     }
     else if (websocket && websocket.readyState === WebSocket.CONNECTING ){
+        console.log("connecting websocket...")
         return { websocket: websocket, isConnected: false };
     }
     else {
