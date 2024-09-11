@@ -10,7 +10,9 @@
 <section>
     <h1 class="wrapper">Browser RPG</h1>
     <!-- // if (!isset($_POST["startGame"])) { -->
-    
+    <form method="post">
+        <input type="submit" name="startGame" id="startGame" class="wrapper btn btn-submit" value="Start Game"/>
+    </form>
     <!-- // } -->
     <!-- // ?> -->
 </section>
@@ -29,15 +31,8 @@
     if (isset($_POST["startGame"])) {
         echo "<p>Hello there</p>";
         include 'game.php';
-    }
-    ?>
-    else {
-        echo "
-        <form method="post">
-            <input type="submit" name="startGame" id="startGame" class="wrapper btn btn-submit" value="Start Game"/>
-        </form>    
-        ";
-    }
+    }    
+?>
 
 
 
