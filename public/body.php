@@ -3,7 +3,7 @@
 
 
         <!-- main content -->
-        <div class="gameCanvas">
+        <div id="gameCanvas">
             <br>
             <br>
         </div>
