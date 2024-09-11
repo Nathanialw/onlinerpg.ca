@@ -85,8 +85,8 @@ namespace Network {
               << " and message: " << msg->get_payload()
               << std::endl;
 
-//    std::string response = "0I hear you pressing Enter :^)";
-//    print_server.send(hdl, response, websocketpp::frame::opcode::text);
+    std::string response = "0I hear you pressing Enter :^)";
+    print_server.send(hdl, response, websocketpp::frame::opcode::text);
 
 //    update the server units on the map
 
