@@ -40,7 +40,7 @@ socket().websocket.onmessage = function(event) {
 
     let type = event.data[0];
     let data = event.data.substring(1);
-
+    console.log(type)
     //need to use a hash map
     Update[type](data);
     
