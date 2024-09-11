@@ -11,6 +11,7 @@ function CreateSound() {
 }
 
 export function Init () {
+    console.log("sound init");
     swoosh = CreateSound();
 }
 

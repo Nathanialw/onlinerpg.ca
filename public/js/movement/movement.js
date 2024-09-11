@@ -15,6 +15,7 @@ function Move(keyName) {
     
     if (keyName === "w") {
         Move_Player(0, -cell_size);
+        //move camera up
         if (conn.isConnected) {
             conn.websocket.send("1w");       
         }
@@ -24,6 +25,7 @@ function Move(keyName) {
     
     else if (keyName === "a") {
         Move_Player(-cell_size, 0);
+        //move camera left
         if (conn.isConnected) {
             conn.websocket.send("1a");       
         }
@@ -33,6 +35,7 @@ function Move(keyName) {
     
     else if (keyName === "s") {
         Move_Player(0, cell_size)
+        //move camera down
         if (conn.isConnected) {
             conn.websocket.send("1s");       
         }
@@ -42,6 +45,7 @@ function Move(keyName) {
     
     else if (keyName === "d") {
         Move_Player(cell_size, 0);
+        //move camera right
         if (conn.isConnected) {
             conn.websocket.send("1d");       
         }

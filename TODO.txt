@@ -37,13 +37,13 @@ gamey
 
 
 short term:
--static grid map
 -camera
+-splash screen
+-static grid map
+-generate/enter world
 -ascii graphics to start
 -come up with a list of spells
 -mouse input
--splash screen
--generate/enter world
 
 medium term:
 -items
