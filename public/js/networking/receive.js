@@ -31,6 +31,7 @@ let Update = {
     0: Message,
     1: Map,
     2: Populate_Map,
+    "s": Message,
 }
 
 socket().websocket.onmessage = function(event) {    
@@ -40,7 +41,6 @@ socket().websocket.onmessage = function(event) {
 
     let type = event.data[0];
     let data = event.data.substring(1);
-    console.log(type)
     //need to use a hash map
     Update[type](data);
     
