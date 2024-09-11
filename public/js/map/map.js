@@ -128,7 +128,7 @@ export function Make_Map(serverMap, mapWidth) {
 }
 
 let Update = {
-    H: Set_Player,
+    '@': Set_Player,
     g: Set_Enemies,
     o: Set_Objects,
 }
