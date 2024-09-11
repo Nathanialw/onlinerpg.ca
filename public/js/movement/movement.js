@@ -10,6 +10,7 @@ const cell_size = 24;
 //replace local with server position of they aren't the same
 
 function Move(keyName) {
+    console.log("Move");
     let conn = socket()
     
     if (keyName === "w") {
