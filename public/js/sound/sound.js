@@ -1,8 +1,8 @@
 'use strict'
 
-var swoosh;
+export var swoosh;
 
-function CreateSound() {
+export function CreateSound() {
     var sound = new Howl ({
         src: ['../../assets/sounds/swish_2.wav'],
         html5: true
