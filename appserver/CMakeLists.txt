@@ -14,7 +14,7 @@ add_executable(BrowserRPG
 
         src/networking/receiving.cpp
 
-
+        src/camera/camera.cpp
         src/map/map.cpp
         src/objects/units/units.cpp
         src/utils/utils.cpp

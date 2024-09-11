@@ -112,18 +112,18 @@ std::string Send_Units() {
     }
   }
 
+    void Die() {
+      for (auto & unit : units) {
+        if (unit.type == PLAYER) {
+          units.erase(units.begin());
+        }
+      }
+    }
+
   void Attack(int x, int y) {
     for (auto & unit : units) {
       if (unit.x == x && unit.y == y) {
         Die();
-      }
-    }
-  }
-
-  void Die() {
-    for (auto & unit : units) {
-      if (unit.type == PLAYER) {
-        units.erase(units.begin());
       }
     }
   }
