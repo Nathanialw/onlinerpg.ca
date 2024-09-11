@@ -1,17 +1,8 @@
 'use strict'
 
 import {Move} from "../movement/movement.js"
+import {SoundPlay} from "../sound/sound.js"
 
-var sound = new Howl ({
-    src: ['../../assets/sounds/swish_2.wav'],
-    html5: true
-});
-
-function SoundPlay(keyName) {
-    console.log("SoundPlay");
-    sound.play;
-    return true
-}
 
 let Update = {
     Enter: SoundPlay,
