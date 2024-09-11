@@ -3,6 +3,7 @@
 import {Make_Map, Populate_Map} from '../map/map.js';
 //import {websocket} from './socket.js';
 var websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+setInterval(() => websocket.send(JSON.stringify({ event: "ping" })), 10000);
 
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
@@ -15,7 +16,6 @@ export function socket() {
     else {
         websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
         console.log("reconnecting websocket")
-        console.log(websocket.readyState)
         return { websocket: websocket, isConnected: false };
     }
 }

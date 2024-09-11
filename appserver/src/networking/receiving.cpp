@@ -52,13 +52,14 @@ namespace Network {
   }
 
   bool On_ping(websocketpp::connection_hdl hdl, std::string payload) {
-
-
-    return true;
+      std::string response = "pinging: ";
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+      return true;
   }
 
   void On_pong(websocketpp::connection_hdl hdl, std::string payload) {
-
+      std::string response = "ponging: ";
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
   }
 
   void On_pong_timeout(websocketpp::connection_hdl hdl, std::string payload) {
