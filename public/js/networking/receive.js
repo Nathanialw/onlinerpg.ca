@@ -2,8 +2,11 @@
 
 import {Make_Map, Populate_Map} from '../map/map.js';
 //import {websocket} from './socket.js';
-var websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
-setInterval(() => websocket.send(JSON.stringify({ event: "ping" })), 10000);
+function CreateWebsocket() {
+    return new WebSocket("ws://www.onlinerpg.ca/ws");
+    setInterval(() => websocket.send(JSON.stringify({ event: "ping" })), 10000);
+}
+var websocket = CreateWebsocket();
 
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
@@ -14,7 +17,7 @@ export function socket() {
         return { websocket: websocket, isConnected: false };
     }
     else {
-        websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+        websocket = CreateWebsocket();
         console.log("reconnecting websocket")
         return { websocket: websocket, isConnected: false };
     }
@@ -34,7 +37,6 @@ let Update = {
     0: Message,
     1: Map,
     2: Populate_Map,
-    "s": Message,
 }
 
 socket().websocket.onmessage = function(event) {    
