@@ -131,7 +131,7 @@ export function Make_Map(serverMap, mapWidth) {
     }
 }
 
-export function Update_Map() {
+export function Update_Map(serverMap, mapWidth) {
     for (let i = 0; i < mapWidth; i++) {
         mapDisplay[i].text = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
     }
