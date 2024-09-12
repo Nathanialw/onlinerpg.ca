@@ -1,7 +1,7 @@
 'use strict'
 
 import {Make_Map, Update_Map, Populate_Map} from '../map/map.js';
-import {closeGame} from '../frontend/game.js';
+import {app, closeGame} from '../frontend/game.js';
 //import {websocket} from './socket.js';
 
 let websocket;
@@ -98,6 +98,10 @@ socket().websocket.onmessage = function(event) {
     let data = event.data.substring(1);
     console.log(type, data)
     //need to use a hash map
+    if (type == 1 || type == 3) {
+        console.log("Clearing map");
+        app.stage.removeChildren();
+    }
     Update[type](data);
     
     
