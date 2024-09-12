@@ -161,6 +161,7 @@ std::string Send_Units() {
       if (unit.type == PLAYER) {
         std::string x = std::to_string(unit.x);
         std::string y = std::to_string(unit.y);
+        std::cout << "x: " << x << " y: " << y << std::endl;
         if (unit.x < 10)
           x = "0" + x;
         if (unit.y < 10)
