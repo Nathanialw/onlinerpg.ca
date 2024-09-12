@@ -23,6 +23,7 @@ namespace Units {
     int x;
     int y;
     UnitType type;
+    int vision = 6;
   };
 
   static std::vector<Unit> units;

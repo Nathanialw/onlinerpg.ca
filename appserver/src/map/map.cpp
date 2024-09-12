@@ -4,6 +4,7 @@
 #include "string"
 
 #include "map.h"
+#include "units.h"
 
 namespace Map {
   const int mapWidth = 99;
@@ -35,12 +36,12 @@ namespace Map {
     return message;
   }
 
-  std::string SendMapSegment(const int x, const int y, const int visionRadius) {
+  std::string SendMapSegment(const Units::Unit &player) {
     std::string mapSegment = "1";
-    mapSegment += std::to_string((visionRadius * 2) + 1);
+    mapSegment += std::to_string((player.vision * 2) + 1);
 
-    for (int i = x - visionRadius; i <= x + visionRadius; i++) {
-        for (int j = y - visionRadius; j <= y + visionRadius; j++) {
+    for (int i = player.x - player.vision; i <= player.x + player.vision; i++) {
+        for (int j = player.y - player.vision; j <= player.y + player.vision; j++) {
             mapSegment += map[i][j];
         }
     }

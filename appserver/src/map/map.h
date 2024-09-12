@@ -9,11 +9,12 @@
 #endif //BROWSERRPG_MAP_H
 
 #include "string"
+#include "units.h"
 
 namespace Map {
 
 
   void Init();
-  std::string SendMapSegment(const int x, const int y, const int visionRadius);
+  std::string SendMapSegment(const Units::Unit &player);
   std::string Send();
 }

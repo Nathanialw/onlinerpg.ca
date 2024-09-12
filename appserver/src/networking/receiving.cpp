@@ -7,7 +7,6 @@
 #include "map.h"
 #include "receiving.h"
 #include "units.h"
-#include "warrior.h"
 
 namespace Network {
 
@@ -35,7 +34,7 @@ namespace Network {
     //print_server.send(hdl, std::to_string(Warrior::Stats().vision), websocketpp::frame::opcode::text);
 
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
-    print_server.send(hdl, Map::SendMapSegment(6,6,6), websocketpp::frame::opcode::text);
+    print_server.send(hdl, Map::SendMapSegment(Units::units[0]), websocketpp::frame::opcode::text);
     print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
     //print_server.send(hdl, Map::Send(), websocketpp::frame::opcode::text);
 
@@ -100,7 +99,7 @@ namespace Network {
             std::string direction = &msg->get_payload()[1];
             Units::Update(direction);
             //Map::Send();
-            print_server.send(hdl, Map::SendMapSegment(6,6,6), websocketpp::frame::opcode::text);
+            print_server.send(hdl, Map::SendMapSegment(Units::units[0]), websocketpp::frame::opcode::text);
             //Units::Send_Units();
             print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
 

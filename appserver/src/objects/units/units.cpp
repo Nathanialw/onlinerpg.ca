@@ -7,6 +7,7 @@
 
 
 #include "units.h"
+#include "warrior.h"
 
 namespace Units {
   const int mapWidth = 99;
@@ -85,8 +86,8 @@ namespace Units {
 
   void Init() {
     Unit player{};
-    player.x = 0;
-    player.y = 0;
+    player.x = 6;
+    player.y = 6;
     player.type = PLAYER;
     units.push_back(player);
 
