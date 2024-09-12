@@ -130,7 +130,7 @@ export function Make_Map(serverMap, mapWidth) {
 
 export function Update_Map(serverMap, mapWidth) {
     console.log("Clearing map");
-    app.stage.removeChildren();
+    //app.stage.removeChildren();
     console.log("Redrawing map");
     for (let i = 0; i < mapWidth; i++) {
         let text = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
