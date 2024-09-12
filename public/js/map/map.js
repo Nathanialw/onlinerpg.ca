@@ -125,14 +125,14 @@ export function Make_Map(serverMap, mapWidth) {
     console.log(mapWidth)
     //clear map
     for (let i = 0; i < mapWidth; i++) {
-        let object = "k";
+        let object = " ";
         mapDisplay[i] = Create_Map_Line(object, i);
     }
     //draw map
     for (let i = 0; i < mapWidth; i++) {
         //render lines of the map
-        // let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
-        // mapDisplay[i] = Create_Map_Line(object, i);
+        let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
+        mapDisplay[i] = Create_Map_Line(object, i);
     }
 }
 
