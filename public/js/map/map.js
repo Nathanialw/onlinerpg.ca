@@ -128,7 +128,7 @@ export function Make_Map(serverMap, mapWidth) {
 }
 
 export function Update_Map(serverMap, mapWidth) {
-    app.stage.clear();
+    app.stage.removeChildren();
     for (let i = 0; i < mapWidth; i++) {
         let text = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
         mapDisplay[i] = Create_Map_Line(object, i);
