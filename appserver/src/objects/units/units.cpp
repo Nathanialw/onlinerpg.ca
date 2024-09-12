@@ -155,7 +155,6 @@ std::string Send_Units() {
 
 
   void Update(const char* direction) {
-    std::cout << *direction << std::endl;
     switch (*direction) {
         case 'w':
           Move(0, 1);
@@ -175,7 +174,6 @@ std::string Send_Units() {
       if (unit.type == PLAYER) {
         std::string x = std::to_string(unit.x);
         std::string y = std::to_string(unit.y);
-        std::cout << "x: " << x << " y: " << y << std::endl;
         if (unit.x < 10)
           x = "0" + x;
         if (unit.y < 10)

@@ -42,7 +42,10 @@ namespace Map {
 
     for (int i = player.x - player.vision; i <= player.x + player.vision; i++) {
         for (int j = player.y - player.vision; j <= player.y + player.vision; j++) {
-            mapSegment += map[i][j];
+            if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
+              mapSegment += ' ';
+            else
+              mapSegment += map[i][j];
         }
     }
 
