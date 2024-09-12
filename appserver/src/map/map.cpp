@@ -42,8 +42,8 @@ namespace Map {
     std::string mapSegment = std::to_string(state);
     mapSegment += std::to_string((player.vision * 2) + 1);
 
-    for (int j = player.x - player.vision; j <= player.x + player.vision; j++) {
-        for (int i = player.y - player.vision; i <= player.y + player.vision; i++) {
+    for (int j = player.y - player.vision; j <= player.y + player.vision; j++) {
+        for (int i = player.x - player.vision; i <= player.x + player.vision; i++) {
             if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
               mapSegment += ' ';
             else

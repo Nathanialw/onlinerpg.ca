@@ -123,7 +123,7 @@ export function Make_Map(serverMap, mapWidth) {
     console.log("Redrawing map");
     for (let i = 0; i < mapWidth; i++) {
         // render lines of the map
-        let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
+        let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
         mapDisplay[i] = Create_Map_Line(object, i);
     }
 }
