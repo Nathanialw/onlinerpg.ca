@@ -45,7 +45,7 @@ namespace Map {
             if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
               mapSegment += ' ';
             else
-              mapSegment += map[i][j];
+              mapSegment += map[j][i];
         }
     }
 
