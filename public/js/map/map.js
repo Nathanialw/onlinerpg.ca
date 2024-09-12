@@ -131,9 +131,9 @@ export function Make_Map(serverMap, mapWidth) {
 }
 
 let Update = {
-    H: Set_Player,
-    g: Set_Enemies,
-    o: Set_Objects,
+    "@": Set_Player,
+    "g": Set_Enemies,
+    "o": Set_Objects,
 }
 
 // I should use a seperate function to grab the correct substring from the unitOnMap string

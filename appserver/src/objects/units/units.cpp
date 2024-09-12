@@ -66,7 +66,7 @@ namespace Units {
     //loop through the map x times and lok for 2x2 squares
     //set entities to be in the center of the square
     //I need to send the char and the offset in the map g0317
-    mapEntities += "H0606";
+    mapEntities += "@0606";
 //    mapEntities += Random_Entities('g', 3);
 //    mapEntities += Random_Entities('g', 3);
 //    mapEntities += Random_Entities('g', 3);
