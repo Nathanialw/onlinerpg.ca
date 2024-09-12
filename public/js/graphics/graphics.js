@@ -14,9 +14,8 @@ function createTextWithBackground(textString, style, backgroundColor) {
     
     // Create a new Graphics object and draw a rectangle on it
     let background = new PIXI.Graphics();
-    background.beginFill(backgroundColor);
-    background.drawRect(0, 0, text.width, text.height);
-    background.endFill();
+    background.fill(backgroundColor);
+    background.rect(0, 0, text.width, text.height);
     
     // Create a container and add the background and text to it
     let container = new PIXI.Container();
@@ -40,9 +39,8 @@ export function Update_Text(container, newText) {
     // Update the background size if necessary
     let background = container.children[0];
     background.clear();
-    background.beginFill(0x000001);
-    background.drawRect(0, 0, textObject.width, textObject.height);
-    background.endFill();
+    background.fill(0x000001);
+    background.rect(0, 0, textObject.width, textObject.height);
 }
 
 export function Create_Map_Line(char, Indexheight) {
