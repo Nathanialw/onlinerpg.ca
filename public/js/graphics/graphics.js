@@ -45,7 +45,6 @@ export function Update_Text(container, newText) {
 
 export function Update(){    
     //clear canvas
-    app.stage.clear();
     //redraw map
 }
 
