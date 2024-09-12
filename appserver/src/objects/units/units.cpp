@@ -88,6 +88,7 @@ namespace Units {
     Unit player{};
     player.x = 6;
     player.y = 6;
+    player.vision = 6;
     player.type = PLAYER;
     units.push_back(player);
 
@@ -99,6 +100,19 @@ namespace Units {
     //unitsOnMap.push_back(Place_Entities_On_Map());
     unitsOnMap = Place_Entities_On_Map();
   }
+
+  void Update_Units() {
+        for (auto & unit : units) {
+          if (unit.type == PLAYER) {
+                map[unit.x][unit.y] = 'P';
+          }
+          else if (unit.type == ENEMY) {
+                map[unit.x][unit.y] = 'E';
+          }
+        }
+
+  }
+
 
 std::string Send_Units() {
     return unitsOnMap;

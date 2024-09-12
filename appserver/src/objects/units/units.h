@@ -20,8 +20,8 @@ namespace Units {
   };
 
   struct Unit {
-    int x;
-    int y;
+    int x = 6;
+    int y = 6;
     UnitType type;
     int vision = 6;
   };
