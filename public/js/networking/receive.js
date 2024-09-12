@@ -1,6 +1,6 @@
 'use strict'
 
-import {Make_Map, Populate_Map} from '../map/map.js';
+import {Make_Map, Update_Map, Populate_Map} from '../map/map.js';
 import {closeGame} from '../frontend/game.js';
 //import {websocket} from './socket.js';
 
@@ -84,7 +84,8 @@ let Update = {
     0: Message,
     1: Map,
     2: Populate_Map,
-    3: UpdatePositions,
+    3: Update_Map,
+    4: UpdatePositions,
     //3: Stats,
 }
 

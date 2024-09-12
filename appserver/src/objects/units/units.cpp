@@ -178,7 +178,7 @@ std::string Send_Units() {
           x = "0" + x;
         if (unit.y < 10)
           y = "0" + y;
-        std::string position = "3@" + x + y;
+        std::string position = "4@" + x + y;
         unitsOnMap.replace(0, 6, position);
       }
     }

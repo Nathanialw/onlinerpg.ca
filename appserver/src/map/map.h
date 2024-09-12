@@ -15,6 +15,6 @@ namespace Map {
 
 
   void Init();
-  std::string SendMapSegment(const Units::Unit &player);
+  std::string SendMapSegment(const Units::Unit &player, int state = 3);
   std::string Send();
 }

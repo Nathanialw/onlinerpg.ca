@@ -36,8 +36,10 @@ namespace Map {
     return message;
   }
 
-  std::string SendMapSegment(const Units::Unit &player) {
-    std::string mapSegment = "1";
+
+  // state 1 = initial map, 2 = update map
+  std::string SendMapSegment(const Units::Unit &player, int state) {
+    std::string mapSegment = std::to_string(state);
     mapSegment += std::to_string((player.vision * 2) + 1);
 
     for (int j = player.x - player.vision; j <= player.x + player.vision; j++) {

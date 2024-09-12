@@ -123,15 +123,17 @@ export function Make_Map(serverMap, mapWidth) {
     console.log("map")
     console.log(serverMap)
     console.log(mapWidth)
-    //clear map
-    for (let i = 0; i < mapWidth; i++) {
-        delete mapDisplay[i]
-    }
-    //draw map
+
     for (let i = 0; i < mapWidth; i++) {
         // render lines of the map
         let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
         mapDisplay[i] = Create_Map_Line(object, i);
+    }
+}
+
+export function Update_Map() {
+    for (let i = 0; i < mapWidth; i++) {
+        mapDisplay[i].text = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
     }
 }
 
