@@ -143,13 +143,3 @@ export function Populate_Map(unitOnMap) {
 	    Update[unitOnMap[i]](object)
     }
 }
-
-function Update() {
-    //update the map
-    
-    //update the objects
-    //update the player
-    //update the enemies
-    //update the objects
-    //update the vision
-}
