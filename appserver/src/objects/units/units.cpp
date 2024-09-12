@@ -90,7 +90,7 @@ namespace Units {
     player.y = 6;
     player.vision = 6;
     player.type = PLAYER;
-    units.push_back(player);
+    units.emplace_back(player);
     std::cout << "Init() player added: " << units.size() << std::endl;
 
 //    Unit enemy{};
