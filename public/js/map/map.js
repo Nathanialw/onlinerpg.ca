@@ -125,7 +125,7 @@ export function Make_Map(serverMap, mapWidth) {
     console.log(mapWidth)
     //clear map
     for (let i = 0; i < mapWidth; i++) {
-        mapDisplay[i] = Create_Map_Line(' ', i);
+        delete mapDisplay[i]
     }
     //draw map
     for (let i = 0; i < mapWidth; i++) {
