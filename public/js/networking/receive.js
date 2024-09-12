@@ -85,7 +85,7 @@ let Update = {
     1: Map,
     2: Populate_Map,
     3: Update_Map,
-    4: UpdatePositions,
+    4: Populate_Map,
     //3: Stats,
 }
 

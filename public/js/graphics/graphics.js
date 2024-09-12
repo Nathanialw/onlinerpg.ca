@@ -10,7 +10,7 @@ import {app} from '../frontend/game.js';
 
 function createTextWithBackground(textString, style, backgroundColor) {
     // Create the text object
-    let text = new PIXI.Text(textString, style);
+    let text = new Text(textString, style);
     
     // Create a new Graphics object and draw a rectangle on it
     let background = new PIXI.Graphics();
@@ -43,8 +43,14 @@ export function Update_Text(container, newText) {
     background.rect(0, 0, textObject.width, textObject.height);
 }
 
+export function Update(){    
+    //clear canvas
+    app.stage.clear();
+    //redraw map
+}
+
 export function Create_Map_Line(char, Indexheight) {
-    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
+    let object = new Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
     object.y = Indexheight * 24;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
