@@ -4,8 +4,7 @@
 
 #include "iostream"
 int main() {
-  Units::Init();
-  Map::Init();
+
   Network::Run();
 
   return 0;

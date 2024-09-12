@@ -91,7 +91,7 @@ namespace Units {
     player.vision = 6;
     player.type = PLAYER;
     units.push_back(player);
-    std::cout << "Init() player added: " << Units::units.size() << std::endl;
+    std::cout << "Init() player added: " << units.size() << std::endl;
 
 //    Unit enemy{};
 //    enemy.x = 5;

@@ -32,7 +32,8 @@ namespace Network {
 
     //response = "0Map: ";
     //print_server.send(hdl, std::to_string(Warrior::Stats().vision), websocketpp::frame::opcode::text);
-
+    Units::Init();
+    Map::Init();
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
     std::cout << Units::units.size() << std::endl;
     print_server.send(hdl, Map::SendMapSegment(Units::units[0]), websocketpp::frame::opcode::text);

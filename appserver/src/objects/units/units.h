@@ -22,7 +22,7 @@ namespace Units {
   struct Unit {
     int x = 6;
     int y = 6;
-    UnitType type;
+    UnitType type = ENEMY;
     int vision = 6;
   };
 
