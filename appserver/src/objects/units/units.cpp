@@ -91,27 +91,14 @@ namespace Units {
     player.vision = 6;
     player.type = PLAYER;
     units.push_back(player);
-    std::cout << "Init() player added" << Units::units.size() << std::endl;
+    std::cout << "Init() player added: " << Units::units.size() << std::endl;
 
-    Unit enemy{};
-    enemy.x = 5;
-    enemy.y = 5;
-    enemy.type = ENEMY;
-    units.push_back(enemy);
-    //unitsOnMap.push_back(Place_Entities_On_Map());
+//    Unit enemy{};
+//    enemy.x = 5;
+//    enemy.y = 5;
+//    enemy.type = ENEMY;
+//    units.push_back(enemy);
     unitsOnMap = Place_Entities_On_Map();
-  }
-
-  void Update_Units() {
-        for (auto & unit : units) {
-          if (unit.type == PLAYER) {
-                map[unit.x][unit.y] = 'P';
-          }
-          else if (unit.type == ENEMY) {
-                map[unit.x][unit.y] = 'E';
-          }
-        }
-
   }
 
 
@@ -151,7 +138,15 @@ std::string Send_Units() {
         case 's': Units::Move(1, 0); break;
         case 'd': Units::Move(-1, 0); break;
     }
-
+//
+//    for (auto & unit : units) {
+//      if (unit.type == PLAYER) {
+//        map[unit.x][unit.y] = 'P';
+//      }
+//      else if (unit.type == ENEMY) {
+//        map[unit.x][unit.y] = 'E';
+//      }
+//    }
   }
 
 }
