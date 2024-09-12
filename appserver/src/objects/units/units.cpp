@@ -155,20 +155,19 @@ std::string Send_Units() {
 
 
   void Update(std::string &msg) {
-    std::cout << msg[1] << "" << 'w' << std::endl;
-    if (msg[1] == 'w') {
+    if (std::to_string(msg[1]) == "w") {
       Units::Move(0, 1);
       std::cout << "move up" << std::endl;
     }
-    else if (msg[1] == 'a') {
+    else if (std::to_string(msg[1]) == "a") {
       Units::Move(-1, 0);
       std::cout << "move left" << std::endl;
     }
-    else if (msg[1] == 's') {
+    else if (std::to_string(msg[1]) == "s") {
       Units::Move(0, -1);
       std::cout << "move down" << std::endl;
     }
-    else if (msg[1] == 'd') {
+    else if (std::to_string(msg[1]) == "d") {
       Units::Move(1, 0);
       std::cout << "move right" << std::endl;
     }
