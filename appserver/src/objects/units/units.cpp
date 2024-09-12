@@ -155,6 +155,7 @@ std::string Send_Units() {
 
 
   void Update(std::string &msg) {
+    std::cout << std::to_string(msg[1]) << "" << "w" << std::endl;
     if (std::to_string(msg[1]) == "w") {
       Units::Move(0, 1);
       std::cout << "move up" << std::endl;

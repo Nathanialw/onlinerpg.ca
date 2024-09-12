@@ -112,8 +112,8 @@ namespace Network {
             print_server.send(hdl, response, websocketpp::frame::opcode::text);
         }
         else {
-            response = "0pinging";
-            print_server.send(hdl, response, websocketpp::frame::opcode::text);
+//            response = "0pinging";
+//            print_server.send(hdl, response, websocketpp::frame::opcode::text);
         }
     }
     //when a player moves, send the new position to all the clients except the one that sent it right away
