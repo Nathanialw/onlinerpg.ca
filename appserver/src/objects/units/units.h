@@ -14,23 +14,22 @@
 
 namespace Units {
 
-  enum UnitType {
-    PLAYER,
-    ENEMY
-  };
+enum UnitType {
+  PLAYER,
+  ENEMY
+};
 
-  struct Unit {
-    int x = 6;
-    int y = 6;
-    UnitType type = ENEMY;
-    int vision = 6;
-  };
-
-  static std::vector<Unit> units;
+struct Unit {
+  int x = 6;
+  int y = 6;
+  UnitType type = ENEMY;
+  int vision = 6;
+};
 
 
   std::string Send_Units();
   void Init();
   void Update(std::string &msg);
-
+  Unit Get_Player();
+  std::vector<Unit> Get_Units();
 }

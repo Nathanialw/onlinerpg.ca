@@ -21,6 +21,25 @@ namespace Units {
     int y;
   };
 
+
+
+  std::vector<Unit> units;
+
+  std::vector<Unit> Get_Units() {
+    return units;
+  }
+
+  Unit Get_Player() {
+    for (auto & unit : units) {
+      if (unit.type == PLAYER) {
+        return unit;
+      }
+    }
+    std::cout << "Get_Player() failed" << std::endl;
+    Unit unit{};
+    return unit;
+  }
+
   Placement Random_Placement() {
     Placement placement{};
     placement.x = rand() % mapWidth;
@@ -90,7 +109,7 @@ namespace Units {
     player.y = 6;
     player.vision = 6;
     player.type = PLAYER;
-    units.emplace_back(player);
+    units.push_back(player);
     std::cout << "Init() player added: " << units.size() << std::endl;
 
 //    Unit enemy{};

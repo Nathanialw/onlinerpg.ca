@@ -33,9 +33,9 @@ namespace Network {
     Map::Init();
     Units::Init();
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
-    std::cout << Units::units.size() << std::endl;
-    if (!Units::units.empty()) {
-      print_server.send(hdl, Map::SendMapSegment(Units::units[0]), websocketpp::frame::opcode::text);
+    std::cout << Units::Get_Units().size() << std::endl;
+    if (!Units::Get_Units().empty()) {
+      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
       print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
     } else {
       response = "no player found";
@@ -103,7 +103,7 @@ namespace Network {
             std::string direction = &msg->get_payload()[1];
             Units::Update(direction);
             //Map::Send();
-            print_server.send(hdl, Map::SendMapSegment(Units::units[0]), websocketpp::frame::opcode::text);
+            print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
             //Units::Send_Units();
             print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
 
