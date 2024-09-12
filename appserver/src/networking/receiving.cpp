@@ -36,6 +36,7 @@ namespace Network {
 
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
     print_server.send(hdl, Map::SendMapSegment(6,6,6), websocketpp::frame::opcode::text);
+    print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
     //print_server.send(hdl, Map::Send(), websocketpp::frame::opcode::text);
 
     //this will place Entities on a map with every connect, what we want to do is run this on startup then send the map that's already in memory
@@ -43,7 +44,6 @@ namespace Network {
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
 //      print_server.send(hdl, Units::unitsOnMap[0], websocketpp::frame::opcode::text);
 
-    print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
     //print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
   }
 
@@ -100,7 +100,9 @@ namespace Network {
             std::string direction = &msg->get_payload()[1];
             Units::Update(direction);
             //Map::Send();
+            print_server.send(hdl, Map::SendMapSegment(6,6,6), websocketpp::frame::opcode::text);
             //Units::Send_Units();
+            print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
 
             response = "0I hear you pressing: ";
             response.append(&msg->get_payload()[1]);
