@@ -34,6 +34,17 @@ export function Create_Object(char, x, y) {
     return object;
 }
 
+export function Update_Text(container, newText) {
+    let textObject = container.children[1]; // Access the text object
+    textObject.text = newText;
+    // Update the background size if necessary
+    let background = container.children[0];
+    background.clear();
+    background.beginFill(0x000001);
+    background.drawRect(0, 0, textObject.width, textObject.height);
+    background.endFill();
+}
+
 export function Create_Map_Line(char, Indexheight) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
     object.y = Indexheight * 24;  // Assuming each cell is 24 pixels tall
