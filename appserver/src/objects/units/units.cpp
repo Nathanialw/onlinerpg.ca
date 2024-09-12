@@ -162,10 +162,10 @@ std::string Send_Units() {
           Move(-1, 0);
           break;
         case 's':
-          Move(0, -1);
+          Move(0, 1);
           break;
         case 'd':
-          Move(-1, 0);
+          Move(1, 0);
           break;
     }
 
