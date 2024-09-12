@@ -3,11 +3,11 @@
 //
 #include <cstdint>
 #include "string"
+#include "iostream"
 #include "unordered_map"
 
 
 #include "units.h"
-#include "warrior.h"
 
 namespace Units {
   const int mapWidth = 99;
@@ -91,6 +91,7 @@ namespace Units {
     player.vision = 6;
     player.type = PLAYER;
     units.push_back(player);
+    std::cout << "Init() player added" << Units::units.size() << std::endl;
 
     Unit enemy{};
     enemy.x = 5;
