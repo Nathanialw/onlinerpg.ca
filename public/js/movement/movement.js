@@ -15,7 +15,11 @@ function Move(keyName) {
     
     if (keyName === "w") {
         Move_Player(0, -cell_size);
-        //move camera up
+        //move camera up instead of moving player
+            //send move key
+            //recieve new map
+            //clear screen
+            //draw new map
         if (conn.isConnected) {
             conn.websocket.send("1w");       
         }

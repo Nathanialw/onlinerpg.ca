@@ -157,15 +157,20 @@ std::string Send_Units() {
         case 's': Units::Move(1, 0); break;
         case 'd': Units::Move(-1, 0); break;
     }
-//
-//    for (auto & unit : units) {
-//      if (unit.type == PLAYER) {
-//        map[unit.x][unit.y] = 'P';
-//      }
-//      else if (unit.type == ENEMY) {
-//        map[unit.x][unit.y] = 'E';
-//      }
-//    }
+
+    for (auto & unit : units) {
+      if (unit.type == PLAYER) {
+//        mapEntities += "@0606";
+        //replce substring with new coordinates
+        std::string x = std::to_string(unit.x);
+        std::string y = std::to_string(unit.y);
+        if (unit.x < 10)
+          x = "0" + x;
+        if (unit.y < 10)
+          y = "0" + y;
+        unitsOnMap.replace(1, 4, "@" + x + y);
+      }
+    }
   }
 
 }
