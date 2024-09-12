@@ -29,7 +29,7 @@ struct Unit {
 
   std::string Send_Units();
   void Init();
-  void Update(std::string &msg);
+  void Update(const char* direction);
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
 }

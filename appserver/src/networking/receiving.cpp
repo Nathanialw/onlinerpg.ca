@@ -100,7 +100,7 @@ namespace Network {
     if (!msg->get_payload().empty()) {
         if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.
             //move player
-            std::string direction = &msg->get_payload()[1];
+            const char* direction = &msg->get_payload()[1];
             Units::Update(direction);
             //Map::Send();
             print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
