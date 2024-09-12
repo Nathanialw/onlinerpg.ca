@@ -30,14 +30,17 @@ namespace Network {
     //client will get his uID and store it
     //client will get all the uIDs for all other units on the map and store them and himself in the unordered_map
 
-    //response = "0Map: ";
-    //print_server.send(hdl, std::to_string(Warrior::Stats().vision), websocketpp::frame::opcode::text);
-    Units::Init();
     Map::Init();
+    Units::Init();
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
     std::cout << Units::units.size() << std::endl;
-    print_server.send(hdl, Map::SendMapSegment(Units::units[0]), websocketpp::frame::opcode::text);
-    print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
+    if (!Units::units.empty()) {
+      print_server.send(hdl, Map::SendMapSegment(Units::units[0]), websocketpp::frame::opcode::text);
+      print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
+    } else {
+      response = "no player found";
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+    }
 
     //this will place Entities on a map with every connect, what we want to do is run this on startup then send the map that's already in memory
 //    response = "0sending units: ";
