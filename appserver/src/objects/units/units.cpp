@@ -179,7 +179,7 @@ std::string Send_Units() {
         if (unit.y < 10)
           y = "0" + y;
         std::string position = "3@" + x + y;
-        unitsOnMap.replace(0, 5, position);
+        unitsOnMap.replace(0, 6, position);
       }
     }
   }

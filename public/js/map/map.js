@@ -123,6 +123,12 @@ export function Make_Map(serverMap, mapWidth) {
     console.log("map")
     console.log(serverMap)
     console.log(mapWidth)
+    //clear map
+    for (let i = 0; i < mapWidth; i++) {
+        let object = " ";
+        mapDisplay[i] = Create_Map_Line(object, i);
+    }
+    //draw map
     for (let i = 0; i < mapWidth; i++) {
         //render lines of the map
         let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
@@ -139,7 +145,6 @@ let Update = {
 // I should use a seperate function to grab the correct substring from the unitOnMap string
 export function Populate_Map(unitOnMap) {
     for (let i = 0; i < unitOnMap.length; i+=5) {
-        object.destroy();
         let object = Create_Object(unitOnMap[i], unitOnMap.substring(i+1,i+3), unitOnMap.substring(i+3,i+5));
 	    Update[unitOnMap[i]](object)
     }
