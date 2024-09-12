@@ -152,12 +152,11 @@ std::string Send_Units() {
     }
   }
 
-
-
   void Update(const char* direction) {
+    std::cout << *direction << std::endl;
     switch (*direction) {
         case 'w':
-          Move(0, 1);
+          Move(0, -1);
           break;
         case 'a':
           Move(-1, 0);
@@ -166,10 +165,11 @@ std::string Send_Units() {
           Move(0, -1);
           break;
         case 'd':
-          Move(1, 0);
+          Move(-1, 0);
           break;
     }
 
+    std::cout << "num entities" << Get_Units()->size() << std::endl;
     for (auto & unit : *Get_Units()) {
       if (unit.type == PLAYER) {
         std::string x = std::to_string(unit.x);
