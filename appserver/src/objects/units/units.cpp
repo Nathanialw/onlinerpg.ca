@@ -124,6 +124,7 @@ std::string Send_Units() {
     return unitsOnMap;
 }
 
+
   void Move(int x, int y) {
     std::cout << x << " " << y << std::endl;
     for (auto & unit : *Get_Units()) {
@@ -151,12 +152,24 @@ std::string Send_Units() {
     }
   }
 
+
+
   void Update(std::string &msg) {
-    switch (msg[1]) {
-        case 'w': Units::Move(0, 1); break;
-        case 'a': Units::Move(0, -1); break;
-        case 's': Units::Move(1, 0); break;
-        case 'd': Units::Move(-1, 0); break;
+    if (msg[1] == 'w') {
+      Units::Move(0, 1);
+      std::cout << "move up" << std::endl;
+    }
+    else if (msg[1] == 'a') {
+      Units::Move(-1, 0);
+      std::cout << "move left" << std::endl;
+    }
+    else if (msg[1] == 's') {
+      Units::Move(0, -1);
+      std::cout << "move down" << std::endl;
+    }
+    else if (msg[1] == 'd') {
+      Units::Move(1, 0);
+      std::cout << "move right" << std::endl;
     }
 
     for (auto & unit : *Get_Units()) {

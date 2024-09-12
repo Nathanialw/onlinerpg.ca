@@ -59,8 +59,8 @@ namespace Network {
   }
 
   bool On_ping(websocketpp::connection_hdl hdl, std::string payload) {
-      std::string response = "pinging: ";
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+      //std::string response = "pinging: ";
+      //print_server.send(hdl, response, websocketpp::frame::opcode::text);
       return true;
   }
 
