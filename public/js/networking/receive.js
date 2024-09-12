@@ -76,10 +76,15 @@ function Stats(data) {
     console.log(data)
 }
 
+function UpdatePositions(data) {
+    console.log(data)
+}
+
 let Update = {
     0: Message,
     1: Map,
     2: Populate_Map,
+    3: UpdatePositions,
     //3: Stats,
 }
 
