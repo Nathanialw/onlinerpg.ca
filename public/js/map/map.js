@@ -131,8 +131,8 @@ export function Make_Map(serverMap, mapWidth) {
     //draw map
     for (let i = 0; i < mapWidth; i++) {
         //render lines of the map
-        let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
-        mapDisplay[i] = Create_Map_Line(object, i);
+        // let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
+        // mapDisplay[i] = Create_Map_Line(object, i);
     }
 }
 
