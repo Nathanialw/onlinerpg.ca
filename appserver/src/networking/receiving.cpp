@@ -33,8 +33,8 @@ namespace Network {
     Map::Init();
     Units::Init();
 //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
-    std::cout << Units::Get_Units().size() << std::endl;
-    if (!Units::Get_Units().empty()) {
+    std::cout << Units::Get_Units()->size() << std::endl;
+    if (!Units::Get_Units()->empty()) {
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
       print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
     } else {

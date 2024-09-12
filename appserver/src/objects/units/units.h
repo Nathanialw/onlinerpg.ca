@@ -31,5 +31,5 @@ struct Unit {
   void Init();
   void Update(std::string &msg);
   Unit Get_Player();
-  std::vector<Unit> Get_Units();
+  std::vector<Unit>* Get_Units();
 }

@@ -13,7 +13,6 @@ namespace Units {
   const int mapWidth = 99;
   static std::string map[mapWidth][mapWidth];
 
-  std::string mapEntities;
   std::unordered_map<uint16_t , std::string> entities;
 
   struct Placement {
@@ -25,8 +24,8 @@ namespace Units {
 
   std::vector<Unit> units;
 
-  std::vector<Unit> Get_Units() {
-    return units;
+  std::vector<Unit>* Get_Units() {
+    return &units;
   }
 
   Unit Get_Player() {
@@ -82,7 +81,7 @@ namespace Units {
   }
 
   std::string Place_Entities_On_Map() {
-    mapEntities = "2";
+    std::string mapEntities = "2";
     //loop through the map x times and lok for 2x2 squares
     //set entities to be in the center of the square
     //I need to send the char and the offset in the map g0317
@@ -126,7 +125,7 @@ std::string Send_Units() {
 }
 
   void Move(int x, int y) {
-    for (auto & unit : units) {
+    for (auto & unit : *Get_Units()) {
       if (unit.type == PLAYER) {
         unit.x += x;
         unit.y += y;
@@ -158,10 +157,8 @@ std::string Send_Units() {
         case 'd': Units::Move(-1, 0); break;
     }
 
-    for (auto & unit : units) {
+    for (auto & unit : *Get_Units()) {
       if (unit.type == PLAYER) {
-//        mapEntities += "@0606";
-        //replce substring with new coordinates
         std::string x = std::to_string(unit.x);
         std::string y = std::to_string(unit.y);
         if (unit.x < 10)
