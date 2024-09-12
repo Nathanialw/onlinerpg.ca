@@ -2,7 +2,7 @@ import { Init } from "../sound/sound.js";
 Init();
 
 export const app = new PIXI.Application();
-await app.init({ width: 288, height: 288 })
+await app.init({ width: 24*13, height: 24*13 })
 document.getElementById('gameCanvas').appendChild(app.canvas);
 
 export function closeGame() {
