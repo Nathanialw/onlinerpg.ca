@@ -1,6 +1,6 @@
 'use strict'
 
-import {Create_Object, Update_Text, Create_Map_Line} from '../graphics/graphics.js';
+import {Create_Map_Line} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 
 let mapDisplay = [];

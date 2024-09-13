@@ -1,5 +1,8 @@
 'use strict'
 
+import {Create_Object} from '../graphics/graphics.js';
+
+
 let player;
 let enemies = []
 let objects = []
