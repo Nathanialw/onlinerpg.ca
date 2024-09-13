@@ -9,7 +9,7 @@ namespace Collision {
   bool Wall_Collision(int x, int y, const char* direction) {
     std::cout << "x: " << x << " y: " << y << std::endl;
     std::cout << "direction: " << *direction << std::endl;
-    std::cout << "Map::Get_Map()[x][y]: " << Map::Get_Map()[x][y] << std::endl;
+    std::cout << "Map::Get_Map()[x][y]: " << &Map::Get_Map()[x][y] << std::endl;
 
     switch (*direction) {
     case 'w':
