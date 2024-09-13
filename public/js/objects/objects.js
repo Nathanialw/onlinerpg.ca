@@ -4,12 +4,14 @@ let player;
 let enemies = []
 let objects = []
 
-export function Set_Player(object) {
-    player = object;
+export function Set_Player(unitString) {
+    // player = Create_Object(unitString[0], unitString.substring(1,3), unitString.substring(3,5));;
+    player = Create_Object(unitString[0], 7, 7);;
 }
 
 export function Set_Enemies(object) {
-    enemies = object;
+    enemies = Create_Object(unitString[0], unitString.substring(1,3), unitString.substring(3,5));;
+    //enemies = object;
 }
 
 export function Set_Objects(object) {

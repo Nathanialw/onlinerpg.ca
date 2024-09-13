@@ -142,9 +142,10 @@ let Update = {
 }
 
 // I should use a seperate function to grab the correct substring from the unitOnMap string
-export function Populate_Map(unitOnMap) {
-    for (let i = 0; i < unitOnMap.length; i+=5) {
-        let object = Create_Object(unitOnMap[i], unitOnMap.substring(i+1,i+3), unitOnMap.substring(i+3,i+5));
-	    Update[unitOnMap[i]](object)
+export function Populate_Map(unitsOnMap) {
+    for (let i = 0; i < unitsOnMap.length; i+=5) {        
+        // let object = Create_Object(unitsOnMap[i], unitsOnMap.substring(i+1,i+3), unitsOnMap.substring(i+3,i+5));
+	    // Update[unitsOnMap[i]](object)
+        Update[unitsOnMap[i]](unitsOnMap.substring(i, i+5));
     }
 }
