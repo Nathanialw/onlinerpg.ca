@@ -14,6 +14,8 @@ namespace Collision {
     std::cout << "direction: " << *direction << std::endl;
     std::cout << "player position Map::Get_Map()[x][y] basic: " << Map::Get_Map()[x][y] << std::endl;
     std::cout << "player position Map::Get_Map()[x][y] ref: " << &Map::Get_Map()[x][y] << std::endl;
+    std::cout << "player position Map::Get_Map()[x][y] 6 basic: " << Map::Get_Map()[6][6] << std::endl;
+    std::cout << "player position Map::Get_Map()[x][y] 6 ref: " << &Map::Get_Map()[6][6] << std::endl;
 
     switch (*direction) {
     case 'w':
