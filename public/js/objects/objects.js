@@ -6,7 +6,7 @@ let objects = []
 
 export function Set_Player(unitString) {
     // player = Create_Object(unitString[0], unitString.substring(1,3), unitString.substring(3,5));;
-    player = Create_Object(unitString[0], 7, 7);;
+    player = Create_Object(unitString[0], 6, 6);;
 }
 
 export function Set_Enemies(object) {
