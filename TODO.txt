@@ -37,13 +37,19 @@ gamey
 
 
 short term:
--camera
+-player id so you can have your own game, tied to login
+
 -splash screen
--static grid map
--generate/enter world
+-char select
+  -2 races(human, elf) the only difference is the elf starts with +1 vision
+-1 class(fighter)
 -ascii graphics to start
--come up with a list of spells
+-one enemy
+-attack when player moves onto an enemy
+-simple AI that moves towards play when in range, attacks if adjacent
 -mouse input
+-come up with a list of spells
+-text output (damage done)
 
 medium term:
 -items
