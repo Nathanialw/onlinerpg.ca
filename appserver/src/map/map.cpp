@@ -7,8 +7,7 @@
 #include "units.h"
 
 namespace Map {
-  const int mapWidth = 99;
-  static std::string map[mapWidth][mapWidth];
+
 
   void Init() {
     for (int i = 0; i < mapWidth; i++) {
@@ -50,10 +49,6 @@ namespace Map {
     }
 
     return mapSegment;
-  }
-
-  std::string* Get_Map() {
-    return *map;
   }
 
 }

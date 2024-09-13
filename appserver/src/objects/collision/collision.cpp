@@ -7,30 +7,35 @@
 namespace Collision {
 
   bool Wall_Collision(int x, int y, const char* direction) {
-    std::cout << "Map::Get_Map()[0][6]: " << Map::Get_Map()[0][6] << std::endl;
+    std::cout << "Checking Wall_Collision..." << std::endl;
 
     switch (*direction) {
     case 'w':
-      if (Map::Get_Map()[x][y-1] == '#') {
+      std::cout << Map::map[x][y-1] << std::endl;
+      if (Map::map[x][y-1] == "#") {
         return true;
         }
         return false;
       case 'a':
-        if (Map::Get_Map()[x-1][y] == '#') {
+        std::cout << Map::map[x-1][y] << std::endl;
+        if (Map::map[x-1][y] == "w") {
           return true;
         }
         return false;
       case 's':
-        if (Map::Get_Map()[x][y+1] == '#') {
+        std::cout << Map::map[x][y+1] << std::endl;
+        if (Map::map[x][y+1] == "#") {
           return true;
         }
         return false;
       case 'd':
-        if (Map::Get_Map()[x+1][y] == '#') {
+        std::cout << Map::map[x+1][y] << std::endl;
+        if (Map::map[x+1][y] == "#") {
           return true;
         }
         return false;
     }
+    std::cout << "... false" << std::endl;
     return false;
   }
 

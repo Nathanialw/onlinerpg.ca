@@ -12,10 +12,10 @@
 #include "units.h"
 
 namespace Map {
-
+const int mapWidth = 99;
+static std::string map[mapWidth][mapWidth];
 
 void Init();
 std::string SendMapSegment(const Units::Unit &player, int state = 3);
-std::string* Get_Map();
 std::string Send();
 }
