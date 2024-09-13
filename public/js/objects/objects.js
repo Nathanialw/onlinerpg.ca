@@ -18,8 +18,8 @@ export function Set_Objects(object) {
 
 
 export function Move_Player(x, y) {
-    player.x += x;
-    player.y += y;
+    // player.x += x;
+    // player.y += y;
 }
 
 export function Move_Enemies(object) {
