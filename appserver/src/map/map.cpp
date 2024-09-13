@@ -7,7 +7,8 @@
 #include "units.h"
 
 namespace Map {
-
+  const int mapWidth = 99;
+  std::string map[mapWidth][mapWidth];
 
   void Init() {
     for (int i = 0; i < mapWidth; i++) {
@@ -49,5 +50,14 @@ namespace Map {
     }
 
     return mapSegment;
+  }
+
+  std::string Get_Adjecent_Tile(int x, int y) {
+    std::string tile;
+    if (x < 0 || x >= mapWidth || y < 0 || y >= mapWidth)
+        tile = " ";
+    else
+        tile = map[y][x];
+    return tile;
   }
 }
