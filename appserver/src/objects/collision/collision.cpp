@@ -11,25 +11,25 @@ namespace Collision {
 
     switch (*direction) {
     case 'w':
-      std::cout << Map::map[x][y-1] << std::endl;
+      std::cout << Map::map[x][y-1].c_str() << std::endl;
       if (Map::map[x][y-1] == "#") {
         return true;
         }
         return false;
       case 'a':
-        std::cout << Map::map[x-1][y] << std::endl;
+        std::cout << Map::map[x-1][y].c_str() << std::endl;
         if (Map::map[x-1][y] == "w") {
           return true;
         }
         return false;
       case 's':
-        std::cout << Map::map[x][y+1] << std::endl;
+        std::cout << Map::map[x][y+1].c_str() << std::endl;
         if (Map::map[x][y+1] == "#") {
           return true;
         }
         return false;
       case 'd':
-        std::cout << Map::map[x+1][y] << std::endl;
+        std::cout << Map::map[x+1][y].c_str() << std::endl;
         if (Map::map[x+1][y] == "#") {
           return true;
         }
