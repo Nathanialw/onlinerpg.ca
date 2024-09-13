@@ -8,6 +8,8 @@
 
 
 #include "units.h"
+#include "../collision/collision.h"
+
 
 namespace Units {
   const int mapWidth = 99;
@@ -154,6 +156,12 @@ std::string Send_Units() {
 
   void Update(const char* direction) {
     std::cout << *direction << std::endl;
+    //collision
+    if (Collision::Wall_Collision(Get_Player().x, Get_Player().y, direction)) {
+        std::cout << "wall collision" << std::endl;
+        return;
+    }
+
     switch (*direction) {
         case 'w':
           Move(0, -1);

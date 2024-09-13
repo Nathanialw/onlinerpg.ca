@@ -19,5 +19,8 @@ add_executable(BrowserRPG
         src/map/map.cpp
         src/objects/units/units.cpp
         src/utils/utils.cpp
+        src/objects/collision/collision.cpp
+
         src/objects/units/class/warrior.cpp
+        src/objects/movement/movement.cpp
 )
