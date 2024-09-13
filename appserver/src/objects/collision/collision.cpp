@@ -19,7 +19,7 @@ namespace Collision {
         return false;
       case 'a':
         std::cout << Map::Get_Adjecent_Tile(x-1, y) << std::endl;
-        if (Map::Get_Adjecent_Tile(x-1, y) == "w") {
+        if (Map::Get_Adjecent_Tile(x-1, y) == "#") {
           return true;
         }
         return false;
