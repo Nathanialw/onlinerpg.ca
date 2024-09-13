@@ -13,7 +13,6 @@
 
 namespace Units {
   const int mapWidth = 99;
-  static std::string map[mapWidth][mapWidth];
 
   std::unordered_map<uint16_t , std::string> entities;
 
