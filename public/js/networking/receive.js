@@ -14,10 +14,6 @@ function Map(data) {
     Make_Map(serverMap, visionWidth);
 }
 
-function UpdatePositions(data) {
-    console.log(data)
-}
-
 let Update = {
     0: Message,
     1: Map,

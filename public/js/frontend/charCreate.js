@@ -44,6 +44,7 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     // Load required JavaScript files
     loadScript('/js/frontend/game.js', 'module');
     loadScript('/js/input/keyboard.js', 'module');
+    loadScript('/js/networking/receive.js', 'module');
     loadScript('/js/libs/howler.core.js');
     loadScript('/js/libs/pixi.js');
 
