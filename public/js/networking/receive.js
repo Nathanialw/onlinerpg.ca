@@ -31,9 +31,9 @@ let Update = {
     //3: Stats,
 }
 
-console.log("Socket object:", socket());
-
 socket().websocket.onmessage = function(event) {    
+    console.log("websocket");
+    
     if (event.data === 0) {
         return
     }
