@@ -14,7 +14,7 @@ function Send() {
     let alignment = document.getElementById("alignment").value;
 
     if (conn.isConnected) {
-        conn.websocket.send(name + gender + race + unitClass + alignment);       
+        conn.websocket.send("2" + name + gender + race + unitClass + alignment);       
         console.log("char create Data sent to server")
     }
     else {

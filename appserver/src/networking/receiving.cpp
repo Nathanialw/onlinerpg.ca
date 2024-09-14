@@ -111,6 +111,12 @@ namespace Network {
             response.append(&msg->get_payload()[1]);
             print_server.send(hdl, response, websocketpp::frame::opcode::text);
         }
+        else if (msg->get_payload()[0] == '2') {
+            std::cout << msg->get_payload() << std::endl;
+            response = "Character created: ";
+            response.append(&msg->get_payload()[1]);
+            print_server.send(hdl, response, websocketpp::frame::opcode::text);
+        }
         else {
 //            response = "0pinging";
 //            print_server.send(hdl, response, websocketpp::frame::opcode::text);
