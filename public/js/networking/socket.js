@@ -41,8 +41,6 @@ function createWebSocket() {
     }, 2500);
 }
 
-createWebSocket();
-
 export function socket() {
     if (websocket && websocket.readyState === WebSocket.OPEN) {
         return { websocket: websocket, isConnected: true };
