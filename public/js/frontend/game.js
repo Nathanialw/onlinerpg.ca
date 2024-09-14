@@ -24,7 +24,22 @@ function Splash_Screen() {
     //get name
     Input_Name();
     //get race
+        //elf/human
+            //elf= +vision +dexterity
+            //human= +intelligence +strength
     //get class
+        //fighter/mage
+    //alignment
+        //good/neutral/evil
+
+        //fighter+good= paladin
+        //fighter+neutral= fighter
+        //fighter+evil= barbarian 
+
+        //mage+good = priest
+        //mage+neutral= mage 
+        //mage+evil= warlock
+
     //start game
     Start_Game();
 }
