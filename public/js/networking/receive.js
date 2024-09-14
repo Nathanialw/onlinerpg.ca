@@ -2,7 +2,7 @@
 
 import {Make_Map, Update_Map, Populate_Map} from '../map/map.js';
 import {app, Close_Game} from '../frontend/game.js';
-import {socket} from "../networking/socket.js"
+import {socket} from "/socket.js"
 
 //import {websocket} from './socket.js';
 
