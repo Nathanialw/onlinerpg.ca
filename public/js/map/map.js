@@ -126,7 +126,7 @@ export function Make_Map(serverMap, mapWidth) {
     let vision = Set_Map_Withing_Viewport();
     for (let i = 0; i < mapWidth; i++) {
         // render lines of the map
-        let object = serverMap.substring(((vision + i) * mapWidth), (((vidion + i) * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
+        let object = serverMap.substring(((vision + i) * mapWidth), (((vision + i) * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
         mapDisplay[i] = Create_Map_Line(object, i);
     }
 }
