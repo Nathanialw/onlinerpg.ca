@@ -13,9 +13,10 @@ function Character_Select() {
     //class fighter
 }
 
+app.init({ width: 24*13, height: 24*13 })
+document.getElementById('gameCanvas').appendChild(app.canvas);
+
 function Start_Game() {
-    app.init({ width: 24*13, height: 24*13 })
-    document.getElementById('gameCanvas').appendChild(app.canvas);
 }
 
 function Splash_Screen() {
