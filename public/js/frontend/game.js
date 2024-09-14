@@ -5,16 +5,6 @@ export const app = new PIXI.Application();
 export let viewportWidth = 41;
 export let cellSize = 24;
 
-function Input_Name() {
-    let name = prompt("Please enter your name", "Player");    
-}
-
-function Character_Select() {
-    //select race: human or elf
-    
-    //class fighter
-}
-
 
 async function Start_Game() {//13
     await app.init({ width: cellSize * viewportWidth, height: cellSize * viewportWidth })

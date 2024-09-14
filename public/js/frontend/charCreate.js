@@ -48,4 +48,6 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     loadScript('/js/libs/howler.core.js');
     loadScript('/js/libs/pixi.js');
 
+
+
 });

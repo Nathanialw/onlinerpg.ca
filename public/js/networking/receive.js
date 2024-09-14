@@ -14,10 +14,6 @@ function Map(data) {
     Make_Map(serverMap, visionWidth);
 }
 
-function Stats(data) {
-    console.log(data)
-}
-
 function UpdatePositions(data) {
     console.log(data)
 }
@@ -32,8 +28,6 @@ let Update = {
 }
 
 socket().websocket.onmessage = function(event) {    
-    console.log("websocket");
-    
     if (event.data === 0) {
         return
     }
