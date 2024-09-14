@@ -146,7 +146,6 @@ let Update = {
 
 // I should use a seperate function to grab the correct substring from the unitOnMap string
 export function Populate_Map(unitsOnMap) {
-    let vision = Set_Map_Withing_Viewport();
     for (let i = 0; i < unitsOnMap.length; i+=5) {        
         // let object = Create_Object(unitsOnMap[i], unitsOnMap.substring(i+1,i+3), unitsOnMap.substring(i+3,i+5));
 	    // Update[unitsOnMap[i]](object)
