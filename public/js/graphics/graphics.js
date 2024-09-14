@@ -1,6 +1,6 @@
 'use strict'
 
-import {app, } from '../frontend/game.js';
+import {app, viewportWidth} from '../frontend/game.js';
 
 //const app = new PIXI.Application();
 // await app.init({ width: 2376, height: 2352 })
