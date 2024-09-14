@@ -65,7 +65,7 @@
         <br>
         <input type='submit' name='startGame' id='startGame' class='btn btn-submit' value='Start Game'/>
     </form>
-</section>";        
+</section>
 
-<script src="/js/charCreate.js"></script>
+<script src="/js/frontend.js"></script>
     
