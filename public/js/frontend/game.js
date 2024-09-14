@@ -54,8 +54,7 @@ function Splash_Screen() {
     //start game
     Start_Game();
 }
-
-// //Splash_Screen()
+Splash_Screen()
 
 // export function Close_Game() {
 //     document.getElementById('gameCanvas').removeChild(app.canvas);    
