@@ -67,5 +67,5 @@
     </form>
 </section>
 
-<script src="/js/frontend.js"></script>
+<script src="/js/frontend/charCreate.js"></script>
     
