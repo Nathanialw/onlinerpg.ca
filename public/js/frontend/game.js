@@ -14,7 +14,7 @@ async function Start_Game() {//13
 
 function Draw_Title_Screen() {
     let title = new PIXI.Text("Online RPG", {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
-    title.x = Set_Map_Within_Viewport(11) * cellSize);  // Assuming each cell is 24 pixels tall
+    title.x = Set_Map_Within_Viewport(11) * cellSize;  // Assuming each cell is 24 pixels tall
     title.y = 200;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(title);
     let subtitle = new PIXI.Text("Press space to start!", {fontFamily : "'Press Start 2P'", fontSize: 14, fill : 0xff1010, align : 'center'});
