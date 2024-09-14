@@ -9,7 +9,7 @@ import {socket} from "../../networking/socket.js"
 
 export function Actions(keyName) {
     console.log("Enter key pressed");
-    let conn = socket()
+    let conn = socket() 
     
     if (conn.isConnected) {
         conn.websocket.send("0Space");       
