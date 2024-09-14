@@ -4,21 +4,30 @@ Init();
 export const app = new PIXI.Application();
 
 function Input_Name() {
-    let name = prompt("Please enter your name", "Player");
+    let name = prompt("Please enter your name", "Player");    
 }
-Input_Name()
 
 function Character_Select() {
     //select race: human or elf
     
     
-
+    
     //class fighter
 }
 
 function Start_Game() {
     app.init({ width: 24*13, height: 24*13 })
     document.getElementById('gameCanvas').appendChild(app.canvas);
+}
+
+function Splash_Screen() {
+    //display splash screen
+    //get name
+    Input_Name();
+    //get race
+    //get class
+    //start game
+    Start_Game();
 }
 
 export function Close_Game() {
