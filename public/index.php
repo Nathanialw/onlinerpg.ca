@@ -29,8 +29,11 @@
     elseif (isset($_POST["restartGame"])) {
         include 'game.php';        
     }
-    else {
+    elseif (isset($_POST["enterGame"])) {
         include 'charCreate.php';     
+    }
+    else {
+        include 'enterGame.php';     
     }
 ?>
 
