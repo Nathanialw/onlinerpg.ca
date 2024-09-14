@@ -9,6 +9,7 @@ function Message(data) {
 }
 
 function Map(data) {
+    console.log("parsing map receive.Map()")
     let visionWidth = parseInt(data.substring(0, 2), 10);
     let serverMap = data.substring(2);
     Make_Map(serverMap, visionWidth);
