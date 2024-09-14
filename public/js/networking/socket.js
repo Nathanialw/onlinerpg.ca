@@ -23,10 +23,10 @@ export function createWebSocket() {
         websocket.close();
     };
 
-    websocket.onmessage = (event) => {
-        console.log("WebSocket message received:", event.data);
-        // Handle incoming messages here
-    };
+    // websocket.onmessage = (event) => {
+    //     console.log("WebSocket message received:", event.data);
+    //     // Handle incoming messages here
+    // };
 
     setInterval(() => {
         if (websocket.readyState === WebSocket.OPEN) {

@@ -32,6 +32,8 @@ let Update = {
 }
 
 socket().websocket.onmessage = function(event) {    
+    console.log("Message received from server");
+    
     if (event.data === 0) {
         return
     }
