@@ -69,8 +69,3 @@
 
 <script src="js/charCreate.js"></script>
     
-
-<?php     
-    if (isset($_POST["startGame"])) {
-        include 'game.php';
-    }   
