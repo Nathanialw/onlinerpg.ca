@@ -2,8 +2,8 @@ import { Init } from "../sound/sound.js";
 Init();
 
 export const app = new PIXI.Application();
-await app.init({ width: 24*13, height: 24*13 })
-document.getElementById('gameCanvas').appendChild(app.canvas);
+// await app.init({ width: 24*13, height: 24*13 })
+// document.getElementById('gameCanvas').appendChild(app.canvas);
 
 export function Close_Game() {
     document.getElementById('gameCanvas').removeChild(app.canvas);    
@@ -29,36 +29,32 @@ export function Close_Game() {
 }
 
 
-// import { Init } from "../sound/sound.js";
-// Init();
+function Input_Name() {
+    let name = prompt("Please enter your name", "Player");    
+}
 
-// export const app = new PIXI.Application();
-// app.init({ width: 24*13, height: 24*13 })
-// document.getElementById('gameCanvas').appendChild(app.canvas);
-
-// function Input_Name() {
-//     let name = prompt("Please enter your name", "Player");    
-// }
-
-// function Character_Select() {
-//     //select race: human or elf
+function Character_Select() {
+    //select race: human or elf
     
-//     //class fighter
-// }
+    //class fighter
+}
 
 
-// function Start_Game() {
-// }
+async function Start_Game() {
+    await app.init({ width: 24*13, height: 24*13 })
+    document.getElementById('gameCanvas').appendChild(app.canvas);
+}
 
-// function Splash_Screen() {
-//     //display splash screen
-//     //get name
-//     Input_Name();
-//     //get race
-//     //get class
-//     //start game
-//     Start_Game();
-// }
+function Splash_Screen() {
+    //display splash screen
+    //get name
+    // Input_Name();
+    //get race
+    //get class
+    //start game
+    Start_Game();
+}
+
 // //Splash_Screen()
 
 // export function Close_Game() {
