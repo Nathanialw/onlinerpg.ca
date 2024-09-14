@@ -1,4 +1,4 @@
-import {socket} from "../networking/receive.js"
+import {socket} from "../networking/socket.js"
 
 
 //send data to server
