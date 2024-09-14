@@ -2,6 +2,8 @@ import { Init } from "../sound/sound.js";
 Init();
 
 export const app = new PIXI.Application();
+app.init({ width: 24*13, height: 24*13 })
+document.getElementById('gameCanvas').appendChild(app.canvas);
 
 function Input_Name() {
     let name = prompt("Please enter your name", "Player");    
@@ -13,8 +15,6 @@ function Character_Select() {
     //class fighter
 }
 
-app.init({ width: 24*13, height: 24*13 })
-document.getElementById('gameCanvas').appendChild(app.canvas);
 
 function Start_Game() {
 }
@@ -22,13 +22,13 @@ function Start_Game() {
 function Splash_Screen() {
     //display splash screen
     //get name
-    //Input_Name();
+    Input_Name();
     //get race
     //get class
     //start game
     Start_Game();
 }
-Splash_Screen()
+//Splash_Screen()
 
 export function Close_Game() {
     document.getElementById('gameCanvas').removeChild(app.canvas);    
