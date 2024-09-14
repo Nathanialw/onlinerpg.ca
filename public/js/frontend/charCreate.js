@@ -19,6 +19,7 @@ function Send() {
 document.getElementById('startGame').addEventListener('change', (event) => {
     if (conn.isConnected) {
         conn.websocket.send(name + gender + race + unitClass + alignment);       
+        console.log("char create Data sent to server")
     }
     else {
         console.log("Error: Server is not connected")
