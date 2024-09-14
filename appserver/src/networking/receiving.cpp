@@ -114,7 +114,13 @@ namespace Network {
             if (!Units::Get_Units()->empty()) {
               print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), 1), websocketpp::frame::opcode::text);
               print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
-            } else {
+            }
+            else if (msg->get_payload()[0] == '3') {
+              if (!Units::Get_Units()->empty()) {print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), 1), websocketpp::frame::opcode::text);
+                print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
+              }
+            }
+            else {
               response = "no player found";
               print_server.send(hdl, response, websocketpp::frame::opcode::text);
             }

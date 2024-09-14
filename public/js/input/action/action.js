@@ -12,6 +12,6 @@ export function Actions(keyName) {
     let conn = socket() 
     
     if (conn.isConnected) {
-        conn.websocket.send("0Space");       
+        conn.websocket.send("3");       
     }    
 }
