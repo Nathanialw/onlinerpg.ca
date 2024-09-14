@@ -7,12 +7,12 @@ import {SoundPlay} from "../sound/sound.js"
 
 
 let Update = {
-    Enter: SoundPlay,
+    Enter: Actions,
     a: Move,
     w: Move,
     s: Move,
     d: Move,
-    Space: Actions,
+    Control: SoundPlay
 }
 
 document.addEventListener("keypress", (event) => {
@@ -42,7 +42,5 @@ document.addEventListener("keyup", (event) => {
 
     // As the user releases the Ctrl key, the key is no longer active,
     // so event.ctrlKey is false.
-    if (keyName === "Control") {
-	
-    }
+    
 });
