@@ -26,7 +26,6 @@ function createTextWithBackground(textString, style, backgroundColor) {
 }
 
 export function Create_Object(char, x, y) {
-    console.log("creating object Create_Object");
     let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001);
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = y * cellSize;  // Assuming each cell is 24 pixels tall
@@ -50,7 +49,6 @@ export function Update(){
 }
 
 export function Create_Map_Line(char, indexHeight, visionWidth) {
-    console.log("creating map line Create_Map_Line");
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
     object.x = Set_Map_Within_Viewport(visionWidth) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
