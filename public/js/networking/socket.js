@@ -1,5 +1,61 @@
 'use strict';
 
-//create on game start
-//export var websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
-//setInterval(() =>  websocket.send(JSON.stringify({ event: "ping" })), 10000);
+
+let websocket;
+let reconnectInterval = 1000; // 1 second
+
+function createWebSocket() {
+    websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+
+    websocket.onopen = () => {
+        console.log("WebSocket connection opened");
+    };
+
+    websocket.onclose = () => {
+        console.log("WebSocket connection closed, attempting to reconnect...");
+        setTimeout(() => {
+            createWebSocket();
+        }, reconnectInterval);
+    };
+
+    websocket.onerror = (error) => {
+        console.error("WebSocket error:", error);
+        websocket.close();
+    };
+
+    websocket.onmessage = (event) => {
+        console.log("WebSocket message received:", event.data);
+        // Handle incoming messages here
+    };
+
+    setInterval(() => {
+        if (websocket.readyState === WebSocket.OPEN) {
+            websocket.send(JSON.stringify({ event: "ping" }));
+        }
+    }, 2500);
+}
+
+createWebSocket();
+
+export function socket() {
+    if (websocket && websocket.readyState === WebSocket.OPEN) {
+        return { websocket: websocket, isConnected: true };
+    } else if (websocket && websocket.readyState === WebSocket.CONNECTING) {
+        console.log("Connecting WebSocket...");
+        return { websocket: websocket, isConnected: false };
+    } else if (websocket && (websocket.readyState === WebSocket.CLOSING || websocket.readyState === WebSocket.CLOSED)) {
+        console.log("Reconnecting WebSocket...");
+        createWebSocket();
+        return { websocket: websocket, isConnected: false };
+    } else {
+        createWebSocket();
+        console.log("Reconnecting WebSocket...");
+        return { websocket: websocket, isConnected: false };
+    }
+}
+
+export function closeWebSocket() {
+    if (websocket) {
+        websocket.close();
+    }
+}
