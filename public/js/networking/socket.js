@@ -5,7 +5,13 @@ let websocket;
 let reconnectInterval = 1000; // 1 second
 
 function createWebSocket() {
-    websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+    if (!websocket) {
+        //create a new websocket
+        websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
+    } else {
+        //websocket is already exists
+        return
+    }
 
     websocket.onopen = () => {
         console.log("WebSocket connection opened");
@@ -58,9 +64,4 @@ export function closeWebSocket() {
     if (websocket) {
         websocket.close();
     }
-}
-
-
-socket().websocket.onclose = function(event) {
-    //Close_Game();
 }
