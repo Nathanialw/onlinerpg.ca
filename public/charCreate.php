@@ -52,6 +52,6 @@
             </select>
         </span>
         <br>
-        <input type='submit' name='startGame' id='startGame' class='splashContent btn btn-submit' value='Start Game'/>
+        <input type='submit' name='startGame' id='startGame' class='btn btn-submit' value='Start Game'/>
     </form>
 </section>";        
