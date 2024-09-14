@@ -1,6 +1,6 @@
 'use strict'
 
-import {app, viewportWidth, cellSize} from '../frontend/game.js';
+import {app, Set_Map_Within_Viewport, cellSize} from '../frontend/game.js';
 
 //const app = new PIXI.Application();
 // await app.init({ width: 2376, height: 2352 })
@@ -50,8 +50,8 @@ export function Update(){
 
 export function Create_Map_Line(char, indexHeight) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
-    object.x = viewportWidth * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = indexHeight * cellSize;  // Assuming each cell is 24 pixels tall
+    object.x = Set_Map_Within_Viewport() * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (Set_Map_Within_Viewport() + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
