@@ -4,4 +4,4 @@
     </form>
 </section>
 
-<script src="/js/networking/receive.js" type="module"></script>
+<script src="/js/networking/socket.js" type="module"></script>
