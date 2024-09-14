@@ -1,4 +1,3 @@
-<div id="gameCanvas"></div>
 
 <script src="js/frontend/game.js" type="module"></script>
 <script src="js/input/keyboard.js" type="module"></script>

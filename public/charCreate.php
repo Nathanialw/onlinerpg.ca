@@ -24,6 +24,7 @@
         //mage+evil= warlock -> necromancer -> lich 
  -->
 
+ <div id="gameCanvas"></div>
 
 <section class='startButton'>
     <form method='post'>

@@ -33,11 +33,6 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         formSection.remove();
     }
 
-    // Add game canvas
-    const gameCanvas = document.createElement('div');
-    gameCanvas.id = 'gameCanvas';
-    document.body.appendChild(gameCanvas);
-
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
         const script = document.createElement('script');
@@ -47,9 +42,9 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     }
 
     // Load required JavaScript files
-    loadScript('js/frontend/game.js', 'module');
-    loadScript('js/input/keyboard.js', 'module');
-    loadScript('js/libs/howler.core.js');
-    loadScript('js/libs/pixi.js');
+    loadScript('/js/frontend/game.js', 'module');
+    loadScript('/js/input/keyboard.js', 'module');
+    loadScript('/js/libs/howler.core.js');
+    loadScript('/js/libs/pixi.js');
 
 });
