@@ -9,6 +9,7 @@ export let cellSize = 24;
 async function Start_Game() {//13
     await app.init({ width: cellSize * viewportWidth, height: cellSize * viewportWidth })
     document.getElementById('gameCanvas').appendChild(app.canvas);
+    Draw_Title_Screen()
 }
 
 function Draw_Title_Screen() {
