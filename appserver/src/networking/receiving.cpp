@@ -30,17 +30,7 @@ namespace Network {
     //client will get his uID and store it
     //client will get all the uIDs for all other units on the map and store them and himself in the unordered_map
 
-    Map::Init();
-    Units::Init();
-//    print_server.send(hdl, response, websocketpp::frame::opcode::text);
-    std::cout << Units::Get_Units()->size() << std::endl;
-    if (!Units::Get_Units()->empty()) {
-      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), 1), websocketpp::frame::opcode::text);
-      print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
-    } else {
-      response = "no player found";
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
-    }
+
 
     //this will place Entities on a map with every connect, what we want to do is run this on startup then send the map that's already in memory
 //    response = "0sending units: ";
@@ -116,6 +106,18 @@ namespace Network {
             response = "Character created: ";
             response.append(&msg->get_payload()[1]);
             print_server.send(hdl, response, websocketpp::frame::opcode::text);
+
+            Map::Init();
+            Units::Init();
+            //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
+            std::cout << Units::Get_Units()->size() << std::endl;
+            if (!Units::Get_Units()->empty()) {
+              print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), 1), websocketpp::frame::opcode::text);
+              print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
+            } else {
+              response = "no player found";
+              print_server.send(hdl, response, websocketpp::frame::opcode::text);
+            }
         }
         else {
 //            response = "0pinging";
