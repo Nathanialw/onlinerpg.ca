@@ -16,7 +16,7 @@ function Character_Select() {
 
 
 async function Start_Game() {//13
-    await app.init({ width: 24*viewport, height: 24*viewport })
+    await app.init({ width: 24 * viewportWidth, height: 24 * viewportWidth })
     document.getElementById('gameCanvas').appendChild(app.canvas);
 }
 
