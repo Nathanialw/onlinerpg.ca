@@ -50,8 +50,8 @@ export function Close_Game() {
     
 }
 
-export function Set_Map_Within_Viewport() {
-    let vision = ((viewportWidth - 1) / 2) - 6;
+export function Set_Map_Within_Viewport(visionWidth) {
+    let vision = ((viewportWidth - 1) / 2) - ((visionWidth - 1) / 2);
     return vision;
 }
 

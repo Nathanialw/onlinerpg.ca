@@ -48,10 +48,10 @@ export function Update(){
     //redraw map
 }
 
-export function Create_Map_Line(char, indexHeight) {
+export function Create_Map_Line(char, indexHeight, visionWidth) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
-    object.x = Set_Map_Within_Viewport() * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (Set_Map_Within_Viewport() + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.x = Set_Map_Within_Viewport(visionWidth) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
