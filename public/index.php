@@ -30,10 +30,7 @@
         include 'game.php';        
     }
     else {
-        include 'charCreate.php';
-        // echo "<section class='startButton'><form method='post'>
-        //         <input type='submit' name='startGame' id='startGame' class='splashContent btn btn-submit' value='Start Game'/>
-        //     </form></section>";        
+        include 'charCreate.php';     
     }
 ?>
 

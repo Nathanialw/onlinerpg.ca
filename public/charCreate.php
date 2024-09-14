@@ -30,8 +30,8 @@
         <label class="form-label" for="image">Race:</label>
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="race" name="race" required>
-                <option value="elf">Elf</option>
                 <option value="human">Human</option>
+                <option value="elf">Elf</option>
             </select>
         </span>
         <br>
@@ -52,6 +52,6 @@
             </select>
         </span>
         <br>
-        <input type='submit' name='startGame' id='startGame' class='splashContent btn btn-center btn-submit' value='Start Game'/>
+        <input type='submit' name='startGame' id='startGame' class='splashContent btn btn-submit' value='Start Game'/>
     </form>
 </section>";        
