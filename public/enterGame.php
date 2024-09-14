@@ -4,4 +4,3 @@
     </form>
 </section>
 
-<script src="/js/networking/socket.js" type="module"></script>
