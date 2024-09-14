@@ -1,7 +1,7 @@
 'use strict'
 
 import {Create_Map_Line} from '../graphics/graphics.js';
-import {Set_Map_Withing_Viewport} from '../frontend/game.js';
+import {Set_Map_Within_Viewport} from '../frontend/game.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 
 let mapDisplay = [];
@@ -123,10 +123,10 @@ let visionRadius = 6;
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 export function Make_Map(serverMap, mapWidth) {
     console.log("Redrawing map");
-    let vision = Set_Map_Withing_Viewport();
+    let vision = Set_Map_Within_Viewport();
     for (let i = 0; i < mapWidth; i++) {
         // render lines of the map
-        let object = serverMap.substring(((vision + i) * mapWidth), (((vision + i) * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
+        let object = serverMap.substring((vision( + i * mapWidth)), (vision + (i * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
         mapDisplay[i] = Create_Map_Line(object, i);
     }
 }

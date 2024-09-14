@@ -49,7 +49,7 @@ export function Close_Game() {
     
 }
 
-export function Set_Map_Withing_Viewport() {
+export function Set_Map_Within_Viewport() {
     let vision = ((viewport - 1) / 2) - 6;
     return vision;
 }
