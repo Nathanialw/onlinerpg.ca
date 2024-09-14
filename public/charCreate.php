@@ -69,7 +69,3 @@
 
 <script src="/js/frontend/charCreate.js" type="module"></script>
 <script src="/js/networking/socket.js" type="module"></script>
-<script>
-    createWebSocket();
-</script>
-    

@@ -1,5 +1,8 @@
-import {socket} from "../networking/socket.js"
+import { createWebSocket, socket } from '/js/networking/socket.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+    createWebSocket();
+});
 
 //send data to server
 function Send() {

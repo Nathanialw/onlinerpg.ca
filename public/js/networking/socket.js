@@ -4,14 +4,8 @@
 let websocket;
 let reconnectInterval = 1000; // 1 second
 
-function createWebSocket() {
-    if (!websocket) {
-        //create a new websocket
-        websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
-    } else {
-        //websocket is already exists
-        return
-    }
+export function createWebSocket() {
+    websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
 
     websocket.onopen = () => {
         console.log("WebSocket connection opened");
