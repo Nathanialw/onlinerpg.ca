@@ -70,4 +70,8 @@
 
 <script src="/js/frontend/charCreate.js" type="module"></script>
 <script src="/js/networking/socket.js" type="module"></script>
+<script src="/js/libs/howler.core.js" type="module"></script>
+<script src="/js/libs/pixi.js" type="module"></script>
+<!-- loadScript('/js/libs/howler.core.js');
+loadScript('/js/libs/pixi.js'); -->
 
