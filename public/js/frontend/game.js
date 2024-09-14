@@ -10,8 +10,6 @@ function Input_Name() {
 function Character_Select() {
     //select race: human or elf
     
-    
-    
     //class fighter
 }
 
@@ -29,6 +27,7 @@ function Splash_Screen() {
     //start game
     Start_Game();
 }
+Splash_Screen()
 
 export function Close_Game() {
     document.getElementById('gameCanvas').removeChild(app.canvas);    
