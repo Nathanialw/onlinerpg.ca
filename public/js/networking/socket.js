@@ -59,3 +59,8 @@ export function closeWebSocket() {
         websocket.close();
     }
 }
+
+
+socket().websocket.onclose = function(event) {
+    //Close_Game();
+}

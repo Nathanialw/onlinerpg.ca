@@ -1,9 +1,7 @@
 'use strict'
 
-import {Make_Map, Update_Map, Populate_Map} from '../map/map.js';
-import {app, Close_Game} from '../frontend/game.js';
-//import {socket} from "/socket.js"
-
+import {Make_Map, Populate_Map} from '../map/map.js';
+import {app} from '../frontend/game.js';
 import {socket} from './socket.js';
 
 function Message(data) {
@@ -56,7 +54,3 @@ socket().websocket.onmessage = function(event) {
       //update damage
       //get new chunk to emplace in map array
 };
-
-socket().websocket.onclose = function(event) {
-    Close_Game();
-}
