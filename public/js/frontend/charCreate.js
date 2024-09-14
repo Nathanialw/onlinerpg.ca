@@ -25,6 +25,6 @@ function Send() {
     }
 }
 
-document.getElementById('startGame').addEventListener('change', (event) => {
+document.getElementById('startGame').addEventListener('click', (event) => {
     Send();
 });
