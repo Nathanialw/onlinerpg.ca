@@ -2,10 +2,26 @@ import { Init } from "../sound/sound.js";
 Init();
 
 export const app = new PIXI.Application();
-await app.init({ width: 24*13, height: 24*13 })
-document.getElementById('gameCanvas').appendChild(app.canvas);
 
-export function closeGame() {
+function Input_Name() {
+    let name = prompt("Please enter your name", "Player");
+}
+Input_Name()
+
+function Character_Select() {
+    //select race: human or elf
+    
+    
+
+    //class fighter
+}
+
+function Start_Game() {
+    app.init({ width: 24*13, height: 24*13 })
+    document.getElementById('gameCanvas').appendChild(app.canvas);
+}
+
+export function Close_Game() {
     document.getElementById('gameCanvas').removeChild(app.canvas);    
     app.destroy(true, {children: true, texture: true, baseTexture: true});
         // Create a form element

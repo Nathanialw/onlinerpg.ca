@@ -37,9 +37,10 @@ gamey
 
 
 short term:
--player id so you can have your own game, tied to login
+-player id so you can have your own game
 
 -splash screen
+-name input
 -char select
   -2 races(human, elf) the only difference is the elf starts with +1 vision
 -1 class(fighter)
