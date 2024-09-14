@@ -121,9 +121,11 @@ let visionRadius = 6;
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 export function Make_Map(serverMap, mapWidth) {
     console.log("Redrawing map");
+    let viewport = 41;
+    let vision = ((viewport - 1) / 2) - 6;
     for (let i = 0; i < mapWidth; i++) {
         // render lines of the map
-        let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
+        let object = serverMap.substring(((vision + i) * mapWidth), (((vidion + i) * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
         mapDisplay[i] = Create_Map_Line(object, i);
     }
 }
