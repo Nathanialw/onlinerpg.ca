@@ -7,7 +7,6 @@ let mapDisplay = [];
 let fill = [];
 
 //should be saved as character data
-let visionRadius = 6;
 
 // for testing start
 
@@ -120,12 +119,12 @@ let visionRadius = 6;
 
 
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
-export function Make_Map(serverMap, mapWidth) {
+export function Make_Map(serverMap, visionWidth) {
     console.log("Redrawing map");
-    for (let i = 0; i < mapWidth; i++) {
+    for (let i = 0; i < visionWidth; i++) {
         // render lines of the map
-        let object = serverMap.substring(i * mapWidth, (i * mapWidth) + mapWidth); // 0, 13 -> 13, 26 -> 26, 39
-        mapDisplay[i] = Create_Map_Line(object, i);
+        let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39
+        mapDisplay[i] = Create_Map_Line(mapLine, i);
     }
 }
 
@@ -144,9 +143,9 @@ let Update = {
 
 // I should use a seperate function to grab the correct substring from the unitOnMap string
 export function Populate_Map(unitsOnMap) {
-    for (let i = 0; i < unitsOnMap.length; i+=5) {        
+    for (let i = 0; i < unitsOnMap.length; i += 5) {        
         // let object = Create_Object(unitsOnMap[i], unitsOnMap.substring(i+1,i+3), unitsOnMap.substring(i+3,i+5));
 	    // Update[unitsOnMap[i]](object)
-        Update[unitsOnMap[i]](unitsOnMap.substring(i, i+5));
+        Update[unitsOnMap[i]](unitsOnMap.substring(i, i + 5));
     }
 }

@@ -1,6 +1,6 @@
 'use strict'
 
-import {app, viewportWidth} from '../frontend/game.js';
+import {app, viewportWidth, cellSize} from '../frontend/game.js';
 
 //const app = new PIXI.Application();
 // await app.init({ width: 2376, height: 2352 })
@@ -27,8 +27,8 @@ function createTextWithBackground(textString, style, backgroundColor) {
 
 export function Create_Object(char, x, y) {
     let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, 0x000001);
-    object.x = x * 24;  // Assuming each cell is 24 pixels tall
-    object.y = y * 24;  // Assuming each cell is 24 pixels tall
+    object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = y * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
@@ -50,8 +50,8 @@ export function Update(){
 
 export function Create_Map_Line(char, indexHeight) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
-    object.x = viewportWidth * 24;  // Assuming each cell is 24 pixels tall
-    object.y = indexHeight * 24;  // Assuming each cell is 24 pixels tall
+    object.x = viewportWidth * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = indexHeight * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }

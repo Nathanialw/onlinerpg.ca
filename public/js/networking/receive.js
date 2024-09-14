@@ -67,9 +67,9 @@ function Message(data) {
 }
 
 function Map(data) {
-    let mapWidth = parseInt(data.substring(0, 2), 10);
+    let visionWidth = parseInt(data.substring(0, 2), 10);
     let serverMap = data.substring(2);
-    Make_Map(serverMap, mapWidth);
+    Make_Map(serverMap, visionWidth);
 }
 
 function Stats(data) {

@@ -3,6 +3,7 @@ Init();
 
 export const app = new PIXI.Application();
 export let viewportWidth = 41;
+export let cellSize = 24;
 
 function Input_Name() {
     let name = prompt("Please enter your name", "Player");    
@@ -16,7 +17,7 @@ function Character_Select() {
 
 
 async function Start_Game() {//13
-    await app.init({ width: 24 * viewportWidth, height: 24 * viewportWidth })
+    await app.init({ width: cellSize * viewportWidth, height: cellSize * viewportWidth })
     document.getElementById('gameCanvas').appendChild(app.canvas);
 }
 
