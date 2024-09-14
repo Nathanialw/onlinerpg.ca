@@ -2,7 +2,7 @@ import { Init } from "../sound/sound.js";
 Init();
 
 export const app = new PIXI.Application();
-let viewport = 41;
+export let viewportWidth = 41;
 
 function Input_Name() {
     let name = prompt("Please enter your name", "Player");    
@@ -50,11 +50,11 @@ export function Close_Game() {
 }
 
 export function Set_Map_Within_Viewport() {
-    let vision = ((viewport - 1) / 2) - 6;
+    let vision = ((viewportWidth - 1) / 2) - 6;
     return vision;
 }
 
 export function Set_Player_Withing_Viewport() {
     
-    return ((viewport - 1) / 2);
+    return ((viewportWidth - 1) / 2);
 }
