@@ -2,6 +2,7 @@ import { Init } from "../sound/sound.js";
 Init();
 
 export const app = new PIXI.Application();
+let viewport = 41;
 
 function Input_Name() {
     let name = prompt("Please enter your name", "Player");    
@@ -15,7 +16,7 @@ function Character_Select() {
 
 
 async function Start_Game() {//13
-    await app.init({ width: 24*41, height: 24*41 })
+    await app.init({ width: 24*viewport, height: 24*viewport })
     document.getElementById('gameCanvas').appendChild(app.canvas);
 }
 
@@ -46,4 +47,14 @@ export function Close_Game() {
         // Append the form to the gameCanvas
         document.getElementById('gameCanvas').appendChild(form);
     
+}
+
+export function Set_Map_Withing_Viewport() {
+    let vision = ((viewport - 1) / 2) - 6;
+    return vision;
+}
+
+export function Set_Player_Withing_Viewport() {
+    
+    return ((viewport - 1) / 2);
 }

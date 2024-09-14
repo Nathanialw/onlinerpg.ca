@@ -1,6 +1,7 @@
 'use strict'
 
 import {Create_Map_Line} from '../graphics/graphics.js';
+import {Set_Map_Withing_Viewport} from '../frontend/game.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 
 let mapDisplay = [];
@@ -118,11 +119,11 @@ let visionRadius = 6;
 // for testing end
 
 
+
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 export function Make_Map(serverMap, mapWidth) {
     console.log("Redrawing map");
-    let viewport = 41;
-    let vision = ((viewport - 1) / 2) - 6;
+    let vision = Set_Map_Withing_Viewport();
     for (let i = 0; i < mapWidth; i++) {
         // render lines of the map
         let object = serverMap.substring(((vision + i) * mapWidth), (((vidion + i) * mapWidth) + mapWidth)); // 0, 13 -> 13, 26 -> 26, 39
@@ -145,6 +146,7 @@ let Update = {
 
 // I should use a seperate function to grab the correct substring from the unitOnMap string
 export function Populate_Map(unitsOnMap) {
+    let vision = Set_Map_Withing_Viewport();
     for (let i = 0; i < unitsOnMap.length; i+=5) {        
         // let object = Create_Object(unitsOnMap[i], unitsOnMap.substring(i+1,i+3), unitsOnMap.substring(i+3,i+5));
 	    // Update[unitsOnMap[i]](object)
