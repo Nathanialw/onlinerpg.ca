@@ -18,5 +18,8 @@ function Send() {
         if (conn.isConnected) {
             conn.websocket.send(name + gender + race + unitClass + alignment);       
         }
+        else {
+            console.log("Error: Server is not connected")
+        }
     });
 }
