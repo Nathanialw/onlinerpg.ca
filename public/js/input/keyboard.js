@@ -11,7 +11,7 @@ let Update = {
     w: Move,
     s: Move,
     d: Move,
-    space: SoundPlay,
+    Space: Actions,
 }
 
 document.addEventListener("keypress", (event) => {
@@ -25,9 +25,7 @@ document.addEventListener("keydown", (event) => {
     if (Update[keyName](keyName)) {
 	    return;
     }
-    if (keyName === "Space") {
-        Actions(keyName);
-    }
+    
     //if cast spell
     //if attack
     //if insteract
