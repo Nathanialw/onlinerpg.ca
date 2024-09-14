@@ -21,7 +21,7 @@ function Start_Game() {
 function Splash_Screen() {
     //display splash screen
     //get name
-    Input_Name();
+    //Input_Name();
     //get race
     //get class
     //start game
