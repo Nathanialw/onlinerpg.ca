@@ -20,7 +20,6 @@ let Update = {
     2: Populate_Map,
     3: Map,
     4: Populate_Map,
-    //3: Stats,
 }
 
 socket().websocket.onmessage = function(event) {    

@@ -1,6 +1,7 @@
 'use strict'
 
 import {Move} from "../movement/movement.js"
+import {Actions} from "./action/action.js"
 import {SoundPlay} from "../sound/sound.js"
 
 
@@ -10,6 +11,7 @@ let Update = {
     w: Move,
     s: Move,
     d: Move,
+    space: SoundPlay,
 }
 
 document.addEventListener("keypress", (event) => {
@@ -23,7 +25,9 @@ document.addEventListener("keydown", (event) => {
     if (Update[keyName](keyName)) {
 	    return;
     }
-
+    if (keyName === "Space") {
+        Actions(keyName);
+    }
     //if cast spell
     //if attack
     //if insteract
