@@ -14,12 +14,13 @@ function Send() {
 
 
     //send data to server
-    document.getElementById('startGame').addEventListener('change', (event) => {
-        if (conn.isConnected) {
-            conn.websocket.send(name + gender + race + unitClass + alignment);       
-        }
-        else {
-            console.log("Error: Server is not connected")
-        }
-    });
 }
+
+document.getElementById('startGame').addEventListener('change', (event) => {
+    if (conn.isConnected) {
+        conn.websocket.send(name + gender + race + unitClass + alignment);       
+    }
+    else {
+        console.log("Error: Server is not connected")
+    }
+});
