@@ -30,7 +30,7 @@ namespace Map {
   }
 
   void Update(int px, int py, int x, int y, std::string tile) {
-    Set_Tile(px, py, defaultMap[x][y]);
+    Set_Tile(px, py, defaultMap[px][py]);
     Set_Tile(px + x, py + y, tile);
   }
 
