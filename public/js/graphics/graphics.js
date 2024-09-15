@@ -9,14 +9,14 @@ let gameWindowOrigin_y = 56 / cellSize;
 export let viewportWidth = 41;
 export let viewportHeight = 41;
 
-let topPanelHeight = gameWindowOrigin_x + 10;
+let topPanelHeight = gameWindowOrigin_y + 10;
 let topPanelWidth = viewportWidth;
 
 let rightPanelWidth = 40;
-let rightPanelHeight = gameWindowOrigin_x + viewportHeight + topPanelHeight;
+let rightPanelHeight = gameWindowOrigin_y + viewportHeight + topPanelHeight;
 
 let leftPanelWidth = 40;
-let leftPanelHeight = gameWindowOrigin_x + viewportHeight + topPanelHeight;
+let leftPanelHeight = gameWindowOrigin_y + viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
 let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);
