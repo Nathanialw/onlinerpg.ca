@@ -3,17 +3,20 @@
 export const app = new PIXI.Application();
 export let cellSize = 24;
 
+let gameWindowOrigin_x = 0;
+let gameWindowOrigin_y = 0;
+
 export let viewportWidth = 41;
 export let viewportHeight = 41;
 
-let topPanelHeight = 5;
+let topPanelHeight = gameWindowOrigin_x + 10;
 let topPanelWidth = viewportWidth;
 
 let rightPanelWidth = 40;
-let rightPanelHeight = viewportHeight + topPanelHeight;
+let rightPanelHeight = gameWindowOrigin_x + viewportHeight + topPanelHeight;
 
 let leftPanelWidth = 40;
-let leftPanelHeight = viewportHeight + topPanelHeight;
+let leftPanelHeight = gameWindowOrigin_x + viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
 let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);
