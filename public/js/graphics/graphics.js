@@ -46,7 +46,7 @@ function Draw_Game_Window() {
 
 function Draw_Top_Panel() {
     let topPanel = new PIXI.Graphics();
-    topPanel.beginFill(0x000300);
+    topPanel.beginFill(0x001320);
     topPanel.drawRect(0, leftPanelWidth * cellSize, topPanelWidth * cellSize, topPanelHeight * cellSize);
     topPanel.endFill();
     app.stage.addChild(topPanel);
@@ -62,7 +62,7 @@ function Draw_Right_Panel() {
 
 function Draw_Left_Panel() {
     let leftPanel = new PIXI.Graphics();
-    leftPanel.beginFill(0x400000);
+    leftPanel.beginFill(0x100030);
     leftPanel.drawRect(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize);
     leftPanel.endFill();
     app.stage.addChild(leftPanel);
@@ -78,7 +78,7 @@ function Draw_Bottom_Panel() {
 
 function Draw_Map() {
     let map = new PIXI.Graphics();
-    map.beginFill(0x000006);
+    map.beginFill(0x009900);
     map.drawRect(leftPanelWidth * cellSize, topPanelHeight * cellSize, viewportWidth * cellSize, viewportHeight * cellSize);
     map.endFill();
     app.stage.addChild(map);
