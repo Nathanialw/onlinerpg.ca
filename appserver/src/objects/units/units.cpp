@@ -157,7 +157,7 @@ void Add_Unit(int x, int y, UnitType type) {
     std::string position = Utils::Prepend_Zero(player.x) + Utils::Prepend_Zero(player.y);
     std::cout << "new position: " << position << std::endl;
     std::cout << "replace: " << unitsOnMap.substr(2, 6) << std::endl;
-    unitsOnMap.replace(2, 6, position);
+    unitsOnMap.replace(2, 4, position);
   }
 
 
