@@ -35,32 +35,33 @@ namespace Units {
   };
 
   std::vector<Unit> units;
+  //when adding new units, use the emptyUnitSlots vector to find the next empty slot before pushing back
+  std::vector<int> emptyUnitSlots;
   std::unordered_map<UnitPosition, int> unitPositions;
   static std::string unitsString;
 
   std::vector<Unit> *Get_Units() { return &units; }
 
-
-  //key is position, the index of the unit in the units vector
   void Remove_Unit(int x, int y) {
+    Unit unit{};
+    unit.type = EMPTY;
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
-    std::cout << "before size: " << units.size() << std::endl;
-    units.erase(units.begin() + index);
-    std::cout << "after size: " << units.size() << std::endl;
+    emptyUnitSlots.push_back(index);
+    units[index] = unit;
     unitPositions.erase(pos);
 
-//    std::string xStr = Utils::Prepend_Zero(x);
-//    std::string yStr = Utils::Prepend_Zero(y);
-//    //remove from the send string
-//    for (int i = 1; i < unitsString.size(); i + 5) {
-//      std::cout << "checking for unit at: " << unitsString.substr(i,4) << std::endl;
-//      if (unitsString.substr(i+1,2) == xStr && unitsString.substr(i+3,2) == yStr) {
-//        std::cout << "removing unit from string at: " << unitsString.substr(i,4) << std::endl;
-//        unitsString.erase(i, 4);
-//        break;
-//      }
-//    }
+    //    std::string xStr = Utils::Prepend_Zero(x);
+    //    std::string yStr = Utils::Prepend_Zero(y);
+    //    //remove from the send string
+    //    for (int i = 1; i < unitsString.size(); i + 5) {
+    //      std::cout << "checking for unit at: " << unitsString.substr(i,4) << std::endl;
+    //      if (unitsString.substr(i+1,2) == xStr && unitsString.substr(i+3,2) == yStr) {
+    //        std::cout << "removing unit from string at: " << unitsString.substr(i,4) << std::endl;
+    //        unitsString.erase(i, 4);
+    //        break;
+    //      }
+    //    }
   }
 
   //is read only
@@ -88,7 +89,7 @@ namespace Units {
     unitPositions.emplace(newPos, index);
   }
 
-  std::string unitChars[SIZE] = {"@",   "a",    "b",    "c",
+  std::string unitChars[SIZE] = {"@",   " ",   "a",    "b",    "c",
                                  "d",   "e",    "f",    "g",
                                  "h",   "i",    "j",    "k",
                                  "l",   "m",    "n",    "o",
@@ -105,7 +106,12 @@ namespace Units {
     unit.x = x;
     unit.y = y;
     unit.type = type;
-    units.push_back(unit);
+    if (emptyUnitSlots.empty()) {
+      units.push_back(unit);
+    } else {
+      units[emptyUnitSlots.back()] = unit;
+      emptyUnitSlots.pop_back();
+    }
 
     UnitPosition pos = {x, y};
     unitPositions.emplace(pos, units.size() - 1);

@@ -35,6 +35,9 @@ namespace Map {
 
   void Update(int px, int py, int x, int y, std::string tile) {
     Set_Tile(px, py, defaultMap[px][py]);
+//    if (tile == " ")
+//      Reset_Tile(px + x, py + y);
+//    else
     Set_Tile(px + x, py + y, tile);
   }
 

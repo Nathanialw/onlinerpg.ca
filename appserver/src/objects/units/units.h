@@ -16,6 +16,7 @@ namespace Units {
 
   enum UnitType {
     PLAYER,
+    EMPTY,
     ANGEL,
     BASILISK,
     CENTAUR,
