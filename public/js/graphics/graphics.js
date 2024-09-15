@@ -6,7 +6,7 @@ export let cellSize = 24;
 export let viewportWidth = 41;
 export let viewportHeight = 41;
 
-let topPanelHeight = 20;
+let topPanelHeight = 5;
 let topPanelWidth = viewportWidth;
 
 let rightPanelWidth = 40;
