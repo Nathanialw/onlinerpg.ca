@@ -28,11 +28,11 @@ function Set_Window_Height() {
 }
 
 function Get_ViewPort_Origin_x() {
-    return leftPanelWidth * cellSize;
+    return leftPanelWidth;
 }
 
 function Get_ViewPort_Origin_y() {
-    return topPanelHeight * cellSize;
+    return topPanelHeight;
 }
 
 
