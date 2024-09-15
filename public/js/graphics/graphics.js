@@ -16,7 +16,7 @@ let leftPanelWidth = 40;
 let leftPanelHeight = viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
-let bottomPanelHeight = window.innerHeight - (viewportHeight + topPanelHeight);
+let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);
 
 let gameWindow = viewportWidth + 0;
 
