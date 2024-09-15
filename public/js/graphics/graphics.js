@@ -50,7 +50,7 @@ function Get_ViewPort_Origin_y() {
 function Draw_Top_Panel() {
     let topPanel = new PIXI.Graphics();
     topPanel.beginFill(0x0f0f0f);
-    topPanel.drawRect(leftPanelWidth * cellSize, gameWindowOrigin_y, topPanelWidth * cellSize, topPanelHeight * cellSize);
+    topPanel.drawRect(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize);
     topPanel.endFill();
     app.stage.addChild(topPanel);
 }
@@ -58,7 +58,7 @@ function Draw_Top_Panel() {
 function Draw_Right_Panel() {
     let rightPanel = new PIXI.Graphics();
     rightPanel.beginFill(0x300301);
-    rightPanel.drawRect((viewportWidth + leftPanelWidth) * cellSize, gameWindowOrigin_y, rightPanelWidth * cellSize, rightPanelHeight * cellSize);
+    rightPanel.drawRect((viewportWidth + leftPanelWidth) * cellSize, 0, rightPanelWidth * cellSize, rightPanelHeight * cellSize);
     rightPanel.endFill();
     app.stage.addChild(rightPanel);
 }
@@ -66,7 +66,7 @@ function Draw_Right_Panel() {
 function Draw_Left_Panel() {
     let leftPanel = new PIXI.Graphics();
     leftPanel.beginFill(0x100030);
-    leftPanel.drawRect(0, gameWindowOrigin_y, leftPanelWidth * cellSize, leftPanelHeight * cellSize);
+    leftPanel.drawRect(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize);
     leftPanel.endFill();
     app.stage.addChild(leftPanel);
 }
@@ -74,7 +74,7 @@ function Draw_Left_Panel() {
 function Draw_Bottom_Panel() {
     let bottomPanel = new PIXI.Graphics();
     bottomPanel.beginFill(0x000050);
-    bottomPanel.drawRect(0, (gameWindowOrigin_y) + (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize);
+    bottomPanel.drawRect(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize);
     bottomPanel.endFill();
     app.stage.addChild(bottomPanel);
 }
@@ -82,7 +82,7 @@ function Draw_Bottom_Panel() {
 function Draw_Map() {
     let map = new PIXI.Graphics();
     map.beginFill(0x009900);
-    map.drawRect(leftPanelWidth * cellSize, (gameWindowOrigin_y) + (topPanelHeight * cellSize), viewportWidth * cellSize, viewportHeight * cellSize);
+    map.drawRect(leftPanelWidth * cellSize, (topPanelHeight * cellSize), viewportWidth * cellSize, viewportHeight * cellSize);
     map.endFill();
     app.stage.addChild(map);
 }
