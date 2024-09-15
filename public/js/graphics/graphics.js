@@ -124,7 +124,7 @@ export function Draw_Title_Screen() {
 export async function Create_Canvas() {
     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (gameWindowOrigin_y) })
     app.canvas.x = 0;
-    app.canvas.y = gameWindowOrigin_y;
+    app.canvas.y = gameWindowOrigin_y * 3;
     document.getElementById('gameCanvas').appendChild(app.canvas);
 }
 
