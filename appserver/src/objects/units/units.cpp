@@ -40,9 +40,6 @@ namespace Units {
 
   std::vector<Unit> *Get_Units() { return &units; }
 
-  void Remove_Unit_At_Index(int i) {
-    units.erase(units.begin() + i);
-  };
 
   //key is position, the index of the unit in the units vector
   void Remove_Unit(int x, int y) {
@@ -52,7 +49,6 @@ namespace Units {
     units.erase(units.begin() + index);
     std::cout << "after size: " << units.size() << std::endl;
     unitPositions.erase(pos);
-    Remove_Unit_At_Index(index);
 
 //    std::string xStr = Utils::Prepend_Zero(x);
 //    std::string yStr = Utils::Prepend_Zero(y);

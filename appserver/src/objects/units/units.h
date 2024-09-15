@@ -84,7 +84,6 @@ namespace Units {
 
   std::string Send_Units();
   void Init();
-  void Update(const char* direction);
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
   int Get_Unit_Index(int x, int y);
