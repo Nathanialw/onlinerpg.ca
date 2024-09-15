@@ -6,7 +6,7 @@ export let cellSize = 24;
 export let viewportWidth = 41;
 export let viewportHeight = 41;
 
-let topPanelHeight = 40;
+let topPanelHeight = 20;
 let topPanelWidth = viewportWidth;
 
 let rightPanelWidth = 40;
@@ -16,7 +16,7 @@ let leftPanelWidth = 40;
 let leftPanelHeight = viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
-let bottomPanelHeight = 40;
+let bottomPanelHeight = window.innerHeight - (viewportHeight + topPanelHeight);
 
 let gameWindow = viewportWidth + 0;
 
