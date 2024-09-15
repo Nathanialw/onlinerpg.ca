@@ -14,61 +14,61 @@
 
 namespace Units {
 
-enum UnitType {
-  PLAYER,
-  ANGEL,
-  BASILISK,
-  CENTAUR,
-  DWARF,
-  ELF,
-  FAIRY,
-  GOBLIN,
-  HUMAN,
-  IMP,
-  JINN,
-  KOBOLD,
-  LIZARD,
-  MINOTAUR,
-  NAGA,
-  ORC,
-  POLTERGEIST,
-  QAFFIR,
-  RAT,
-  SNAKE,
-  TROLL,
-  UNICORN,
-  VAMPIRE,
-  WITCH,
-  XENOMORPH,
-  YETI,
-  ZOMBIE,
-  SIZE
-};
+  enum UnitType {
+    PLAYER,
+    ANGEL,
+    BASILISK,
+    CENTAUR,
+    DWARF,
+    ELF,
+    FAIRY,
+    GOBLIN,
+    HUMAN,
+    IMP,
+    JINN,
+    KOBOLD,
+    LEVIATHAN,
+    MINOTAUR,
+    NAGA,
+    ORC,
+    POLTERGEIST,
+    QAFFIR,
+    RAT,
+    SNAKE,
+    TROLL,
+    UNICORN,
+    VAMPIRE,
+    WITCH,
+    XENOMORPH,
+    YETI,
+    ZOMBIE,
+    SIZE
+  };
 
-struct Stats {
-  int srength = 10; // damage melee and ranged
-  int intelligence = 10; // magic
-  int dexterity = 10; // dual wielding
-  int constitution = 10; // health
-  int authority = 10; // leadership
-  int charisma = 10; // social interactions
-};
+  struct Stats {
+    int srength = 10; // damage melee and ranged
+    int intelligence = 10; // magic
+    int dexterity = 10; // dual wielding
+    int constitution = 10; // health
+    int authority = 10; // leadership
+    int charisma = 10; // social interactions
+  };
 
-struct Unit {
-  Stats stats;
+  struct Unit {
+    Stats stats;
 
-  //unit data to send
-  int x = 6;
-  int y = 6;
-  UnitType type = GOBLIN;
+    //unit data to send
+    int x = 6;
+    int y = 6;
+    UnitType type = GOBLIN;
 
-  int vision = 6;
-  int speed = 1;
-  int damage = 10;
-  int AC = 10;
-  int health = 100;
-  int healthMax = 100;
-};
+    int vision = 6;
+    int speed = 1;
+    int damage = 10;
+    int AC = 10;
+    int health = 100;
+    int healthMax = 100;
+  };
 
 
   std::string Send_Units();

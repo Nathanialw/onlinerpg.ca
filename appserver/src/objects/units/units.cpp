@@ -57,7 +57,7 @@ namespace Units {
     }
   }
 
-  std::string Random_Entities(char entityType, int numEntities) {
+  std::string Random_Entities(const char* entityType, int numEntities) {
     std::string group;
   reRoll:
     Placement placement = Random_Placement();
@@ -74,9 +74,12 @@ namespace Units {
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
     // I need to send the char and the offset in the map g0317
+
     mapEntities += unitChars[PLAYER] + "0606";
-    mapEntities += unitChars[GOBLIN] + "0909";
-    //    mapEntities += Random_Entities('g', 3);
+    for (int i = 0; i < 9; ++i) {
+      int numMonsters = rand() % 4;
+      mapEntities += Random_Entities(unitChars[GOBLIN].c_str(), numMonsters);
+    }
     return mapEntities;
   }
 
