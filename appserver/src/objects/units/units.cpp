@@ -23,8 +23,15 @@ namespace Units {
   };
 
   std::vector<Unit> units;
-
   std::vector<Unit> *Get_Units() { return &units; }
+
+  std::string unitChars[SIZE] = {"@",   "a",    "b",    "c",
+                                 "d",   "e",    "f",    "g",
+                                 "h",   "i",    "j",    "k",
+                                 "l",   "m",    "n",    "o",
+                                 "p",   "q",    "r",    "s",
+                                 "t",   "u",    "v",    "w",
+                                 "x",   "y",    "z"};
 
   //is read only
   Unit Get_Player() {
@@ -76,17 +83,9 @@ namespace Units {
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
     // I need to send the char and the offset in the map g0317
-    mapEntities += "@0606";
-    mapEntities += "g0909";
+    mapEntities += unitChars[PLAYER] + "0606";
+    mapEntities += unitChars[GOBLIN] + "0909";
     //    mapEntities += Random_Entities('g', 3);
-    //    mapEntities += Random_Entities('g', 3);
-    //    mapEntities += Random_Entities('g', 3);
-    //    mapEntities += Random_Entities('g', 3);
-    //    mapEntities += Random_Entities('o', 1);
-    //    mapEntities += Random_Entities('o', 1);
-    //    mapEntities += Random_Entities('o', 1);
-    //    mapEntities += Random_Entities('o', 1);
-    //    mapEntities += Random_Entities('o', 1);
     return mapEntities;
   }
 
@@ -112,9 +111,9 @@ namespace Units {
 
     for (auto &unit : *Units::Get_Units()) {
       if (unit.type == Units::PLAYER) {
-        Map::Set_Tile(unit.x, unit.y, "@");
+        Map::Set_Tile(unit.x, unit.y, unitChars[PLAYER]);
       } else if (unit.type == Units::GOBLIN) {
-        Map::Set_Tile(unit.x, unit.y, "g");
+        Map::Set_Tile(unit.x, unit.y, unitChars[GOBLIN]);
       }
     }
   }
@@ -128,6 +127,7 @@ namespace Units {
   }
 
   bool Attack(int px, int py, int x, int y) {
+    std::cout << "checking for goblin" << std::endl;
     if (Map::Get_Adjacent_Tile(px+x, py+y) == "g") {
       return true;
     }
@@ -156,15 +156,13 @@ namespace Units {
       std::cout << "wall collision" << std::endl;
       return;
     }
-    std::cout << "collision" << std::endl;
     // if the nearby cell is an enemy, attack
     if (Attack(player.x, player.y, x, y)) {
       std::cout << "attack goblin" << std::endl;
       return;
     }
-    std::cout << "atttacked" << std::endl;
     // if the unit survives, return, else move to the cell
-    Map::Update(player.x, player.y, x, y, "@");
+    Map::Update(player.x, player.y, x, y, unitChars[PLAYER]);
     std::cout << "moved from: " << player.x << ", " << player.y << " to: " << player.x+x << ", " << player.y+y << std::endl;
     Move(x, y);
 
@@ -174,8 +172,8 @@ namespace Units {
       sx = "0" + sx;
     if (player.y < 10)
       sy = "0" + sy;
-    std::string position = "2@" + sx + sy;
-    unitsOnMap.replace(0, 6, position);
+    std::string position = sx + sy;
+    unitsOnMap.replace(2, 6, position);
   }
 
 

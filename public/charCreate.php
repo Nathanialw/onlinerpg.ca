@@ -7,9 +7,28 @@
         //male = +strength +intelligence
         //female = -strength -intelligence +charisma
     //get race
-        //elf/human
+        //elf/human/orc/dwarfs
             //elf= +vision +dexterity
             //human= +intelligence +strength
+            //orc= +strength +constitution -intelligence
+            //dwarf= +constitution +strength -dexterity
+    //get subrace
+        //elves
+            //wood= +dexterity +strength
+            //high= +intelligence +charisma
+            //dark= +dexterity +charisma
+        //humans
+            //nord= +strength +constitution
+            //imperial= +intelligence +charisma
+            //breton= +intelligence +dexterity
+        //orcs
+            //mountain= +strength +constitution
+            //plains= +strength +dexterity 
+            //swamp= +constitution +intelligence
+        //dwarfs
+            //mountain= +constitution +strength
+            //hill= +constitution +dexterity
+            //deep= +constitution +intelligence
     //get class
         //fighter/mage
     //alignment
@@ -74,4 +93,3 @@
 <script src="/js/libs/pixi.js"></script>
 <!-- loadScript('/js/libs/howler.core.js');
 loadScript('/js/libs/pixi.js'); -->
-
