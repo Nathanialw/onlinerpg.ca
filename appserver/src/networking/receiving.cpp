@@ -90,7 +90,7 @@ namespace Network {
       //Map::Send();
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
       //Units::Send_Units();
-      print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
+//      print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
 
       response = "0I hear you pressing: ";
       response.append(&msg->get_payload()[1]);
@@ -108,7 +108,7 @@ namespace Network {
       std::cout << Units::Get_Units()->size() << std::endl;
       if (!Units::Get_Units()->empty()) {
         print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()),websocketpp::frame::opcode::text);
-        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
+//        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
       } else {
         response = "no player found";
         print_server.send(hdl, response, websocketpp::frame::opcode::text);
@@ -118,7 +118,7 @@ namespace Network {
       std::cout << msg->get_payload() << std::endl;
       if (!Units::Get_Units()->empty()) {
         print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
-        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
+//        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
       }
     }
     else {
