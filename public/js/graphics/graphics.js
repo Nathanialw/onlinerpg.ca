@@ -3,6 +3,7 @@
 export const app = new PIXI.Application();
 export let cellSize = 24;
 
+let footerHeight = 125;
 let gameWindowOrigin_x = 0;
 let gameWindowOrigin_y = 56; //3.5rem as per navbar height
 
@@ -122,7 +123,7 @@ export function Draw_Title_Screen() {
 }
 
 export async function Create_Canvas() {
-    await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (gameWindowOrigin_y * 3) })
+    await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (gameWindowOrigin_y + footerHeight) })
     app.canvas.x = 0;
     app.canvas.y = 0;
     document.getElementById('gameCanvas').appendChild(app.canvas);
