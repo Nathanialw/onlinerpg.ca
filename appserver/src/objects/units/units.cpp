@@ -86,7 +86,7 @@ void Add_Unit(int x, int y, UnitType type) {
     Add_Unit(6, 6, PLAYER);
     mapEntities += unitChars[PLAYER] + "0606";
 
-    for (int i = 0; i < 9; ++i) {
+    for (int i = 0; i < 5; ++i) {
       int numMonsters = rand() % 4;
       mapEntities += Random_Entities(unitChars[GOBLIN].c_str(), numMonsters);
     }
@@ -152,10 +152,11 @@ void Add_Unit(int x, int y, UnitType type) {
     }
     // if the unit survives, return, else move to the cell
     Map::Update(player.x, player.y, x, y, unitChars[PLAYER]);
-    std::cout << "moved from: " << player.x << ", " << player.y << " to: " << player.x+x << ", " << player.y+y << std::endl;
     Move(x, y);
 
     std::string position = Utils::Prepend_Zero(player.x) + Utils::Prepend_Zero(player.y);
+    std::cout << "new position: " << position << std::endl;
+    std::cout << "replace: " << unitsOnMap.substr(2, 6) << std::endl;
     unitsOnMap.replace(2, 6, position);
   }
 
