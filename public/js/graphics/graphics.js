@@ -4,7 +4,7 @@ export const app = new PIXI.Application();
 export let cellSize = 24;
 
 let gameWindowOrigin_x = 0;
-let gameWindowOrigin_y = 0;
+let gameWindowOrigin_y = 56 / cellSize;
 
 export let viewportWidth = 41;
 export let viewportHeight = 41;
