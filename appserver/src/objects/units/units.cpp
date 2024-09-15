@@ -48,7 +48,9 @@ namespace Units {
   void Remove_Unit(int x, int y) {
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
+    std::cout << "before size: " << units.size() << std::endl;
     units.erase(units.begin() + index);
+    std::cout << "after size: " << units.size() << std::endl;
     unitPositions.erase(pos);
     Remove_Unit_At_Index(index);
 

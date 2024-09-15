@@ -24,8 +24,6 @@ bool Melee(int px, int py, int x, int y) {
 
         //remove the goblin from the map
         Map::Reset_Tile(px+x, py+y);
-        //remove the goblin from the units vector
-        Units::Get_Units()->erase(Units::Get_Units()->begin() + Units::Get_Unit_Index(px+x, py+y));
         //remove the goblin from the unitPositions map
         Units::Remove_Unit(px+x,py+y);
         Map::Reset_Tile(px+x, py+y);
