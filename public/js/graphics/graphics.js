@@ -74,7 +74,7 @@ function Draw_Left_Panel() {
 function Draw_Bottom_Panel() {
     let bottomPanel = new PIXI.Graphics();
     bottomPanel.beginFill(0x000050);
-    bottomPanel.drawRect(0, gameWindowOrigin_y +(viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize);
+    bottomPanel.drawRect(0, gameWindowOrigin_y + (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize);
     bottomPanel.endFill();
     app.stage.addChild(bottomPanel);
 }
@@ -122,7 +122,7 @@ export function Draw_Title_Screen() {
 }
 
 export async function Create_Canvas() {
-    await app.init({ width: Set_Window_Width(), height: Set_Window_Height()})
+    await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - gameWindowOrigin_y })
     document.getElementById('gameCanvas').appendChild(app.canvas);
 }
 
