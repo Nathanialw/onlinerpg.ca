@@ -68,8 +68,8 @@ namespace Units {
     int speed = 1;
     int damage = 10;
     int AC = 10;
-    int health = 100;
-    int healthMax = 100;
+    int health = 30;
+    int healthMax = 30;
   };
 
   struct UnitPosition {
@@ -87,6 +87,8 @@ namespace Units {
   void Update(const char* direction);
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
+  int Get_Unit_Index(int x, int y);
+  void Remove_Unit(int x, int y);
   std::string Get_Unit_Char(UnitType type);
   void Update_UnitsString(int x, int y);
 }

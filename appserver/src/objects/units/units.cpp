@@ -27,7 +27,7 @@ namespace std {
 namespace Units {
   const int mapWidth = 99;
 
-  std::unordered_map<uint16_t, std::string> entities;
+//  std::unordered_map<uint16_t, std::string> entities;
 
   struct Placement {
     int x;
@@ -35,12 +35,35 @@ namespace Units {
   };
 
   std::vector<Unit> units;
+  std::unordered_map<UnitPosition, int> unitPositions;
+  static std::string unitsString;
+
   std::vector<Unit> *Get_Units() { return &units; }
 
-
+  void Remove_Unit_At_Index(int i) {
+    units.erase(units.begin() + i);
+  };
 
   //key is position, the index of the unit in the units vector
-  std::unordered_map<UnitPosition, int> unitPositions;
+  void Remove_Unit(int x, int y) {
+    UnitPosition pos = {x, y};
+    int index = unitPositions[pos];
+    units.erase(units.begin() + index);
+    unitPositions.erase(pos);
+    Remove_Unit_At_Index(index);
+
+    std::string xStr = Utils::Prepend_Zero(x);
+    std::string yStr = Utils::Prepend_Zero(y);
+    //remove from the send string
+    for (int i = 1; i < unitsString.size(); i + 5) {
+      std::cout << "checking for unit at: " << unitsString.substr(i,4) << std::endl;
+      if (unitsString.substr(i+1,2) == xStr && unitsString.substr(i+3,2) == yStr) {
+        std::cout << "removing unit from string at: " << unitsString.substr(i,4) << std::endl;
+        unitsString.erase(i, 4);
+        break;
+      }
+    }
+  }
 
   //is read only
   Unit Get_Player() {
@@ -129,7 +152,6 @@ namespace Units {
     return mapEntities;
   }
 
-  static std::string unitsString;
 
   void Update_UnitsString(int x, int y) {
     std::string xStr = Utils::Prepend_Zero(x);
