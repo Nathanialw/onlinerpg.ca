@@ -1,6 +1,6 @@
 'use strict'
 
-import {Create_Object, Set_Player_Withing_Viewport} from '../graphics/graphics.js';
+import {Create_Object} from '../graphics/graphics.js';
 
 
 let player;
@@ -8,9 +8,9 @@ let enemies = []
 let objects = []
 
 export function Set_Player(unitString) {
-    let playerPosition = Set_Player_Withing_Viewport();
+    //let playerPosition = Set_Player_Within_Viewport();
     // player = Create_Object(unitString[0], unitString.substring(1,3), unitString.substring(3,5));;
-    player = Create_Object(unitString[0], playerPosition, playerPosition);;
+    // player = Create_Object(unitString[0], playerPosition, playerPosition);;
 }
 
 export function Set_Enemies(object) {

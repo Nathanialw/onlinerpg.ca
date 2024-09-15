@@ -122,13 +122,7 @@ export async function Create_Canvas() {
     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() })
     document.getElementById('gameCanvas').appendChild(app.canvas);
     // Draw_Game_Window();
-    Draw_Top_Panel();
-    Draw_Right_Panel();
-    Draw_Left_Panel();
-    Draw_Bottom_Panel();
-    Draw_Map();
-    Draw_Map_Border();
-    Draw_Player_Stats();
+
 }
 
 function createTextWithBackground(textString, style, backgroundColor) {
@@ -185,10 +179,21 @@ function Set_Map_Within_Viewport(visionWidth) {
     return vision;
 }
 
-function Set_Player_Withing_Viewport() {
+function Set_Player_Within_Viewport() {
     return ((viewportWidth - 1) / 2);
 }
 
+export function Draw_UI() {
+    Draw_Top_Panel();
+    Draw_Right_Panel();
+    Draw_Left_Panel();
+    Draw_Bottom_Panel();
+    Draw_Map();
+    Draw_Map_Border();
+    Draw_Player_Stats();
+    Draw_Player_Stats_Border();
+
+}
 
 // Add a ticker callback to move the sprite back and forth
 let elapsed = 0.0;
