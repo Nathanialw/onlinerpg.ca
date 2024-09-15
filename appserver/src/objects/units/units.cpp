@@ -46,13 +46,22 @@ namespace Units {
     return placement;
   }
 
-  bool Add_Object(std::string &group, int xStr, int yStr) {
-    if (xStr > mapWidth - 1 || yStr > mapWidth - 1 || xStr < 1 || yStr < 1) {
+void Add_Unit(int x, int y, UnitType type) {
+  Unit unit{};
+  unit.x = x;
+  unit.y = y;
+  unit.type = type;
+  units.push_back(unit);
+}
+
+  bool Add_Object(std::string &group, int x, int y) {
+    if (x > mapWidth - 1 || y > mapWidth - 1 || x < 1 || y < 1) {
       group.clear();
       return false;
     } else {
-      group += Utils::Prepend_Zero(xStr);
-      group += Utils::Prepend_Zero(yStr);
+      group += Utils::Prepend_Zero(x);
+      group += Utils::Prepend_Zero(y);
+      Add_Unit(x, y, GOBLIN);
       return true;
     }
   }
@@ -74,8 +83,9 @@ namespace Units {
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
     // I need to send the char and the offset in the map g0317
-
+    Add_Unit(6, 6, PLAYER);
     mapEntities += unitChars[PLAYER] + "0606";
+
     for (int i = 0; i < 9; ++i) {
       int numMonsters = rand() % 4;
       mapEntities += Random_Entities(unitChars[GOBLIN].c_str(), numMonsters);
@@ -86,20 +96,6 @@ namespace Units {
   static std::string unitsOnMap;
 
   void Init() {
-    Unit player{};
-    player.x = 6;
-    player.y = 6;
-    player.vision = 6;
-    player.type = PLAYER;
-    units.push_back(player);
-    std::cout << "Init() player added: " << units.size() << std::endl;
-
-    Unit enemy{};
-    enemy.x = 9;
-    enemy.y = 9;
-    enemy.type = GOBLIN;
-    units.push_back(enemy);
-
     unitsOnMap = Place_Entities_On_Map();
 
     for (auto &unit : *Units::Get_Units()) {
