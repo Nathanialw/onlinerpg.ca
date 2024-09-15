@@ -153,14 +153,17 @@ namespace Units {
       std::cout << "wall collision" << std::endl;
       return;
     }
+    std::cout << "collision" << std::endl;
     // if the nearby cell is an enemy, attack
     if (Attack(player.x, player.y, x, y)) {
       std::cout << "attack goblin" << std::endl;
       return;
     }
+    std::cout << "atttacked" << std::endl;
     // if the unit survives, return, else move to the cell
     Map::Update(player.x, player.y, x, y, "@");
     Move(x, y);
+    std::cout << "moved from: " << player.x << ", " << player.y << " to: " << x << ", " << y << std::endl;
 
     std::string sx = std::to_string(player.x);
     std::string sy = std::to_string(player.y);

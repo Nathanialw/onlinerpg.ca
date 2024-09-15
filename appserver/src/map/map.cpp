@@ -31,7 +31,7 @@ namespace Map {
 
   void Update(int px, int py, int x, int y, std::string tile) {
     Set_Tile(px, py, defaultMap[x][y]);
-    Set_Tile(x, y, tile);
+    Set_Tile(px + x, py + y, tile);
   }
 
   // state 1 = initial map, 2 = update map
