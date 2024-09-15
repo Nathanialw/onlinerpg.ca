@@ -54,7 +54,7 @@ function Draw_Top_Panel() {
 
 function Draw_Right_Panel() {
     let rightPanel = new PIXI.Graphics();
-    rightPanel.beginFill(0x000300);
+    rightPanel.beginFill(0x300301);
     rightPanel.drawRect((viewportWidth + leftPanelWidth) * cellSize, 0, rightPanelWidth * cellSize, rightPanelHeight * cellSize);
     rightPanel.endFill();
     app.stage.addChild(rightPanel);
@@ -109,20 +109,18 @@ function Draw_Player_Stats_Border() {
 
 export function Draw_Title_Screen() {
     let title = new PIXI.Text("Online RPG", {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
-    title.x = Set_Map_Within_Viewport(11) * cellSize;  // Assuming each cell is 24 pixels tall
-    title.y = 200;  // Assuming each cell is 24 pixels tall
+    title.x = Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(11) * cellSize;  // Assuming each cell is 24 pixels tall
+    title.y = Get_ViewPort_Origin_y() + 200;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(title);
     let subtitle = new PIXI.Text("Press enter to start!", {fontFamily : "'Press Start 2P'", fontSize: 16, fill : 0xff1010, align : 'center'});
-    subtitle.x = Set_Map_Within_Viewport(13) * 24;  // Assuming each cell is 24 pixels tall
-    subtitle.y = 300;  // Assuming each cell is 24 pixels tall
+    subtitle.x = Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(13) * 24;  // Assuming each cell is 24 pixels tall
+    subtitle.y = Get_ViewPort_Origin_y() + 300;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(subtitle);
 }
 
 export async function Create_Canvas() {
     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() })
     document.getElementById('gameCanvas').appendChild(app.canvas);
-    // Draw_Game_Window();
-
 }
 
 function createTextWithBackground(textString, style, backgroundColor) {
