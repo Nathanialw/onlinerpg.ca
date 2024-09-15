@@ -3,7 +3,6 @@
 //
 #include <cstdint>
 #include "string"
-
 #include "utils.h"
 
 namespace Utils {
@@ -18,5 +17,12 @@ namespace Utils {
     uint16_t highByte = static_cast<uint16_t>(str[0]) << 8;
     uint16_t lowByte = static_cast<uint16_t>(str[1]);
     return highByte | lowByte;
+  }
+
+  std::string Prepend_Zero(int num) {
+    std::string str = std::to_string(num);
+    if (num < 10)
+      str = "0" + str;
+    return str;
   }
 }

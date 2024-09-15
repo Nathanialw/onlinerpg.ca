@@ -6,6 +6,7 @@
 #include "iostream"
 #include "unordered_map"
 
+#include "../utils/utils.h"
 
 #include "units.h"
 #include "../collision/collision.h"
@@ -50,18 +51,8 @@ namespace Units {
       group.clear();
       return false;
     } else {
-      std::string x;
-      std::string y;
-      if (xStr < 10)
-        x = "0" + std::to_string(xStr);
-      else
-        x = std::to_string(xStr);
-      if (yStr < 10)
-        y = "0" + std::to_string(yStr);
-      else
-        y = std::to_string(yStr);
-      group += x;
-      group += y;
+      group += Utils::Prepend_Zero(xStr);
+      group += Utils::Prepend_Zero(yStr);
       return true;
     }
   }
@@ -89,7 +80,6 @@ namespace Units {
     return mapEntities;
   }
 
-  //  static std::vector<std::string> unitsOnMap;
   static std::string unitsOnMap;
 
   void Init() {
@@ -166,13 +156,7 @@ namespace Units {
     std::cout << "moved from: " << player.x << ", " << player.y << " to: " << player.x+x << ", " << player.y+y << std::endl;
     Move(x, y);
 
-    std::string sx = std::to_string(player.x);
-    std::string sy = std::to_string(player.y);
-    if (player.x < 10)
-      sx = "0" + sx;
-    if (player.y < 10)
-      sy = "0" + sy;
-    std::string position = sx + sy;
+    std::string position = Utils::Prepend_Zero(player.x) + Utils::Prepend_Zero(player.y);
     unitsOnMap.replace(2, 6, position);
   }
 
