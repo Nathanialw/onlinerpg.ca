@@ -26,7 +26,10 @@ namespace Units {
 
   std::vector<Unit> *Get_Units() { return &units; }
 
-  Unit Get_Player() { return units[0]; }
+  //is read only
+  Unit Get_Player() {
+    return units[0];
+  }
 
   Placement Random_Placement() {
     Placement placement{};
@@ -119,7 +122,7 @@ namespace Units {
   std::string Send_Units() { return unitsOnMap; }
 
   void Move(int x, int y) {
-    auto player = Get_Player();
+    auto &player = units[0];
     player.x += x;
     player.y += y;
   }
@@ -147,7 +150,7 @@ namespace Units {
       x = 1, y = 0;
       break;
     }
-    auto player = Get_Player();
+    auto &player = units[0];
     // collision
     if (Collision::Wall_Collision(player.x, player.y, x, y)) {
       std::cout << "wall collision" << std::endl;
@@ -162,8 +165,8 @@ namespace Units {
     std::cout << "atttacked" << std::endl;
     // if the unit survives, return, else move to the cell
     Map::Update(player.x, player.y, x, y, "@");
+    std::cout << "moved from: " << player.x << ", " << player.y << " to: " << player.x+x << ", " << player.y+y << std::endl;
     Move(x, y);
-    std::cout << "moved from: " << player.x << ", " << player.y << " to: " << x << ", " << y << std::endl;
 
     std::string sx = std::to_string(player.x);
     std::string sy = std::to_string(player.y);
