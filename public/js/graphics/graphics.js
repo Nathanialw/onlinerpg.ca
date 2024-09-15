@@ -38,7 +38,7 @@ function Get_ViewPort_Origin_y() {
 
 function Draw_Game_Window() {
     let gameWindow = new PIXI.Graphics();
-    gameWindow.beginFill(0x020000);
+    gameWindow.beginFill(0x024030);
     gameWindow.drawRect(0, 0, Set_Window_Width(), Set_Window_Height());
     gameWindow.endFill();
     app.stage.addChild(gameWindow);
@@ -46,7 +46,7 @@ function Draw_Game_Window() {
 
 function Draw_Top_Panel() {
     let topPanel = new PIXI.Graphics();
-    topPanel.beginFill(0x001320);
+    topPanel.beginFill(0x0f0f0f);
     topPanel.drawRect(0, leftPanelWidth * cellSize, topPanelWidth * cellSize, topPanelHeight * cellSize);
     topPanel.endFill();
     app.stage.addChild(topPanel);
