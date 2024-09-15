@@ -4,19 +4,19 @@ export const app = new PIXI.Application();
 export let cellSize = 24;
 
 let gameWindowOrigin_x = 0;
-let gameWindowOrigin_y = 56 / cellSize;
+let gameWindowOrigin_y = 56 / cellSize; //3.5rem as per navbar height
 
 export let viewportWidth = 41;
 export let viewportHeight = 41;
 
-let topPanelHeight = gameWindowOrigin_y + 10;
+let topPanelHeight = 10;
 let topPanelWidth = viewportWidth;
 
 let rightPanelWidth = 40;
-let rightPanelHeight = gameWindowOrigin_y + viewportHeight + topPanelHeight;
+let rightPanelHeight = viewportHeight + topPanelHeight;
 
 let leftPanelWidth = 40;
-let leftPanelHeight = gameWindowOrigin_y + viewportHeight + topPanelHeight;
+let leftPanelHeight = viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
 let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);
@@ -42,7 +42,7 @@ function Get_ViewPort_Origin_y() {
 function Draw_Game_Window() {
     let gameWindow = new PIXI.Graphics();
     gameWindow.beginFill(0x024030);
-    gameWindow.drawRect(0, 0, Set_Window_Width(), Set_Window_Height());
+    gameWindow.drawRect(0, gameWindowOrigin_y, Set_Window_Width(), Set_Window_Height());
     gameWindow.endFill();
     app.stage.addChild(gameWindow);
 }
