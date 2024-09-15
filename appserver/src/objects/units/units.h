@@ -70,6 +70,15 @@ namespace Units {
     int healthMax = 100;
   };
 
+  struct UnitPosition {
+    int x;
+    int y;
+
+    bool operator==(const UnitPosition &other) const {
+      return x == other.x && y == other.y;
+    }
+  };
+
 
   std::string Send_Units();
   void Init();

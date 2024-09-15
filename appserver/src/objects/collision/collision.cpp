@@ -1,7 +1,7 @@
 
 
 #include "collision.h"
-#include "../../map/map.h"
+#include "map.h"
 #include "iostream"
 
 namespace Collision {

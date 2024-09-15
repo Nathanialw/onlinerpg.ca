@@ -29,6 +29,10 @@ namespace Map {
     gameMap[y][x] = tile;
   }
 
+  void Reset_Tile(int x, int y) {
+    gameMap[y][x] = defaultMap[y][x];
+  }
+
   void Update(int px, int py, int x, int y, std::string tile) {
     Set_Tile(px, py, defaultMap[px][py]);
     Set_Tile(px + x, py + y, tile);

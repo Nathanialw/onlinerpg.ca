@@ -5,13 +5,24 @@
 #include "string"
 #include "iostream"
 #include "unordered_map"
+#include <functional>
 
 #include "../utils/utils.h"
 
+#include "attack.h"
+#include "collision.h"
+#include "map.h"
 #include "units.h"
-#include "../collision/collision.h"
-#include "../map/map.h"
 
+
+namespace std {
+  template <>
+  struct hash<Units::UnitPosition> {
+    std::size_t operator()(const Units::UnitPosition &pos) const {
+      return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
+    }
+  };
+}
 
 namespace Units {
   const int mapWidth = 99;
@@ -25,6 +36,12 @@ namespace Units {
 
   std::vector<Unit> units;
   std::vector<Unit> *Get_Units() { return &units; }
+
+  //key is position, the index of the unit in the units vector
+
+
+
+  std::unordered_map<UnitPosition, int> unitPositions;
 
   std::string unitChars[SIZE] = {"@",   "a",    "b",    "c",
                                  "d",   "e",    "f",    "g",
@@ -52,6 +69,8 @@ void Add_Unit(int x, int y, UnitType type) {
   unit.y = y;
   unit.type = type;
   units.push_back(unit);
+  unitPositions[{x, y}] = units.size() - 1;
+  std::cout << "unit added at index: " << unitPositions[{x, y}] << std::endl;
 }
 
   bool Add_Object(std::string &group, int x, int y) {
@@ -111,14 +130,6 @@ void Add_Unit(int x, int y, UnitType type) {
     player.y += y;
   }
 
-  bool Attack(int px, int py, int x, int y) {
-    std::cout << "checking for goblin" << std::endl;
-    if (Map::Get_Adjacent_Tile(px+x, py+y) == "g") {
-      return true;
-    }
-    return false;
-  }
-
   void Update_Player(const char *direction) {
     int x, y;
     switch (*direction) {
@@ -142,7 +153,7 @@ void Add_Unit(int x, int y, UnitType type) {
       return;
     }
     // if the nearby cell is an enemy, attack
-    if (Attack(player.x, player.y, x, y)) {
+    if (Attack::Melee(player.x, player.y, x, y)) {
       std::cout << "attack goblin" << std::endl;
       return;
     }
