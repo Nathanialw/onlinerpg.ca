@@ -47,7 +47,7 @@ function Draw_Game_Window() {
 function Draw_Top_Panel() {
     let topPanel = new PIXI.Graphics();
     topPanel.beginFill(0x000300);
-    topPanel.drawRect(0, 0, Set_Window_Width(), topPanelHeight * cellSize);
+    topPanel.drawRect(0, leftPanelWidth * cellSize, topPanelWidth * cellSize, topPanelHeight * cellSize);
     topPanel.endFill();
     app.stage.addChild(topPanel);
 }
@@ -189,9 +189,9 @@ export function Draw_UI() {
     Draw_Left_Panel();
     Draw_Bottom_Panel();
     Draw_Map();
-    Draw_Map_Border();
-    Draw_Player_Stats();
-    Draw_Player_Stats_Border();
+    // Draw_Map_Border();
+    // Draw_Player_Stats();
+    // Draw_Player_Stats_Border();
 
 }
 
