@@ -3,6 +3,6 @@
 
 namespace Collision {
 
-  bool Wall_Collision(int x, int y, const char* direction);
+bool Wall_Collision(int px, int py, int x, int y);
 
 }

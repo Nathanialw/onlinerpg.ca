@@ -4,36 +4,35 @@
 #include "string"
 
 #include "map.h"
-#include "units.h"
 
 namespace Map {
   const int mapWidth = 99;
-  std::string map[mapWidth][mapWidth];
+  std::string defaultMap[mapWidth][mapWidth];
+  std::string gameMap[mapWidth][mapWidth];
 
   void Init() {
     for (int i = 0; i < mapWidth; i++) {
       for (int j = 0; j < mapWidth; j++) {
-        if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1)
-          map[i][j] = '#';
-        else
-          map[i][j] = '.';
+        if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
+          defaultMap[i][j] = '#';
+          gameMap[i][j] = defaultMap[i][j];
+        }
+        else {
+          defaultMap[i][j] = '.';
+          gameMap[i][j] = defaultMap[i][j];
+        }
       }
     }
   }
 
-
-  std::string Send() {
-    std::string message = "1";
-    message += std::to_string(mapWidth);
-
-    for (auto & i : map) {
-      for (const auto & j : i) {
-        message += j;
-      }
-    }
-    return message;
+  void Set_Tile(int x, int y, std::string tile) {
+    gameMap[y][x] = tile;
   }
 
+  void Update(int px, int py, int x, int y, std::string tile) {
+    Set_Tile(px, py, defaultMap[x][y]);
+    Set_Tile(x, y, tile);
+  }
 
   // state 1 = initial map, 2 = update map
   std::string SendMapSegment(const Units::Unit &player, int state) {
@@ -45,19 +44,19 @@ namespace Map {
             if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
               mapSegment += ' ';
             else
-              mapSegment += map[j][i];
+              mapSegment += gameMap[j][i];
         }
     }
 
     return mapSegment;
   }
 
-  std::string Get_Adjecent_Tile(int x, int y) {
+  std::string Get_Adjacent_Tile(int x, int y) {
     std::string tile;
     if (x < 0 || x >= mapWidth || y < 0 || y >= mapWidth)
         tile = " ";
     else
-        tile = map[y][x];
+        tile = gameMap[y][x];
     return tile;
   }
 }

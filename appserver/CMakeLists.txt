@@ -23,4 +23,5 @@ add_executable(BrowserRPG
 
         src/objects/units/class/warrior.cpp
         src/objects/movement/movement.cpp
+        src/objects/attacks/attacks.cpp
 )

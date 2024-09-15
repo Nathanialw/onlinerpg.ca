@@ -39,18 +39,14 @@ gamey
 short term:
 -player id so you can have your own game
 
--splash screen
--name input
--char select
-  -2 races(human, elf) the only difference is the elf starts with +1 vision
--1 class(fighter)
--ascii graphics to start
 -one enemy
 -attack when player moves onto an enemy
 -simple AI that moves towards play when in range, attacks if adjacent
 -mouse input
+-open simple info box when click on elemy cell
 -come up with a list of spells
 -text output (damage done)
+-simple procedurally generated playable map
 
 medium term:
 -items
@@ -67,3 +63,16 @@ long term:
 -simple enemy AI
 
 
+-save map as 2d array
+-save units in vector, posiition is a part of value
+-current map is a merge of the two
+  -when a unit moves do a lookup on the defaul map
+    and replace the char to default
+
+-update whole map
+-iterate through vector to update
+  -update value and set on map immediately so it 
+    affects the next unit to be updated
+
+-cut segment to send to client
+-send map

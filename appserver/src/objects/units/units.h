@@ -16,13 +16,13 @@ namespace Units {
 
 enum UnitType {
   PLAYER,
-  ENEMY
+  GOBLIN,
 };
 
 struct Unit {
   int x = 6;
   int y = 6;
-  UnitType type = ENEMY;
+  UnitType type = GOBLIN;
   int vision = 6;
 };
 
