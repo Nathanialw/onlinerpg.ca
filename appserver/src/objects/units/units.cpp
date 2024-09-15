@@ -99,11 +99,7 @@ void Add_Unit(int x, int y, UnitType type) {
     unitsOnMap = Place_Entities_On_Map();
 
     for (auto &unit : *Units::Get_Units()) {
-      if (unit.type == Units::PLAYER) {
-        Map::Set_Tile(unit.x, unit.y, unitChars[PLAYER]);
-      } else if (unit.type == Units::GOBLIN) {
-        Map::Set_Tile(unit.x, unit.y, unitChars[GOBLIN]);
-      }
+      Map::Set_Tile(unit.x, unit.y, unitChars[unit.type]);
     }
   }
 
