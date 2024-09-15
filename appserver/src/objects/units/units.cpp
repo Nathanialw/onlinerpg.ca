@@ -52,17 +52,17 @@ namespace Units {
     unitPositions.erase(pos);
     Remove_Unit_At_Index(index);
 
-    std::string xStr = Utils::Prepend_Zero(x);
-    std::string yStr = Utils::Prepend_Zero(y);
-    //remove from the send string
-    for (int i = 1; i < unitsString.size(); i + 5) {
-      std::cout << "checking for unit at: " << unitsString.substr(i,4) << std::endl;
-      if (unitsString.substr(i+1,2) == xStr && unitsString.substr(i+3,2) == yStr) {
-        std::cout << "removing unit from string at: " << unitsString.substr(i,4) << std::endl;
-        unitsString.erase(i, 4);
-        break;
-      }
-    }
+//    std::string xStr = Utils::Prepend_Zero(x);
+//    std::string yStr = Utils::Prepend_Zero(y);
+//    //remove from the send string
+//    for (int i = 1; i < unitsString.size(); i + 5) {
+//      std::cout << "checking for unit at: " << unitsString.substr(i,4) << std::endl;
+//      if (unitsString.substr(i+1,2) == xStr && unitsString.substr(i+3,2) == yStr) {
+//        std::cout << "removing unit from string at: " << unitsString.substr(i,4) << std::endl;
+//        unitsString.erase(i, 4);
+//        break;
+//      }
+//    }
   }
 
   //is read only
