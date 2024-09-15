@@ -1,7 +1,6 @@
 'use strict'
 
-import {Create_Object} from '../graphics/graphics.js';
-import {Set_Player_Withing_Viewport} from '../frontend/game.js';
+import {Create_Object, Set_Player_Withing_Viewport} from '../graphics/graphics.js';
 
 
 let player;

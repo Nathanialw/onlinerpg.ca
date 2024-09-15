@@ -1,7 +1,7 @@
 'use strict'
 
 import {Make_Map, Populate_Map} from '../map/map.js';
-import {app} from '../frontend/game.js';
+import {app} from '../graphics/graphics.js';
 import {socket} from './socket.js';
 
 function Message(data) {
