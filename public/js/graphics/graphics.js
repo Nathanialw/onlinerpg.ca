@@ -121,6 +121,14 @@ export function Draw_Title_Screen() {
 export async function Create_Canvas() {
     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() })
     document.getElementById('gameCanvas').appendChild(app.canvas);
+    // Draw_Game_Window();
+    Draw_Top_Panel();
+    Draw_Right_Panel();
+    Draw_Left_Panel();
+    Draw_Bottom_Panel();
+    Draw_Map();
+    Draw_Map_Border();
+    Draw_Player_Stats();
 }
 
 function createTextWithBackground(textString, style, backgroundColor) {
