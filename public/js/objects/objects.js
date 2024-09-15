@@ -15,7 +15,7 @@ export function Set_Player(unitString) {
 }
 
 export function Set_Enemies(object) {
-    enemies = Create_Object(unitString[0], unitString.substring(1,3), unitString.substring(3,5));;
+    //enemies = Create_Object(unitString[0], unitString.substring(1,3), unitString.substring(3,5));;
     //enemies = object;
 }
 

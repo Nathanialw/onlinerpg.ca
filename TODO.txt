@@ -4,6 +4,7 @@
 
 constraints
 -attacks are linear spells/arrows, instant spells, and melee instant
+-MAYBE diagonal projectiles, not sure yet
 -enemies walk direct at and attack, no AI
 -only NSEW movement
 -only ASCI chars
@@ -39,8 +40,7 @@ gamey
 short term:
 -player id so you can have your own game
 
--one enemy
--attack when player moves onto an enemy
+-when holding down move, if it colides into a unit. just stop instead of attacking
 -simple AI that moves towards play when in range, attacks if adjacent
 -mouse input
 -open simple info box when click on elemy cell
@@ -62,17 +62,3 @@ long term:
 -collision detection
 -simple enemy AI
 
-
--save map as 2d array
--save units in vector, posiition is a part of value
--current map is a merge of the two
-  -when a unit moves do a lookup on the defaul map
-    and replace the char to default
-
--update whole map
--iterate through vector to update
-  -update value and set on map immediately so it 
-    affects the next unit to be updated
-
--cut segment to send to client
--send map
