@@ -69,8 +69,11 @@ void Add_Unit(int x, int y, UnitType type) {
   unit.y = y;
   unit.type = type;
   units.push_back(unit);
-  unitPositions[{x, y}] = units.size() - 1;
-  std::cout << "unit added at index: " << unitPositions[{x, y}] << std::endl;
+  std::cout << "attempting to add unit to hashmap" << std::endl;
+  UnitPosition pos = {x, y};
+  unitPositions.emplace(pos, units.size() - 1);
+//  unitPositions[pos] = units.size() - 1;
+  std::cout << "unit added at index: " << unitPositions[pos] << std::endl;
 }
 
   bool Add_Object(std::string &group, int x, int y) {
