@@ -45,6 +45,8 @@ namespace Units {
     SIZE
   };
 
+
+
   struct Stats {
     int srength = 10; // damage melee and ranged
     int intelligence = 10; // magic
@@ -85,4 +87,6 @@ namespace Units {
   void Update(const char* direction);
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
+  std::string Get_Unit_Char(UnitType type);
+  void Update_UnitsString(int x, int y);
 }

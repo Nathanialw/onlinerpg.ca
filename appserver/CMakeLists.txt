@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src/networking)
 include_directories(src/map)
+include_directories(src/utils)
 include_directories(src/objects/units)
 include_directories(src/objects/actions)
 include_directories(src/objects/collision)
@@ -28,4 +29,5 @@ add_executable(BrowserRPG
         src/objects/movement/movement.cpp
         src/objects/actions/attack.cpp
         src/objects/actions/death.cpp
+        src/objects/units/update.cpp
 )

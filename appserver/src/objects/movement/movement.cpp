@@ -3,15 +3,12 @@
 
 namespace Movement {
 
-//void Move(int x, int y) {
-//  std::cout << x << " " << y << std::endl;
-//  for (auto & unit : *Get_Units()) {
-//    if (unit.type == PLAYER) {
-//      unit.x += x;
-//      unit.y += y;
-//      std::cout << "x: " << unit.x << " y: " << unit.y << std::endl;
-//    }
-//  }
-//}
+  void Move(int x, int y) {
+    auto &player = Units::Get_Units()->at(0);
+//    auto &player = Units::units[0];
+    player.x += x;
+    player.y += y;
+  }
+
 
 }

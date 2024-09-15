@@ -7,7 +7,7 @@
 #include "unordered_map"
 #include <functional>
 
-#include "../utils/utils.h"
+#include "utils.h"
 
 #include "attack.h"
 #include "collision.h"
@@ -37,19 +37,10 @@ namespace Units {
   std::vector<Unit> units;
   std::vector<Unit> *Get_Units() { return &units; }
 
+
+
   //key is position, the index of the unit in the units vector
-
-
-
   std::unordered_map<UnitPosition, int> unitPositions;
-
-  std::string unitChars[SIZE] = {"@",   "a",    "b",    "c",
-                                 "d",   "e",    "f",    "g",
-                                 "h",   "i",    "j",    "k",
-                                 "l",   "m",    "n",    "o",
-                                 "p",   "q",    "r",    "s",
-                                 "t",   "u",    "v",    "w",
-                                 "x",   "y",    "z"};
 
   //is read only
   Unit Get_Player() {
@@ -63,18 +54,41 @@ namespace Units {
     return placement;
   }
 
-void Add_Unit(int x, int y, UnitType type) {
-  Unit unit{};
-  unit.x = x;
-  unit.y = y;
-  unit.type = type;
-  units.push_back(unit);
-  std::cout << "attempting to add unit to hashmap" << std::endl;
-  UnitPosition pos = {x, y};
-  unitPositions.emplace(pos, units.size() - 1);
-//  unitPositions[pos] = units.size() - 1;
-  std::cout << "unit added at index: " << unitPositions[pos] << std::endl;
-}
+  int Get_Unit_Index(int x, int y) {
+    UnitPosition pos = {x, y};
+    return unitPositions[pos];
+  }
+
+  void Update_Unit_Position(int x, int y, int newX, int newY) {
+    UnitPosition pos = {x, y};
+    int index = unitPositions[pos];
+    UnitPosition newPos = {newX, newY};
+    unitPositions.erase(pos);
+    unitPositions.emplace(newPos, index);
+  }
+
+  std::string unitChars[SIZE] = {"@",   "a",    "b",    "c",
+                                 "d",   "e",    "f",    "g",
+                                 "h",   "i",    "j",    "k",
+                                 "l",   "m",    "n",    "o",
+                                 "p",   "q",    "r",    "s",
+                                 "t",   "u",    "v",    "w",
+                                 "x",   "y",    "z"};
+
+  std::string Get_Unit_Char(UnitType type) {
+    return unitChars[type];
+  }
+
+  void Add_Unit(int x, int y, UnitType type) {
+    Unit unit{};
+    unit.x = x;
+    unit.y = y;
+    unit.type = type;
+    units.push_back(unit);
+
+    UnitPosition pos = {x, y};
+    unitPositions.emplace(pos, units.size() - 1);
+  }
 
   bool Add_Object(std::string &group, int x, int y) {
     if (x > mapWidth - 1 || y > mapWidth - 1 || x < 1 || y < 1) {
@@ -115,82 +129,22 @@ void Add_Unit(int x, int y, UnitType type) {
     return mapEntities;
   }
 
-  static std::string unitsOnMap;
+  static std::string unitsString;
+
+  void Update_UnitsString(int x, int y) {
+    std::string xStr = Utils::Prepend_Zero(x);
+    std::string yStr = Utils::Prepend_Zero(y);
+    unitsString.replace(2, 4, xStr + yStr);
+  }
 
   void Init() {
-    unitsOnMap = Place_Entities_On_Map();
+    unitsString = Place_Entities_On_Map();
 
     for (auto &unit : *Units::Get_Units()) {
       Map::Set_Tile(unit.x, unit.y, unitChars[unit.type]);
     }
   }
 
-  std::string Send_Units() { return unitsOnMap; }
+  std::string Send_Units() { return unitsString; }
 
-  void Move(int x, int y) {
-    auto &player = units[0];
-    player.x += x;
-    player.y += y;
-  }
-
-  void Update_Player(const char *direction) {
-    int x, y;
-    switch (*direction) {
-    case 'w':
-      x = 0, y = -1;
-      break;
-    case 'a':
-      x = -1, y = 0;
-      break;
-    case 's':
-      x = 0, y = 1;
-      break;
-    case 'd':
-      x = 1, y = 0;
-      break;
-    }
-    auto &player = units[0];
-    // collision
-    if (Collision::Wall_Collision(player.x, player.y, x, y)) {
-      std::cout << "wall collision" << std::endl;
-      return;
-    }
-    // if the nearby cell is an enemy, attack
-    if (Attack::Melee(player.x, player.y, x, y)) {
-      std::cout << "attack goblin" << std::endl;
-      return;
-    }
-    // if the unit survives, return, else move to the cell
-    Map::Update(player.x, player.y, x, y, unitChars[PLAYER]);
-    Move(x, y);
-
-    std::string position = Utils::Prepend_Zero(player.x) + Utils::Prepend_Zero(player.y);
-    unitsOnMap.replace(2, 4, position);
-  }
-
-
-  void Update_Units() {
-    // move enitities
-    //        for (auto & unit : *Get_Units()) {
-    //          if (unit.type == ENEMY) {
-    //                std::string x = std::to_string(unit.x);
-    //                std::string y = std::to_string(unit.y);
-    //                if (unit.x < 10)
-    //                  x = "0" + x;
-    //                if (unit.y < 10)
-    //                  y = "0" + y;
-    //
-    //                unitPositions["x+y"];
-    //
-    //
-    //            std::string position = "2@" + x + y;
-    //            unitsOnMap.replace(0, 6, position);
-    //
-    //          }
-    //        }
-  }
-
-  void Update(const char *direction) {
-    Update_Player(direction);
-  }
 }

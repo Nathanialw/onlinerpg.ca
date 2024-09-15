@@ -2,6 +2,6 @@
 
 namespace Movement {
 
-  void Move();
+  void Move(int x, int y);
 
 }

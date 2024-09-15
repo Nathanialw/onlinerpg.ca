@@ -6,7 +6,7 @@
 
 #include "map.h"
 #include "receiving.h"
-#include "units.h"
+#include "update.h"
 
 namespace Network {
 
@@ -86,7 +86,7 @@ namespace Network {
     if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.
       //move player
       const char* direction = &msg->get_payload()[1];
-      Units::Update(direction);
+      Update::Update_Units(direction);
       //Map::Send();
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
       //Units::Send_Units();
