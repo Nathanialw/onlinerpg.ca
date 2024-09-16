@@ -3,8 +3,17 @@
 export const app = new PIXI.Application();
 export let cellSize = 24;
 
-let darkGrey = 0xA9A9A9;
-let black = 0x340200;
+let grey50 = 0xf8fafc;
+let grey100 = 0xf1f5f9;
+let grey200 = 0xe2e8f0;
+let grey300 = 0xcbd5e1;
+let grey400 = 0x94a3b8;
+let grey500 = 0x64748b;
+let grey600 = 0x475569;
+let grey700 = 0x334155;
+let grey800 = 0x1e293b;
+let grey900 = 0x0f172a;
+let black = 0x222222;
 
 let footerHeight = 125;
 let gameWindowOrigin_x = 0;
@@ -188,7 +197,7 @@ export function Draw_Vision_Background(visionWidth) {
     let w = visionWidth * cellSize;
     let h = visionWidth * cellSize;
     
-    vision.beginFill(darkGrey);  
+    vision.beginFill(grey800);  
     vision.drawRect(x, y, w, h);
     vision.endFill();
     app.stage.addChild(vision);
