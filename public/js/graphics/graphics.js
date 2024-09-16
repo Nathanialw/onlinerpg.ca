@@ -183,8 +183,8 @@ export function Update(){
 }
 
 export function Create_Map_Line(char, indexHeight, visionWidth) {
-    let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, grey100);
-    // let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
+    // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, grey100);
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
