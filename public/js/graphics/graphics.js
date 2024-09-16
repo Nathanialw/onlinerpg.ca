@@ -183,11 +183,12 @@ export function Update(){
 }
 
 export function Create_Map_Line(char, indexHeight, visionWidth) {
-    let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, grey100);
-    // let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
+    // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'}, grey100);
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
+    object.backgroundColor = grey100;
     return object;
 }
 
@@ -219,6 +220,7 @@ export function Draw_UI() {
     Draw_Right_Panel();
     Draw_Left_Panel();
     Draw_Bottom_Panel();
+    // Draw_Map();
     // Draw_Map();
     // Draw_Map_Border();
     // Draw_Player_Stats();
