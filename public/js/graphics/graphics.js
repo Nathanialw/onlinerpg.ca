@@ -188,7 +188,6 @@ export function Create_Map_Line(char, indexHeight, visionWidth) {
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
-    object.backgroundColor = grey100;
     return object;
 }
 
