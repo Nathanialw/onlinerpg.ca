@@ -122,7 +122,7 @@ let fill = [];
 export function Make_Map(serverMap, visionWidth) {
     console.log("Redrawing Game");
     Draw_UI();
-    // Draw_Vision_Background(visionWidth);
+    Draw_Vision_Background(visionWidth);
     for (let i = 0; i < visionWidth; i++) {
         // render lines of the map
         let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39

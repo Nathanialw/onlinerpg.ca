@@ -13,7 +13,8 @@ let grey600 = 0x475569;
 let grey700 = 0x334155;
 let grey800 = 0x1e293b;
 let grey900 = 0x0f172a;
-let black = 0x222222;
+// let lightBlack = 0x222222;
+let black = 0x111111;
 
 let footerHeight = 125;
 let gameWindowOrigin_x = 0;
