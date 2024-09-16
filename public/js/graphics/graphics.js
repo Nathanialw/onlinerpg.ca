@@ -113,12 +113,12 @@ function Draw_Map() {
 
 export function Draw_Title_Screen() {
     let title = new PIXI.Text("Online RPG", {fontFamily : "'Press Start 2P'", fontSize: 24, fill : 0xff1010, align : 'center'});
-    title.x = Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(11) * cellSize;  // Assuming each cell is 24 pixels tall
-    title.y = Get_ViewPort_Origin_y() + 200;  // Assuming each cell is 24 pixels tall
+    title.x = (Get_ViewPort_Origin_x() * cellSize) + Set_Map_Within_Viewport(11) * cellSize;  // Assuming each cell is 24 pixels tall
+    title.y = (Get_ViewPort_Origin_y() * cellSize) + 200;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(title);
     let subtitle = new PIXI.Text("Press enter to start!", {fontFamily : "'Press Start 2P'", fontSize: 16, fill : 0xff1010, align : 'center'});
-    subtitle.x = Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(13) * 24;  // Assuming each cell is 24 pixels tall
-    subtitle.y = Get_ViewPort_Origin_y() + 300;  // Assuming each cell is 24 pixels tall
+    subtitle.x = (Get_ViewPort_Origin_x() * cellSize) + Set_Map_Within_Viewport(13) * 24;  // Assuming each cell is 24 pixels tall
+    subtitle.y = (Get_ViewPort_Origin_y() * cellSize) + 300;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(subtitle);
 }
 
