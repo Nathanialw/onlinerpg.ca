@@ -198,7 +198,7 @@ export function Draw_Vision_Background(visionWidth) {
     let w = visionWidth * cellSize;
     let h = visionWidth * cellSize;
     
-    vision.beginFill(grey800);  
+    vision.beginFill(0x005500);  
     vision.drawRect(x, y, w, h);
     vision.endFill();
     app.stage.addChild(vision);
