@@ -3,6 +3,9 @@
 export const app = new PIXI.Application();
 export let cellSize = 24;
 
+let darkGrey = 0xA9A9A9;
+let black = 0x340200;
+
 let footerHeight = 125;
 let gameWindowOrigin_x = 0;
 let gameWindowOrigin_y = 56; //3.5rem as per navbar height
@@ -82,7 +85,7 @@ function Draw_Bottom_Panel() {
 
 function Draw_Map() {
     let map = new PIXI.Graphics();
-    map.beginFill(0x009900);
+    map.beginFill(black);
     map.drawRect(leftPanelWidth * cellSize, (topPanelHeight * cellSize), viewportWidth * cellSize, viewportHeight * cellSize);
     map.endFill();
     app.stage.addChild(map);
@@ -177,6 +180,19 @@ export function Create_Map_Line(char, indexHeight, visionWidth) {
     return object;
 }
 
+export function Draw_Vision_Background(visionWidth) {
+    let vision = new PIXI.Graphics();
+
+    let x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize
+    let y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth)) * cellSize
+    let w = visionWidth * cellSize;
+    let h = visionWidth * cellSize;
+    
+    vision.beginFill(darkGrey);  
+    vision.drawRect(x, y, w, h);
+    vision.endFill();
+    app.stage.addChild(vision);
+}
 
 function Set_Map_Within_Viewport(visionWidth) {
     let vision = ((viewportWidth - 1) / 2) - ((visionWidth - 1) / 2);
