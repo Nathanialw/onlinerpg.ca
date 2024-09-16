@@ -219,7 +219,7 @@ export function Draw_UI() {
     Draw_Right_Panel();
     Draw_Left_Panel();
     Draw_Bottom_Panel();
-    Draw_Map();
+    // Draw_Map();
     // Draw_Map_Border();
     // Draw_Player_Stats();
     // Draw_Player_Stats_Border();
