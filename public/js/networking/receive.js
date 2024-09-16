@@ -28,6 +28,11 @@ socket().websocket.onmessage = function(event) {
     let type = event.data[0];
     let data = event.data.substring(1);
     console.log(type, data)
+    // if empty string
+    if (data.length == 0) {
+        console.log("received empty string")
+        return
+    }
     //clear map
     if (type == 1 || type == 3) {
         console.log("Clearing map");
