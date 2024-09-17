@@ -9,21 +9,21 @@ let mapString = "";
 
 let minimapDisplay = [];
 export let minimap = "                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                \
-                ";
+         j      \
+         j      \
+         j      \
+         j      \
+         j      \
+         j      \
+         j      \
+d        j     d\
+         j      \
+         j      \
+         j      \
+         j      \
+         j      \
+         j      \
+         j      ";
 
 function Update_Map() {
     let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
@@ -36,6 +36,7 @@ function Update_Map() {
         updatedMap += mapLine;
     }
     minimap = updatedMap;
+    console.log(minimap);
 }
 
 function Draw_Map() {
@@ -62,7 +63,7 @@ export function Make_Map(serverMap, visionWidth) {
         mapString += mapLine;
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
-    Update_Map();
+    Draw_Map();
 }
 
 export function Map(data) {
