@@ -24,13 +24,17 @@ export let map = "                \
                 \
                 ";
 
-                
 function Update_Map() {
     let mapSize = Math.sqrt(mapDisplay.length) //this only really needs to updated when the vision is updated
+    let updatedMap = '';
+    
     for (let j = 0; j < mapSize; j++) {
-        let mapLine = mapDisplay.substring(i, mapSize);
-        map.substring(i, mapSize) = mapLine
+        let start = j * mapSize;
+        let end = start + mapSize;
+        let mapLine = mapDisplay.substring(start, end);
+        updatedMap += mapLine;
     }
+    map = updatedMap;
 }
 
 function Draw_Map() {
