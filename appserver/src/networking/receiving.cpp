@@ -119,6 +119,13 @@ namespace Network {
     else if (msg->get_payload()[0] == '3') {
       Start(hdl, msg);
     }
+    else if (msg->get_payload()[0] == '4') {
+      std::cout << msg->get_payload() << std::endl;
+      if (!Units::Get_Units()->empty()) {
+        print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
+      }
+    }
+
     else {
 //            response = "0pinging";
 //            print_server.send(hdl, response, websocketpp::frame::opcode::text);
