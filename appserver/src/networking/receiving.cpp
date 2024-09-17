@@ -77,9 +77,10 @@ namespace Network {
 
   void Start(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     Map::Init();
+
     std::basic_string<char> characterCreate = msg->get_payload();
     Units::Init(characterCreate);
-    std::cout << Units::Get_Units()->size() << std::endl;
+
     std::string response = characterCreate;
     print_server.send(hdl, response, websocketpp::frame::opcode::text);
 
