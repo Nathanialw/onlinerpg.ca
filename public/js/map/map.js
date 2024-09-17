@@ -9,20 +9,57 @@ let mapString = "";
 
 let minimapDisplay = [];
 let minimap = "";
+let mapHeight = 0;
 
+let x = 6;
+let minX = 6;
+let maxX = 6;
+let y = 6;
+let minY = 6;
+let maxY = 6;
 
-
-//instead of overriding the map, I should just update the map
-
-function Rebuid_Map(updatedMap, direction) {
+function Rebuid_Map(visionWidth, updatedMap, direction) {
     let rebuiltMinimap = minimap;
-    minimap = updatedMap;
-    
+    if (direction = 'w') {
+
+
+        if (y > maxY) {
+            y++;
+            maxY++;
+        }
+    }
+    else if (direction = 's') {
+
+
+
+        if (y < minY) {
+            y--;
+            minY--;
+        }        
+    }
+    else if (direction = 'a') {
+
+
+        if (x < minX) {
+            x--;
+            minX--;
+        }
+    }
+    else if (direction = 'd') {
+        let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
+        rebuiltMinimap = minimap + update;
+        minimap = rebuiltMinimap;
+        
+        if (x > maxX) {
+            x++;
+            maxX++;
+        }
+    }
     //don't clear the minimap, just add to it and update the display
     //need direction to know where to add the new map    
 }
 
-function Update_Map(direction) {
+function Update_Map(visionWidth, direction) {
     if (mapString.length > 0) {
         let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
         let updatedMap = "";
@@ -34,7 +71,7 @@ function Update_Map(direction) {
             console.log(mapLine);
             updatedMap += mapLine;
         }
-        Rebuid_Map(updatedMap, direction);
+        Rebuid_Map(visionWidth, updatedMap, direction);
         console.log(minimap);
         return true;
     }
@@ -44,10 +81,10 @@ function Update_Map(direction) {
 function Draw_Map(visionWidth, direction) {
     //get postion of player
     //update the section of the map that the player is in
-    if (Update_Map(direction)) {
-        for (let i = 0; i < visionWidth; i++) {
-            let start = i * visionWidth;
-            let end = start + visionWidth;
+    if (Update_Map(visionWidth, direction)) {
+        for (let i = 0; i < (minY + maxY + 1); i++) {
+            let start = i * (minY + maxY + 1);
+            let end = start + (minY + maxY + 1);
             let mapLine = minimap.substring(start, end);
             console.log(mapLine);
             minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
