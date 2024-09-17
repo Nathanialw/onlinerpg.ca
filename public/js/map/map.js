@@ -8,22 +8,7 @@ let mapDisplay = [];
 let mapString = "";
 
 let minimapDisplay = [];
-let minimap = "                \
-         j      \
-         j      \
-         j      \
-         j      \
-         j      \
-         j      \
-         j      \
-d        j     d\
-         j      \
-         j      \
-         j      \
-         j      \
-         j      \
-         j      \
-         j      ";
+let minimap = "";
 
 function Update_Map() {
     if (mapString.length > 0) {
@@ -47,7 +32,7 @@ function Update_Map() {
 function Draw_Map() {
     //get postion of player
     //update the section of the map that the player is in
-    let width = 16;
+    let width = 13;
     if (Update_Map()) {
         for (let i = 0; i < width; i++) {
             let start = i * width;
