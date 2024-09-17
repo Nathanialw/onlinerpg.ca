@@ -70,11 +70,11 @@ export function UpdatePlayerInfo(characterCreate) {
     console.log("received characterInfo: ", characterCreate);
 
     characterInfo = {
-        Name: characterCreate.substring(4, length - 5),
-        Gender: Gender[characterCreate.substring(length - 4, 1)],
-        Species: Species[characterCreate.substring(length - 3, 1)],
-        Class: Class[characterCreate.substring(length - 2, 1)],
-        Alignment: Alignment[characterCreate.substring(length - 1, 1)]
+        Name: characterCreate.substring(4, length - 4),
+        Gender: Gender[parseInt(characterCreate.charAt(length-3), 10)],
+        Species: Species[parseInt(characterCreate.charAt(length-2), 10)],
+        Class: Class[parseInt(characterCreate.charAt(length-1), 10)],
+        Alignment: Alignment[parseInt(characterCreate.charAt(length), 10)]
         //health
         //max health
         //AC
