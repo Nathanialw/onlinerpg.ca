@@ -64,7 +64,7 @@ function Get_ViewPort_Origin_y() {
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');
-    let panel = new PIXI.G
+    let panel = new PIXI.Graphics();
     panel.beginFill(backGroundColor);  
     panel.drawRect(x, y, w, h);
     panel.endFill();
