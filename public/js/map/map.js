@@ -63,9 +63,7 @@ export function Make_Map(serverMap, visionWidth) {
     console.log("Redrawing Game");
     Draw_UI(characterInfo);
     Draw_Vision_Background(visionWidth);
-    mapString = "";
-    let direction = serverMap[0];
-    serverMap = serverMap.substring(1)
+    mapString = "";    
     for (let i = 0; i < visionWidth; i++) {
         // render lines of the map
         let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39
@@ -76,7 +74,8 @@ export function Make_Map(serverMap, visionWidth) {
 
 export function Map(data) {
     let visionWidth = parseInt(data.substring(0, 2), 10);
-    let serverMap = data.substring(2);
+    let direction = data.substring(2,3);
+    let serverMap = data.substring(3);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
 }
