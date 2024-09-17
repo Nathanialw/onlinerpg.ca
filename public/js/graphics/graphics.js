@@ -1,5 +1,7 @@
 'use strict'
 
+import { characterInfo } from '../units/unitdef.js';
+
 export const app = new PIXI.Application();
 
 async function Init_Grpahics() {
@@ -215,6 +217,7 @@ export function Draw_UI() {
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, 0x000050);
     //viewport
     Draw_Panel(leftPanelWidth * cellSize, (topPanelHeight * cellSize), viewportWidth * cellSize, viewportHeight * cellSize, black);
+    Draw_Stats();
     // Draw_Map_Border();
     // Draw_Player_Stats();
     // Draw_Player_Stats_Border();
@@ -229,3 +232,18 @@ let elapsed = 0.0;
     //     // sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;D
     // });
     
+
+
+    function Draw_Stats() {
+        let x = leftPanelWidth + 1;
+        let y = 1;
+        Create_Object(characterInfo.Name, x, y);
+        y += 1;
+        Create_Object(characterInfo.Gender, x, y);
+        y += 1;
+        Create_Object(characterInfo.Species, x, y);
+        y += 1;
+        Create_Object(characterInfo.Class, x, y);
+        y += 1;
+        Create_Object(characterInfo.Alignment, x, y);
+    }

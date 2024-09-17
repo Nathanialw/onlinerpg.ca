@@ -2,6 +2,7 @@
 
 import {Create_Map_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
+import { characterInfo } from '../units/unitdef.js';
 
 let mapDisplay = [];
 let fill = [];
@@ -121,7 +122,7 @@ let fill = [];
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 export function Make_Map(serverMap, visionWidth) {
     console.log("Redrawing Game");
-    Draw_UI();
+    Draw_UI(characterInfo);
     Draw_Vision_Background(visionWidth);
     for (let i = 0; i < visionWidth; i++) {
         // render lines of the map
