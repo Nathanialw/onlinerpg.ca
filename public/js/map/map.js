@@ -47,11 +47,12 @@ function Update_Map() {
 function Draw_Map() {
     //get postion of player
     //update the section of the map that the player is in
+    let width = 16;
     if (Update_Map()) {
-        // for (let i = 0; i < minimap.length; i+16) {
-            // let mapLine = minimap.substring(i * 16, 16);
-            // }
-        minimapDisplay[i] = Create_MiniMap_Line(minimap, i);
+        for (let i = 0; i < width; i++) {
+            let mapLine = minimap.substring(i * width, width);
+            minimapDisplay[0] = Create_MiniMap_Line(mapLine, i);
+        }
     }
     else {
         console.log("Map not updated");
