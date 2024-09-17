@@ -42,13 +42,13 @@ function Update_Map() {
 function Draw_Map() {
     //get postion of player
     //update the section of the map that the player is in
-    // Update_Map()
+    Update_Map()
 
-    // for (let i = 0; i < minimap.length; i+16) {
-    //     // render lines of the map
-    //     let mapLine = minimap.substring(i * 16, 16);
-    //     minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
-    // }
+    for (let i = 0; i < minimap.length; i+16) {
+        // render lines of the map
+        let mapLine = minimap.substring(i * 16, 16);
+        minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
+    }
 }   
 
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
@@ -56,7 +56,7 @@ export function Make_Map(serverMap, visionWidth) {
     console.log("Redrawing Game");
     Draw_UI(characterInfo);
     Draw_Vision_Background(visionWidth);
-    mapString - "";
+    mapString = "";
     for (let i = 0; i < visionWidth; i++) {
         // render lines of the map
         let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39
