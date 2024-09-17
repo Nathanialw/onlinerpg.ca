@@ -33,8 +33,8 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
         rebuiltMinimap = minimap + update;
         minimap = rebuiltMinimap;
 
+        y++;
         if ((y + 6 + 1) > maxY) {
-            y++;
             maxY++;
         }        
     }
@@ -87,8 +87,8 @@ function Draw_Map(visionWidth, direction) {
     //update the section of the map that the player is in
     if (Update_Map(visionWidth, direction)) {
         for (let i = 0; i < maxY; i++) {
-            let start = i * maxY;
-            let end = start + maxY;
+            let start = i * visionWidth;
+            let end = start + visionWidth;
             let mapLine = minimap.substring(start, end);
             console.log(mapLine);
             minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
