@@ -50,7 +50,7 @@ function Draw_Map() {
     let width = 16;
     if (Update_Map()) {
         for (let i = 0; i < width; i++) {
-            let start = j * width;
+            let start = i * width;
             let end = start + width;
             let mapLine = minimap.substring(start, end);
             console.log(mapLine);
