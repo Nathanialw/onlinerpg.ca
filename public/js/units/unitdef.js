@@ -78,7 +78,7 @@ export function UpdatePlayerInfo(characterCreate) {
     console.log(species);
     let unitClass = parseInt(characterCreate.charAt(length), 10);
     console.log(unitClass);
-    let alignment = parseInt(characterCreate.charAt(length+1), 10);
+    let alignment = parseInt(characterCreate.charAt(length-1), 10);
     console.log(alignment);
 
     characterInfo.Name = name;
