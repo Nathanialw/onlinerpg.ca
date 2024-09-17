@@ -51,7 +51,7 @@ function Draw_Map() {
     if (Update_Map()) {
         for (let i = 0; i < width; i++) {
             let mapLine = minimap.substring(i * width, width);
-            minimapDisplay[0] = Create_MiniMap_Line(mapLine, i);
+            minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
         }
     }
     else {
