@@ -61,6 +61,8 @@ export let characterInfo;
 
 export function UpdatePlayerInfo(characterCreate) {
     let length = characterCreate.length;
+    console.log("received characterInfo");
+
     characterInfo = {
         name: characterCreate.substring(1, length - 5),
         Gender: Gender[characterCreate.substring(length - 4, 1)],
