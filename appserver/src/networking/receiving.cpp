@@ -78,18 +78,12 @@ namespace Network {
   void Start(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     Map::Init();
 
-    std::basic_string<char> characterCreate = msg->get_payload();
-    Units::Init(characterCreate);
+    Units::Init(msg->get_payload());
 
-    std::string response = characterCreate;
-    print_server.send(hdl, response, websocketpp::frame::opcode::text);
+    print_server.send(hdl, msg->get_payload(), websocketpp::frame::opcode::text);
 
     if (!Units::Get_Units()->empty()) {
-      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()),websocketpp::frame::opcode::text);
-      //        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
-    } else {
-      response = "no player found";
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
     }
   }
   void Update(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
@@ -97,10 +91,8 @@ namespace Network {
     //move player
     const char* direction = &msg->get_payload()[1];
     Update::Update_Units(direction);
-    //Map::Send();
+    //sen map
     print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
-    //Units::Send_Units();
-    //      print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
 
     response = "0I hear you pressing: ";
     response.append(&msg->get_payload()[1]);
@@ -119,14 +111,13 @@ namespace Network {
       Update(hdl, msg);
     }
     else if (msg->get_payload()[0] == '2') {
-      Start(hdl, msg);
+      //unused
+      response = "0 response \"2\" is unused, message was: ";
+      response.append(&msg->get_payload()[1]);
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
     else if (msg->get_payload()[0] == '3') {
-      std::cout << msg->get_payload() << std::endl;
-      if (!Units::Get_Units()->empty()) {
-        print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
-//        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
-      }
+      Start(hdl, msg);
     }
     else {
 //            response = "0pinging";
