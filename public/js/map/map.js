@@ -44,11 +44,10 @@ function Update_Map(direction) {
 function Draw_Map(visionWidth, direction) {
     //get postion of player
     //update the section of the map that the player is in
-    let width = visionWidth;
-    if (Update_Map()) {
-        for (let i = 0; i < width; i++) {
-            let start = i * width;
-            let end = start + width;
+    if (Update_Map(direction)) {
+        for (let i = 0; i < visionWidth; i++) {
+            let start = i * visionWidth;
+            let end = start + visionWidth;
             let mapLine = minimap.substring(start, end);
             console.log(mapLine);
             minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
@@ -73,13 +72,13 @@ export function Make_Map(serverMap, visionWidth) {
         mapString += mapLine;
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
-    Draw_Map(visionWidth, direction);
 }
 
 export function Map(data) {
     let visionWidth = parseInt(data.substring(0, 2), 10);
     let serverMap = data.substring(2);
     Make_Map(serverMap, visionWidth);
+    Draw_Map(visionWidth, direction);
 }
 
 let Update = {

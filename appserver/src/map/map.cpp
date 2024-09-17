@@ -44,8 +44,8 @@ namespace Map {
   // state 1 = initial map, 2 = update map
   std::string SendMapSegment(const Units::Unit &player, std::string direction, int state) {
     std::string mapSegment = std::to_string(state);
-    mapSegment += direction;
     mapSegment += std::to_string((player.vision * 2) + 1);
+    mapSegment += direction;
 
     for (int j = player.y - player.vision; j <= player.y + player.vision; j++) {
         for (int i = player.x - player.vision; i <= player.x + player.vision; i++) {
