@@ -191,9 +191,9 @@ export function Create_Map_Line(char, indexHeight, visionWidth) {
 
 export function Create_MiniMap_Line(char, indexHeight) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
-    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'});
-    object.x = (Get_ViewPort_Origin_x() + leftPanelWidth) * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (Get_ViewPort_Origin_y() + indexHeight + leftPanelHeight) * cellSize;  // Assuming each cell is 24 pixels tall
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 12, fill : grey50, align : 'center'});
+    object.x = (leftPanelWidth) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (indexHeight + leftPanelHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
