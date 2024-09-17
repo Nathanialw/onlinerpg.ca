@@ -20,7 +20,7 @@ let maxY = 13;
 
 function Rebuid_Map(visionWidth, updatedMap, direction) {
     let rebuiltMinimap = minimap;
-    if (direction = 'w') {
+    if (direction == 'w') {
 
 
         if (y > maxY) {
@@ -28,7 +28,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             maxY++;
         }
     }
-    else if (direction = 's') {
+    else if (direction == 's') {
         let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
         rebuiltMinimap = minimap + update;
         minimap = rebuiltMinimap;
@@ -38,7 +38,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             maxY++;
         }        
     }
-    else if (direction = 'a') {
+    else if (direction == 'a') {
 
 
         if (x < minX) {
@@ -46,7 +46,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             minX--;
         }
     }
-    else if (direction = 'd') {
+    else if (direction == 'd') {
 
         if (x > maxX) {
             x++;
