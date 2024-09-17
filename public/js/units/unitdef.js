@@ -72,13 +72,13 @@ export function UpdatePlayerInfo(characterCreate) {
 
     let name = characterCreate.substring(4, length - 4);
     console.log(name)
-    let gender = parseInt(characterCreate.charAt(length-3), 10);
+    let gender = parseInt(characterCreate.charAt(length-2), 10);
     console.log(gender);
-    let species = parseInt(characterCreate.charAt(length-2), 10);
+    let species = parseInt(characterCreate.charAt(length-1), 10);
     console.log(species);
-    let unitClass = parseInt(characterCreate.charAt(length-1), 10);
+    let unitClass = parseInt(characterCreate.charAt(length), 10);
     console.log(unitClass);
-    let alignment = parseInt(characterCreate.charAt(length), 10);
+    let alignment = parseInt(characterCreate.charAt(length+1), 10);
     console.log(alignment);
 
     characterInfo.Name = name;
