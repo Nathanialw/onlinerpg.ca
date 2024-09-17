@@ -46,7 +46,7 @@ function Draw_Map() {
 
     for (let i = 0; i < minimap.length; i+16) {
         // render lines of the map
-        let mapLine = serverMap.substring(i * 16, 16);
+        let mapLine = minimap.substring(i * 16, 16);
         minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
     }
 }   
