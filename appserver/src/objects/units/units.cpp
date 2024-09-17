@@ -187,6 +187,7 @@ namespace Units {
       int numMonsters = rand() % 4;
       mapEntities += Random_Entities(unitChars[(int)Species::GOBLIN].c_str(), numMonsters);
     }
+    std::cout << "init num entities: " << units.size() << std::endl;
     return mapEntities;
   }
 
