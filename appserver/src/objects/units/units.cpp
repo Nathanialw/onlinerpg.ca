@@ -169,7 +169,6 @@ namespace Units {
     Alignment alignment = (Alignment)std::stoi(characterCreate.substr(length - 2, length - 1));
 
     Add_Unit(6, 6, name, gender, species, unitClass, alignment);
-    std::cout << "Character created: " << characterCreate.substr(0, length - 4) << " " << std::stoi(&characterCreate[length-4]) << " " << std::stoi(&characterCreate[length-3]) << " " <<  std::stoi(&characterCreate[length-2]) << " " << std::stoi(&characterCreate[length-1]) << std::endl;
 
     mapEntities += unitChars[(int)Species::human] + "0606";
 
