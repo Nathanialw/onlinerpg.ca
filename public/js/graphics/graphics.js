@@ -1,5 +1,13 @@
 'use strict'
 
+PIXI.Loader.shared
+    .add('inventory', 'assets/graphics/ui/itsmars_Inventory.png')
+    .load((loader, resources) => {
+        // Asset is loaded and can be used
+        Init_Graphics();
+    });
+
+
 export const app = new PIXI.Application();
 export let cellSize = 24;
 
@@ -56,7 +64,7 @@ function Get_ViewPort_Origin_y() {
 let inventory;
 
 export function Init_Grpahics() {
-    inventory = PIXI.Sprite.from('assets/graphics/ui/itsmars_Inventory.png');
+    inventory = PIXI.Sprite.from(resources.inventory.texture);
 
 }
 
