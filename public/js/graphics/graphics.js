@@ -231,19 +231,17 @@ let elapsed = 0.0;
     //     // elapsed += ticker.deltaTime;
     //     // sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;D
     // });
-    
 
-
-    function Draw_Stats() {
-        let x = leftPanelWidth + 1;
-        let y = 1;
-        Create_Object(characterInfo.Name, x, y);
-        y += 1;
-        Create_Object(characterInfo.Gender, x, y);
-        y += 1;
-        Create_Object(characterInfo.Species, x, y);
-        y += 1;
-        Create_Object(characterInfo.Class, x, y);
-        y += 1;
-        Create_Object(characterInfo.Alignment, x, y);
-    }
+function Draw_Stats() {
+    let x = leftPanelWidth + 1;
+    let y = 1;
+    Create_Object(characterInfo.Name, x, y);
+    y += 1;
+    Create_Object(characterInfo.Gender, x, y);
+    y += 1;
+    Create_Object(characterInfo.Species, x, y);
+    y += 1;
+    Create_Object(characterInfo.Class, x, y);
+    y += 1;
+    Create_Object(characterInfo.Alignment, x, y);
+}
