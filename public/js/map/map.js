@@ -11,11 +11,12 @@ let minimapDisplay = [];
 let minimap = "";
 let mapHeight = 0;
 
+// origin position and vision needs to be loaded from the server
 let x = 6;
-let minX = 0;
+let minX = 13;
 let maxX = 13;
 let y = 6;
-let minY = 0;
+let minY = 13;
 let maxY = 13;
 
 function Rebuid_Map(visionWidth, updatedMap, direction) {
@@ -23,33 +24,38 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     if (direction == 'w') {
 
 
-        if (y > maxY) {
-            y++;
-            maxY++;
-        }
-    }
-    else if (direction == 's') {
-        let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
-        rebuiltMinimap = minimap + update;
-        minimap = rebuiltMinimap;
-
-        y++;
-        if ((y + 6 + 1) > maxY) {
+        
+        y--;
+        if ((y + 6 + 1) < maxY) {
+            minY--;
             maxY++;
         }        
+    }
+    else if (direction == 's') {
+        y++;
+        if ((y + 6 + 1) > maxY) {
+            //add new line to the bottom of the map
+            let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
+            rebuiltMinimap = minimap + update;
+            minimap = rebuiltMinimap;
+            maxY++;
+        }   
+        else {
+            //replace the bottom line of the map
+        }     
     }
     else if (direction == 'a') {
 
 
+        x--;
         if (x < minX) {
-            x--;
             minX--;
         }
     }
     else if (direction == 'd') {
 
+        x++;
         if (x > maxX) {
-            x++;
             maxX++;
         }
     }
