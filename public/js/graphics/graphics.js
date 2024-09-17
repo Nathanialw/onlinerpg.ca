@@ -35,6 +35,7 @@ let black = 0x111111;
 let footerHeight = 125;
 let gameWindowOrigin_x = 0;
 let gameWindowOrigin_y = 56; //3.5rem as per navbar height
+let sidePanelWidth = 30;
 
 export let viewportWidth = 41;
 export let viewportHeight = 41;
@@ -42,10 +43,10 @@ export let viewportHeight = 41;
 let topPanelHeight = 10;
 let topPanelWidth = viewportWidth;
 
-let rightPanelWidth = 40;
+let rightPanelWidth = sidePanelWidth;
 let rightPanelHeight = viewportHeight + topPanelHeight;
 
-let leftPanelWidth = 40;
+let leftPanelWidth = sidePanelWidth;
 let leftPanelHeight = viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
