@@ -1,6 +1,6 @@
 'use strict'
 
-import {Create_Map_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
+import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 import {characterInfo} from '../units/unitdef.js';
 
@@ -27,7 +27,7 @@ export let map = "                \
 function Update_Map() {
     let mapSize = Math.sqrt(mapDisplay.length) //this only really needs to updated when the vision is updated
     let updatedMap = '';
-    
+
     for (let j = 0; j < mapSize; j++) {
         let start = j * mapSize;
         let end = start + mapSize;
@@ -45,7 +45,7 @@ function Draw_Map() {
     for (let i = 0; i < map.length; i++) {
         // render lines of the map
         let mapLine = serverMap.substring(i * 16, 16);
-        Create_Map_Line(mapLine, i, visionWidth);
+        Create_MiniMap_Line(mapLine, i, visionWidth);
     }
 }   
 
