@@ -64,7 +64,8 @@ function Get_ViewPort_Origin_y() {
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');
-    let topPanel = new PIXI.Graphics();
+    let topPanel = new PIXI.G
+    vision.beginFill(backGroundColor);  
     topPanel.drawRect(x, y, w, h);
     topPanel.endFill();
     app.stage.addChild(topPanel);
@@ -173,17 +174,11 @@ export function Create_Map_Line(char, indexHeight, visionWidth) {
 }
 
 export function Draw_Vision_Background(visionWidth) {
-    let vision = new PIXI.Graphics();
-
     let x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize
     let y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth)) * cellSize
     let w = visionWidth * cellSize;
     let h = visionWidth * cellSize;
-    
-    vision.beginFill(grey900);  
-    vision.drawRect(x, y, w, h);
-    vision.endFill();
-    app.stage.addChild(vision);
+    Draw_Panel(x, y, w, h, grey900);
 }
 
 function Set_Map_Within_Viewport(visionWidth) {
