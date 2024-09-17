@@ -29,7 +29,7 @@ function Update_Map() {
     let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
     let updatedMap = '';
 
-    for (let j = 0; j < mapSize; j++) {
+    for (let j = 0; j < mapSize; j + mapSize) {
         let start = j * mapSize;
         let end = start + mapSize;
         let mapLine = mapString.substring(start, end);
@@ -42,13 +42,13 @@ function Update_Map() {
 function Draw_Map() {
     //get postion of player
     //update the section of the map that the player is in
-    Update_Map()
+    // Update_Map()
 
-    for (let i = 0; i < minimap.length; i+16) {
-        // render lines of the map
-        let mapLine = minimap.substring(i * 16, 16);
-        minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
-    }
+    // for (let i = 0; i < minimap.length; i+16) {
+    //     // render lines of the map
+    //     let mapLine = minimap.substring(i * 16, 16);
+    //     minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
+    // }
 }   
 
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
