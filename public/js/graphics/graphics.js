@@ -1,7 +1,21 @@
 'use strict'
-import * as PIXI from '../libs/pixi.js';
+// import * as PIXI from '../libs/pixi.js';
 
 export const app = new PIXI.Application();
+
+async function Init_Grpahics() {
+    const texture = await Assets.load('assets/graphics/ui/itsmars_Inventory.png');
+    inventory = new Sprite(texture);
+}
+
+export async function Create_Canvas() {
+    await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
+    Init_Grpahics();
+    app.canvas.x = 0;
+    app.canvas.y = 0;
+    document.getElementById('gameCanvas').appendChild(app.canvas);
+}
+
 export let cellSize = 24;
 
 let grey50 = 0xf8fafc;
@@ -56,11 +70,6 @@ function Get_ViewPort_Origin_y() {
 
 let inventory;
 
-async function Init_Grpahics() {
-    const texture = await Assets.load('assets/graphics/ui/itsmars_Inventory.png');
-    inventory = new Sprite(texture);
-}
-
 // function Draw_Game_Window() {
 //     let gameWindow = new PIXI.Graphics();
 //     gameWindow.beginFill(0x024030);
@@ -72,9 +81,11 @@ async function Init_Grpahics() {
 function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');
     let panel = new PIXI.Graphics();
-    panel.beginFill(backGroundColor);  
-    panel.drawRect(x, y, w, h);
-    panel.endFill();
+    // panel.beginFill(backGroundColor);  
+    // panel.drawRect(x, y, w, h);
+    // panel.endFill();
+    panel.rect(x, y, w, h);
+    panel.fill(backGroundColor);
     app.stage.addChild(panel);
 }
 
@@ -125,13 +136,6 @@ export function Draw_Title_Screen() {
     app.stage.addChild(subtitle);
 }
 
-export async function Create_Canvas() {
-    await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
-    Init_Grpahics();
-    app.canvas.x = 0;
-    app.canvas.y = 0;
-    document.getElementById('gameCanvas').appendChild(app.canvas);
-}
 
 function createTextWithBackground(textString, style, backgroundColor) {
     // Create the text object
