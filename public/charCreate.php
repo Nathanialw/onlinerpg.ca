@@ -47,10 +47,10 @@
 
 <section class='startButton'>
     <form method='post'>
-        <label class="form-label" for="title">Name:</label>
+        <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" required>
         <br>
-        <label class="form-label" for="image">Gender:</label>
+        <label class="form-label" for="gender">Gender:</label>
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="gender" name="gender" required>
                 <option value="0">Male</option>
@@ -58,7 +58,7 @@
             </select>
         </span>
         <br>
-        <label class="form-label" for="image">Race:</label>
+        <label class="form-label" for="race">Race:</label>
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="race" name="race" required>
                 <option value="0">Human</option>
@@ -66,7 +66,7 @@
             </select>
         </span>
         <br>
-        <label class="form-label" for="image">Class:</label>
+        <label class="form-label" for="class">Class:</label>
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="class" name="class" required>
                 <option value="0">Fighter</option>
@@ -74,7 +74,7 @@
             </select>
         </span>
         <br>
-        <label class="form-label" for="image">alignment:</label>
+        <label class="form-label" for="alignment">alignment:</label>
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="alignment" name="alignment" required>
                 <option value="0">Good</option>
