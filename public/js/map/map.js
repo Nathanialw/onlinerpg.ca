@@ -62,13 +62,6 @@ export function Map(data) {
     Make_Map(serverMap, visionWidth);
 }
 
-export function Update_Map(serverMap, mapWidth) {
-    // for (let i = 0; i < mapWidth; i++) {
-    //     let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));
-    //     mapDisplay[i] = Create_Map_Line(object, i);
-    // }
-}
-
 let Update = {
     "@": Set_Player,
     "g": Set_Enemies,
