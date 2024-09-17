@@ -77,11 +77,7 @@ namespace Network {
 
   void Start(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     Map::Init();
-
     Units::Init(msg->get_payload());
-
-    std::cout << "sending char stats back  to client" << std::endl;
-    print_server.send(hdl, msg->get_payload(), websocketpp::frame::opcode::text);
 
     if (!Units::Get_Units()->empty()) {
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
@@ -92,12 +88,16 @@ namespace Network {
     //move player
     const char* direction = &msg->get_payload()[1];
     Update::Update_Units(direction);
-    //sen map
+    //send map
     print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
 
     response = "0I hear you pressing: ";
     response.append(&msg->get_payload()[1]);
     print_server.send(hdl, response, websocketpp::frame::opcode::text);
+
+    std::cout << "sending char stats back  to client" << std::endl;
+    std::string updatedStats = Units::GetCharStats();
+    print_server.send(hdl, updatedStats, websocketpp::frame::opcode::text);
   }
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {

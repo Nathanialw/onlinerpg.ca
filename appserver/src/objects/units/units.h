@@ -142,5 +142,5 @@ namespace Units {
   void Remove_Unit(int x, int y);
   std::string Get_Unit_Char(Species species);
   void Update_UnitsString(int x, int y);
-  std::string GetCharStats(std::string characterCreate);
+  std::string GetCharStats();
 }

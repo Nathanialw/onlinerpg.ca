@@ -206,10 +206,15 @@ namespace Units {
     }
   }
 
-  std::string GetCharStats(std::string characterCreate) {
-    std::string name = characterCreate.substr(1, characterCreate.size() - 5);
-    std::string genderStr = characterCreate.substr(characterCreate.size() - 4, 1);
-    return "2" + name + " " + genderStr;
-  }
+  std::string GetCharStats() {
+    //only append with what is being updated
+    //when the stat IS updated on then add it to the string
 
+    //prepend with 0000 to tell which stats are being sent
+    //name + gender + species + class + alignment
+    auto player = Get_Player();
+    std::string stats = "1111" + player.name + std::to_string((int)player.def.gender) + std::to_string((int)player.def.species) + std::to_string((int)player.def.unitClass) + std::to_string((int)player.def.alignment);
+    return "3" + stats;
+  }
+//  1 2 4 8 16
 }
