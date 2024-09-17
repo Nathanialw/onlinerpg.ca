@@ -1,7 +1,7 @@
 'use strict'
+import { Application, Assets, Sprite } from 'pixi.js';
 
-
-export const app = new PIXI.Application();
+export const app = new Application();
 export let cellSize = 24;
 
 let grey50 = 0xf8fafc;
