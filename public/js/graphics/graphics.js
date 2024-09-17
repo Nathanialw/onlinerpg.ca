@@ -1,5 +1,5 @@
 'use strict'
-import { Application, Assets, Sprite } from 'pixi.js';
+import { Application, Assets, Sprite } from '../libs/pixi.js';
 
 export const app = new Application();
 export let cellSize = 24;
