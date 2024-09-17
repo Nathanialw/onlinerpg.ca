@@ -71,10 +71,10 @@ export function UpdatePlayerInfo(characterCreate) {
     console.log("received characterInfo: ", characterCreate);
 
     characterInfo.Name = characterCreate.substring(4, length - 4);
-    characterInfo.Gender = parseInt(characterCreate.charAt(length-4), 10);
-    characterInfo.Species = parseInt(characterCreate.charAt(length-3), 10);
-    characterInfo.Class = parseInt(characterCreate.charAt(length-2), 10);
-    characterInfo.Alignment = parseInt(characterCreate.charAt(length-1), 10);
+    characterInfo.Gender = Gender[parseInt(characterCreate.charAt(length-4), 10)];
+    characterInfo.Species = Species[parseInt(characterCreate.charAt(length-3), 10)];
+    characterInfo.Class = UnitClass[parseInt(characterCreate.charAt(length-2), 10)];
+    characterInfo.Alignment = Alignment[parseInt(characterCreate.charAt(length-1), 10)];
         
     //h
     //max health
