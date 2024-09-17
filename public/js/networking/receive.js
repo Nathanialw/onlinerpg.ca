@@ -30,7 +30,7 @@ socket().websocket.onmessage = function(event) {
         return
     }
     //clear map
-    if (type == 1 || type == 3) {
+    if (type == 1) {
         console.log("Clearing map");
         app.stage.removeChildren();
     }

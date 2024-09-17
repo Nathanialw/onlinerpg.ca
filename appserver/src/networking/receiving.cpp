@@ -126,6 +126,8 @@ namespace Network {
         print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
       }
     }
+    else if (msg->get_payload()[0] == '5') {
+    }
 
     else {
 //            response = "0pinging";

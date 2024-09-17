@@ -70,25 +70,11 @@ export function UpdatePlayerInfo(characterCreate) {
     let length = characterCreate.length;
     console.log("received characterInfo: ", characterCreate);
 
-    let name = characterCreate.substring(4, length - 4);
-    console.log(name)
-    let gender = parseInt(characterCreate.charAt(length-4), 10);
-    console.log(gender);
-    let species = parseInt(characterCreate.charAt(length-3), 10);
-    console.log(species);
-    let unitClass = parseInt(characterCreate.charAt(length-2), 10);
-    console.log(unitClass);
-    let alignment = parseInt(characterCreate.charAt(length-1), 10);
-    console.log(alignment);
-
-    console.log("test0: ", parseInt(characterCreate.charAt(length), 10));
-    console.log("test+1: ", parseInt(characterCreate.charAt(length+1), 10));
-
-    characterInfo.Name = name;
-    characterInfo.Gender = Gender[gender];
-    characterInfo.Species = Species[species];
-    characterInfo.Class = UnitClass[unitClass]
-    characterInfo.Alignment = Alignment[alignment];
+    characterInfo.Name = characterCreate.substring(4, length - 4);
+    characterInfo.Gender = parseInt(characterCreate.charAt(length-4), 10);
+    characterInfo.Species = parseInt(characterCreate.charAt(length-3), 10);
+    characterInfo.Class = parseInt(characterCreate.charAt(length-2), 10);
+    characterInfo.Alignment = parseInt(characterCreate.charAt(length-1), 10);
         
     //h
     //max health
