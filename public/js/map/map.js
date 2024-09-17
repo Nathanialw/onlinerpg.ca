@@ -7,8 +7,8 @@ import {characterInfo} from '../units/unitdef.js';
 let mapDisplay = [];
 let mapString = "";
 
-
-export let map = "                \
+let minimapDisplay = [];
+export let minimap = "                \
                 \
                 \
                 \
@@ -35,7 +35,7 @@ function Update_Map() {
         let mapLine = mapString.substring(start, end);
         updatedMap += mapLine;
     }
-    map = updatedMap;
+    minimap = updatedMap;
 }
 
 function Draw_Map() {
@@ -43,10 +43,10 @@ function Draw_Map() {
     //update the section of the map that the player is in
     Update_Map()
 
-    for (let i = 0; i < map.length; i++) {
+    for (let i = 0; i < minimap.length; i+16) {
         // render lines of the map
         let mapLine = serverMap.substring(i * 16, 16);
-        Create_MiniMap_Line(mapLine, i, visionWidth);
+        minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
     }
 }   
 
