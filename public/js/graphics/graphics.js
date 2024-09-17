@@ -71,6 +71,14 @@ function Get_ViewPort_Origin_y() {
     return topPanelHeight;
 }
 
+function Get_Minimap_Origin_x() {
+    return (leftPanelWidth) * cellSize;
+}
+
+function Get_Minimap_Origin_y() {
+    return (indexHeight + leftPanelHeight) * cellSize;
+}
+
 let inventory;
 
 // function Draw_Game_Window() {
@@ -193,8 +201,8 @@ export function Create_Map_Line(char, indexHeight, visionWidth) {
 export function Create_MiniMap_Line(char, indexHeight) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'});
-    object.x = (leftPanelWidth) * minimapCellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (indexHeight + leftPanelHeight) * minimapCellSize;  // Assuming each cell is 24 pixels tall
+    object.x = (Get_Minimap_Origin_x);  // Assuming each cell is 24 pixels tall
+    object.y = (Get_Minimap_Origin_y) + (indexHeight * minimapCellSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
