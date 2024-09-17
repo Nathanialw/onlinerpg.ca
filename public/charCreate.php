@@ -48,7 +48,7 @@
 <section class='startButton'>
     <form method='post'>
         <label class="form-label" for="name">Name:</label>
-        <input class="form-input form-row" type="text" id="name" name="name" required>
+        <input class="form-input form-row" type="text" id="name" name="name" placeholder="John">
         <br>
         <label class="form-label" for="gender">Gender:</label>
         <span class="form-adjacent">
