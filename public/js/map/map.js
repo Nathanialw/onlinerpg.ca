@@ -30,7 +30,7 @@ function Update_Map() {
         let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
         let updatedMap = "";
 
-        for (let j = 0; j < mapSize; j + mapSize) {
+        for (let j = 0; j < mapString.length; j + mapSize) {
             let start = j * mapSize;
             let end = start + mapSize;
             let mapLine = mapString.substring(start, end);
