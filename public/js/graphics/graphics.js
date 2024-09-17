@@ -63,6 +63,7 @@ function Get_ViewPort_Origin_y() {
 // }
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
+    console.log('Draw_Panel');
     let topPanel = new PIXI.Graphics();
     topPanel.drawRect(x, y, w, h);
     topPanel.endFill();
@@ -70,6 +71,7 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
 }
 
 function Draw_Sprite(x, y, w, h) {
+    console.log('Draw_Sprite');
     let sprite = PIXI.Sprite.from('assets/graphics/ui/itsmars_Inventory.png');
     sprite.x = x;
     sprite.y = y;
@@ -194,7 +196,7 @@ function Set_Player_Within_Viewport() {
 }
 
 export function Draw_UI() {
-    //top
+    //top    
     Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, 0x0f0f0f)
     //right
     Draw_Panel((viewportWidth + leftPanelWidth) * cellSize, 0, rightPanelWidth * cellSize, rightPanelHeight * cellSize, 0x300301);
