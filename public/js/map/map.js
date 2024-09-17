@@ -5,6 +5,7 @@ import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 import {characterInfo} from '../units/unitdef.js';
 
 let mapDisplay = [];
+let mapString = "";
 
 
 export let map = "                \
@@ -25,13 +26,13 @@ export let map = "                \
                 ";
 
 function Update_Map() {
-    let mapSize = Math.sqrt(mapDisplay.length) //this only really needs to updated when the vision is updated
+    let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
     let updatedMap = '';
 
     for (let j = 0; j < mapSize; j++) {
         let start = j * mapSize;
         let end = start + mapSize;
-        let mapLine = mapDisplay.substring(start, end);
+        let mapLine = mapString.substring(start, end);
         updatedMap += mapLine;
     }
     map = updatedMap;
@@ -54,9 +55,11 @@ export function Make_Map(serverMap, visionWidth) {
     console.log("Redrawing Game");
     Draw_UI(characterInfo);
     Draw_Vision_Background(visionWidth);
+    mapString - "";
     for (let i = 0; i < visionWidth; i++) {
         // render lines of the map
         let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39
+        mapString += mapLine;
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
     Update_Map();
