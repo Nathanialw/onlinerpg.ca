@@ -14,39 +14,81 @@
 
 namespace Units {
 
-  enum UnitType {
-    PLAYER,
-    EMPTY,
+  enum class Species {
+    alpaca,
+    basilisk,
+    centaur,
+    dwarf,
+    elf,
+    fox,
+    goblin,
+    human,
+    iguana,
+    jackal,
+    kobold,
+    lamia,
+    minotaur,
+    nymph,
+    orc,
+    pixie,
+    qat,
+    rat,
+    satyr,
+    treant,
+    unicorn,
+    valkyrie,
+    warg,
+    xana,
+    yale,
+    zombie,
     ANGEL,
-    BASILISK,
-    CENTAUR,
-    DWARF,
-    ELF,
+    BYAKHEE,
+    CHIMERA,
+    DRAGON,
+    EBON,
     FAIRY,
-    GOBLIN,
-    HUMAN,
+    GOLEM,
+    HARPY,
     IMP,
     JINN,
-    KOBOLD,
-    LAMIA,
-    MINOTAUR,
+    KRAKEN,
+    LICH,
+    MADUSA,
     NAGA,
-    ORC,
+    OGRE,
     POLTERGEIST,
     QAFFIR,
-    RAT,
-    SNAKE,
+    ROC,
+    SIREN,
     TROLL,
-    UNICORN,
+    URIAS,
     VAMPIRE,
     WITCH,
-    XENOMORPH,
+    XANTHUS, //man-eating horse
     YETI,
-    ZOMBIE,
+    Ziburinis, //lithuanian glowing skeleton
+    EMPTY,
     SIZE
   };
 
+  enum class Gender {
+    MALE,
+    FEMALE,
+    SIZE,
+  };
 
+  enum class Class {
+    FIGHTER,
+    MYSTIC,
+    SIZE,
+  };
+
+  enum class Alignment {
+    GOOD,
+    NEUTRAL,
+    EVIL,
+    SIZE,
+  };
 
   struct Stats {
     int srength = 10; // damage melee and ranged
@@ -63,7 +105,11 @@ namespace Units {
     //unit data to send
     int x = 6;
     int y = 6;
-    UnitType type = GOBLIN;
+    std::string name = "Default";
+    Species species = Species::goblin;
+    Gender gender = Gender::MALE;
+    Class unitClass = Class::FIGHTER;
+    Alignment alignment = Alignment::NEUTRAL;
 
     int vision = 6;
     int speed = 1;
@@ -84,11 +130,11 @@ namespace Units {
 
 
   std::string Send_Units();
-  void Init();
+  void Init(std::basic_string<char> characterCreate);
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
   int Get_Unit_Index(int x, int y);
   void Remove_Unit(int x, int y);
-  std::string Get_Unit_Char(UnitType type);
+  std::string Get_Unit_Char(Species species);
   void Update_UnitsString(int x, int y);
 }

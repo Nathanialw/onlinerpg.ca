@@ -44,7 +44,7 @@ namespace Units {
 
   void Remove_Unit(int x, int y) {
     Unit unit{};
-    unit.type = EMPTY;
+    unit.species = Species::EMPTY;
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
     emptyUnitSlots.push_back(index);
@@ -89,23 +89,33 @@ namespace Units {
     unitPositions.emplace(newPos, index);
   }
 
-  std::string unitChars[SIZE] = {"@",   " ",   "a",    "b",    "c",
-                                 "d",   "e",    "f",    "g",
-                                 "h",   "i",    "j",    "k",
-                                 "l",   "m",    "n",    "o",
-                                 "p",   "q",    "r",    "s",
-                                 "t",   "u",    "v",    "w",
-                                 "x",   "y",    "z"};
+  std::string unitChars[(int)Species::SIZE] = {"a",    "b",    "c",
+                                               "d",   "e",    "f",    "g",
+                                               "h",   "i",    "j",    "k",
+                                               "l",   "m",    "n",    "o",
+                                               "p",   "q",    "r",    "s",
+                                               "t",   "u",    "v",    "w",
+                                               "x",   "y",    "z",    "A",
+                                               "B",  "C",   "D",   "E",   "F",
+                                               "G",   "H",   "I",   "J",   "K",
+                                               "L",   "M",   "N",   "O",   "P",
+                                               "Q",   "R",   "S",   "T",   "U",
+                                               "V",   "W",   "X",   "Y",   "Z", " "};
 
-  std::string Get_Unit_Char(UnitType type) {
-    return unitChars[type];
+  std::string Get_Unit_Char(Species species) {
+    return unitChars[(int)species];
   }
 
-  void Add_Unit(int x, int y, UnitType type) {
+  void Add_Unit(int x, int y, const std::string &name, Gender gender, Species species, Class unitClass, Alignment alignment) {
     Unit unit{};
+    unit.name = name;
+    unit.gender = gender;
+    unit.species = species;
+    unit.unitClass = unitClass;
+    unit.alignment = alignment;
     unit.x = x;
     unit.y = y;
-    unit.type = type;
+
     if (emptyUnitSlots.empty()) {
       units.push_back(unit);
     } else {
@@ -124,7 +134,7 @@ namespace Units {
     } else {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
-      Add_Unit(x, y, GOBLIN);
+      Add_Unit(x, y, "Blargh", Gender::MALE, Species::goblin, Class::FIGHTER, Alignment::EVIL);
       return true;
     }
   }
@@ -141,17 +151,21 @@ namespace Units {
     return group;
   }
 
-  std::string Place_Entities_On_Map() {
+
+//  void Add_Unit(int x, int y, const std::string &name, Gender gender, Species species, Class unitClass, Alignment alignment) {
+
+  std::string Place_Entities_On_Map(std::basic_string<char> characterCreate) {
     std::string mapEntities = "2";
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
     // I need to send the char and the offset in the map g0317
-    Add_Unit(6, 6, PLAYER);
-    mapEntities += unitChars[PLAYER] + "0606";
+    auto length = characterCreate.size();
+    Add_Unit(6, 6, characterCreate.substr(0, length - 4), (Gender)std::stoi(&characterCreate[length]), (Species)std::stoi(&characterCreate[length]), (Class)std::stoi(&characterCreate[length]), (Alignment)std::stoi(&characterCreate[length]));
+    mapEntities += unitChars[(int)Species::human] + "0606";
 
     for (int i = 0; i < 5; ++i) {
       int numMonsters = rand() % 4;
-      mapEntities += Random_Entities(unitChars[GOBLIN].c_str(), numMonsters);
+      mapEntities += Random_Entities(unitChars[(int)Species::goblin].c_str(), numMonsters);
     }
     return mapEntities;
   }
@@ -163,11 +177,11 @@ namespace Units {
     unitsString.replace(2, 4, xStr + yStr);
   }
 
-  void Init() {
-    unitsString = Place_Entities_On_Map();
+  void Init(std::basic_string<char> characterCreate) {
+    unitsString = Place_Entities_On_Map(characterCreate);
 
     for (auto &unit : *Units::Get_Units()) {
-      Map::Set_Tile(unit.x, unit.y, unitChars[unit.type]);
+      Map::Set_Tile(unit.x, unit.y, unitChars[(int)unit.species]);
     }
   }
 

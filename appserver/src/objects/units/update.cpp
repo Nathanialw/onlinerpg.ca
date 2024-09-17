@@ -5,9 +5,7 @@
 #include "collision.h"
 #include "attack.h"
 #include "movement.h"
-#include "utils.h"
 #include "iostream"
-#include "string"
 
 namespace Update {
   void Update_Player(const char *direction) {
@@ -38,7 +36,7 @@ namespace Update {
       return;
     }
     // if the unit survives, return, else move to the cell
-    Map::Update(player.x, player.y, x, y, Get_Unit_Char(Units::PLAYER));
+    Map::Update(player.x, player.y, x, y, Get_Unit_Char(Units::Species::goblin));
     Movement::Move(x, y);
     Units::Update_UnitsString(x, y);
   }
