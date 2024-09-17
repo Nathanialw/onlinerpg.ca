@@ -80,6 +80,7 @@ namespace Network {
 
     Units::Init(msg->get_payload());
 
+    std::cout << "sending char stats back  to client" << std::endl;
     print_server.send(hdl, msg->get_payload(), websocketpp::frame::opcode::text);
 
     if (!Units::Get_Units()->empty()) {
