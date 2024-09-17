@@ -71,9 +71,9 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
     app.stage.addChild(panel);
 }
 
-function Draw_Sprite(x, y, w, h) {
+function Draw_Sprite(x, y, w, h, path) {
     console.log('Draw_Sprite');
-    let sprite = PIXI.Sprite.from('assets/graphics/ui/itsmars_Inventory.png');
+    let sprite = PIXI.Sprite.from(path);
     sprite.x = x;
     sprite.y = y;
     sprite.width = w;
@@ -199,7 +199,7 @@ export function Draw_UI() {
     Draw_Panel((viewportWidth + leftPanelWidth) * cellSize, 0, rightPanelWidth * cellSize, rightPanelHeight * cellSize, 0x300301);
     //left
     Draw_Panel(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, 0x100030);
-    Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize);
+    Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, 'assets/graphics/ui/itsmars_Inventory.png');
     //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, 0x000050);
     //viewport
