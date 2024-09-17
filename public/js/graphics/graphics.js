@@ -77,9 +77,8 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
     app.stage.addChild(panel);
 }
 
-function Draw_Sprite(x, y, w, h, path) {
+function Draw_Sprite(x, y, w, h, sprite) {
     console.log('Draw_Sprite');
-    let sprite = PIXI.Sprite.from(path);
     sprite.x = x;
     sprite.y = y;
     sprite.width = w;
