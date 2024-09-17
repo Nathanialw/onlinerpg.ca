@@ -79,9 +79,11 @@ function Draw_Sprite(x, y, w, h) {
     sprite.width = w;
     sprite.height = h;
     app.stage.addChild(sprite);
+
+    sprite.texture.baseTexture.on('error', (error) => {
+        console.error('Error loading texture:', error);
+    });
 }
-
-
 
 // function Draw_Map_Border() {
 //     let mapBorder = new PIXI.Graphics();
