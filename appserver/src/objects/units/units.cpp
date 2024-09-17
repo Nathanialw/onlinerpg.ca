@@ -164,13 +164,13 @@ namespace Units {
     std::cout << "Crearacter create: " << characterCreate << std::endl;
     std::string name = characterCreate.substr(1, length - 5);
     std::cout << "Name: " << name << std::endl;
-    std::string genderStr = characterCreate.substr(length - 5, 1);
+    std::string genderStr = characterCreate.substr(length - 4, 1);
     std::cout << "Gender: " << genderStr << std::endl;
-    std::string speciesStr = characterCreate.substr(length - 4, 1);
+    std::string speciesStr = characterCreate.substr(length - 3, 1);
     std::cout << "Species: " << speciesStr << std::endl;
-    std::string classStr = characterCreate.substr(length - 3, 1);
+    std::string classStr = characterCreate.substr(length - 2, 1);
     std::cout << "Class: " << classStr << std::endl;
-    std::string alignmentStr = characterCreate.substr(length - 2, 1);
+    std::string alignmentStr = characterCreate.substr(length - 1, 1);
     std::cout << "Alignment: " << alignmentStr << std::endl;
 
 
