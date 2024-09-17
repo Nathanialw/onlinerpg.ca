@@ -30,7 +30,7 @@ function Update_Map() {
         let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
         let updatedMap = "";
 
-        for (let j = 0; j < mapString.length; j + mapSize) {
+        for (let j = 0; j < mapSize; j++) {
             let start = j * mapSize;
             let end = start + mapSize;
             let mapLine = mapString.substring(start, end);
@@ -49,7 +49,6 @@ function Draw_Map() {
     //update the section of the map that the player is in
     if (Update_Map()) {
         for (let i = 0; i < minimap.length; i+16) {
-            // render lines of the map
             let mapLine = minimap.substring(i * 16, 16);
             minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
         }
