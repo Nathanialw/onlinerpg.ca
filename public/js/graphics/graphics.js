@@ -18,6 +18,7 @@ export async function Create_Canvas() {
 }
 
 export let cellSize = 24;
+export let minimapCellSize = 12;
 
 let grey50 = 0xf8fafc;
 let grey100 = 0xf1f5f9;
@@ -181,7 +182,7 @@ export function Update(){
 
 export function Create_Map_Line(char, indexHeight, visionWidth) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
-    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'});
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
@@ -191,9 +192,9 @@ export function Create_Map_Line(char, indexHeight, visionWidth) {
 
 export function Create_MiniMap_Line(char, indexHeight) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
-    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: 12, fill : grey50, align : 'center'});
-    object.x = (leftPanelWidth) * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (indexHeight + leftPanelHeight) * cellSize;  // Assuming each cell is 24 pixels tall
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'});
+    object.x = (leftPanelWidth) * minimapCellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (indexHeight + leftPanelHeight) * minimapCellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
