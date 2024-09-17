@@ -64,11 +64,11 @@ function Get_ViewPort_Origin_y() {
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');
-    let topPanel = new PIXI.G
-    vision.beginFill(backGroundColor);  
-    topPanel.drawRect(x, y, w, h);
-    topPanel.endFill();
-    app.stage.addChild(topPanel);
+    let panel = new PIXI.G
+    panel.beginFill(backGroundColor);  
+    panel.drawRect(x, y, w, h);
+    panel.endFill();
+    app.stage.addChild(panel);
 }
 
 function Draw_Sprite(x, y, w, h) {
