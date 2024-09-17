@@ -21,7 +21,7 @@ namespace Update {
     {'d', {1,0}}
   };
 
-  void Update_Player(const char *direction) {
+  std::string Update_Player(const char *direction) {
     Move move;
     move = updatePosition[*direction];
 
@@ -32,17 +32,18 @@ namespace Update {
     // collision
     if (Collision::Wall_Collision(player.x, player.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
-      return;
+      return "c";
     }
     // if the nearby cell is an enemy, attack
     if (Attack::Melee(player.x, player.y, move.x, move.y)) {
       std::cout << "attack goblin" << std::endl;
-      return;
+      return "m";
     }
     // if the unit survives, return, else move to the cell
     Map::Update(player.x, player.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
+    return direction;
   }
 
   void Update_Units(const char *direction) {

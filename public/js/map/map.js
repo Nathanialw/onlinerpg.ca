@@ -33,7 +33,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
         rebuiltMinimap = minimap + update;
         minimap = rebuiltMinimap;
 
-        if ((y + 6) > maxY) {
+        if ((y + 6 + 1) > maxY) {
             y++;
             maxY++;
         }        
@@ -52,6 +52,12 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             x++;
             maxX++;
         }
+    }
+    else if (direction == 'm') {
+        console.log("melee attacking target");
+    }
+    else if (direction == 'c') {
+        console.log("wall collision");
     }
     //don't clear the minimap, just add to it and update the display
     //need direction to know where to add the new map    

@@ -87,9 +87,9 @@ namespace Network {
     std::string response;
     //move player
     const char* direction = &msg->get_payload()[1];
-    Update::Update_Units(direction);
+    auto action = Update::Update_Player(direction);
     //send map
-    print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), direction), websocketpp::frame::opcode::text);
+    print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), action), websocketpp::frame::opcode::text);
 
     response = "0I hear you pressing: ";
     response.append(&msg->get_payload()[1]);
