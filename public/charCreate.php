@@ -30,7 +30,7 @@
             //hill= +constitution +dexterity
             //deep= +constitution +intelligence
     //get class
-        //fighter/mage
+        //fighter/mystic
     //alignment
         //good/neutral/evil
 
@@ -38,9 +38,9 @@
         //fighter+neutral= barbarian -> berserker -> warlord
         //fighter+evil = death knight -> dark lord -> demon lord
 
-        //mage+good = priest -> bishop -> cardinal 
-        //mage+neutral= wizard -> archmage -> sorcerer
-        //mage+evil= warlock -> necromancer -> lich 
+        //mystic+good = priest -> bishop -> cardinal 
+        //mystic+neutral= wizard -> archmage -> sorcerer
+        //mystic+evil= warlock -> necromancer -> lich 
  -->
 
  <div id="gameCanvas"></div>
@@ -70,7 +70,7 @@
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="class" name="class" required>
                 <option value="0">Fighter</option>
-                <option value="1">Mage</option>
+                <option value="1">Mystic</option>
             </select>
         </span>
         <br>

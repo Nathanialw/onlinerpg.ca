@@ -28,7 +28,7 @@ namespace Units {
     IMP,
     JINN,
     KOBOLD,
-    LEVIATHAN,
+    LAMIA,
     MINOTAUR,
     NAGA,
     ORC,
