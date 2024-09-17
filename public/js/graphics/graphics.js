@@ -73,7 +73,7 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
 
 function Draw_Sprite(x, y, w, h) {
     console.log('Draw_Sprite');
-    let sprite = PIXI.Sprite.from('public/assets/graphics/ui/itsmars_Inventory.png');
+    let sprite = PIXI.Sprite.from('../../assets/graphics/ui/itsmars_Inventory.png');
     sprite.x = x;
     sprite.y = y;
     sprite.width = w;
