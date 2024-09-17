@@ -10,7 +10,19 @@ let mapString = "";
 let minimapDisplay = [];
 let minimap = "";
 
-function Update_Map() {
+
+
+//instead of overriding the map, I should just update the map
+
+function Rebuid_Map(updatedMap, direction) {
+    let rebuiltMinimap = minimap;
+    minimap = updatedMap;
+    
+    //don't clear the minimap, just add to it and update the display
+    //need direction to know where to add the new map    
+}
+
+function Update_Map(direction) {
     if (mapString.length > 0) {
         let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
         let updatedMap = "";
@@ -22,17 +34,17 @@ function Update_Map() {
             console.log(mapLine);
             updatedMap += mapLine;
         }
-        minimap = updatedMap;
+        Rebuid_Map(updatedMap, direction);
         console.log(minimap);
         return true;
     }
     return false;
 }
 
-function Draw_Map() {
+function Draw_Map(visionWidth, direction) {
     //get postion of player
     //update the section of the map that the player is in
-    let width = 13;
+    let width = visionWidth;
     if (Update_Map()) {
         for (let i = 0; i < width; i++) {
             let start = i * width;
@@ -53,13 +65,15 @@ export function Make_Map(serverMap, visionWidth) {
     Draw_UI(characterInfo);
     Draw_Vision_Background(visionWidth);
     mapString = "";
+    let direction = serverMap[0];
+    serverMap = serverMap.substring(1)
     for (let i = 0; i < visionWidth; i++) {
         // render lines of the map
         let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39
         mapString += mapLine;
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
-    Draw_Map();
+    Draw_Map(visionWidth, direction);
 }
 
 export function Map(data) {

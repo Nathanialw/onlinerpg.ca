@@ -80,7 +80,7 @@ namespace Network {
     Units::Init(msg->get_payload());
 
     if (!Units::Get_Units()->empty()) {
-      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
+      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "q"), websocketpp::frame::opcode::text);
     }
   }
   void Update(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
@@ -89,7 +89,7 @@ namespace Network {
     const char* direction = &msg->get_payload()[1];
     Update::Update_Units(direction);
     //send map
-    print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
+    print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), direction), websocketpp::frame::opcode::text);
 
     response = "0I hear you pressing: ";
     response.append(&msg->get_payload()[1]);
@@ -105,28 +105,32 @@ namespace Network {
       std::cout << "on_message called with hdl: " << hdl.lock().get()
               << " and message: " << msg->get_payload()
               << std::endl;
-
      //keep websocket alive
       std::string response;
     if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.
+      std::cout << "1" << msg->get_payload() << std::endl;
+
       Update(hdl, msg);
     }
     else if (msg->get_payload()[0] == '2') {
+      std::cout << "2" << msg->get_payload() << std::endl;
       //unused
       response = "0 response \"2\" is unused, message was: ";
       response.append(&msg->get_payload()[1]);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
     else if (msg->get_payload()[0] == '3') {
+      std::cout << "3" << msg->get_payload() << std::endl;
       Start(hdl, msg);
     }
     else if (msg->get_payload()[0] == '4') {
-      std::cout << msg->get_payload() << std::endl;
+      std::cout << "4" << msg->get_payload() << std::endl;
       if (!Units::Get_Units()->empty()) {
-        print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
+        print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "1"), websocketpp::frame::opcode::text);
       }
     }
     else if (msg->get_payload()[0] == '5') {
+      std::cout << "5" << msg->get_payload() << std::endl;
     }
 
     else {
