@@ -72,22 +72,14 @@ function Get_ViewPort_Origin_y() {
 }
 
 function Get_Minimap_Origin_x() {
-    return (leftPanelWidth) * cellSize;
+    return leftPanelWidth * cellSize;
 }
 
 function Get_Minimap_Origin_y() {
-    return (indexHeight + leftPanelHeight) * cellSize;
+    return leftPanelHeight * cellSize;
 }
 
 let inventory;
-
-// function Draw_Game_Window() {
-//     let gameWindow = new PIXI.Graphics();
-//     gameWindow.beginFill(0x024030);
-//     gameWindow.drawRect(0, gameWindowOrigin_y, Set_Window_Width(), Set_Window_Height());
-//     gameWindow.endFill();
-//     app.stage.addChild(gameWindow);
-// }
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');
@@ -120,22 +112,6 @@ function Draw_Sprite(x, y, w, h, sprite) {
 //     app.stage.addChild(mapBorder);
 // }
 
-// function Draw_Player_Stats() {
-//     let playerStats = new PIXI.Graphics();
-//     playerStats.beginFill(0x300400);
-//     playerStats.drawRect(0, topPanelHeight * cellSize, leftPanelWidth * cellSize, viewportHeight * cellSize);
-//     playerStats.endFill();
-//     app.stage.addChild(playerStats);
-// }
-
-// function Draw_Player_Stats_Border() {
-//     let playerStatsBorder = new PIXI.Graphics();
-//     playerStatsBorder.lineStyle(1, 0xffffff, 1);
-//     playerStatsBorder.drawRect(0, topPanelHeight * cellSize, leftPanelWidth * cellSize, viewportHeight * cellSize);
-//     app.stage.addChild(playerStatsBorder);
-// }
-
-
 export function Draw_Title_Screen() {
     let title = new PIXI.Text("Online RPG", {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : 0xff1010, align : 'center'});
     title.x = (Get_ViewPort_Origin_x() * cellSize) + Set_Map_Within_Viewport(11) * cellSize;  // Assuming each cell is 24 pixels tall
@@ -146,7 +122,6 @@ export function Draw_Title_Screen() {
     subtitle.y = (Get_ViewPort_Origin_y() * cellSize) + 300;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(subtitle);
 }
-
 
 function createTextWithBackground(textString, style, backgroundColor) {
     // Create the text object
@@ -196,7 +171,6 @@ export function Create_Map_Line(char, indexHeight, visionWidth) {
     app.stage.addChild(object);
     return object;
 }
-
 
 export function Create_MiniMap_Line(char, indexHeight) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
