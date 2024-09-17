@@ -63,7 +63,7 @@ export function Make_Map(serverMap, visionWidth) {
         mapString += mapLine;
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
-    Draw_Map();
+    // Draw_Map();
 }
 
 export function Map(data) {
