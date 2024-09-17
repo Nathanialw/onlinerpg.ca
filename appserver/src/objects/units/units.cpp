@@ -160,7 +160,17 @@ namespace Units {
     // set entities to be in the center of the square
     // I need to send the char and the offset in the map g0317
     auto length = characterCreate.size();
-    Add_Unit(6, 6, characterCreate.substr(0, length - 4), (Gender)std::stoi(&characterCreate[length]), (Species)std::stoi(&characterCreate[length]), (Class)std::stoi(&characterCreate[length]), (Alignment)std::stoi(&characterCreate[length]));
+
+    std::cout << "Crearacter create: " << characterCreate << std::endl;
+    std::string name = characterCreate.substr(0, length - 5);
+    Gender gender = (Gender)std::stoi(characterCreate.substr(length - 5, length - 4));
+    Species species = (Species)std::stoi(characterCreate.substr(length - 4, length - 3));
+    Class unitClass = (Class)std::stoi(characterCreate.substr(length - 3, length - 2));
+    Alignment alignment = (Alignment)std::stoi(characterCreate.substr(length - 2, length - 1));
+
+    Add_Unit(6, 6, name, gender, species, unitClass, alignment);
+    std::cout << "Character created: " << characterCreate.substr(0, length - 4) << " " << std::stoi(&characterCreate[length-4]) << " " << std::stoi(&characterCreate[length-3]) << " " <<  std::stoi(&characterCreate[length-2]) << " " << std::stoi(&characterCreate[length-1]) << std::endl;
+
     mapEntities += unitChars[(int)Species::human] + "0606";
 
     for (int i = 0; i < 5; ++i) {
