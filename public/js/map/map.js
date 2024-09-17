@@ -55,6 +55,7 @@ export function Make_Map(serverMap, visionWidth) {
         let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
+    Update_Map();
 }
 
 export function Map(data) {
