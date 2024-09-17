@@ -1,12 +1,5 @@
 'use strict'
 
-PIXI.Loader.shared
-    .add('inventory', 'assets/graphics/ui/itsmars_Inventory.png')
-    .load((loader, resources) => {
-        // Asset is loaded and can be used
-        Init_Graphics();
-    });
-
 
 export const app = new PIXI.Application();
 export let cellSize = 24;
@@ -63,9 +56,9 @@ function Get_ViewPort_Origin_y() {
 
 let inventory;
 
-export function Init_Grpahics() {
-    inventory = PIXI.Sprite.from(resources.inventory.texture);
-
+async function Init_Grpahics() {
+    const texture = await Assets.load('assets/graphics/ui/itsmars_Inventory.png');
+    inventory = new Sprite(texture);
 }
 
 // function Draw_Game_Window() {
@@ -134,6 +127,7 @@ export function Draw_Title_Screen() {
 
 export async function Create_Canvas() {
     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
+    Init_Grpahics();
     app.canvas.x = 0;
     app.canvas.y = 0;
     document.getElementById('gameCanvas').appendChild(app.canvas);

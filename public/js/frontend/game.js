@@ -1,9 +1,7 @@
 import { Init } from "../sound/sound.js";
-import { Init_Grpahics } from "../graphics/graphics.js";
 import { Draw_Title_Screen, Create_Canvas } from '../graphics/graphics.js';
 
 Init();
-Init_Grpahics();
 
 function Splash_Screen() {
     Create_Canvas();
