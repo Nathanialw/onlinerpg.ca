@@ -163,10 +163,21 @@ namespace Units {
 
     std::cout << "Crearacter create: " << characterCreate << std::endl;
     std::string name = characterCreate.substr(1, length - 5);
-    Gender gender = (Gender)std::stoi(characterCreate.substr(length - 5, 1));
-    Species species = (Species)std::stoi(characterCreate.substr(length - 4, 1));
-    Class unitClass = (Class)std::stoi(characterCreate.substr(length - 3, 1));
-    Alignment alignment = (Alignment)std::stoi(characterCreate.substr(length - 2, 1));
+    std::cout << "Name: " << name << std::endl;
+    std::string genderStr = characterCreate.substr(length - 5, 1);
+    std::cout << "Gender: " << genderStr << std::endl;
+    std::string speciesStr = characterCreate.substr(length - 4, 1);
+    std::cout << "Species: " << speciesStr << std::endl;
+    std::string classStr = characterCreate.substr(length - 3, 1);
+    std::cout << "Class: " << classStr << std::endl;
+    std::string alignmentStr = characterCreate.substr(length - 2, 1);
+    std::cout << "Alignment: " << alignmentStr << std::endl;
+
+
+    Gender gender = (Gender)std::stoi(genderStr);
+    Species species = (Species)std::stoi(speciesStr);
+    Class unitClass = (Class)std::stoi(classStr);
+    Alignment alignment = (Alignment)std::stoi(alignmentStr);
 
     Add_Unit(6, 6, name, gender, species, unitClass, alignment);
 
