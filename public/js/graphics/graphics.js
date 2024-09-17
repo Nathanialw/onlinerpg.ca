@@ -4,7 +4,7 @@
 export const app = new PIXI.Application();
 
 async function Init_Grpahics() {
-    const texture = await Assets.load('assets/graphics/ui/itsmars_Inventory.png');
+    const texture = await PIXI.Assets.load('assets/graphics/ui/itsmars_Inventory.png');
     inventory = new Sprite(texture);
 }
 
