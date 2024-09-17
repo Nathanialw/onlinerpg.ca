@@ -61,8 +61,8 @@
         <label class="form-label" for="race">Race:</label>
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="race" name="race" required>
-                <option value="0">Human</option>
-                <option value="1">Elf</option>
+                <option value="7">Human</option>
+                <option value="4">Elf</option>
             </select>
         </span>
         <br>
