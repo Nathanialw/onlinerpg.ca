@@ -75,6 +75,37 @@ namespace Network {
     return true;
   }
 
+  void Start(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
+    Map::Init();
+    std::basic_string<char> characterCreate = msg->get_payload();
+    Units::Init(characterCreate);
+    std::cout << Units::Get_Units()->size() << std::endl;
+    std::string response = characterCreate;
+    print_server.send(hdl, response, websocketpp::frame::opcode::text);
+
+    if (!Units::Get_Units()->empty()) {
+      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()),websocketpp::frame::opcode::text);
+      //        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
+    } else {
+      response = "no player found";
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+    }
+  }
+  void Update(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
+    std::string response;
+    //move player
+    const char* direction = &msg->get_payload()[1];
+    Update::Update_Units(direction);
+    //Map::Send();
+    print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
+    //Units::Send_Units();
+    //      print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
+
+    response = "0I hear you pressing: ";
+    response.append(&msg->get_payload()[1]);
+    print_server.send(hdl, response, websocketpp::frame::opcode::text);
+  }
+
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
       //I will need to send this somewhere to get parsed and decide what the response should be
       std::cout << "on_message called with hdl: " << hdl.lock().get()
@@ -84,36 +115,10 @@ namespace Network {
      //keep websocket alive
       std::string response;
     if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.
-      //move player
-      const char* direction = &msg->get_payload()[1];
-      Update::Update_Units(direction);
-      //Map::Send();
-      print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()), websocketpp::frame::opcode::text);
-      //Units::Send_Units();
-//      print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
-
-      response = "0I hear you pressing: ";
-      response.append(&msg->get_payload()[1]);
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+      Update(hdl, msg);
     }
     else if (msg->get_payload()[0] == '2') {
-      std::cout << msg->get_payload() << std::endl;
-      response = "0Character created: ";
-      response.append(&msg->get_payload()[1]);
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
-
-      Map::Init();
-      std::basic_string<char> characterCreate = msg->get_payload();
-      Units::Init(characterCreate);
-      //    print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      std::cout << Units::Get_Units()->size() << std::endl;
-      if (!Units::Get_Units()->empty()) {
-        print_server.send(hdl, Map::SendMapSegment(Units::Get_Player()),websocketpp::frame::opcode::text);
-//        print_server.send(hdl, Units::Send_Units(),websocketpp::frame::opcode::text);
-      } else {
-        response = "no player found";
-        print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      }
+      Start(hdl, msg);
     }
     else if (msg->get_payload()[0] == '3') {
       std::cout << msg->get_payload() << std::endl;

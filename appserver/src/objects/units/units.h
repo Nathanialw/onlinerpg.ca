@@ -15,32 +15,32 @@
 namespace Units {
 
   enum class Species {
-    alpaca,
-    basilisk,
-    centaur,
-    dwarf,
-    elf,
-    fox,
-    goblin,
-    human,
-    iguana,
-    jackal,
-    kobold,
-    lamia,
-    minotaur,
-    nymph,
-    orc,
-    pixie,
-    qat,
-    rat,
-    satyr,
-    treant,
-    unicorn,
-    valkyrie,
-    warg,
-    xana,
-    yale,
-    zombie,
+    ALPACA,
+    BASILISK,
+    CENTAUR,
+    DWARF,
+    ELF,
+    FOX,
+    GOBLIN,
+    HUMAN,
+    IGUANA,
+    JACKAL,
+    KOBOLD,
+    LAMIA,
+    MINOTAUR,
+    NYMPH,
+    ORC,
+    PIXIE,
+    QAT,
+    RAT,
+    SATYR,
+    TREANT,
+    UNICORN,
+    VALKYRIE,
+    WARG,
+    XANA,
+    YALE,
+    ZOMBIE,
     ANGEL,
     BYAKHEE,
     CHIMERA,
@@ -67,6 +67,7 @@ namespace Units {
     XANTHUS, //man-eating horse
     YETI,
     Ziburinis, //lithuanian glowing skeleton
+
     EMPTY,
     SIZE
   };
@@ -99,6 +100,13 @@ namespace Units {
     int charisma = 10; // social interactions
   };
 
+  struct Def {
+    Species species = Species::GOBLIN;
+    Gender gender = Gender::MALE;
+    Class unitClass = Class::FIGHTER;
+    Alignment alignment = Alignment::NEUTRAL;
+  };
+
   struct Unit {
     Stats stats;
 
@@ -106,10 +114,7 @@ namespace Units {
     int x = 6;
     int y = 6;
     std::string name = "Default";
-    Species species = Species::goblin;
-    Gender gender = Gender::MALE;
-    Class unitClass = Class::FIGHTER;
-    Alignment alignment = Alignment::NEUTRAL;
+    Def def;
 
     int vision = 6;
     int speed = 1;
@@ -137,4 +142,5 @@ namespace Units {
   void Remove_Unit(int x, int y);
   std::string Get_Unit_Char(Species species);
   void Update_UnitsString(int x, int y);
+  std::string GetCharStats(std::string characterCreate);
 }

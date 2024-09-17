@@ -130,6 +130,12 @@ export function Make_Map(serverMap, visionWidth) {
     }
 }
 
+export function Map(data) {
+    let visionWidth = parseInt(data.substring(0, 2), 10);
+    let serverMap = data.substring(2);
+    Make_Map(serverMap, visionWidth);
+}
+
 export function Update_Map(serverMap, mapWidth) {
     // for (let i = 0; i < mapWidth; i++) {
     //     let object = serverMap.substring((i * mapWidth), ((i * mapWidth) + mapWidth));

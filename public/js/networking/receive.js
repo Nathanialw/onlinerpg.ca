@@ -1,23 +1,19 @@
 'use strict'
 
-import {Make_Map, Populate_Map} from '../map/map.js';
+import {Map, Populate_Map} from '../map/map.js';
 import {app} from '../graphics/graphics.js';
 import {socket} from './socket.js';
+import {UpdatePlayerInfo} from '../units/unitdef.js';
 
 function Message(data) {
     console.log(data)
-}
-
-function Map(data) {
-    let visionWidth = parseInt(data.substring(0, 2), 10);
-    let serverMap = data.substring(2);
-    Make_Map(serverMap, visionWidth);
 }
 
 let Update = {
     0: Message,
     1: Map,
     2: Populate_Map,
+    3: UpdatePlayerInfo,
 }
 
 socket().websocket.onmessage = function(event) {    

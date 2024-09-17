@@ -36,7 +36,7 @@ namespace Update {
       return;
     }
     // if the unit survives, return, else move to the cell
-    Map::Update(player.x, player.y, x, y, Units::Get_Unit_Char(player.species));
+    Map::Update(player.x, player.y, x, y, Units::Get_Unit_Char(player.def.species));
     Movement::Move(x, y);
     Units::Update_UnitsString(x, y);
   }

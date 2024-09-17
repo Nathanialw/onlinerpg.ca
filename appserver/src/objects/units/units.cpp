@@ -44,7 +44,7 @@ namespace Units {
 
   void Remove_Unit(int x, int y) {
     Unit unit{};
-    unit.species = Species::EMPTY;
+    unit.def.species = Species::EMPTY;
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
     emptyUnitSlots.push_back(index);
@@ -109,10 +109,10 @@ namespace Units {
   void Add_Unit(int x, int y, const std::string &name, Gender gender, Species species, Class unitClass, Alignment alignment) {
     Unit unit{};
     unit.name = name;
-    unit.gender = gender;
-    unit.species = species;
-    unit.unitClass = unitClass;
-    unit.alignment = alignment;
+    unit.def.gender = gender;
+    unit.def.species = species;
+    unit.def.unitClass = unitClass;
+    unit.def.alignment = alignment;
     unit.x = x;
     unit.y = y;
 
@@ -134,7 +134,7 @@ namespace Units {
     } else {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
-      Add_Unit(x, y, "Blargh", Gender::MALE, Species::goblin, Class::FIGHTER, Alignment::EVIL);
+      Add_Unit(x, y, "Blargh", Gender::MALE, Species::GOBLIN, Class::FIGHTER, Alignment::EVIL);
       return true;
     }
   }
@@ -181,11 +181,11 @@ namespace Units {
 
     Add_Unit(6, 6, name, gender, species, unitClass, alignment);
 
-    mapEntities += unitChars[(int)Species::human] + "0606";
+    mapEntities += unitChars[(int)unitClass] + "0606";
 
     for (int i = 0; i < 5; ++i) {
       int numMonsters = rand() % 4;
-      mapEntities += Random_Entities(unitChars[(int)Species::goblin].c_str(), numMonsters);
+      mapEntities += Random_Entities(unitChars[(int)Species::GOBLIN].c_str(), numMonsters);
     }
     return mapEntities;
   }
@@ -201,10 +201,14 @@ namespace Units {
     unitsString = Place_Entities_On_Map(characterCreate);
 
     for (auto &unit : *Units::Get_Units()) {
-      Map::Set_Tile(unit.x, unit.y, unitChars[(int)unit.species]);
+      Map::Set_Tile(unit.x, unit.y, unitChars[(int)unit.def.species]);
     }
   }
 
-  std::string Send_Units() { return unitsString; }
+  std::string GetCharStats(std::string characterCreate) {
+    std::string name = characterCreate.substr(1, characterCreate.size() - 5);
+    std::string genderStr = characterCreate.substr(characterCreate.size() - 4, 1);
+    return "2" + name + " " + genderStr;
+  }
 
 }
