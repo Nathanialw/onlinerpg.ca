@@ -1,5 +1,4 @@
 'use strict'
-// import * as PIXI from '../libs/pixi.js';
 
 export const app = new PIXI.Application();
 
