@@ -69,6 +69,17 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
     app.stage.addChild(topPanel);
 }
 
+function Draw_Sprite(x, y, w, h) {
+    let sprite = PIXI.Sprite.from('assets/graphics/ui/itsmars_Inventory.png');
+    sprite.x = x;
+    sprite.y = y;
+    sprite.width = w;
+    sprite.height = h;
+    app.stage.addChild(sprite);
+}
+
+
+
 // function Draw_Map_Border() {
 //     let mapBorder = new PIXI.Graphics();
 //     mapBorder.lineStyle(1, 0xffffff, 1);
@@ -183,12 +194,17 @@ function Set_Player_Within_Viewport() {
 }
 
 export function Draw_UI() {
+    //top
     Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, 0x0f0f0f)
+    //right
     Draw_Panel((viewportWidth + leftPanelWidth) * cellSize, 0, rightPanelWidth * cellSize, rightPanelHeight * cellSize, 0x300301);
+    //left
     Draw_Panel(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, 0x100030);
+    Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize);
+    //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, 0x000050);
+    //viewport
     Draw_Panel(leftPanelWidth * cellSize, (topPanelHeight * cellSize), viewportWidth * cellSize, viewportHeight * cellSize, black);
-    // Draw_Map();
     // Draw_Map_Border();
     // Draw_Player_Stats();
     // Draw_Player_Stats_Border();
