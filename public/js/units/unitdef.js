@@ -1,6 +1,6 @@
 
 let Gender = ["Male", "Female"];
-let Class = ["Fighter", "Mystic"];
+let UnitClass = ["Fighter", "Mystic"];
 let Alignment = ["Good", "Neutral", "Evil"];
 let Species = [
     "Alpaca",
@@ -72,19 +72,22 @@ export function UpdatePlayerInfo(characterCreate) {
 
     let name = characterCreate.substring(4, length - 4);
     console.log(name)
-    let gender = parseInt(characterCreate.charAt(length-2), 10);
+    let gender = parseInt(characterCreate.charAt(length-4), 10);
     console.log(gender);
-    let species = parseInt(characterCreate.charAt(length-1), 10);
+    let species = parseInt(characterCreate.charAt(length-3), 10);
     console.log(species);
-    let unitClass = parseInt(characterCreate.charAt(length), 10);
+    let unitClass = parseInt(characterCreate.charAt(length-2), 10);
     console.log(unitClass);
     let alignment = parseInt(characterCreate.charAt(length-1), 10);
     console.log(alignment);
 
+    console.log("test0: ", parseInt(characterCreate.charAt(length), 10));
+    console.log("test+1: ", parseInt(characterCreate.charAt(length+1), 10));
+
     characterInfo.Name = name;
     characterInfo.Gender = Gender[gender];
     characterInfo.Species = Species[species];
-    characterInfo.Class = Class[unitClass]
+    characterInfo.Class = UnitClass[unitClass]
     characterInfo.Alignment = Alignment[alignment];
         
     //h
