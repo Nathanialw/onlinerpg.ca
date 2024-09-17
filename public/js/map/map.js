@@ -26,28 +26,36 @@ d        j     d\
          j      ";
 
 function Update_Map() {
-    let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
-    let updatedMap = '';
+    if (mapString.length > 0) {
+        let mapSize = Math.sqrt(mapString.length) //this only really needs to updated when the vision is updated
+        let updatedMap = "";
 
-    for (let j = 0; j < mapSize; j + mapSize) {
-        let start = j * mapSize;
-        let end = start + mapSize;
-        let mapLine = mapString.substring(start, end);
-        updatedMap += mapLine;
+        for (let j = 0; j < mapSize; j + mapSize) {
+            let start = j * mapSize;
+            let end = start + mapSize;
+            let mapLine = mapString.substring(start, end);
+            console.log(mapLine);
+            updatedMap += mapLine;
+        }
+        minimap = updatedMap;
+        console.log(minimap);
+        return true;
     }
-    minimap = updatedMap;
-    console.log(minimap);
+    return false;
 }
 
 function Draw_Map() {
     //get postion of player
     //update the section of the map that the player is in
-    Update_Map()
-
-    for (let i = 0; i < minimap.length; i+16) {
-        // render lines of the map
-        let mapLine = minimap.substring(i * 16, 16);
-        minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
+    if (Update_Map()) {
+        for (let i = 0; i < minimap.length; i+16) {
+            // render lines of the map
+            let mapLine = minimap.substring(i * 16, 16);
+            minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
+        }
+    }
+    else {
+        console.log("Map not updated");
     }
 }   
 
