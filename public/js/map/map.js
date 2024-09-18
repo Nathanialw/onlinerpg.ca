@@ -87,7 +87,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
                 let insertPos = mapWidth * (i + 1);
                 let insertEnd = insertPos + mapWidth;
                 let newMapLine = rebuiltMinimap.substring(insertPos, insertEnd)
-
+                newMapLine += mapLine;
                 minimapDisplay[i] = Create_MiniMap_Line(newMapLine, i);
             }
             maxX++;
