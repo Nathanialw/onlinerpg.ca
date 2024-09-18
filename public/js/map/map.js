@@ -83,9 +83,12 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
                 let start = (i * visionWidth) + visionWidth - 1;
                 let end = start + visionWidth;
                 let mapLine = updatedMap.substring(start, end);
+                console.log(mapLine);
 
-                let insertPos = mapWidth * (i + 1);
+                let insertPos = mapWidth * i;
                 let insertEnd = insertPos + mapWidth;
+                console.log(insertPos, insertEnd);
+                
                 let newMapLine = rebuiltMinimap.substring(insertPos, insertEnd)
                 newMapLine += mapLine;
                 minimapDisplay[i] = Create_MiniMap_Line(newMapLine, i);
