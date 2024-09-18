@@ -23,11 +23,13 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     let rebuiltMinimap = minimap;
     if (direction == 'w') {
 
-
         
         y--;
         if ((y + 6 + 1) < maxY) {
-            minY--;
+            //add new line to the top of the map
+            let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
+            rebuiltMinimap = update + minimap;
+            minimap = rebuiltMinimap;
             maxY++;
         }        
     }
