@@ -82,7 +82,8 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             for (let i = 0; i < height; i++) {
                 let start = (i * visionWidth) + visionWidth - 1;
                 let end = start + 1;
-                let mapLine = updatedMap.substring(start, end);
+                // let mapLine = updatedMap.substring(start, end);
+                let mapLine = "M";
                 console.log(mapLine);
 
                 let insertPos = mapWidth * i;
