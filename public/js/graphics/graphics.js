@@ -18,7 +18,7 @@ export async function Create_Canvas() {
 }
 
 export let cellSize = 24;
-export let minimapCellSize = 6;
+export let minimapCellSize = 12;
 
 let grey50 = 0xf8fafc;
 let grey100 = 0xf1f5f9;
