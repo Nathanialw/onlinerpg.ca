@@ -16,7 +16,7 @@ let x = 6;
 let minX = 13;
 let maxX = 13;
 let y = 6;
-let minY = 13;
+let minY = 0;
 let maxY = 13;
 
 function Rebuid_Map(visionWidth, updatedMap, direction) {
@@ -25,17 +25,18 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
 
         
         y--;
-        if ((y + 6 + 1) < maxY) {
+        if ((y - 6) < minY) {
             //add new line to the top of the map
-            let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
+            let update = updatedMap.substring(0, visionWidth);
             rebuiltMinimap = update + minimap;
             minimap = rebuiltMinimap;
+            minY--;
             maxY++;
         }        
     }
     else if (direction == 's') {
         y++;
-        if ((y + 6 + 1) > maxY) {
+        if ((y + 13 + 1) > maxY) {
             //add new line to the bottom of the map
             let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
             rebuiltMinimap = minimap + update;
