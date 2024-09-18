@@ -76,7 +76,7 @@ function Get_Minimap_Origin_x() {
 }
 
 function Get_Minimap_Origin_y() {
-    return leftPanelHeight * cellSize;
+    return (leftPanelHeight + 7) * cellSize;
 }
 
 let inventory;
