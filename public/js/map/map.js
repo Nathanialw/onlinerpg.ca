@@ -76,10 +76,10 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     else if (direction == 'd') {
 
         x++;
-        if ((x + 6) > maxX) {
-            let mapWidth = (x + 6 + 1);
+        let mapWidth = (x + 6 + 1);
+        if (mapWidth > maxX) {
             
-            for (let i = 0; i < height; i++) {
+            for (let i = 0; i < width; i++) {
                 let start = (i * visionWidth) + visionWidth - 1;
                 let end = start + 1;
                 // let mapLine = updatedMap.substring(start, end);
