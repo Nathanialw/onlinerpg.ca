@@ -18,6 +18,7 @@ let maxX = 13;
 let y = 6;
 let minY = 0;
 let maxY = 13;
+let height = 13;
 
 function Rebuid_Map(visionWidth, updatedMap, direction) {
     let rebuiltMinimap = minimap;
@@ -31,7 +32,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             rebuiltMinimap = update + minimap;
             minimap = rebuiltMinimap;
             minY--;
-            maxY++;
+            height++;
         }        
     }
     else if (direction == 's') {
@@ -42,6 +43,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             rebuiltMinimap = minimap + update;
             minimap = rebuiltMinimap;
             maxY++;
+            height++;
         }   
         else {
             //replace the bottom line of the map
@@ -95,7 +97,7 @@ function Draw_Map(visionWidth, direction) {
     //get postion of player
     //update the section of the map that the player is in
     if (Update_Map(visionWidth, direction)) {
-        for (let i = 0; i < maxY; i++) {
+        for (let i = 0; i < height; i++) {
             let start = i * visionWidth;
             let end = start + visionWidth;
             let mapLine = minimap.substring(start, end);
