@@ -20,6 +20,8 @@ let y = 6;
 let minY = 0;
 let maxY = 13;
 let height = 13;
+let width = 13;
+
 
 
 let mapCellSize = 64;
@@ -38,7 +40,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
 
         
         y--;
-        if ((y - 6) < minY) {
+        if (height < minY) {
             //add new line to the top of the map
             let update = updatedMap.substring(0, visionWidth);
             rebuiltMinimap = update + minimap;
@@ -49,7 +51,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     }
     else if (direction == 's') {
         y++;
-        if ((y + 6 + 1) > maxY) {
+        if (height > maxY) {
             //add new line to the bottom of the map
             //rebuiltMinimap.substring(0, visionWidth * (visionWidth - 1));
             let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
@@ -63,18 +65,33 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
         }     
     }
     else if (direction == 'a') {
-
-
-        x--;
-        if (x < minX) {
-            minX--;
-        }
+        // x--;
+        // if (x < minX) {
+        //     for (let i = 0; i < height; i++) {
+            
+        //     }
+        //     minX--;
+        // }
     }
     else if (direction == 'd') {
 
         x++;
-        if (x > maxX) {
+        if (width > maxX) {
+            let mapWidth = (x + 6 + 1);
+            
+            for (let i = 0; i < height; i++) {
+                let start = (i * visionWidth) + visionWidth - 1;
+                let end = start + visionWidth;
+                let mapLine = updatedMap.substring(start, end);
+
+                let insertPos = mapWidth * (i + 1);
+                let insertEnd = insertPos + mapWidth;
+                let newMapLine = rebuiltMinimap.substring(insertPos, insertEnd)
+
+                minimapDisplay[i] = Create_MiniMap_Line(newMapLine, i);
+            }
             maxX++;
+            width++;
         }
     }
     else if (direction == 'm') {
