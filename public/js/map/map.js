@@ -76,7 +76,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     else if (direction == 'd') {
 
         x++;
-        if ((x + 6 + 1) > maxX) {
+        if ((x + 6) > maxX) {
             let mapWidth = (x + 6 + 1);
             
             for (let i = 0; i < height; i++) {
