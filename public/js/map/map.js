@@ -1,6 +1,6 @@
 'use strict'
 
-import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
+import {cellSize, Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 import {characterInfo} from '../units/unitdef.js';
 
@@ -9,6 +9,7 @@ let mapString = "";
 
 let minimapDisplay = [];
 let minimap = "";
+let minimap2d = [[]];
 let mapHeight = 0;
 
 // origin position and vision needs to be loaded from the server
@@ -19,6 +20,17 @@ let y = 6;
 let minY = 0;
 let maxY = 13;
 let height = 13;
+
+
+let mapCellSize = 64;
+//position
+function asdasf() {
+    let cell = minimap2d[mapCellSize][mapCellSize] //returns a sctring of a cell size 16x16 or 256 chars 64*64=4096
+    //when you move far enough in x or -x add a new cell to the array
+    //when you move far enough in y or -y add a new cell to the array
+    //calculate with cells your viewport intersects and populate them the the correct characters
+}
+
 
 function Rebuid_Map(visionWidth, updatedMap, direction) {
     let rebuiltMinimap = minimap;
@@ -37,8 +49,9 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     }
     else if (direction == 's') {
         y++;
-        if ((y + 13 + 1) > maxY) {
+        if ((y + 6 + 1) > maxY) {
             //add new line to the bottom of the map
+            //rebuiltMinimap.substring(0, visionWidth * (visionWidth - 1));
             let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
             rebuiltMinimap = minimap + update;
             minimap = rebuiltMinimap;
@@ -46,7 +59,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             height++;
         }   
         else {
-            //replace the bottom line of the map
+            
         }     
     }
     else if (direction == 'a') {
@@ -69,6 +82,9 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     }
     else if (direction == 'c') {
         console.log("wall collision");
+    }
+    else {
+        minimap = updatedMap
     }
     //don't clear the minimap, just add to it and update the display
     //need direction to know where to add the new map    
