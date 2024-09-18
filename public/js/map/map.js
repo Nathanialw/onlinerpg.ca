@@ -89,10 +89,14 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
                 let insertEnd = insertPos + mapWidth;
                 console.log(insertPos, insertEnd);
                 
-                let newMapLine = rebuiltMinimap.substring(insertPos, insertEnd)
-                newMapLine += mapLine;
-                minimapDisplay[i] = Create_MiniMap_Line(newMapLine, i);
+                let newMapLine = minimap.substring(insertPos, insertEnd)
+                let line = newMapLine + mapLine;
+                minimapDisplay[i] = Create_MiniMap_Line(line, i);
+                
+                let tempmap = rebuiltMinimap;                
+                rebuiltMinimap = tempmap + line;
             }
+            minimap = rebuiltMinimap;
             maxX++;
             width++;
         }
