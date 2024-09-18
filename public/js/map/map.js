@@ -93,7 +93,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
                 let newMapLine = minimap.substring(insertPos, insertEnd)
                 let line = newMapLine + mapLine;
                 console.log(line);
-                minimapDisplay[i] = Create_MiniMap_Line(line, i);
+                // minimapDisplay[i] = Create_MiniMap_Line(line, i);
                 
                 let tempmap = rebuiltMinimap;                
                 rebuiltMinimap = tempmap + line;
@@ -138,10 +138,10 @@ function Update_Map(visionWidth, direction) {
 function Draw_Map(visionWidth, direction) {
     //get postion of player
     //update the section of the map that the player is in
-    if (Update_Map(visionWidth, direction)) {
+    if (Update_Map(width, direction)) {
         for (let i = 0; i < height; i++) {
-            let start = i * visionWidth;
-            let end = start + visionWidth;
+            let start = i * width;
+            let end = start + width;
             let mapLine = minimap.substring(start, end);
             console.log(mapLine);
             minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
