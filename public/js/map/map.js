@@ -40,7 +40,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
 
         
         y--;
-        if (height < minY) {
+        if ((y - 6) < minY) {
             //add new line to the top of the map
             let update = updatedMap.substring(0, visionWidth);
             rebuiltMinimap = update + minimap;
@@ -51,7 +51,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     }
     else if (direction == 's') {
         y++;
-        if (height > maxY) {
+        if ((y + 6 + 1) > maxY) {
             //add new line to the bottom of the map
             //rebuiltMinimap.substring(0, visionWidth * (visionWidth - 1));
             let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
@@ -76,7 +76,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     else if (direction == 'd') {
 
         x++;
-        if (width > maxX) {
+        if ((x + 6 + 1) > maxX) {
             let mapWidth = (x + 6 + 1);
             
             for (let i = 0; i < height; i++) {
