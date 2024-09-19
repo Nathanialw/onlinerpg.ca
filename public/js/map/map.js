@@ -169,7 +169,7 @@ export function Make_Map(serverMap, visionWidth) {
 }
 
 function Display_Damage(species, damage) {
-    console.log("You have taken " + done + " damage to a " + species);
+    console.log("You have done " + damage + " to a " + species);
 }
 
 export function Map(data) {
