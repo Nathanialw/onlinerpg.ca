@@ -1,6 +1,8 @@
 'use strict'
 
-import {Map, Populate_Map} from '../map/map.js';
+import {Populate_Map} from '../map/map.js';
+import {Map} from '../frontend/ui.js';
+
 import {app} from '../graphics/graphics.js';
 import {socket} from './socket.js';
 import {UpdatePlayerInfo} from '../units/unitdef.js';
