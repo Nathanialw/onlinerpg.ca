@@ -52,7 +52,7 @@ namespace Update {
       std::cout << "goblin dead" << std::endl;
       return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0";
     }
-    return m + " " + "  " + " " + "1";
+    return m + " " + "  " + "1";
   }
 
   void Update_Units(const char *direction) {
