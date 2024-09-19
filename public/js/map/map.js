@@ -1,6 +1,6 @@
 'use strict'
 
-import {Create_Map_Line, Create_MiniMap_Line, Draw_Vision_Background} from '../graphics/graphics.js';
+import {Create_Object, Create_Map_Line, Create_MiniMap_Line, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 
 let mapDisplay = [];
@@ -154,6 +154,8 @@ export function Draw_Map(visionWidth, direction) {
 }   
 
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
+let objects = []
+
 export function Make_Map(serverMap, visionWidth) { 
     Draw_Vision_Background(visionWidth);
 
@@ -164,6 +166,7 @@ export function Make_Map(serverMap, visionWidth) {
     for (let i = 0; i < serverMap.length; i++) {
         if (serverMap[i] == "g") {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
+            objects.push([i, "g"]); // save the location of the enemy
             // save the location of the enemy
         }
     }
@@ -174,7 +177,10 @@ export function Make_Map(serverMap, visionWidth) {
         mapString += mapLine;
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
-    
+
+    for (let i = 0; i < objects.length; i++) {
+        Create_Object(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth));
+    }
     //draw the units on top of the map
 }
 
