@@ -22,9 +22,22 @@ function Add_Line(line) {
 
 function Render_Log() {
     let logLine = 0;
-    for (let i = 0; i < combatLog.length; i++) {
-        combatLogDisplay[i] = Create_Combat_Log_Line(combatLog[i], i);
-        currentLine++;
+    let beginLine;
+    let endLine;
+    //when lenght > 10 only grab the last 10 lines
+    if (combatLog.length > maxLines) {
+        beginLine = combatLog.length - maxLines;
+        endLine = combatLog.length;
+    }
+    else {
+        beginLine = 0;
+        endLine = combatLog.length;
+    }
+    if (combatLog.length < maxLines) {
+        for (let i = beginLine; i < endLine; i++) {
+            combatLogDisplay[logLine].text = combatLog[i];
+            logLine++;
+        }
     }
 }
 
@@ -36,7 +49,7 @@ function Display_Damage(species, damage, isDead) {
     if (damage === "  ") {
         return
     }
-    let damageText = "You have done " + damage + " to a " + species; 
+    let damageText = "You have done " + damage + " damage to a " + species; 
     if (isDead === "0") {
         damageText += " and killed it!";
     }
