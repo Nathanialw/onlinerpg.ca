@@ -82,7 +82,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             let vision = 0;
             for (let i = 0; i < height; i++) {
                 // vision++
-                // let appendLine = " ";
+                let appendLine = " ";
                 // if (vision < height) {
                     let start = (i * visionWidth) + visionWidth - 1;
                     let end = start + 1;
@@ -168,6 +168,10 @@ export function Make_Map(serverMap, visionWidth) {
     }
 }
 
+function Dpsiplay_Health(species, damageTaken) {
+    console.log("You have been struck by a " + species + " for " + damageTaken + " damage");
+}
+
 function Display_Damage(species, damage) {
     console.log("You have done " + damage + " to a " + species);
 }
@@ -177,6 +181,8 @@ export function Map(data) {
     let direction = data.substring(2,3);
     let species = data.substring(3,4);
     let damage = data.substring(4,6);
+    // let damageTaken = data.substring(4,6);
+    // let currentHealth = data.substring(6,8);
     let serverMap = data.substring(6);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);

@@ -33,7 +33,8 @@ namespace Update {
     // collision
     if (Collision::Wall_Collision(player.x, player.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
-      return "c";
+      std::string c = "c";
+      return c + " " + "  ";
     }
     // if the nearby cell is an enemy, attack
     auto melee = Attack::Melee(player.x, player.y, move.x, move.y);
