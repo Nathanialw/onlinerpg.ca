@@ -174,10 +174,10 @@ export function Update(){
     //redraw map
 }
 
-export function Create_Object_Sprite(char, x, y) {
+export function Create_Object_Sprite(char, x, y, visionWidth) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
-    object.x = (Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
     object.eventMode = 'static';
     object.cursor = 'pointer';
     object.on('pointerdown', (event) => { alert('char clicked!'); });

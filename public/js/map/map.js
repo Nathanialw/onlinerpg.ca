@@ -178,7 +178,7 @@ export function Make_Map(serverMap, visionWidth) {
     }
 
     for (let i = 0; i < objects.length; i++) {
-        Create_Object_Sprite(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth));
+        Create_Object_Sprite(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth, visionWidth));
     }
     //draw the units on top of the map
 }
