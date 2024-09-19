@@ -139,7 +139,7 @@ function Draw_Map(visionWidth, direction) {
     //get postion of player
     //update the section of the map that the player is in
     if (Update_Map(width, direction)) {
-        for (let i = 0; i < width; i++) {
+        for (let i = 0; i < height; i++) {
             let start = i * width;
             let end = start + width;
             let mapLine = minimap.substring(start, end);
