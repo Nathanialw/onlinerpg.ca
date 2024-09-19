@@ -176,6 +176,7 @@ function Display_Damage(species, damage, isDead) {
     let damageText = "You have done " + damage + " to a " + species; 
     if (isDead) {
         damageText += " and killed it!";
+    }
     console.log(damageText);
 }
 
