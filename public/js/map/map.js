@@ -2,7 +2,7 @@
 
 import {cellSize, Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
-import {characterInfo} from '../units/unitdef.js';
+import {characterInfo, Species} from '../units/unitdef.js';
 
 let mapDisplay = [];
 let mapString = "";
@@ -173,6 +173,9 @@ function Dpsiplay_Health(species, damageTaken) {
 }
 
 function Display_Damage(species, damage, isDead) {
+    if (damage === "  ") {
+        return
+    }
     let damageText = "You have done " + damage + " to a " + species; 
     if (isDead === "0") {
         damageText += " and killed it!";
@@ -183,7 +186,7 @@ function Display_Damage(species, damage, isDead) {
 export function Map(data) {
     let visionWidth = parseInt(data.substring(0, 2), 10);
     let direction = data.substring(2,3);
-    let species = data.substring(3,4);
+    let species = Species[data.substring(3,4)];
     let damage = data.substring(4,6);
     let isDead = data.substring(6,7);
     // let damageTaken = data.substring(4,6);

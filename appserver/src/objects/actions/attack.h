@@ -5,7 +5,7 @@
 
 namespace Attack {
   struct Damage {
-    std::string target = "";
+    std::string target = " ";
     int damageDone = 0;
     bool isDead = false;
   };
