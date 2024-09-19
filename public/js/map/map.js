@@ -79,9 +79,12 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
         if (mapWidth > maxX) {
             let rebuiltMinimap = "";
             for (let i = 0; i < height; i++) {
+                console.log(mapString);
                 let start = (i * visionWidth) + visionWidth - 1;
                 let end = start + 1;
-                let appendLine = updatedMap.substring(start, end);
+                let appendLine = mapString.substring(start, end);
+                console.log(start);
+                console.log(end);
                 // let appendLine = "0";
                 console.log(appendLine);
 
