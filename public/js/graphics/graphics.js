@@ -174,7 +174,7 @@ export function Update(){
 export function Create_Combat_Log_Line(char, indexHeight) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'});
     object.x = (Get_Right_Panel_Origin_x()) * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = ((Get_Right_Panel_Origin_y() + leftPanelHeight + indexHeight) * cellSize) - (10 * cellSize);  // Assuming each cell is 24 pixels tall
+    object.y = ((Get_Right_Panel_Origin_y() + leftPanelHeight) * cellSize) + (indexHeight * minimapCellSize) - (10 * minimapCellSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
