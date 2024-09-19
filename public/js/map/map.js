@@ -1,6 +1,6 @@
 'use strict'
 
-import {cellSize, Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
+import {Create_Map_Line, Create_MiniMap_Line, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 
 let mapDisplay = [];
@@ -154,9 +154,7 @@ export function Draw_Map(visionWidth, direction) {
 }   
 
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
-export function Make_Map(serverMap, visionWidth) {
-    console.log("Redrawing Game");
-    Draw_UI(characterInfo);
+export function Make_Map(serverMap, visionWidth) { 
     Draw_Vision_Background(visionWidth);
     mapString = "";    
     for (let i = 0; i < visionWidth; i++) {

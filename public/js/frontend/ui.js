@@ -1,5 +1,5 @@
 'use strict'
-import {Create_Combat_Log_Line} from '../graphics/graphics.js';
+import {Create_Combat_Log_Line, Draw_UI} from '../graphics/graphics.js';
 import {Make_Map, Draw_Map} from '../map/map.js';
 import {characterInfo, Species} from '../units/unitdef.js';
 
@@ -50,6 +50,8 @@ export function Map(data) {
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     let serverMap = data.substring(7);
+    console.log("Redrawing Game");
+    Draw_UI(characterInfo);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
     Display_Damage(species, damage, isDead)
