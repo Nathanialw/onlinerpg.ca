@@ -1,8 +1,8 @@
 
-let Gender = ["Male", "Female"];
-let UnitClass = ["Fighter", "Mystic"];
-let Alignment = ["Good", "Neutral", "Evil"];
-let Species = [
+export let Gender = ["Male", "Female"];
+export let UnitClass = ["Fighter", "Mystic"];
+export let Alignment = ["Good", "Neutral", "Evil"];
+export let Species = [
     "Alpaca",
     "Basilisk",
     "Centaur",

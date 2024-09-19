@@ -39,7 +39,7 @@ namespace Update {
     auto melee = Attack::Melee(player.x, player.y, move.x, move.y);
     if (melee.isDead > 0) {
       std::cout << "attack goblin" << std::endl;
-      return "m" + Utils::Prepend_Zero(melee.damageDone);
+      return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone);
     }
     // if the unit survives, return, else move to the cell
     Map::Update(player.x, player.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
