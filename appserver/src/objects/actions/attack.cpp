@@ -23,16 +23,16 @@ Damage Melee(int px, int py, int x, int y) {
       //You have attacked a goblin for 5 damage
       auto &player = Units::Get_Units()->at(0);
       goblin.health -= player.damage;
-
+      damageDone = player.damage;
       if (goblin.health <= 0) {
           std::cout << "goblin dead" << std::endl;
 
           //remove the goblin from the unitPositions map
           Units::Remove_Unit(px+x,py+y);
           Map::Reset_Tile(px+x, py+y);
-          return {species, damageDone, false}; //move
+          return {species, damageDone, true}; //move
       }
-      return {species, player.damage, true}; //don't move
+      return {species, damageDone, false}; //don't move
     }
     return {species, damageDone, false}; // move
   }
