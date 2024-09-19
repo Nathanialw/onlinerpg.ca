@@ -79,6 +79,14 @@ function Get_Minimap_Origin_y() {
     return (leftPanelHeight + 7) * cellSize;
 }
 
+function Get_Right_Panel_Origin_x() {
+    return (viewportWidth + leftPanelWidth);
+}
+
+function Get_Right_Panel_Origin_y() {
+    return 0;
+}
+
 let inventory;
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
@@ -163,6 +171,14 @@ export function Update(){
     //redraw map
 }
 
+export function Create_Combat_Log_Line(char, indexHeight) {
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
+    object.x = (Get_Right_Panel_Origin_x()) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (Get_Right_Panel_Origin_y() + indexHeight - 10) * cellSize;  // Assuming each cell is 24 pixels tall
+    app.stage.addChild(object);
+    return object;
+}
+
 export function Create_Map_Line(char, indexHeight, visionWidth) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
@@ -202,9 +218,8 @@ export function Draw_UI() {
     //top    
     Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, 0x0f0f0f)
     //right
-    Draw_Panel((viewportWidth + leftPanelWidth) * cellSize, 0, rightPanelWidth * cellSize, rightPanelHeight * cellSize, 0x300301);
+    Draw_Panel(Get_Right_Panel_Origin_x() * cellSize, Get_Right_Panel_Origin_y(), rightPanelWidth * cellSize, rightPanelHeight * cellSize, 0x300301);
     //left
-    // Draw_Panel(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, 0x100030);
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, inventory);
     //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, 0x000050);
