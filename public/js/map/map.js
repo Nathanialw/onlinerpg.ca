@@ -175,7 +175,7 @@ function Display_Damage(species, damage) {
 export function Map(data) {
     let visionWidth = parseInt(data.substring(0, 2), 10);
     let direction = data.substring(2,3);
-    let target = data.substring(3,4);
+    let species = data.substring(3,4);
     let damage = data.substring(4,6);
     let serverMap = data.substring(6);
     Make_Map(serverMap, visionWidth);
