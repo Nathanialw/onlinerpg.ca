@@ -8,6 +8,7 @@ import {characterInfo, Species} from '../units/unitdef.js';
 // import {characterInfo} from '../units/unitdef.js';
 
 let combatLog = [];
+let combatLogDisplay = [];
 
 let maxLines = 10;
 let currentLine = maxLines;
@@ -20,8 +21,10 @@ function Add_Line(line) {
 }
 
 function Render_Log() {
+    let logLine = 0;
     for (let i = 0; i < combatLog.length; i++) {
-        Create_Combat_Log_Line(combatLog[i], currentLine);
+        combatLogDisplay[i] = Create_Combat_Log_Line(combatLog[i], i);
+        currentLine++;
     }
 }
 
