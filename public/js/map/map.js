@@ -179,11 +179,15 @@ function Display_Damage(species, damage) {
 export function Map(data) {
     let visionWidth = parseInt(data.substring(0, 2), 10);
     let direction = data.substring(2,3);
+    console.log("direction: ", direction);
     let species = data.substring(3,4);
+    console.log("species: ", species);
     let damage = data.substring(4,6);
+    console.log("damage: ", damage);
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     let serverMap = data.substring(6);
+    console.log("serverMap: ", serverMap);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
     Display_Damage(species, damage)
