@@ -75,15 +75,15 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     else if (direction == 'd') {
 
         x++;
-        let mapWidth = (x + 6);
+        let mapWidth = (x + 6 + 1);
         if (mapWidth > maxX) {
-            
+            let rebuiltMinimap = "";
             for (let i = 0; i < height; i++) {
                 let start = (i * visionWidth) + visionWidth - 1;
                 let end = start + 1;
-                // let mapLine = updatedMap.substring(start, end);
-                let mapLine = "0";
-                console.log(mapLine);
+                let appendLine = updatedMap.substring(start, end);
+                // let appendLine = "0";
+                console.log(appendLine);
 
                 let insertPos = (mapWidth - 1) * i;
                 let insertEnd = insertPos + mapWidth - 1;
@@ -91,11 +91,11 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
                 
                 let newMapLine = minimap.substring(insertPos, insertEnd)
                 console.log(newMapLine);
-                let line = newMapLine + mapLine;
+                let line = newMapLine + appendLine;
                 console.log(line);
                 // minimapDisplay[i] = Create_MiniMap_Line(line, i);
                 
-                let tempmap = rebuiltMinimap;                
+                let tempmap = rebuiltMinimap
                 rebuiltMinimap = tempmap + line;
             }
             minimap = rebuiltMinimap;
