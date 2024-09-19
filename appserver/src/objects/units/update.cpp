@@ -7,6 +7,7 @@
 #include "movement.h"
 #include "iostream"
 #include "unordered_map"
+#include "utils.h"
 
 namespace Update {
   struct Move {
@@ -35,9 +36,10 @@ namespace Update {
       return "c";
     }
     // if the nearby cell is an enemy, attack
-    if (Attack::Melee(player.x, player.y, move.x, move.y)) {
+    auto melee = Attack::Melee(player.x, player.y, move.x, move.y);
+    if (melee.isDead > 0) {
       std::cout << "attack goblin" << std::endl;
-      return "m";
+      return "m" + Utils::Prepend_Zero(melee.damageDone);
     }
     // if the unit survives, return, else move to the cell
     Map::Update(player.x, player.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));

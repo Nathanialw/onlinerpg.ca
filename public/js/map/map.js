@@ -168,12 +168,19 @@ export function Make_Map(serverMap, visionWidth) {
     }
 }
 
+function Display_Damage(species, damage) {
+    console.log("You have taken " + done + " damage to a " + species);
+}
+
 export function Map(data) {
     let visionWidth = parseInt(data.substring(0, 2), 10);
     let direction = data.substring(2,3);
-    let serverMap = data.substring(3);
+    let target = data.substring(3,4);
+    let damage = data.substring(4,6);
+    let serverMap = data.substring(6);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
+    Display_Damage(species, damage)
 }
 
 let Update = {
