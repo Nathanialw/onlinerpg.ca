@@ -155,6 +155,7 @@ export function Draw_Map(visionWidth, direction) {
 
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 let objects = []
+let objectDisplay = []
 
 export function Make_Map(serverMap, visionWidth) { 
     Draw_Vision_Background(visionWidth);
@@ -178,7 +179,7 @@ export function Make_Map(serverMap, visionWidth) {
     }
 
     for (let i = 0; i < objects.length; i++) {
-        Create_Object_Sprite(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth, visionWidth));
+        objectDisplay[i] = Create_Object_Sprite(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth, visionWidth));
     }
     //draw the units on top of the map
 }
