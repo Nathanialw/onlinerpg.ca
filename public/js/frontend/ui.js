@@ -32,9 +32,11 @@ function Render_Log() {
         beginLine = 0;
         endLine = combatLog.length;
     }
+    let logLine = 0;
     if (combatLog.length < maxLines) {
         for (let i = beginLine; i < endLine; i++) {
-            combatLogDisplay[i] = Create_Combat_Log_Line(combatLog[i], i);
+            combatLogDisplay[logLine] = Create_Combat_Log_Line(combatLog[i], i);
+            logLine++;
         }
     }
 }
