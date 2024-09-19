@@ -38,7 +38,6 @@ function Display_Damage(species, damage, isDead) {
         damageText += " and killed it!";
     }
     Add_Line(damageText);
-    Render_Log();
 }
 
 export function Map(data) {
@@ -55,4 +54,5 @@ export function Map(data) {
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
     Display_Damage(species, damage, isDead)
+    Render_Log();
 }
