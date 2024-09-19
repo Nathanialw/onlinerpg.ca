@@ -55,6 +55,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             //add new line to the bottom of the map
             //rebuiltMinimap.substring(0, visionWidth * (visionWidth - 1));
             let update = updatedMap.substring(visionWidth * (visionWidth - 1), visionWidth * visionWidth);
+            // let newLine = update + " " * (width - visionWidth);
             rebuiltMinimap = minimap + update;
             minimap = rebuiltMinimap;
             maxY++;
@@ -78,24 +79,21 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
         let mapWidth = (x + 6 + 1);
         if (mapWidth > maxX) {
             let rebuiltMinimap = "";
+            let vision = 0;
             for (let i = 0; i < height; i++) {
-                console.log(mapString);
-                let start = (i * visionWidth) + visionWidth - 1;
-                let end = start + 1;
-                let appendLine = mapString.substring(start, end);
-                console.log(start);
-                console.log(end);
-                // let appendLine = "0";
-                console.log(appendLine);
+                // vision++
+                // let appendLine = " ";
+                // if (vision < height) {
+                    let start = (i * visionWidth) + visionWidth - 1;
+                    let end = start + 1;
+                    appendLine = mapString.substring(start, end);
+                // }
 
                 let insertPos = (mapWidth - 1) * i;
                 let insertEnd = insertPos + mapWidth - 1;
-                console.log(insertPos, insertEnd);
                 
                 let newMapLine = minimap.substring(insertPos, insertEnd)
-                console.log(newMapLine);
                 let line = newMapLine + appendLine;
-                console.log(line);
                 // minimapDisplay[i] = Create_MiniMap_Line(line, i);
                 
                 let tempmap = rebuiltMinimap
