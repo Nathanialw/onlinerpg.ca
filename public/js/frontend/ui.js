@@ -71,7 +71,7 @@ export function Map(data) {
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
     
-    Display_Damage_Taken(species, damageTaken);
+    // Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)
     Render_Log();
 }

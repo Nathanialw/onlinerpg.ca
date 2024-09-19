@@ -253,8 +253,8 @@ function Draw_Stats() {
     Create_Object(characterInfo.Class, x, y);
     y += 1;
     Create_Object(characterInfo.Alignment, x, y);
-    
-    jj.onckick = function() {
-        console.log("clicked");
-    }
+}
+
+jj.onckick = function() {
+    console.log("clicked");
 }
