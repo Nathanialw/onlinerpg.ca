@@ -42,10 +42,8 @@ short term:
 
 -when holding down move, if it colides into a unit. just stop instead of attacking
 -simple AI that moves towards play when in range, attacks if adjacent
--mouse input
 -open simple info box when click on elemy cell
 -come up with a list of spells
--text output (damage done)
 -simple procedurally generated playable map
 
 -click on g will fill out the Goblin data and display it on the right have panel
