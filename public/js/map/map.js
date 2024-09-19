@@ -61,7 +61,6 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
             height++;
         }   
         else {
-            
         }     
     }
     else if (direction == 'a') {
@@ -75,8 +74,8 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     }
     else if (direction == 'd') {
 
-        let mapWidth = (x + 6 + 1);
         x++;
+        let mapWidth = (x + 6);
         if (mapWidth > maxX) {
             
             for (let i = 0; i < height; i++) {
@@ -86,7 +85,7 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
                 let mapLine = "0";
                 console.log(mapLine);
 
-                let insertPos = mapWidth * i;
+                let insertPos = (mapWidth - 1) * i;
                 let insertEnd = insertPos + mapWidth - 1;
                 console.log(insertPos, insertEnd);
                 
