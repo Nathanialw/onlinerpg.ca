@@ -126,7 +126,8 @@ function Update_Map(visionWidth, direction) {
             let end = start + mapSize;
             let mapLine = mapString.substring(start, end);
             console.log(mapLine);
-            updatedMap += mapLine;
+            let tempMap = updatedMap;
+            updatedMap = tempMap + mapLine;
         }
         Rebuid_Map(visionWidth, updatedMap, direction);
         console.log(minimap);
