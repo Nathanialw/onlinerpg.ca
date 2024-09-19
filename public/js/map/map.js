@@ -173,10 +173,10 @@ function Dpsiplay_Health(species, damageTaken) {
 }
 
 function Display_Damage(species, damage, isDead) {
-    let damage = "You have done " + damage + " to a " + species; 
+    let damageText = "You have done " + damage + " to a " + species; 
     if (isDead) {
-        damage += " and killed it!";
-    console.log(damage);
+        damageText += " and killed it!";
+    console.log(damageText);
 }
 
 export function Map(data) {
