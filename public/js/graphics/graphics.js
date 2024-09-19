@@ -152,10 +152,10 @@ export function Create_Object(char, x, y) {
     let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}, grey700);
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = y * cellSize;  // Assuming each cell is 24 pixels tall
-    app.stage.addChild(object);
     object.eventMode = 'static';
     object.cursor = 'pointer';
     object.on('pointerdown', (event) => { alert('char clicked!'); });
+    app.stage.addChild(object);
     return object;
 }
 
@@ -172,6 +172,17 @@ export function Update_Text(container, newText) {
 export function Update(){    
     //clear canvas
     //redraw map
+}
+
+export function Create_Object_Sprite(char, x, y) {
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
+    object.x = (Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.eventMode = 'static';
+    object.cursor = 'pointer';
+    object.on('pointerdown', (event) => { alert('char clicked!'); });
+    app.stage.addChild(object);
+    return object;
 }
 
 export function Create_Combat_Log_Line(char, indexHeight) {
