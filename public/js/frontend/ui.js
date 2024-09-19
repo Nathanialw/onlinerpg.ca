@@ -21,21 +21,23 @@ function Add_Line(line) {
 }
 
 function Render_Log() {
-    let beginLine;
-    let endLine;
-    //when lenght > 10 only grab the last 10 lines
     if (combatLog.length > maxLines) {
-        beginLine = combatLog.length - maxLines;
-        endLine = combatLog.length;
+        let logLine = 0;
+        let beginLine = combatLog.length - maxLines;
+        let endLine = combatLog.length;
+        for (let i = beginLine; i < endLine; i++) {
+            combatLogDisplay[logLine] = Create_Combat_Log_Line(combatLog[i], logLine);
+            logLine++;
+        }
     }
     else {
-        beginLine = 0;
-        endLine = combatLog.length;
-    }
-    let logLine = 0;
-    for (let i = beginLine; i < endLine; i++) {
-        combatLogDisplay[logLine] = Create_Combat_Log_Line(combatLog[i], logLine);
-        logLine++;
+        let logLine = 9 - combatLog.length;
+        let beginLine = 0;
+        let endLine = combatLog.length;
+        for (let i = beginLine; i < endLine; i++) {
+            combatLogDisplay[logLine] = Create_Combat_Log_Line(combatLog[i], logLine);
+            logLine++;
+        }
     }
 }
 
