@@ -7,15 +7,15 @@ import {characterInfo, Species} from '../units/unitdef.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 // import {characterInfo} from '../units/unitdef.js';
 
-let combatLog = [];
-let combatLogDisplay = [];
+let log = [];
+let logDisplay = [];
 
 let maxLines = 10;
 let currentLine = maxLines;
 
 function Add_Line(line) {
-    combatLog.push(line)
-    for (let i = 0; i < combatLog.length; i++) {
+    log.push(line)
+    for (let i = 0; i < log.length; i++) {
         currentLine--;
     }
 }
@@ -23,34 +23,38 @@ function Add_Line(line) {
 function Render_Log() {
     let logLine;
     let beginLine;
-    let endLine = combatLog.length;
-    if (combatLog.length > maxLines) {
+    let endLine = log.length;
+    if (log.length > maxLines) {
         logLine = 0;
-        beginLine = combatLog.length - maxLines;
+        beginLine = log.length - maxLines;
     }
     else {
-        logLine = 9 - combatLog.length;
+        logLine = 9 - log.length;
         beginLine = 0;
     }
     for (let i = beginLine; i < endLine; i++) {
-        combatLogDisplay[logLine] = Create_Combat_Log_Line(combatLog[i], logLine);
+        logDisplay[logLine] = Create_Combat_Log_Line(log[i], logLine);
         logLine++;
     }
 }
 
-function Dpsiplay_Health(species, damageTaken) {
-    console.log("You have been struck by a " + species + " for " + damageTaken + " damage");
+function Display_Damage_Taken(species, damageTaken) {
+    if (damage === "  ") {
+        return
+    }
+    let text = "You have been struck by a " + species + " for " + damageTaken + " damage"
+    Add_Line(text);
 }
 
 function Display_Damage(species, damage, isDead) {
     if (damage === "  ") {
         return
     }
-    let damageText = "You have done " + damage + " damage to a " + species; 
+    let text = "You have done " + damage + " damage to a " + species; 
     if (isDead === "0") {
-        damageText += " and killed it!";
+        text += " and killed it!";
     }
-    Add_Line(damageText);
+    Add_Line(text);
 }
 
 export function Map(data) {
@@ -66,6 +70,8 @@ export function Map(data) {
     Draw_UI(characterInfo);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
+    
+    Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)
     Render_Log();
 }

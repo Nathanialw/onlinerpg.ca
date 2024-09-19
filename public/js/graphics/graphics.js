@@ -240,10 +240,11 @@ let elapsed = 0.0;
     //     // sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;D
     // });
 
+let jj;
 function Draw_Stats() {
     let x = leftPanelWidth + 1;
     let y = 1;
-    Create_Object(characterInfo.Name, x, y);
+    jj = Create_Object(characterInfo.Name, x, y);
     y += 1;
     Create_Object(characterInfo.Gender, x, y);
     y += 1;
@@ -252,4 +253,8 @@ function Draw_Stats() {
     Create_Object(characterInfo.Class, x, y);
     y += 1;
     Create_Object(characterInfo.Alignment, x, y);
+    
+    jj.onckick = function() {
+        console.log("clicked");
+    }
 }
