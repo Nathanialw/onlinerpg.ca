@@ -34,20 +34,25 @@ namespace Update {
     if (Collision::Wall_Collision(player.x, player.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
       std::string c = "c";
-      return c + " " + "  ";
+      return c + " " + "  " + "1";
     }
     // if the nearby cell is an enemy, attack
     auto melee = Attack::Melee(player.x, player.y, move.x, move.y);
-    if (melee.isDead > 0) {
+    if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
-      return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone);
+      return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";
     }
+
     // if the unit survives, return, else move to the cell
     Map::Update(player.x, player.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
     std::string m = direction;
-    return m + " " + "  ";
+    if (melee.isDead) {
+      std::cout << "goblin dead" << std::endl;
+      return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0";
+    }
+    return m + " " + "  " + " " + "1";
   }
 
   void Update_Units(const char *direction) {

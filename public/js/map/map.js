@@ -172,25 +172,25 @@ function Dpsiplay_Health(species, damageTaken) {
     console.log("You have been struck by a " + species + " for " + damageTaken + " damage");
 }
 
-function Display_Damage(species, damage) {
-    console.log("You have done " + damage + " to a " + species);
+function Display_Damage(species, damage, isDead) {
+    let damage = "You have done " + damage + " to a " + species; 
+    if (isDead) {
+        damage += " and killed it!";
+    console.log(damage);
 }
 
 export function Map(data) {
     let visionWidth = parseInt(data.substring(0, 2), 10);
     let direction = data.substring(2,3);
-    console.log("direction: ", direction);
     let species = data.substring(3,4);
-    console.log("species: ", species);
     let damage = data.substring(4,6);
-    console.log("damage: ", damage);
+    let isDead = data.substring(6,7);
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
-    let serverMap = data.substring(6);
-    console.log("serverMap: ", serverMap);
+    let serverMap = data.substring(7);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
-    Display_Damage(species, damage)
+    Display_Damage(species, damage, isDead)
 }
 
 let Update = {
