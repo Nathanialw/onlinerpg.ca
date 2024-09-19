@@ -21,7 +21,6 @@ function Add_Line(line) {
 }
 
 function Render_Log() {
-    let logLine = 0;
     let beginLine;
     let endLine;
     //when lenght > 10 only grab the last 10 lines
@@ -35,8 +34,7 @@ function Render_Log() {
     }
     if (combatLog.length < maxLines) {
         for (let i = beginLine; i < endLine; i++) {
-            combatLogDisplay[logLine].text = combatLog[i];
-            logLine++;
+            combatLogDisplay[i] = Create_Combat_Log_Line(combatLog[i], i);
         }
     }
 }
