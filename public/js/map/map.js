@@ -163,6 +163,7 @@ export function Make_Map(serverMap, visionWidth) {
     //create a sprite at the location of the space that is clickable
     //query the server using the x and y of the sprite to get the sprite data
     objects = [];
+    objectDisplay = [];
     for (let i = 0; i < serverMap.length; i++) {
         if (serverMap[i] == "g") {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
@@ -179,7 +180,7 @@ export function Make_Map(serverMap, visionWidth) {
     }
 
     for (let i = 0; i < objects.length; i++) {
-        objectDisplay[i] = Create_Object_Sprite(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth, visionWidth));
+        objectDisplay[i] = Create_Object_Sprite(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth), visionWidth);
     }
     //draw the units on top of the map
 }
