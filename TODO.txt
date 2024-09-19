@@ -48,6 +48,10 @@ short term:
 -text output (damage done)
 -simple procedurally generated playable map
 
+-click on g will fill out the Goblin data and display it on the right have panel
+-if the data is already loaded it doesn't fetch it again, unless there is new info to grab
+-text feedback for actions
+
 medium term:
 -items
 -UI equipment
@@ -59,6 +63,5 @@ medium term:
 long term:
 -store world state in db
 -proc gen maps
--collision detection
 -simple enemy AI
 
