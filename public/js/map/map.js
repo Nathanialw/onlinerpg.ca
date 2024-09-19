@@ -156,13 +156,26 @@ export function Draw_Map(visionWidth, direction) {
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 export function Make_Map(serverMap, visionWidth) { 
     Draw_Vision_Background(visionWidth);
+
+    //parse the map and pull out the characters and replace with spaces
+    //create a sprite at the location of the space that is clickable
+    //query the server using the x and y of the sprite to get the sprite data
+
+    for (let i = 0; i < serverMap.length; i++) {
+        if (serverMap[i] == "g") {
+            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
+            // save the location of the enemy
+        }
+    }
+
     mapString = "";    
     for (let i = 0; i < visionWidth; i++) {
-        // render lines of the map
         let mapLine = serverMap.substring(i * visionWidth, (i * visionWidth) + visionWidth); // 0, 13 -> 13, 26 -> 26, 39
         mapString += mapLine;
         mapDisplay[i] = Create_Map_Line(mapLine, i, visionWidth);
     }
+    
+    //draw the units on top of the map
 }
 
 
