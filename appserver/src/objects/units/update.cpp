@@ -45,7 +45,8 @@ namespace Update {
     Map::Update(player.x, player.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
-    return direction;
+    std::string m = direction;
+    return m + " " + "  ";
   }
 
   void Update_Units(const char *direction) {
