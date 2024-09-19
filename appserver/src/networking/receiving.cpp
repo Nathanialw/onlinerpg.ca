@@ -126,7 +126,7 @@ namespace Network {
     else if (msg->get_payload()[0] == '4') {
       std::cout << "4" << msg->get_payload() << std::endl;
       if (!Units::Get_Units()->empty()) {
-        print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "1"), websocketpp::frame::opcode::text);
+        print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "1   "), websocketpp::frame::opcode::text);
       }
     }
     else if (msg->get_payload()[0] == '5') {
