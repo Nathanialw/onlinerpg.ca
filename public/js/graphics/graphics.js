@@ -153,7 +153,9 @@ export function Create_Object(char, x, y) {
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = y * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
-    panel.on('pointerdown', (event) => { alert('char clicked!'); });
+    object.eventMode = 'static';
+    sprite.cursor = 'pointer';
+    object.on('pointerdown', (event) => { alert('char clicked!'); });
     return object;
 }
 
