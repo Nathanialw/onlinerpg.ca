@@ -34,7 +34,7 @@ function Render_Log() {
     }
     let logLine = 0;
     for (let i = beginLine; i < endLine; i++) {
-        combatLogDisplay[logLine] = Create_Combat_Log_Line(combatLog[i], i);
+        combatLogDisplay[logLine] = Create_Combat_Log_Line(combatLog[i], logLine);
         logLine++;
     }
 }
