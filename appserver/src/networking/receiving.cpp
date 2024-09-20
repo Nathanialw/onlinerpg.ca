@@ -155,6 +155,7 @@ namespace Network {
       std::cout << "Grabbing goblin at info x: " << posx << " y: " << posy << std::endl;
       int xposint = std::stoi(posx);
       int yposint = std::stoi(posy);
+      std::cout << "Grabbing int goblin at info x: " << xposint << " y: " << yposint << std::endl;
       auto response = "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(xposint, yposint));
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
