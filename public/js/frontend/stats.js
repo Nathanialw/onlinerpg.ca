@@ -4,6 +4,7 @@ import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Dr
 
 let targetStatsDisplay = []
 export let targetStats = {
+    target; false,
     name: "??",
     gender: "??",
     alignment: "??",
@@ -18,6 +19,7 @@ export let targetStats = {
 
 export function Get_Target_Stats_From_Server(statsString) {
     let stats = "";
+    targetStats.target = true;
     for (let i = 0; i < statsString.length; i++) {
         if (statsString[i] === "_") {
             targetStats.name = statsString.substring(0, i);
@@ -47,6 +49,9 @@ export function Get_Target_Stats_From_Server(statsString) {
 }
 
 export function Render_Target_Stats() {
+    if (target) {
+        return
+    }
     targetStatsDisplay = []
     let x = Get_Right_Panel_Origin_x();
     let y = Get_Right_Panel_Origin_y() + rightPanelWidth;
