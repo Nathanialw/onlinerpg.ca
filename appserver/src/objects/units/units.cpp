@@ -5,7 +5,6 @@
 #include "string"
 #include "iostream"
 #include "unordered_map"
-#include <functional>
 
 #include "utils.h"
 
@@ -15,16 +14,11 @@
 #include "units.h"
 
 
-namespace std {
-  template <>
-  struct hash<Units::UnitPosition> {
-    std::size_t operator()(const Units::UnitPosition &pos) const {
-      return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
-    }
-  };
-}
+
 
 namespace Units {
+std::unordered_map<UnitPosition, int> unitPositions;
+
   const int mapWidth = 99;
 
 //  std::unordered_map<uint16_t, std::string> entities;
@@ -33,11 +27,9 @@ namespace Units {
     int x;
     int y;
   };
-
-  std::vector<Unit> units;
-  //when adding new units, use the emptyUnitSlots vector to find the next empty slot before pushing back
+std::vector<Unit> units;
+//when adding new units, use the emptyUnitSlots vector to find the next empty slot before pushing back
   std::vector<int> emptyUnitSlots;
-  std::unordered_map<UnitPosition, int> unitPositions;
   static std::string unitsString;
 
   std::vector<Unit> *Get_Units() { return &units; }

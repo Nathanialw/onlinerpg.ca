@@ -11,6 +11,9 @@
 #endif //BROWSERRPG_UNITS_H
 
 #include "vector"
+#include <functional>
+
+
 
 namespace Units {
 
@@ -138,7 +141,6 @@ namespace Units {
     }
   };
 
-
   std::string Send_Units();
   void Init(std::basic_string<char> characterCreate);
   Unit Get_Player();
@@ -149,4 +151,12 @@ namespace Units {
   Unit Get_Unit_At_Position(int x, int y);
   void Update_UnitsString(int x, int y);
   std::string GetCharStats();
+}
+
+namespace std {
+  template <> struct hash<Units::UnitPosition> {
+      std::size_t operator()(const Units::UnitPosition &pos) const {
+        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
+      }
+  };
 }
