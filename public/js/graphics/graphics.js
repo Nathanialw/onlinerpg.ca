@@ -4,9 +4,18 @@ import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
 
+let inventory;
+let targetImg;
+
 async function Init_Grpahics() {
     const texture = await PIXI.Assets.load('assets/graphics/ui/itsmars_Inventory.png');
     inventory = new PIXI.Sprite(texture);
+}
+
+export async function Load_Target_Image(path) {
+    const texture = await PIXI.Assets.load(path);
+    targetImg = new PIXI.Sprite(texture);
+    return targetImg;
 }
 
 export async function Create_Canvas() {
@@ -87,7 +96,6 @@ export function Get_Right_Panel_Origin_y() {
     return 0;
 }
 
-let inventory;
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');

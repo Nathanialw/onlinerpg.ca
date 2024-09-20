@@ -1,6 +1,6 @@
 
 //get string from server
-import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Draw_Sprite, rightPanelWidth} from "../graphics/graphics.js"
+import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Draw_Sprite, rightPanelWidth, Load_Target_Image} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -52,7 +52,8 @@ export function Render_Target_Stats() {
     let y = Get_Right_Panel_Origin_y() + rightPanelWidth;
     let w = rightPanelWidth;
     let h = rightPanelWidth;
-    Draw_Sprite(x, y, w, h, targetStats.pic);
+    let targetImage = Load_Target_Image(targetStats.pic)
+    Draw_Sprite(x, y, w, h, targetImage);
     targetStatsDisplay[0] = Create_Text_Line("Name: " + targetStats.name, 0, x, y);
     targetStatsDisplay[1] = Create_Text_Line("Gender: " + targetStats.gender, 1, x, y);
     targetStatsDisplay[2] = Create_Text_Line("Alignment: " + targetStats.alignment, 2, x, y);
