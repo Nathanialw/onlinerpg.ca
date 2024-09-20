@@ -134,11 +134,13 @@ namespace Network {
     else if (msg->get_payload()[0] == '5') {
       std::cout << "5" << msg->get_payload() << std::endl;
       std::cout << "Grabbing goblin payload: " << msg->get_payload() << std::endl;
-      std::string xStr = std::to_string(msg->get_payload()[1]) + std::to_string(msg->get_payload()[2]);
-      std::string yStr = std::to_string(msg->get_payload()[3]) + std::to_string(msg->get_payload()[4]);
-      std::cout << "Grabbing goblin as string info x: " << xStr << " y: " << yStr << std::endl;
-      int x = std::stoi(xStr);
-      int y = std::stoi(yStr);
+      std::string xStr1 = std::to_string(msg->get_payload()[1]);
+      std::string xStr2 = std::to_string(msg->get_payload()[2]);
+      std::string yStr1 = std::to_string(msg->get_payload()[3]);
+      std::string yStr2 = std::to_string(msg->get_payload()[4]);
+      std::cout << "Grabbing goblin as string info x: " << xStr1 << " " << xStr2 << " y: " << yStr1 << " " << yStr2 << std::endl;
+      int x = std::stoi(xStr1 + xStr2);
+      int y = std::stoi(yStr1 + yStr2);
       std::cout << "Grabbing goblin at info x: " << x << " y: " << y << std::endl;
       //maybe need to strip the first character off the string
       for (auto &unit : *Units::Get_Units()) {
