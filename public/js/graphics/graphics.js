@@ -12,8 +12,8 @@ async function Init_Grpahics() {
     inventory = new PIXI.Sprite(texture);
 }
 
-export async function Load_Target_Image(path) {
-    const texture = await PIXI.Assets.load(path);
+export function Load_Target_Image(path) {
+    const texture = PIXI.Assets.load(path);
     targetImg = new PIXI.Sprite(texture);
     return targetImg;
 }
