@@ -2,7 +2,7 @@
 
 import {Create_Object_Sprite, Create_Map_Line, Create_MiniMap_Line, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
-import {Send_Web_Socket_Message} from './socket.js';
+import {Send_Web_Socket_Message} from  '../networking/socket.js';
 
 
 let mapDisplay = [];
