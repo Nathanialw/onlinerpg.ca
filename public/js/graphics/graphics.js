@@ -79,11 +79,11 @@ function Get_Minimap_Origin_y() {
     return (leftPanelHeight + 7) * cellSize;
 }
 
-function Get_Right_Panel_Origin_x() {
+export function Get_Right_Panel_Origin_x() {
     return (viewportWidth + leftPanelWidth);
 }
 
-function Get_Right_Panel_Origin_y() {
+export function Get_Right_Panel_Origin_y() {
     return 0;
 }
 

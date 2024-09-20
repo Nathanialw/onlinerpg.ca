@@ -1,5 +1,6 @@
 
 //get string from server
+import {Create_Text_Line, Get_Right_Panel_Origin_y} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
