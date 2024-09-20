@@ -1,4 +1,5 @@
 
+
 #include "string"
 
 #include "websocketpp/config/asio_no_tls.hpp"
@@ -7,6 +8,7 @@
 #include "map.h"
 #include "receiving.h"
 #include "update.h"
+#include "goblin.h"
 
 namespace Network {
 
@@ -131,6 +133,11 @@ namespace Network {
     }
     else if (msg->get_payload()[0] == '5') {
       std::cout << "5" << msg->get_payload() << std::endl;
+      int x = std::stoi(std::to_string(msg->get_payload()[1]) + std::to_string(msg->get_payload()[2]));
+      int y = std::stoi(std::to_string(msg->get_payload()[3]) + std::to_string(msg->get_payload()[4]));
+      std::cout << "Grabbing goblin at info x: " << x << " y: " << y << std::endl;
+      //maybe need to strip the first character off the string
+      "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(x, y));
     }
 
     else {

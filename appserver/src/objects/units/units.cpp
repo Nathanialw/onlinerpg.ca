@@ -81,6 +81,10 @@ namespace Units {
     return unitPositions[pos];
   }
 
+  Unit Get_Unit_At_Position(int x, int y) {
+    return units[Get_Unit_Index(x, y)];
+  }
+
   void Update_Unit_Position(int x, int y, int newX, int newY) {
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];

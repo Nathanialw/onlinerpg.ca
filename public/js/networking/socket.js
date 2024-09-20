@@ -57,3 +57,9 @@ export function closeWebSocket() {
         websocket.close();
     }
 }
+
+export function Send_Web_Socket_Message(message) {
+    if (conn.isConnected) {
+        conn.websocket.send(message);       
+    }
+}

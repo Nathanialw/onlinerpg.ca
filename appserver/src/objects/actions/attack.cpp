@@ -22,8 +22,8 @@ Damage Melee(int px, int py, int x, int y) {
       species = (int)goblin.def.species;
       //You have attacked a goblin for 5 damage
       auto &player = Units::Get_Units()->at(0);
-      goblin.health -= player.damage;
-      damageDone = player.damage;
+      goblin.health -= player.maxDamage;
+      damageDone = player.maxDamage;
       if (goblin.health <= 0) {
           std::cout << "goblin dead" << std::endl;
 

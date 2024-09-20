@@ -29,6 +29,10 @@
             //mountain= +constitution +strength
             //hill= +constitution +dexterity
             //deep= +constitution +intelligence
+        //goblins
+            //forest = +dexterity +intelligence
+            //cave = +dexterity +strength
+            //swamp = +dexterity +constitution      
     //get class
         //fighter/mystic
     //alignment

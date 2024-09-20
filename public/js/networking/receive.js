@@ -6,6 +6,8 @@ import {Map} from '../frontend/ui.js';
 import {app} from '../graphics/graphics.js';
 import {socket} from './socket.js';
 import {UpdatePlayerInfo} from '../units/unitdef.js';
+import { Get_Target_Stats_From_Server } from '../frontend/stats.js';
+
 
 function Message(data) {
     console.log(data)
@@ -16,6 +18,7 @@ let Update = {
     1: Map,
     2: Populate_Map,
     3: UpdatePlayerInfo,
+    5: Get_Target_Stats_From_Server,
 }
 
 socket().websocket.onmessage = function(event) {    

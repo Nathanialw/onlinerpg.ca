@@ -72,6 +72,10 @@ namespace Units {
     SIZE
   };
 
+  enum class Race {
+
+  };
+
   enum class Gender {
     MALE,
     FEMALE,
@@ -118,7 +122,8 @@ namespace Units {
 
     int vision = 6;
     int speed = 1;
-    int damage = 10;
+    int minDamage = 0;
+    int maxDamage = 10;
     int AC = 10;
     int health = 30;
     int healthMax = 30;
@@ -141,6 +146,7 @@ namespace Units {
   int Get_Unit_Index(int x, int y);
   void Remove_Unit(int x, int y);
   std::string Get_Unit_Char(Species species);
+  Unit Get_Unit_At_Position(int x, int y);
   void Update_UnitsString(int x, int y);
   std::string GetCharStats();
 }

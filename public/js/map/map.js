@@ -2,6 +2,8 @@
 
 import {Create_Object_Sprite, Create_Map_Line, Create_MiniMap_Line, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
+import {Send_Web_Socket_Message} from './socket.js';
+
 
 let mapDisplay = [];
 let mapString = "";
@@ -181,6 +183,10 @@ export function Make_Map(serverMap, visionWidth) {
 
     for (let i = 0; i < objects.length; i++) {
         objectDisplay[i] = Create_Object_Sprite(objects[i][1], objects[i][0] % visionWidth, Math.floor(objects[i][0] / visionWidth), visionWidth);
+        objectDisplay[i].eventMode = 'static';
+        objectDisplay[i].cursor = 'pointer';
+        let message = "5" + objectDisplay[i].x + objectDisplay[i].y;
+        objectDisplay[i].on('pointerdown', (event) => { Send_Web_Socket_Message(message); console.log("Click Message sent: ", message); }); //query the server for the object data
     }
     //draw the units on top of the map
 }
