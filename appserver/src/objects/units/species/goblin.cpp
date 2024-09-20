@@ -21,8 +21,8 @@
 
 namespace Species {
   std::string Get_Unit_Data_As_string(const std::string &msg) {
-    std::string posx = msg.substr(1, 2);
-    std::string posy = msg.substr(3, 2);
+    std::string posx = msg.substr(0, 2);
+    std::string posy = msg.substr(2, 2);
 
     std::cout << "Grabbing goblin at info x: " << posx << " y: " << posy << std::endl;
     int xposint = std::stoi(posx);
