@@ -1,6 +1,7 @@
 
 //get string from server
 
+let targetStatsDisplay = []
 export let targetStats = {
     name: "??",
     gender: "??",
@@ -42,4 +43,19 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.speed = stats.substring(10, 12);
     targetStats.vision = stats.substring(12, 14);
     targetStats.bio = stats.substring(14);
+}
+
+export function Render_Target_Stats() {
+    targetStatsDisplay = []
+    x = Get_Right_Panel_Origin_x();
+    y = Get_Right_Panel_Origin_y();
+    targetStatsDisplay[0] = Create_Text_Line("Name: " + targetStats.name, 0, x, y);
+    targetStatsDisplay[1] = Create_Text_Line("Gender: " + targetStats.gender, 1, x, y);
+    targetStatsDisplay[2] = Create_Text_Line("Alignment: " + targetStats.alignment, 2, x, y);
+    targetStatsDisplay[3] = Create_Text_Line("Health: " + targetStats.health, 3, x, y);
+    targetStatsDisplay[4] = Create_Text_Line("Attack: " + targetStats.attack, 4, x, y);
+    targetStatsDisplay[5] = Create_Text_Line("AC: " + targetStats.AC, 5, x, y);
+    targetStatsDisplay[6] = Create_Text_Line("Speed: " + targetStats.speed, 6, x, y);
+    targetStatsDisplay[7] = Create_Text_Line("Vision: " + targetStats.vision, 7, x, y);
+    targetStatsDisplay[8] = Create_Text_Line(targetStats.bio, 8, x, y);
 }

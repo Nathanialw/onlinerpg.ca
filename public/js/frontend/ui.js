@@ -2,6 +2,7 @@
 import {Create_Combat_Log_Line, Draw_UI} from '../graphics/graphics.js';
 import {Make_Map, Draw_Map} from '../map/map.js';
 import {characterInfo, Species} from '../units/unitdef.js';
+import { Render_Target_Stats } from './stats.js';   
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -74,4 +75,5 @@ export function Map(data) {
     // Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)
     Render_Log();
+    Render_Target_Stats();
 }

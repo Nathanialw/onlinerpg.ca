@@ -187,6 +187,15 @@ export function Create_Combat_Log_Line(char, indexHeight) {
     return object;
 }
 
+export function Create_Text_Line(char, indexHeight, x, y) {
+    // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
+    object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (y + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
+    app.stage.addChild(object);
+    return object;
+}
+
 export function Create_Map_Line(char, indexHeight, visionWidth) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
