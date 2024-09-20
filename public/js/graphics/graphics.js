@@ -12,9 +12,11 @@ async function Init_Grpahics() {
     inventory = new PIXI.Sprite(texture);
 }
 
-export async function Load_Target_Image(x, y, w, h, path) {
+export async function Load_Target_Image(x, y, path) {
     const texture = await PIXI.Assets.load(path);
     targetImg = new PIXI.Sprite(texture);
+    let w = rightPanelWidth;
+    let h = rightPanelWidth;
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
