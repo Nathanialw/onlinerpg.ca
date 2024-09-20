@@ -141,6 +141,10 @@ namespace Network {
       int y = std::stoi(yStr);
       std::cout << "Grabbing goblin at info x: " << x << " y: " << y << std::endl;
       //maybe need to strip the first character off the string
+      for (auto &unit : *Units::Get_Units()) {
+        std::cout << "Found goblin at x: " << x << " y: " << y << std::endl;
+        //send the goblin data to the client
+      }
       auto response = "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(x, y));
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }

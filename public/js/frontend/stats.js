@@ -15,7 +15,7 @@ export let targetStats = {
 }
 
 export function Get_Target_Stats_From_Server(statsString) {
-    stats = "";
+    let stats = "";
     for (let i = 0; i < statsString.length; i++) {
         if (statsString[i] === "_") {
             targetStats.name = statsString.substring(0, i);
