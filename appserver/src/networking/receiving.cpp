@@ -133,28 +133,9 @@ namespace Network {
     }
     else if (msg->get_payload()[0] == '5') {
       std::cout << "5" << msg->get_payload() << std::endl;
-      std::cout << "Grabbing goblin payload: " << msg->get_payload() << std::endl;
-
-      for (auto &unit : *Units::Get_Units()) {
-        std::cout << "Unit found at: " << unit.name << std::endl;
-        std::cout << "Found goblin at x: " << unit.x << " y: " << unit.y << std::endl;
-        //send the goblin data to the client
-      }
-      std::string posx = "";
-      std::string posy = "";
-      posx.append(msg->get_payload().substr(1, 2));
-      posy.append(msg->get_payload().substr(3, 2));
-      std::cout << "Grabbing goblin at info x: " << posx << " y: " << posy << std::endl;
-      int xposint = std::stoi(posx);
-      int yposint = std::stoi(posy);
-
-      std::cout << "Grabbing int goblin at info x: " << xposint << " y: " << yposint << std::endl;
-      auto player = Units::Get_Player();
-      int mapPositionx = player.x - player.vision + xposint;
-      int mapPositiony = player.y - player.vision + yposint;
-        std::cout << "Grabbing map goblin at info x: " << mapPositionx << " y: " << mapPositiony << std::endl;
-
-      auto response = "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(mapPositionx, mapPositiony));
+      std::string response = "";
+      response.append(msg->get_payload().substr(1, 4));
+      response = "5" + Species::Get_Unit_Data_As_string(response);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
 

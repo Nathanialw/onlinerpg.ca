@@ -5,6 +5,7 @@
 #include "goblin.h"
 #include "units.h"
 #include "utils.h"
+#include "iostream"
 
 // name
 // gender
@@ -19,7 +20,22 @@
 //type? (fire/ice/etc maybe not sure if will use)
 
 namespace Species {
-  std::string Get_Unit_Data_As_string(const Units::Unit &unit) {
+  std::string Get_Unit_Data_As_string(const std::string &msg) {
+    std::string posx = msg.substr(0, 1);
+    std::string posy = msg.substr(1, 1);
+
+    std::cout << "Grabbing goblin at info x: " << posx << " y: " << posy << std::endl;
+    int xposint = std::stoi(posx);
+    int yposint = std::stoi(posy);
+
+    std::cout << "Grabbing int goblin at info x: " << xposint << " y: " << yposint << std::endl;
+    auto player = Units::Get_Player();
+    int mapPositionx = player.x - player.vision + xposint;
+    int mapPositiony = player.y - player.vision + yposint;
+    std::cout << "Grabbing map goblin at info x: " << mapPositionx << " y: " << mapPositiony << std::endl;
+
+    auto unit = Units::Get_Unit_At_Position(mapPositionx, mapPositiony);
+
     auto name = unit.name;
     std::string gender = std::to_string((int)unit.def.gender);
     std::string alignment = std::to_string((int)unit.def.alignment);
