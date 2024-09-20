@@ -13,11 +13,11 @@ async function Init_Grpahics() {
 }
 
 export async function Load_Target_Image(x, y, path) {
-    const texture = await PIXI.Assets.load(path);
-    targetImg = new PIXI.Sprite(texture);
+    // const texture = await PIXI.Assets.load(path);
+    // targetImg = new PIXI.Sprite(texture);
     let w = rightPanelWidth;
     let h = rightPanelWidth;
-    Draw_Sprite(x, y, w, h, targetImg);
+    Draw_Sprite(x, y, w, h, inventory);
 }
 
 export async function Create_Canvas() {
