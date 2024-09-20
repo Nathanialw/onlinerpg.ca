@@ -4,7 +4,7 @@ import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Dr
 
 let targetStatsDisplay = []
 export let targetStats = {
-    target; false,
+    target: false,
     name: "??",
     gender: "??",
     alignment: "??",
