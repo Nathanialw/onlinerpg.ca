@@ -186,6 +186,12 @@ export function Make_Map(serverMap, visionWidth) {
         objectDisplay[i] = Create_Object_Sprite(objects[i][1], x, y, visionWidth);
         objectDisplay[i].eventMode = 'static';
         objectDisplay[i].cursor = 'pointer';
+        if  (x < 10) {
+            x = "0" + x;
+        }
+        if  (y < 10) {
+            y = "0" + y;
+        }
         let message = "5" + x + y;
         objectDisplay[i].on('pointerdown', (event) => { Send_Web_Socket_Message(message); console.log("Click Message sent: ", message); }); //query the server for the object data
     }
