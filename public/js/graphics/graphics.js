@@ -5,16 +5,17 @@ import { characterInfo } from '../units/unitdef.js';
 export const app = new PIXI.Application();
 
 let inventory;
-export let targetImg;
+let targetImg;
 
 async function Init_Grpahics() {
     const texture = await PIXI.Assets.load('assets/graphics/ui/itsmars_Inventory.png');
     inventory = new PIXI.Sprite(texture);
 }
 
-export async function Load_Target_Image(path) {
+export async function Load_Target_Image(x, y, w, h, path) {
     const texture = await PIXI.Assets.load(path);
     targetImg = new PIXI.Sprite(texture);
+    Draw_Sprite(x, y, w, h, targetImg);
 }
 
 export async function Create_Canvas() {

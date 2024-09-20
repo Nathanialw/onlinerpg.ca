@@ -57,8 +57,7 @@ export function Render_Target_Stats() {
     let y = Get_Right_Panel_Origin_y() + rightPanelWidth;
     let w = rightPanelWidth;
     let h = rightPanelWidth;
-    Load_Target_Image(targetStats.pic)
-    Draw_Sprite(x, y, w, h, targetImg);
+    Load_Target_Image(x, y, w, h, targetStats.pic)    
     targetStatsDisplay[0] = Create_Text_Line("Name: " + targetStats.name, 0, x, y);
     targetStatsDisplay[1] = Create_Text_Line("Gender: " + targetStats.gender, 1, x, y);
     targetStatsDisplay[2] = Create_Text_Line("Alignment: " + targetStats.alignment, 2, x, y);
