@@ -59,7 +59,7 @@ export function closeWebSocket() {
 }
 
 export function Send_Web_Socket_Message(message) {
-    if (conn.isConnected) {
-        conn.websocket.send(message);       
+    if (websocket.isConnected) {
+        websocket.websocket.send(message);       
     }
 }
