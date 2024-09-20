@@ -13,11 +13,11 @@ async function Init_Grpahics() {
 }
 
 export async function Load_Target_Image(x, y, path) {
-    let png = path.substring(path.lenth - 3);
-    console.log(png);
-    if (png !== ".jpg") {
-        return
-    }
+    // let png = path.substring(path.length - 3);
+    // console.log(png);
+    // if (png !== ".jpg") {
+    //     return
+    // }
     const texture = await PIXI.Assets.load(path);
     targetImg = new PIXI.Sprite(texture);
     let w = rightPanelWidth;
