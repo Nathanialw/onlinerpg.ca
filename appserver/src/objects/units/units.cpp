@@ -13,12 +13,7 @@
 #include "map.h"
 #include "units.h"
 
-
-
-
 namespace Units {
-std::unordered_map<UnitPosition, int> unitPositions;
-
   const int mapWidth = 99;
 
 //  std::unordered_map<uint16_t, std::string> entities;
@@ -27,9 +22,11 @@ std::unordered_map<UnitPosition, int> unitPositions;
     int x;
     int y;
   };
-std::vector<Unit> units;
-//when adding new units, use the emptyUnitSlots vector to find the next empty slot before pushing back
+
+  std::vector<Unit> units;
+  //when adding new units, use the emptyUnitSlots vector to find the next empty slot before pushing back
   std::vector<int> emptyUnitSlots;
+  std::unordered_map<UnitPosition, int> unitPositions;
   static std::string unitsString;
 
   std::vector<Unit> *Get_Units() { return &units; }
