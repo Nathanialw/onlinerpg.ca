@@ -32,7 +32,7 @@ export function Get_Target_Stats_From_Server(statsString) {
 
     for (let i = 2; i < stats.length - 2; i++) {
         if (stats[i] === "_") {
-            targetStats.pic = "assets/goblin/male/" + stats.substring(2, i) + ".jpg";
+            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(2, i) + ".jpg";
             stats = stats.substring(i + 1);
             break;
         }
