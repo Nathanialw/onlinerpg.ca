@@ -56,7 +56,7 @@ export function Render_Target_Stats() {
     let x = Get_Right_Panel_Origin_x();
     let y = Get_Right_Panel_Origin_y() + rightPanelWidth;
     // Load_Target_Image(x, y, targetStats.pic)    
-    Load_Target_Image(x, y, 'assets/graphics/ui/itsmars_Inventory.png')    
+    //Load_Target_Image(x, y, 'assets/graphics/ui/itsmars_Inventory.png')    
     targetStatsDisplay[0] = Create_Text_Line("Name: " + targetStats.name, 0, x, y);
     targetStatsDisplay[1] = Create_Text_Line("Gender: " + targetStats.gender, 1, x, y);
     targetStatsDisplay[2] = Create_Text_Line("Alignment: " + targetStats.alignment, 2, x, y);
