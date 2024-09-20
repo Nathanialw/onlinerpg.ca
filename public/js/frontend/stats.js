@@ -1,6 +1,6 @@
 
 //get string from server
-import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y} from "../graphics/graphics.js"
+import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Draw_Sprite, rightPanelWidth} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -38,18 +38,21 @@ export function Get_Target_Stats_From_Server(statsString) {
         }
     }
 
-    targetStats.health = stats.substring(0, 2) + " / " + stats.substring(2, 4);
-    targetStats.attack = stats.substring(4, 6) + " - " + stats.substring(6, 8);
+    targetStats.health = stats.substring(0, 2) + "/" + stats.substring(2, 4);
+    targetStats.attack = stats.substring(4, 6) + "-" + stats.substring(6, 8);
     targetStats.AC = stats.substring(8, 10);
-    targetStats.speed = stats.substring(10, 12);
-    targetStats.vision = stats.substring(12, 14);
-    targetStats.bio = stats.substring(14);
+    targetStats.speed = stats.substring(10, 11);
+    targetStats.vision = stats.substring(11, 13);
+    targetStats.bio = stats.substring(13, 50);
 }
 
 export function Render_Target_Stats() {
     targetStatsDisplay = []
-    x = Get_Right_Panel_Origin_x();
-    y = Get_Right_Panel_Origin_y();
+    let x = Get_Right_Panel_Origin_x();
+    let y = Get_Right_Panel_Origin_y() + rightPanelWidth;
+    let w = rightPanelWidth;
+    let h = rightPanelWidth;
+    Draw_Sprite(x, y, w, h, targetStats.pic);
     targetStatsDisplay[0] = Create_Text_Line("Name: " + targetStats.name, 0, x, y);
     targetStatsDisplay[1] = Create_Text_Line("Gender: " + targetStats.gender, 1, x, y);
     targetStatsDisplay[2] = Create_Text_Line("Alignment: " + targetStats.alignment, 2, x, y);
