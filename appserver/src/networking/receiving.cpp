@@ -134,15 +134,7 @@ namespace Network {
     else if (msg->get_payload()[0] == '5') {
       std::cout << "5" << msg->get_payload() << std::endl;
       std::cout << "Grabbing goblin payload: " << msg->get_payload() << std::endl;
-      std::string xStr1 = std::to_string(msg->get_payload()[1]);
-      std::string xStr2 = std::to_string(msg->get_payload()[2]);
-      std::string yStr1 = std::to_string(msg->get_payload()[3]);
-      std::string yStr2 = std::to_string(msg->get_payload()[4]);
-      std::cout << "Grabbing goblin as string info x: " << xStr1 << " " << xStr2 << " y: " << yStr1 << " " << yStr2 << std::endl;
-      int x = std::stoi(xStr1 + xStr2);
-      int y = std::stoi(yStr1 + yStr2);
-      std::cout << "Grabbing goblin at info x: " << x << " y: " << y << std::endl;
-      //maybe need to strip the first character off the string
+
       for (auto &unit : *Units::Get_Units()) {
         std::cout << "Unit found at: " << unit.name << std::endl;
         std::cout << "Found goblin at x: " << unit.x << " y: " << unit.y << std::endl;
@@ -155,8 +147,14 @@ namespace Network {
       std::cout << "Grabbing goblin at info x: " << posx << " y: " << posy << std::endl;
       int xposint = std::stoi(posx);
       int yposint = std::stoi(posy);
+
       std::cout << "Grabbing int goblin at info x: " << xposint << " y: " << yposint << std::endl;
-      auto response = "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(xposint, yposint));
+      auto player = Units::Get_Player();
+      int mapPositionx = player.x - player.vision + xposint;
+      int mapPositiony = player.y - player.vision + yposint;
+        std::cout << "Grabbing map goblin at info x: " << mapPositionx << " y: " << mapPositiony << std::endl;
+
+      auto response = "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(mapPositionx, mapPositiony));
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
 
