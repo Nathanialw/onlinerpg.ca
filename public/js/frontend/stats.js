@@ -49,7 +49,7 @@ export function Get_Target_Stats_From_Server(statsString) {
 }
 
 export function Render_Target_Stats() {
-    if (target) {
+    if (targetStats.target) {
         return
     }
     targetStatsDisplay = []
