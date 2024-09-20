@@ -46,6 +46,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.speed = stats.substring(10, 11);
     targetStats.vision = stats.substring(11, 13);
     targetStats.bio = stats.substring(13, 50);
+    Render_Target_Stats()
 }
 
 export function Render_Target_Stats() {
