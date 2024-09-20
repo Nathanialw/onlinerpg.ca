@@ -148,7 +148,14 @@ namespace Network {
         std::cout << "Found goblin at x: " << unit.x << " y: " << unit.y << std::endl;
         //send the goblin data to the client
       }
-      auto response = "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(x, y));
+      std::string posx = "";
+      std::string posy = "";
+      posx.append(msg->get_payload().substr(1, 2));
+      posy.append(msg->get_payload().substr(3, 2));
+      std::cout << "Grabbing goblin at info x: " << posx << " y: " << posy << std::endl;
+      int xposint = std::stoi(posx);
+      int yposint = std::stoi(posy);
+      auto response = "5" + Species::Get_Unit_Data_As_string(Units::Get_Unit_At_Position(xposint, yposint));
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
 
