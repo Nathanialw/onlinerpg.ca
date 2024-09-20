@@ -45,7 +45,7 @@ export let viewportHeight = 41;
 let topPanelHeight = 10;
 let topPanelWidth = viewportWidth;
 
-let rightPanelWidth = sidePanelWidth;
+export let rightPanelWidth = sidePanelWidth;
 let rightPanelHeight = viewportHeight + topPanelHeight;
 
 let leftPanelWidth = sidePanelWidth;
@@ -100,7 +100,7 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
     app.stage.addChild(panel);
 }
 
-function Draw_Sprite(x, y, w, h, sprite) {
+export function Draw_Sprite(x, y, w, h, sprite) {
     console.log('Draw_Sprite');
     sprite.x = x;
     sprite.y = y;
