@@ -6,6 +6,7 @@ let targetStatsDisplay = []
 export let targetStats = {
     target: false,
     name: "??",
+    age: "??",
     gender: "??",
     alignment: "??",
     pic: "",
@@ -28,13 +29,13 @@ export function Get_Target_Stats_From_Server(statsString) {
         }
     }
 
-    targetStats.gender = stats.substring(0, 1);
-    targetStats.alignment = stats.substring(1, 2);
+    targetStats.gender = stats.substring(0, 3);
+    targetStats.alignment = stats.substring(3, 4);
     // pic = stats.substring(2, 3);
 
-    for (let i = 2; i < stats.length - 2; i++) {
+    for (let i = 4; i < stats.length - 4; i++) {
         if (stats[i] === "_") {
-            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(2, i) + ".jpg";
+            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(4, i) + ".jpg";
             stats = stats.substring(i + 1);
             break;
         }
@@ -49,6 +50,12 @@ export function Get_Target_Stats_From_Server(statsString) {
     Render_Target_Stats()
 }
 
+function Display_Line(value, i, x, y) {
+    targetStatsDisplay[i] = Create_Text_Line("Name: " + targetStats.name, i, x, y);
+    i++;
+    return i;
+}
+
 export function Render_Target_Stats() {
     if (!targetStats.target) {
         return
@@ -58,13 +65,16 @@ export function Render_Target_Stats() {
     let y = Get_Right_Panel_Origin_y()
     Load_Target_Image(x, y, targetStats.pic)    
     y = Get_Right_Panel_Origin_y() + rightPanelWidth; 
-    targetStatsDisplay[0] = Create_Text_Line("Name: " + targetStats.name, 0, x, y);
-    targetStatsDisplay[1] = Create_Text_Line("Gender: " + targetStats.gender, 1, x, y);
-    targetStatsDisplay[2] = Create_Text_Line("Alignment: " + targetStats.alignment, 2, x, y);
-    targetStatsDisplay[3] = Create_Text_Line("Health: " + targetStats.health, 3, x, y);
-    targetStatsDisplay[4] = Create_Text_Line("Attack: " + targetStats.attack, 4, x, y);
-    targetStatsDisplay[5] = Create_Text_Line("AC: " + targetStats.AC, 5, x, y);
-    targetStatsDisplay[6] = Create_Text_Line("Speed: " + targetStats.speed, 6, x, y);
-    targetStatsDisplay[7] = Create_Text_Line("Vision: " + targetStats.vision, 7, x, y);
-    targetStatsDisplay[8] = Create_Text_Line(targetStats.bio, 8, x, y);
+
+    let line = 0;
+    line = Display_Line("Name: " + targetStats.name, line, x, y);
+    line = Display_Line("Age: " + targetStats.age, line, x, y);
+    line = Display_Line("Gender: " + targetStats.gender, line, x, y);
+    line = Display_Line("Alignment: " + targetStats.alignment, line, x, y);
+    line = Display_Line("Health: " + targetStats.health, line, x, y);
+    line = Display_Line("Attack: " + targetStats.attack, line, x, y);
+    line = Display_Line("AC: " + targetStats.AC, line, x, y);
+    line = Display_Line("Speed: " + targetStats.speed, line, x, y);
+    line = Display_Line("Vision: " + targetStats.vision, line, x, y);
+    line = Display_Line(targetStats.bio, line, x, y);  
 }

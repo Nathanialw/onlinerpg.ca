@@ -121,6 +121,7 @@ namespace Units {
     int x = 6;
     int y = 6;
     std::string name = "Default";
+    int age = 16;
     Def def;
 
     int vision = 6;
