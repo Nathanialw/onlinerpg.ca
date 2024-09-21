@@ -28,7 +28,7 @@ namespace Species {
     auto unit = Units::Get_Unit_At_Position(mapPositionx, mapPositiony);
 
     auto name = unit.name;
-    auto age = std::to_string(unit.age);
+    auto age = Utils::Prepend_Zero_3Digit(unit.age);
     std::string gender = std::to_string((int)unit.def.gender);
     std::string alignment = std::to_string((int)unit.def.alignment);
     //assets/species/goblin.png   this would be a good opportunity to try using a CDN

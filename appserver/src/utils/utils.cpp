@@ -25,4 +25,13 @@ namespace Utils {
       str = "0" + str;
     return str;
   }
+
+  std::string Prepend_Zero_3Digit(int num) {
+    std::string str = std::to_string(num);
+    if (num < 10)
+      str = "00" + str;
+    if (num < 100)
+      str = "0" + str;
+    return str;
+  }
 }

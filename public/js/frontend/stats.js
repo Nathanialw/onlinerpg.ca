@@ -52,7 +52,7 @@ export function Get_Target_Stats_From_Server(statsString) {
 }
 
 function Display_Line(value, i, x, y) {
-    targetStatsDisplay[i] = Create_Text_Line("Name: " + targetStats.name, i, x, y);
+    targetStatsDisplay[i] = Create_Text_Line(value, i, x, y);
     i++;
     return i;
 }
