@@ -31,12 +31,12 @@ export function Get_Target_Stats_From_Server(statsString) {
 
     targetStats.age = stats.substring(0, 3);
     targetStats.gender = stats.substring(3, 4);
-    targetStats.alignment = stats.substring(4, 6);
+    targetStats.alignment = stats.substring(4, 5);
     // pic = stats.substring(2, 3);
 
-    for (let i = 6; i < stats.length - 6; i++) {
+    for (let i = 5; i < stats.length - 5; i++) {
         if (stats[i] === "_") {
-            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(6, i) + ".jpg";
+            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(5, i) + ".jpg";
             stats = stats.substring(i + 1);
             break;
         }
