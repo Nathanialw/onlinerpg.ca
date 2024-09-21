@@ -29,13 +29,14 @@ export function Get_Target_Stats_From_Server(statsString) {
         }
     }
 
-    targetStats.gender = stats.substring(0, 3);
-    targetStats.alignment = stats.substring(3, 4);
+    targetStats.age = stats.substring(0, 3);
+    targetStats.gender = stats.substring(3, 4);
+    targetStats.alignment = stats.substring(4, 6);
     // pic = stats.substring(2, 3);
 
-    for (let i = 4; i < stats.length - 4; i++) {
+    for (let i = 6; i < stats.length - 6; i++) {
         if (stats[i] === "_") {
-            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(4, i) + ".jpg";
+            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(6, i) + ".jpg";
             stats = stats.substring(i + 1);
             break;
         }
