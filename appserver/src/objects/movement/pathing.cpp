@@ -195,6 +195,7 @@ namespace Pathing {
       std::cout << "target x: " << targetPosition.x << " target y: " << targetPosition.y << std::endl;
       position.x = targetPosition.x;
       position.y = targetPosition.y;
+      return;
     }
     //    int cell = 1;
     //    if (pathing.path.size() > 1)
