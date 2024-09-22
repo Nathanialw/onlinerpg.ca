@@ -195,7 +195,7 @@ namespace Pathing {
       position.y = targetPosition.y;
       return;
     }
-    int cell = 2;
+    int cell = 1;
     std::cout << "In target Node, moving directly" << std::endl;
     std::cout << "position x: " << position.x << " position y: " << position.y << std::endl;
     std::cout << "target x: " << path[path.size() - cell].x << " target y: " << path[path.size() - cell].y << std::endl;

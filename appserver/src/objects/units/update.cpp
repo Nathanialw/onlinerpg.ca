@@ -49,7 +49,7 @@ namespace Update {
     Units::Update_UnitsString(move.x, move.y);
 
 
-    auto units = *Units::Get_Units();
+    auto &units = *Units::Get_Units();
     for (int i = 1; i < units.size(); i++) {
 
       //if player is in vision
