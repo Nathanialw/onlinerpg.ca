@@ -45,12 +45,13 @@ namespace Map {
     gameMap[y][x] = defaultMap[y][x];
   }
 
-  void Update(int px, int py, int x, int y, std::string tile) {
+  std::string* Update(int px, int py, int x, int y, std::string tile) {
     Set_Tile(px, py, defaultMap[px][py]);
 //    if (tile == " ")
 //      Reset_Tile(px + x, py + y);
 //    else
     Set_Tile(px + x, py + y, tile);
+    return *gameMap;
   }
 
   // state 1 = initial map, 2 = update map

@@ -13,6 +13,7 @@
 
 namespace Pathing {
 
-  void Move_To(Component::Position &position, const Component::Position &targetPosition, std::string &map);
-  bool Init(std::string mapString);
+  void Move_To(Component::Position &position, const Component::Position &targetPosition);
+  bool Init(const std::string &mapString);
+  void Update(const std::string &mapString);
 }

@@ -44,7 +44,7 @@ namespace Update {
     }
 
     // if the unit survives, return, else move to the cell
-    Map::Update(player.position.x, player.position.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
+    auto d = Map::Update(player.position.x, player.position.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
 
@@ -53,10 +53,20 @@ namespace Update {
     for (int i = 1; i < units.size(); i++) {
 
       //if player is in vision
-      std::string map;
       Component::Position former = units[i].position;
-      Pathing::Move_To(units[i].position, player.position, map);
-      Map::Update(former.x, former.y, units[i].position.x, units[i].position.y, Units::Get_Unit_Char(units[i].def.species));
+      //update unit position
+      Pathing::Move_To(units[i].position, player.position);
+      //update the position in the map string
+      auto map = Map::Update(former.x, former.y, units[i].position.x, units[i].position.y, Units::Get_Unit_Char(units[i].def.species));
+      //update the collision map
+      Pathing::Update(*map);
+
+      for (int j = 0; j < map->size(); j++) {
+        for (int k = 0; k < map->size(); k++) {
+          std::cout << map[j][k];
+        }
+        std::cout << std::endl;
+      }
 
 //      Units::Update_UnitsString(unit.x, unit.y);
 

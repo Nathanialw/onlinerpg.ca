@@ -35,16 +35,16 @@ namespace Pathing {
   sNode *nodeEnd = nullptr;
 
   // clear previous location, set new location
-  void Update(std::string mapString) {
-        for (int x = 0; x < nMapWidth; x++) {
-          for (int y = 0; y < nMapHeight; y++) {
-            if (mapString[y * nMapWidth + x] == '.')
-              nodes[y * nMapWidth + x].bObstacle = false;
-          }
+  void Update(const std::string &mapString) {
+      for (int x = 0; x < nMapWidth; x++) {
+        for (int y = 0; y < nMapHeight; y++) {
+          if (mapString[y * nMapWidth + x] == '.')
+            nodes[y * nMapWidth + x].bObstacle = false;
         }
+      }
   }
 
-  bool Init(std::string mapString) {
+  bool Init(const std::string &mapString) {
     for (int x = 0; x < nMapWidth; x++) {
       for (int y = 0; y < nMapHeight; y++) {
         nodes[y * nMapWidth + x].x = x;
@@ -185,7 +185,7 @@ namespace Pathing {
     return true;
   }
 
-  void Move_To(Component::Position &position, const Component::Position &targetPosition, std::string &map) {
+  void Move_To(Component::Position &position, const Component::Position &targetPosition) {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path;
     Solve_AStar(position, targetPosition, path);
@@ -205,7 +205,5 @@ namespace Pathing {
     std::cout << "path size: " << path.size() << std::endl;
     position.x = path[path.size() - cell].x;
     position.y = path[path.size() - cell].y;
-    //update the position in the map string
-    Update(map);
   }
 }

@@ -17,7 +17,7 @@ namespace Map {
 std::string Init();
 std::string SendMapSegment(const Units::Unit &player, std::string direction, int state = 1);
 std::string Get_Adjacent_Tile(int x, int y);
-void Update(int px, int py, int x, int y, std::string tile);
+std::string* Update(int px, int py, int x, int y, std::string tile);
 void Set_Tile(int x, int y, std::string tile);
 void Reset_Tile(int x, int y);
 }
