@@ -59,8 +59,11 @@ namespace Update {
       Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
       //check next cell and move/attack
       if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == "h") {
+        std::cout << "goblin attacks player" << std::endl;
         continue;
       }
+      units[i].position.x += moveTo.x;
+      units[i].position.y += moveTo.y;
       Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
       Pathing::Update(Map::Get_Map());
     }
