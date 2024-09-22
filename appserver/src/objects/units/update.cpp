@@ -74,7 +74,7 @@ namespace Update {
     auto mapString = Map::Get_Map();
     std::cout << "Drawing map: "<< std::endl;
     for (int i = 0; i < 100; i++) {
-      std::cout << mapString.substr(i * 100, (i * 100) + 100) << std::endl;
+      std::cout << mapString.substr(i * 100, 100) << std::endl;
     }
 
 
