@@ -41,6 +41,9 @@ namespace Pathing {
           if (mapString[y * nMapWidth + x] == '.') {
             nodes[y * nMapWidth + x].bObstacle = false;
           }
+          else {
+            nodes[y * nMapWidth + x].bObstacle = true;
+          }
         }
       }
   }
