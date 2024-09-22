@@ -61,6 +61,9 @@ namespace Update {
       //update the collision map
       Pathing::Update(*map);
 
+      std::cout << "   " << map->size() << std::endl;
+      std::cout << "   " << map[0].size() << std::endl;
+
       for (int j = 0; j < map->size(); j++) {
         for (int k = 0; k < map->size(); k++) {
           std::cout << &map[j][k];
