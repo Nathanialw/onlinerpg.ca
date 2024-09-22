@@ -9,6 +9,7 @@
 #include "receiving.h"
 #include "update.h"
 #include "goblin.h"
+#include "pathing.h"
 
 namespace Network {
 
@@ -78,7 +79,8 @@ namespace Network {
   }
 
   void Start(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
-    Map::Init();
+    std::string map = Map::Init();
+    Pathing::Init(map);
     Units::Init(msg->get_payload());
 
     if (!Units::Get_Units()->empty()) {

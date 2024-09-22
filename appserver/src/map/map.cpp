@@ -10,7 +10,7 @@ namespace Map {
   std::string defaultMap[mapWidth][mapWidth];
   std::string gameMap[mapWidth][mapWidth];
 
-  void Init() {
+  std::string Init() {
     for (int i = 0; i < mapWidth; i++) {
       for (int j = 0; j < mapWidth; j++) {
         if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
@@ -23,6 +23,18 @@ namespace Map {
         }
       }
     }
+
+    std::string map;
+    for (int j = 0; j <= mapWidth; j++) {
+      for (int i = 0; i <= mapWidth; i++) {
+        if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
+          map += ' ';
+        else
+          map += gameMap[j][i];
+      }
+    }
+
+    return map;
   }
 
   void Set_Tile(int x, int y, std::string tile) {
@@ -47,8 +59,8 @@ namespace Map {
     mapSegment += std::to_string((player.vision * 2) + 1);
     mapSegment += direction;
 
-    for (int j = player.y - player.vision; j <= player.y + player.vision; j++) {
-        for (int i = player.x - player.vision; i <= player.x + player.vision; i++) {
+    for (int j = player.position.y - player.vision; j <= player.position.y + player.vision; j++) {
+        for (int i = player.position.x - player.vision; i <= player.position.x + player.vision; i++) {
             if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
               mapSegment += ' ';
             else

@@ -1,4 +1,3 @@
-
 #include "update.h"
 #include "units.h"
 #include "map.h"
@@ -8,6 +7,7 @@
 #include "iostream"
 #include "unordered_map"
 #include "utils.h"
+#include "pathing.h"
 
 namespace Update {
   struct Move {
@@ -31,22 +31,35 @@ namespace Update {
     std::cout << "successfully grabbed player from units[]" << std::endl;
 
     // collision
-    if (Collision::Wall_Collision(player.x, player.y, move.x, move.y)) {
+    if (Collision::Wall_Collision(player.position.x, player.position.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
       std::string c = "c";
       return c + " " + "  " + "1";
     }
     // if the nearby cell is an enemy, attack
-    auto melee = Attack::Melee(player.x, player.y, move.x, move.y);
+    auto melee = Attack::Melee(player.position.x, player.position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
       return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";
     }
 
     // if the unit survives, return, else move to the cell
-    Map::Update(player.x, player.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
+    Map::Update(player.position.x, player.position.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
+
+    for (auto &unit : *Units::Get_Units()) {
+      //if player is in vision
+      std::string map;
+      Component::Position former = unit.position;
+      Pathing::Move_To(unit.position, player.position, map);
+      Map::Update(former.x, former.y, unit.position.x, unit.position.y, Units::Get_Unit_Char(unit.def.species));
+
+//      Units::Update_UnitsString(unit.x, unit.y);
+
+      //if they move onto the player, record as attack to send to client
+    }
+
     std::string m = direction;
     if (melee.isDead) {
       std::cout << "goblin dead" << std::endl;

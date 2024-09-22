@@ -106,8 +106,8 @@ namespace Units {
     unit.def.species = species;
     unit.def.unitClass = unitClass;
     unit.def.alignment = alignment;
-    unit.x = x;
-    unit.y = y;
+    unit.position.x = x;
+    unit.position.y = y;
 
     if (emptyUnitSlots.empty()) {
       units.push_back(unit);
@@ -167,10 +167,10 @@ namespace Units {
     std::cout << "Alignment: " << alignmentStr << std::endl;
 
 
-    Gender gender = (Gender)std::stoi(genderStr);
-    Species species = (Species)std::stoi(speciesStr);
-    Class unitClass = (Class)std::stoi(classStr);
-    Alignment alignment = (Alignment)std::stoi(alignmentStr);
+    auto gender = (Gender)std::stoi(genderStr);
+    auto species = (Species)std::stoi(speciesStr);
+    auto unitClass = (Class)std::stoi(classStr);
+    auto alignment = (Alignment)std::stoi(alignmentStr);
 
     Add_Unit(6, 6, name, gender, species, unitClass, alignment);
 
@@ -195,7 +195,7 @@ namespace Units {
     unitsString = Place_Entities_On_Map(characterCreate);
 
     for (auto &unit : *Units::Get_Units()) {
-      Map::Set_Tile(unit.x, unit.y, unitChars[(int)unit.def.species]);
+      Map::Set_Tile(unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
     }
   }
 

@@ -12,8 +12,10 @@
 
 #include "vector"
 #include <functional>
+#include "iostream"
 
-
+#include "components.h"
+#include "pathing.h"
 
 namespace Units {
 
@@ -118,8 +120,10 @@ namespace Units {
     Stats stats;
 
     //unit data to send
-    int x = 6;
-    int y = 6;
+    Component::Position position = {6,6};
+
+//    int x = 6;
+//    int y = 6;
     std::string name = "Default";
     int age = 16;
     Def def;
@@ -131,6 +135,8 @@ namespace Units {
     int AC = 10;
     int health = 30;
     int healthMax = 30;
+
+
   };
 
   struct UnitPosition {
