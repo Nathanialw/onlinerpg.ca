@@ -48,12 +48,15 @@ namespace Update {
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
 
-    for (auto &unit : *Units::Get_Units()) {
+
+    auto units = *Units::Get_Units();
+    for (int i = 1; i < units.size(); i++) {
+
       //if player is in vision
       std::string map;
-      Component::Position former = unit.position;
-      Pathing::Move_To(unit.position, player.position, map);
-      Map::Update(former.x, former.y, unit.position.x, unit.position.y, Units::Get_Unit_Char(unit.def.species));
+      Component::Position former = units[i].position;
+      Pathing::Move_To(units[i].position, player.position, map);
+      Map::Update(former.x, former.y, units[i].position.x, units[i].position.y, Units::Get_Unit_Char(units[i].def.species));
 
 //      Units::Update_UnitsString(unit.x, unit.y);
 
