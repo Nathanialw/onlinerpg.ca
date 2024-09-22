@@ -37,12 +37,12 @@ namespace Pathing {
   // clear previous location, set new location
   void Update(const std::string &mapString) {
       for (int x = 0; x < nMapWidth; x++) {
-        std::cout << mapString.substr(x, x + nMapWidth) << std::endl;
         for (int y = 0; y < nMapHeight; y++) {
           if (mapString[y * nMapWidth + x] == '.') {
             nodes[y * nMapWidth + x].bObstacle = false;
           }
         }
+        std::cout << mapString.substr(x * nMapWidth, x + nMapWidth) << std::endl;
       }
   }
 

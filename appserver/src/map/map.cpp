@@ -42,7 +42,7 @@ namespace Map {
     return map;
   }
 
-  void Set_Tile(int x, int y, std::string tile) {
+  void Set_Tile(int x, int y, const std::string &tile) {
     gameMap[y][x] = tile;
   }
 
@@ -50,7 +50,7 @@ namespace Map {
     gameMap[y][x] = defaultMap[y][x];
   }
 
-  void Update(int px, int py, int x, int y, std::string tile) {
+  void Update(int px, int py, int x, int y, const std::string &tile) {
     Set_Tile(px, py, defaultMap[px][py]);
 //    if (tile == " ")
 //      Reset_Tile(px + x, py + y);
