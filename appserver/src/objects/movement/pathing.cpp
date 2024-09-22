@@ -36,11 +36,12 @@ namespace Pathing {
 
   // clear previous location, set new location
   void Update(std::string mapString) {
-    for (int i = 0; i < mapString.size(); i++) {
-      if (mapString[i] == '.') {
-        nodes[i].bObstacle = false;
-      }
-    }
+        for (int x = 0; x < nMapWidth; x++) {
+          for (int y = 0; y < nMapHeight; y++) {
+            if (mapString[y * nMapWidth + x] == '.')
+              nodes[y * nMapWidth + x].bObstacle = false;
+          }
+        }
   }
 
   bool Init(std::string mapString) {
