@@ -42,7 +42,6 @@ namespace Pathing {
             nodes[y * nMapWidth + x].bObstacle = false;
           }
         }
-        std::cout << mapString.substr(x * nMapWidth, (x * nMapWidth) + nMapWidth) << std::endl;
       }
   }
 

@@ -59,7 +59,10 @@ namespace Update {
       //update the position in the map string
       std::cout << "former position: " << former.x << " " << former.y << std::endl;
       std::cout << "unit position: " << units[i].position.x << " " << units[i].position.y << std::endl;
-      Map::Update(former.x, former.y, units[i].position.x, units[i].position.y, Units::Get_Unit_Char(units[i].def.species));
+
+      int x = units[i].position.x - former.x;
+      int y = units[i].position.y - former.y;
+      Map::Update(former.x, former.y, x, y, Units::Get_Unit_Char(units[i].def.species));
       //update the collision map
       auto map = Map::Get_Map();
       Pathing::Update(map);
@@ -68,6 +71,12 @@ namespace Update {
 
       //if they move onto the player, record as attack to send to client
     }
+    auto mapString = Map::Get_Map();
+    std::cout << "Drawing map: "<< std::endl;
+    for (int i = 0; i < 100; i++) {
+      std::cout << mapString.substr(i * 100, (i * 100) + 100) << std::endl;
+    }
+
 
     std::string m = direction;
     if (melee.isDead) {
