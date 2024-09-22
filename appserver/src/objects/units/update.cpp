@@ -57,6 +57,8 @@ namespace Update {
       //update unit position
       Pathing::Move_To(units[i].position, player.position);
       //update the position in the map string
+      std::cout << "former position: " << former.x << " " << former.y << std::endl;
+      std::cout << "unit position: " << units[i].position.x << " " << units[i].position.y << std::endl;
       Map::Update(former.x, former.y, units[i].position.x, units[i].position.y, Units::Get_Unit_Char(units[i].def.species));
       //update the collision map
       auto map = Map::Get_Map();

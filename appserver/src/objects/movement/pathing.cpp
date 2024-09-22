@@ -42,7 +42,7 @@ namespace Pathing {
             nodes[y * nMapWidth + x].bObstacle = false;
           }
         }
-        std::cout << mapString.substr(x * nMapWidth, x + nMapWidth) << std::endl;
+        std::cout << mapString.substr(x * nMapWidth, (x * nMapWidth) + nMapWidth) << std::endl;
       }
   }
 
@@ -198,11 +198,6 @@ namespace Pathing {
       return;
     }
     int cell = 1;
-    std::cout << "In target Node, moving directly" << std::endl;
-    std::cout << "position x: " << position.x << " position y: " << position.y << std::endl;
-    std::cout << "target x: " << path[path.size() - cell].x << " target y: " << path[path.size() - cell].y << std::endl;
-    //    int cell = 1;
-    //    if (pathing.path.size() > 1)
 
     std::cout << "path size: " << path.size() << std::endl;
     position.x = path[path.size() - cell].x;
