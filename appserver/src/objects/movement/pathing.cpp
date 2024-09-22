@@ -38,9 +38,11 @@ namespace Pathing {
   void Update(const std::string &mapString) {
       for (int x = 0; x < nMapWidth; x++) {
         for (int y = 0; y < nMapHeight; y++) {
+          std::cout << &mapString[y * nMapWidth + x];
           if (mapString[y * nMapWidth + x] == '.')
             nodes[y * nMapWidth + x].bObstacle = false;
         }
+        std::cout << std::endl;
       }
   }
 
