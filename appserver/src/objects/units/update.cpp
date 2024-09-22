@@ -56,9 +56,12 @@ namespace Update {
       //cache position
       Component::Position former = units[i].position;
       //calculate next cell
+      Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
       //check next cell and move/attack
-      Pathing::Move_To(units[i].position, player.position);
-      Map::Update(former.x, former.y, units[i].position.x - former.x, units[i].position.y - former.y, Units::Get_Unit_Char(units[i].def.species));
+      if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == "h") {
+        continue;
+      }
+      Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
       Pathing::Update(Map::Get_Map());
     }
 

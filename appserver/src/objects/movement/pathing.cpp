@@ -189,20 +189,16 @@ namespace Pathing {
     return true;
   }
 
-  void Move_To(Component::Position &position, const Component::Position &targetPosition) {
+  Component::Position Move_To(Component::Position &position, const Component::Position &targetPosition) {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path;
     Solve_AStar(position, targetPosition, path);
 
     if (path.empty() || path.size() <= 1) {
-      position.x = targetPosition.x;
-      position.y = targetPosition.y;
-      return;
+      return {targetPosition.x - position.x, targetPosition.y - position.y};
     }
     int cell = 1;
 
-    std::cout << "path size: " << path.size() << std::endl;
-    position.x = path[path.size() - cell].x;
-    position.y = path[path.size() - cell].y;
+    return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};
   }
 }
