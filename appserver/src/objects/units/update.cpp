@@ -44,7 +44,7 @@ namespace Update {
     }
 
     // if the unit survives, return, else move to the cell
-    auto d = Map::Update(player.position.x, player.position.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
+    Map::Update(player.position.x, player.position.y, move.x, move.y, Units::Get_Unit_Char(player.def.species));
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
 
@@ -57,9 +57,10 @@ namespace Update {
       //update unit position
       Pathing::Move_To(units[i].position, player.position);
       //update the position in the map string
-      auto *map = Map::Update(former.x, former.y, units[i].position.x, units[i].position.y, Units::Get_Unit_Char(units[i].def.species));
+      Map::Update(former.x, former.y, units[i].position.x, units[i].position.y, Units::Get_Unit_Char(units[i].def.species));
       //update the collision map
-      Pathing::Update(*map);
+      auto map = Map::Get_Map();
+      Pathing::Update(map);
 
 //      Units::Update_UnitsString(unit.x, unit.y);
 

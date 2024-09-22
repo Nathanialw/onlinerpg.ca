@@ -10,6 +10,20 @@ namespace Map {
   std::string defaultMap[mapWidth][mapWidth];
   std::string gameMap[mapWidth][mapWidth];
 
+  std::string Get_Map() {
+    std::string map;
+    for (int j = 0; j <= mapWidth; j++) {
+      for (int i = 0; i <= mapWidth; i++) {
+            if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
+              map += ' ';
+            else
+              map += gameMap[j][i];
+      }
+    }
+
+    return map;
+  }
+
   std::string Init() {
     for (int i = 0; i < mapWidth; i++) {
       for (int j = 0; j < mapWidth; j++) {
@@ -24,16 +38,7 @@ namespace Map {
       }
     }
 
-    std::string map;
-    for (int j = 0; j <= mapWidth; j++) {
-      for (int i = 0; i <= mapWidth; i++) {
-        if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
-          map += ' ';
-        else
-          map += gameMap[j][i];
-      }
-    }
-
+    auto map = Get_Map();
     return map;
   }
 
@@ -45,13 +50,12 @@ namespace Map {
     gameMap[y][x] = defaultMap[y][x];
   }
 
-  std::string* Update(int px, int py, int x, int y, std::string tile) {
+  void Update(int px, int py, int x, int y, std::string tile) {
     Set_Tile(px, py, defaultMap[px][py]);
 //    if (tile == " ")
 //      Reset_Tile(px + x, py + y);
 //    else
     Set_Tile(px + x, py + y, tile);
-    return *gameMap;
   }
 
   // state 1 = initial map, 2 = update map
