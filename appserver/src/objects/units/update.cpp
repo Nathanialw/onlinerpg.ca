@@ -63,7 +63,7 @@ namespace Update {
 
       for (int j = 0; j < map->size(); j++) {
         for (int k = 0; k < map->size(); k++) {
-          std::cout << map[j][k];
+          std::cout << &map[j][k];
         }
         std::cout << std::endl;
       }

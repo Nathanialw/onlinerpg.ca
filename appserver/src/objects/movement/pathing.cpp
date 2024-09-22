@@ -191,17 +191,17 @@ namespace Pathing {
     Solve_AStar(position, targetPosition, path);
 
     if (path.empty() || path.size() <= 1) {
-      std::cout << "In target Node, moving directly" << std::endl;
-      std::cout << "position x: " << position.x << " position y: " << position.y << std::endl;
-      std::cout << "target x: " << targetPosition.x << " target y: " << targetPosition.y << std::endl;
       position.x = targetPosition.x;
       position.y = targetPosition.y;
       return;
     }
+    int cell = 2;
+    std::cout << "In target Node, moving directly" << std::endl;
+    std::cout << "position x: " << position.x << " position y: " << position.y << std::endl;
+    std::cout << "target x: " << path[path.size() - cell].x << " target y: " << path[path.size() - cell].y << std::endl;
     //    int cell = 1;
     //    if (pathing.path.size() > 1)
 
-    int cell = 2;
     std::cout << "path size: " << path.size() << std::endl;
     position.x = path[path.size() - cell].x;
     position.y = path[path.size() - cell].y;
