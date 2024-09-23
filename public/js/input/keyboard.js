@@ -12,6 +12,7 @@ let Update = {
     w: Move,
     s: Move,
     d: Move,
+    r: Move,
     Control: SoundPlay
 }
 
