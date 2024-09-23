@@ -23,6 +23,30 @@ namespace Update {
     {'d', {1,0}}
   };
 
+  void Update_Enemies() {
+    auto &player = Units::Get_Units()->at(0);
+    auto &units = *Units::Get_Units();
+
+    for (int i = 1; i < units.size(); i++) {
+
+      //if player is in vision
+      //cache position
+      Component::Position former = units[i].position;
+      //calculate next cell
+      Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
+      //check next cell and move/attack
+      if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == "h") {
+        std::cout << "goblin attacks player" << std::endl;
+        continue;
+      }
+      units[i].position.x += moveTo.x;
+      units[i].position.y += moveTo.y;
+      Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
+      Pathing::Update(Map::Get_Map());
+      Units::Update_Unit_Position(former.x, former.y, units[i].position.x, units[i].position.y);
+    }
+  }
+
   std::string Update_Player(const char *direction) {
     Move move;
     move = updatePosition[*direction];
@@ -50,25 +74,7 @@ namespace Update {
     Units::Update_UnitsString(move.x, move.y);
 
 
-    auto &units = *Units::Get_Units();
-    for (int i = 1; i < units.size(); i++) {
 
-      //if player is in vision
-      //cache position
-      Component::Position former = units[i].position;
-      //calculate next cell
-      Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
-      //check next cell and move/attack
-      if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == "h") {
-        std::cout << "goblin attacks player" << std::endl;
-        continue;
-      }
-      units[i].position.x += moveTo.x;
-      units[i].position.y += moveTo.y;
-      Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
-      Pathing::Update(Map::Get_Map());
-      Units::Update_Unit_Position(former.x, former.y, units[i].position.x, units[i].position.y);
-    }
 
     auto mapString = Map::Get_Map();
     std::cout << "Drawing map: "<< std::endl;
@@ -86,6 +92,7 @@ namespace Update {
 
   void Update_Units(const char *direction) {
     Update_Player(direction);
+    Update_Enemies();
   }
 
 }
