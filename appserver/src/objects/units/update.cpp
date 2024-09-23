@@ -1,11 +1,12 @@
+#include "unordered_map"
+#include "iostream"
+
 #include "update.h"
 #include "units.h"
 #include "map.h"
 #include "collision.h"
 #include "attack.h"
 #include "movement.h"
-#include "iostream"
-#include "unordered_map"
 #include "utils.h"
 #include "pathing.h"
 
@@ -66,6 +67,7 @@ namespace Update {
       units[i].position.y += moveTo.y;
       Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
       Pathing::Update(Map::Get_Map());
+      Units::Update_Unit_Position(former.x, former.y, units[i].position.x, units[i].position.y);
     }
 
     auto mapString = Map::Get_Map();

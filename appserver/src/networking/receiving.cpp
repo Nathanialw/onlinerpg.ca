@@ -105,12 +105,12 @@ namespace Network {
   }
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
-      //I will need to send this somewhere to get parsed and decide what the response should be
-      std::cout << "on_message called with hdl: " << hdl.lock().get()
-              << " and message: " << msg->get_payload()
-              << std::endl;
-     //keep websocket alive
-      std::string response;
+    //I will need to send this somewhere to get parsed and decide what the response should be
+    std::cout << "on_message called with hdl: " << hdl.lock().get()
+            << " and message: " << msg->get_payload()
+            << std::endl;
+   //keep websocket alive
+    std::string response;
     if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.
       std::cout << "1" << msg->get_payload() << std::endl;
 
@@ -135,7 +135,6 @@ namespace Network {
     }
     else if (msg->get_payload()[0] == '5') {
       std::cout << "5" << msg->get_payload() << std::endl;
-      std::string response = "";
       response.append(msg->get_payload().substr(1, 4));
       response = "5" + Species::Get_Unit_Data_As_string(response);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);

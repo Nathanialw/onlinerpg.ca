@@ -153,6 +153,7 @@ namespace Units {
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
   int Get_Unit_Index(int x, int y);
+  void Update_Unit_Position(const int &x, const int &y, const int &newX, const int &newY);
   void Remove_Unit(int x, int y);
   std::string Get_Unit_Char(Species species);
   Unit Get_Unit_At_Position(int x, int y);

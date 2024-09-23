@@ -74,7 +74,7 @@ namespace Units {
     return units[Get_Unit_Index(x, y)];
   }
 
-  void Update_Unit_Position(int x, int y, int newX, int newY) {
+  void Update_Unit_Position(const int &x, const int &y, const int &newX, const int &newY) {
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
     UnitPosition newPos = {newX, newY};
