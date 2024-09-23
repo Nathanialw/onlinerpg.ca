@@ -39,9 +39,8 @@ gamey
 
 short term:
 -player id so you can have your own game
-
 -when holding down move, if it colides into a unit. just stop instead of attacking
--simple AI that moves towards play when in range, attacks if adjacent
+-AI attacks if adjacent
 -come up with a list of spells
 -simple procedurally generated playable map
 
