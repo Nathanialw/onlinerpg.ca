@@ -106,9 +106,7 @@ namespace Network {
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     //I will need to send this somewhere to get parsed and decide what the response should be
-    std::cout << "on_message called with hdl: " << hdl.lock().get()
-            << " and message: " << msg->get_payload()
-            << std::endl;
+//    std::cout << "on_message called with hdl: " << hdl.lock().get() << " and message: " << msg->get_payload() << std::endl;
    //keep websocket alive
     std::string response;
     if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.

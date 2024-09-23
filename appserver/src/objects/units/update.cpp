@@ -25,8 +25,8 @@ namespace Update {
   };
 
   void Update_Enemies() {
-    auto &player = Units::Get_Units()->at(0);
     auto &units = *Units::Get_Units();
+    auto player = units[0];
 
     for (int i = 1; i < units.size(); i++) {
 

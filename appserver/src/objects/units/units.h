@@ -121,9 +121,6 @@ namespace Units {
 
     //unit data to send
     Component::Position position = {6,6};
-
-//    int x = 6;
-//    int y = 6;
     std::string name = "Default";
     int age = 16;
     Def def;
