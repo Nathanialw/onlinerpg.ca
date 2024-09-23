@@ -87,7 +87,8 @@ namespace Pathing {
     nodeEnd = &nodes[(target.y * nMapWidth) + target.x];
 
     int numCellsToCheck;
-    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
+//    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
+    numCellsToCheck = 10000;
 
     for (int x = 0; x < nMapWidth; x++)
       for (int y = 0; y < nMapHeight; y++) {
