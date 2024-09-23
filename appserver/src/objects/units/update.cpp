@@ -87,9 +87,10 @@ namespace Update {
     return m + " " + "  " + "1";
   }
 
-  void Update_Units(const char *direction) {
-    Update_Player(direction);
+  std::string Update_Units(const char *direction) {
+    auto action = Update_Player(direction);
     Update_Enemies();
+    return action;
   }
 
 }

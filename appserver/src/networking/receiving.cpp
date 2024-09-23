@@ -91,7 +91,7 @@ namespace Network {
     std::string response;
     //move player
     const char* direction = &msg->get_payload()[1];
-    auto action = Update::Update_Player(direction);
+    auto action = Update::Update_Units(direction);
     //send map
     print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), action), websocketpp::frame::opcode::text);
 
