@@ -10,49 +10,10 @@ import {socket} from "../networking/socket.js"
 function Move(keyName) {
     console.log("Move");
     let conn = socket()
-    
-    if (keyName === "w") {
-        // Move_Player(0, -cell_size);
-        //move camera up instead of moving player
-            //send move key
-            //recieve new map
-            //clear screen
-            //draw new map
-        if (conn.isConnected) {
-            conn.websocket.send("1w");       
-        }
-        //send to server
-        return true;
-    }
-    
-    else if (keyName === "a") {
-        // Move_Player(-cell_size, 0);
-        //move camera left
-        if (conn.isConnected) {
-            conn.websocket.send("1a");       
-        }
-        //send to server
-        return true;
-    }
-    
-    else if (keyName === "s") {
-        // Move_Player(0, cell_size)
-        //move camera down
-        if (conn.isConnected) {
-            conn.websocket.send("1s");       
-        }
-        //send to server
-        return true;
-    }
-    
-    else if (keyName === "d") {
-        // Move_Player(cell_size, 0);
-        //move camera right
-        if (conn.isConnected) {
-            conn.websocket.send("1d");       
-        }
-        //send to server
-        return true;
+    if (conn.isConnected) {
+        conn.websocket.send("1" + keyName);
+        // conn.websocket.send("1".concat(keyName));
+        return true;       
     }
     return false;
 }

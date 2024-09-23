@@ -194,9 +194,9 @@ namespace Pathing {
     std::vector<Component::Position> path;
     Solve_AStar(position, targetPosition, path);
 
-    if (path.empty() || path.size() <= 1) {
-      return {targetPosition.x - position.x, targetPosition.y - position.y};
-    }
+//    if (path.empty() || path.size() <= 1) {
+//      return {targetPosition.x - position.x, targetPosition.y - position.y};
+//    }
     int cell = 1;
 
     return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};

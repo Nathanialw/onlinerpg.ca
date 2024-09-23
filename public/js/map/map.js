@@ -110,6 +110,9 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     else if (direction == 'c') {
         console.log("wall collision");
     }
+    else if (direction == 'r') {
+        console.log("resting");
+    }
     else {
         minimap = updatedMap
     }

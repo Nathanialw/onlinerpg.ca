@@ -20,7 +20,8 @@ namespace Update {
     {'w', {0,-1}},
     {'a', {-1,0}},
     {'s', {0,1}},
-    {'d', {1,0}}
+    {'d', {1,0}},
+    {'r', {0,0}}
   };
 
   void Update_Enemies() {
@@ -60,6 +61,13 @@ namespace Update {
     std::cout << "num entities on update: " << Units::Get_Units()->size() << std::endl;
     auto &player = Units::Get_Units()->at(0);
     std::cout << "successfully grabbed player from units[]" << std::endl;
+
+    //rest
+    if (move.x == 0 && move.y == 0) {
+      std::string r = "r";
+      std::cout << "rest" << std::endl;
+      return r + " " + "  " + "1";
+    }
 
     // collision
     if (Collision::Wall_Collision(player.position.x, player.position.y, move.x, move.y)) {
