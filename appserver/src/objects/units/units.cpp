@@ -36,8 +36,9 @@ namespace Units {
     unit.def.species = Species::EMPTY;
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
-    emptyUnitSlots.push_back(index);
-    units[index] = unit;
+//    emptyUnitSlots.push_back(index);
+//    units[index] = unit;
+    units.erase(units.begin() + index);
     unitPositions.erase(pos);
 
     //    std::string xStr = Utils::Prepend_Zero(x);
