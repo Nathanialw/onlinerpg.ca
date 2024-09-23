@@ -81,11 +81,14 @@ namespace Network {
   void Start(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     std::string map = Map::Init();
     Pathing::Init(map);
+    std::cout << "map inited" << std::endl;
     Units::Init(msg->get_payload());
+    std::cout << "path inited" << std::endl;
 
     if (!Units::Get_Units()->empty()) {
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "q"), websocketpp::frame::opcode::text);
     }
+    std::cout << "Ready!" << std::endl;
   }
   void Update(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     std::string response;
