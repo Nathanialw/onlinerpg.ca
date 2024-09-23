@@ -193,12 +193,17 @@ namespace Pathing {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path;
     Solve_AStar(position, targetPosition, path);
+    for (int i = 0; i < path.size(); ++i) {
+        std::cout << "path: " << path[i].x << " " << path[i].y << std::endl;
+    }
 
-//    if (path.empty() || path.size() <= 1) {
-//      return {targetPosition.x - position.x, targetPosition.y - position.y};
-//    }
+    if (path.empty() || path.size() <= 1) {
+      std::cout << "position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
+      return {targetPosition.x - position.x, targetPosition.y - position.y};
+    }
     int cell = 1;
 
+    std::cout << "position: " << position.x << " " << position.y << " " << "target: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
     return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};
   }
 }
