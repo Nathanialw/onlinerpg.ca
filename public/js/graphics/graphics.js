@@ -6,10 +6,13 @@ export const app = new PIXI.Application();
 
 let inventory;
 let targetImg;
+let playerImg;
 
 async function Init_Grpahics() {
     const texture = await PIXI.Assets.load('assets/graphics/ui/itsmars_Inventory.png');
+    const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     inventory = new PIXI.Sprite(texture);
+    playerImg = new PIXI.Sprite(playerTexture);
 }
 
 export async function Load_Target_Image(x, y, path) {
@@ -274,7 +277,10 @@ let elapsed = 0.0;
 
 let jj;
 function Draw_Stats() {
-    let x = leftPanelWidth + 1;
+    // Create_Object(characterInfo.Potrait, x, y);
+    Draw_Sprite(0, 0, 10 * cellSize, 10 * cellSize, playerTexture);
+    
+    let x = leftPanelWidth + 11;
     let y = 1;
     jj = Create_Object(characterInfo.Name, x, y);
     y += 1;
@@ -287,11 +293,9 @@ function Draw_Stats() {
     Create_Object(characterInfo.Class, x, y);
     y += 1;
     Create_Object(characterInfo.Alignment, x, y);
-    y += 1;
-    Create_Object(characterInfo.Potrait, x, y);
 
 
-    x = leftPanelWidth + 10;
+    x = leftPanelWidth + 21;
     y = 1;
     Create_Object("AC: " + characterInfo.AC, x, y);
     y += 1;
