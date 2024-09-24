@@ -11,29 +11,21 @@
 
 
 namespace Labyrinth {
-  std::array<std::string, 15> mapCells =
-    {
-        ".........",
-        "####.##.#",
-        "#.##..#.#",
-        "###...###",
-        "#.#..##.#",
-        "#.##.####",
-        "#.##..###",
-        "####..#.#",
-        "#.#..####",
-        "###..##.#",
-        "####..###",
-        "#.##.##.#",
-        "###..####",
-        "#.#...###",
-        "###...#.#",
-    };
+
+  std::array<int, labyrinthWidth * labyrinthWidth> labyrinth;
+  std::array<std::string, 15> mapCells;
+
+  std::array<std::string, 15> Get_Map_Cells() {
+    return mapCells;
+  }
+
+  std::array<int, labyrinthWidth * labyrinthWidth> Get_Labyrinth() {
+    return labyrinth;
+  }
 
   int m_nMazeWidth;
   int m_nMazeHeight;
-  std::array<int, mapWidth * mapWidth> m_maze;
-  std::array<int, mapWidth * mapWidth> labyrinth;
+  std::array<int, labyrinthWidth * labyrinthWidth> m_maze;
   int m_nVisitedCells;
   std::stack<std::pair<int, int>> m_stack;// (x, y) coordinate pairs
   Proc_Gen::Seed seed;
@@ -47,7 +39,48 @@ namespace Labyrinth {
     CELL_VISITED = 0x10,
   };
 
+  bool Init(int state) {
+    mapCells =
+        {
+            ".........",
+            "####.##.#",
+            "#.##..#.#",
+            "###...###",
+            "#.#..##.#",
+            "#.##.####",
+            "#.##..###",
+            "####..#.#",
+            "#.#..####",
+            "###..##.#",
+            "####..###",
+            "#.##.##.#",
+            "###..####",
+            "#.#...###",
+            "###...#.#",
+        };
+
+    for (auto &cell: labyrinth)
+      cell = 0;
+    for (auto &cell: m_maze)
+      cell = 0;
+    // Maze parameters
+    m_nMazeWidth = labyrinthWidth;
+    m_nMazeHeight = labyrinthWidth;
+
+    // Choose a starting cell
+    seed.seed = Proc_Gen::Create_Initial_Seed(state, state);
+    int x = Proc_Gen::Random_Int(state, m_nMazeWidth, seed);
+    int y = Proc_Gen::Random_Int(state, m_nMazeHeight, seed);
+
+    m_stack.emplace(x, y);
+    m_maze[y * m_nMazeWidth + x] = CELL_VISITED;
+    m_nVisitedCells = 1;
+
+    return true;
+  }
+
   bool Generate_Map() {
+    Init(0);
 
     auto offset = [&](int x, int y) {
       return (m_stack.top().second + y) * m_nMazeWidth + (m_stack.top().first + x);
@@ -118,24 +151,6 @@ namespace Labyrinth {
   }
 
 
-  std::string Create_Map() {
-    std::string labyrinthStr;
-//    std::string labyrinth[mapWidth][mapWidth];
-//
-//    for (int i = 0; i < mapWidth; i++) {
-//      for (int j = 0; j < mapWidth; j++) {
-//        if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
-//          labyrinth[i][j] = '#';
-//          labyrinthStr += labyrinth[i][j];
-//        }
-//        else {
-//          labyrinth[i][j] = '.';
-//          labyrinthStr += labyrinth[i][j];
-//        }
-//      }
-//    }
 
-    return labyrinthStr;
-  }
 
 }
