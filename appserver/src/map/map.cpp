@@ -40,23 +40,23 @@ namespace Map {
       }
     }
 
-//    for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
-//      for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
-//        labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
-//        int charIndex = 0;
-//
-//        for (int k = 0; k <= 3; k++) {
-//          for (int l = 0; l <= 3; l++) {
-//            if (((i * 3) + k) > 96) {
-//              std::cout << "i: " << i << " k: " << k << " l: " << l << std::endl;
-//            }
-//            defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
-//            gameMap[(i * 3) + k][(j * 3) + l] = defaultMap[(i * 3) + k][(j * 3) + l];
-//            charIndex++;
-//          }
-//        }
-//      }
-//    }
+    for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
+      for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
+        labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
+        int charIndex = 0;
+
+        for (int k = 0; k <= 3; k++) {
+          for (int l = 0; l <= 3; l++) {
+            if (((i * 3) + k) > 96) {
+              std::cout << "i: " << i << " k: " << k << " l: " << l << std::endl;
+            }
+            defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
+            gameMap[(i * 3) + k][(j * 3) + l] = defaultMap[(i * 3) + k][(j * 3) + l];
+            charIndex++;
+          }
+        }
+      }
+    }
 
   }
 
