@@ -44,12 +44,13 @@ namespace Map {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
         labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
         int charIndex = 0;
+        std::cout << "j: " <<  j << std::endl;
 
         if (i == 0 && j == 0) {
           std::cout << "labyrinthStr: " <<  labyrinthStr << std::endl;
           for (int k = 0; k < 3; k++) {
             for (int l = 0; l < 3; l++) {
-              std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
+//              std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
               defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
               gameMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
               charIndex++;
