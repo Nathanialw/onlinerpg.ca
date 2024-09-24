@@ -7,7 +7,7 @@
 #include "labyrinth.h"
 
 namespace Map {
-  const int mapWidth = 98;
+  const int mapWidth = 99;
   std::string defaultMap[mapWidth][mapWidth];
   std::string gameMap[mapWidth][mapWidth];
 
