@@ -27,6 +27,18 @@ namespace Map {
   std::string Create_Map() {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
+    for (int i = 0; i < mapWidth; i++) {
+      for (int j = 0; j < mapWidth; j++) {
+            if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
+              defaultMap[i][j] = '#';
+              gameMap[i][j] = defaultMap[i][j];
+            }
+            else {
+              defaultMap[i][j] = '.';
+              gameMap[i][j] = defaultMap[i][j];
+            }
+      }
+    }
 
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
@@ -35,7 +47,7 @@ namespace Map {
 
         for (int k = 0; k <= 3; k++) {
           for (int l = 0; l <= 3; l++) {
-            if (((i * 3) + k) > 90) {
+            if (((i * 3) + k) > 96) {
               std::cout << "i: " << i << " k: " << k << " l: " << l << std::endl;
             }
             defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
@@ -50,19 +62,6 @@ namespace Map {
   }
 
   std::string Init() {
-//    for (int i = 0; i < mapWidth; i++) {
-//      for (int j = 0; j < mapWidth; j++) {
-//        if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
-//          defaultMap[i][j] = '#';
-//          gameMap[i][j] = defaultMap[i][j];
-//        }
-//        else {
-//          defaultMap[i][j] = '.';
-//          gameMap[i][j] = defaultMap[i][j];
-//        }
-//      }
-//    }
-
     Create_Map();
     auto map = Get_Map();
     return map;
