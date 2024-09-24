@@ -13,9 +13,9 @@ namespace Map {
 
   std::string Get_Map() {
     std::string map;
-    for (int j = 0; j <= mapWidth; j++) {
-      for (int i = 0; i <= mapWidth; i++) {
-            if (i < 0 || i >= mapWidth || j < 0 || j >= mapWidth)
+    for (int j = 0; j < mapWidth; j++) {
+      for (int i = 0; i < mapWidth; i++) {
+            if (i < 0 || i > mapWidth || j < 0 || j > mapWidth)
               map += ' ';
             else
               map += gameMap[j][i];
@@ -47,7 +47,6 @@ namespace Map {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
         labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
         int charIndex = 0;
-        std::cout << "j: " << j << std::endl;
         if (i < 1 && j < 1)
           std::cout << "labyrinthStr: " << labyrinthStr << std::endl;
 
