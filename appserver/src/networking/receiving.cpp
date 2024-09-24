@@ -90,10 +90,13 @@ namespace Network {
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "q"), websocketpp::frame::opcode::text);
       std::cout << "map sent!" << std::endl;
     }
+
+    std::cout << "char stats are: " << Units::GetCharStats() << std::endl;
     print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
     std::cout << "char stats sent!" << std::endl;
     std::cout << "Ready!" << std::endl;
   }
+
   void Update(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     std::string response;
     //move player
@@ -136,6 +139,9 @@ namespace Network {
       if (!Units::Get_Units()->empty()) {
         print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "1   0"), websocketpp::frame::opcode::text);
       }
+      print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
+      std::cout << "char stats sent!" << std::endl;
+      std::cout << "Ready!" << std::endl;
     }
     else if (msg->get_payload()[0] == '5') {
       std::cout << "5" << msg->get_payload() << std::endl;

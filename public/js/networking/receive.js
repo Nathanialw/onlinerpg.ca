@@ -22,6 +22,8 @@ let Update = {
 }
 
 socket().websocket.onmessage = function(event) {    
+    console.log(event.data)
+    
     if (event.data === 0) {
         return
     }

@@ -217,6 +217,7 @@ namespace Units {
 //    2 + 3 + 3 + 3 + 1 + 1 + 2 + 2
 
     std::string stats = "1111" + player.name + variableStats + std::to_string((int)player.def.gender) + std::to_string((int)player.def.species) + std::to_string((int)player.def.unitClass) + std::to_string((int)player.def.alignment);
+    std::cout << "3" + stats << std::endl;
     return "3" + stats;
   }
 //  1 2 4 8 16
