@@ -46,6 +46,7 @@ namespace Map {
         int charIndex = 0;
 
         if (i == 0 && j == 0) {
+              std::cout << "labyrinthStr: " <<  labyrinthStr << std::endl;
           for (int k = 0; k < 3; k++) {
             for (int l = 0; l < 3; l++) {
               std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
