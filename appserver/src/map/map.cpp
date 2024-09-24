@@ -6,7 +6,7 @@
 #include "map.h"
 
 namespace Map {
-  const int mapWidth = 99;
+  const int mapWidth = 98;
   std::string defaultMap[mapWidth][mapWidth];
   std::string gameMap[mapWidth][mapWidth];
 

@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src/networking)
 include_directories(src/map)
+include_directories(src/procgen)
 include_directories(src/utils)
 include_directories(src/objects)
 include_directories(src/objects/units)
@@ -36,4 +37,6 @@ add_executable(BrowserRPG
         src/objects/units/species/goblin.cpp
         src/objects/movement/pathing.cpp
         src/objects/components.cpp
+        src/map/labyrinth.cpp
+        src/procgen/procgen.cpp
 )
