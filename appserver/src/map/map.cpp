@@ -27,7 +27,7 @@ namespace Map {
   std::string Create_Map() {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
-    labyrinthStr.reserve(mapWidth * mapWidth);
+//    labyrinthStr.reserve(mapWidth * mapWidth);
 
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
@@ -36,8 +36,8 @@ namespace Map {
 
         for (int k = 0; k < 3; k++) {
           for (int l = 0; l < 3; l++) {
-            defaultMap[(i * 3) + k] [(j * 3) + l] = labyrinthStr[charIndex];
-            gameMap[i][j] = defaultMap[(i * 3) + k] [(j * 3) + l];
+            defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
+            gameMap[(i * 3) + k][(j * 3) + l] = defaultMap[(i * 3) + k][(j * 3) + l];
             charIndex++;
           }
         }
