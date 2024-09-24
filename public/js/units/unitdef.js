@@ -106,10 +106,10 @@ export function UpdatePlayerInfo(characterCreate) {
     characterInfo.Name = characterCreate.substring(4, length - 24);
 
     characterInfo.Potrait = characterCreate.substring(length-24, length-21);
-    characterInfo.Age = characterCreate.substring(length-21, length-18);
-    characterInfo.Health = characterCreate.substring(length-18, length-15);
-    characterInfo.MaxHealth = characterCreate.substring(length-15, length-12);
-    characterInfo.AC = characterCreate.substring(length-12, length-10);
+    characterInfo.AC = characterCreate.substring(length-21, length-19);
+    characterInfo.Age = characterCreate.substring(length-19, length-16);
+    characterInfo.Health = characterCreate.substring(length-16, length-13);
+    characterInfo.MaxHealth = characterCreate.substring(length-13, length-10);
     characterInfo.Speed = characterCreate.substring(length-10, length-9);
     characterInfo.MaxSpeed = characterCreate.substring(length-9, length-8);
     characterInfo.MinDamage = characterCreate.substring(length-8, length-6);
