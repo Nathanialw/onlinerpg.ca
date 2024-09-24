@@ -118,7 +118,7 @@ namespace Units {
 
   struct Unit {
     Stats stats;
-    std::string potrait = "1";
+    std::string potrait = "001";
 
     //unit data to send
     Component::Position position = {6,6};

@@ -212,7 +212,7 @@ namespace Units {
     auto health = Utils::Prepend_Zero_3Digit(player.health) + Utils::Prepend_Zero_3Digit(player.healthMax);
     auto speed = std::to_string(player.speed) + std::to_string(player.maxSpeed);
     auto damage = Utils::Prepend_Zero(player.minDamage) + Utils::Prepend_Zero(player.maxDamage);
-    auto variableStats = "_" + player.potrait + Utils::Prepend_Zero(player.AC) + Utils::Prepend_Zero_3Digit(player.age) + health + speed + damage;
+    auto variableStats = player.potrait + Utils::Prepend_Zero(player.AC) + Utils::Prepend_Zero_3Digit(player.age) + health + speed + damage;
 
 //    2 + 3 + 3 + 3 + 1 + 1 + 2 + 2
 
