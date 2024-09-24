@@ -278,7 +278,7 @@ let elapsed = 0.0;
 let jj;
 function Draw_Stats() {
     // Create_Object(characterInfo.Potrait, x, y);
-    Draw_Sprite(0, 0, 10 * cellSize, 10 * cellSize, playerTexture);
+    Draw_Sprite(0, 0, 10 * cellSize, 10 * cellSize, playerImg);
     
     let x = leftPanelWidth + 11;
     let y = 1;
