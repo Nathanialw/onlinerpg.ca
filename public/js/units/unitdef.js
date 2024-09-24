@@ -103,19 +103,19 @@ export function UpdatePlayerInfo(characterCreate) {
     //damage/max
     
     //potrait
-    characterInfo.Name = characterCreate.substring(4, length - 27);
+    characterInfo.Name = characterCreate.substring(4, length - 26);
 
 
 
-    characterInfo.Potrait = characterCreate.substring(length-26, 1), 10;
-    characterInfo.Age = characterCreate.substring(length-25, 3), 10;
-    characterInfo.Health = characterCreate.substring(length-22, 3), 10;
-    characterInfo.MaxHealth = characterCreate.substring(length-19, 3), 10;
-    characterInfo.AC = characterCreate.substring(length-16, 2), 10;
-    characterInfo.Speed = characterCreate.substring(length-14, 1), 10;
-    characterInfo.MaxSpeed = characterCreate.substring(length-13, 1), 10;
-    characterInfo.MinDamage = characterCreate.substring(length-10, 3), 10;
-    characterInfo.MaxDamage = characterCreate.substring(length-7, 3), 10;
+    characterInfo.Potrait = characterCreate.substring(length-26, 25), 10;
+    characterInfo.Age = characterCreate.substring(length-25, 22), 10;
+    characterInfo.Health = characterCreate.substring(length-22, 19), 10;
+    characterInfo.MaxHealth = characterCreate.substring(length-19, 16), 10;
+    characterInfo.AC = characterCreate.substring(length-16, 14), 10;
+    characterInfo.Speed = characterCreate.substring(length-14, 13), 10;
+    characterInfo.MaxSpeed = characterCreate.substring(length-13, 10), 10;
+    characterInfo.MinDamage = characterCreate.substring(length-10, 7), 10;
+    characterInfo.MaxDamage = characterCreate.substring(length-7, 10), 10;
     characterInfo.Gender = Gender[parseInt(characterCreate.charAt(length-4), 10)];
     characterInfo.Species = Species[parseInt(characterCreate.charAt(length-3), 10)];
     characterInfo.Class = UnitClass[parseInt(characterCreate.charAt(length-2), 10)];
