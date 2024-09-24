@@ -278,6 +278,8 @@ function Draw_Stats() {
     let y = 1;
     jj = Create_Object(characterInfo.Name, x, y);
     y += 1;
+    Create_Object(characterInfo.Age, x, y);
+    y += 1;
     Create_Object(characterInfo.Gender, x, y);
     y += 1;
     Create_Object(characterInfo.Species, x, y);
@@ -285,4 +287,23 @@ function Draw_Stats() {
     Create_Object(characterInfo.Class, x, y);
     y += 1;
     Create_Object(characterInfo.Alignment, x, y);
+    y += 1;
+    Create_Object(characterInfo.Potrait, x, y);
+
+
+    x = leftPanelWidth + 300;
+    y = 1;
+    Create_Object(characterInfo.AC, x, y);
+    y += 1;
+    Create_Object(characterInfo.MinDamage, x, y);
+    y += 1;
+    Create_Object(characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Object(characterInfo.Speed, x, y);
+    y += 1;
+    Create_Object(characterInfo.MaxSpeed, x, y);
+    y += 1;
+    Create_Object(characterInfo.Health, x, y);
+    y += 1;
+    Create_Object(characterInfo.MaxHealth, x, y);
 }
