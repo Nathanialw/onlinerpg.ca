@@ -24,32 +24,37 @@ namespace Map {
     return map;
   }
 
+  void Create_Open_Map() {
+    for (int i = 0; i < mapWidth; i++) {
+      for (int j = 0; j < mapWidth; j++) {
+            if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
+              defaultMap[i][j] = '#';
+              gameMap[i][j] = defaultMap[i][j];
+            }
+            else {
+              defaultMap[i][j] = '.';
+              gameMap[i][j] = defaultMap[i][j];
+            }
+      }
+    }
+  }
+
  void Create_Map() {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
-//    for (int i = 0; i < mapWidth; i++) {
-//      for (int j = 0; j < mapWidth; j++) {
-//            if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
-//              defaultMap[i][j] = '#';
-//              gameMap[i][j] = defaultMap[i][j];
-//            }
-//            else {
-//              defaultMap[i][j] = '.';
-//              gameMap[i][j] = defaultMap[i][j];
-//            }
-//      }
-//    }
+
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
-        labyrinthStr = Labyrinth::Get_Map_Cells()
-            [Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
+        labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
         int charIndex = 0;
         std::cout << "j: " << j << std::endl;
+        if (i < 1 && j < 1)
+          std::cout << "labyrinthStr: " << labyrinthStr << std::endl;
 
-        std::cout << "labyrinthStr: " << labyrinthStr << std::endl;
         for (int k = 0; k < 3; k++) {
           for (int l = 0; l < 3; l++) {
-            std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
+//            if (i < 1 && j < 1)
+//              std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
             defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
             gameMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
             charIndex++;
