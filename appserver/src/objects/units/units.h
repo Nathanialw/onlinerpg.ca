@@ -146,7 +146,7 @@ namespace Units {
   };
 
   std::string Send_Units();
-  void Init(std::basic_string<char> characterCreate);
+  void Init(const std::basic_string<char> &characterCreate);
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
   int Get_Unit_Index(int x, int y);

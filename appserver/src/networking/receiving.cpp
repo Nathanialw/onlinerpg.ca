@@ -80,14 +80,18 @@ namespace Network {
 
   void Start(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
     std::string map = Map::Init();
-    Pathing::Init(map);
     std::cout << "map inited" << std::endl;
-    Units::Init(msg->get_payload());
+    Pathing::Init(map);
     std::cout << "path inited" << std::endl;
+    Units::Init(msg->get_payload());
+    std::cout << "units inited" << std::endl;
 
     if (!Units::Get_Units()->empty()) {
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "q"), websocketpp::frame::opcode::text);
+      std::cout << "map sent!" << std::endl;
     }
+    print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
+    std::cout << "char stats sent!" << std::endl;
     std::cout << "Ready!" << std::endl;
   }
   void Update(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
@@ -114,7 +118,6 @@ namespace Network {
     std::string response;
     if (msg->get_payload()[0] == '1') { //"1" is the action turn, right now it only means move.
       std::cout << "1" << msg->get_payload() << std::endl;
-
       Update(hdl, msg);
     }
     else if (msg->get_payload()[0] == '2') {
@@ -126,6 +129,7 @@ namespace Network {
     }
     else if (msg->get_payload()[0] == '3') {
       std::cout << "3" << msg->get_payload() << std::endl;
+      //send map
       Start(hdl, msg);
     }
     else if (msg->get_payload()[0] == '4') {

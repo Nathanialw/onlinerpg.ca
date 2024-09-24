@@ -28,6 +28,5 @@ export function Close_Game() {
         form.appendChild(input);
     
         // Append the form to the gameCanvas
-        document.getElementById('gameCanvas').appendChild(form);
-    
+        document.getElementById('gameCanvas').appendChild(form);    
 }

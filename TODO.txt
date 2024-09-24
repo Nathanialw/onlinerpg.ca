@@ -60,3 +60,9 @@ long term:
 -proc gen maps
 -simple enemy AI
 
+
+
+
+
+bugs:
+  pathing stops if target location is inacceible, it should just find the closest cell and go there

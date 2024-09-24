@@ -192,7 +192,7 @@ namespace Units {
     unitsString.replace(2, 4, xStr + yStr);
   }
 
-  void Init(std::basic_string<char> characterCreate) {
+  void Init(const std::basic_string<char> &characterCreate) {
     unitsString = Place_Entities_On_Map(characterCreate);
 
     for (auto &unit : *Units::Get_Units()) {

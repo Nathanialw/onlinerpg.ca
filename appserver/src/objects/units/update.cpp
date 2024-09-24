@@ -29,7 +29,6 @@ namespace Update {
     auto player = units[0];
 
     for (int i = 1; i < units.size(); i++) {
-
       //if player is in vision
       //cache position
       Component::Position former = units[i].position;
