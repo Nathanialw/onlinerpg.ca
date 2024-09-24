@@ -25,7 +25,7 @@ namespace Update {
   };
 
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
-    if (abs(position.x - target.x) < 7 || abs(position.y - target.y) < 7)
+    if (abs(position.x - target.x) < 5 || abs(position.y - target.y) < 5)
       return true;
     return false;
   }
