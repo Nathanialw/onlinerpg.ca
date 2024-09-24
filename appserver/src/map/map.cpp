@@ -35,8 +35,8 @@ namespace Map {
 
         for (int k = 0; k < 3; k++) {
           for (int l = 0; l < 3; l++) {
-            if (((i * 3) + k) > 32) {
-              std::cout << "i: " << ((i * 3) + k) << std::endl;
+            if (((i * 3) + k) > 90) {
+              std::cout << "i: " << i << " k: " << k << " l: " << l << std::endl;
             }
             defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
             gameMap[(i * 3) + k][(j * 3) + l] = defaultMap[(i * 3) + k][(j * 3) + l];
