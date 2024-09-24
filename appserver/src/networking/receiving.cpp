@@ -85,15 +85,14 @@ namespace Network {
     std::cout << "path inited" << std::endl;
     Units::Init(msg->get_payload());
     std::cout << "units inited" << std::endl;
+    print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
+    std::cout << "char stats sent!" << std::endl;
 
     if (!Units::Get_Units()->empty()) {
       print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "q"), websocketpp::frame::opcode::text);
       std::cout << "map sent!" << std::endl;
     }
 
-    std::cout << "char stats are: " << Units::GetCharStats() << std::endl;
-    print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
-    std::cout << "char stats sent!" << std::endl;
     std::cout << "Ready!" << std::endl;
   }
 
