@@ -206,8 +206,17 @@ namespace Units {
 
     //prepend with 0000 to tell which stats are being sent
     //name + gender + species + class + alignment
+
     auto player = Get_Player();
-    std::string stats = "1111" + player.name + std::to_string((int)player.def.gender) + std::to_string((int)player.def.species) + std::to_string((int)player.def.unitClass) + std::to_string((int)player.def.alignment);
+
+    auto health = Utils::Prepend_Zero_3Digit(player.health) + Utils::Prepend_Zero_3Digit(player.healthMax);
+    auto speed = std::to_string(player.speed) + std::to_string(player.maxSpeed);
+    auto damage = Utils::Prepend_Zero(player.minDamage) + Utils::Prepend_Zero(player.maxDamage);
+    auto variableStats = "_" + player.potrait + Utils::Prepend_Zero(player.AC) + Utils::Prepend_Zero_3Digit(player.age) + health + speed + damage;
+
+//    2 + 3 + 3 + 3 + 1 + 1 + 2 + 2
+
+    std::string stats = "1111" + player.name + variableStats + std::to_string((int)player.def.gender) + std::to_string((int)player.def.species) + std::to_string((int)player.def.unitClass) + std::to_string((int)player.def.alignment);
     return "3" + stats;
   }
 //  1 2 4 8 16

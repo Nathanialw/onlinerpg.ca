@@ -118,6 +118,7 @@ namespace Units {
 
   struct Unit {
     Stats stats;
+    std::string potrait = "1";
 
     //unit data to send
     Component::Position position = {6,6};
@@ -127,6 +128,7 @@ namespace Units {
 
     int vision = 6;
     int speed = 1;
+    int maxSpeed = 1;
     int minDamage = 0;
     int maxDamage = 10;
     int AC = 10;
