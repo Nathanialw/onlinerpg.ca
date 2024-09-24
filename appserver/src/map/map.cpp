@@ -60,7 +60,13 @@ namespace Map {
 //          std::cout << "i: " << i << " j: " << j << std::endl;
           for (int k = 0; k <= 3; k++) {
             for (int l = 0; l <= 3; l++) {
-              std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
+              if (i < 2 && j < 2) {
+                std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
+//                std::cout << "i: " << i << " j: " << j << std::endl;
+//                std::cout << "k: " << k << " l: " << l << std::endl;
+//                std::cout << "charIndex: " << charIndex << std::endl;
+//                std::cout << "labyrinthStr: " <<  labyrinthStr << std::endl;
+              }
               defaultMap[(i * 3) + k][(j * 3) + l] = " ";
               gameMap[(i * 3) + k][(j * 3) + l] = " ";
             }
