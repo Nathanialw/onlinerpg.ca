@@ -39,7 +39,6 @@ namespace Map {
 //            }
 //      }
 //    }
-
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
         labyrinthStr = Labyrinth::Get_Map_Cells()
@@ -56,11 +55,8 @@ namespace Map {
             charIndex++;
           }
         }
-
-
       }
     }
-
   }
 
   std::string Init() {
