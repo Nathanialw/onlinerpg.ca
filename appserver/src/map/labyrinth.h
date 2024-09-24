@@ -14,5 +14,5 @@ namespace Labyrinth {
 
   bool Generate_Map();
   std::array<int, labyrinthWidth * labyrinthWidth> Get_Labyrinth();
-  std::array<std::string, 16> Get_Map_Cells();
+  std::array<std::string, 15> Get_Map_Cells();
 }

@@ -13,9 +13,9 @@
 namespace Labyrinth {
 
   std::array<int, labyrinthWidth * labyrinthWidth> labyrinth;
-  std::array<std::string, 16> mapCells;
+  std::array<std::string, 15> mapCells;
 
-  std::array<std::string, 16> Get_Map_Cells() {
+  std::array<std::string, 15> Get_Map_Cells() {
     return mapCells;
   }
 
@@ -42,9 +42,6 @@ namespace Labyrinth {
   bool Init(int state) {
     mapCells =
         {
-            ".........",
-
-
             "#.#\n"
             "#.#\n"
             "###", //
