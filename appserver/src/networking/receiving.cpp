@@ -135,11 +135,12 @@ namespace Network {
     }
     else if (msg->get_payload()[0] == '4') {
       std::cout << "4" << msg->get_payload() << std::endl;
+      print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
+      std::cout << "char stats sent!" << std::endl;
+
       if (!Units::Get_Units()->empty()) {
         print_server.send(hdl, Map::SendMapSegment(Units::Get_Player(), "1   0"), websocketpp::frame::opcode::text);
       }
-      print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
-      std::cout << "char stats sent!" << std::endl;
       std::cout << "Ready!" << std::endl;
     }
     else if (msg->get_payload()[0] == '5') {
