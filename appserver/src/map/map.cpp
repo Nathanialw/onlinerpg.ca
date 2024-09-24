@@ -33,8 +33,8 @@ namespace Map {
         labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
         int charIndex = 0;
 
-        for (int k = 0; k < 3; k++) {
-          for (int l = 0; l < 3; l++) {
+        for (int k = 0; k <= 3; k++) {
+          for (int l = 0; l <= 3; l++) {
             if (((i * 3) + k) > 90) {
               std::cout << "i: " << i << " k: " << k << " l: " << l << std::endl;
             }
