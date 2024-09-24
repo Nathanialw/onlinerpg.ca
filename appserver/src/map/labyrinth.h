@@ -9,7 +9,7 @@
 
 namespace Labyrinth {
 
-  const int labyrinthWidth = 33;
+  const int labyrinthWidth = 32;
 
 
   bool Generate_Map();

@@ -57,6 +57,7 @@ namespace Map {
           }
         }
         else {
+          std::cout << "i: " << i << " j: " << j << std::endl;
           for (int k = 0; k <= 3; k++) {
             for (int l = 0; l <= 3; l++) {
               defaultMap[(i * 3) + k][(j * 3) + l] = " ";
