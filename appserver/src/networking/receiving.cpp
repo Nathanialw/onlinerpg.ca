@@ -107,8 +107,7 @@ namespace Network {
     print_server.send(hdl, response, websocketpp::frame::opcode::text);
 
     std::cout << "sending char stats back  to client" << std::endl;
-    std::string updatedStats = Units::GetCharStats();
-    print_server.send(hdl, updatedStats, websocketpp::frame::opcode::text);
+    print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
   }
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
