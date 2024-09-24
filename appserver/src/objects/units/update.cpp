@@ -24,33 +24,46 @@ namespace Update {
     {'r', {0,0}}
   };
 
+  bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
+    if (abs(position.x - target.x) < 7 || abs(position.y - target.y) < 7)
+      return true;
+    return false;
+  }
+
   void Update_Enemies() {
     auto &units = *Units::Get_Units();
     auto player = units[0];
 
     for (int i = 1; i < units.size(); i++) {
       //if player is in vision
-      //cache position
-      Component::Position former = units[i].position;
-      //calculate next cell
-      Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
-      //check next cell and move/attack
-      if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == "h") {
-        std::cout << "goblin attacks player" << std::endl;
-        continue;
+      if (Check_For_Target(units[i].position, units[0].position)) {
+        std::cout << "player in vision, moving towards!" << std::endl;
+        // cache position
+        Component::Position former = units[i].position;
+        // calculate next cell
+        Component::Position moveTo =
+            Pathing::Move_To(units[i].position, player.position);
+        // check next cell and move/attack
+        if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == "h") {
+          std::cout << "goblin attacks player" << std::endl;
+          continue;
+        }
+        units[i].position.x += moveTo.x;
+        units[i].position.y += moveTo.y;
+        Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
+        Pathing::Update(Map::Get_Map());
+        Units::Update_Unit_Position(former.x, former.y, units[i].position.x, units[i].position.y);
       }
-      units[i].position.x += moveTo.x;
-      units[i].position.y += moveTo.y;
-      Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
-      Pathing::Update(Map::Get_Map());
-      Units::Update_Unit_Position(former.x, former.y, units[i].position.x, units[i].position.y);
+      else {
+        std::cout << "player not in vision" << std::endl;
+      }
     }
 
-//    auto mapString = Map::Get_Map();
-//    std::cout << "Drawing map: "<< std::endl;
-//    for (int i = 0; i < 100; i++) {
-//      std::cout << mapString.substr(i * 100, 100) << std::endl;
-//    }
+    auto mapString = Map::Get_Map();
+    std::cout << "Drawing map: "<< std::endl;
+    for (int i = 0; i < 100; i++) {
+      std::cout << mapString.substr(i * 100, 100) << std::endl;
+    }
   }
 
   std::string Update_Player(const char *direction) {
