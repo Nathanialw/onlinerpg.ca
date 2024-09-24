@@ -20,7 +20,6 @@ namespace Map {
               map += gameMap[j][i];
       }
     }
-
     return map;
   }
 
@@ -37,7 +36,6 @@ namespace Map {
         }
       }
     }
-
     auto map = Get_Map();
     return map;
   }

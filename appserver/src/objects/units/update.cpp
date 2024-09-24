@@ -46,11 +46,11 @@ namespace Update {
       Units::Update_Unit_Position(former.x, former.y, units[i].position.x, units[i].position.y);
     }
 
-    auto mapString = Map::Get_Map();
-    std::cout << "Drawing map: "<< std::endl;
-    for (int i = 0; i < 100; i++) {
-      std::cout << mapString.substr(i * 100, 100) << std::endl;
-    }
+//    auto mapString = Map::Get_Map();
+//    std::cout << "Drawing map: "<< std::endl;
+//    for (int i = 0; i < 100; i++) {
+//      std::cout << mapString.substr(i * 100, 100) << std::endl;
+//    }
   }
 
   std::string Update_Player(const char *direction) {

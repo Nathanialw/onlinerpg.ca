@@ -278,9 +278,9 @@ let elapsed = 0.0;
 let jj;
 function Draw_Stats() {
     // Create_Object(characterInfo.Potrait, x, y);
-    Draw_Sprite((leftPanelWidth + 1) * cellSize, 1 * cellSize, 10 * cellSize, 10 * cellSize, playerImg);
+    Draw_Sprite((leftPanelWidth + 1) * cellSize, 1 * cellSize, 8 * cellSize, 8 * cellSize, playerImg);
     
-    let x = leftPanelWidth + 11;
+    let x = leftPanelWidth + 10;
     let y = 1;
     jj = Create_Object(characterInfo.Name, x, y);
     y += 1;
@@ -295,7 +295,7 @@ function Draw_Stats() {
     Create_Object(characterInfo.Alignment, x, y);
 
 
-    x = leftPanelWidth + 21;
+    x = leftPanelWidth + 20;
     y = 1;
     Create_Object("AC: " + characterInfo.AC, x, y);
     y += 1;
