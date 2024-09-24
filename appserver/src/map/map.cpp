@@ -48,6 +48,7 @@ namespace Map {
         if (i == 0 && j == 0) {
           for (int k = 0; k <= 3; k++) {
             for (int l = 0; l <= 3; l++) {
+              std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
               defaultMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
               gameMap[(i * 3) + k][(j * 3) + l] = labyrinthStr[charIndex];
               charIndex++;
@@ -59,7 +60,6 @@ namespace Map {
             for (int l = 0; l <= 3; l++) {
               defaultMap[(i * 3) + k][(j * 3) + l] = " ";
               gameMap[(i * 3) + k][(j * 3) + l] = " ";
-              charIndex++;
             }
           }
         }
