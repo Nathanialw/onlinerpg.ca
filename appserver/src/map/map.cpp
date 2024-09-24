@@ -27,18 +27,18 @@ namespace Map {
  void Create_Map() {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
-    for (int i = 0; i < mapWidth; i++) {
-      for (int j = 0; j < mapWidth; j++) {
-            if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
-              defaultMap[i][j] = '#';
-              gameMap[i][j] = defaultMap[i][j];
-            }
-            else {
-              defaultMap[i][j] = '.';
-              gameMap[i][j] = defaultMap[i][j];
-            }
-      }
-    }
+//    for (int i = 0; i < mapWidth; i++) {
+//      for (int j = 0; j < mapWidth; j++) {
+//            if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
+//              defaultMap[i][j] = '#';
+//              gameMap[i][j] = defaultMap[i][j];
+//            }
+//            else {
+//              defaultMap[i][j] = '.';
+//              gameMap[i][j] = defaultMap[i][j];
+//            }
+//      }
+//    }
 
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
