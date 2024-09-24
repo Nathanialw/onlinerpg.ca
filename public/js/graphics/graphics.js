@@ -278,7 +278,7 @@ function Draw_Stats() {
     let y = 1;
     jj = Create_Object(characterInfo.Name, x, y);
     y += 1;
-    Create_Object(characterInfo.Age, x, y);
+    Create_Object("Age: " + characterInfo.Age, x, y);
     y += 1;
     Create_Object(characterInfo.Gender, x, y);
     y += 1;
@@ -291,19 +291,13 @@ function Draw_Stats() {
     Create_Object(characterInfo.Potrait, x, y);
 
 
-    x = leftPanelWidth + 300;
+    x = leftPanelWidth + 10;
     y = 1;
-    Create_Object(characterInfo.AC, x, y);
+    Create_Object("AC: " + characterInfo.AC, x, y);
     y += 1;
-    Create_Object(characterInfo.MinDamage, x, y);
+    Create_Object("Damage: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
     y += 1;
-    Create_Object(characterInfo.MaxDamage, x, y);
+    Create_Object("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, x, y);
     y += 1;
-    Create_Object(characterInfo.Speed, x, y);
-    y += 1;
-    Create_Object(characterInfo.MaxSpeed, x, y);
-    y += 1;
-    Create_Object(characterInfo.Health, x, y);
-    y += 1;
-    Create_Object(characterInfo.MaxHealth, x, y);
+    Create_Object("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
 }
