@@ -169,15 +169,7 @@ export function Make_Map(serverMap, visionWidth) {
     objects = [];
     objectDisplay = [];
     for (let i = 0; i < serverMap.length; i++) {
-        if (serverMap[i] == "g") {
-            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
-            objects.push([i, "g"]); // save the location of the enemy
-            
-            // objects.push([i, "▲"]); // save the location of the enemy
-            // objects.push([i, "˛"]); // save the location of the enemy
-            // save the location of the enemy
-        }
-        else if (serverMap[i] == "#") {
+        if (serverMap[i] == "#") {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
             objects.push([i, "˛"]); // save the location of the enemy
             objects.push([i, "▲"]); // save the location of the enemy
@@ -185,11 +177,10 @@ export function Make_Map(serverMap, visionWidth) {
         else if (serverMap[i] == ".") {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
-        else if (serverMap[i] == "h") {
+        else {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
-            objects.push([i, "h"]); // save the location of the enemy
+            objects.push([i, serverMap[i]]); // save the location of the enemy
         }
-        
         //bag      
     }
 
