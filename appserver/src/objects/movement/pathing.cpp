@@ -197,13 +197,18 @@ namespace Pathing {
     for (auto & i : path)
         std::cout << "path: " << i.x << " " << i.y << std::endl;
 
-
-    if (path.empty() || path.size() <= 1) {
-      std::cout << "target is adjacent, position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
-      return {targetPosition.x - position.x, targetPosition.y - position.y};
+    if (path.empty()) {
+        std::cout << "No path found" << std::endl;
+        return {0, 0};
     }
-    int cell = 1;
 
+//    if (path.size() == 1) {
+//      std::cout << "target is adjacent, position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
+//      return {targetPosition.x - position.x, targetPosition.y - position.y};
+//    }
+
+    int cell = 1;
+    std::cout << "number of moves away: " << path.size() << std::endl;
     std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
     return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};
   }
