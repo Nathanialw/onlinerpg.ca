@@ -54,7 +54,7 @@ namespace Pathing {
         if (nodes[y * nMapWidth + x].bObstacle) {
           std::cout << "#";
         }
-        std::cout << " ";
+        std::cout << ".";
       }
       std::cout << std::endl;
     }
