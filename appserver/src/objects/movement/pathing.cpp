@@ -12,7 +12,7 @@
 
 namespace Pathing {
 
-  constexpr int REGION_SIZE = 100;
+  constexpr int REGION_SIZE = 99;
 
   struct sNode {
     bool bObstacle = false;
