@@ -6,14 +6,14 @@
 <html>
     <head>
         <link rel="stylesheet" href="/css/game.css">
-        <script>
+        <!-- <script>
             WebFont.load({
                 custom: {
                     families: ['Press Start 2P'],
                     urls: ['/css/game.css']
                 }
             });
-        </script>
+        </script> -->
         
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
