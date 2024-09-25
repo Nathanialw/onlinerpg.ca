@@ -178,6 +178,7 @@ export function Make_Map(serverMap, visionWidth) {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
         else {
+            console.log("Object: ", serverMap[i]);
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
             objects.push([i, serverMap[i]]); // save the location of the enemy
         }
