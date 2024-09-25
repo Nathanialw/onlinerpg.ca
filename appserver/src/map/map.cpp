@@ -81,10 +81,9 @@ namespace Map {
         int j = x + l;
         int i = y + k;
         defaultMap[i][j] = ".";
-        if (columns && (l % 5 == 0) && (k % 4 == 0)) {
+        if (columns && (l % 5 == 0) && (k == 4) && (l > 0) && (l < (w - 1))) {
           defaultMap[i][j] = "#";
         }
-
       }
     }
   }
