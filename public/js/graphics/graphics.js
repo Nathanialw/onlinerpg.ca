@@ -190,15 +190,15 @@ export function Update(){
     //redraw map
 }
 
-const color = new map();
-color.set('h', 0xffff00);
-color.set('g', 0x00ff00);
-color.set('#', 0x00ff00);
-color.set('▲', 0x013220); //dark green
-color.set('˛', 0x964b00); //brown
+// const color = new map();
+// color.set('h', 0xffff00);
+// color.set('g', 0x00ff00);
+// color.set('#', 0x00ff00);
+// color.set('▲', 0x013220); //dark green
+// color.set('˛', 0x964b00); //brown
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
-    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'});
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : 0x013220, align : 'center'});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
