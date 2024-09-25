@@ -50,12 +50,11 @@ namespace Map {
   void Create_Labyrinth() {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
-    int cellSize = 3;
+    const int cellSize = 3;
 
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
-        labyrinthStr = Labyrinth::Get_Map_Cells()
-            [Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
+        labyrinthStr = Labyrinth::Get_Map_Cells() [Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
         int charIndex = 0;
         if (i < 1 || j < 1)
           std::cout << "labyrinthStr: " << labyrinthStr << std::endl;
@@ -76,10 +75,11 @@ namespace Map {
   //9x9 rooms = barracks
   //7x15 rooms = halls
   void Add_Room(int x, int y, int w, int h) {
+    std::cout << "Adding room at: " << x << ", " << y << std::endl;
     for (int k = 0; k < w; k++) {
       for (int l = 0; l < h; l++) {
-        int i = (x * w) + k;
-        int j = (y * h) + l;
+        int i = x + k;
+        int j = y + l;
         defaultMap[i][j] = ".";
       }
     }
@@ -93,9 +93,13 @@ namespace Map {
   }
 
   std::string Init() {
+    std::cout << "Creating labyrinth" << std::endl;
     Create_Labyrinth();
+    std::cout << "Adding rooms" << std::endl;
     Add_Rooms();
+    std::cout << "Setting open map" << std::endl;
     Set_Game_Map();
+
     auto map = Get_Map();
     return map;
   }
