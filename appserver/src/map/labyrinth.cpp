@@ -142,8 +142,8 @@ namespace Labyrinth {
       }
     }
 
-    for (int x = 0; x < m_nMazeWidth; x++) {
-      for (int y = 0; y < m_nMazeHeight; y++) {
+    for (int y = 0; y < m_nMazeHeight; y++) {
+      for (int x = 0; x < m_nMazeWidth; x++) {
         labyrinth[y * m_nMazeWidth + x] = m_maze[y * m_nMazeWidth + x] -= 17;
       }
     }

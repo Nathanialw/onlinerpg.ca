@@ -56,8 +56,8 @@ namespace Map {
 //              std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
             int x = (i * 3) + k;
             int y = (j * 3) + l;
-            defaultMap[y][x] = labyrinthStr[charIndex];
-            gameMap[y][x] = labyrinthStr[charIndex];
+            defaultMap[x][y] = labyrinthStr[charIndex];
+            gameMap[x][y] = labyrinthStr[charIndex];
             charIndex++;
           }
         }
