@@ -188,7 +188,7 @@ export function Update(){
     //redraw map
 }
 
-const color = new map();
+const color = new Map();
 color.set('h', 0xffff00);
 color.set('g', 0x00ff00);
 color.set('#', 0x00ff00);
