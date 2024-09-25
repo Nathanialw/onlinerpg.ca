@@ -50,6 +50,7 @@ namespace Map {
   void Create_Labyrinth() {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
+    int cellSize = 3;
 
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
@@ -59,10 +60,10 @@ namespace Map {
         if (i < 1 || j < 1)
           std::cout << "labyrinthStr: " << labyrinthStr << std::endl;
 
-        for (int k = 0; k < 3; k++) {
-          for (int l = 0; l < 3; l++) {
-            int x = (i * 3) + k;
-            int y = (j * 3) + l;
+        for (int k = 0; k < cellSize; k++) {
+          for (int l = 0; l < cellSize; l++) {
+            int x = (i * cellSize) + k;
+            int y = (j * cellSize) + l;
             defaultMap[x][y] = labyrinthStr[charIndex];
             charIndex++;
           }
@@ -73,21 +74,22 @@ namespace Map {
 
   //3x3 rooms = quarters
   //9x9 rooms = barracks
-  //9x15 rooms = halls
-  void Add_Rooms() {
-    for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
-      for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
-        if ((i + 1) % 7 == 0 || (j + 1) % 7 == 0 && (i + 1) + 6 < Labyrinth::labyrinthWidth && (j + 1) + 6 < Labyrinth::labyrinthWidth) {
-          for (int k = 0; k < 5; k++) {
-            for (int l = 0; l < 5; l++) {
-              int x = (i * 3) + k;
-              int y = (j * 3) + l;
-              defaultMap[x][y] = ".";
-            }
-          }
-        }
+  //7x15 rooms = halls
+  void Add_Room(int x, int y, int w, int h) {
+    for (int k = 0; k < w; k++) {
+      for (int l = 0; l < h; l++) {
+        int i = (x * w) + k;
+        int j = (y * h) + l;
+        defaultMap[i][j] = ".";
       }
     }
+  }
+
+  void Add_Rooms() {
+    Add_Room(2, 2, 3, 3);
+    Add_Room(54, 44, 9, 9);
+    Add_Room(22, 77, 7, 16);
+    Add_Room(22, 22, 5, 5);
   }
 
   std::string Init() {
