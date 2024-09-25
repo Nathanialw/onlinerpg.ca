@@ -5,7 +5,7 @@
 <!doctype html>
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script src="/assets/fonts/press_start_2p/PressStart2P.ttf"></script>
         <script> WebFont.load({google: {families: ['Press Start 2P']}});</script>
         
         <meta charset="UTF-8" />
