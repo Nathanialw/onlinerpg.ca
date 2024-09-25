@@ -6,11 +6,11 @@ import {Create_Object} from '../graphics/graphics.js';
 let player;
 let enemies = []
 
-const objects = new Map();
-objects.set("bag", "");
-objects.set("tree", "♠");
-objects.set("treeTop", "▲");
-objects.set("treeTrunk", "˛");
+// const objects = new Map();
+// objects.set("bag", "");
+// objects.set("tree", "♠");
+// objects.set("treeTop", "▲");
+// objects.set("treeTrunk", "˛");
 
 export function Set_Player(unitString) {
     //let playerPosition = Set_Player_Within_Viewport();
