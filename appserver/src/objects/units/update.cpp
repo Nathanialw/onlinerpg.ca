@@ -36,7 +36,7 @@ namespace Update {
 
     for (int i = 1; i < units.size(); i++) {
       //if player is in vision
-      if (Check_For_Target(units[i].position, units[0].position)) {
+      if (Check_For_Target(units[i].position, player.position)) {
         std::cout << "player in vision, moving towards!" << std::endl;
         // cache position
         Component::Position former = units[i].position;

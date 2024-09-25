@@ -97,8 +97,10 @@ namespace Map {
   }
 
   std::string Init() {
-    std::cout << "Creating labyrinth" << std::endl;
-    Create_Labyrinth();
+    std::cout << "Creating open map" << std::endl;
+    Create_Open_Map();
+//    std::cout << "Creating labyrinth" << std::endl;
+//    Create_Labyrinth();
     std::cout << "Adding rooms" << std::endl;
     Add_Rooms();
     std::cout << "Setting open map" << std::endl;
