@@ -77,9 +77,9 @@ namespace Map {
   void Add_Rooms() {
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
-        if (i%5 == 0 && j%5 == 0) {
-          for (int k = 0; k < 3; k++) {
-            for (int l = 0; l < 3; l++) {
+        if ((i + 1) % 7 == 0 || (j + 1) % 7 == 0 && (i + 1) + 6 < Labyrinth::labyrinthWidth && (j + 1) + 6 < Labyrinth::labyrinthWidth) {
+          for (int k = 0; k < 5; k++) {
+            for (int l = 0; l < 5; l++) {
               int x = (i * 3) + k;
               int y = (j * 3) + l;
               defaultMap[x][y] = ".";
