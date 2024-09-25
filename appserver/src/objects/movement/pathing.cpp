@@ -199,12 +199,12 @@ namespace Pathing {
 
 
     if (path.empty() || path.size() <= 1) {
-      std::cout << "position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
+      std::cout << "target is adjacent, position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
       return {targetPosition.x - position.x, targetPosition.y - position.y};
     }
     int cell = 1;
 
-    std::cout << "position: " << position.x << " " << position.y << " " << "target: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
+    std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
     return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};
   }
 }

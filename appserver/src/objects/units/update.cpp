@@ -41,10 +41,11 @@ namespace Update {
         // cache position
         Component::Position former = units[i].position;
         // calculate next cell
-        Component::Position moveTo =
-            Pathing::Move_To(units[i].position, player.position);
+        Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
+        std::cout << "goblin moves from: " << former.x << ", " << former.y << std::endl;
+        std::cout << "goblin moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
         // check next cell and move/attack
-        if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == "h") {
+        if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == Units::Get_Unit_Char(player.def.species)) {
           std::cout << "goblin attacks player" << std::endl;
           continue;
         }
