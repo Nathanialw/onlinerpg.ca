@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="/css/footer.css"/>
         <link rel="stylesheet" href="/css/style.css"/>
         <link rel="stylesheet" href="/css/game.css"/>
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     </head>
     
     <body>
