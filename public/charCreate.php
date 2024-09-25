@@ -50,7 +50,7 @@
  <div id="gameCanvas"></div>
 
 <section class='startButton'>
-    <form method='post'>
+    <form action="/submit" method='POST' id="myForm">
         <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
         <br>

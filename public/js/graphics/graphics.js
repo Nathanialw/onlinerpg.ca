@@ -247,6 +247,7 @@ export function Draw_Vision_Background(visionWidth) {
     let w = visionWidth * cellSize;
     let h = visionWidth * cellSize;
     Draw_Panel(x, y, w, h, 0x228b22);
+    Draw_Panel(x, y, w, h, grey900);
 }
 
 function Set_Map_Within_Viewport(visionWidth) {
