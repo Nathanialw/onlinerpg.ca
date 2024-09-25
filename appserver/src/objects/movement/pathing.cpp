@@ -49,6 +49,7 @@ namespace Pathing {
   }
 
   void Draw_Colision_Map() {
+    std::cout << "Drawing collision map: "<< std::endl;
     for (int y = 0; y < nMapHeight; y++) {
       for (int x = 0; x < nMapWidth; x++) {
         if (nodes[y * nMapWidth + x].bObstacle) {
