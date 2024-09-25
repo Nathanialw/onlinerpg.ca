@@ -88,7 +88,7 @@ namespace Pathing {
 
     int numCellsToCheck;
 //    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
-    numCellsToCheck = 10000;
+    numCellsToCheck = 20000;
 
     for (int x = 0; x < nMapWidth; x++)
       for (int y = 0; y < nMapHeight; y++) {
@@ -122,7 +122,7 @@ namespace Pathing {
     // if the not tested list contains nodes, there may be better paths
     // which have not yet been explored. However, we will also stop
     // searching when we reach the target - there may well be better
-    // paths but this one will do - it wont be the longest.
+    // paths but this one will do - it won't be the longest.
     int i = 0;
     while (!listNotTestedNodes.empty() && nodeCurrent != nodeEnd)// Find absolutely shortest path // && nodeCurrent != nodeEnd)
     {

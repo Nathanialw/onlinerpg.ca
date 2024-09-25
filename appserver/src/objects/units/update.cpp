@@ -45,10 +45,10 @@ namespace Update {
         std::cout << "goblin moves from: " << former.x << ", " << former.y << std::endl;
         std::cout << "goblin moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
         // check next cell and move/attack
-        if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == Units::Get_Unit_Char(player.def.species)) {
-          std::cout << "goblin attacks player" << std::endl;
-          continue;
-        }
+//        if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == Units::Get_Unit_Char(player.def.species)) {
+//          std::cout << "goblin attacks player" << std::endl;
+//          continue;
+//        }
         units[i].position.x += moveTo.x;
         units[i].position.y += moveTo.y;
         Map::Update(former.x, former.y, moveTo.x, moveTo.y, Units::Get_Unit_Char(units[i].def.species));
