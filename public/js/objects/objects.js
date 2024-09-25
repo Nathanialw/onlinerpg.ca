@@ -5,7 +5,12 @@ import {Create_Object} from '../graphics/graphics.js';
 
 let player;
 let enemies = []
-let objects = []
+
+const objects = new Map();
+objects.set("bag", "");
+objects.set("tree", "♠");
+objects.set("treeTop", "▲");
+objects.set("treeTrunk", "˛");
 
 export function Set_Player(unitString) {
     //let playerPosition = Set_Player_Within_Viewport();
@@ -19,7 +24,6 @@ export function Set_Enemies(object) {
 }
 
 export function Set_Objects(object) {
-    objects = object;
 }
 
 
@@ -35,8 +39,6 @@ export function Move_Enemies(object) {
 export function Move_Objects(object) {
     objects.push(object);
 }
-
-
 
 
 

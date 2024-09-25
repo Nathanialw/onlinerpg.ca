@@ -190,7 +190,14 @@ export function Update(){
 }
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
-    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
+    let color = grey50;
+    if (char == "▲") {
+        color = 0x013220;
+    }
+    if (char == "˛") {
+        color = 0x964b00;
+    }
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color, align : 'center'});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
