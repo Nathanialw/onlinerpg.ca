@@ -1,5 +1,6 @@
 'use strict'
 
+import { map } from 'lodash';
 import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
@@ -188,6 +189,8 @@ export function Update(){
     //clear canvas
     //redraw map
 }
+
+const color = new map();
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
     let color = grey50;
