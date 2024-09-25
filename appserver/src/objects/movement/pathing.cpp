@@ -88,7 +88,7 @@ namespace Pathing {
 
     int numCellsToCheck;
 //    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
-    numCellsToCheck = 20000;
+    numCellsToCheck = 10000;
 
     for (int x = 0; x < nMapWidth; x++)
       for (int y = 0; y < nMapHeight; y++) {
@@ -122,7 +122,7 @@ namespace Pathing {
     // if the not tested list contains nodes, there may be better paths
     // which have not yet been explored. However, we will also stop
     // searching when we reach the target - there may well be better
-    // paths but this one will do - it won't be the longest.
+    // paths but this one will do - it wont be the longest.
     int i = 0;
     while (!listNotTestedNodes.empty() && nodeCurrent != nodeEnd)// Find absolutely shortest path // && nodeCurrent != nodeEnd)
     {
@@ -194,8 +194,9 @@ namespace Pathing {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path = {};
     Solve_AStar(position, targetPosition, path);
-    for (auto & i : path)
-        std::cout << "path: " << i.x << " " << i.y << std::endl;
+//    for (auto & i : path)
+//        std::cout << "path: " << i.x << " " << i.y << std::endl;
+
 
     if (path.empty() || path.size() <= 1) {
       std::cout << "target is adjacent, position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
@@ -204,7 +205,6 @@ namespace Pathing {
     int cell = 1;
 
     std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
-
-    return {path[0].x - position.x, path[0].y - position.y};
+    return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};
   }
 }
