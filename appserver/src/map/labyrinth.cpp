@@ -149,8 +149,4 @@ namespace Labyrinth {
     }
     return true;
   }
-
-
-
-
 }

@@ -86,8 +86,8 @@ namespace Map {
   }
 
   void Add_Rooms() {
-    for (int x = 0; x < (mapWidth - 7); x+=7) {
-      for (int y = 0; y < mapWidth - 7; y+=7) {
+    for (int x = 1; x < (mapWidth - 7); x+=7) {
+      for (int y = 1; y < mapWidth - 7; y+=7) {
         Add_Room(x, y, 5, 5);
       }
     }
