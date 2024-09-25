@@ -48,6 +48,18 @@ namespace Pathing {
       }
   }
 
+  void Draw_Colision_Map() {
+    for (int y = 0; y < nMapHeight; y++) {
+      for (int x = 0; x < nMapWidth; x++) {
+        if (nodes[y * nMapWidth + x].bObstacle) {
+          std::cout << "#";
+        }
+        std::cout << " ";
+      }
+    }
+    std::cout << std::endl;
+  }
+
   bool Init(const std::string &mapString) {
     for (int y = 0; y < nMapHeight; y++) {
       for (int x = 0; x < nMapWidth; x++) {
@@ -77,6 +89,7 @@ namespace Pathing {
     nodeEnd = &nodes[(nMapHeight / 2) * nMapWidth + nMapWidth - 2];
 
     Update(mapString);
+    Draw_Colision_Map();
     return true;
   }
 
