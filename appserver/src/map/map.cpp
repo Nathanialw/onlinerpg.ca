@@ -80,8 +80,8 @@ namespace Map {
       for (int l = 0; l < h; l++) {
         int j = x + l;
         int i = y + k;
-        defaultMap[j][i] = ".";
-        if (columns && l & 5 && k & 4) {
+        defaultMap[i][j] = ".";
+        if (columns && (l % 5 == 0) && (k % 4 == 0)) {
           defaultMap[i][j] = "#";
         }
 
