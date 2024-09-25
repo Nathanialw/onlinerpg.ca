@@ -38,19 +38,19 @@ namespace Pathing {
   void Update(const std::string &mapString) {
     for (int y = 0; y < nMapHeight; y++) {
       for (int x = 0; x < nMapWidth; x++) {
-        if (mapString[y * nMapWidth + x] == '.') {
-          nodes[y * nMapWidth + x].bObstacle = false;
-        }
-        else {
-          nodes[y * nMapWidth + x].bObstacle = true;
+          if (mapString[y * nMapWidth + x] == '.') {
+            nodes[y * nMapWidth + x].bObstacle = false;
+          }
+          else {
+            nodes[y * nMapWidth + x].bObstacle = true;
+          }
         }
       }
-    }
   }
 
   bool Init(const std::string &mapString) {
-    for (int y = 0; y < nMapHeight; y++) {
-      for (int x = 0; x < nMapWidth; x++) {
+    for (int x = 0; x < nMapWidth; x++) {
+      for (int y = 0; y < nMapHeight; y++) {
         nodes[y * nMapWidth + x].x = x;
         nodes[y * nMapWidth + x].y = y;
         nodes[y * nMapWidth + x].bObstacle = true;
@@ -59,8 +59,9 @@ namespace Pathing {
         nodes[y * nMapWidth + x].vecNeighbours.clear();
       }
     }
-    for (int y = 0; y < nMapHeight; y++)
-      for (int x = 0; x < nMapWidth; x++) {
+
+    for (int x = 0; x < nMapWidth; x++)
+      for (int y = 0; y < nMapHeight; y++) {
         if (y > 0)
           nodes[y * nMapWidth + x].vecNeighbours.push_back(&nodes[(y - 1) * nMapWidth + (x + 0)]);
         if (y < nMapHeight - 1)
@@ -89,8 +90,8 @@ namespace Pathing {
 //    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
     numCellsToCheck = 10000;
 
-    for (int y = 0; y < nMapHeight; y++)
-      for (int x = 0; x < nMapWidth; x++) {
+    for (int x = 0; x < nMapWidth; x++)
+      for (int y = 0; y < nMapHeight; y++) {
         nodes[y * nMapWidth + x].bVisited = false;
         nodes[y * nMapWidth + x].fGlobalGoal = INFINITY;
         nodes[y * nMapWidth + x].fLocalGoal = INFINITY;
@@ -207,7 +208,7 @@ namespace Pathing {
 //    }
 
     int cell = 1;
-    std::cout << "number of moves away: " << path.size() << std::endl;
+    std::cout << path.size() << std::endl;
     std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
     return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};
   }
