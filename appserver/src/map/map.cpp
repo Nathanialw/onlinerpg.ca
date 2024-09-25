@@ -87,9 +87,9 @@ namespace Map {
 
   void Add_Rooms() {
     Add_Room(2, 2, 3, 3);
-    Add_Room(54, 44, 9, 9);
-    Add_Room(22, 77, 7, 16);
-    Add_Room(22, 22, 5, 5);
+    Add_Room(5, 2, 9, 9);
+    Add_Room(2, 19, 7, 16);
+    Add_Room(3, 55, 5, 5);
   }
 
   std::string Init() {
