@@ -7,6 +7,7 @@
 #include "labyrinth.h"
 
 namespace Map {
+
   const int mapWidth = 99;
   std::string defaultMap[mapWidth][mapWidth];
   std::string gameMap[mapWidth][mapWidth];
@@ -15,71 +16,84 @@ namespace Map {
     std::string map;
     for (int j = 0; j < mapWidth; j++) {
       for (int i = 0; i < mapWidth; i++) {
-            if (i < 0 || i > mapWidth || j < 0 || j > mapWidth)
-              map += ' ';
-            else
-              map += gameMap[j][i];
+        if (i < 0 || i > mapWidth || j < 0 || j > mapWidth)
+          map += ' ';
+        else
+          map += gameMap[j][i];
       }
     }
     return map;
   }
 
-  void Create_Open_Map() {
-    for (int i = 0; i < mapWidth; i++) {
-      for (int j = 0; j < mapWidth; j++) {
-            if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
-              defaultMap[i][j] = '#';
-              gameMap[i][j] = defaultMap[i][j];
-            }
-            else {
-              defaultMap[i][j] = '.';
-              gameMap[i][j] = defaultMap[i][j];
-            }
+  void Set_Game_Map() {
+    for (int x = 0; x < mapWidth; x++) {
+      for (int y = 0; y < mapWidth; y++) {
+        gameMap[x][y] = defaultMap[x][y];
       }
     }
   }
 
- void Create_Map() {
+  void Create_Open_Map() {
+    for (int i = 0; i < mapWidth; i++) {
+      for (int j = 0; j < mapWidth; j++) {
+        if (i == 0 || i == mapWidth - 1 || j == 0 || j == mapWidth - 1) {
+          defaultMap[i][j] = '#';
+          gameMap[i][j] = defaultMap[i][j];
+        } else {
+          defaultMap[i][j] = '.';
+          gameMap[i][j] = defaultMap[i][j];
+        }
+      }
+    }
+  }
+
+  void Create_Labyrinth() {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
 
     for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
       for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
-        labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
+        labyrinthStr = Labyrinth::Get_Map_Cells()
+            [Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
         int charIndex = 0;
         if (i < 1 || j < 1)
           std::cout << "labyrinthStr: " << labyrinthStr << std::endl;
 
-//        if (i < 1 || j < 1) {
+        for (int k = 0; k < 3; k++) {
+          for (int l = 0; l < 3; l++) {
+            int x = (i * 3) + k;
+            int y = (j * 3) + l;
+            defaultMap[x][y] = labyrinthStr[charIndex];
+            charIndex++;
+          }
+        }
+      }
+    }
+  }
+
+  //3x3 rooms = quarters
+  //9x9 rooms = barracks
+  //9x15 rooms = halls
+  void Add_Rooms() {
+    for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
+      for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
+        if (i%5 == 0 && j%5 == 0) {
           for (int k = 0; k < 3; k++) {
             for (int l = 0; l < 3; l++) {
-              //            if (i < 1 && j < 1)
-              //              std::cout << (i * 3) + k << " " << (j * 3) + l << std::endl;
               int x = (i * 3) + k;
               int y = (j * 3) + l;
-              defaultMap[x][y] = labyrinthStr[charIndex];
-              gameMap[x][y] = labyrinthStr[charIndex];
-              charIndex++;
+              defaultMap[x][y] = ".";
             }
           }
-//        }
-//        else {
-//          for (int k = 0; k < 3; k++) {
-//            for (int l = 0; l < 3; l++) {
-//              int x = (i * 3) + k;
-//              int y = (j * 3) + l;
-//              defaultMap[x][y] = ".";
-//              gameMap[x][y] = ".";
-//              charIndex++;
-//            }
-//          }
-//        }
+        }
       }
     }
   }
 
   std::string Init() {
-    Create_Map();
+    Create_Labyrinth();
+    Add_Rooms();
+    Set_Game_Map();
     auto map = Get_Map();
     return map;
   }
