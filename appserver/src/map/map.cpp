@@ -50,7 +50,7 @@ namespace Map {
         if (i < 1 || j < 1)
           std::cout << "labyrinthStr: " << labyrinthStr << std::endl;
 
-        if (i < 1 && j < 1) {
+        if (i < 1 || j < 1) {
           for (int k = 0; k < 3; k++) {
             for (int l = 0; l < 3; l++) {
               //            if (i < 1 && j < 1)
