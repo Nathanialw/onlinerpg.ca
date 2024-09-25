@@ -90,6 +90,7 @@ namespace Units {
   enum class Class {
     FIGHTER,
     MYSTIC,
+    SLAVE,
     SIZE,
   };
 
