@@ -179,8 +179,8 @@ export function Make_Map(serverMap, visionWidth) {
         }
         else if (serverMap[i] == "#") {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
-            objects.push([i, "▲"]); // save the location of the enemy
             objects.push([i, "˛"]); // save the location of the enemy
+            objects.push([i, "▲"]); // save the location of the enemy
         }
         else if (serverMap[i] == ".") {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
