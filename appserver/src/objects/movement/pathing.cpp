@@ -194,9 +194,8 @@ namespace Pathing {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path = {};
     Solve_AStar(position, targetPosition, path);
-//    for (auto & i : path)
-//        std::cout << "path: " << i.x << " " << i.y << std::endl;
-
+    for (auto & i : path)
+        std::cout << "path: " << i.x << " " << i.y << std::endl;
 
     if (path.empty() || path.size() <= 1) {
       std::cout << "target is adjacent, position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
@@ -205,6 +204,7 @@ namespace Pathing {
     int cell = 1;
 
     std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
+
     return {path[0].x - position.x, path[0].y - position.y};
   }
 }
