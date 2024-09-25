@@ -81,22 +81,19 @@ namespace Map {
         int j = x + l;
         int i = y + k;
         defaultMap[i][j] = ".";
-//        if (columns && (l % 5 == 0) && (k == 4) && (l > 0) && (l < (w - 1))) {
-//          defaultMap[i][j] = "#";
-//        }
       }
     }
   }
 
   void Add_Rooms() {
-    for (int x = 0; x < (mapWidth - 5); x+=5) {
-      for (int y = 0; y < 30; y+=5) {
-        Add_Room(x, y, 3, 3);
+    for (int x = 0; x < (mapWidth - 7); x+=7) {
+      for (int y = 0; y < mapWidth - 7; y+=7) {
+        Add_Room(x, y, 5, 5);
       }
     }
-    Add_Room(2, 40, 9, 9);
-    Add_Room(12, 40, 9, 16);
-    Add_Room(30, 40, 5, 5);
+//    Add_Room(2, 40, 9, 9);
+//    Add_Room(12, 40, 9, 16);
+//    Add_Room(30, 40, 5, 5);
   }
 
   std::string Init() {
