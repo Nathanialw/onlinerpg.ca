@@ -170,17 +170,16 @@ export function Make_Map(serverMap, visionWidth) {
     objectDisplay = [];
     for (let i = 0; i < serverMap.length; i++) {
         if (serverMap[i] == "#") {
-            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
             objects.push([i, "˛"]); // save the location of the enemy
             objects.push([i, "▲"]); // save the location of the enemy
+            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
         else if (serverMap[i] == ".") {
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
         else {
-            console.log("Object: ", serverMap[i]);
-            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
             objects.push([i, serverMap[i]]); // save the location of the enemy
+            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
         //bag      
     }
