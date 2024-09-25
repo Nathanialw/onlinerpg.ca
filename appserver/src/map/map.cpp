@@ -43,8 +43,8 @@ namespace Map {
     Labyrinth::Generate_Map();
     std::string labyrinthStr;
 
-    for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
-      for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
+    for (int i = 0; i < Labyrinth::labyrinthWidth; i++) {
+      for (int j = 0; j < Labyrinth::labyrinthWidth; j++) {
         labyrinthStr = Labyrinth::Get_Map_Cells()[Labyrinth::Get_Labyrinth()[j * Labyrinth::labyrinthWidth + i]];
         int charIndex = 0;
         if (i < 1 || j < 1)
