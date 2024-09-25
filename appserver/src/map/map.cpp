@@ -78,8 +78,8 @@ namespace Map {
     std::cout << "Adding room at: " << x << ", " << y << std::endl;
     for (int k = 0; k < w; k++) {
       for (int l = 0; l < h; l++) {
-        int i = x + k;
-        int j = y + l;
+        int j = x + l;
+        int i = y + k;
         defaultMap[i][j] = ".";
       }
     }
@@ -87,7 +87,7 @@ namespace Map {
 
   void Add_Rooms() {
     Add_Room(2, 2, 3, 3);
-    Add_Room(5, 2, 9, 9);
+    Add_Room(4, 7, 9, 9);
     Add_Room(2, 19, 7, 16);
     Add_Room(3, 55, 5, 5);
   }
