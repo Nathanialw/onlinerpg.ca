@@ -56,8 +56,8 @@ namespace Pathing {
         }
         std::cout << " ";
       }
+      std::cout << std::endl;
     }
-    std::cout << std::endl;
   }
 
   bool Init(const std::string &mapString) {
