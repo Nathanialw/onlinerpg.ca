@@ -5,8 +5,15 @@
 <!doctype html>
 <html>
     <head>
-        <script src="/assets/fonts/press_start_2p/PressStart2P.ttf"></script>
-        <script> WebFont.load({google: {families: ['Press Start 2P']}});</script>
+        <link rel="stylesheet" href="/css/game.css">
+        <script>
+            WebFont.load({
+                custom: {
+                    families: ['Press Start 2P'],
+                    urls: ['/css/game.css']
+                }
+            });
+        </script>
         
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
