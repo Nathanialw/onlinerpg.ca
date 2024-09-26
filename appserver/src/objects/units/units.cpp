@@ -66,6 +66,7 @@ namespace Units {
   int Get_Unit_Index(int x, int y) {
     UnitPosition pos = {x, y};
     if (unitPositions.count(pos) == 1) {
+      std::cout << "unit found at: " << x << " " << y << std::endl;
       return unitPositions[pos];
     }
     return -1;
