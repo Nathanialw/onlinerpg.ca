@@ -1,30 +1,12 @@
-import { createWebSocket, socket, websocket } from '/js/networking/socket.js';
+import { createWebSocket, socket } from '/js/networking/socket.js';
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     createWebSocket();
-// });
-
-
-function connect_to_server() {
+document.addEventListener('DOMContentLoaded', () => {
     createWebSocket();
-    //wait for connection
-    while (websocket.readyState === websocket.CONNECTING) {
-        console.log("Connecting WebSocket...");
-        //wait 1 sec
-        setTimeout(() => {
-            //check connection
-            if (websocket.readyState === websocket.OPEN) {
-                console.log("WebSocket connection opened");
-                return
-            }
-        }, 1000);
-    }
-}
+});
+
 
 //send data to server
 function Send() {
-    connect_to_server();
-
     let conn = socket()
     
     //get data from form

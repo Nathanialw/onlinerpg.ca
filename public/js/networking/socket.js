@@ -1,7 +1,7 @@
 'use strict';
 
 
-export let websocket;
+let websocket;
 let reconnectInterval = 1000; // 1 second
 
 export function createWebSocket() {
