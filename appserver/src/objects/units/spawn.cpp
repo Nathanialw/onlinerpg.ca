@@ -5,6 +5,7 @@
 #include "map.h"
 #include "units.h"
 #include "utils.h"
+#include "procgen.h"
 
 namespace Spawn {
   const int mapWidth = Map::Get_Map_Wdth();
@@ -25,13 +26,6 @@ namespace Spawn {
 
   std::string Get_Unit_Char(Units::Species species) {
     return unitChars[(int)species];
-  }
-
-  Placement Random_Placement() {
-    Placement placement{};
-    placement.x = rand() % mapWidth;
-    placement.y = rand() % mapWidth;
-    return placement;
   }
 
   void Add_Unit(int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
@@ -55,8 +49,23 @@ namespace Spawn {
     }
 
     Units::UnitPosition pos = {x, y};
-
     unitsPositions->emplace(pos, units->size() - 1);
+  }
+
+  std::vector<Placement> Spawn_Unit() {
+    //for each big room
+    auto largeRooms = Map::Get_Large_Rooms();
+    std::vector<Placement> placements;
+    Placement placement{};
+    Proc_Gen::Seed seed;
+
+    for (const auto &room : largeRooms) {
+      seed.seed = Proc_Gen::Create_Initial_Seed(room.x, room.y);
+      placement.x = Proc_Gen::Random_Int(room.x, room.w / 2, seed);
+      placement.y = Proc_Gen::Random_Int(room.y, room.h / 2, seed);
+      placements.emplace_back(placement);
+    }
+    return placements;
   }
 
   bool Add_Object(std::string &group, int x, int y) {
@@ -71,18 +80,16 @@ namespace Spawn {
     }
   }
 
-  std::string Random_Entities(const char* entityType, int numEntities) {
+  std::string Random_Entities(const char* entityType, int numEntities, int x, int y) {
     std::string group;
   reRoll:
-    Placement placement = Random_Placement();
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
-      if (!Add_Object(group, placement.x + i, placement.y + i))
+      if (!Add_Object(group, x + i, y + i))
         goto reRoll;
     }
     return group;
   }
-
 
   std::string Place_Entities_On_Map(std::basic_string<char> characterCreate) {
     std::string mapEntities = "2";
@@ -116,28 +123,17 @@ namespace Spawn {
 
     mapEntities += unitChars[(int)unitClass] + "0606";
 
-    for (int i = 0; i < 5; ++i) {
+    auto placements = Spawn_Unit();
+    for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
-      mapEntities += Random_Entities(unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters);
+      mapEntities += Random_Entities(unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters, placement.x, placement.y);
     }
+
     std::cout << "init num entities: " << units.size() << std::endl;
     return mapEntities;
   }
 
-  void Spawn_Unit(int x, int y, int species) {
-    //for each big room
-    auto largeRooms = Map::Get_Large_Rooms();
-    for (const auto &room : largeRooms) {
-        //if the unit is in the room
-        if (x >= room.x && x < room.x + room.w && y >= room.y && y < room.y + room.h) {
-          //add the unit to the units vector
-//          Add_Unit(x, y, species);
-          //set the tile to the unit
-          Map::Set_Tile(x, y, "u");
-          return;
-        }
-    }
-  }
+
 
   void Init(const std::basic_string<char> &characterCreate) {
     Units::Set_Units_String(Place_Entities_On_Map(characterCreate));
