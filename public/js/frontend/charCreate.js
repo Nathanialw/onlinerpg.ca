@@ -28,8 +28,11 @@ function Send() {
 document.getElementById('startGame').addEventListener('click', (event) => {
     while (socket().isConnected == false) {
         createWebSocket();
+        setTimeout(function() {
+            console.log("Waiting for server to connect...")
+        }, 1000);
     }
-    
+
     Send();
     //remove form <section class='startButton'>
     const formSection = document.querySelector('.startButton');
