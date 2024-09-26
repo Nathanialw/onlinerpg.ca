@@ -53,7 +53,8 @@ short term:
 -time system
   -1 move/attack = 1 minute
   -rest = 10 mins and heals one health | unless you get attacked
-
+-expand the map into a grid of maps
+-have enemies drop an item when they die
 
 medium term:
 -items
@@ -61,6 +62,7 @@ medium term:
 -UI bags
 -UI spells
 -UI status
+-traits based on the unit's parents and what it does while alive
 
 
 long term:

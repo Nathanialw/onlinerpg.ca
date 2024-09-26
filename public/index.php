@@ -29,12 +29,9 @@
     // elseif (isset($_POST["restartGame"])) {
     //     include 'game.php';        
     // }
-    if (isset($_POST["enterGame"])) {
-        include 'charCreate.php';     
-    }
-    else {
-        include 'enterGame.php';     
-    }
+    
+    include 'charCreate.php';     
+    
 ?>
 
 
