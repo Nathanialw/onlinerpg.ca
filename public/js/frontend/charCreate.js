@@ -75,6 +75,11 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         btnSection.remove();
     }
 
+    const nameInput = document.querySelector('.name');
+    if (nameInput) {
+        nameInput.remove();
+    }
+
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
         const script = document.createElement('script');

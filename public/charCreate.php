@@ -49,11 +49,14 @@
 
  <div id="gameCanvas"></div>
 
-<section class='options'>
+ <section class='name'>
     <form method='POST' id="myForm">
         <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
         <br> 
+<section class='options'>
+    
+<section class='options'>
     </form>
     
     <div class="main-links">
