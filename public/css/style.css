@@ -216,7 +216,8 @@ ul {
 }
 
 .btn-block {
-  width: 25rem;
+  margin: 1rem auto;
+  width: 20rem;
   height: 2rem;
 }
 
