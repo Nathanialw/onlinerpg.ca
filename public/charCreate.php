@@ -58,7 +58,6 @@
     
     <div class="main-links">
         <ul>
-            <h4>Species: </h4>
             <li><button id="Human" class='btn btn-submit btn-block'>Human</button></li>
             <li><button id="Elf" class='btn btn-submit btn-block'>Elf</button></li>
             <!-- <li><button id="Orc" class='btn btn-submit'>Orc</button></li> -->
@@ -67,19 +66,16 @@
         </ul>
 
         <ul>
-            <h4>Gender: </h4>
             <li><button id="Male" class='btn btn-submit btn-block'>Male</button></li>
             <li><button id="Female" class='btn btn-submit btn-block'>Female</button></li>
         </ul>
 
         <ul>
-            <h4>Class: </h4>
             <li><button id="Fighter" class='btn btn-submit btn-block'>Fighter</button></li>
             <li><button id="Mystic" class='btn btn-submit btn-block'>Mystic</button></li>
         </ul>
 
         <ul>
-            <h4>Alignment: </h4>
             <li><button id="Good" class='btn btn-submit btn-block'>Good</button></li>
             <li><button id="Neutral" class='btn btn-submit btn-block'>Neutral</button></li>
             <li><button id="Evil" class='btn btn-submit btn-block'>Evil</button></li>
