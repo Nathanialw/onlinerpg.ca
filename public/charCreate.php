@@ -55,7 +55,7 @@
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
         <br> 
     </form>
-
+    
     <h4>Species: </h4>
     <ul>
         <li><button id="Human" class='btn btn-submit'>Human</button></li>
@@ -64,22 +64,25 @@
         <!-- <li><button id="Dwarf" class='btn btn-submit'>Dwarf</button></li> -->
         <!-- <li><button id="Goblin" class='btn btn-submit'>Goblin</button></li> -->
     </ul>
-    <!-- <button id="Human" class='btn btn-submit'>Human</button> -->
-    <!-- <button id="Elf" class='btn btn-submit'>Elf</button> -->
 
     <h4>Gender: </h4>
-    <button id="Male" class='btn btn-submit'>Male</button>
-    <button id="Female" class='btn btn-submit'>Female</button>
+    <ul>
+    <li><button id="Male" class='btn btn-submit'>Male</button></li>
+    <li><button id="Female" class='btn btn-submit'>Female</button></li>
+    </ul>
 
     <h4>Class: </h4>
-    <button id="Fighter" class='btn btn-submit'>Fighter</button>
-    <button id="Mystic" class='btn btn-submit'>Mystic</button>
+    <ul>
+    <li><button id="Fighter" class='btn btn-submit'>Fighter</button></li>
+    <li><button id="Mystic" class='btn btn-submit'>Mystic</button></li>
+    </ul>
 
     <h4>Alignment: </h4>
-    <button id="Good" class='btn btn-submit'>Good</button>
-    <button id="Neutral" class='btn btn-submit'>Neutral</button>
-    <button id="Evil" class='btn btn-submit'>Evil</button>
-
+    <ul>
+    <li><button id="Good" class='btn btn-submit'>Good</button></li>
+    <li><button id="Neutral" class='btn btn-submit'>Neutral</button></li>
+    <li><button id="Evil" class='btn btn-submit'>Evil</button></li>
+    </ul>
 </section>
 
 <section class='startButton'>
