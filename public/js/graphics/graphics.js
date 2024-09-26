@@ -104,6 +104,10 @@ export function Get_Right_Panel_Origin_y() {
     return 0;
 }
 
+export function Get_Right_Panel_Width() {
+    return rightPanelWidth;
+}
+
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');

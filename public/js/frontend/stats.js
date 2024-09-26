@@ -1,6 +1,6 @@
 
 //get string from server
-import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image} from "../graphics/graphics.js"
+import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, Get_Right_Panel_Width} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -47,7 +47,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.AC = stats.substring(10, 12);
     targetStats.speed = stats.substring(12, 13);
     targetStats.vision = stats.substring(13, 15);
-    targetStats.bio = stats.substring(15, 80);
+    targetStats.bio = stats.substring(15, Get_Right_Panel_Width()/12);
     Render_Target_Stats()
 }
 
@@ -77,5 +77,11 @@ export function Render_Target_Stats() {
     line = Display_Line("AC: " + targetStats.AC, line, x, y);
     line = Display_Line("Speed: " + targetStats.speed, line, x, y);
     line = Display_Line("Vision: " + targetStats.vision, line, x, y);
-    line = Display_Line(targetStats.bio, line, x, y);  
+
+    let width = Get_Right_Panel_Width()/12;
+    let lines = Math.ceil(targetStats.bio.length/width);
+    
+    for (let i = 0; i < lines; i++) {
+        line = Display_Line(targetStats.bio.substring(width * i, (width * i) + width), line, x, y);
+    }
 }
