@@ -64,7 +64,12 @@ function Send() {
 document.getElementById('startGame').addEventListener('click', (event) => {
     Send();
     //remove form <section class='startButton'>
-    const formSection = document.querySelector('.startButton');
+    const formSection = document.querySelector('.options');
+    if (formSection) {
+        formSection.remove();
+    }
+
+    formSection = document.querySelector('.startButton');
     if (formSection) {
         formSection.remove();
     }
