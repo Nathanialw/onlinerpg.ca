@@ -57,8 +57,15 @@
     </form>
 
     <h4>Species: </h4>
-    <button id="Human" class='btn btn-submit'>Human</button>
-    <button id="Elf" class='btn btn-submit'>Elf</button>
+    <ul>
+        <li><button id="Human" class='btn btn-submit'>Human</button></li>
+        <li><button id="Elf" class='btn btn-submit'>Elf</button></li>
+        <!-- <li><button id="Orc" class='btn btn-submit'>Orc</button></li> -->
+        <!-- <li><button id="Dwarf" class='btn btn-submit'>Dwarf</button></li> -->
+        <!-- <li><button id="Goblin" class='btn btn-submit'>Goblin</button></li> -->
+    </ul>
+    <!-- <button id="Human" class='btn btn-submit'>Human</button> -->
+    <!-- <button id="Elf" class='btn btn-submit'>Elf</button> -->
 
     <h4>Gender: </h4>
     <button id="Male" class='btn btn-submit'>Male</button>
