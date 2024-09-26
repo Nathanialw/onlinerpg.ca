@@ -46,6 +46,7 @@ namespace Units {
     XANA,
     YALE,
     ZOMBIE,
+
     ANGEL,
     BYAKHEE,
     CHIMERA,
@@ -149,7 +150,6 @@ namespace Units {
   };
 
   std::string Send_Units();
-  void Init(const std::basic_string<char> &characterCreate);
   Unit Get_Player();
   std::vector<Unit>* Get_Units();
   int Get_Unit_Index(int x, int y);
@@ -159,6 +159,9 @@ namespace Units {
   Unit Get_Unit_At_Position(int x, int y);
   void Update_UnitsString(int x, int y);
   std::string GetCharStats();
+  std::string Get_Units_String();
+  void Set_Units_String(const std::string &newUnitsString);
+  std::unordered_map<UnitPosition, int>* Get_Unit_Positions();
 }
 
 namespace std {

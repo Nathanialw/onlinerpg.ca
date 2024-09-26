@@ -38,7 +38,6 @@ gamey
 
 
 short term:
--rooms generate with random geometry
 -have goblins only spawn in rooms
 -have the goblins actually do damage
 -spells 

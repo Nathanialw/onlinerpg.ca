@@ -10,6 +10,7 @@
 #include "update.h"
 #include "goblin.h"
 #include "pathing.h"
+#include "spawn.h"
 
 namespace Network {
 
@@ -83,7 +84,7 @@ namespace Network {
     std::cout << "map inited" << std::endl;
     Pathing::Init(map);
     std::cout << "path inited" << std::endl;
-    Units::Init(msg->get_payload());
+    Spawn::Init(msg->get_payload());
     std::cout << "units inited" << std::endl;
     print_server.send(hdl, Units::GetCharStats(), websocketpp::frame::opcode::text);
     std::cout << "char stats sent!" << std::endl;

@@ -13,6 +13,10 @@ namespace Map {
   std::string defaultMap[mapWidth][mapWidth];
   std::string gameMap[mapWidth][mapWidth];
 
+  int Get_Map_Wdth() {
+    return mapWidth;
+  }
+
   std::string Get_Map() {
     std::string map;
     for (int j = 0; j < mapWidth; j++) {
@@ -86,10 +90,10 @@ namespace Map {
     }
   }
 
-  void Add_Rooms() {
+  void Add_Small_Rooms() {
+    Proc_Gen::Seed seed;
     for (int x = 1; x < (mapWidth - 7); x+=7) {
       for (int y = 1; y < mapWidth - 7; y+=7) {
-        Proc_Gen::Seed seed;
         seed.seed = Proc_Gen::Create_Initial_Seed(x, y);
         auto w = Proc_Gen::Random_Int(3, 6, seed);
         seed.seed = Proc_Gen::Create_Initial_Seed(y, x);
@@ -101,6 +105,25 @@ namespace Map {
 //    Add_Room(12, 40, 9, 16);
 //    Add_Room(30, 40, 5, 5);
   }
+  std::vector<Room> largeRooms;
+
+  std::vector<Room> Get_Large_Rooms() {
+    return largeRooms;
+  }
+
+  void Add_Large_Rooms() {
+    Proc_Gen::Seed seed;
+    for (int x = 1; x < (mapWidth - 20); x+=21) {
+      for (int y = 1; y < mapWidth - 20; y+=21) {
+        seed.seed = Proc_Gen::Create_Initial_Seed(x, y);
+        auto w = Proc_Gen::Random_Int(9, 19, seed);
+        seed.seed = Proc_Gen::Create_Initial_Seed(y, x);
+        int h = Proc_Gen::Random_Int(9, 19, seed);
+        Add_Room(x, y, w, h);
+        largeRooms.push_back({x, y, w, h});
+      }
+    }
+  }
 
   std::string Init() {
 //    std::cout << "Creating open map" << std::endl;
@@ -108,7 +131,8 @@ namespace Map {
     std::cout << "Creating labyrinth" << std::endl;
     Create_Labyrinth();
     std::cout << "Adding rooms" << std::endl;
-    Add_Rooms();
+    Add_Small_Rooms();
+    Add_Large_Rooms();
     std::cout << "Setting open map" << std::endl;
     Set_Game_Map();
 

@@ -39,4 +39,6 @@ add_executable(BrowserRPG
         src/objects/components.cpp
         src/map/labyrinth.cpp
         src/procgen/procgen.cpp
+        src/objects/units/spawn.cpp
+        src/objects/units/spawn.h
 )

@@ -48,7 +48,7 @@ namespace Pathing {
       }
   }
 
-  void Draw_Colision_Map() {
+  void Draw_Collision_Map() {
     std::cout << "Drawing collision map: "<< std::endl;
     for (int y = 0; y < nMapHeight; y++) {
       for (int x = 0; x < nMapWidth; x++) {
@@ -92,7 +92,7 @@ namespace Pathing {
     nodeEnd = &nodes[(nMapHeight / 2) * nMapWidth + nMapWidth - 2];
 
     Update(mapString);
-    Draw_Colision_Map();
+    Draw_Collision_Map();
     return true;
   }
 
