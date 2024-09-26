@@ -14,6 +14,6 @@ namespace Proc_Gen {
 
   uint32_t Create_Initial_Seed(uint32_t x, uint32_t y);
   int Random_Int(int min, int max, Seed &seed);
-  double Random_Int(double min, double max, Seed &seed);
+  double Random_Double(double min, double max, Seed &seed);
   float Random_float(int min, int max, Seed &seed);
 }

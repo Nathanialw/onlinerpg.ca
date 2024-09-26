@@ -38,6 +38,15 @@ gamey
 
 
 short term:
+-rooms generate with random geometry
+-have goblins only spawn in rooms
+-have the goblins actually do damage
+-spells 
+  -1 for species
+  //-1 for subspecies
+  -1 class
+  -1 for alignment
+
 -player id so you can have your own game
 -when holding down move, if it colides into a unit. just stop instead of attacking
 -AI attacks if adjacent

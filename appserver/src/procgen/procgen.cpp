@@ -25,7 +25,7 @@ namespace Proc_Gen {
     return (Generate_Random_Number(seed.seed) % (max - min)) + min;
   }
 
-  double Random_Int(double min, double max, Seed &seed) {
+  double Random_Double(double min, double max, Seed &seed) {
     return ((double) Generate_Random_Number(seed.seed) / (double) (0x7FFFFFFF) * (max - min)) + min;
   }
 

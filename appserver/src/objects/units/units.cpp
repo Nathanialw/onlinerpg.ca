@@ -174,6 +174,8 @@ namespace Units {
     auto alignment = (Alignment)std::stoi(alignmentStr);
 
     Add_Unit(6, 6, name, gender, species, unitClass, alignment);
+    units[0].health = 100;
+    units[0].healthMax = 100;
 
     mapEntities += unitChars[(int)unitClass] + "0606";
 

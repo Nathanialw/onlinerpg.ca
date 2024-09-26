@@ -5,6 +5,7 @@
 
 #include "map.h"
 #include "labyrinth.h"
+#include "procgen.h"
 
 namespace Map {
 
@@ -88,7 +89,12 @@ namespace Map {
   void Add_Rooms() {
     for (int x = 1; x < (mapWidth - 7); x+=7) {
       for (int y = 1; y < mapWidth - 7; y+=7) {
-        Add_Room(x, y, 5, 5);
+        Proc_Gen::Seed seed;
+        seed.seed = Proc_Gen::Create_Initial_Seed(x, y);
+        auto w = Proc_Gen::Random_Int(3, 6, seed);
+        seed.seed = Proc_Gen::Create_Initial_Seed(y, x);
+        int h = Proc_Gen::Random_Int(3, 6, seed);
+        Add_Room(x, y, w, h);
       }
     }
 //    Add_Room(2, 40, 9, 9);
