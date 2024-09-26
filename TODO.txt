@@ -38,7 +38,6 @@ gamey
 
 
 short term:
--have goblins only spawn in rooms
 -have the goblins actually do damage
 -spells 
   -1 for species

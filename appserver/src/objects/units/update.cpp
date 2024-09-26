@@ -48,6 +48,7 @@ namespace Update {
         // check next cell and move/attack
         if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == Spawn::Get_Unit_Char(player.def.species)) {
           std::cout << "goblin attacks player" << std::endl;
+          Attack::Melee(former.x, former.y, moveTo.x, moveTo.y);
           continue;
         }
         units[i].position.x += moveTo.x;
