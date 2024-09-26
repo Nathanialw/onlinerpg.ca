@@ -49,7 +49,7 @@
 
  <div id="gameCanvas"></div>
 
- <section class='name'>
+ <section class='nameInput'>
     <form method='POST' id="myForm">
         <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
