@@ -1,6 +1,6 @@
 
 //get string from server
-import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, Get_Right_Panel_Width} from "../graphics/graphics.js"
+import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, Get_Right_Panel_Width, minimapCellSize} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -52,7 +52,7 @@ export function Get_Target_Stats_From_Server(statsString) {
 }
 
 function Display_Line(value, i, x, y) {
-    targetStatsDisplay[i] = Create_Text_Line(value, 12, i, x, y);
+    targetStatsDisplay[i] = Create_Text_Line(value, minimapCellSize, i, x, y);
     i++;
     return i;
 }
@@ -77,11 +77,27 @@ export function Render_Target_Stats() {
     line = Display_Line("AC: " + targetStats.AC, line, x, y);
     line = Display_Line("Speed: " + targetStats.speed, line, x, y);
     line = Display_Line("Vision: " + targetStats.vision, line, x, y);
-
-    let width = Get_Right_Panel_Width()/12;
+    line = Display_Line("" + targetStats.vision, line, x, y);
+    let width = Get_Right_Panel_Width()/minimapCellSize;
     let lines = Math.ceil(targetStats.bio.length/width);
-    
+    let currentPos = 0;
+
     for (let i = 0; i < lines; i++) {
-        line = Display_Line(targetStats.bio.substring(width * i, (width * i) + width), line, x, y);
+        //itertate backwards to find the last space in the line
+        let bioLine = targetStats.bio.substring(width * i, (width * i) + width);
+        for (let j = bioLine.length; j > 0; j--) {
+            if (bioLine[j+1] === " ") {
+                line = Display_Line(targetStats.bio.substring(currentPos, (width * i) + j), line, x, y);
+                currentPos = (width * i) + j;
+                break;
+            }
+            else if (bioLine[j] === " ") {
+            else if (bioLine[j] === " ") {
+                line = Display_Line(targetStats.bio.substring(currentPos, (width * i) + j), line, x, y);
+                currentPos = (width * i) + j;
+                break;
+            }
+        }
+        // line = Display_Line(targetStats.bio.substring(width * i, (width * i) + width), line, x, y);
     }
 }
