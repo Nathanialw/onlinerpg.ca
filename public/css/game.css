@@ -25,7 +25,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.options {
+/* .options {
     display: block;
     margin: 0 auto;
     position: absolute;
@@ -45,7 +45,7 @@ body {
 
 .nameInput input {
     width: 120%;    
-}
+} */
 
 .splashContent {
     /* center content */
