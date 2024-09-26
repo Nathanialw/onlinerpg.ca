@@ -54,10 +54,10 @@
         <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
         <br> 
-<section class='options'>
-    
-<section class='options'>
     </form>
+<section class='options'>
+
+<section class='options'>
     
     <div class="main-links">
         <ul>
