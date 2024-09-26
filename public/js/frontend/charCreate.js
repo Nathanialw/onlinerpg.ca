@@ -26,7 +26,6 @@ function Send() {
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
-    createWebSocket();
 
     Send();
     //remove form <section class='startButton'>
