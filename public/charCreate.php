@@ -62,13 +62,13 @@
             </select>
         </span>
         <br>
-        <label class="form-label" for="race">Race:</label>
+        <!-- <label class="form-label" for="race">Race:</label>
         <span class="form-adjacent">
             <select class="form-input form-row form-adjacent" id="race" name="race" required>
                 <option value="7">Human</option>
                 <option value="4">Elf</option>
             </select>
-        </span>
+        </span> -->
         <br>
         <label class="form-label" for="class">Class:</label>
         <span class="form-adjacent">
@@ -90,6 +90,9 @@
         <!-- <input type='submit' name='startGame' id='startGame' class='btn btn-submit' value='Start Game'/> -->
     </form>
 
+    <label for="Species: "></label>
+    <button id="human" value="0" class='btn btn-submit'>Human</button>
+    <button id="elf" value="1" class='btn btn-submit'>Elf</button>
     <button id="startGame" class='btn btn-submit'>Start Game</button>
 </section>
 

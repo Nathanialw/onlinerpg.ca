@@ -47,3 +47,10 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     loadScript('/js/input/keyboard.js', 'module');
     loadScript('/js/networking/receive.js', 'module');
 });
+
+
+document.getElementById('human').addEventListener('click', (event) => {
+    //highlight selected
+    document.getElementById('human').style.backgroundColor = 'yellow';
+    document.getElementById('elf').style.backgroundColor = 'white';    
+});
