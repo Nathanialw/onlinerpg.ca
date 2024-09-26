@@ -1,6 +1,6 @@
 
 //get string from server
-import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, rightPanelWidth, Load_Target_Image} from "../graphics/graphics.js"
+import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -42,12 +42,12 @@ export function Get_Target_Stats_From_Server(statsString) {
         }
     }
 
-    targetStats.health = stats.substring(0, 2) + "/" + stats.substring(2, 4);
-    targetStats.attack = stats.substring(4, 6) + "-" + stats.substring(6, 8);
-    targetStats.AC = stats.substring(8, 10);
-    targetStats.speed = stats.substring(10, 11);
-    targetStats.vision = stats.substring(11, 13);
-    targetStats.bio = stats.substring(13, 50);
+    targetStats.health = stats.substring(0, 3) + "/" + stats.substring(3, 6);
+    targetStats.attack = stats.substring(6, 8) + "-" + stats.substring(8, 10);
+    targetStats.AC = stats.substring(10, 12);
+    targetStats.speed = stats.substring(12, 13);
+    targetStats.vision = stats.substring(13, 15);
+    targetStats.bio = stats.substring(15, 80);
     Render_Target_Stats()
 }
 

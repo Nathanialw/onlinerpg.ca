@@ -215,7 +215,7 @@ export function Create_Combat_Log_Line(char, indexHeight) {
 export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: fontSize, fill : grey50, align : 'center'});
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (y + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (y + indexHeight) * fontSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
@@ -273,13 +273,6 @@ export function Draw_UI() {
 
 }
 
-// Add a ticker callback to move the sprite back and forth
-let elapsed = 0.0;
-
-// app.ticker.add((ticker) => {
-    //     // elapsed += ticker.deltaTime;
-    //     // sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;D
-    // });
 
 let jj;
 function Draw_Stats() {

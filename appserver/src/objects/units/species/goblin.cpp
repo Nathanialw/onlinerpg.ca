@@ -33,7 +33,7 @@ namespace Species {
     std::string alignment = std::to_string((int)unit.def.alignment);
     //assets/species/goblin.png   this would be a good opportunity to try using a CDN
     auto pic = "5";
-    auto health = std::to_string(unit.health) + std::to_string(unit.healthMax);
+    auto health = Utils::Prepend_Zero_3Digit(unit.health) + Utils::Prepend_Zero_3Digit(unit.healthMax);
     auto damage = Utils::Prepend_Zero(unit.minDamage) + Utils::Prepend_Zero(unit.maxDamage);
     auto AC = Utils::Prepend_Zero(unit.AC);
     auto speed = std::to_string(unit.speed);
