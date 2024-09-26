@@ -75,7 +75,7 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         btnSection.remove();
     }
 
-    const nameInput = document.querySelector('.namnameInpute');
+    const nameInput = document.querySelector('.nameInput');
     if (nameInput) {
         nameInput.remove();
     }
