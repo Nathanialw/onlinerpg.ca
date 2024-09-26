@@ -191,12 +191,14 @@ ul {
 
 .btn-center {
   display: block;
-  width: 10rem;
+  width: 20rem;
   margin: 0 auto;
+  height: 10rem;
 }
 
 .btn-submit {
   margin: 1rem auto;
+  height: 10rem;
 }
 
 .btn:hover {

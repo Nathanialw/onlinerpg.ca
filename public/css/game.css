@@ -19,11 +19,10 @@ body {
 .startButton {
     display: block;
     margin: 0 auto;
-    text-align: center;
-    /* position: absolute; */
-    /* left: 50%; */
-    /* top: 40%; */
-    /* transform: translate(-50%, -50%); */
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
 }
 
 .options {
