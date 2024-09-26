@@ -2,8 +2,25 @@ import { createWebSocket, socket } from '/js/networking/socket.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     createWebSocket();
+
+    for (let i = 0; i < species.length; i++) {
+        document.getElementById(species[i]).addEventListener('click', (event) => {
+            //highlight selected    
+            console.log("species: ", species[i]);   
+            for (let j = 0; j < species.length; j++) {
+                if (j != i) {
+                    document.getElementById(species[j]).style.backgroundColor = 'white';
+                }
+            }
+            document.getElementById(species[i]).style.backgroundColor = 'yellow';
+            race = species.get(species[i]);
+        });
+    }
 });
 
+let species = new Map();
+species.set("human", 7);
+species.set("elf", 4);
 
 let name;
 let gender;
@@ -54,21 +71,7 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     loadScript('/js/networking/receive.js', 'module');
 });
 
-let species = new Map();
-species.set("human", 7);
-species.set("elf", 4);
+
 
 // let species = ["human", "elf"];
 
-for (let i = 0; i < species.length; i++) {
-    document.getElementById(species[i]).addEventListener('click', (event) => {
-        //highlight selected       
-        for (let j = 0; j < species.length; j++) {
-            if (j != i) {
-                document.getElementById(species[j]).style.backgroundColor = 'white';
-            }
-        }
-        document.getElementById(species[i]).style.backgroundColor = 'yellow';
-        race = species.get(species[i]);
-    });
-}
