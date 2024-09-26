@@ -47,7 +47,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.AC = stats.substring(10, 12);
     targetStats.speed = stats.substring(12, 13);
     targetStats.vision = stats.substring(13, 15);
-    targetStats.bio = stats.substring(15, Get_Right_Panel_Width()/12);
+    targetStats.bio = stats.substring(15);
     Render_Target_Stats()
 }
 
