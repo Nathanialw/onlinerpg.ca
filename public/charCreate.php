@@ -61,8 +61,8 @@
     <button id="Elf" class='btn btn-submit'>Elf</button>
 
     <label for="Gender: "></label>
-    <button id="Male" class='btn btn-submit'>Fighter</button>
-    <button id="Female" class='btn btn-submit'>Mystic</button>
+    <button id="Male" class='btn btn-submit'>Male</button>
+    <button id="Female" class='btn btn-submit'>Female</button>
 
 
     <label for="Class: "></label>

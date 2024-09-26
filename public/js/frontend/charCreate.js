@@ -12,12 +12,12 @@ function Buttons(Option) {
     Option.options.forEach((value, key) => {
         document.getElementById(key).addEventListener('click', (event) => {            
             //highlight selected    
-            document.getElementById(key).style.backgroundColor = "yellow";
+            document.getElementById(key).style.backgroundColor = "red";
             Option.value = value;
             //remove highlight from other
             Option.options.forEach((value, key) => {
                 if (key != event.target.id) {
-                    document.getElementById(key).style.backgroundColor = "white";
+                    document.getElementById(key).style.backgroundColor = "black";
                 }
             });
         })
@@ -45,14 +45,12 @@ let alignments = {
     value: 0
 }
 
-let name = "John";
-
 //send data to server
 function Send() {
     let conn = socket()
     
     //get data from form
-    name = document.getElementById("name").value;
+    let name = document.getElementById("name").value;
 
     if (conn.isConnected) {
         conn.websocket.send("3" + name + genders.value + races.value + unitClasses.value + alignments.value);       
