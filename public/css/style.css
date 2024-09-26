@@ -198,7 +198,6 @@ ul {
 
 .btn-submit {
   margin: 1rem auto;
-  height: 15rem;
 }
 
 .btn:hover {
@@ -218,6 +217,7 @@ ul {
 
 .btn-block {
   width: 100%;
+  height: 2rem;
 }
 
 /* alerts */
