@@ -55,10 +55,9 @@
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
         <br> 
     </form>
-<section class='options'>
+</section>
 
-<section class='options'>
-    
+<section class='options'>    
     <div class="main-links">
         <ul>
             <li><button id="Human" class='btn btn-block'>Human</button></li>
