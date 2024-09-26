@@ -38,7 +38,6 @@ gamey
 
 
 short term:
--have the goblins actually do damage
 -spells 
   -1 for species
   //-1 for subspecies
@@ -47,11 +46,14 @@ short term:
 
 -player id so you can have your own game
 -when holding down move, if it colides into a unit. just stop instead of attacking
--AI attacks if adjacent
 -come up with a list of spells
 
 -if the data is already loaded it doesn't fetch it again, unless there is new info to grab
 -text feedback for actions
+-time system
+  -1 move/attack = 1 minute
+  -rest = 10 mins and heals one health | unless you get attacked
+
 
 medium term:
 -items

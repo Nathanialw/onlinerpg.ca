@@ -8,12 +8,13 @@
 #include "procgen.h"
 
 namespace Map {
-
   const int mapWidth = 99;
+//  std::unordered_map<Component::Position, std::string[mapWidth][mapWidth]> defaultWorldMap;
+//  std::unordered_map<Component::Position, std::string[mapWidth][mapWidth]> worldMap;
   std::string defaultMap[mapWidth][mapWidth];
   std::string gameMap[mapWidth][mapWidth];
 
-  int Get_Map_Wdth() {
+  int Get_Map_Width() {
     return mapWidth;
   }
 

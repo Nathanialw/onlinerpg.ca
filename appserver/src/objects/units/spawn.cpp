@@ -8,8 +8,7 @@
 #include "procgen.h"
 
 namespace Spawn {
-  const int mapWidth = Map::Get_Map_Wdth();
-  std::vector<int> emptyUnitSlots;
+  const int mapWidth = Map::Get_Map_Width();
 
   std::string unitChars[(int)Units::Species::SIZE] = {"a",    "b",    "c",
                                                "d",   "e",    "f",    "g",
@@ -18,11 +17,11 @@ namespace Spawn {
                                                "p",   "q",    "r",    "s",
                                                "t",   "u",    "v",    "w",
                                                "x",   "y",    "z",    "A",
-                                               "B",  "C",   "D",   "E",   "F",
-                                               "G",   "H",   "I",   "J",   "K",
-                                               "L",   "M",   "N",   "O",   "P",
-                                               "Q",   "R",   "S",   "T",   "U",
-                                               "V",   "W",   "X",   "Y",   "Z", " "};
+                                               "B",   "C",    "D",    "E",   "F",
+                                               "G",   "H",    "I",    "J",   "K",
+                                               "L",   "M",    "N",    "O",   "P",
+                                               "Q",   "R",    "S",    "T",   "U",
+                                               "V",   "W",    "X",    "Y",   "Z", " "};
 
   std::string Get_Unit_Char(Units::Species species) {
     return unitChars[(int)species];
@@ -41,6 +40,7 @@ namespace Spawn {
     auto units = Units::Get_Units();
     auto unitsPositions = Units::Get_Unit_Positions();
 
+    auto &emptyUnitSlots = *Units::Get_Unit_EmptyUnitSlots();
     if (emptyUnitSlots.empty()) {
       units->push_back(unit);
     } else {
@@ -48,7 +48,7 @@ namespace Spawn {
       emptyUnitSlots.pop_back();
     }
 
-    Units::UnitPosition pos = {x, y};
+    Component::Position pos = {x, y};
     unitsPositions->emplace(pos, units->size() - 1);
   }
 

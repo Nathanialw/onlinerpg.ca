@@ -15,18 +15,23 @@
 
 namespace Units {
 
-//  std::unordered_map<uint16_t, std::string> entities;
+  //  std::unordered_map<uint16_t, std::string> entities;
   std::vector<Unit> units;
+  std::vector<int> emptyUnitSlots;
   //when adding new units, use the emptyUnitSlots vector to find the next empty slot before pushing back
-  std::unordered_map<UnitPosition, int> unitPositions;
+  std::unordered_map<Component::Position, int> unitPositions;
   static std::string unitsString;
 
   std::string Get_Units_String() {
     return unitsString;
   }
 
-  std::unordered_map<UnitPosition, int>* Get_Unit_Positions() {
+  std::unordered_map<Component::Position, int>* Get_Unit_Positions() {
     return &unitPositions;
+  }
+
+  std::vector<int>* Get_Unit_EmptyUnitSlots() {
+    return &emptyUnitSlots;
   }
 
   void Set_Units_String(const std::string &newUnitsString) {
@@ -36,10 +41,12 @@ namespace Units {
   std::vector<Unit> *Get_Units() { return &units; }
 
   void Remove_Unit(int x, int y) {
-    UnitPosition pos = {x, y};
+    Component::Position pos = {x, y};
     int index = unitPositions[pos];
     //can't dp this because it will invalidate map indexes
     //    units.erase(units.begin() + index);
+    //instead, save the index to a vector of empty slots
+    emptyUnitSlots.push_back(index);
     unitPositions.erase(pos);
   }
 
@@ -49,7 +56,7 @@ namespace Units {
   }
 
   int Get_Unit_Index(int x, int y) {
-    UnitPosition pos = {x, y};
+    Component::Position pos = {x, y};
     if (unitPositions.count(pos) == 1) {
       std::cout << "unit found at: " << x << " " << y << std::endl;
       return unitPositions[pos];
@@ -62,9 +69,9 @@ namespace Units {
   }
 
   void Update_Unit_Position(const int &x, const int &y, const int &newX, const int &newY) {
-    UnitPosition pos = {x, y};
+    Component::Position pos = {x, y};
     int index = unitPositions[pos];
-    UnitPosition newPos = {newX, newY};
+    Component::Position newPos = {newX, newY};
     unitPositions.erase(pos);
     unitPositions.emplace(newPos, index);
   }

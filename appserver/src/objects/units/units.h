@@ -15,7 +15,6 @@
 #include "iostream"
 
 #include "components.h"
-#include "pathing.h"
 
 namespace Units {
 
@@ -140,14 +139,7 @@ namespace Units {
 
   };
 
-  struct UnitPosition {
-    int x;
-    int y;
 
-    bool operator==(const UnitPosition &other) const {
-      return x == other.x && y == other.y;
-    }
-  };
 
   std::string Send_Units();
   Unit Get_Player();
@@ -157,17 +149,11 @@ namespace Units {
   void Remove_Unit(int x, int y);
   std::string Get_Unit_Char(Species species);
   Unit Get_Unit_At_Position(int x, int y);
+  std::vector<int>* Get_Unit_EmptyUnitSlots();
   void Update_UnitsString(int x, int y);
   std::string GetCharStats();
   std::string Get_Units_String();
   void Set_Units_String(const std::string &newUnitsString);
-  std::unordered_map<UnitPosition, int>* Get_Unit_Positions();
+  std::unordered_map<Component::Position, int>* Get_Unit_Positions();
 }
 
-namespace std {
-  template <> struct hash<Units::UnitPosition> {
-      std::size_t operator()(const Units::UnitPosition &pos) const {
-        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
-      }
-  };
-}

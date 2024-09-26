@@ -27,6 +27,6 @@ namespace Map {
   void Update(int px, int py, int x, int y, const std::string &tile);
   void Set_Tile(int x, int y, const std::string &tile);
   void Reset_Tile(int x, int y);
-  int Get_Map_Wdth();
+  int Get_Map_Width();
   std::vector<Room> Get_Large_Rooms();
 }
