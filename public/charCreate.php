@@ -58,33 +58,33 @@
     
     <div class="main-links">
         <ul>
-            <li><button id="Human" class='btn btn-submit btn-block'>Human</button></li>
-            <li><button id="Elf" class='btn btn-submit btn-block'>Elf</button></li>
+            <li><button id="Human" class='btn btn-block'>Human</button></li>
+            <li><button id="Elf" class='btn btn-block'>Elf</button></li>
             <!-- <li><button id="Orc" class='btn btn-submit'>Orc</button></li> -->
             <!-- <li><button id="Dwarf" class='btn btn-submit'>Dwarf</button></li> -->
             <!-- <li><button id="Goblin" class='btn btn-submit'>Goblin</button></li> -->
         </ul>
 
         <ul>
-            <li><button id="Male" class='btn btn-submit btn-block'>Male</button></li>
-            <li><button id="Female" class='btn btn-submit btn-block'>Female</button></li>
+            <li><button id="Male" class='btn btn-block'>Male</button></li>
+            <li><button id="Female" class='btn btn-block'>Female</button></li>
         </ul>
 
         <ul>
-            <li><button id="Fighter" class='btn btn-submit btn-block'>Fighter</button></li>
-            <li><button id="Mystic" class='btn btn-submit btn-block'>Mystic</button></li>
+            <li><button id="Fighter" class='btn btn-block'>Fighter</button></li>
+            <li><button id="Mystic" class='btn btn-block'>Mystic</button></li>
         </ul>
 
         <ul>
-            <li><button id="Good" class='btn btn-submit btn-block'>Good</button></li>
-            <li><button id="Neutral" class='btn btn-submit btn-block'>Neutral</button></li>
-            <li><button id="Evil" class='btn btn-submit btn-block'>Evil</button></li>
+            <li><button id="Good" class='btn btn-block'>Good</button></li>
+            <li><button id="Neutral" class='btn btn-block'>Neutral</button></li>
+            <li><button id="Evil" class='btn btn-block'>Evil</button></li>
         </ul>
     </div>
 </section>
 
 <section class='startButton'>
-    <button id="startGame" class='btn btn-submit'>Start Game</button>
+    <button id="startGame" class='btn btn-center'>Start Game</button>
 </section>
 
 <script src="/js/frontend/charCreate.js" type="module"></script>
