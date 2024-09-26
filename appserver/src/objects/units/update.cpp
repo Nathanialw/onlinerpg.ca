@@ -43,6 +43,10 @@ namespace Update {
     auto player = units[0];
 
     for (int i = 1; i < units.size(); i++) {
+      if (units[i].health <= 0) {
+        std::cout << "unit dead" << std::endl;
+        continue;
+      }
       //if player is in vision
       if (Check_For_Target(units[i].position, player.position)) {
         std::cout << "player in vision, moving towards!" << std::endl;
@@ -50,11 +54,11 @@ namespace Update {
         Component::Position former = units[i].position;
         // calculate next cell
         Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
-        std::cout << "goblin moves from: " << former.x << ", " << former.y << std::endl;
-        std::cout << "goblin moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
+        std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
+        std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
         // check next cell and move/attack
         if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == Spawn::Get_Unit_Char(player.def.species)) {
-          std::cout << "goblin attacks player" << std::endl;
+          std::cout << "unit attacks player" << std::endl;
           Attack::Melee(former.x, former.y, moveTo.x, moveTo.y);
           continue;
         }

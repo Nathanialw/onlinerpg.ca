@@ -38,11 +38,8 @@ namespace Units {
   void Remove_Unit(int x, int y) {
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
-    std::cout << "index: " << index << std::endl;
-    std::cout << "size: " << units.size() << std::endl;
-    units.erase(units.begin() + index);
-    std::cout << "size: " << units.size() << std::endl;
-    std::cout << "removing unit at: " << x << " " << y << std::endl;
+    //can't dp this because it will invalidate map indexes
+    //    units.erase(units.begin() + index);
     unitPositions.erase(pos);
   }
 
