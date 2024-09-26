@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createWebSocket();
 });
 
+let race = 0;
 
 //send data to server
 function Send() {
@@ -13,7 +14,7 @@ function Send() {
     let name = document.getElementById("name").value;
     
     let gender = document.getElementById("gender").value;
-    let race = document.getElementById("race").value;
+    // let race = document.getElementById("race").value;
     let unitClass = document.getElementById("class").value;
     let alignment = document.getElementById("alignment").value;
 
@@ -51,6 +52,14 @@ document.getElementById('startGame').addEventListener('click', (event) => {
 
 document.getElementById('human').addEventListener('click', (event) => {
     //highlight selected
+    race = 0;
     document.getElementById('human').style.backgroundColor = 'yellow';
     document.getElementById('elf').style.backgroundColor = 'white';    
+});
+
+document.getElementById('elf').addEventListener('click', (event) => {
+    //highlight selected
+    race = 1;
+    document.getElementById('elf').style.backgroundColor = 'yellow';
+    document.getElementById('human').style.backgroundColor = 'white';
 });
