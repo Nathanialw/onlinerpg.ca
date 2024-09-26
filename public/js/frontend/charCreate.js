@@ -8,6 +8,12 @@ import { createWebSocket, socket } from '/js/networking/socket.js';
 function Send() {
     let conn = socket()
     
+    while (conn.isConnected == false) {
+        setTimeout(function() {
+            console.log("Waiting for server to connect");
+        }, 10000);        
+    }
+
     //get data from form
     let name = document.getElementById("name").value;
     
@@ -26,14 +32,6 @@ function Send() {
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
-    createWebSocket();
-    
-    while (socket().isConnected == false) {
-        setTimeout(function() {
-            console.log("Waiting for server to connect");
-        }, 10000);        
-    }
-
     Send();
     //remove form <section class='startButton'>
     const formSection = document.querySelector('.startButton');
