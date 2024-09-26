@@ -53,13 +53,11 @@ namespace Spawn {
   }
 
   std::vector<Placement> Spawn_Unit() {
-    //for each big room
-    auto largeRooms = Map::Get_Large_Rooms();
     std::vector<Placement> placements;
     Placement placement{};
     Proc_Gen::Seed seed;
 
-    for (const auto &room : largeRooms) {
+    for (const auto &room : Map::Get_Large_Rooms()) {
       seed.seed = Proc_Gen::Create_Initial_Seed(room.x, room.y);
       placement.x = Proc_Gen::Random_Int(room.x, room.w / 2, seed);
       placement.y = Proc_Gen::Random_Int(room.y, room.h / 2, seed);
@@ -82,11 +80,17 @@ namespace Spawn {
 
   std::string Random_Entities(const char* entityType, int numEntities, int x, int y) {
     std::string group;
+    int tries = 10;
   reRoll:
+    if (tries == 0) {
+      return "";
+    }
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
-      if (!Add_Object(group, x + i, y + i))
+      if (!Add_Object(group, x + i, y + i)) {
+        tries--;
         goto reRoll;
+      }
     }
     return group;
   }
@@ -124,6 +128,8 @@ namespace Spawn {
     mapEntities += unitChars[(int)unitClass] + "0606";
 
     auto placements = Spawn_Unit();
+    std::cout << "num placements: " << placements.size() << std::endl;
+
     for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
       mapEntities += Random_Entities(unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters, placement.x, placement.y);
