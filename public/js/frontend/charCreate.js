@@ -12,12 +12,12 @@ function Buttons(Option) {
     Option.options.forEach((value, key) => {
         document.getElementById(key).addEventListener('click', (event) => {            
             //highlight selected    
-            document.getElementById(key).style.backgroundColor = "red";
+            document.getElementById(key).style.backgroundColor = "--primary--900";
             Option.value = value;
             //remove highlight from other
             Option.options.forEach((value, key) => {
                 if (key != event.target.id) {
-                    document.getElementById(key).style.backgroundColor = "black";
+                    document.getElementById(key).style.backgroundColor = "--black--800";
                 }
             });
         })
