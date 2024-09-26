@@ -105,7 +105,7 @@ export function Get_Right_Panel_Origin_y() {
 }
 
 export function Get_Right_Panel_Width() {
-    return rightPanelWidth;
+    return rightPanelWidth * cellSize;
 }
 
 
