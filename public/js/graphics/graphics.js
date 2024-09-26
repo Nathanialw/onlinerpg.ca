@@ -15,14 +15,14 @@ async function Init_Grpahics() {
 }
 
 export async function Load_Target_Image(x, y, path) {
+    x += 1;
+    y += 1;
     x *= cellSize;
     y *= cellSize;
-    x += 48
-    y += 48
     const texture = await PIXI.Assets.load(path);
     targetImg = new PIXI.Sprite(texture);
-    let w = rightPanelWidth * cellSize - 96;
-    let h = rightPanelWidth * cellSize - 96;
+    let w = 8 * cellSize;
+    let h = 8 * cellSize;
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
@@ -212,8 +212,8 @@ export function Create_Combat_Log_Line(char, indexHeight) {
     return object;
 }
 
-export function Create_Text_Line(char, indexHeight, x, y) {
-    // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
+export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
+    // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: fontSize, fill : grey50, align : 'center'}, grey100);
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (y + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall

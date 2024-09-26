@@ -52,7 +52,7 @@ export function Get_Target_Stats_From_Server(statsString) {
 }
 
 function Display_Line(value, i, x, y) {
-    targetStatsDisplay[i] = Create_Text_Line(value, i, x, y);
+    targetStatsDisplay[i] = Create_Text_Line(value, 12, i, x, y);
     i++;
     return i;
 }
@@ -65,7 +65,7 @@ export function Render_Target_Stats() {
     let x = Get_Right_Panel_Origin_x();
     let y = Get_Right_Panel_Origin_y()
     Load_Target_Image(x, y, targetStats.pic)    
-    y = Get_Right_Panel_Origin_y() + rightPanelWidth; 
+    y = Get_Right_Panel_Origin_y() + 10; 
 
     let line = 0;
     line = Display_Line("Name: " + targetStats.name, line, x, y);
