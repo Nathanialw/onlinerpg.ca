@@ -56,19 +56,19 @@
         <br> 
     </form>
 
-    <h1>Species: </h1>
+    <h4>Species: </h4>
     <button id="Human" class='btn btn-submit'>Human</button>
     <button id="Elf" class='btn btn-submit'>Elf</button>
 
-    <h1>Gender: </h1>
+    <h4>Gender: </h4>
     <button id="Male" class='btn btn-submit'>Male</button>
     <button id="Female" class='btn btn-submit'>Female</button>
 
-    <h1>Class: </h1>
+    <h4>Class: </h4>
     <button id="Fighter" class='btn btn-submit'>Fighter</button>
     <button id="Mystic" class='btn btn-submit'>Mystic</button>
 
-    <h1>Alignment: </h1>
+    <h4>Alignment: </h4>
     <button id="Good" class='btn btn-submit'>Good</button>
     <button id="Neutral" class='btn btn-submit'>Neutral</button>
     <button id="Evil" class='btn btn-submit'>Evil</button>
