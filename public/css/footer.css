@@ -39,16 +39,16 @@ footer {
   color: var(--primary--900);
   border-radius: 50%;
   padding: 0.5rem;
-  background: white;
+  background: --black-700;
 }
 
 .social-icons a:hover {
-  color: var(--white);
+  color: var(--black-700);
   background: var(--primary--900);
   padding-top: 2.7rem;
 }
 
 .social-icons i:hover {
   background: var(--primary--900);
-  color: var(--white);
+  color: var(--black-700);
 }
