@@ -21,6 +21,9 @@ export function createWebSocket() {
     websocket.onerror = (error) => {
         console.error("WebSocket error:", error);
         websocket.close();
+        setTimeout(() => {
+            createWebSocket();
+        }, reconnectInterval);
     };
 
     // websocket.onmessage = (event) => {

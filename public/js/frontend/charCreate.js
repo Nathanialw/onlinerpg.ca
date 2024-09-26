@@ -11,7 +11,7 @@ function Send() {
     while (conn.isConnected == false) {
         setTimeout(function() {
             console.log("Waiting for server to connect");
-        }, 10000);        
+        }, 1000);        
     }
 
     //get data from form
