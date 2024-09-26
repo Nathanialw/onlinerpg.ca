@@ -132,7 +132,9 @@ namespace Spawn {
 
     for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
-      mapEntities += Random_Entities(unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters, placement.x, placement.y);
+      auto asd = Random_Entities(unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters, placement.x, placement.y);
+      mapEntities += asd;
+      std::cout << "units added: " << asd << std::endl;
     }
 
     std::cout << "init num entities: " << units.size() << std::endl;
