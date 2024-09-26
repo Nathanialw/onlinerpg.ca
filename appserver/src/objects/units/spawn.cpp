@@ -59,8 +59,8 @@ namespace Spawn {
 
     for (const auto &room : Map::Get_Large_Rooms()) {
       seed.seed = Proc_Gen::Create_Initial_Seed(room.x, room.y);
-      placement.x = Proc_Gen::Random_Int(room.x, room.w / 2, seed);
-      placement.y = Proc_Gen::Random_Int(room.y, room.h / 2, seed);
+      placement.x = Proc_Gen::Random_Int(room.x, room.w, seed);
+      placement.y = Proc_Gen::Random_Int(room.y, room.h, seed);
       placements.emplace_back(placement);
     }
     return placements;
@@ -83,7 +83,7 @@ namespace Spawn {
     int tries = 10;
   reRoll:
     if (tries == 0) {
-      return "";
+      return group;
     }
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
