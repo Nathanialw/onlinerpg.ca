@@ -65,7 +65,10 @@ namespace Units {
 
   int Get_Unit_Index(int x, int y) {
     UnitPosition pos = {x, y};
-    return unitPositions[pos];
+    if (unitPositions.count(pos) == 1) {
+      return unitPositions[pos];
+    }
+    return -1;
   }
 
   Unit Get_Unit_At_Position(int x, int y) {
