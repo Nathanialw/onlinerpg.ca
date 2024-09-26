@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     Buttons(genders);
     Buttons(unitClasses);
     Buttons(alignments);
+
+    document.getElementById("Human").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
+    document.getElementById("Male").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
+    document.getElementById("Fighter").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
+    document.getElementById("Good").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
 })
 
 function Buttons(Option) {
@@ -28,7 +33,7 @@ function Buttons(Option) {
 
 let races = {
     options: new Map([["Human", 7],["Elf", 4]]),
-    value: 0
+    value: 7
 }
 
 let genders = {
