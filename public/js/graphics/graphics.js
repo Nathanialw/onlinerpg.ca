@@ -215,7 +215,7 @@ export function Create_Combat_Log_Line(char, indexHeight) {
 export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: fontSize, fill : grey50, align : 'center'});
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (y + indexHeight) * fontSize;  // Assuming each cell is 24 pixels tall
+    object.y = (y * cellSize) + (indexHeight * fontSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
