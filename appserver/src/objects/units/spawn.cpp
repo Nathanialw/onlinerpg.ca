@@ -59,8 +59,8 @@ namespace Spawn {
 
     for (const auto &room : Map::Get_Large_Rooms()) {
       seed.seed = Proc_Gen::Create_Initial_Seed(room.x, room.y);
-      placement.x = Proc_Gen::Random_Int(room.x, room.w, seed);
-      placement.y = Proc_Gen::Random_Int(room.y, room.h, seed);
+      placement.x = Proc_Gen::Random_Int(room.x, room.x + room.w, seed);
+      placement.y = Proc_Gen::Random_Int(room.y, room.y + room.h, seed);
       placements.emplace_back(placement);
     }
     return placements;
