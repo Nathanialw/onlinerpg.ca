@@ -14,8 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById(key).style.backgroundColor = "white";
                 }
             });
-    })
-});
+        })
+    });
+})
 
 let species = new Map([["human", 7],["elf", 4]]);
 
