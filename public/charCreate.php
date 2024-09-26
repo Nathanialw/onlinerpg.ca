@@ -53,46 +53,28 @@
     <form method='POST' id="myForm">
         <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
-        <br>
-        <label class="form-label" for="gender">Gender:</label>
-        <span class="form-adjacent">
-            <select class="form-input form-row form-adjacent" id="gender" name="gender" required>
-                <option value="0">Male</option>
-                <option value="1">Female</option>
-            </select>
-        </span>
-        <br>
-        <!-- <label class="form-label" for="race">Race:</label>
-        <span class="form-adjacent">
-            <select class="form-input form-row form-adjacent" id="race" name="race" required>
-                <option value="7">Human</option>
-                <option value="4">Elf</option>
-            </select>
-        </span> -->
-        <br>
-        <label class="form-label" for="class">Class:</label>
-        <span class="form-adjacent">
-            <select class="form-input form-row form-adjacent" id="class" name="class" required>
-                <option value="0">Fighter</option>
-                <option value="1">Mystic</option>
-            </select>
-        </span>
-        <br>
-        <label class="form-label" for="alignment">alignment:</label>
-        <span class="form-adjacent">
-            <select class="form-input form-row form-adjacent" id="alignment" name="alignment" required>
-                <option value="0">Good</option>
-                <option value="1">Neutral</option>
-                <option value="2">Evil</option>
-            </select>
-        </span>
-        <br>
-        <!-- <input type='submit' name='startGame' id='startGame' class='btn btn-submit' value='Start Game'/> -->
+        <br> 
     </form>
 
     <label for="Species: "></label>
-    <button id="human" class='btn btn-submit'>Human</button>
-    <button id="elf" class='btn btn-submit'>Elf</button>
+    <button id="Human" class='btn btn-submit'>Human</button>
+    <button id="Elf" class='btn btn-submit'>Elf</button>
+
+    <label for="Gender: "></label>
+    <button id="Male" class='btn btn-submit'>Fighter</button>
+    <button id="Female" class='btn btn-submit'>Mystic</button>
+
+
+    <label for="Class: "></label>
+    <button id="Fighter" class='btn btn-submit'>Fighter</button>
+    <button id="Mystic" class='btn btn-submit'>Mystic</button>
+
+    <label for="Alignment: "></label>
+    <button id="Good" class='btn btn-submit'>Good</button>
+    <button id="Neutral" class='btn btn-submit'>Neutral</button>
+    <button id="Evil" class='btn btn-submit'>Evil</button>
+
+    
     <button id="startGame" class='btn btn-submit'>Start Game</button>
 </section>
 

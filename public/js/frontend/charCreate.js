@@ -2,29 +2,50 @@ import { createWebSocket, socket } from '/js/networking/socket.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     createWebSocket();
+    Buttons(races);
+    Buttons(genders);
+    Buttons(unitClasses);
+    Buttons(alignments);
+})
 
-    species.forEach((value, key) => {
+function Buttons(Option) {
+    Option.options.forEach((value, key) => {
         document.getElementById(key).addEventListener('click', (event) => {            
             //highlight selected    
             document.getElementById(key).style.backgroundColor = "yellow";
-            race = value;
+            Option.value = value;
             //remove highlight from other
-            species.forEach((value, key) => {
+            Option.options.forEach((value, key) => {
                 if (key != event.target.id) {
                     document.getElementById(key).style.backgroundColor = "white";
                 }
             });
         })
     });
-})
+}
 
-let species = new Map([["human", 7],["elf", 4]]);
 
-let name;
-let gender;
-let race = 0;
-let unitClass;
-let alignment;
+let races = {
+    options: new Map([["Human", 7],["Elf", 4]]),
+    value: 0
+}
+
+let genders = {
+    options: new Map([["Male", 0],["Female", 1]]);
+    value: 0
+}
+
+let unitClasses = {
+    options:  new Map([["Fighter", 0],["Mystic", 1]]);
+    value: 0
+}
+
+let alignments = {
+    options: new Map([["Good", 0],["Neutral", 1],["Evil", 2]]);
+    value: 0
+}
+
+let name = "John";
 
 //send data to server
 function Send() {
@@ -32,14 +53,9 @@ function Send() {
     
     //get data from form
     name = document.getElementById("name").value;
-    
-    gender = document.getElementById("gender").value;
-    // let race = document.getElementById("race").value;
-    unitClass = document.getElementById("class").value;
-    alignment = document.getElementById("alignment").value;
 
     if (conn.isConnected) {
-        conn.websocket.send("3" + name + gender + race + unitClass + alignment);       
+        conn.websocket.send("3" + name + genders.value + races.value + unitClasses.value + alignments.value);       
         console.log("char create Data sent to server")
     }
     else {
