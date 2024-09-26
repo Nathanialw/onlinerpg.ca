@@ -92,7 +92,6 @@ export function Render_Target_Stats() {
                 break;
             }
             else if (bioLine[j] === " ") {
-            else if (bioLine[j] === " ") {
                 line = Display_Line(targetStats.bio.substring(currentPos, (width * i) + j), line, x, y);
                 currentPos = (width * i) + j;
                 break;
