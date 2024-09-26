@@ -121,9 +121,9 @@ namespace Spawn {
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
 
     Add_Unit(6, 6, name, gender, species, unitClass, alignment);
-    auto units = *Units::Get_Units();
-    units[0].health = 100;
-    units[0].healthMax = 100;
+    auto units = Units::Get_Units();
+    units->at(0).health = 100;
+    units->at(0).healthMax = 100;
 
     mapEntities += unitChars[(int)unitClass] + "0606";
 
@@ -137,11 +137,9 @@ namespace Spawn {
       std::cout << "units added: " << asd << std::endl;
     }
 
-    std::cout << "init num entities: " << units.size() << std::endl;
+    std::cout << "init num entities: " << units->size() << std::endl;
     return mapEntities;
   }
-
-
 
   void Init(const std::basic_string<char> &characterCreate) {
     Units::Set_Units_String(Place_Entities_On_Map(characterCreate));

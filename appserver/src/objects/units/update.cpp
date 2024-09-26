@@ -25,6 +25,13 @@ namespace Update {
     {'r', {0,0}}
   };
 
+  void Update_Position(int &px, int &py, int &x, int &y, Units::Species &species) {
+    Map::Update(px, py, x, y, Spawn::Get_Unit_Char(species));
+    Units::Update_Unit_Position(px, py, px + x, py + y);
+    Movement::Move(x, y);
+    Units::Update_UnitsString(x, y);
+  }
+
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
     if (abs(position.x - target.x) < 6 && abs(position.y - target.y) < 6)
       return true;
@@ -51,6 +58,7 @@ namespace Update {
           Attack::Melee(former.x, former.y, moveTo.x, moveTo.y);
           continue;
         }
+
         units[i].position.x += moveTo.x;
         units[i].position.y += moveTo.y;
         Map::Update(former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
@@ -98,10 +106,7 @@ namespace Update {
     }
 
     // if the unit survives, return, else move to the cell
-    Map::Update(player.position.x, player.position.y, move.x, move.y, Spawn::Get_Unit_Char(player.def.species));
-    Units::Update_Unit_Position(player.position.x, player.position.y, player.position.x + move.x, player.position.y + move.y);
-    Movement::Move(move.x, move.y);
-    Units::Update_UnitsString(move.x, move.y);
+    Update_Position(player.position.x, player.position.y, move.x, move.y, player.def.species);
 
     std::string m = direction;
     if (melee.isDead) {
