@@ -86,9 +86,9 @@ export function Render_Target_Stats() {
         //itertate backwards to find the last space in the line
         let bioLine = targetStats.bio.substring(currentPos * i, (currentPos * i) + width);
         for (let j = bioLine.length; j > 0; j--) {
-            if (bioLine[j] === " ") {
-                line = Display_Line(targetStats.bio.substring(currentPos, (currentPos * i) + j), line, x, y);
-                currentPos = (currentPos * i) + j;
+            if (bioLine[j] === " " || bioLine[j] === "-") {
+                line = Display_Line(targetStats.bio.substring(currentPos, (currentPos * i) + j + 1), line, x, y);
+                currentPos = (currentPos * i) + j + 1;
                 break;
             }
         }
