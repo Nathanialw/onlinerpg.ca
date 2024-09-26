@@ -224,11 +224,6 @@ ul {
 
 .btn-selected {
   background: var(--primary-500);
-  box-shadow: var(--shadow-3);
-}
-
-.btn-selected:hover {
-  background: var(--primary-700);
 }
 
 /* alerts */
@@ -272,6 +267,7 @@ ul {
 
 .form-input,
 .form-textarea {
+  color: var(--primary-500);
   width: 100%;
   padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
