@@ -1,20 +1,13 @@
 import { createWebSocket, socket } from '/js/networking/socket.js';
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     createWebSocket();
-// });
+document.addEventListener('DOMContentLoaded', () => {
+    createWebSocket();
+});
 
 //send data to server
 function Send() {
     let conn = socket()
     
-    while (conn.readyState !== WebSocket.OPEN) {
-        //wait 1 second
-        setTimeout(() => {
-            conn = socket();
-        }, 1000);        
-    }
-
     //get data from form
     let name = document.getElementById("name").value;
     
