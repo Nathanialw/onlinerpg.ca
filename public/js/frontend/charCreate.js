@@ -4,19 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
     createWebSocket();
 });
 
+
+let name;
+let gender;
 let race = 0;
+let unitClass;
+let alignment;
 
 //send data to server
 function Send() {
     let conn = socket()
     
     //get data from form
-    let name = document.getElementById("name").value;
+    name = document.getElementById("name").value;
     
-    let gender = document.getElementById("gender").value;
+    gender = document.getElementById("gender").value;
     // let race = document.getElementById("race").value;
-    let unitClass = document.getElementById("class").value;
-    let alignment = document.getElementById("alignment").value;
+    unitClass = document.getElementById("class").value;
+    alignment = document.getElementById("alignment").value;
 
     if (conn.isConnected) {
         conn.websocket.send("3" + name + gender + race + unitClass + alignment);       
@@ -49,17 +54,21 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     loadScript('/js/networking/receive.js', 'module');
 });
 
+let species = new Map();
+species.set("human", 7);
+species.set("elf", 4);
 
-document.getElementById('human').addEventListener('click', (event) => {
-    //highlight selected
-    race = 7;
-    document.getElementById('human').style.backgroundColor = 'yellow';
-    document.getElementById('elf').style.backgroundColor = 'white';    
-});
+// let species = ["human", "elf"];
 
-document.getElementById('elf').addEventListener('click', (event) => {
-    //highlight selected
-    race = 4;
-    document.getElementById('elf').style.backgroundColor = 'yellow';
-    document.getElementById('human').style.backgroundColor = 'white';
-});
+for (let i = 0; i < species.length; i++) {
+    document.getElementById(species[i]).addEventListener('click', (event) => {
+        //highlight selected       
+        for (let j = 0; j < species.length; j++) {
+            if (j != i) {
+                document.getElementById(species[j]).style.backgroundColor = 'white';
+            }
+        }
+        document.getElementById(species[i]).style.backgroundColor = 'yellow';
+        race = species.get(species[i]);
+    });
+}

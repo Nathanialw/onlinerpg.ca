@@ -91,8 +91,8 @@
     </form>
 
     <label for="Species: "></label>
-    <button id="human" value="0" class='btn btn-submit'>Human</button>
-    <button id="elf" value="1" class='btn btn-submit'>Elf</button>
+    <button id="human" class='btn btn-submit'>Human</button>
+    <button id="elf" class='btn btn-submit'>Elf</button>
     <button id="startGame" class='btn btn-submit'>Start Game</button>
 </section>
 
