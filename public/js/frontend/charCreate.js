@@ -1,8 +1,8 @@
 import { createWebSocket, socket } from '/js/networking/socket.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    createWebSocket();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     createWebSocket();
+// });
 
 //send data to server
 function Send() {
@@ -26,6 +26,10 @@ function Send() {
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
+    while (socket().isConnected == false) {
+        createWebSocket();
+    }
+    
     Send();
     //remove form <section class='startButton'>
     const formSection = document.querySelector('.startButton');

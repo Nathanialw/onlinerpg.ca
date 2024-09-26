@@ -30,8 +30,7 @@
     //     include 'game.php';        
     // }
     
-    include 'charCreate.php';     
-    
+    include 'charCreate.php';         
 ?>
 
 
