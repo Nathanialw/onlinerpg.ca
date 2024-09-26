@@ -34,8 +34,6 @@ namespace Spawn {
     return placement;
   }
 
-
-
   void Add_Unit(int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
     Units::Unit unit{};
     unit.name = name;
@@ -46,19 +44,19 @@ namespace Spawn {
     unit.position.x = x;
     unit.position.y = y;
 
-    auto units = *Units::Get_Units();
-    auto unitsPositions = *Units::Get_Unit_Positions();
+    auto units = Units::Get_Units();
+    auto unitsPositions = Units::Get_Unit_Positions();
 
     if (emptyUnitSlots.empty()) {
-      units.push_back(unit);
+      units->push_back(unit);
     } else {
-      units[emptyUnitSlots.back()] = unit;
+      units->at(emptyUnitSlots.back()) = unit;
       emptyUnitSlots.pop_back();
     }
 
     Units::UnitPosition pos = {x, y};
 
-    unitsPositions.emplace(pos, units.size() - 1);
+    unitsPositions->emplace(pos, units->size() - 1);
   }
 
   bool Add_Object(std::string &group, int x, int y) {
