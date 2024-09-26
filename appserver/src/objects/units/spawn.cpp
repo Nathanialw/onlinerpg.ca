@@ -122,8 +122,10 @@ namespace Spawn {
 
     Add_Unit(6, 6, name, gender, species, unitClass, alignment);
     auto units = Units::Get_Units();
+    std::cout << "size: " << units->size() << std::endl;
     units->at(0).health = 100;
     units->at(0).healthMax = 100;
+    std::cout << "health: " << units->at(0).health << std::endl;
 
     mapEntities += unitChars[(int)unitClass] + "0606";
 
