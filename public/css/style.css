@@ -16,16 +16,17 @@ html {
 } /*16px*/
 
 :root {
+
     /* primary */
-  --black-100: hsl(244, 100%, 94%);
-  --black-200: hsl(243, 100%, 87%);
-  --black-300: hsl(243, 100%, 81%);
-  --black-400: rgb(131, 125, 255);
-  --black-500: rgb(100, 92, 255);
-  --black-600: #504acc;
-  --black-700: #3c3799;
-  --black-800: #282566;
-  --black-900: hsl(244, 48%, 14%);
+  --black-100: #dedede;
+  --black-200: #bebebe;
+  --black-300: #808080;
+  --black-400: #636363;
+  --black-500: #484848;
+  --black-600: #2e2e2e;
+  --black-700: #161616;
+  --black-800: #030303;
+  --black-900: #000000;
   /* primary */
   --red-100: hsl(244, 100%, 94%);
   --red-200: hsl(243, 100%, 87%);
@@ -72,7 +73,7 @@ html {
   --smallText: 0.7em;
 
   /* misc vars */
-  --backgroundColor: var(--grey--50);
+  --backgroundColor: var(--black-800);
   --textColor: var(--grey--900);
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;
@@ -178,7 +179,7 @@ ul {
 .btn {
   cursor: pointer;
   color: var(--white);
-  background: var(--primary-500);
+  background: var(--black-800);
   border: transparent;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
