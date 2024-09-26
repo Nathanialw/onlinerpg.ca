@@ -1,8 +1,8 @@
 import { createWebSocket, socket } from '/js/networking/socket.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    createWebSocket();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     createWebSocket();
+// });
 
 //send data to server
 function Send() {
@@ -31,7 +31,7 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     while (socket().isConnected == false) {
         setTimeout(function() {
             console.log("Waiting for server to connect");
-        }, 1000);        
+        }, 10000);        
     }
 
     Send();
