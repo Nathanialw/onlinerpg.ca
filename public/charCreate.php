@@ -87,7 +87,7 @@
     </div>
 </section>
 
-<section class='startButton'>
+<section class='startBustton'>
     <button id="startGame" class='btn btn-submit'>Start Game</button>
 </section>
 
