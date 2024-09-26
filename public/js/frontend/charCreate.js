@@ -70,9 +70,9 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         formSection.remove();
     }
 
-    formSection = document.querySelector('.startButton');
-    if (formSection) {
-        formSection.remove();
+    const btnSection = document.querySelector('.startButton');
+    if (btnSection) {
+        btnSection.remove();
     }
 
     // Function to dynamically load a script
