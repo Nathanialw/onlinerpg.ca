@@ -31,17 +31,17 @@ let races = {
 }
 
 let genders = {
-    options: new Map([["Male", 0],["Female", 1]]);
+    options: new Map([["Male", 0],["Female", 1]]),
     value: 0
 }
 
 let unitClasses = {
-    options:  new Map([["Fighter", 0],["Mystic", 1]]);
+    options:  new Map([["Fighter", 0],["Mystic", 1]]),
     value: 0
 }
 
 let alignments = {
-    options: new Map([["Good", 0],["Neutral", 1],["Evil", 2]]);
+    options: new Map([["Good", 0],["Neutral", 1],["Evil", 2]]),
     value: 0
 }
 
