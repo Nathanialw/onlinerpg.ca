@@ -36,26 +36,14 @@ namespace Units {
   std::vector<Unit> *Get_Units() { return &units; }
 
   void Remove_Unit(int x, int y) {
-    Unit unit{};
-    unit.def.species = Species::EMPTY;
     UnitPosition pos = {x, y};
     int index = unitPositions[pos];
-//    emptyUnitSlots.push_back(index);
-//    units[index] = unit;
+    std::cout << "index: " << index << std::endl;
+    std::cout << "size: " << units.size() << std::endl;
     units.erase(units.begin() + index);
+    std::cout << "size: " << units.size() << std::endl;
+    std::cout << "removing unit at: " << x << " " << y << std::endl;
     unitPositions.erase(pos);
-
-    //    std::string xStr = Utils::Prepend_Zero(x);
-    //    std::string yStr = Utils::Prepend_Zero(y);
-    //    //remove from the send string
-    //    for (int i = 1; i < unitsString.size(); i + 5) {
-    //      std::cout << "checking for unit at: " << unitsString.substr(i,4) << std::endl;
-    //      if (unitsString.substr(i+1,2) == xStr && unitsString.substr(i+3,2) == yStr) {
-    //        std::cout << "removing unit from string at: " << unitsString.substr(i,4) << std::endl;
-    //        unitsString.erase(i, 4);
-    //        break;
-    //      }
-    //    }
   }
 
   //is read only

@@ -23,7 +23,7 @@ namespace Attack {
     auto &target = Units::Get_Units()->at(i);
 
     target.health -= unit.maxDamage;
-    std::cout << "You have attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << unit.maxDamage << " damage" << std::endl;
+    std::cout << Spawn::Get_Unit_Char(unit.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << unit.maxDamage << " damage" << std::endl;
     if (target.health <= 0) {
         std::cout << "target dead" << std::endl;
         Units::Remove_Unit(px+x,py+y);
