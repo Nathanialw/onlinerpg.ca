@@ -49,16 +49,15 @@
 
  <div id="gameCanvas"></div>
 
- <!-- <section class='nameInput'>
-    
-</section> -->
-
-<section class='options'>    
+ <section class='nameInput'>
     <form method='POST' id="myForm">
         <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
         <br> 
     </form>
+</section>
+
+<section class='options'>    
     <div class="main-links">
         <ul>
             <li><button id="Human" class='btn btn-block'>Human</button></li>
@@ -84,11 +83,11 @@
             <li><button id="Evil" class='btn btn-block'>Evil</button></li>
         </ul>
     </div>
-    <section class='startButton'>
-        <button id="startGame" class='btn btn-center'>Start Game</button>
-    </section>
 </section>
 
+<section class='startButton'>
+    <button id="startGame" class='btn btn-center'>Start Game</button>
+</section>
 
 <script src="/js/frontend/charCreate.js" type="module"></script>
 <script src="/js/networking/socket.js" type="module"></script>

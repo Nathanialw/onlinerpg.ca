@@ -70,15 +70,15 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         formSection.remove();
     }
 
-    // const btnSection = document.querySelector('.startButton');
-    // if (btnSection) {
-    //     btnSection.remove();
-    // }
+    const btnSection = document.querySelector('.startButton');
+    if (btnSection) {
+        btnSection.remove();
+    }
 
-    // const nameInput = document.querySelector('.nameInput');
-    // if (nameInput) {
-    //     nameInput.remove();
-    // }
+    const nameInput = document.querySelector('.namnameInpute');
+    if (nameInput) {
+        nameInput.remove();
+    }
 
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
