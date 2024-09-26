@@ -87,8 +87,10 @@
             </select>
         </span>
         <br>
-        <input type='submit' name='startGame' id='startGame' class='btn btn-submit' value='Start Game'/>
+        <!-- <input type='submit' name='startGame' id='startGame' class='btn btn-submit' value='Start Game'/> -->
     </form>
+
+    <button id="startGame" class='btn btn-submit'>Start Game</button>
 </section>
 
 <script src="/js/frontend/charCreate.js" type="module"></script>
