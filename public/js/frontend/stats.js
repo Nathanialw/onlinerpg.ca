@@ -77,21 +77,20 @@ export function Render_Target_Stats() {
     line = Display_Line("AC: " + targetStats.AC, line, x, y);
     line = Display_Line("Speed: " + targetStats.speed, line, x, y);
     line = Display_Line("Vision: " + targetStats.vision, line, x, y);
-    line = Display_Line("" + targetStats.vision, line, x, y);
+    line = Display_Line("", line, x, y);
     let width = Get_Right_Panel_Width()/minimapCellSize;
     let lines = Math.ceil(targetStats.bio.length/width);
     let currentPos = 0;
 
     for (let i = 0; i < lines; i++) {
         //itertate backwards to find the last space in the line
-        let bioLine = targetStats.bio.substring(width * i, (width * i) + width);
+        let bioLine = targetStats.bio.substring(currentPos * i, (currentPos * i) + width);
         for (let j = bioLine.length; j > 0; j--) {
             if (bioLine[j] === " ") {
-                line = Display_Line(targetStats.bio.substring(currentPos, (width * i) + j), line, x, y);
-                currentPos = (width * i) + j;
+                line = Display_Line(targetStats.bio.substring(currentPos, (currentPos * i) + j), line, x, y);
+                currentPos = (currentPos * i) + j;
                 break;
             }
         }
-        // line = Display_Line(targetStats.bio.substring(width * i, (width * i) + width), line, x, y);
     }
 }
