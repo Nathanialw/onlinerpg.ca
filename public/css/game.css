@@ -43,6 +43,9 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.nameInput input {
+    width: 120%;    
+}
 
 .splashContent {
     /* center content */
