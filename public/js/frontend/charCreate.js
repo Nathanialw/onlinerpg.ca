@@ -52,14 +52,14 @@ document.getElementById('startGame').addEventListener('click', (event) => {
 
 document.getElementById('human').addEventListener('click', (event) => {
     //highlight selected
-    race = 0;
+    race = 7;
     document.getElementById('human').style.backgroundColor = 'yellow';
     document.getElementById('elf').style.backgroundColor = 'white';    
 });
 
 document.getElementById('elf').addEventListener('click', (event) => {
     //highlight selected
-    race = 1;
+    race = 4;
     document.getElementById('elf').style.backgroundColor = 'yellow';
     document.getElementById('human').style.backgroundColor = 'white';
 });
