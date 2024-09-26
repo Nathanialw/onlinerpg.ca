@@ -12,12 +12,13 @@ function Buttons(Option) {
     Option.options.forEach((value, key) => {
         document.getElementById(key).addEventListener('click', (event) => {            
             //highlight selected    
-            document.getElementById(key).style.backgroundColor = "--primary--900";
+            document.getElementById(key).style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-900');
+            ;
             Option.value = value;
             //remove highlight from other
             Option.options.forEach((value, key) => {
                 if (key != event.target.id) {
-                    document.getElementById(key).style.backgroundColor = "--black--800";
+                    document.getElementById(key).style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--black-800"');
                 }
             });
         })

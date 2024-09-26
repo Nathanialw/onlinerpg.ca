@@ -222,6 +222,15 @@ ul {
   height: 2rem;
 }
 
+.btn-selected {
+  background: var(--primary-500);
+  box-shadow: var(--shadow-3);
+}
+
+.btn-selected:hover {
+  background: var(--primary-700);
+}
+
 /* alerts */
 
 .alert {
