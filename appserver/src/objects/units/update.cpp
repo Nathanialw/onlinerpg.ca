@@ -101,6 +101,7 @@ namespace Update {
     Map::Update(player.position.x, player.position.y, move.x, move.y, Spawn::Get_Unit_Char(player.def.species));
     Movement::Move(move.x, move.y);
     Units::Update_UnitsString(move.x, move.y);
+    Units::Update_Unit_Position(player.position.x, player.position.y, player.position.x + move.x, player.position.y + move.y);
 
     std::string m = direction;
     if (melee.isDead) {
