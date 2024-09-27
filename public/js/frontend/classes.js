@@ -1,1 +1,1 @@
-export let classes = new Map([["0000", "Paladin"], ["0001", "Barbarian"], ["0002", "Death Knight"]]);
+export let classes = new Map([["7000", "Paladin"], ["7001", "Barbarian"], ["7002", "Death Knight"]]);
