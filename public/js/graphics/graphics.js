@@ -293,7 +293,7 @@ function Draw_Stats() {
     y += 1;
     Create_Object("Age: " + characterInfo.Age, x, y);
     y += 1;
-    Create_Object(characterInfo.Class, x, y);
+    Create_Object(characterInfo.HeroClass, x, y);
     y += 1;
     Create_Object("AC: " + characterInfo.AC, x, y);
 
