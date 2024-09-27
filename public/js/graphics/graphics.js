@@ -7,7 +7,7 @@ let inventory;
 let targetImg;
 let playerImg;
 
-async function Init_Grpahics() {
+async function Init_Graphics() {
     const texture = await PIXI.Assets.load('assets/graphics/ui/itsmars_Inventory.png');
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     inventory = new PIXI.Sprite(texture);
@@ -28,7 +28,7 @@ export async function Load_Target_Image(x, y, path) {
 
 export async function Create_Canvas() {
     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
-    Init_Grpahics();
+    await Init_Graphics();
     app.canvas.x = 0;
     app.canvas.y = 0;
     document.getElementById('gameCanvas').appendChild(app.canvas);
