@@ -31,8 +31,8 @@ function Buttons(Option) {
                     document.getElementById(key).style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--black-800"');
                 }
             });
+            updateHeroClass() 
         })
-        updateHeroClass() 
     });
 }
 
@@ -62,6 +62,7 @@ function updateHeroClass() {
     const heroClass = document.getElementById('hero-class');
 
     const key = races.value + genders.value + unitClasses.value + alignments.value;
+    console.log(key)
     heroClass.value = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
 }
 
