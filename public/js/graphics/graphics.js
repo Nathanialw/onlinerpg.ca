@@ -288,25 +288,18 @@ function Draw_Stats() {
     
     let x = leftPanelWidth + 10;
     let y = 1;
-    let gender;
     
     jj = Create_Object(characterInfo.Name + characterInfo.Gender, x, y);
     y += 1;
     Create_Object("Age: " + characterInfo.Age, x, y);
     y += 1;
-    // Create_Object(characterInfo.Gender, x, y);
-    y += 1;
     Create_Object(characterInfo.Class, x, y);
-    // Create_Object(characterInfo., x, y);
-    // y += 1;
-    // y += 1;
-    // Create_Object(characterInfo.Alignment, x, y);
+    y += 1;
+    Create_Object("AC: " + characterInfo.AC, x, y);
 
 
     x = leftPanelWidth + 20;
     y = 2;
-    Create_Object("AC: " + characterInfo.AC, x, y);
-    y += 1;
     Create_Object("Damage: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
     y += 1;
     Create_Object("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, x, y);

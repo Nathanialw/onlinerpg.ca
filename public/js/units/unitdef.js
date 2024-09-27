@@ -121,16 +121,16 @@ export function UpdatePlayerInfo(characterCreate) {
     if (gender === "Male") {
         characterInfo.Gender = '♂';
     }
-    else if (gender === "Female") {
+    else {
         characterInfo.Gender = '♀';
     }
     let speciesIndex = characterCreate.charAt(length-3);
     let classIndex = characterCreate.charAt(length-2);
     let alignmentIndex = characterCreate.charAt(length-1);
 
-    let Species = Species[parseInt(speciesIndex, 10)];
-    let Class = UnitClass[parseInt(classIndex, 10)];
-    let Alignment = Alignment[parseInt(alignmentIndex, 10)];
+    characterInfo.Species = Species[parseInt(speciesIndex, 10)];
+    characterInfo.Class = UnitClass[parseInt(classIndex, 10)];
+    characterInfo.Alignment = Alignment[parseInt(alignmentIndex, 10)];
         
 
 
