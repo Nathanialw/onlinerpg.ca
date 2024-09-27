@@ -82,7 +82,6 @@ function Send() {
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
-    Send();
     //remove form <section class='startButton'>
     const formSection = document.querySelector('.options');
     if (formSection) {
@@ -93,17 +92,17 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     if (btnSection) {
         btnSection.remove();
     }
-
+    
     const nameInput = document.querySelector('.nameInput');
     if (nameInput) {
         nameInput.remove();
     }
-
+    
     const wrapper = document.querySelector('.wrapper');
     if (wrapper) {
         wrapper.remove();
     }
-
+    
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
         const script = document.createElement('script');
@@ -111,11 +110,12 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         script.type = type;
         document.body.appendChild(script);
     }
-
+    
     // Load required JavaScript files
     loadScript('/js/frontend/game.js', 'module');
-    loadScript('/js/input/keyboard.js', 'module');
     loadScript('/js/networking/receive.js', 'module');
+    loadScript('/js/input/keyboard.js', 'module');
+    Send();
 });
 
 
