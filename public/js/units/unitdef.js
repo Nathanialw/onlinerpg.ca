@@ -61,10 +61,10 @@ export let Species = [
 export let characterInfo = {
     Name: "Player",
     Gender: "default",
+    HeroClass: "default",
+    Species: "default",
     Class: "default",
-    // Species: "default",
-    // Class: "default",
-    // Alignment: "default",
+    Alignment: "default",
     Potrait: "default",
 
     Age: 0,
@@ -124,15 +124,18 @@ export function UpdatePlayerInfo(characterCreate) {
     else if (gender === "Female") {
         characterInfo.Gender = '♀';
     }
+    let speciesIndex = characterCreate.charAt(length-3);
+    let classIndex = characterCreate.charAt(length-2);
+    let alignmentIndex = characterCreate.charAt(length-1);
 
-    let Species = characterCreate.charAt(length-3);
-    let Class = characterCreate.charAt(length-2);
-    let Alignment = characterCreate.charAt(length-1);
+    let Species = Species[parseInt(speciesIndex, 10)];
+    let Class = UnitClass[parseInt(classIndex, 10)];
+    let Alignment = Alignment[parseInt(alignmentIndex, 10)];
         
 
 
-    const key = Species + genderIndex + Class + Alignment;
-    characterInfo.Class = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
+    const key = speciesIndex + genderIndex + classIndex + alignmentIndex;
+    characterInfo.HeroClass = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
     //h
     //max health
     //AC
@@ -140,6 +143,5 @@ export function UpdatePlayerInfo(characterCreate) {
     //max speed
     //+damage
     
-    console.log(characterInfo.Class);
     console.log(characterInfo);
 }
