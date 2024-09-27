@@ -50,6 +50,7 @@ let grey900 = 0x0f172a;
 // let lightBlack = 0x222222;
 let white = 0xffffff;
 let black = 0x111111;
+let black_100 = 0x222222;
 
 let footerHeight = 125;
 let gameWindowOrigin_x = 0;
@@ -267,7 +268,7 @@ export function Draw_UI() {
     //left
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, inventory);
     //bottom
-    Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);
+    Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black_100);
     //viewport
     Draw_Panel(leftPanelWidth * cellSize, (topPanelHeight * cellSize), viewportWidth * cellSize, viewportHeight * cellSize, black);
     Draw_Stats();
