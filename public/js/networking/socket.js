@@ -1,12 +1,10 @@
 'use strict';
 
 
-let websocket;
+let websocket  = new WebSocket("ws://www.onlinerpg.ca/ws");;
 let reconnectInterval = 1000; // 1 second
 
 export function createWebSocket() {
-    websocket = new WebSocket("ws://www.onlinerpg.ca/ws");
-
     websocket.onopen = () => {
         console.log("WebSocket connection opened");
     };
