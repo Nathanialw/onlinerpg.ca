@@ -1,4 +1,4 @@
-import {classes} from './classes.js';
+import {classes} from '/js/frontend/classes.js';
 
 export let Gender = ["Male", "Female"];
 export let UnitClass = ["Fighter", "Mystic"];
