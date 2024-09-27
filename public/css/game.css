@@ -16,37 +16,25 @@ body {
 .startButton {
     display: block;
     margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translate(-50%, -50%);
 }
 
 .options {
     display: block;
     margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
 }
 
 .nameInput {
     display: block;
     margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .nameInput input {
-    width: 120%;    
+    width: 100%;    
 }
 
 .nameInput label {
     color: white;
-    width: 120%;    
+    width: 100%;    
 }
 
 .splashContent {
@@ -60,9 +48,7 @@ body {
     display: block;
     margin: 0 auto;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);    
+  
 }
 
 #hero-class {

@@ -49,14 +49,6 @@
 
  <div id="gameCanvas"></div>
 
- <section class='nameInput'>
-    <form method='POST' id="myForm">
-        <label class="form-label" for="name">Name:</label>
-        <input class="form-input form-row" type="text" id="name" name="name" value="John">
-        <br> 
-    </form>
-</section>
-
 <section class='options'>    
     <div class="main-links">
         <ul>
@@ -83,6 +75,14 @@
             <li><button id="Evil" class='btn btn-block'>Evil</button></li>
         </ul>
     </div>
+</section>
+
+<section class='nameInput'>
+    <form method='POST' id="myForm">
+        <label class="form-label" for="name">Name:</label>
+        <input class="form-input form-row" type="text" id="name" name="name" value="John">
+        <br> 
+    </form>
 </section>
 
 <section class='startButton'>
