@@ -1,9 +1,9 @@
 export let classes = new Map([
     //Male human
-    ["7000", "Paladin"], ["7001", "Barbarian"], ["7002", "Death Knight"],
+    ["7000", "Paladin"], ["7001", "Barbarian"], ["7002", "Rogue"],
     ["7010", "Priest"], ["7011", "Wizard"], ["7012", "Warlock"],
     //female human
-    ["7100", "Valkyrie"], ["7101", "Warrior-Maiden"], ["7102", "Rogue"],
+    ["7100", "Valkyrie"], ["7101", "Amazon"], ["7102", "Vixen"],
     ["7110", "Nun"], ["7111", "Sorceress"], ["7112", "Witch"],
     //male elf
     ["4000", "Ranger"], ["4001", "Sentinel"], ["4002", "Vampire"],
