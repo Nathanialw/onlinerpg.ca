@@ -1,12 +1,11 @@
 import { Init } from "../sound/sound.js";
-import { Draw_Title_Screen, Create_Canvas, Draw_UI, Draw_Stats } from '../graphics/graphics.js';
+import { Draw_Title_Screen, Create_Canvas, Draw_UI} from '../graphics/graphics.js';
 
 Init();
 
 async function Splash_Screen() {
     await Create_Canvas();
     Draw_UI();
-    Draw_Stats();
     // Draw_Title_Screen();
 }
 Splash_Screen()
