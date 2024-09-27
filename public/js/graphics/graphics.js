@@ -300,7 +300,7 @@ function Draw_Stats() {
 
 
     x = leftPanelWidth + 20;
-    y = 1;
+    y = 2;
     Create_Object("AC: " + characterInfo.AC, x, y);
     y += 1;
     Create_Object("Damage: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
