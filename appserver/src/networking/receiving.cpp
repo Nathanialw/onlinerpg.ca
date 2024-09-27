@@ -16,11 +16,12 @@ namespace Network {
 
   typedef websocketpp::server<websocketpp::config::asio> server;
   server print_server;
+  std::unordered_map<std::string, websocketpp::connection_hdl> client_connections;
 
 
   // This function will be called when a new connection is opened.
   // You can put your code here to handle the new connection.
-  void On_Open(websocketpp::connection_hdl hdl) {
+  void On_Open(const websocketpp::connection_hdl& hdl) {
     //send the client the map information
     //create/load player object for the client
     std::cout << "New connection opened: " << hdl.lock().get() << std::endl;
@@ -33,7 +34,16 @@ namespace Network {
 
     //client will get his uID and store it
     //client will get all the uIDs for all other units on the map and store them and himself in the unordered_map
+    server::connection_ptr con = print_server.get_con_from_hdl(hdl);
+    std::string session_id = con->get_resource().substr(con->get_resource().find('=') + 1);
 
+    if (session_id.empty()) {
+      print_server.close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
+      return;
+    }
+
+    client_connections[session_id] = hdl;
+    std::cout << "New connection opened with session ID: " << session_id << std::endl;
 
 
     //this will place Entities on a map with every connect, what we want to do is run this on startup then send the map that's already in memory
@@ -44,37 +54,48 @@ namespace Network {
     //print_server.send(hdl, Units::Send_Units(), websocketpp::frame::opcode::text);
   }
 
-  void On_close(websocketpp::connection_hdl hdl) {
+  void On_close(const websocketpp::connection_hdl& hdl) {
+    server::connection_ptr con = print_server.get_con_from_hdl(hdl);
+    std::string session_id = con->get_resource().substr(con->get_resource().find('=') + 1);
+
+    if (session_id.empty()) {
+      print_server.close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
+      return;
+    }
+
+    client_connections[session_id] = hdl;
+    std::cout << "New connection opened with session ID: " << session_id << std::endl;
+
     std::cout << "Connection Closed: " << hdl.lock().get() << std::endl;
   }
 
-  void On_fail(websocketpp::connection_hdl hdl) {
+  void On_fail(const websocketpp::connection_hdl& hdl) {
 
   }
 
-  bool On_ping(websocketpp::connection_hdl hdl, std::string payload) {
+  bool On_ping(const websocketpp::connection_hdl& hdl, const std::string& payload) {
       //std::string response = "pinging: ";
       //print_server.send(hdl, response, websocketpp::frame::opcode::text);
       return true;
   }
 
-  void On_pong(websocketpp::connection_hdl hdl, std::string payload) {
+  void On_pong(const websocketpp::connection_hdl& hdl, const std::string& payload) {
 
   }
 
-  void On_pong_timeout(websocketpp::connection_hdl hdl, std::string payload) {
+  void On_pong_timeout(const websocketpp::connection_hdl& hdl, const std::string& payload) {
 
   }
 
-  void On_interrupt(websocketpp::connection_hdl hdl) {
+  void On_interrupt(const websocketpp::connection_hdl& hdl) {
 
   }
 
-  void On_http(websocketpp::connection_hdl hdl) {
+  void On_http(const websocketpp::connection_hdl& hdl) {
 
   }
 
-  bool On_validate(websocketpp::connection_hdl hdl) {
+  bool On_validate(const websocketpp::connection_hdl& hdl) {
 
     return true;
   }
