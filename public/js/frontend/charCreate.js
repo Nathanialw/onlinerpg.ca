@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
-
+    updateHeroClass()
 })
 
 function Buttons(Option) {
