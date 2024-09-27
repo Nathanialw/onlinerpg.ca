@@ -62,9 +62,7 @@ function updateHeroClass() {
     const heroClass = document.getElementById('hero-class');
 
     const key = races.value + genders.value + unitClasses.value + alignments.value;
-    console.log(key)
-    console.log(classes.get(key))
-    heroClass.value = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
+    heroClass.textContent = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
 }
 
 //send data to server
