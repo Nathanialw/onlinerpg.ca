@@ -14,22 +14,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("Good").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')  
 
 
-    let races = {
+    races = {
         options: new Map([["Human", "7"],["Elf", "4"]]),
         value: "7"
     }
 
-    let genders = {
+    genders = {
         options: new Map([["Male", "0"],["Female", "1"]]),
         value: '0'
     }
 
-    let unitClasses = {
+    unitClasses = {
         options:  new Map([["Fighter", "0"],["Mystic", "1"]]),
         value: '0'
     }
 
-    let alignments = {
+    alignments = {
         options: new Map([["Good", "0"],["Neutral", "1"],["Evil", '2']]),
         value: '0'
     }
@@ -53,7 +53,10 @@ function Buttons(Option) {
     });
 }
 
-
+let races;
+let genders;
+let unitClasses;
+let alignments;
 
 
 
