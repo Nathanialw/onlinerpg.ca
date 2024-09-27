@@ -71,7 +71,12 @@ function Send() {
     
     //get data from form
     let name = document.getElementById("name").value;
-
+    
+    const nameInput = document.querySelector('.nameInput');
+    if (nameInput) {
+        nameInput.remove();
+    }
+    
     if (conn.isConnected) {
         conn.websocket.send("3" + name + genders.value + races.value + unitClasses.value + alignments.value);       
         console.log("char create Data sent to server")
@@ -79,6 +84,7 @@ function Send() {
     else {
         console.log("Error: Server is not connected")
     }
+    
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
@@ -91,11 +97,6 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     const btnSection = document.querySelector('.startButton');
     if (btnSection) {
         btnSection.remove();
-    }
-    
-    const nameInput = document.querySelector('.nameInput');
-    if (nameInput) {
-        nameInput.remove();
     }
     
     const wrapper = document.querySelector('.wrapper');
