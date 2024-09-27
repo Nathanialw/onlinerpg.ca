@@ -171,6 +171,12 @@ function createTextWithBackground(textString, style, backgroundColor) {
 }
 
 export function Create_Object(char, x, y) {
+    if (char === "Male") {
+        char = '♂';
+    }
+    else if (char === "Female") {
+        char = '♀';
+    }
     let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}, grey700);
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = y * cellSize;  // Assuming each cell is 24 pixels tall
@@ -200,6 +206,8 @@ color.set('g', 0x00ff00);
 color.set('#', 0x00ff00);
 color.set('▲', 0x013220); //dark green
 color.set('˛', 0x964b00); //brown
+color.set('♀', white); //brown
+color.set('♂', white); //brown
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
     let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'});
