@@ -1,3 +1,4 @@
+import {classes} from './classes.js';
 
 export let Gender = ["Male", "Female"];
 export let UnitClass = ["Fighter", "Mystic"];
@@ -60,9 +61,10 @@ export let Species = [
 export let characterInfo = {
     Name: "Player",
     Gender: "default",
-    Species: "default",
     Class: "default",
-    Alignment: "default",
+    // Species: "default",
+    // Class: "default",
+    // Alignment: "default",
     Potrait: "default",
 
     Age: 0,
@@ -114,11 +116,23 @@ export function UpdatePlayerInfo(characterCreate) {
     characterInfo.MaxSpeed = characterCreate.substring(length-9, length-8);
     characterInfo.MinDamage = characterCreate.substring(length-8, length-6);
     characterInfo.MaxDamage = characterCreate.substring(length-6, length-4);
-    characterInfo.Gender = Gender[parseInt(characterCreate.charAt(length-4), 10)];
-    characterInfo.Species = Species[parseInt(characterCreate.charAt(length-3), 10)];
-    characterInfo.Class = UnitClass[parseInt(characterCreate.charAt(length-2), 10)];
-    characterInfo.Alignment = Alignment[parseInt(characterCreate.charAt(length-1), 10)];
+    let genderIndex = characterCreate.charAt(length-4);
+    let gender = Gender[parseInt(genderIndex)]
+    if (gender === "Male") {
+        characterInfo.Gender = '♂';
+    }
+    else if (gender === "Female") {
+        characterInfo.Gender = '♀';
+    }
+
+    let Species = characterCreate.charAt(length-3);
+    let Class = characterCreate.charAt(length-2);
+    let Alignment = characterCreate.charAt(length-1);
         
+
+
+    const key = Species + genderIndex + Class + Alignment;
+    characterInfo.Class = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
     //h
     //max health
     //AC
@@ -126,5 +140,6 @@ export function UpdatePlayerInfo(characterCreate) {
     //max speed
     //+damage
     
+    console.log(characterInfo.Class);
     console.log(characterInfo);
 }

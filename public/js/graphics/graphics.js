@@ -171,12 +171,6 @@ function createTextWithBackground(textString, style, backgroundColor) {
 }
 
 export function Create_Object(char, x, y) {
-    if (char === "Male") {
-        char = '♂';
-    }
-    else if (char === "Female") {
-        char = '♀';
-    }
     let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}, grey700);
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = y * cellSize;  // Assuming each cell is 24 pixels tall
@@ -294,17 +288,19 @@ function Draw_Stats() {
     
     let x = leftPanelWidth + 10;
     let y = 1;
-    jj = Create_Object(characterInfo.Name, x, y);
+    let gender;
+    
+    jj = Create_Object(characterInfo.Name + characterInfo.Gender, x, y);
     y += 1;
     Create_Object("Age: " + characterInfo.Age, x, y);
     y += 1;
-    Create_Object(characterInfo.Gender, x, y);
-    y += 1;
-    Create_Object(characterInfo.Species, x, y);
+    // Create_Object(characterInfo.Gender, x, y);
     y += 1;
     Create_Object(characterInfo.Class, x, y);
-    y += 1;
-    Create_Object(characterInfo.Alignment, x, y);
+    // Create_Object(characterInfo., x, y);
+    // y += 1;
+    // y += 1;
+    // Create_Object(characterInfo.Alignment, x, y);
 
 
     x = leftPanelWidth + 20;
