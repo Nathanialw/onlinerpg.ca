@@ -14,27 +14,31 @@ body {
 }
 
 .startButton {
-    display: block;
-    margin: 0 auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .options {
-    display: block;
-    margin: 0 auto;
+    margin-top: 10rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .nameInput {
-    display: block;
-    margin: 0 auto;
+    margin-top: 10rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .nameInput input {
-    width: 100%;    
+    width: 30rem;    
 }
 
 .nameInput label {
-    color: white;
-    width: 100%;    
+    color: white;    
 }
 
 .splashContent {
