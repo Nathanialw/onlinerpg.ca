@@ -63,5 +63,3 @@ export function Send_Web_Socket_Message(message) {
         socket().websocket.send(message);       
     }
 }
-
-navigator.serviceWorker.register('socket.js');
