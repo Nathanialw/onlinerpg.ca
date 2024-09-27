@@ -32,7 +32,7 @@ function Buttons(Option) {
                 }
             });
         })
-        document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);        
+        updateHeroClass() 
     });
 }
 
@@ -64,11 +64,6 @@ function updateHeroClass() {
     const key = races.value + genders.value + unitClasses.value + alignments.value;
     heroClass.value = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
 }
-
-document.getElementById('races').addEventListener('change', updateHeroClass);
-document.getElementById('genders').addEventListener('change', updateHeroClass);
-document.getElementById('unitClasses').addEventListener('change', updateHeroClass);
-document.getElementById('alignments').addEventListener('change', updateHeroClass);
 
 //send data to server
 function Send() {
