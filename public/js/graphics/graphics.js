@@ -282,7 +282,7 @@ export function Draw_UI() {
 
 
 let jj;
-function Draw_Stats() {
+export function Draw_Stats() {
     // Create_Object(characterInfo.Potrait, x, y);
     Draw_Sprite((leftPanelWidth + 1) * cellSize, 1 * cellSize, 8 * cellSize, 8 * cellSize, playerImg);
     
