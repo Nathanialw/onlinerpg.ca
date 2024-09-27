@@ -53,14 +53,10 @@ function Buttons(Option) {
     });
 }
 
-let races;
-let genders;
-let unitClasses;
-let alignments;
-
-
-
-document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
+let races = {options: new Map(), value: '0'}
+let genders = {options: new Map(), value: '0'}
+let unitClasses = {options: new Map(), value: '0'}
+let alignments = {options: new Map(), value: '0'}
 
 //send data to server
 function Send() {
