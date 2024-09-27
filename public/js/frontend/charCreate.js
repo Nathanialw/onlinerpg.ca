@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("Good").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')  
 
 
-    let heroClass = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
+    document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
 
 })
 
@@ -58,8 +58,17 @@ let alignments = {
     value: '0'
 }
 
+function updateHeroClass() {
+    const heroClass = document.getElementById('hero-class');
 
-document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
+    const key = races.value + genders.value + unitClasses.value + alignments.value;
+    heroClass.value = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
+}
+
+document.getElementById('races').addEventListener('change', updateHeroClass);
+document.getElementById('genders').addEventListener('change', updateHeroClass);
+document.getElementById('unitClasses').addEventListener('change', updateHeroClass);
+document.getElementById('alignments').addEventListener('change', updateHeroClass);
 
 //send data to server
 function Send() {
