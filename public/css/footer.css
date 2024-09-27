@@ -36,7 +36,7 @@ footer {
 }
 
 .social-icons i {
-  color: var(--primary-600);
+  color: var(--primary-500);
   border-radius: 50%;
   padding: 0.5rem;
   background: white;
@@ -44,11 +44,11 @@ footer {
 
 .social-icons a:hover {
   color: var(--white);
-  background: var(--primary--600);
+  background: var(--primary--500);
   padding-top: 2.7rem;
 }
 
 .social-icons i:hover {
-  background: var(--primary-600);
+  background: var(--primary-500);
   color: var(--white);
 }
