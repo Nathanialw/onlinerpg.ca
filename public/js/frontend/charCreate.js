@@ -14,25 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("Good").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')  
 
 
-    races = {
-        options: new Map([["Human", "7"],["Elf", "4"]]),
-        value: "7"
-    }
+    let heroClass = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
 
-    genders = {
-        options: new Map([["Male", "0"],["Female", "1"]]),
-        value: '0'
-    }
-
-    unitClasses = {
-        options:  new Map([["Fighter", "0"],["Mystic", "1"]]),
-        value: '0'
-    }
-
-    alignments = {
-        options: new Map([["Good", "0"],["Neutral", "1"],["Evil", '2']]),
-        value: '0'
-    }
 })
 
 function Buttons(Option) {
@@ -53,10 +36,30 @@ function Buttons(Option) {
     });
 }
 
-let races = {options: new Map(), value: '0'}
-let genders = {options: new Map(), value: '0'}
-let unitClasses = {options: new Map(), value: '0'}
-let alignments = {options: new Map(), value: '0'}
+
+
+let races = {
+    options: new Map([["Human", "7"],["Elf", "4"]]),
+    value: "7"
+}
+
+let genders = {
+    options: new Map([["Male", "0"],["Female", "1"]]),
+    value: '0'
+}
+
+let unitClasses = {
+    options:  new Map([["Fighter", "0"],["Mystic", "1"]]),
+    value: '0'
+}
+
+let alignments = {
+    options: new Map([["Good", "0"],["Neutral", "1"],["Evil", '2']]),
+    value: '0'
+}
+
+
+document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
 
 //send data to server
 function Send() {
