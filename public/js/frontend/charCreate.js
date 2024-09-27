@@ -99,6 +99,11 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         nameInput.remove();
     }
 
+    const wrapper = document.querySelector('.wrapper');
+    if (wrapper) {
+        wrapper.remove();
+    }
+
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
         const script = document.createElement('script');
