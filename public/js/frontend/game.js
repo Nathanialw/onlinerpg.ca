@@ -3,9 +3,9 @@ import { Draw_Title_Screen, Create_Canvas } from '../graphics/graphics.js';
 
 Init();
 
-function Splash_Screen() {
-    Create_Canvas();
-    Draw_Title_Screen();
+async function Splash_Screen() {
+    await Create_Canvas();
+    // Draw_Title_Screen();
 }
 Splash_Screen()
 
