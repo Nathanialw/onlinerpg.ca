@@ -1,4 +1,5 @@
 import { createWebSocket, socket } from '/js/networking/socket.js';
+import { classes } from '/js/frontend/classes.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     createWebSocket();
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("Male").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
     document.getElementById("Fighter").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
     document.getElementById("Good").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
+    document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
 })
 
 function Buttons(Option) {
@@ -27,28 +29,32 @@ function Buttons(Option) {
                 }
             });
         })
+        document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);        
     });
 }
 
 
+let heroClass = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
+
+
 let races = {
-    options: new Map([["Human", 7],["Elf", 4]]),
-    value: 7
+    options: new Map([["Human", "7"],["Elf", "4"]]),
+    value: "7"
 }
 
 let genders = {
-    options: new Map([["Male", 0],["Female", 1]]),
-    value: 0
+    options: new Map([["Male", "0"],["Female", "1"]]),
+    value: '0'
 }
 
 let unitClasses = {
-    options:  new Map([["Fighter", 0],["Mystic", 1]]),
-    value: 0
+    options:  new Map([["Fighter", "0"],["Mystic", "1"]]),
+    value: '0'
 }
 
 let alignments = {
-    options: new Map([["Good", 0],["Neutral", 1],["Evil", 2]]),
-    value: 0
+    options: new Map([["Good", "0"],["Neutral", "1"],["Evil", '2']]),
+    value: '0'
 }
 
 //send data to server

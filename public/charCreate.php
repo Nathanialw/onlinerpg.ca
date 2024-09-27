@@ -86,6 +86,7 @@
 </section>
 
 <section class='startButton'>
+    <h1 id="hero-class"></h1>
     <button id="startGame" class='btn btn-center'>Start Game</button>
 </section>
 

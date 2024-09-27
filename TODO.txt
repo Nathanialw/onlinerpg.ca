@@ -55,6 +55,8 @@ short term:
   -rest = 10 mins and heals one health | unless you get attacked
 -expand the map into a grid of maps
 -have enemies drop an item when they die
+-class names based on chosen character define
+-scroll bar on the combat log
 
 medium term:
 -items
@@ -66,6 +68,9 @@ medium term:
 
 
 long term:
+-mines to enter
+-build buildings
+-start with ally families where you can use the men as units
 -store world state in db
 -proc gen maps
 -simple enemy AI
