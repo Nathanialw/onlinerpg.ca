@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("Human").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
     document.getElementById("Male").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
     document.getElementById("Fighter").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
-    document.getElementById("Good").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')
-    document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
+    document.getElementById("Good").style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-500')  
 })
 
 function Buttons(Option) {
@@ -56,6 +55,8 @@ let alignments = {
     options: new Map([["Good", "0"],["Neutral", "1"],["Evil", '2']]),
     value: '0'
 }
+
+document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
 
 //send data to server
 function Send() {
