@@ -32,7 +32,6 @@ let reconnectInterval = 1000; // 1 second
 
 export function createWebSocket() {
     // websocket = 
-    getSessionId();
 
     websocket.onopen = () => {
         console.log("WebSocket connection opened");
