@@ -36,6 +36,7 @@ namespace Network {
     //client will get all the uIDs for all other units on the map and store them and himself in the unordered_map
     server::connection_ptr con = print_server.get_con_from_hdl(hdl);
     std::string session_id = con->get_resource().substr(con->get_resource().find('=') + 1);
+    std::cout << "Session ID: " << session_id << std::endl;
 
     if (session_id.empty()) {
       print_server.close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
