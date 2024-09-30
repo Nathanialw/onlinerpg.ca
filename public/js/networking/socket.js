@@ -32,7 +32,8 @@ let websocket;
 // let websocket = new WebSocket('wss://onlinerpg.ca/ws:9002?session_id=${sessionId}');
 let reconnectInterval = 1000; // 1 second
 
-export function createWebSocket() {
+export async function createWebSocket() {
+    sessionId = await getSessionId();
 
     websocket.onopen = () => {
         console.log("WebSocket connection opened");
