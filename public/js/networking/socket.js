@@ -8,7 +8,7 @@ async function getSessionId() {
         throw new Error('Network response was not ok');
       }
       sessionId = await response.text();
-      websocket = new WebSocket(`wss://www.onlinerpg.ca/ws:9002`);//?session_id=${sessionId});
+      websocket = new WebSocket(`wss://www.onlinerpg.ca/ws`);//?session_id=${sessionId});
       return sessionId;
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
