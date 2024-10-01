@@ -141,7 +141,7 @@ namespace Map {
         else if (player.position.y < 0)
             location.y -= 1;
 
-      if (game.map[game.level].find(location) == game.map[game.level].end()) {
+      if (game.map[game.level].count(location) == 0) {
         // if player position is close to the edge of the chunk, create a new chunk add a new chunk
         std::cout << "Creating chunk" << std::endl;
         Chunk::Create_Chunk(game.map[game.level][location].defaultChunk,
