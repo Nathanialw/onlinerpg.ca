@@ -8,7 +8,6 @@ async function getSessionId() {
         throw new Error('Network response was not ok');
       }
       sessionId = await response.text();
-      websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
       return sessionId;
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
@@ -18,9 +17,11 @@ async function getSessionId() {
   // Save the session ID as a JavaScript variable
   getSessionId().then(sessionId => {
     if (sessionId) {
-      console.log('Session ID:', sessionId);
+      console.log('success Session ID:', sessionId);
+      websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
       // Now you can use the sessionId variable in your code
     }
+    console.log('failed Session ID:', sessionId);
   });
 
 
