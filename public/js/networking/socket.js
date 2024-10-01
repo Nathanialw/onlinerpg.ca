@@ -22,6 +22,7 @@ async function getSessionId() {
       // Now you can use the sessionId variable in your code
     }
     console.log('failed Session ID:', sessionId);
+    getSessionId();
   });
 
 
