@@ -17,7 +17,7 @@ namespace Map {
         if (i < 0 || i > Component::mapWidth || j < 0 || j > Component::mapWidth)
           map += ' ';
         else
-          map += game.gameMaps[game.location][j][i];
+          map += game.gameMaps[game.level][game.location][j][i];
       }
     }
     return map;
@@ -26,7 +26,7 @@ namespace Map {
   void Set_Game_Map(Game::State &game) {
     for (int x = 0; x < Component::mapWidth; x++) {
       for (int y = 0; y < Component::mapWidth; y++) {
-        game.gameMaps[game.location][x][y] = game.defaultMaps[game.location][x][y];
+        game.gameMaps[game.level][game.location][x][y] = game.defaultMaps[game.level][game.location][x][y];
       }
     }
   }
@@ -35,11 +35,11 @@ namespace Map {
     for (int i = 0; i < Component::mapWidth; i++) {
       for (int j = 0; j < Component::mapWidth; j++) {
         if (i == 0 || i == Component::mapWidth - 1 || j == 0 || j == Component::mapWidth - 1) {
-          game.defaultMaps[game.location][i][j] = '#';
-          game.gameMaps[game.location][i][j] = game.defaultMaps[game.location][i][j];
+          game.defaultMaps[game.level][game.location][i][j] = '#';
+          game.gameMaps[game.level][game.location][i][j] = game.defaultMaps[game.level][game.location][i][j];
         } else {
-          game.defaultMaps[game.location][i][j] = '.';
-          game.gameMaps[game.location][i][j] = game.defaultMaps[game.location][i][j];
+          game.defaultMaps[game.level][game.location][i][j] = '.';
+          game.gameMaps[game.level][game.location][i][j] = game.defaultMaps[game.level][game.location][i][j];
         }
       }
     }
@@ -61,7 +61,7 @@ namespace Map {
           for (int l = 0; l < cellSize; l++) {
             int x = (i * cellSize) + k;
             int y = (j * cellSize) + l;
-            game.defaultMaps[game.location][x][y] = labyrinthStr[charIndex];
+            game.defaultMaps[game.level][game.location][x][y] = labyrinthStr[charIndex];
             charIndex++;
           }
         }
@@ -78,7 +78,7 @@ namespace Map {
       for (int l = 0; l < h; l++) {
         int j = x + l;
         int i = y + k;
-        game.defaultMaps[game.location][i][j] = '.';
+        game.defaultMaps[game.level][game.location][i][j] = '.';
       }
     }
   }
@@ -133,11 +133,11 @@ namespace Map {
   }
 
   void Set_Tile(Game::State &game, int x, int y, const char &tile) {
-    game.gameMaps[game.location][y][x] = tile;
+    game.gameMaps[game.level][game.location][y][x] = tile;
   }
 
   void Reset_Tile(Game::State &game, int x, int y) {
-    game.gameMaps[game.location][y][x] = game.defaultMaps[game.location][y][x];
+    game.gameMaps[game.level][game.location][y][x] = game.defaultMaps[game.level][game.location][y][x];
   }
 
   void Update(Game::State &game, int px, int py, int x, int y, const char &tile) {
@@ -157,7 +157,7 @@ namespace Map {
             if (i < 0 || i >= Component::mapWidth || j < 0 || j >= Component::mapWidth)
               mapSegment += ' ';
             else
-              mapSegment += game.gameMaps[game.location][j][i];
+              mapSegment += game.gameMaps[game.level][game.location][j][i];
         }
     }
 
@@ -169,7 +169,7 @@ namespace Map {
     if (x < 0 || x >= Component::mapWidth || y < 0 || y >= Component::mapWidth)
         tile = " ";
     else
-        tile = game.gameMaps[game.location][y][x];
+        tile = game.gameMaps[game.level][game.location][y][x];
     return tile;
   }
 }
