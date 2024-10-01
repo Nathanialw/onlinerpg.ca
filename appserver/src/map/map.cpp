@@ -158,5 +158,6 @@ namespace Map {
     else {
         std::cout << "player not near edge" << std::endl;
     }
+    std::cout << "Number of chunks: " <<  game.map[game.level].size() << std::endl;
   }
 }
