@@ -14,17 +14,7 @@ namespace Pathing {
 
   constexpr int REGION_SIZE = 99;
 
-  struct sNode {
-    bool bObstacle = false;
-    bool bVisited = false;
-    float fGlobalGoal{};
-    float fLocalGoal{};
-    // position
-    int x{};
-    int y{};
-    std::vector<sNode *> vecNeighbours;
-    sNode *parent{};
-  };
+
 
   constexpr int nMapWidth = REGION_SIZE;
   constexpr int nMapHeight = REGION_SIZE;
