@@ -6,7 +6,6 @@
 
 
 <?php
-    include 'session.php';
     include 'body.php';
 ?>
 
