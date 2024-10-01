@@ -38,13 +38,13 @@ gamey
 
 
 short term:
+-login and db to save game state
 -spells 
   -1 for species
   //-1 for subspecies
-  -1 class
+  -4 class
   -1 for alignment
 
--player id so you can have your own game
 -when holding down move, if it colides into a unit. just stop instead of attacking
 -come up with a list of spells
 
@@ -55,7 +55,6 @@ short term:
   -rest = 10 mins and heals one health | unless you get attacked
 -expand the map into a grid of maps
 -have enemies drop an item when they die
--class names based on chosen character define
 -scroll bar on the combat log
 
 medium term:

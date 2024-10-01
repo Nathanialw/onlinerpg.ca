@@ -34,8 +34,11 @@ namespace Game {
     std::string unitsString;
 
     //map
-    char defaultMap[Component::mapWidth][Component::mapWidth];
-    char gameMap[Component::mapWidth][Component::mapWidth];
+    Component::Position location = {0, 0};
+    std::unordered_map<Component::Position, char[Component::mapWidth][Component::mapWidth]> defaultMaps;
+    std::unordered_map<Component::Position, char[Component::mapWidth][Component::mapWidth]> gameMaps;
+//    char defaultMap[Component::mapWidth][Component::mapWidth];
+//    char gameMap[Component::mapWidth][Component::mapWidth];
 
     //pathing
     std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> nodes;
