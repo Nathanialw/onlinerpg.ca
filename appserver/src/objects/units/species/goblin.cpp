@@ -6,6 +6,7 @@
 #include "units.h"
 #include "utils.h"
 #include "iostream"
+#include "game.h"
 
 // name
 // gender
@@ -20,12 +21,12 @@
 //type? (fire/ice/etc maybe not sure if will use)
 
 namespace Species {
-  std::string Get_Unit_Data_As_string(const std::string &msg) {
-    auto player = Units::Get_Player();
-    int mapPositionx = player.position.x - player.vision + std::stoi(msg.substr(0, 2));
-    int mapPositiony = player.position.y - player.vision + std::stoi(msg.substr(2, 2));
+  std::string Get_Unit_Data_As_string(Game::State &game, const std::string &msg) {
+    auto &player = game.Get_Player();
+    int mapPositionX = player.position.x - player.vision + std::stoi(msg.substr(0, 2));
+    int mapPositionY = player.position.y - player.vision + std::stoi(msg.substr(2, 2));
 
-    auto unit = Units::Get_Unit_At_Position(mapPositionx, mapPositiony);
+    auto unit = Units::Get_Unit_At_Position(game.units, game.unitPositions, mapPositionX, mapPositionY);
 
     auto name = unit.name;
     auto age = Utils::Prepend_Zero_3Digit(unit.age);

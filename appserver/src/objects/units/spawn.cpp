@@ -8,7 +8,6 @@
 #include "procgen.h"
 
 namespace Spawn {
-  const int mapWidth = Map::Get_Map_Width();
 
   std::string unitChars[(int)Units::Species::SIZE] = {"a",    "b",    "c",
                                                "d",   "e",    "f",    "g",
@@ -27,7 +26,7 @@ namespace Spawn {
     return unitChars[(int)species];
   }
 
-  void Add_Unit(int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
+  void Add_Unit(Game::State &game, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
     Units::Unit unit{};
     unit.name = name;
     unit.def.gender = gender;
@@ -37,19 +36,19 @@ namespace Spawn {
     unit.position.x = x;
     unit.position.y = y;
 
-    auto units = Units::Get_Units();
-    auto unitsPositions = Units::Get_Unit_Positions();
+    auto &units = game.units;
+    auto &unitsPositions = game.unitPositions;
 
-    auto &emptyUnitSlots = *Units::Get_Unit_EmptyUnitSlots();
+    auto &emptyUnitSlots = game.emptyUnitSlots;
     if (emptyUnitSlots.empty()) {
-      units->push_back(unit);
+      units.emplace_back(unit);
     } else {
-      units->at(emptyUnitSlots.back()) = unit;
+      units.at(emptyUnitSlots.back()) = unit;
       emptyUnitSlots.pop_back();
     }
 
     Component::Position pos = {x, y};
-    unitsPositions->emplace(pos, units->size() - 1);
+    unitsPositions.emplace(pos, units.size() - 1);
   }
 
   std::vector<Placement> Spawn_Unit() {
@@ -66,19 +65,19 @@ namespace Spawn {
     return placements;
   }
 
-  bool Add_Object(std::string &group, int x, int y) {
-    if (x > mapWidth - 1 || y > mapWidth - 1 || x < 1 || y < 1) {
+  bool Add_Object(Game::State &game, std::string &group, int x, int y) {
+    if (x > Component::mapWidth - 1 || y > Component::mapWidth - 1 || x < 1 || y < 1) {
       group.clear();
       return false;
     } else {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
-      Add_Unit(x, y, "Blargh", Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
+      Add_Unit(game, x, y, "Blargh", Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
       return true;
     }
   }
 
-  std::string Random_Entities(const char* entityType, int numEntities, int x, int y) {
+  std::string Random_Entities(Game::State &game, const char* entityType, int numEntities, int x, int y) {
     std::string group;
     int tries = 10;
   reRoll:
@@ -87,7 +86,7 @@ namespace Spawn {
     }
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
-      if (!Add_Object(group, x + i, y + i)) {
+      if (!Add_Object(game, group, x + i, y + i)) {
         tries--;
         goto reRoll;
       }
@@ -95,7 +94,7 @@ namespace Spawn {
     return group;
   }
 
-  std::string Place_Entities_On_Map(std::basic_string<char> characterCreate) {
+  std::string Place_Entities_On_Map(Game::State &game, const std::basic_string<char> &characterCreate) {
     std::string mapEntities = "2";
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
@@ -120,12 +119,12 @@ namespace Spawn {
     auto unitClass = (Units::Class)std::stoi(classStr);
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
 
-    Add_Unit(6, 6, name, gender, species, unitClass, alignment);
-    auto units = Units::Get_Units();
-    std::cout << "size: " << units->size() << std::endl;
-    units->at(0).health = 100;
-    units->at(0).healthMax = 100;
-    std::cout << "health: " << units->at(0).health << std::endl;
+    Add_Unit(game, 6, 6, name, gender, species, unitClass, alignment);
+    auto &units = game.units;
+    std::cout << "size: " << units.size() << std::endl;
+    units.at(0).health = 100;
+    units.at(0).healthMax = 100;
+    std::cout << "health: " << units.at(0).health << std::endl;
 
     mapEntities += unitChars[(int)unitClass] + "0606";
 
@@ -134,20 +133,20 @@ namespace Spawn {
 
     for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
-      auto asd = Random_Entities(unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters, placement.x, placement.y);
+      auto asd = Random_Entities(game, unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters, placement.x, placement.y);
       mapEntities += asd;
       std::cout << "units added: " << asd << std::endl;
     }
 
-    std::cout << "init num entities: " << units->size() << std::endl;
+    std::cout << "init num entities: " << units.size() << std::endl;
     return mapEntities;
   }
 
-  void Init(const std::basic_string<char> &characterCreate) {
-    Units::Set_Units_String(Place_Entities_On_Map(characterCreate));
+  void Init(Game::State &game, const std::basic_string<char> &characterCreate) {
+    game.unitsString = Place_Entities_On_Map(game, characterCreate);
 
-    for (auto &unit : *Units::Get_Units()) {
-        Map::Set_Tile(unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
+    for (auto &unit : game.units) {
+        Map::Set_Tile(game, unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
     }
   }
 }

@@ -1,7 +1,8 @@
 #pragma once
+#include "game.h"
 
 namespace Movement {
 
-  void Move(int x, int y);
+  void Move(Game::State &game, int x, int y);
 
 }

@@ -5,6 +5,7 @@
 
 #include "string"
 #include "units.h"
+#include "game.h"
 
 #ifndef BROWSERRPG_SPAWN_H
 #define BROWSERRPG_SPAWN_H
@@ -21,6 +22,6 @@ namespace Spawn {
 //  Placement Random_Placement();
 //  void Add_Unit(int x, int y, const std::string &name, Units::
 
-  void Init(const std::basic_string<char> &characterCreate);
+  void Init(Game::State &game, const std::basic_string<char> &characterCreate);
   std::string Get_Unit_Char(Units::Species species);
 }

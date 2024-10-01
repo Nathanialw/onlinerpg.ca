@@ -1,7 +1,7 @@
-
 #pragma once
-#include "string"
 
+#include "string"
+#include "game.h"
 
 namespace Attack {
   struct Damage {
@@ -10,6 +10,6 @@ namespace Attack {
     bool isDead = false;
   };
 
-  Damage Melee(int px, int py, int x, int y);
+  Damage Melee(Game::State &game, int px, int py, int x, int y);
 
 }

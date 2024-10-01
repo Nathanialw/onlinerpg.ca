@@ -4,7 +4,7 @@
 #include <array>
 #include <vector>
 #include <list>
-#include "math.h"
+#include <cmath>
 
 #include "pathing.h"
 #include "components.h"
@@ -12,37 +12,29 @@
 
 namespace Pathing {
 
-  constexpr int REGION_SIZE = 99;
+//  std::array<sNode, nMapWidth * nMapHeight> nodes;
 
 
-
-  constexpr int nMapWidth = REGION_SIZE;
-  constexpr int nMapHeight = REGION_SIZE;
-
-  std::array<sNode, nMapWidth * nMapHeight> nodes;
-
-  sNode *nodeStart = nullptr;
-  sNode *nodeEnd = nullptr;
 
   // clear previous location, set new location
-  void Update(const std::string &mapString) {
-    for (int y = 0; y < nMapHeight; y++) {
-      for (int x = 0; x < nMapWidth; x++) {
-          if (mapString[y * nMapWidth + x] == '.') {
-            nodes[y * nMapWidth + x].bObstacle = false;
+  void Update(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString) {
+    for (int y = 0; y < Component::mapWidth; y++) {
+      for (int x = 0; x < Component::mapWidth; x++) {
+          if (mapString[y * Component::mapWidth + x] == '.') {
+            nodes[y * Component::mapWidth + x].bObstacle = false;
           }
           else {
-            nodes[y * nMapWidth + x].bObstacle = true;
+            nodes[y * Component::mapWidth + x].bObstacle = true;
           }
         }
       }
   }
 
-  void Draw_Collision_Map() {
+  void Draw_Collision_Map(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes) {
     std::cout << "Drawing collision map: "<< std::endl;
-    for (int y = 0; y < nMapHeight; y++) {
-      for (int x = 0; x < nMapWidth; x++) {
-        if (nodes[y * nMapWidth + x].bObstacle) {
+    for (int y = 0; y < Component::mapWidth; y++) {
+      for (int x = 0; x < Component::mapWidth; x++) {
+        if (nodes[y * Component::mapWidth + x].bObstacle) {
           std::cout << "#";
         }
         else {
@@ -53,55 +45,57 @@ namespace Pathing {
     }
   }
 
-  bool Init(const std::string &mapString) {
-    for (int y = 0; y < nMapHeight; y++) {
-      for (int x = 0; x < nMapWidth; x++) {
-        nodes[y * nMapWidth + x].x = x;
-        nodes[y * nMapWidth + x].y = y;
-        nodes[y * nMapWidth + x].bObstacle = true;
-        nodes[y * nMapWidth + x].parent = nullptr;
-        nodes[y * nMapWidth + x].bVisited = false;
-        nodes[y * nMapWidth + x].vecNeighbours.clear();
+  bool Init(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString) {
+    for (int y = 0; y < Component::mapWidth; y++) {
+      for (int x = 0; x < Component::mapWidth; x++) {
+        nodes[y * Component::mapWidth + x].x = x;
+        nodes[y * Component::mapWidth + x].y = y;
+        nodes[y * Component::mapWidth + x].bObstacle = true;
+        nodes[y * Component::mapWidth + x].parent = nullptr;
+        nodes[y * Component::mapWidth + x].bVisited = false;
+        nodes[y * Component::mapWidth + x].vecNeighbours.clear();
       }
     }
 
-    for (int y = 0; y < nMapHeight; y++)
-      for (int x = 0; x < nMapWidth; x++) {
+    for (int y = 0; y < Component::mapWidth; y++)
+      for (int x = 0; x < Component::mapWidth; x++) {
         if (y > 0)
-          nodes[y * nMapWidth + x].vecNeighbours.push_back(&nodes[(y - 1) * nMapWidth + (x + 0)]);
-        if (y < nMapHeight - 1)
-          nodes[y * nMapWidth + x].vecNeighbours.push_back(&nodes[(y + 1) * nMapWidth + (x + 0)]);
+          nodes[y * Component::mapWidth + x].vecNeighbours.push_back(&nodes[(y - 1) * Component::mapWidth + (x + 0)]);
+        if (y < Component::mapWidth - 1)
+          nodes[y * Component::mapWidth + x].vecNeighbours.push_back(&nodes[(y + 1) * Component::mapWidth + (x + 0)]);
         if (x > 0)
-          nodes[y * nMapWidth + x].vecNeighbours.push_back(&nodes[(y + 0) * nMapWidth + (x - 1)]);
-        if (x < nMapWidth - 1)
-          nodes[y * nMapWidth + x].vecNeighbours.push_back(&nodes[(y + 0) * nMapWidth + (x + 1)]);
+          nodes[y * Component::mapWidth + x].vecNeighbours.push_back(&nodes[(y + 0) * Component::mapWidth + (x - 1)]);
+        if (x < Component::mapWidth - 1)
+          nodes[y * Component::mapWidth + x].vecNeighbours.push_back(&nodes[(y + 0) * Component::mapWidth + (x + 1)]);
       }
 
     // Manually position the start and end markers so they are not nullptr
-    nodeStart = &nodes[(nMapHeight / 2) * nMapWidth + 1];
-    nodeEnd = &nodes[(nMapHeight / 2) * nMapWidth + nMapWidth - 2];
+//    nodeStart = &nodes[(Component::mapWidth / 2) * Component::mapWidth + 1];
+//    nodeEnd = &nodes[(Component::mapWidth / 2) * Component::mapWidth + Component::mapWidth - 2];
 
-    Update(mapString);
-    Draw_Collision_Map();
+    Update(nodes, mapString);
+    Draw_Collision_Map(nodes);
     return true;
   }
 
-  bool Solve_AStar(const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
+  bool Solve_AStar(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
+    sNode *nodeStart = nullptr;
+    sNode *nodeEnd = nullptr;
 
     // Reset Navigation Graph - default all node states
-    nodeStart = &nodes[(position.y * nMapWidth) + position.x];
-    nodeEnd = &nodes[(target.y * nMapWidth) + target.x];
+    nodeStart = &nodes[(position.y * Component::mapWidth) + position.x];
+    nodeEnd = &nodes[(target.y * Component::mapWidth) + target.x];
 
     int numCellsToCheck;
 //    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
     numCellsToCheck = 10000;
 
-    for (int x = 0; x < nMapWidth; x++)
-      for (int y = 0; y < nMapHeight; y++) {
-        nodes[y * nMapWidth + x].bVisited = false;
-        nodes[y * nMapWidth + x].fGlobalGoal = INFINITY;
-        nodes[y * nMapWidth + x].fLocalGoal = INFINITY;
-        nodes[y * nMapWidth + x].parent = nullptr;// No parents
+    for (int x = 0; x < Component::mapWidth; x++)
+      for (int y = 0; y < Component::mapWidth; y++) {
+        nodes[y * Component::mapWidth + x].bVisited = false;
+        nodes[y * Component::mapWidth + x].fGlobalGoal = INFINITY;
+        nodes[y * Component::mapWidth + x].fLocalGoal = INFINITY;
+        nodes[y * Component::mapWidth + x].parent = nullptr;// No parents
       }
 
     auto distance = [](sNode *a, sNode *b)// For convenience
@@ -196,10 +190,10 @@ namespace Pathing {
     return true;
   }
 
-  Component::Position Move_To(Component::Position &position, const Component::Position &targetPosition) {
+  Component::Position Move_To(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, Component::Position &position, const Component::Position &targetPosition) {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path = {};
-    Solve_AStar(position, targetPosition, path);
+    Solve_AStar(nodes, position, targetPosition, path);
     for (auto & i : path)
         std::cout << "path: " << i.x << " " << i.y << std::endl;
 

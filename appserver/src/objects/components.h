@@ -10,6 +10,7 @@
 #endif // BROWSERRPG_COMPONENTS_H
 
 namespace Component {
+  static const int mapWidth = 99;
 
   struct Position {
     int x;
@@ -22,9 +23,9 @@ namespace Component {
 }
 
 namespace std {
-template <> struct hash<Component::Position> {
-    std::size_t operator()(const Component::Position &pos) const {
-      return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
-    }
-};
+  template <> struct hash<Component::Position> {
+      std::size_t operator()(const Component::Position &pos) const {
+        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
+      }
+  };
 }

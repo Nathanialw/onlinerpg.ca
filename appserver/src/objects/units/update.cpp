@@ -26,11 +26,11 @@ namespace Update {
     {'r', {0,0}}
   };
 
-  void Update_Position(int &px, int &py, int &x, int &y, Units::Species &species) {
-    Map::Update(px, py, x, y, Spawn::Get_Unit_Char(species));
-    Units::Update_Unit_Position(px, py, px + x, py + y);
-    Movement::Move(x, y);
-    Units::Update_UnitsString(x, y);
+  void Update_Position(Game::State &game, int &px, int &py, int &x, int &y, Units::Species &species) {
+    Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
+    Units::Update_Unit_Position(game.unitPositions, px, py, px + x, py + y);
+    Movement::Move(game, x, y);
+    Units::Update_UnitsString(game.unitsString, x, y);
   }
 
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
@@ -40,8 +40,8 @@ namespace Update {
   }
 
   void Update_Enemies(Game::State &game) {
-    auto &units = *Units::Get_Units();
-    auto player = units[0];
+    auto &units = game.units;
+    auto &player = game.Get_Player();
 
     for (int i = 1; i < units.size(); i++) {
       if (units[i].health <= 0) {
@@ -54,28 +54,29 @@ namespace Update {
         // cache position
         Component::Position former = units[i].position;
         // calculate next cell
-        Component::Position moveTo = Pathing::Move_To(units[i].position, player.position);
+        Component::Position moveTo = Pathing::Move_To(game.nodes, units[i].position, player.position);
         std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
         std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
         // check next cell and move/attack
-        if (Map::Get_Adjacent_Tile(former.x + moveTo.x, former.y + moveTo.y) == Spawn::Get_Unit_Char(player.def.species)) {
+        if (Map::Get_Adjacent_Tile(game, former.x + moveTo.x, former.y + moveTo.y) == Spawn::Get_Unit_Char(player.def.species)) {
           std::cout << "unit attacks player" << std::endl;
-          Attack::Melee(former.x, former.y, moveTo.x, moveTo.y);
+          Attack::Melee(game, former.x, former.y, moveTo.x, moveTo.y);
           continue;
         }
 
         units[i].position.x += moveTo.x;
         units[i].position.y += moveTo.y;
-        Map::Update(former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
-        Pathing::Update(Map::Get_Map());
-        Units::Update_Unit_Position(former.x, former.y, units[i].position.x, units[i].position.y);
+        Map::Update(game, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
+        auto map = Map::Get_Map(game);
+        Pathing::Update(game.nodes, map);
+        Units::Update_Unit_Position(game.unitPositions, former.x, former.y, units[i].position.x, units[i].position.y);
       }
       else {
         std::cout << "player not in vision" << std::endl;
       }
     }
 
-    auto mapString = Map::Get_Map();
+    auto mapString = Map::Get_Map(game);
     std::cout << "Drawing map: "<< std::endl;
     for (int i = 0; i < 99; i++) {
       std::cout << mapString.substr(i * 99, 99) << std::endl;
@@ -86,8 +87,8 @@ namespace Update {
     Move move;
     move = updatePosition[*direction];
 
-    std::cout << "num entities on update: " << Units::Get_Units()->size() << std::endl;
-    auto &player = Units::Get_Units()->at(0);
+    std::cout << "num entities on update: " << game.units.size() << std::endl;
+    Units::Unit &player = game.Get_Player();
     std::cout << "successfully grabbed player from units[]" << std::endl;
 
     //rest
@@ -98,20 +99,20 @@ namespace Update {
     }
 
     // collision
-    if (Collision::Wall_Collision(player.position.x, player.position.y, move.x, move.y)) {
+    if (Collision::Wall_Collision(game, player.position.x, player.position.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
       std::string c = "c";
       return c + " " + "  " + "1";
     }
     // if the nearby cell is an enemy, attack
-    auto melee = Attack::Melee(player.position.x, player.position.y, move.x, move.y);
+    auto melee = Attack::Melee(game, player.position.x, player.position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
       return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";
     }
 
     // if the unit survives, return, else move to the cell
-    Update_Position(player.position.x, player.position.y, move.x, move.y, player.def.species);
+    Update_Position(game, player.position.x, player.position.y, move.x, move.y, player.def.species);
 
     std::string m = direction;
     if (melee.isDead) {

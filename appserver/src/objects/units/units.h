@@ -141,19 +141,12 @@ namespace Units {
 
 
 
-  std::string Send_Units();
-  Unit Get_Player();
-  std::vector<Unit>* Get_Units();
-  int Get_Unit_Index(int x, int y);
-  void Update_Unit_Position(const int &x, const int &y, const int &newX, const int &newY);
-  void Remove_Unit(int x, int y);
+  int Get_Unit_Index(std::unordered_map<Component::Position, int> &unitPositions, int x, int y);
+  void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const int &x, const int &y, const int &newX, const int &newY);
+  void Remove_Unit(std::unordered_map<Component::Position, int> &unitPositions, std::vector<int> &emptyUnitSlots, int x, int y);
   std::string Get_Unit_Char(Species species);
-  Unit Get_Unit_At_Position(int x, int y);
-  std::vector<int>* Get_Unit_EmptyUnitSlots();
-  void Update_UnitsString(int x, int y);
-  std::string GetCharStats();
-  std::string Get_Units_String();
-  void Set_Units_String(const std::string &newUnitsString);
-  std::unordered_map<Component::Position, int>* Get_Unit_Positions();
+  Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, int x, int y);
+  void Update_UnitsString(std::string &unitsString, int x, int y);
+
 }
 

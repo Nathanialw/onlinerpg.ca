@@ -3,9 +3,8 @@
 
 namespace Movement {
 
-  void Move(int x, int y) {
-    auto &player = Units::Get_Units()->at(0);
-//    auto &player = Units::units[0];
+  void Move(Game::State &game, int x, int y) {
+    auto &player = game.Get_Player();;
     player.position.x += x;
     player.position.y += y;
   }

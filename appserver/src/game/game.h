@@ -6,6 +6,7 @@
 #include "string"
 #include "vector"
 #include "unordered_map"
+
 #include "components.h"
 #include "units.h"
 #include "pathing.h"
@@ -30,18 +31,27 @@ namespace Game {
     std::vector<Units::Unit> units;
     std::vector<int> emptyUnitSlots;
     std::unordered_map<Component::Position, int> unitPositions;
-//    static std::string unitsString;
+    std::string unitsString;
 
     //map
-    static const int mapWidth = 99;
-    std::string defaultMap[mapWidth][mapWidth];
-    std::string gameMap[mapWidth][mapWidth];
+//    static const int mapWidth = 99;
+    std::string defaultMap[Component::mapWidth][Component::mapWidth];
+    std::string gameMap[Component::mapWidth][Component::mapWidth];
 
     //pathing
-    std::array<Pathing::sNode, mapWidth * mapWidth> nodes;
+    std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> nodes;
 
     //seed
     uint32_t seed;
+
+
+    Units::Unit &Get_Player() {
+      return units[0];
+    }
+
+
+
+
   };
 
   State Init(const std::string& session_id);

@@ -24,7 +24,7 @@ namespace Pathing {
     sNode *parent{};
   };
 
-  Component::Position Move_To(Component::Position &position, const Component::Position &targetPosition);
-  bool Init(const std::string &mapString);
-  void Update(const std::string &mapString);
+  Component::Position Move_To(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, Component::Position &position, const Component::Position &targetPosition);
+  bool Init(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString);
+  void Update(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString);
 }

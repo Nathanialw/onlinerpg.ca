@@ -9,7 +9,8 @@
 #endif // BROWSERRPG_GOBLIN_H
 
 #include "units.h"
+#include "game.h"
 
 namespace Species {
-std::string Get_Unit_Data_As_string(const std::string &msg);
+  std::string Get_Unit_Data_As_string(Game::State &game, const std::string &msg);
 }

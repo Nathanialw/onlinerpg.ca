@@ -43,4 +43,5 @@ add_executable(BrowserRPG
         src/objects/units/spawn.cpp
         src/game/game.cpp
         src/networking/send.cpp
+        src/objects/units/player.cpp
 )
