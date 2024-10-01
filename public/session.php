@@ -6,5 +6,5 @@ session_start();
 $sessionId = session_id();
 
 // Output the session ID
-echo $sessionId;
+// echo $sessionId;
 ?>
