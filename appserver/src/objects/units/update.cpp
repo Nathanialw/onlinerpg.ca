@@ -113,6 +113,7 @@ namespace Update {
 
     // if the unit survives, return, else move to the cell
     Update_Position(game, player.position.x, player.position.y, move.x, move.y, player.def.species);
+    Map::Add_Map_Chunk(game);
 
     std::string m = direction;
     if (melee.isDead) {
