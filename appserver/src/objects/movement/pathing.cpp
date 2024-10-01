@@ -1,7 +1,6 @@
 //
 // Created by desktop on 9/21/24.
 //
-#include <array>
 #include <vector>
 #include <list>
 #include <cmath>
@@ -17,7 +16,7 @@ namespace Pathing {
 
 
   // clear previous location, set new location
-  void Update(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString) {
+  void Update(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString) {
     for (int y = 0; y < Component::mapWidth; y++) {
       for (int x = 0; x < Component::mapWidth; x++) {
           if (mapString[y * Component::mapWidth + x] == '.') {
@@ -30,7 +29,7 @@ namespace Pathing {
       }
   }
 
-  void Draw_Collision_Map(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes) {
+  void Draw_Collision_Map(Component::sNode nodes[Component::mapWidth * Component::mapWidth]) {
     std::cout << "Drawing collision map: "<< std::endl;
     for (int y = 0; y < Component::mapWidth; y++) {
       for (int x = 0; x < Component::mapWidth; x++) {
@@ -45,7 +44,7 @@ namespace Pathing {
     }
   }
 
-  bool Init(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString) {
+  bool Init(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString) {
     for (int y = 0; y < Component::mapWidth; y++) {
       for (int x = 0; x < Component::mapWidth; x++) {
         nodes[y * Component::mapWidth + x].x = x;
@@ -75,12 +74,13 @@ namespace Pathing {
 
     Update(nodes, mapString);
     Draw_Collision_Map(nodes);
+    std::cout << "path inited" << std::endl;
     return true;
   }
 
-  bool Solve_AStar(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
-    sNode *nodeStart = nullptr;
-    sNode *nodeEnd = nullptr;
+  bool Solve_AStar(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
+    Component::sNode *nodeStart = nullptr;
+    Component::sNode *nodeEnd = nullptr;
 
     // Reset Navigation Graph - default all node states
     nodeStart = &nodes[(position.y * Component::mapWidth) + position.x];
@@ -98,25 +98,25 @@ namespace Pathing {
         nodes[y * Component::mapWidth + x].parent = nullptr;// No parents
       }
 
-    auto distance = [](sNode *a, sNode *b)// For convenience
+    auto distance = [](Component::sNode *a, Component::sNode *b)// For convenience
     {
       return sqrtf((a->x - b->x) * (a->x - b->x) + (a->y - b->y) * (a->y - b->y));
     };
 
-    auto heuristic = [distance](sNode *a, sNode *b)// So we can experiment with heuristic
+    auto heuristic = [distance](Component::sNode *a, Component::sNode *b)// So we can experiment with heuristic
     {
       return distance(a, b);
     };
 
     // Setup starting conditions
-    sNode *nodeCurrent = nodeStart;
+    Component::sNode *nodeCurrent = nodeStart;
     nodeStart->fLocalGoal = 0.0f;
     nodeStart->fGlobalGoal = heuristic(nodeStart, nodeEnd);
 
     // Add start node to not tested list - this will ensure it gets tested.
     // As the algorithm progresses, newly discovered nodes get added to this
     // list, and will themselves be tested later
-    std::list<sNode *> listNotTestedNodes;
+    std::list<Component::sNode *> listNotTestedNodes;
     listNotTestedNodes.push_back(nodeStart);
 
     // if the not tested list contains nodes, there may be better paths
@@ -127,7 +127,7 @@ namespace Pathing {
     while (!listNotTestedNodes.empty() && nodeCurrent != nodeEnd)// Find absolutely shortest path // && nodeCurrent != nodeEnd)
     {
       if (i > numCellsToCheck) {
-        sNode *k = nodeCurrent;
+        Component::sNode *k = nodeCurrent;
         while (k != nodeStart) {
           Component::Position cell = {k->x, k->y};
           path.emplace_back(cell);
@@ -138,7 +138,7 @@ namespace Pathing {
       }
       i++;
       // Sort Untested nodes by global goal, so lowest is first
-      listNotTestedNodes.sort([](const sNode *lhs, const sNode *rhs) { return lhs->fGlobalGoal < rhs->fGlobalGoal; });
+      listNotTestedNodes.sort([](const Component::sNode *lhs, const Component::sNode *rhs) { return lhs->fGlobalGoal < rhs->fGlobalGoal; });
 
       // Front of listNotTestedNodes is potentially the lowest distance node. Our
       // list may also contain nodes that have been visited, so ditch these...
@@ -180,7 +180,7 @@ namespace Pathing {
       }
     }
 
-    sNode *k = nodeEnd;
+    Component::sNode *k = nodeEnd;
     while (k != nodeStart) {
       path.push_back({k->x, k->y});
       k = k->parent;
@@ -190,7 +190,7 @@ namespace Pathing {
     return true;
   }
 
-  Component::Position Move_To(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, Component::Position &position, const Component::Position &targetPosition) {
+  Component::Position Move_To(Component::sNode nodes[Component::mapWidth * Component::mapWidth], Component::Position &position, const Component::Position &targetPosition) {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path = {};
     Solve_AStar(nodes, position, targetPosition, path);

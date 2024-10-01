@@ -10,6 +10,8 @@
 #include "components.h"
 #include "units.h"
 #include "pathing.h"
+#include "procgen.h"
+#include "chunk.h"
 
 #ifndef BROWSERRPG_GAME_H
 #define BROWSERRPG_GAME_H
@@ -18,6 +20,9 @@
 
 
 namespace Game {
+
+
+
 
   //all of these need to be saved into a database
   struct State {
@@ -36,21 +41,20 @@ namespace Game {
     //map
     Component::Position location = {0, 0};
     int level = 0;
-    std::array<std::unordered_map<Component::Position, char[Component::mapWidth][Component::mapWidth]>, 26> defaultMaps;
-    std::array<std::unordered_map<Component::Position, char[Component::mapWidth][Component::mapWidth]>, 26> gameMaps;
-
-    //pathing
-    std::array<std::unordered_map<Component::Position, std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth>>, 26> nodes;
+    std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //seed
-    uint32_t seed;
+    Proc_Gen::Seed seed;
 
 
     Units::Unit &Get_Player() {
       return units[0];
     }
 
-
+    //constructor
+//      State() {
+//        seed.seed = Proc_Gen::Create_Initial_Seed(Get_Player().name[0], Get_Player().name[3]);
+//      }
 
 
   };

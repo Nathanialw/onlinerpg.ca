@@ -12,7 +12,6 @@
 
 namespace Player {
 
-//  Units::Unit Get(Game::State &game);
   std::string Get_Stats(Game::State &game);
-
+  void Spawn(Game::State &game, const std::basic_string<char> &characterCreate);
 }

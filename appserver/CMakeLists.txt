@@ -21,27 +21,35 @@ include_directories(src/objects/units/species)
 add_executable(BrowserRPG
 
         src/server/main.cpp
+        src/game/game.cpp
+
+        src/utils/utils.cpp
 
         src/networking/receiving.cpp
+        src/networking/send.cpp
 
         src/camera/camera.cpp
+
         src/map/map.cpp
-        src/objects/units/units.cpp
-        src/utils/utils.cpp
-        src/objects/collision/collision.cpp
+        src/map/labyrinth.cpp
+        src/map/chunk.cpp
+
+        src/objects/movement/movement.cpp
+        src/objects/movement/pathing.cpp
 
         src/objects/units/class/warrior.cpp
-        src/objects/movement/movement.cpp
-        src/objects/actions/attack.cpp
-        src/objects/actions/death.cpp
+        src/objects/units/player.cpp
+        src/objects/units/units.cpp
         src/objects/units/update.cpp
         src/objects/units/species/goblin.cpp
-        src/objects/movement/pathing.cpp
-        src/objects/components.cpp
-        src/map/labyrinth.cpp
-        src/procgen/procgen.cpp
         src/objects/units/spawn.cpp
-        src/game/game.cpp
-        src/networking/send.cpp
-        src/objects/units/player.cpp
+
+        src/objects/actions/attack.cpp
+        src/objects/actions/death.cpp
+
+        src/objects/components.cpp
+
+        src/objects/collision/collision.cpp
+
+        src/procgen/procgen.cpp
 )

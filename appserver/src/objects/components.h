@@ -20,6 +20,18 @@ namespace Component {
       return x == other.x && y == other.y;
     }
   };
+
+  struct sNode {
+    bool bObstacle = false;
+    bool bVisited = false;
+    float fGlobalGoal{};
+    float fLocalGoal{};
+    // position
+    int x{};
+    int y{};
+    std::vector<sNode *> vecNeighbours;
+    sNode *parent{};
+  };
 }
 
 namespace std {

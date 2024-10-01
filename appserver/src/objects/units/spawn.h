@@ -22,6 +22,7 @@ namespace Spawn {
 //  Placement Random_Placement();
 //  void Add_Unit(int x, int y, const std::string &name, Units::
 
-  void Init(Game::State &game, const std::basic_string<char> &characterCreate);
+  void Add_Unit(Game::State &game, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment);
   char Get_Unit_Char(Units::Species species);
+  void Init(Game::State &game);
 }

@@ -10,21 +10,12 @@
 #define BROWSERRPG_PATHING_H
 
 #endif // BROWSERRPG_PATHING_H
+#include "components.h"
 
 namespace Pathing {
-  struct sNode {
-    bool bObstacle = false;
-    bool bVisited = false;
-    float fGlobalGoal{};
-    float fLocalGoal{};
-    // position
-    int x{};
-    int y{};
-    std::vector<sNode *> vecNeighbours;
-    sNode *parent{};
-  };
 
-  Component::Position Move_To(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, Component::Position &position, const Component::Position &targetPosition);
-  bool Init(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString);
-  void Update(std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> &nodes, const std::string &mapString);
+
+  Component::Position Move_To(Component::sNode nodes[Component::mapWidth * Component::mapWidth], Component::Position &position, const Component::Position &targetPosition);
+  bool Init(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString);
+  void Update(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString);
 }

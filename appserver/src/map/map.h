@@ -14,12 +14,6 @@
 
 namespace Map {
 
-  struct Room {
-    int x;
-    int y;
-    int w;
-    int h;
-  };
 
   std::string Init(Game::State &game);
   std::string SendMapSegment(Game::State &game, const std::string& direction, int state = 1);
@@ -28,5 +22,4 @@ namespace Map {
   void Update(Game::State &game, int px, int py, int x, int y, const char &tile);
   void Set_Tile(Game::State &game, int x, int y, const char &tile);
   void Reset_Tile(Game::State &game, int x, int y);
-  std::vector<Room> Get_Large_Rooms();
 }

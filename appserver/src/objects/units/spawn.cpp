@@ -6,6 +6,7 @@
 #include "units.h"
 #include "utils.h"
 #include "procgen.h"
+#include "chunk.h"
 
 namespace Spawn {
 
@@ -51,12 +52,12 @@ namespace Spawn {
     unitsPositions.emplace(pos, units.size() - 1);
   }
 
-  std::vector<Placement> Spawn_Unit() {
+  std::vector<Placement> Spawn_Unit(Game::State &game) {
     std::vector<Placement> placements;
     Placement placement{};
     Proc_Gen::Seed seed;
 
-    for (const auto &room : Map::Get_Large_Rooms()) {
+    for (const auto &room : game.map[game.level][game.location].rooms) {
       seed.seed = Proc_Gen::Create_Initial_Seed(room.x, room.y);
       placement.x = Proc_Gen::Random_Int(room.x, room.x + room.w, seed);
       placement.y = Proc_Gen::Random_Int(room.y, room.y + room.h, seed);
@@ -94,59 +95,27 @@ namespace Spawn {
     return group;
   }
 
-  std::string Place_Entities_On_Map(Game::State &game, const std::basic_string<char> &characterCreate) {
-    std::string mapEntities = "2";
-    // loop through the map x times and lok for 2x2 squares
-    // set entities to be in the center of the square
-    // I need to send the char and the offset in the map g0317
-    auto length = characterCreate.size();
-
-    std::cout << "Crearacter create: " << characterCreate << std::endl;
-    std::string name = characterCreate.substr(1, length - 5);
-    std::cout << "Name: " << name << std::endl;
-    std::string genderStr = characterCreate.substr(length - 4, 1);
-    std::cout << "Gender: " << genderStr << std::endl;
-    std::string speciesStr = characterCreate.substr(length - 3, 1);
-    std::cout << "Species: " << speciesStr << std::endl;
-    std::string classStr = characterCreate.substr(length - 2, 1);
-    std::cout << "Class: " << classStr << std::endl;
-    std::string alignmentStr = characterCreate.substr(length - 1, 1);
-    std::cout << "Alignment: " << alignmentStr << std::endl;
-
-
-    auto gender = (Units::Gender)std::stoi(genderStr);
-    auto species = (Units::Species)std::stoi(speciesStr);
-    auto unitClass = (Units::Class)std::stoi(classStr);
-    auto alignment = (Units::Alignment)std::stoi(alignmentStr);
-
-    Add_Unit(game, 6, 6, name, gender, species, unitClass, alignment);
-    auto &units = game.units;
-    std::cout << "size: " << units.size() << std::endl;
-    units.at(0).health = 100;
-    units.at(0).healthMax = 100;
-    std::cout << "health: " << units.at(0).health << std::endl;
-
-    mapEntities += unitChars[(int)unitClass] + "0606";
-
-    auto placements = Spawn_Unit();
+  void Place_Entities_On_Map(Game::State &game) {
+    auto placements = Spawn_Unit(game);
     std::cout << "num placements: " << placements.size() << std::endl;
 
     for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
-      auto asd = Random_Entities(game, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
-      mapEntities += asd;
-      std::cout << "units added: " << asd << std::endl;
+      auto unitData = Random_Entities(game, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
+      game.unitsString += unitData;
+      std::cout << "units added: " << unitData << std::endl;
     }
 
-    std::cout << "init num entities: " << units.size() << std::endl;
-    return mapEntities;
+    std::cout << "init num entities: " << game.units.size() << std::endl;
   }
 
-  void Init(Game::State &game, const std::basic_string<char> &characterCreate) {
-    game.unitsString = Place_Entities_On_Map(game, characterCreate);
+  void Init(Game::State &game) {
+    Place_Entities_On_Map(game);
 
     for (auto &unit : game.units) {
         Map::Set_Tile(game, unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
     }
+    std::cout << "units inited" << std::endl;
+
   }
 }

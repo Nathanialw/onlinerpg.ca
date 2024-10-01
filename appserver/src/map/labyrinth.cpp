@@ -8,7 +8,7 @@
 
 #include "labyrinth.h"
 #include "procgen.h"
-
+#include "game.h"
 
 namespace Labyrinth {
 
@@ -28,7 +28,7 @@ namespace Labyrinth {
   std::array<int, labyrinthWidth * labyrinthWidth> m_maze;
   int m_nVisitedCells;
   std::stack<std::pair<int, int>> m_stack;// (x, y) coordinate pairs
-  Proc_Gen::Seed seed;
+//  Proc_Gen::Seed seed;
 
   // Some bit fields for convenience
   enum {
@@ -39,7 +39,7 @@ namespace Labyrinth {
     CELL_VISITED = 0x10,
   };
 
-  bool Init(int state) {
+  bool Init(int state, Proc_Gen::Seed &seed) {
     mapCells =
         {
             "#.##.####", //
@@ -68,7 +68,6 @@ namespace Labyrinth {
     m_nMazeHeight = labyrinthWidth;
 
     // Choose a starting cell
-    seed.seed = Proc_Gen::Create_Initial_Seed(state, state);
     int x = Proc_Gen::Random_Int(state, m_nMazeWidth, seed);
     int y = Proc_Gen::Random_Int(state, m_nMazeHeight, seed);
 
@@ -79,8 +78,9 @@ namespace Labyrinth {
     return true;
   }
 
-  bool Generate_Map() {
-    Init(0);
+  bool Generate_Map(Proc_Gen::Seed &seed) {
+    seed.seed = Proc_Gen::Create_Initial_Seed(0, 0);
+    Init(0, seed);
 
     auto offset = [&](int x, int y) {
       return (m_stack.top().second + y) * m_nMazeWidth + (m_stack.top().first + x);
