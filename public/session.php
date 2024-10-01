@@ -2,9 +2,11 @@
 // Start the session
 session_start();
 
-// Generate a unique session ID
-$sessionId = session_id();
+// Generate a unique session ID if it doesn't exist
+if (!isset($_SESSION['session_id'])) {
+    $_SESSION['session_id'] = session_id();
+}
 
 // Output the session ID
-echo $sessionId;
+echo $_SESSION['session_id'];
 ?>

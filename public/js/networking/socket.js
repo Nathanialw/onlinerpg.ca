@@ -18,10 +18,8 @@ async function getSessionId() {
   getSessionId().then(sessionId => {
     if (sessionId) {
       console.log('success Session ID:', sessionId);
-      websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
       // Now you can use the sessionId variable in your code
     }
-    console.log('failed Session ID:', sessionId);
   });
 
 
@@ -35,6 +33,12 @@ let reconnectInterval = 1000; // 1 second
 
 export async function createWebSocket() {
     sessionId = await getSessionId();
+    if (!sessionId) {
+        console.error('Failed to retrieve session ID');
+        return;
+    }
+    
+    websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
 
     websocket.onopen = () => {
         console.log("WebSocket connection opened");
