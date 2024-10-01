@@ -123,4 +123,36 @@ namespace Map {
         tile = game.map[game.level][game.location].chunk[y][x];
     return tile;
   }
+
+  void Add_Map_Chunk(Game::State &game) {
+    //if we get close to the edge, we need to add a new chunk
+    //get player position
+    auto &player = game.Get_Player();
+    if (player.position.x >= Component::mapWidth - 7 || player.position.x < 0 + 7 || player.position.y >= Component::mapWidth - 7 || player.position.y < 0 + 7) {
+        // get player location
+        Component::Position location = game.location;
+        if (player.position.x >= Component::mapWidth)
+            location.x += +1;
+        else if (player.position.x < 0)
+            location.x -= 1;
+        else if (player.position.y >= Component::mapWidth)
+            location.y += 1;
+        else if (player.position.y < 0)
+            location.y -= 1;
+
+      if (game.map[game.level].find(location) == game.map[game.level].end()) {
+        // if player position is close to the edge of the chunk, create a new chunk add a new chunk
+        std::cout << "Creating chunk" << std::endl;
+        Chunk::Create_Chunk(game.map[game.level][location].defaultChunk,
+                            game.map[game.level][location].chunk,
+                            game.map[game.level][location].rooms,
+                            game.map[game.level][location].pathing,
+                            game.seed, game.objects);
+        std::cout << "chunk created" << std::endl;
+      }
+      else {
+        std::cout << "chunk already exists" << std::endl;
+      }
+    }
+  }
 }

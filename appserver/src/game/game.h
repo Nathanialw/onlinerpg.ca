@@ -28,6 +28,12 @@ namespace Game {
     //player id
     //saved into the db to link the player to the game data
 
+    //session
+    std::string session_id;
+
+    //units
+    Units::Objects objects;
+
     //current turn
     int turn = 0;
     //start day jan 1 2024
@@ -39,15 +45,10 @@ namespace Game {
     //get hungry = 1/day
     //rest = 5min, unless interrupted
 
-    //session
-    std::string session_id;
-
-    //units
-    Units::Objects objects;
 
     //map
-    Component::Position location = {0, 0};
     int level = 0;
+    Component::Position location = {0, 0};
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //seed
@@ -56,6 +57,10 @@ namespace Game {
 
     Units::Unit &Get_Player() {
       return objects.units[0];
+    }
+
+    Chunk::Map_Chunk &Get_Map() {
+      return map[level][location];
     }
 
     //constructor

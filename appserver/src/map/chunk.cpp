@@ -63,7 +63,8 @@ namespace Chunk {
     Add_Large_Rooms(defaultChunk, rooms);
   }
 
-  void Add_Map_Chunk(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects) {
+
+  void Create_Chunk(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects) {
     //chunk position
     //seed based on that position
 
@@ -76,5 +77,7 @@ namespace Chunk {
     Spawn::Init(chunk, rooms, objects); // msg->get_payload()
     std::cout << "units inited" << std::endl;
   }
+
+
 
 }
