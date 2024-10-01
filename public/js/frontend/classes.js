@@ -8,7 +8,7 @@ export let classes = new Map([
     //male elf
     ["4000", "Ranger"], ["4001", "Sentinel"], ["4002", "Vampire"],
     ["4010", "Druid"], ["4011", "Mage"], ["4012", "Necromancer"],
-    //female elf
-    // ["4100", ""], ["4101", ""], ["4102", ""],
-    ["4110", "Fey"], ["4111", ""], ["4112", "Enchantress"],
+    //female elf fighter
+    ["4100", "Warden"], ["4101", "Scout"], ["4102", "assassin"],
+    ["4110", "Fey"], ["4111", "Enchantress"], ["4112", "Succubus"],
 ]);
