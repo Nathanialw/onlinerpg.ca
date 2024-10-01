@@ -29,12 +29,11 @@ namespace Game {
 
     //units
     std::vector<Units::Unit> units;
-    std::vector<int> emptyUnitSlots;
     std::unordered_map<Component::Position, int> unitPositions;
+    std::vector<int> emptyUnitSlots;
     std::string unitsString;
 
     //map
-//    static const int mapWidth = 99;
     std::string defaultMap[Component::mapWidth][Component::mapWidth];
     std::string gameMap[Component::mapWidth][Component::mapWidth];
 
