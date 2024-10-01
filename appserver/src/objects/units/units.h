@@ -139,7 +139,12 @@ namespace Units {
 
   };
 
-
+  struct Objects {
+    std::vector<Unit> units;
+    std::unordered_map<Component::Position, int> unitPositions;
+    std::vector<int> emptyUnitSlots;
+    std::string unitsString;
+  };
 
   int Get_Unit_Index(std::unordered_map<Component::Position, int> &unitPositions, int x, int y);
   void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const int &x, const int &y, const int &newX, const int &newY);

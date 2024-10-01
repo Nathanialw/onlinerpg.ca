@@ -23,20 +23,27 @@ namespace Game {
 
 
 
-
   //all of these need to be saved into a database
   struct State {
     //player id
     //saved into the db to link the player to the game data
 
+    //current turn
+    int turn = 0;
+    //start day jan 1 2024
+    //attack/move = 1 min
+    //1 day = 1440 min
+    //get tired
+    //sleep = 8 hours = 480 turns
+    //active time = 960 turns/day
+    //get hungry = 1/day
+    //rest = 5min, unless interrupted
+
     //session
     std::string session_id;
 
     //units
-    std::vector<Units::Unit> units;
-    std::unordered_map<Component::Position, int> unitPositions;
-    std::vector<int> emptyUnitSlots;
-    std::string unitsString;
+    Units::Objects objects;
 
     //map
     Component::Position location = {0, 0};
@@ -48,7 +55,7 @@ namespace Game {
 
 
     Units::Unit &Get_Player() {
-      return units[0];
+      return objects.units[0];
     }
 
     //constructor

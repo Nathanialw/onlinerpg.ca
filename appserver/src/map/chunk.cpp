@@ -4,6 +4,7 @@
 #include "chunk.h"
 #include "map.h"
 #include "spawn.h"
+//#include "procgen.h"
 
 namespace Chunk {
 
@@ -62,14 +63,17 @@ namespace Chunk {
     Add_Large_Rooms(defaultChunk, rooms);
   }
 
-  void Add_Map_Chunk(Game::State &game) {
-    std::string map = Map::Init(game);
+  void Add_Map_Chunk(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects) {
+    //chunk position
+    //seed based on that position
+
+    std::string map = Map::Init(defaultChunk, chunk, rooms, seed);
     std::cout << "map inited" << std::endl;
 
-    Pathing::Init(game.map[game.level][game.location].pathing, map);
+    Pathing::Init(pathing, map);
     std::cout << "path inited" << std::endl;
 
-    Spawn::Init(game); // msg->get_payload()
+    Spawn::Init(chunk, rooms, objects); // msg->get_payload()
     std::cout << "units inited" << std::endl;
   }
 

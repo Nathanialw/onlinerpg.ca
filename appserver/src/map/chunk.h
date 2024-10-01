@@ -8,10 +8,10 @@
 #define BROWSERRPG_CHUNK_H
 
 #endif // BROWSERRPG_CHUNK_H
-//#include "map.h"
-//#include "pathing.h"
-//#include "game.h"
+
 #include "components.h"
+#include "units.h"
+#include "procgen.h"
 
 namespace Chunk {
 
@@ -30,6 +30,6 @@ namespace Chunk {
     std::vector<Room> rooms;
   };
 
-//  void Add_Map_Chunk(Game::State &game);
+  void Add_Map_Chunk(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects);
   void Add_Rooms(char defaultChunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms);
 }

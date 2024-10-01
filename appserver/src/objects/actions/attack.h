@@ -10,6 +10,6 @@ namespace Attack {
     bool isDead = false;
   };
 
-  Damage Melee(Game::State &game, int px, int py, int x, int y);
+  Damage Melee(Units::Objects &objects, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int px, int py, int x, int y);
 
 }

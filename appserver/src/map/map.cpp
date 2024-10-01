@@ -11,24 +11,24 @@
 
 namespace Map {
 
-  std::string Get_Map(Game::State &game) {
+  std::string Get_Map(char chunk[Component::mapWidth][Component::mapWidth]) {
     std::string map;
     for (int j = 0; j < Component::mapWidth; j++) {
       for (int i = 0; i < Component::mapWidth; i++) {
         if (i < 0 || i > Component::mapWidth || j < 0 || j > Component::mapWidth)
           map += ' ';
         else
-          map += game.map[game.level][game.location].chunk[j][i];
+          map += chunk[j][i];
       }
     }
     return map;
   }
 
-  void Set_Game_Map(Game::State &game) {
+  void Set_Game_Map(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth]) {
     std::cout << "Setting open map" << std::endl;
     for (int x = 0; x < Component::mapWidth; x++) {
       for (int y = 0; y < Component::mapWidth; y++) {
-        game.map[game.level][game.location].chunk[x][y] = game.map[game.level][game.location].defaultChunk[x][y];
+        chunk[x][y] = defaultChunk[x][y];
       }
     }
   }
@@ -48,9 +48,9 @@ namespace Map {
     }
   }
 
-  void Create_Labyrinth(Game::State &game) {
+  void Create_Labyrinth(char defaultChunk[Component::mapWidth][Component::mapWidth], Proc_Gen::Seed &seed) {
     std::cout << "Creating labyrinth" << std::endl;
-    Labyrinth::Generate_Map(game.seed);
+    Labyrinth::Generate_Map(seed);
     std::string labyrinthStr;
     const int cellSize = 3;
 
@@ -65,7 +65,7 @@ namespace Map {
           for (int l = 0; l < cellSize; l++) {
             int x = (i * cellSize) + k;
             int y = (j * cellSize) + l;
-            game.map[game.level][game.location].defaultChunk[x][y] = labyrinthStr[charIndex];
+            defaultChunk[x][y] = labyrinthStr[charIndex];
             charIndex++;
           }
         }
@@ -73,26 +73,26 @@ namespace Map {
     }
   }
 
-  std::string Init(Game::State &game) {
+  std::string Init(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Proc_Gen::Seed &seed) {
 //    Create_Open_Map();
-    Create_Labyrinth(game);
-    Chunk::Add_Rooms(game.map[game.level][game.location].defaultChunk, game.map[game.level][game.location].rooms);
-    Set_Game_Map(game);
+    Create_Labyrinth(defaultChunk, seed);
+    Chunk::Add_Rooms(defaultChunk, rooms);
+    Set_Game_Map(defaultChunk, chunk);
     std::cout << "map inited" << std::endl;
-    return Get_Map(game);
+    return Get_Map(chunk);
   }
 
-  void Set_Tile(Game::State &game, int x, int y, const char &tile) {
-    game.map[game.level][game.location].chunk[y][x] = tile;
+  void Set_Tile(char chunk[Component::mapWidth][Component::mapWidth], int x, int y, const char &tile) {
+    chunk[y][x] = tile;
   }
 
-  void Reset_Tile(Game::State &game, int x, int y) {
-    game.map[game.level][game.location].chunk[y][x] = game.map[game.level][game.location].defaultChunk[y][x];
+  void Reset_Tile(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int x, int y) {
+    chunk[y][x] = defaultChunk[y][x];
   }
 
   void Update(Game::State &game, int px, int py, int x, int y, const char &tile) {
-    Reset_Tile(game, px, py);
-    Set_Tile(game, px + x, py + y, tile);
+    Reset_Tile(game.map[game.level][game.location].defaultChunk, game.map[game.level][game.location].chunk, px, py);
+    Set_Tile(game.map[game.level][game.location].chunk, px + x, py + y, tile);
   }
 
   // state 1 = initial map, 2 = update map

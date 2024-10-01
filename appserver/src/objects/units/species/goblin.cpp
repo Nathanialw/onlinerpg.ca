@@ -26,7 +26,7 @@ namespace Species {
     int mapPositionX = player.position.x - player.vision + std::stoi(msg.substr(0, 2));
     int mapPositionY = player.position.y - player.vision + std::stoi(msg.substr(2, 2));
 
-    auto unit = Units::Get_Unit_At_Position(game.units, game.unitPositions, mapPositionX, mapPositionY);
+    auto unit = Units::Get_Unit_At_Position(game.objects.units, game.objects.unitPositions, mapPositionX, mapPositionY);
 
     auto name = unit.name;
     auto age = Utils::Prepend_Zero_3Digit(unit.age);

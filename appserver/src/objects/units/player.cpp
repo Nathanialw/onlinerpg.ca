@@ -38,7 +38,7 @@ namespace Player {
 
 
   void Spawn(Game::State &game, const std::basic_string<char> &characterCreate) {
-    game.unitsString += "2";
+    game.objects.unitsString += "2";
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
     // I need to send the char and the offset in the map g0317
@@ -62,13 +62,13 @@ namespace Player {
     auto unitClass = (Units::Class)std::stoi(classStr);
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
 
-    Spawn::Add_Unit(game, 6, 6, name, gender, species, unitClass, alignment);
-    std::cout << "size: " << game.units.size() << std::endl;
-    game.units.at(0).health = 100;
-    game.units.at(0).healthMax = 100;
-    std::cout << "health: " << game.units.at(0).health << std::endl;
+    Spawn::Add_Unit(game.objects, 6, 6, name, gender, species, unitClass, alignment);
+    std::cout << "size: " << game.objects.units.size() << std::endl;
+    game.objects.units.at(0).health = 100;
+    game.objects.units.at(0).healthMax = 100;
+    std::cout << "health: " << game.objects.units.at(0).health << std::endl;
 
-    game.unitsString += (std::to_string(Spawn::Get_Unit_Char(species)) + "0606");
+    game.objects.unitsString += (std::to_string(Spawn::Get_Unit_Char(species)) + "0606");
   }
 
 }

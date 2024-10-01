@@ -17,13 +17,13 @@
 namespace Send {
 
   void Init(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
-    std::string map = Map::Init(game);
+    std::string map = Map::Init(game.map[game.level][game.location].defaultChunk, game.map[game.level][game.location].chunk, game.map[game.level][game.location].rooms, game.seed);
     Pathing::Init(game.map[game.level][game.location].pathing, map);
     Player::Spawn(game, msg);
-    Spawn::Init(game); // msg->get_payload()
+    Spawn::Init(game.map[game.level][game.location].chunk, game.map[game.level][game.location].rooms, game.objects); // msg->get_payload()
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 
-    if (!game.units.empty()) {
+    if (!game.objects.units.empty()) {
       print_server.send(hdl, Map::SendMapSegment(game, "q"), websocketpp::frame::opcode::text);
     }
 
@@ -69,7 +69,7 @@ namespace Send {
                         websocketpp::frame::opcode::text);
       std::cout << "char stats sent!" << std::endl;
 
-      if (!game.units.empty()) {
+      if (!game.objects.units.empty()) {
         print_server.send(hdl, Map::SendMapSegment(game, "1   0"), websocketpp::frame::opcode::text);
       }
     }

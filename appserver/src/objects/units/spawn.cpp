@@ -27,7 +27,7 @@ namespace Spawn {
     return unitChars[(int)species];
   }
 
-  void Add_Unit(Game::State &game, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
+  void Add_Unit(Units::Objects &objects, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
     Units::Unit unit{};
     unit.name = name;
     unit.def.gender = gender;
@@ -37,10 +37,10 @@ namespace Spawn {
     unit.position.x = x;
     unit.position.y = y;
 
-    auto &units = game.units;
-    auto &unitsPositions = game.unitPositions;
+    auto &units = objects.units;
+    auto &unitsPositions = objects.unitPositions;
 
-    auto &emptyUnitSlots = game.emptyUnitSlots;
+    auto &emptyUnitSlots = objects.emptyUnitSlots;
     if (emptyUnitSlots.empty()) {
       units.emplace_back(unit);
     } else {
@@ -52,12 +52,12 @@ namespace Spawn {
     unitsPositions.emplace(pos, units.size() - 1);
   }
 
-  std::vector<Placement> Spawn_Unit(Game::State &game) {
+  std::vector<Placement> Spawn_Unit(std::vector<Chunk::Room> &rooms) {
     std::vector<Placement> placements;
     Placement placement{};
     Proc_Gen::Seed seed;
 
-    for (const auto &room : game.map[game.level][game.location].rooms) {
+    for (const auto &room : rooms) {
       seed.seed = Proc_Gen::Create_Initial_Seed(room.x, room.y);
       placement.x = Proc_Gen::Random_Int(room.x, room.x + room.w, seed);
       placement.y = Proc_Gen::Random_Int(room.y, room.y + room.h, seed);
@@ -66,19 +66,19 @@ namespace Spawn {
     return placements;
   }
 
-  bool Add_Object(Game::State &game, std::string &group, int x, int y) {
+  bool Add_Object(Units::Objects &objects, std::string &group, int x, int y) {
     if (x > Component::mapWidth - 1 || y > Component::mapWidth - 1 || x < 1 || y < 1) {
       group.clear();
       return false;
     } else {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
-      Add_Unit(game, x, y, "Blargh", Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
+      Add_Unit(objects, x, y, "Blargh", Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
       return true;
     }
   }
 
-  std::string Random_Entities(Game::State &game, const char entityType, int numEntities, int x, int y) {
+  std::string Random_Entities(Units::Objects &objects, const char entityType, int numEntities, int x, int y) {
     std::string group;
     int tries = 10;
   reRoll:
@@ -87,7 +87,7 @@ namespace Spawn {
     }
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
-      if (!Add_Object(game, group, x + i, y + i)) {
+      if (!Add_Object(objects, group, x + i, y + i)) {
         tries--;
         goto reRoll;
       }
@@ -95,25 +95,25 @@ namespace Spawn {
     return group;
   }
 
-  void Place_Entities_On_Map(Game::State &game) {
-    auto placements = Spawn_Unit(game);
+  void Place_Entities_On_Map(std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
+    auto placements = Spawn_Unit(rooms);
     std::cout << "num placements: " << placements.size() << std::endl;
 
     for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
-      auto unitData = Random_Entities(game, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
-      game.unitsString += unitData;
+      auto unitData = Random_Entities(objects, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
+      objects.unitsString += unitData;
       std::cout << "units added: " << unitData << std::endl;
     }
 
-    std::cout << "init num entities: " << game.units.size() << std::endl;
+    std::cout << "init num entities: " << objects.units.size() << std::endl;
   }
 
-  void Init(Game::State &game) {
-    Place_Entities_On_Map(game);
+  void Init(char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
+    Place_Entities_On_Map(rooms, objects);
 
-    for (auto &unit : game.units) {
-        Map::Set_Tile(game, unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
+    for (auto &unit : objects.units) {
+        Map::Set_Tile(chunk, unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
     }
     std::cout << "units inited" << std::endl;
 
