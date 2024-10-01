@@ -132,6 +132,7 @@ namespace Map {
     if (player.position.x >= Component::mapWidth - 7 || player.position.x < 0 + 7 || player.position.y >= Component::mapWidth - 7 || player.position.y < 0 + 7) {
         // get player location
         Component::Position location = game.location;
+        std::cout << "Player position: " << player.position.x << ", " << player.position.y << std::endl;
         if (player.position.x >= Component::mapWidth)
             location.x += +1;
         else if (player.position.x < 0)
@@ -141,6 +142,7 @@ namespace Map {
         else if (player.position.y < 0)
             location.y -= 1;
 
+      std::cout << "location position: " << location.x << ", " << location.y << std::endl;
       if (game.map[game.level].count(location) == 0) {
         // if player position is close to the edge of the chunk, create a new chunk add a new chunk
         std::cout << "Creating chunk" << std::endl;
