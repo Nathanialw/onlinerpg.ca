@@ -128,6 +128,7 @@ namespace Map {
     //if we get close to the edge, we need to add a new chunk
     //get player position
     auto &player = game.Get_Player();
+    std::cout << "Add map chunk" << std::endl;
     if (player.position.x >= Component::mapWidth - 7 || player.position.x < 0 + 7 || player.position.y >= Component::mapWidth - 7 || player.position.y < 0 + 7) {
         // get player location
         Component::Position location = game.location;
@@ -153,6 +154,9 @@ namespace Map {
       else {
         std::cout << "chunk already exists" << std::endl;
       }
+    }
+    else {
+        std::cout << "player not near edge" << std::endl;
     }
   }
 }
