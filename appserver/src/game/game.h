@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by desktop on 9/30/24.
 //

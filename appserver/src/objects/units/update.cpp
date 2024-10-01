@@ -1,6 +1,7 @@
 #include "unordered_map"
 #include "iostream"
 
+#include "game.h"
 #include "update.h"
 #include "units.h"
 #include "map.h"
@@ -38,7 +39,7 @@ namespace Update {
     return false;
   }
 
-  void Update_Enemies() {
+  void Update_Enemies(Game::State &game) {
     auto &units = *Units::Get_Units();
     auto player = units[0];
 
@@ -81,7 +82,7 @@ namespace Update {
     }
   }
 
-  std::string Update_Player(const char *direction) {
+  std::string Update_Player(Game::State &game, const char *direction) {
     Move move;
     move = updatePosition[*direction];
 
@@ -120,9 +121,9 @@ namespace Update {
     return m + " " + "  " + "1";
   }
 
-  std::string Update_Units(const char *direction) {
-    auto action = Update_Player(direction);
-    Update_Enemies();
+  std::string Update_Units(Game::State &game, const char *direction) {
+    auto action = Update_Player(game, direction);
+    Update_Enemies(game);
     return action;
   }
 

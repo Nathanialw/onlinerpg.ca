@@ -121,7 +121,7 @@ namespace Network {
   }
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
-    Send::On_Message(hdl, msg->get_payload(), print_server);
+    Send::On_Message(hdl, msg->get_payload(), print_server, reverse_client_connections[hdl]);
     //when a player moves, send the new position to all the clients except the one that sent it right away
 
     //every entity needs to be saved as a uID
