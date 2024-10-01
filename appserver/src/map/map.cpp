@@ -133,13 +133,13 @@ namespace Map {
         // get player location
         Component::Position location = game.location;
         std::cout << "Player position: " << player.position.x << ", " << player.position.y << std::endl;
-        if (player.position.x >= Component::mapWidth)
+        if (player.position.x >= Component::mapWidth - 7)
             location.x += +1;
-        else if (player.position.x < 0)
+        else if (player.position.x < 0 + 7)
             location.x -= 1;
-        else if (player.position.y >= Component::mapWidth)
+        else if (player.position.y >= Component::mapWidth - 7)
             location.y += 1;
-        else if (player.position.y < 0)
+        else if (player.position.y < 0 + 7)
             location.y -= 1;
 
       std::cout << "location position: " << location.x << ", " << location.y << std::endl;
