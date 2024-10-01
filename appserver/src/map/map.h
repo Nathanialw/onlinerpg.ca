@@ -25,8 +25,8 @@ namespace Map {
   std::string SendMapSegment(Game::State &game, const std::string& direction, int state = 1);
   std::string Get_Adjacent_Tile(Game::State &game, int x, int y);
   std::string Get_Map(Game::State &game);
-  void Update(Game::State &game, int px, int py, int x, int y, const std::string &tile);
-  void Set_Tile(Game::State &game, int x, int y, const std::string &tile);
+  void Update(Game::State &game, int px, int py, int x, int y, const char &tile);
+  void Set_Tile(Game::State &game, int x, int y, const char &tile);
   void Reset_Tile(Game::State &game, int x, int y);
   std::vector<Room> Get_Large_Rooms();
 }

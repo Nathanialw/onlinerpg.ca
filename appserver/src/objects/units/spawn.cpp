@@ -9,20 +9,20 @@
 
 namespace Spawn {
 
-  std::string unitChars[(int)Units::Species::SIZE] = {"a",    "b",    "c",
-                                               "d",   "e",    "f",    "g",
-                                               "h",   "i",    "j",    "k",
-                                               "l",   "m",    "n",    "o",
-                                               "p",   "q",    "r",    "s",
-                                               "t",   "u",    "v",    "w",
-                                               "x",   "y",    "z",    "A",
-                                               "B",   "C",    "D",    "E",   "F",
-                                               "G",   "H",    "I",    "J",   "K",
-                                               "L",   "M",    "N",    "O",   "P",
-                                               "Q",   "R",    "S",    "T",   "U",
-                                               "V",   "W",    "X",    "Y",   "Z", " "};
+  char unitChars[(int)Units::Species::SIZE] = {'a',   'b',    'c',
+                                               'd',   'e',    'f',    'g',
+                                               'h',   'i',    'j',    'k',
+                                               'l',   'm',    'n',    'o',
+                                               'p',   'q',    'r',    's',
+                                               't',   'u',    'v',    'w',
+                                               'x',   'y',    'z',    'A',
+                                               'B',   'C',    'D',    'E',   'F',
+                                               'G',   'H',    'I',    'J',   'K',
+                                               'L',   'M',    'N',    'O',   'P',
+                                               'Q',   'R',    'S',    'T',   'U',
+                                               'V',   'W',    'X',    'Y',   'Z', ' '};
 
-  std::string Get_Unit_Char(Units::Species species) {
+  char Get_Unit_Char(Units::Species species) {
     return unitChars[(int)species];
   }
 
@@ -77,7 +77,7 @@ namespace Spawn {
     }
   }
 
-  std::string Random_Entities(Game::State &game, const char* entityType, int numEntities, int x, int y) {
+  std::string Random_Entities(Game::State &game, const char entityType, int numEntities, int x, int y) {
     std::string group;
     int tries = 10;
   reRoll:
@@ -133,7 +133,7 @@ namespace Spawn {
 
     for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
-      auto asd = Random_Entities(game, unitChars[(int)Units::Species::GOBLIN].c_str(), numMonsters, placement.x, placement.y);
+      auto asd = Random_Entities(game, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
       mapEntities += asd;
       std::cout << "units added: " << asd << std::endl;
     }

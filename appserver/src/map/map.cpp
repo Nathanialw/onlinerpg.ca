@@ -78,7 +78,7 @@ namespace Map {
       for (int l = 0; l < h; l++) {
         int j = x + l;
         int i = y + k;
-        game.defaultMap[i][j] = ".";
+        game.defaultMap[i][j] = '.';
       }
     }
   }
@@ -132,7 +132,7 @@ namespace Map {
     return Get_Map(game);
   }
 
-  void Set_Tile(Game::State &game, int x, int y, const std::string &tile) {
+  void Set_Tile(Game::State &game, int x, int y, const char &tile) {
     game.gameMap[y][x] = tile;
   }
 
@@ -140,7 +140,7 @@ namespace Map {
     game.gameMap[y][x] = game.defaultMap[y][x];
   }
 
-  void Update(Game::State &game, int px, int py, int x, int y, const std::string &tile) {
+  void Update(Game::State &game, int px, int py, int x, int y, const char &tile) {
     Reset_Tile(game, px, py);
     Set_Tile(game, px + x, py + y, tile);
   }

@@ -58,7 +58,7 @@ namespace Update {
         std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
         std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
         // check next cell and move/attack
-        if (Map::Get_Adjacent_Tile(game, former.x + moveTo.x, former.y + moveTo.y) == Spawn::Get_Unit_Char(player.def.species)) {
+        if (Map::Get_Adjacent_Tile(game, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(player.def.species)) {
           std::cout << "unit attacks player" << std::endl;
           Attack::Melee(game, former.x, former.y, moveTo.x, moveTo.y);
           continue;

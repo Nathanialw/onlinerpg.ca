@@ -23,5 +23,5 @@ namespace Spawn {
 //  void Add_Unit(int x, int y, const std::string &name, Units::
 
   void Init(Game::State &game, const std::basic_string<char> &characterCreate);
-  std::string Get_Unit_Char(Units::Species species);
+  char Get_Unit_Char(Units::Species species);
 }
