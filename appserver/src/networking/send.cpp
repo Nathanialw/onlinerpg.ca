@@ -19,7 +19,7 @@ namespace Send {
   void Init(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
     std::string map = Map::Init(game);
     std::cout << "map inited" << std::endl;
-    Pathing::Init(game.nodes, map);
+    Pathing::Init(game.nodes[game.level][game.location], map);
     std::cout << "path inited" << std::endl;
     Spawn::Init(game, msg); // msg->get_payload()
     std::cout << "units inited" << std::endl;

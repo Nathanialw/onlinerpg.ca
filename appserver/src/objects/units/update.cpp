@@ -54,7 +54,7 @@ namespace Update {
         // cache position
         Component::Position former = units[i].position;
         // calculate next cell
-        Component::Position moveTo = Pathing::Move_To(game.nodes, units[i].position, player.position);
+        Component::Position moveTo = Pathing::Move_To(game.nodes[game.level][game.location], units[i].position, player.position);
         std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
         std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
         // check next cell and move/attack
@@ -68,7 +68,7 @@ namespace Update {
         units[i].position.y += moveTo.y;
         Map::Update(game, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
         auto map = Map::Get_Map(game);
-        Pathing::Update(game.nodes, map);
+        Pathing::Update(game.nodes[game.level][game.location], map);
         Units::Update_Unit_Position(game.unitPositions, former.x, former.y, units[i].position.x, units[i].position.y);
       }
       else {

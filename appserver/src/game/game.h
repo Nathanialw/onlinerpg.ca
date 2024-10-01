@@ -38,11 +38,9 @@ namespace Game {
     int level = 0;
     std::array<std::unordered_map<Component::Position, char[Component::mapWidth][Component::mapWidth]>, 26> defaultMaps;
     std::array<std::unordered_map<Component::Position, char[Component::mapWidth][Component::mapWidth]>, 26> gameMaps;
-//    char defaultMap[Component::mapWidth][Component::mapWidth];
-//    char gameMap[Component::mapWidth][Component::mapWidth];
 
     //pathing
-    std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth> nodes;
+    std::array<std::unordered_map<Component::Position, std::array<Pathing::sNode, Component::mapWidth * Component::mapWidth>>, 26> nodes;
 
     //seed
     uint32_t seed;
