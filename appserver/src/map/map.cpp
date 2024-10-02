@@ -103,6 +103,21 @@ namespace Map {
 
   void Update(Game::State &game, int px, int py, int x, int y, const char &tile) {
     Reset_Tile(game.map[game.level][game.location].defaultChunk, game.map[game.level][game.location].chunk, px, py);
+    //update location
+    if (px + x < 0) {
+      game.location.x -= 1;
+      px = Component::mapWidth - 1;
+    } else if (px + x >= Component::mapWidth) {
+      game.location.x += 1;
+      px = 0;
+    }
+    if (py + y < 0) {
+      game.location.y -= 1;
+      py = Component::mapWidth - 1;
+    } else if (py + y >= Component::mapWidth) {
+      game.location.y += 1;
+      py = 0;
+    }
     Set_Tile(game.map[game.level][game.location].chunk, px + x, py + y, tile);
   }
 
