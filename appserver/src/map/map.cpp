@@ -141,11 +141,11 @@ namespace Map {
             mapSegment += game.map[game.level][game.location].chunk[j][i];
         }
     }
-    std::cout << "map sent!" << std::endl;
-    auto sentMap = mapSegment.substr(8);
-    for (int i = 0; i < player.vision * 2 + 1; i++) {
-      std::cout << sentMap.substr(i * (player.vision * 2 + 1), player.vision * 2 + 1) << std::endl;
-    }
+//    std::cout << "map sent!" << std::endl;
+//    auto sentMap = mapSegment.substr(8);
+//    for (int i = 0; i < player.vision * 2 + 1; i++) {
+//      std::cout << sentMap.substr(i * (player.vision * 2 + 1), player.vision * 2 + 1) << std::endl;
+//    }
 
     return mapSegment;
   }
