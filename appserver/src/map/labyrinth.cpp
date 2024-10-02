@@ -79,7 +79,6 @@ namespace Labyrinth {
   }
 
   bool Generate_Map(Proc_Gen::Seed &seed) {
-    seed.seed = Proc_Gen::Create_Initial_Seed(0, 0);
     Init(0, seed);
 
     auto offset = [&](int x, int y) {
