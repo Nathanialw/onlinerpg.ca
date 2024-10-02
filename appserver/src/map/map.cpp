@@ -146,9 +146,11 @@ namespace Map {
     for (int i = 0; i < player.vision * 2 + 1; i++) {
       std::cout << sentMap.substr(i * (player.vision * 2 + 1), player.vision * 2 + 1) << std::endl;
     }
-    std::cout << "Above Map:" << std::endl;
-    for (int i = 0; i < 99; i++) {
-      std::cout << mapString.substr(i * 99, 99) << std::endl;
+    if (!mapString.empty()) {
+      std::cout << "Above Map:" << std::endl;
+      for (int i = 0; i < 99; i++) {
+          std::cout << mapString.substr(i * 99, 99) << std::endl;
+      }
     }
 
     return mapSegment;
