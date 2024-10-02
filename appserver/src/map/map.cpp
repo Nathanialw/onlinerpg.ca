@@ -113,14 +113,14 @@ namespace Map {
               int newX = i + dir.first * Component::mapWidth;
               int newY = j + dir.second * Component::mapWidth;
 
-//              if (newX < 0 || newX >= Component::mapWidth || newY < 0 || newY >= Component::mapWidth) {
-              auto location = game.location;
-              location.x += dir.first;
-              location.y += dir.second;
+              if (newX < 0 || newX >= Component::mapWidth || newY < 0 || newY >= Component::mapWidth) {
+                auto location = game.location;
+                location.x += dir.first;
+                location.y += dir.second;
 
-              char c = game.map[game.level][location].chunk[(newY + Component::mapWidth) % Component::mapWidth][(newX + Component::mapWidth) % Component::mapWidth];
-              mapSegment += c;
-//              }
+                char c = game.map[game.level][location].chunk[(newY + Component::mapWidth) % Component::mapWidth][(newX + Component::mapWidth) % Component::mapWidth];
+                mapSegment += c;
+              }
             }
           }
           else
