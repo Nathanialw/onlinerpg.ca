@@ -24,6 +24,16 @@ namespace Map {
     return map;
   }
 
+  void Remove_Perimeter(char chunk[Component::mapWidth][Component::mapWidth]) {
+    std::string map;
+    for (int j = 0; j < Component::mapWidth; j++) {
+      for (int i = 0; i < Component::mapWidth; i++) {
+        if (i == 0 || i == Component::mapWidth - 1 || j == 0 || j == Component::mapWidth - 1)
+          chunk[j][i] = '#';
+      }
+    }
+  }
+
   void Set_Game_Map(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth]) {
     std::cout << "Setting open map" << std::endl;
     for (int x = 0; x < Component::mapWidth; x++) {
@@ -38,7 +48,7 @@ namespace Map {
     for (int i = 0; i < Component::mapWidth; i++) {
       for (int j = 0; j < Component::mapWidth; j++) {
         if (i == 0 || i == Component::mapWidth - 1 || j == 0 || j == Component::mapWidth - 1) {
-          game.map[game.level][game.location].defaultChunk[i][j] = '.';
+          game.map[game.level][game.location].defaultChunk[i][j] = '#';
           game.map[game.level][game.location].chunk[i][j] = game.map[game.level][game.location].defaultChunk[i][j];
         } else {
           game.map[game.level][game.location].defaultChunk[i][j] = '.';
@@ -76,6 +86,7 @@ namespace Map {
   std::string Init(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Proc_Gen::Seed &seed) {
 //    Create_Open_Map();
     Create_Labyrinth(defaultChunk, seed);
+    Remove_Perimeter(defaultChunk);
     Chunk::Add_Rooms(defaultChunk, rooms);
     Set_Game_Map(defaultChunk, chunk);
     std::cout << "map inited" << std::endl;
