@@ -198,6 +198,18 @@ namespace Map {
 
   void Add_Map_Chunk(Game::State &game, Component::Position location) {
     std::cout << "Add map chunk" << std::endl;
+//    if (player.position.x >= Component::mapWidth - player.vision || player.position.x < 0 + player.vision || player.position.y >= Component::mapWidth - player.vision || player.position.y < 0 + player.vision) {
+//        // get player location
+//        Component::Position location = game.location;
+//        std::cout << "Player position: " << player.position.x << ", " << player.position.y << std::endl;
+//        if (player.position.x >= Component::mapWidth - player.vision)
+//            location.x++;
+//        if (player.position.x < 0 + player.vision)
+//            location.x--;
+//        if (player.position.y >= Component::mapWidth - player.vision)
+//            location.y++;
+//        if (player.position.y < 0 + player.vision)
+//            location.y--;
 
     std::cout << "location position: " << location.x << ", " << location.y << std::endl;
     std::cout << "Checking if location exists in map..." << std::endl;
@@ -236,6 +248,30 @@ namespace Map {
 
   void Check_Map_Chunk(Game::State &game) {
     auto &player = game.Get_Player();
+    if (player.position.x < 0 + player.vision && player.position.y < 0 + player.vision) {
+      Component::Position location = game.location;
+      location.x--;
+      location.y--;
+      Add_Map_Chunk(game, location);
+    }
+    if (player.position.x >= Component::mapWidth - player.vision && player.position.y >= Component::mapWidth - player.vision) {
+      Component::Position location = game.location;
+      location.x++;
+      location.y++;
+      Add_Map_Chunk(game, location);
+    }
+    if (player.position.x < 0 + player.vision && player.position.y >= Component::mapWidth - player.vision) {
+      Component::Position location = game.location;
+      location.x--;
+      location.y++;
+      Add_Map_Chunk(game, location);
+    }
+    if (player.position.x >= Component::mapWidth - player.vision && player.position.y < 0 + player.vision) {
+      Component::Position location = game.location;
+      location.x++;
+      location.y--;
+      Add_Map_Chunk(game, location);
+    }
     if (player.position.x >= Component::mapWidth - player.vision) {
       Component::Position location = game.location;
       location.x++;
