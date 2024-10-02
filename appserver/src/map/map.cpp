@@ -104,8 +104,37 @@ namespace Map {
 
     for (int j = player.position.y - player.vision; j <= player.position.y + player.vision; j++) {
         for (int i = player.position.x - player.vision; i <= player.position.x + player.vision; i++) {
-            if (i < 0 || i >= Component::mapWidth || j < 0 || j >= Component::mapWidth)
-              mapSegment += ' ';
+//            if (i < 0 || i >= Component::mapWidth || j < 0 || j >= Component::mapWidth) {
+//              i == x-axis, j == y-axis
+              //if i < 0, i get  the last x chars of the lines in the y and append them to mapSegment
+            if (i < 0) {
+              auto location = game.location;
+              location.x += i;
+              auto c = game.map[game.level][location].chunk[j][Component::mapWidth + i + 1];
+              mapSegment += c;
+              std::cout << "i: " << Component::mapWidth + i + 1 << std::endl;
+            }
+            if (i >= Component::mapWidth) {
+              auto location = game.location;
+              location.x += i;
+              auto c = game.map[game.level][location].chunk[j][i - Component::mapWidth];
+              mapSegment += c;
+              std::cout << "i: " << i - Component::mapWidth << std::endl;
+            }
+            if (j < 0) {
+              auto location = game.location;
+              location.y += j;
+              auto c = game.map[game.level][location].chunk[Component::mapWidth + j + 1][i];
+              mapSegment += c;
+              std::cout << "j: " << Component::mapWidth + j + 1 << std::endl;
+            }
+            if (j >= Component::mapWidth) {
+              auto location = game.location;
+              location.y += j;
+              auto c = game.map[game.level][location].chunk[j - Component::mapWidth][i];
+              mapSegment += c;
+              std::cout << "j: " << j - Component::mapWidth << std::endl;
+            }
             else
               mapSegment += game.map[game.level][game.location].chunk[j][i];
         }
@@ -135,11 +164,11 @@ namespace Map {
         std::cout << "Player position: " << player.position.x << ", " << player.position.y << std::endl;
         if (player.position.x >= Component::mapWidth - 7)
             location.x += +1;
-        else if (player.position.x < 0 + 7)
+        if (player.position.x < 0 + 7)
             location.x -= 1;
-        else if (player.position.y >= Component::mapWidth - 7)
+        if (player.position.y >= Component::mapWidth - 7)
             location.y += 1;
-        else if (player.position.y < 0 + 7)
+        if (player.position.y < 0 + 7)
             location.y -= 1;
 
       std::cout << "location position: " << location.x << ", " << location.y << std::endl;

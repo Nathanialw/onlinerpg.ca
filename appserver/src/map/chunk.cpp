@@ -74,8 +74,8 @@ namespace Chunk {
     Pathing::Init(pathing, map);
     std::cout << "path inited" << std::endl;
 
-    Spawn::Init(chunk, rooms, objects); // msg->get_payload()
-    std::cout << "units inited" << std::endl;
+//    Spawn::Init(chunk, rooms, objects); // msg->get_payload()
+//    std::cout << "units inited" << std::endl;
   }
 
 
