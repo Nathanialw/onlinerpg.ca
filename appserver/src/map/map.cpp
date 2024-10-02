@@ -104,8 +104,10 @@ namespace Map {
   void Update(Game::State &game, int px, int py, int x, int y, const char &tile) {
     Reset_Tile(game.map[game.level][game.location].defaultChunk, game.map[game.level][game.location].chunk, px, py);
 
+    //update position onto new chunkd
     //update location
     std::cout << "location: " << game.location.x << ", " << game.location.y << std::endl;
+    std::cout << "px + x: " << px + x << ", py + y: " << py + y << std::endl;
     if (px + x < 0) {
       game.location.x -= 1;
       px = Component::mapWidth - 1;
@@ -121,6 +123,7 @@ namespace Map {
       py = 0;
     }
     std::cout << "location: " << game.location.x << ", " << game.location.y << std::endl;
+    std::cout << "px + x: " << px + x << ", py + y: " << py + y << std::endl;
     Set_Tile(game.map[game.level][game.location].chunk, px + x, py + y, tile);
   }
 
