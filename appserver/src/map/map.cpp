@@ -104,15 +104,15 @@ namespace Map {
 
     for (int j = player.position.y - player.vision; j <= player.position.y + player.vision; j++) {
         for (int i = player.position.x - player.vision; i <= player.position.x + player.vision; i++) {
-//            if (i < 0 || i >= Component::mapWidth || j < 0 || j >= Component::mapWidth) {
-//              i == x-axis, j == y-axis
-              //if i < 0, i get  the last x chars of the lines in the y and append them to mapSegment
+          if (i < 0 || i >= Component::mapWidth || j < 0 || j >= Component::mapWidth) {
+            //              i == x-axis, j == y-axis
+            // if i < 0, i get  the last x chars of the lines in the y and append them to mapSegment
             if (i < 0) {
               auto location = game.location;
               location.x += i;
               auto c = game.map[game.level][location].chunk[j][Component::mapWidth + i];
               mapSegment += c;
-              std::cout << "i: " << Component::mapWidth + i + 1 << std::endl;
+              std::cout << "i: " << Component::mapWidth + i << std::endl;
             }
             if (i >= Component::mapWidth) {
               auto location = game.location;
@@ -135,8 +135,9 @@ namespace Map {
               mapSegment += c;
               std::cout << "j: " << j - Component::mapWidth << std::endl;
             }
-            else
-              mapSegment += game.map[game.level][game.location].chunk[j][i];
+          }
+          else
+            mapSegment += game.map[game.level][game.location].chunk[j][i];
         }
     }
     std::cout << "map sent!" << std::endl;
