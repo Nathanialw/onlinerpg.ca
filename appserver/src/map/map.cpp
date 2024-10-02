@@ -164,20 +164,22 @@ namespace Map {
     //get player position
     auto &player = game.Get_Player();
     std::cout << "Add map chunk" << std::endl;
-    if (player.position.x >= Component::mapWidth - 7 || player.position.x < 0 + 7 || player.position.y >= Component::mapWidth - 7 || player.position.y < 0 + 7) {
+    if (player.position.x >= Component::mapWidth - player.vision || player.position.x < 0 + player.vision || player.position.y >= Component::mapWidth - player.vision || player.position.y < 0 + player.vision) {
         // get player location
         Component::Position location = game.location;
         std::cout << "Player position: " << player.position.x << ", " << player.position.y << std::endl;
-        if (player.position.x >= Component::mapWidth - 7)
+        if (player.position.x >= Component::mapWidth - player.vision)
             location.x += +1;
-        if (player.position.x < 0 + 7)
+        if (player.position.x < 0 + player.vision)
             location.x -= 1;
-        if (player.position.y >= Component::mapWidth - 7)
+        if (player.position.y >= Component::mapWidth - player.vision)
             location.y += 1;
-        if (player.position.y < 0 + 7)
+        if (player.position.y < 0 + player.vision)
             location.y -= 1;
 
       std::cout << "location position: " << location.x << ", " << location.y << std::endl;
+      std::cout << "Checking if location exists in map..." << std::endl;
+
       if (game.map[game.level].count(location) == 0) {
         // if player position is close to the edge of the chunk, create a new chunk add a new chunk
         std::cout << "Creating chunk" << std::endl;
@@ -213,5 +215,8 @@ namespace Map {
         std::cout << "player not near edge" << std::endl;
     }
     std::cout << "Number of chunks: " <<  game.map[game.level].size() << std::endl;
+    for (auto &chunk : game.map[game.level]) {
+        std::cout << "Chunk: " << chunk.first.x << ", " << chunk.first.y << std::endl;
+    }
   }
 }
