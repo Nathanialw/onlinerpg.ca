@@ -95,6 +95,36 @@ namespace Map {
     Set_Tile(game.map[game.level][game.location].chunk, px + x, py + y, tile);
   }
 
+  void Add_Map_Segment(Game::State &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment) {
+    auto location = game.location;
+    location.x += offsetX;
+    location.y += offsetY;
+    auto c = game.map[game.level][location].chunk[j][i];
+    mapSegment += c;
+  }
+
+  void Handle_Boundary(Game::State &game, int i, int j, std::string &mapSegment) {
+    static const std::unordered_map<std::string, std::function<void()>> boundaryHandlers = {
+        {"-1,-1", [&]() { Add_Map_Segment(game, Component::mapWidth + i, Component::mapWidth + j, -1, -1, mapSegment); }},
+        {"1,1",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j - Component::mapWidth, 1, 1, mapSegment); }},
+        {"-1,1",  [&]() { Add_Map_Segment(game, Component::mapWidth + i, j - Component::mapWidth, -1, 1, mapSegment); }},
+        {"1,-1",  [&]() { Add_Map_Segment(game, i - Component::mapWidth, Component::mapWidth + j, 1, -1, mapSegment); }},
+        {"-1,0",  [&]() { Add_Map_Segment(game, Component::mapWidth + i, j, -1, 0, mapSegment); }},
+        {"1,0",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j, 1, 0, mapSegment); }},
+        {"0,-1",  [&]() { Add_Map_Segment(game, i, Component::mapWidth + j, 0, -1, mapSegment); }},
+        {"0,1",   [&]() { Add_Map_Segment(game, i, j - Component::mapWidth, 0, 1, mapSegment); }}
+    };
+
+    std::string key = std::to_string((i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0) + "," +
+                      std::to_string((j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0);
+
+    if (boundaryHandlers.find(key) != boundaryHandlers.end()) {
+      boundaryHandlers.at(key)();
+    } else {
+      mapSegment += game.map[game.level][game.location].chunk[j][i];
+    }
+  }
+
   // state 1 = initial map, 2 = update map
   std::string SendMapSegment(Game::State &game, const std::string& direction, int state) {
     std::string mapSegment = std::to_string(state);
@@ -102,81 +132,11 @@ namespace Map {
     mapSegment += std::to_string((player.vision * 2) + 1);
     mapSegment += direction;
     std::string mapString;
+
     for (int j = player.position.y - player.vision; j <= player.position.y + player.vision; j++) {
         for (int i = player.position.x - player.vision; i <= player.position.x + player.vision; i++) {
-          if (i < 0 || i >= Component::mapWidth || j < 0 || j >= Component::mapWidth) {
-            //              i == x-axis, j == y-axis
-//             if i < 0, i get  the last x chars of the lines in the y and append them to mapSegment
-            if (i < 0 && j < 0) {
-              std::cout << "i: " << Component::mapWidth + i << std::endl;
-              std::cout << "j: " << Component::mapWidth + j << std::endl;
-              auto location = game.location;
-              location.x--;
-              location.y--;
-              auto c = game.map[game.level][location].chunk[Component::mapWidth + j][Component::mapWidth + i];
-              mapSegment += c;
-            }
-            else if (i >= Component::mapWidth && j >= Component::mapWidth) {
-              std::cout << "i: " << i - Component::mapWidth << std::endl;
-              std::cout << "j: " << j - Component::mapWidth << std::endl;
-              auto location = game.location;
-              location.x++;
-              location.y++;
-              auto c = game.map[game.level][location].chunk[j - Component::mapWidth][i - Component::mapWidth];
-              mapSegment += c;
-            }
-            else if (i < 0 && j >= Component::mapWidth) {
-              auto location = game.location;
-              std::cout << "i: " << Component::mapWidth + i << std::endl;
-              std::cout << "j: " << j - Component::mapWidth << std::endl;
-              location.x--;
-              location.y++;
-              auto c = game.map[game.level][location].chunk[j - Component::mapWidth][Component::mapWidth + i];
-              mapSegment += c;
-            }
-            else if (i >= Component::mapWidth && j < 0) {
-              std::cout << "i: " << i - Component::mapWidth << std::endl;
-              std::cout << "j: " << Component::mapWidth + j << std::endl;
-              auto location = game.location;
-              location.x++;
-              location.y--;
-              auto c = game.map[game.level][location].chunk[Component::mapWidth + j][i - Component::mapWidth];
-              mapSegment += c;
-            }
-            else if (i < 0) {
-              std::cout << "j: " << j << " , i: " << Component::mapWidth + i << std::endl;
-              auto location = game.location;
-              location.x--;
-              auto c = game.map[game.level][location].chunk[j][Component::mapWidth + i];
-              mapSegment += c;
-            }
-            else if (i >= Component::mapWidth) {
-              std::cout << "j: " << j << ", i: " << i - Component::mapWidth << std::endl;
-              auto location = game.location;
-              location.x++;
-              auto c = game.map[game.level][location].chunk[j][i - Component::mapWidth];
-              mapSegment += c;
-            }
-            else if (j < 0 ) {
-              std::cout << "j: " << Component::mapWidth + j << ", i: " << i << std::endl;
-              auto location = game.location;
-              location.y--;
-              auto c = game.map[game.level][location].chunk[Component::mapWidth + j][i];
-              mapSegment += c;
-//              mapString = Map::Get_Map(game.map[game.level][location].chunk);
-            }
-            else if (j >= Component::mapWidth) {
-              std::cout << "j: "<< j - Component::mapWidth << ", i: " << i << std::endl;
-              auto location = game.location;
-              location.y++;
-              auto c = game.map[game.level][location].chunk[j - Component::mapWidth][i];
-              mapSegment += c;
-            }
-//            mapSegment += ' ';
-          }
-          else
-            mapSegment += game.map[game.level][game.location].chunk[j][i];
-        }
+          Handle_Boundary(game, i, j, mapSegment);
+      }
     }
 //    std::cout << "map sent!" << std::endl;
 //    auto sentMap = mapSegment.substr(8);
