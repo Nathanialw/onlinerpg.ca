@@ -248,52 +248,21 @@ namespace Map {
 
   void Check_Map_Chunk(Game::State &game) {
     auto &player = game.Get_Player();
-    if (player.position.x < 0 + player.vision && player.position.y < 0 + player.vision) {
-      Component::Position location = game.location;
-      location.x--;
-      location.y--;
-      Add_Map_Chunk(game, location);
-    }
-    if (player.position.x >= Component::mapWidth - player.vision && player.position.y >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
-      location.x++;
-      location.y++;
-      Add_Map_Chunk(game, location);
-    }
-    if (player.position.x < 0 + player.vision && player.position.y >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
-      location.x--;
-      location.y++;
-      Add_Map_Chunk(game, location);
-    }
-    if (player.position.x >= Component::mapWidth - player.vision && player.position.y < 0 + player.vision) {
-      Component::Position location = game.location;
-      location.x++;
-      location.y--;
-      Add_Map_Chunk(game, location);
-    }
-    if (player.position.x >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
-      location.x++;
-      Add_Map_Chunk(game, location);
-    }
-    if (player.position.x < 0 + player.vision) {
-      Component::Position location = game.location;
-      location.x--;
-      Add_Map_Chunk(game, location);
-    }
-    if (player.position.y >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
-      location.y++;
-      Add_Map_Chunk(game, location);
-    }
-    if (player.position.y < 0 + player.vision) {
-      Component::Position location = game.location;
-      location.y--;
-      Add_Map_Chunk(game, location);
-    }
-    else {
-      std::cout << "player not near edge" << std::endl;
+    std::pair<int, int> directions[8] = {
+        {-1, -1}, {1, 1}, {-1, 1}, {1, -1}, {1, 0}, {-1, 0}, {0, 1}, {0, -1}
+    };
+
+    for (const auto &dir : directions) {
+      if ((dir.first == -1 && player.position.x < player.vision) ||
+          (dir.first == 1 && player.position.x >= Component::mapWidth - player.vision) ||
+          (dir.second == -1 && player.position.y < player.vision) ||
+          (dir.second == 1 && player.position.y >= Component::mapWidth - player.vision)) {
+
+          Component::Position location = game.location;
+          location.x += dir.first;
+          location.y += dir.second;
+          Add_Map_Chunk(game, location);
+      }
     }
     std::cout << "Number of chunks: " <<  game.map[game.level].size() << std::endl;
     for (auto &chunk : game.map[game.level]) {
