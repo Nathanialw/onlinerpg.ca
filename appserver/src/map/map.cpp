@@ -112,7 +112,7 @@ namespace Map {
               location.x += i;
               auto c = game.map[game.level][location].chunk[j][Component::mapWidth + i - 1];
               mapSegment += c;
-              std::cout << "i: " << Component::mapWidth + i << std::endl;
+              std::cout << "i: " << Component::mapWidth + i - 1<< std::endl;
             }
             if (i >= Component::mapWidth) {
               auto location = game.location;
@@ -121,7 +121,7 @@ namespace Map {
               mapSegment += c;
               std::cout << "i: " << i - Component::mapWidth << std::endl;
             }
-            if (j < 0) {
+            if (j < 0 ) {
               auto location = game.location;
               location.y += j;
               auto c = game.map[game.level][location].chunk[Component::mapWidth + j][i];
@@ -141,6 +141,9 @@ namespace Map {
         }
     }
     std::cout << "map sent!" << std::endl;
+    for (int i = 0; i < player.vision * 2 + 1; i++) {
+      std::cout << mapSegment.substr(i * (player.vision * 2 + 1), player.vision * 2 + 1) << std::endl;
+    }
 
     return mapSegment;
   }
