@@ -181,11 +181,14 @@ namespace Map {
       if (game.map[game.level].count(location) == 0) {
         // if player position is close to the edge of the chunk, create a new chunk add a new chunk
         std::cout << "Creating chunk" << std::endl;
+        Proc_Gen::Seed seed;
+        seed.seed = Proc_Gen::Create_Initial_Seed(location.x, location.y);
+
         Chunk::Create_Chunk(game.map[game.level][location].defaultChunk,
                             game.map[game.level][location].chunk,
                             game.map[game.level][location].rooms,
                             game.map[game.level][location].pathing,
-                            game.seed, game.objects);
+                            seed, game.objects);
         std::cout << "chunk created" << std::endl;
         std::string mapString = Map::Get_Map(game.map[game.level][location].chunk);
         if (!mapString.empty()) {
