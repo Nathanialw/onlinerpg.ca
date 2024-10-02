@@ -110,25 +110,25 @@ namespace Map {
             if (i < 0) {
               auto location = game.location;
               location.x += i;
-              auto c = game.map[game.level][location].chunk[j][Component::mapWidth + i - 1];
+              auto c = game.map[game.level][location].chunk[j][Component::mapWidth + i];
               mapSegment += c;
-              std::cout << "i: " << Component::mapWidth + i - 1<< std::endl;
+              std::cout << "i: " << Component::mapWidth + i << std::endl;
             }
-            if (i >= Component::mapWidth) {
+            else if (i >= Component::mapWidth) {
               auto location = game.location;
               location.x += i;
               auto c = game.map[game.level][location].chunk[j][i - Component::mapWidth];
               mapSegment += c;
               std::cout << "i: " << i - Component::mapWidth << std::endl;
             }
-            if (j < 0 ) {
+            else if (j < 0 ) {
               auto location = game.location;
               location.y += j;
               auto c = game.map[game.level][location].chunk[Component::mapWidth + j][i];
               mapSegment += c;
               std::cout << "j: " << Component::mapWidth + j << std::endl;
             }
-            if (j >= Component::mapWidth) {
+            else if (j >= Component::mapWidth) {
               auto location = game.location;
               location.y += j;
               auto c = game.map[game.level][location].chunk[j - Component::mapWidth][i];
