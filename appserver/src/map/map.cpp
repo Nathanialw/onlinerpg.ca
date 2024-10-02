@@ -29,7 +29,7 @@ namespace Map {
     for (int j = 0; j < Component::mapWidth; j++) {
       for (int i = 0; i < Component::mapWidth; i++) {
         if (i == 0 || i == Component::mapWidth - 1 || j == 0 || j == Component::mapWidth - 1)
-          chunk[j][i] = '#';
+          chunk[j][i] = '.';
       }
     }
   }
