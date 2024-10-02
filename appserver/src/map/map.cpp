@@ -196,64 +196,73 @@ namespace Map {
     return tile;
   }
 
-  void Add_Map_Chunk(Game::State &game) {
-    //if we get close to the edge, we need to add a new chunk
-    //get player position
-    auto &player = game.Get_Player();
+  void Add_Map_Chunk(Game::State &game, Component::Position location) {
     std::cout << "Add map chunk" << std::endl;
-    if (player.position.x >= Component::mapWidth - player.vision || player.position.x < 0 + player.vision || player.position.y >= Component::mapWidth - player.vision || player.position.y < 0 + player.vision) {
-        // get player location
-        Component::Position location = game.location;
-        std::cout << "Player position: " << player.position.x << ", " << player.position.y << std::endl;
-        if (player.position.x >= Component::mapWidth - player.vision)
-            location.x++;
-        if (player.position.x < 0 + player.vision)
-            location.x--;
-        if (player.position.y >= Component::mapWidth - player.vision)
-            location.y++;
-        if (player.position.y < 0 + player.vision)
-            location.y--;
 
-      std::cout << "location position: " << location.x << ", " << location.y << std::endl;
-      std::cout << "Checking if location exists in map..." << std::endl;
+    std::cout << "location position: " << location.x << ", " << location.y << std::endl;
+    std::cout << "Checking if location exists in map..." << std::endl;
 
-      if (game.map[game.level].count(location) == 0) {
-        // if player position is close to the edge of the chunk, create a new chunk add a new chunk
-        std::cout << "Creating chunk" << std::endl;
-        Proc_Gen::Seed seed;
-        seed.seed = Proc_Gen::Create_Initial_Seed(location.x, location.y);
+    if (game.map[game.level].count(location) == 0) {
+      // if player position is close to the edge of the chunk, create a new chunk add a new chunk
+      std::cout << "Creating chunk" << std::endl;
+      Proc_Gen::Seed seed;
+      seed.seed = Proc_Gen::Create_Initial_Seed(location.x, location.y);
 
-        Chunk::Create_Chunk(game.map[game.level][location].defaultChunk,
-                            game.map[game.level][location].chunk,
-                            game.map[game.level][location].rooms,
-                            game.map[game.level][location].pathing,
-                            seed, game.objects);
-        std::cout << "chunk created" << std::endl;
-        std::string mapString = Map::Get_Map(game.map[game.level][location].chunk);
-        if (!mapString.empty()) {
-            std::cout << "Map:" << std::endl;
-            for (int i = 0; i < 99; i++) {
-              std::cout << mapString.substr(i * 99, 99) << std::endl;
-            }
-        }
-      }
-      else {
-        std::cout << "chunk already exists" << std::endl;
-        std::string mapString = Map::Get_Map(game.map[game.level][location].chunk);
-        if (!mapString.empty()) {
-            std::cout << "Map:" << std::endl;
-            for (int i = 0; i < 99; i++) {
-              std::cout << mapString.substr(i * 99, 99) << std::endl;
-            }
-        }
+      Chunk::Create_Chunk(game.map[game.level][location].defaultChunk,
+                          game.map[game.level][location].chunk,
+                          game.map[game.level][location].rooms,
+                          game.map[game.level][location].pathing,
+                          seed, game.objects);
+      std::cout << "chunk created" << std::endl;
+      std::string mapString = Map::Get_Map(game.map[game.level][location].chunk);
+      if (!mapString.empty()) {
+          std::cout << "Map:" << std::endl;
+          for (int i = 0; i < 99; i++) {
+            std::cout << mapString.substr(i * 99, 99) << std::endl;
+          }
       }
     }
     else {
-        std::cout << "player not near edge" << std::endl;
+      std::cout << "chunk already exists" << std::endl;
+      std::string mapString = Map::Get_Map(game.map[game.level][location].chunk);
+      if (!mapString.empty()) {
+          std::cout << "Map:" << std::endl;
+          for (int i = 0; i < 99; i++) {
+            std::cout << mapString.substr(i * 99, 99) << std::endl;
+          }
+      }
+    }
+  }
+
+  void Check_Map_Chunk(Game::State &game) {
+    auto &player = game.Get_Player();
+    if (player.position.x >= Component::mapWidth - player.vision) {
+      Component::Position location = game.location;
+      location.x++;
+      Add_Map_Chunk(game, location);
+    }
+    if (player.position.x < 0 + player.vision) {
+      Component::Position location = game.location;
+      location.x--;
+      Add_Map_Chunk(game, location);
+    }
+    if (player.position.y >= Component::mapWidth - player.vision) {
+      Component::Position location = game.location;
+      location.y++;
+      Add_Map_Chunk(game, location);
+    }
+    if (player.position.y < 0 + player.vision) {
+      Component::Position location = game.location;
+      location.y--;
+      Add_Map_Chunk(game, location);
+    }
+    else {
+      std::cout << "player not near edge" << std::endl;
     }
     std::cout << "Number of chunks: " <<  game.map[game.level].size() << std::endl;
     for (auto &chunk : game.map[game.level]) {
-        std::cout << "Chunk: " << chunk.first.x << ", " << chunk.first.y << std::endl;
+      std::cout << "Chunk: " << chunk.first.x << ", " << chunk.first.y << std::endl;
     }
   }
+
 }
