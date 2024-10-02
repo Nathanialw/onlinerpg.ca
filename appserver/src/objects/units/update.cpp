@@ -27,9 +27,41 @@ namespace Update {
   };
 
   void Update_Position(Game::State &game, int &px, int &py, int &x, int &y, Units::Species &species) {
+    auto &player = game.Get_Player();
+
+
     Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
+
+    if (player.position.x < 0) {
+      auto location = game.location;
+      game.location.x--;
+      auto former = player.position;
+      player.position.x = Component::mapWidth - 1;
+      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+    } else if (player.position.x >= Component::mapWidth) {
+      auto location = game.location;
+      game.location.x++;
+      auto former = player.position;
+      player.position.x = Component::mapWidth - 1;
+      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+    }
+    else if (player.position.y < 0) {
+      auto location = game.location;
+      game.location.y--;
+      auto former = player.position;
+      player.position.y = Component::mapWidth - 1;
+      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+    } else if (player.position.y >= Component::mapWidth) {
+      auto location = game.location;
+      game.location.y++;
+      auto former = player.position;
+      player.position.y = 0;
+      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+    }
+    else {
+      Movement::Move(game, x, y);
+    }
     Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
-    Movement::Move(game, x, y);
     Units::Update_UnitsString(game.objects.unitsString, x, y);
   }
 
@@ -66,6 +98,7 @@ namespace Update {
 
         units[i].position.x += moveTo.x;
         units[i].position.y += moveTo.y;
+
         Map::Update(game, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
         auto map = Map::Get_Map(game.map[game.level][game.location].chunk);
         Pathing::Update(game.map[game.level][game.location].pathing, map);

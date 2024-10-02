@@ -20,6 +20,7 @@ namespace Map {
   std::string Get_Adjacent_Tile(Game::State &game, int x, int y);
   std::string Get_Map(char chunk[Component::mapWidth][Component::mapWidth]);
   void Update(Game::State &game, int px, int py, int x, int y, const char &tile);
+  void Update(Game::State &game, Component::Position position, Component::Position newPosition, Component::Position location, Component::Position newLocation, const char &tile);
   void Set_Tile(char chunk[Component::mapWidth][Component::mapWidth], int x, int y, const char &tile);
   void Reset_Tile(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int x, int y);
   void Check_Map_Chunk(Game::State &game);

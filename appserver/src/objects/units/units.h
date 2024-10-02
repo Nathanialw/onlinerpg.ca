@@ -139,9 +139,15 @@ namespace Units {
 
   };
 
+//  struct Map_Position {
+//    Component::Position chunk;
+//    Component::Position position;
+//  };
+
   struct Objects {
     std::vector<Unit> units;
     std::unordered_map<Component::Position, int> unitPositions;
+//    std::unordered_map<Map_Position, int> unitPositionss;
     std::vector<int> emptyUnitSlots;
     std::string unitsString;
   };
