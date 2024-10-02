@@ -101,7 +101,7 @@ namespace Map {
     auto &player = game.Get_Player();
     mapSegment += std::to_string((player.vision * 2) + 1);
     mapSegment += direction;
-
+    std::string mapString;
     for (int j = player.position.y - player.vision; j <= player.position.y + player.vision; j++) {
         for (int i = player.position.x - player.vision; i <= player.position.x + player.vision; i++) {
           if (i < 0 || i >= Component::mapWidth || j < 0 || j >= Component::mapWidth) {
@@ -127,6 +127,7 @@ namespace Map {
               auto c = game.map[game.level][location].chunk[Component::mapWidth + j][i];
               mapSegment += c;
               std::cout << "j: " << Component::mapWidth + j << std::endl;
+              mapString = Map::Get_Map(game.map[game.level][location].chunk);
             }
             else if (j >= Component::mapWidth) {
               auto location = game.location;
@@ -144,6 +145,10 @@ namespace Map {
     auto sentMap = mapSegment.substr(8);
     for (int i = 0; i < player.vision * 2 + 1; i++) {
       std::cout << sentMap.substr(i * (player.vision * 2 + 1), player.vision * 2 + 1) << std::endl;
+    }
+    std::cout << "Above Map:" << std::endl;
+    for (int i = 0; i < 99; i++) {
+      std::cout << mapString.substr(i * 99, 99) << std::endl;
     }
 
     return mapSegment;
