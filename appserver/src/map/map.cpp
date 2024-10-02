@@ -169,13 +169,13 @@ namespace Map {
         Component::Position location = game.location;
         std::cout << "Player position: " << player.position.x << ", " << player.position.y << std::endl;
         if (player.position.x >= Component::mapWidth - player.vision)
-            location.x += +1;
+            location.x++;
         if (player.position.x < 0 + player.vision)
-            location.x -= 1;
+            location.x--;
         if (player.position.y >= Component::mapWidth - player.vision)
-            location.y += 1;
+            location.y++;
         if (player.position.y < 0 + player.vision)
-            location.y -= 1;
+            location.y--;
 
       std::cout << "location position: " << location.x << ", " << location.y << std::endl;
       std::cout << "Checking if location exists in map..." << std::endl;
