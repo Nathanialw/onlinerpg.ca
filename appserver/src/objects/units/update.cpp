@@ -27,11 +27,11 @@ namespace Update {
   };
 
   void Update_Position(Game::State &game, int &px, int &py, int &x, int &y, Units::Species &species) {
-    auto &player = game.Get_Player();
 
 
     Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
 
+//    auto &player = game.Get_Player();
 //    if (player.position.x < 0) {
 //      auto location = game.location;
 //      game.location.x--;
