@@ -136,6 +136,8 @@ namespace Map {
 //              mapSegment += c;
 //              std::cout << "j: " << j - Component::mapWidth << std::endl;
 //            }
+//            else
+              mapSegment += ' ';
           }
           else
             mapSegment += game.map[game.level][game.location].chunk[j][i];
