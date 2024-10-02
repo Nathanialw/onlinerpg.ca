@@ -111,19 +111,28 @@ namespace Map {
     if (px + x < 0) {
       game.location.x -= 1;
       px = Component::mapWidth - 1;
+      game.Get_Player().position.x = px + x;
+      game.Get_Player().position.x = py + y;
     } else if (px + x >= Component::mapWidth) {
       game.location.x += 1;
       px = 0;
+      game.Get_Player().position.x = px + x;
+      game.Get_Player().position.x = py + y;
     }
     if (py + y < 0) {
       game.location.y -= 1;
       py = Component::mapWidth - 1;
+      game.Get_Player().position.x = px + x;
+      game.Get_Player().position.x = py + y;
     } else if (py + y >= Component::mapWidth) {
       game.location.y += 1;
       py = 0;
+      game.Get_Player().position.x = px + x;
+      game.Get_Player().position.x = py + y;
     }
     std::cout << "location: " << game.location.x << ", " << game.location.y << std::endl;
     std::cout << "px + x: " << px + x << ", py + y: " << py + y << std::endl;
+
     Set_Tile(game.map[game.level][game.location].chunk, px + x, py + y, tile);
   }
 
