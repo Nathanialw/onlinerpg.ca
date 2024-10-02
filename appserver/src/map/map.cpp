@@ -103,6 +103,19 @@ namespace Map {
     mapSegment += c;
   }
 
+//  typedef void (*AddMapSegmentFunc)(Game::State &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment);
+//
+//  static const std::unordered_map<std::string, std::function<void()>> boundaryHandlerss = {
+//      {"-1,-1", Add_Map_Segment },
+//      {"1,1",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j - Component::mapWidth, 1, 1, mapSegment); }},
+//      {"-1,1",  [&]() { Add_Map_Segment(game, Component::mapWidth + i, j - Component::mapWidth, -1, 1, mapSegment); }},
+//      {"1,-1",  [&]() { Add_Map_Segment(game, i - Component::mapWidth, Component::mapWidth + j, 1, -1, mapSegment); }},
+//      {"-1,0",  [&]() { Add_Map_Segment(game, Component::mapWidth + i, j, -1, 0, mapSegment); }},
+//      {"1,0",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j, 1, 0, mapSegment); }},
+//      {"0,-1",  [&]() { Add_Map_Segment(game, i, Component::mapWidth + j, 0, -1, mapSegment); }},
+//      {"0,1",   [&]() { Add_Map_Segment(game, i, j - Component::mapWidth, 0, 1, mapSegment); }}
+//  };
+
   void Handle_Boundary(Game::State &game, int i, int j, std::string &mapSegment) {
     static const std::unordered_map<std::string, std::function<void()>> boundaryHandlers = {
         {"-1,-1", [&]() { Add_Map_Segment(game, Component::mapWidth + i, Component::mapWidth + j, -1, -1, mapSegment); }},
