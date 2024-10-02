@@ -60,8 +60,8 @@ namespace Update {
 //    }
 //    else {
 //    }
-    Movement::Move(game, x, y);
     Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
+    Movement::Move(game, x, y);
     Units::Update_UnitsString(game.objects.unitsString, x, y);
   }
 
