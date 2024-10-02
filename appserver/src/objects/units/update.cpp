@@ -32,35 +32,35 @@ namespace Update {
 
     Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
 
-    if (player.position.x < 0) {
-      auto location = game.location;
-      game.location.x--;
-      auto former = player.position;
-      player.position.x = Component::mapWidth - 1;
-      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
-    } else if (player.position.x >= Component::mapWidth) {
-      auto location = game.location;
-      game.location.x++;
-      auto former = player.position;
-      player.position.x = Component::mapWidth - 1;
-      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
-    }
-    else if (player.position.y < 0) {
-      auto location = game.location;
-      game.location.y--;
-      auto former = player.position;
-      player.position.y = Component::mapWidth - 1;
-      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
-    } else if (player.position.y >= Component::mapWidth) {
-      auto location = game.location;
-      game.location.y++;
-      auto former = player.position;
-      player.position.y = 0;
-      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
-    }
-    else {
-      Movement::Move(game, x, y);
-    }
+//    if (player.position.x < 0) {
+//      auto location = game.location;
+//      game.location.x--;
+//      auto former = player.position;
+//      player.position.x = Component::mapWidth - 1;
+//      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+//    } else if (player.position.x >= Component::mapWidth) {
+//      auto location = game.location;
+//      game.location.x++;
+//      auto former = player.position;
+//      player.position.x = Component::mapWidth - 1;
+//      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+//    }
+//    else if (player.position.y < 0) {
+//      auto location = game.location;
+//      game.location.y--;
+//      auto former = player.position;
+//      player.position.y = Component::mapWidth - 1;
+//      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+//    } else if (player.position.y >= Component::mapWidth) {
+//      auto location = game.location;
+//      game.location.y++;
+//      auto former = player.position;
+//      player.position.y = 0;
+//      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+//    }
+//    else {
+//    }
+    Movement::Move(game, x, y);
     Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
     Units::Update_UnitsString(game.objects.unitsString, x, y);
   }
