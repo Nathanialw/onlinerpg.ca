@@ -43,33 +43,32 @@ namespace Update {
       if (game.Get_Player().position.x + x < 0) {
         std::cout << "player position x less than 0 moving to left chunk" << std::endl;
         game.Get_Player().location.x--;
-        game.location.x--;
         game.Get_Player().position.x = Component::mapWidth - 1;
+        game.location.x--;
         newChunk = true;
       } else if (game.Get_Player().position.x + x >= Component::mapWidth) {
         std::cout << "player position x greater than map width moving to right chunk" << std::endl;
         game.Get_Player().location.x++;
-        game.location.x++;
         game.Get_Player().position.x = 0;
+        game.location.x++;
         newChunk = true;
       } else if (game.Get_Player().position.y + y < 0) {
         std::cout << "player position y less than 0 moving to top chunk" << std::endl;
         game.Get_Player().location.y--;
-        game.location.y--;
         game.Get_Player().position.y = Component::mapWidth - 1;
+        game.location.y--;
         newChunk = true;
       } else if (game.Get_Player().position.y + y >= Component::mapWidth) {
         std::cout << "player position y greater than map width moving to bottom chunk" << std::endl;
         game.Get_Player().location.y++;
-        game.location.y++;
         game.Get_Player().position.y = 0;
+        game.location.y++;
         newChunk = true;
       }
       if (newChunk) {
         std::cout << "Moving from chunk... " << location.x << ", " << location.y << std::endl;
         std::cout << "Moving to new chunk... " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         std::cout << "Num units in new zone: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
-        std::cout << "need to inserts player " << std::endl;
 
         std::cout << "name at old index: " << game.objects[level][location].units[0].name << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
