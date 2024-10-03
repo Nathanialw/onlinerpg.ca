@@ -27,8 +27,6 @@ namespace Update {
   };
 
   void Update_Position(Game::State &game, int &px, int &py, int &x, int &y, Units::Species &species) {
-    Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
-
     auto &player = game.Get_Player();
     std::cout << "initial player position: " << player.position.x << " " << player.position.y << std::endl;
     std::cout << "initial player location: " << game.location.x << " " << game.location.y << std::endl;
@@ -65,6 +63,7 @@ namespace Update {
 //    else {
 //    }
     else {
+      Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
       Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
       Movement::Move(game, x, y);
     }
