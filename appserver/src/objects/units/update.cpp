@@ -72,7 +72,7 @@ namespace Update {
       Movement::Move(game, x, y);
     }
 
-    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);
+//    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);
     std::cout << "new player position: " << player.position.x << " " << player.position.y << std::endl;
     std::cout << "new player location: " << player.location.x << " " << player.location.y << std::endl;
   }
