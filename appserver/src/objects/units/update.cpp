@@ -57,13 +57,13 @@ namespace Update {
       }
       if (newChunk) {
         std::cout << "Moving to new chunk..." << std::endl;
-        Map::Update(game, formerPos, player.position, location, player.location, Spawn::Get_Unit_Char(player.def.species));
+        Map::Update(game, player.level, formerPos, player.position, location, player.location, Spawn::Get_Unit_Char(player.def.species));
         Units::Update_Unit_Position(game.objects.unitPositions, formerPos.x, formerPos.y, player.position.x, player.position.y);
       }
     }
 
     if (!newChunk) {
-      Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
+      Map::Update(game, player.level, player.location, px, py, x, y, Spawn::Get_Unit_Char(species));
       Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
       Movement::Move(game, x, y);
     }
@@ -107,7 +107,7 @@ namespace Update {
         units[i].position.x += moveTo.x;
         units[i].position.y += moveTo.y;
 
-        Map::Update(game, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
+        Map::Update(game,units[i].level, units[i].location, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
         auto map = Map::Get_Map(game.map[units[i].level][units[i].location].chunk);
         Pathing::Update(game.map[units[i].level][units[i].location].pathing, map);
         Units::Update_Unit_Position(game.objects.unitPositions, former.x, former.y, units[i].position.x, units[i].position.y);
@@ -117,11 +117,11 @@ namespace Update {
       }
     }
 
-    auto mapString = Map::Get_Map(game.map[game.level][game.location].chunk);
-    std::cout << "Drawing map: "<< std::endl;
-    for (int i = 0; i < 99; i++) {
-      std::cout << mapString.substr(i * 99, 99) << std::endl;
-    }
+//    auto mapString = Map::Get_Map(game.map[game.level][game.location].chunk);
+//    std::cout << "Drawing map: "<< std::endl;
+//    for (int i = 0; i < 99; i++) {
+//      std::cout << mapString.substr(i * 99, 99) << std::endl;
+//    }
   }
 
   std::string Update_Player(Game::State &game, const char *direction) {
@@ -146,7 +146,7 @@ namespace Update {
       return c + " " + "  " + "1";
     }
     // if the nearby cell is an enemy, attack
-    auto melee = Attack::Melee(game.objects, game.map[game.level][game.location].defaultChunk, game.map[game.level][game.location].chunk, player.position.x, player.position.y, move.x, move.y);
+    auto melee = Attack::Melee(game.objects, game.map[player.level][player.location].defaultChunk, game.map[player.level][player.location].chunk, player.position.x, player.position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
       return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";

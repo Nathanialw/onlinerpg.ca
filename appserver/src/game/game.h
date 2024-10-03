@@ -48,8 +48,8 @@ namespace Game {
 
 
     //map
-    int level = 0;
-    Component::Position location = {0, 0};
+//    int level = 0;
+//    Component::Position location = {0, 0};
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //seed

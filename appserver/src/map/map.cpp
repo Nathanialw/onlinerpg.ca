@@ -44,18 +44,18 @@ namespace Map {
   }
 
   void Create_Open_Map(Game::State &game) {
-    std::cout << "Creating open map" << std::endl;
-    for (int i = 0; i < Component::mapWidth; i++) {
-      for (int j = 0; j < Component::mapWidth; j++) {
-        if (i == 0 || i == Component::mapWidth - 1 || j == 0 || j == Component::mapWidth - 1) {
-          game.map[game.level][game.location].defaultChunk[i][j] = '#';
-          game.map[game.level][game.location].chunk[i][j] = game.map[game.level][game.location].defaultChunk[i][j];
-        } else {
-          game.map[game.level][game.location].defaultChunk[i][j] = '.';
-          game.map[game.level][game.location].chunk[i][j] = game.map[game.level][game.location].defaultChunk[i][j];
-        }
-      }
-    }
+//    std::cout << "Creating open map" << std::endl;
+//    for (int i = 0; i < Component::mapWidth; i++) {
+//      for (int j = 0; j < Component::mapWidth; j++) {
+//        if (i == 0 || i == Component::mapWidth - 1 || j == 0 || j == Component::mapWidth - 1) {
+//          game.map[game.level][game.location].defaultChunk[i][j] = '#';
+//          game.map[game.level][game.location].chunk[i][j] = game.map[game.level][game.location].defaultChunk[i][j];
+//        } else {
+//          game.map[game.level][game.location].defaultChunk[i][j] = '.';
+//          game.map[game.level][game.location].chunk[i][j] = game.map[game.level][game.location].defaultChunk[i][j];
+//        }
+//      }
+//    }
   }
 
   void Create_Labyrinth(char defaultChunk[Component::mapWidth][Component::mapWidth], Proc_Gen::Seed &seed) {
@@ -101,38 +101,28 @@ namespace Map {
     chunk[y][x] = defaultChunk[y][x];
   }
 
-  void Update(Game::State &game, int px, int py, int x, int y, const char &tile) {
-    Reset_Tile(game.map[game.level][game.location].defaultChunk, game.map[game.level][game.location].chunk, px, py);
-    Set_Tile(game.map[game.level][game.location].chunk, px + x, py + y, tile);
+  void Update(Game::State &game, int level, Component::Position location, int px, int py, int x, int y, const char &tile) {
+    Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, px, py);
+    Set_Tile(game.map[level][location].chunk, px + x, py + y, tile);
   }
 
-  void Update(Game::State &game, Component::Position position, Component::Position newPosition, Component::Position location, Component::Position newLocation, const char &tile) {
-    Reset_Tile(game.map[game.level][location].defaultChunk, game.map[game.level][location].chunk, position.x, position.y);
-    Set_Tile(game.map[game.level][newLocation].chunk, newPosition.x, newPosition.y, tile);
+  void Update(Game::State &game, int level, Component::Position position, Component::Position newPosition, Component::Position location, Component::Position newLocation, const char &tile) {
+    Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, position.x, position.y);
+    Set_Tile(game.map[level][newLocation].chunk, newPosition.x, newPosition.y, tile);
   }
 
   void Add_Map_Segment(Game::State &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment) {
-    auto location = game.location;
+    auto &player = game.Get_Player();
+
+    auto location = player.location;
     location.x += offsetX;
     location.y += offsetY;
-    auto c = game.map[game.level][location].chunk[j][i];
+    auto c = game.map[player.level][location].chunk[j][i];
     mapSegment += c;
   }
 
-//  typedef void (*AddMapSegmentFunc)(Game::State &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment);
-//
-//  static const std::unordered_map<std::string, std::function<void()>> boundaryHandlerss = {
-//      {"-1,-1", Add_Map_Segment },
-//      {"1,1",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j - Component::mapWidth, 1, 1, mapSegment); }},
-//      {"-1,1",  [&]() { Add_Map_Segment(game, Component::mapWidth + i, j - Component::mapWidth, -1, 1, mapSegment); }},
-//      {"1,-1",  [&]() { Add_Map_Segment(game, i - Component::mapWidth, Component::mapWidth + j, 1, -1, mapSegment); }},
-//      {"-1,0",  [&]() { Add_Map_Segment(game, Component::mapWidth + i, j, -1, 0, mapSegment); }},
-//      {"1,0",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j, 1, 0, mapSegment); }},
-//      {"0,-1",  [&]() { Add_Map_Segment(game, i, Component::mapWidth + j, 0, -1, mapSegment); }},
-//      {"0,1",   [&]() { Add_Map_Segment(game, i, j - Component::mapWidth, 0, 1, mapSegment); }}
-//  };
-
   void Handle_Boundary(Game::State &game, int i, int j, std::string &mapSegment) {
+    auto &player = game.Get_Player();
     static const std::unordered_map<std::string, std::function<void()>> boundaryHandlers = {
         {"-1,-1", [&]() { Add_Map_Segment(game, Component::mapWidth + i, Component::mapWidth + j, -1, -1, mapSegment); }},
         {"1,1",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j - Component::mapWidth, 1, 1, mapSegment); }},
@@ -150,7 +140,7 @@ namespace Map {
     if (boundaryHandlers.find(key) != boundaryHandlers.end()) {
       boundaryHandlers.at(key)();
     } else {
-      mapSegment += game.map[game.level][game.location].chunk[j][i];
+      mapSegment += game.map[player.level][player.location].chunk[j][i];
     }
   }
 
@@ -177,33 +167,36 @@ namespace Map {
   }
 
   std::string Get_Adjacent_Tile(Game::State &game, int x, int y) {
+    auto &player = game.Get_Player();
+
     std::string tile;
     if (x < 0 || x >= Component::mapWidth || y < 0 || y >= Component::mapWidth)
         tile = " ";
     else
-        tile = game.map[game.level][game.location].chunk[y][x];
+        tile = game.map[player.level][player.location].chunk[y][x];
     return tile;
   }
 
   void Add_Map_Chunk(Game::State &game, Component::Position location) {
     std::cout << "Add map chunk" << std::endl;
     std::cout << "location position to add: " << location.x << ", " << location.y << std::endl;
+    auto &player = game.Get_Player();
 
     std::cout << "Checking if location exists in map..." << std::endl;
-    if (game.map[game.level].count(location) == 0) {
+    if (game.map[player.level].count(location) == 0) {
       std::cout << "Not found adding chunk..." << std::endl;
       // if player position is close to the edge of the chunk, create a new chunk add a new chunk
       std::cout << "Creating chunk" << std::endl;
       Proc_Gen::Seed seed;
       seed.seed = Proc_Gen::Create_Initial_Seed(location.x, location.y);
 
-      Chunk::Create_Chunk(game.map[game.level][location].defaultChunk,
-                          game.map[game.level][location].chunk,
-                          game.map[game.level][location].rooms,
-                          game.map[game.level][location].pathing,
+      Chunk::Create_Chunk(game.map[player.level][location].defaultChunk,
+                          game.map[player.level][location].chunk,
+                          game.map[player.level][location].rooms,
+                          game.map[player.level][location].pathing,
                           seed, game.objects);
       std::cout << "chunk created" << std::endl;
-      std::string mapString = Map::Get_Map(game.map[game.level][location].chunk);
+      std::string mapString = Map::Get_Map(game.map[player.level][location].chunk);
       if (!mapString.empty()) {
           std::cout << "Map:" << std::endl;
           for (int i = 0; i < 99; i++) {
@@ -213,7 +206,7 @@ namespace Map {
     }
     else {
       std::cout << "chunk already exists" << std::endl;
-      std::string mapString = Map::Get_Map(game.map[game.level][location].chunk);
+      std::string mapString = Map::Get_Map(game.map[player.level][location].chunk);
       if (!mapString.empty()) {
           std::cout << "Map:" << std::endl;
           for (int i = 0; i < 99; i++) {
@@ -225,67 +218,54 @@ namespace Map {
 
   void Check_Map_Chunk(Game::State &game) {
     auto &player = game.Get_Player();
-//      if (//there are times when you need to add 2 chunks on the same frame
-//          //these evaluate to true return the index of the direction array
-//
-//          //if  player.position.x < player.vision && player.position.y < player.vision // add chunk to the top left
-//          //if  player.position.x >= Component::mapWidth - player.vision && player.position.y >= Component::mapWidth - player.vision // add chunk to the bottom right
-//          //if  player.position.x < player.vision && player.position.y >= Component::mapWidth - player.vision // add chunk to the bottom left
-//          //if  player.position.x >= Component::mapWidth - player.vision && player.position.y < player.vision // add chunk to the top right
-//
-//          //if  player.position.x < player.vision // add chunk to the left
-//          //if  player.position.x >= Component::mapWidth - player.vision // add chunk to the right
-//          //if  player.position.y < player.vision // add chunk to the top
-//          //if  player.position.y >= Component::mapWidth - player.vision // add chunk to the bottom
-
 
     if (player.position.x < player.vision && player.position.y < player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.x--;
       location.y--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x >= Component::mapWidth - player.vision && player.position.y >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.x++;
       location.y++;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x < player.vision && player.position.y >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.x--;
       location.y++;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x >= Component::mapWidth - player.vision && player.position.y < player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.x++;
       location.y--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x < player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.x--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.x++;
       Add_Map_Chunk(game, location);
     }
     if (player.position.y < player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.y--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.y >= Component::mapWidth - player.vision) {
-      Component::Position location = game.location;
+      Component::Position location = player.location;
       location.y++;
       Add_Map_Chunk(game, location);
     }
 
-    std::cout << "Number of chunks: " <<  game.map[game.level].size() << std::endl;
-    for (auto &chunk : game.map[game.level]) {
+    std::cout << "Number of chunks: " <<  game.map[player.level].size() << std::endl;
+    for (auto &chunk : game.map[player.level]) {
       std::cout << "Chunk: " << chunk.first.x << ", " << chunk.first.y << std::endl;
     }
   }
