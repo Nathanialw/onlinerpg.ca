@@ -65,8 +65,8 @@ namespace Chunk {
 
 
   void Create_Chunk(int level, Component::Position location, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects) {
-    //chunk position
-    //seed based on that position
+    // chunk position
+    // seed based on that position
 
     std::string map = Map::Init(defaultChunk, chunk, rooms, seed);
 

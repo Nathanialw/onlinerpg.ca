@@ -135,41 +135,6 @@ namespace Update {
         }
       }
     }
-//    auto &units = game.objects.units;
-//
-//    for (int i = 1; i < units.size(); i++) {
-//      if (units[i].health <= 0) {
-//        std::cout << "unit dead" << std::endl;
-//        continue;
-//      }
-//      //if player is in vision
-//      if (Check_For_Target(units[i].position, player.position)) {
-//        std::cout << "player in vision, moving towards!" << std::endl;
-//        // cache position
-//        Component::Position former = units[i].position;
-//        // calculate next cell
-//        Component::Position moveTo = Pathing::Move_To(game.map[units[i].level][units[i].location].pathing, units[i].position, player.position);
-//        std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
-//        std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
-//        // check next cell and move/attack
-//        if (Map::Get_Adjacent_Tile(game, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(player.def.species)) {
-//          std::cout << "unit attacks player" << std::endl;
-//          Attack::Melee(game.objects, game.map[units[i].level][units[i].location].defaultChunk, game.map[units[i].level][units[i].location].chunk, former.x, former.y, moveTo.x, moveTo.y);
-//          continue;
-//        }
-//
-//        units[i].position.x += moveTo.x;
-//        units[i].position.y += moveTo.y;
-//
-//        Map::Update(game,units[i].level, units[i].location, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(units[i].def.species));
-//        auto map = Map::Get_Map(game.map[units[i].level][units[i].location].chunk);
-//        Pathing::Update(game.map[units[i].level][units[i].location].pathing, map);
-//        Units::Update_Unit_Position(game.objects.unitPositions, former.x, former.y, units[i].position.x, units[i].position.y);
-//      }
-//      else {
-//        std::cout << "player not in vision" << std::endl;
-//      }
-
 
     auto mapString = Map::Get_Map(game.map[game.Get_Player().level][game.Get_Player().location].chunk);
     std::cout << "Drawing map: "<< std::endl;

@@ -114,6 +114,11 @@ namespace Spawn {
 
   //we beed the chunk that the unit is being spawned in
   void Init(int level, Component::Position location, char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
+
+    if (objects.units.empty()) { //To save the 0 index for the player
+      Units::Unit playerPlaceholder;
+      objects.units.emplace_back(playerPlaceholder);
+    }
     Place_Entities_On_Map(rooms, level, location, objects);
 
     for (auto &unit : objects.units) {
