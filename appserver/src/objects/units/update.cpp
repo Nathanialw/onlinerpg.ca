@@ -70,10 +70,12 @@ namespace Update {
         std::cout << "Moving to new chunk... " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         std::cout << "Num units in new zone: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
         std::cout << "need to inserts player " << std::endl;
-        
-        game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][game.location].units[0];
 
-        std::cout << "the zero index should always bee left open for the player " << std::endl;
+        std::cout << "name at old index: " << game.objects[level][location].units[0].name << std::endl;
+        game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
+        std::cout << "name at new index: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].name << std::endl;
+
+        std::cout << "the zero index should always be left open for the player " << std::endl;
         Units::Remove_Unit(game.objects[level][location].unitPositions, game.objects[level][location].emptyUnitSlots, formerPos.x, formerPos.y);
         std::cout << "Set unit position in hash map as 0 index" << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions.emplace(game.Get_Player().position, 0);
