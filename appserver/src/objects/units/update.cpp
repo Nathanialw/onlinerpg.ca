@@ -98,7 +98,8 @@ namespace Update {
     for (auto &level : game.objects) {
       auto &chunks = level;
       for (auto &chunk : chunks) {
-        for (auto &unit : chunk.second.units) {
+        for (int i = 1; i < chunk.second.units.size(); ++i) {
+          auto &unit = chunk.second.units[i];
           if (unit.health <= 0) {
             std::cout << "unit dead" << std::endl;
              continue;
