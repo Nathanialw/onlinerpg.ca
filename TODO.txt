@@ -38,6 +38,8 @@ gamey
 
 
 short term:
+-eneimes to follow between map chunks with pathing
+-be able to attack enemies at the edge of chunks
 -login and db to save game state
 
 -spells 
