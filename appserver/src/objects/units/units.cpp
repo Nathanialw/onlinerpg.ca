@@ -35,6 +35,7 @@ namespace Units {
   }
 
   void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const int &x, const int &y, const int &newX, const int &newY) {
+    std::cout << "updating unit position from: " << x << " " << y << " to: " << newX << " " << newY << std::endl;
     Component::Position pos = {x, y};
     int index = unitPositions[pos];
     Component::Position newPos = {newX, newY};
@@ -43,6 +44,7 @@ namespace Units {
   }
 
   void Update_UnitsString(std::string &unitsString, int x, int y) {
+    std::cout << "updating units string" << std::endl;
     std::string xStr = Utils::Prepend_Zero(x);
     std::string yStr = Utils::Prepend_Zero(y);
     unitsString.replace(2, 4, xStr + yStr);

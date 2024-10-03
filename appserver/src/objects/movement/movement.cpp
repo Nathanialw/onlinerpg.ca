@@ -5,6 +5,7 @@ namespace Movement {
 
   void Move(Game::State &game, int x, int y) {
     auto &player = game.Get_Player();;
+    std::cout << "initial player position: " << player.position.x << " " << player.position.y << std::endl;
     player.position.x += x;
     player.position.y += y;
   }
