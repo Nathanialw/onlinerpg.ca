@@ -98,35 +98,40 @@ namespace Update {
       for (auto &chunk : chunks) {
         for (auto &unit : chunk.second.units) {
           if (unit.health <= 0) {
-          std::cout << "unit dead" << std::endl;
-          continue;
-          }
-          //if player is in vision
-          if (Check_For_Target(unit.position, game.Get_Player().position)) {
-          std::cout << "player in vision, moving towards!" << std::endl;
-          // cache position
-          Component::Position former = unit.position;
-          // calculate next cell
-          Component::Position moveTo = Pathing::Move_To(game.map[unit.level][unit.location].pathing, unit.position, game.Get_Player().position);
-          std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
-          std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
-          // check next cell and move/attack
-          if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
-          std::cout << "unit attacks player" << std::endl;
-          Attack::Melee(game.objects[unit.level][unit.location], game.map[unit.level][unit.location].defaultChunk, game.map[unit.level][unit.location].chunk, former.x, former.y, moveTo.x, moveTo.y);
-          continue;
+            std::cout << "unit dead" << std::endl;
+             continue;
           }
 
-          unit.position.x += moveTo.x;
-          unit.position.y += moveTo.y;
+          //if player in same map chunk
+          if (game.Get_Player().location == unit.location) {
+            //if player is in vision
+            if (Check_For_Target(unit.position, game.Get_Player().position)) {
+              std::cout << "player in vision, moving towards!" << std::endl;
+              // cache position
+              Component::Position former = unit.position;
+              // calculate next cell
+              Component::Position moveTo = Pathing::Move_To(game.map[unit.level][unit.location].pathing, unit.position, game.Get_Player().position);
+              std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
+              std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
+              // check next cell and move/attack
+              if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
+                std::cout << "unit attacks player" << std::endl;
+                Attack::Melee(game.objects[unit.level][unit.location], game.map[unit.level][unit.location].defaultChunk, game.map[unit.level][unit.location].chunk, former.x, former.y, moveTo.x, moveTo.y);
+                continue;
+              }
 
-          Map::Update(game, unit.level, unit.location, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(unit.def.species));
-          auto map = Map::Get_Map(game.map[unit.level][unit.location].chunk);
-          Pathing::Update(game.map[unit.level][unit.location].pathing, map);
-          Units::Update_Unit_Position(game.objects[unit.level][unit.location].unitPositions, former.x, former.y, unit.position.x, unit.position.y);
+              unit.position.x += moveTo.x;
+              unit.position.y += moveTo.y;
+
+              Map::Update(game, unit.level, unit.location, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(unit.def.species));
+              auto map = Map::Get_Map(game.map[unit.level][unit.location].chunk);
+              Pathing::Update(game.map[unit.level][unit.location].pathing, map);
+              Units::Update_Unit_Position(game.objects[unit.level][unit.location].unitPositions, former.x, former.y, unit.position.x, unit.position.y);
+            }
+            else {
+              std::cout << "player not in vision" << std::endl;
+            }
           }
-          else {
-          std::cout << "player not in vision" << std::endl;
         }
       }
     }
@@ -164,7 +169,7 @@ namespace Update {
 //      else {
 //        std::cout << "player not in vision" << std::endl;
 //      }
-    }
+
 
     auto mapString = Map::Get_Map(game.map[game.Get_Player().level][game.Get_Player().location].chunk);
     std::cout << "Drawing map: "<< std::endl;
