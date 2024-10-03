@@ -17,7 +17,8 @@ namespace Units {
     //can't dp this because it will invalidate map indexes
     //    units.erase(units.begin() + index);
     //instead, save the index to a vector of empty slots
-    emptyUnitSlots.push_back(index);
+    if (index != 0) //ensure the 0 index is always open for the player
+      emptyUnitSlots.push_back(index);
     unitPositions.erase(pos);
   }
 

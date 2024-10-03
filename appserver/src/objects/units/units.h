@@ -133,8 +133,9 @@ namespace Units {
     int minDamage = 0;
     int maxDamage = 10;
     int AC = 10;
-    int health = 30;
+    int health = 0;
     int healthMax = 30;
+    bool dead = true;
 
     int level = 0;
     Component::Position location = {0, 0};
