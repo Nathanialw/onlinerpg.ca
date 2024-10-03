@@ -46,8 +46,8 @@ namespace Attack {
     std::cout << Spawn::Get_Unit_Char(unit.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << unit.maxDamage << " damage" << std::endl;
     if (target.health <= 0) {
         std::cout << "target dead" << std::endl;
-        //need to remove the unit from the correct chunk
         Units::Remove_Unit(objects.unitPositions, objects.emptyUnitSlots, px+x, py+y);
+        //need the grab the chunk the target is in
         Map::Reset_Tile(defaultChunk, chunk, px+x, py+y);
         return {std::to_string((int)target.def.species), unit.maxDamage, true};
     }

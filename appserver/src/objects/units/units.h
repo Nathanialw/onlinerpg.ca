@@ -136,7 +136,8 @@ namespace Units {
     int health = 30;
     int healthMax = 30;
 
-
+    int level = 0;
+    Component::Position location = {0, 0};
   };
 
 //  struct Map_Position {
