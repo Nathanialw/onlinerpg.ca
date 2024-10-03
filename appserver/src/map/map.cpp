@@ -206,7 +206,7 @@ namespace Map {
       if (!mapString.empty()) {
           std::cout << "Map:" << std::endl;
           for (int i = 0; i < 99; i++) {
-            std::cout << mapString.substr(i * 99, 99) << std::endl;
+//            std::cout << mapString.substr(i * 99, 99) << std::endl;
           }
       }
     }
@@ -216,7 +216,7 @@ namespace Map {
       if (!mapString.empty()) {
           std::cout << "Map:" << std::endl;
           for (int i = 0; i < 99; i++) {
-            std::cout << mapString.substr(i * 99, 99) << std::endl;
+//            std::cout << mapString.substr(i * 99, 99) << std::endl;
           }
       }
     }

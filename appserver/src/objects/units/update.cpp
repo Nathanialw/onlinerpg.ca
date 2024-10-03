@@ -27,17 +27,18 @@ namespace Update {
   };
 
   void Update_Position(Game::State &game, int &px, int &py, int &x, int &y, Units::Species &species) {
-
-
     Map::Update(game, px, py, x, y, Spawn::Get_Unit_Char(species));
 
-//    auto &player = game.Get_Player();
-//    if (player.position.x < 0) {
-//      auto location = game.location;
-//      game.location.x--;
-//      auto former = player.position;
-//      player.position.x = Component::mapWidth - 1;
-//      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+    auto &player = game.Get_Player();
+    std::cout << "initial player position: " << player.position.x << " " << player.position.y << std::endl;
+    std::cout << "initial player location: " << game.location.x << " " << game.location.y << std::endl;
+    if (player.position.x < 0) {
+      auto location = game.location;
+      game.location.x--;
+      auto former = player.position;
+      player.position.x = Component::mapWidth - 1;
+      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+    }
 //    } else if (player.position.x >= Component::mapWidth) {
 //      auto location = game.location;
 //      game.location.x++;
@@ -60,9 +61,11 @@ namespace Update {
 //    }
 //    else {
 //    }
-    Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
     Movement::Move(game, x, y);
     Units::Update_UnitsString(game.objects.unitsString, x, y);
+    Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
+    std::cout << "new player position: " << player.position.x << " " << player.position.y << std::endl;
+    std::cout << "new player location: " << game.location.x << " " << game.location.y << std::endl;
   }
 
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
