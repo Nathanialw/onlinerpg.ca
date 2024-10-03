@@ -73,8 +73,9 @@ namespace Update {
         std::cout << "old position: " << formerPos.x << ", " << formerPos.y << std::endl;
         std::cout << "new position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
         std::cout << "-------------------" << std::endl;
+        std::cout << "player level before: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
-        std::cout << "player level: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
+        std::cout << "player level after: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         std::cout << "game level: " << game.level << " game location: " << game.location.x << ", " << game.location.y << std::endl;
         std::cout << "-------------------" << std::endl;
         std::cout << "Set position direct: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.x << ", " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.y << std::endl;
