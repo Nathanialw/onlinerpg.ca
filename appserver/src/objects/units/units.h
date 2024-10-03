@@ -122,24 +122,34 @@ namespace Units {
     std::string potrait = "001";
 
     //unit data to send
-    Component::Position position = {6,6};
+    Component::Position position{};
     std::string name = "Default";
-    int age = 16;
+    int age = 0;
     Def def;
 
-    int vision = 6;
-    int speed = 1;
-    int maxSpeed = 1;
+    int vision = 0;
+    int speed = 0;
+    int maxSpeed = 0;
     int minDamage = 0;
-    int maxDamage = 10;
-    int AC = 10;
-    int health = 30;
-    int healthMax = 30;
+    int maxDamage = 0;
+    int AC = 0;
+    int health = 0;
+    int healthMax = 0;
 //    bool dead = false;
 
-    int level = 0;
-    Component::Position location = {0, 0};
-  };
+    int level;
+    Component::Position location{};
+
+    //constructor
+    Unit(int iLevel, Component::Position sLocation) {
+      level = iLevel;
+      location = sLocation;
+    }
+};
+
+
+
+
 
 //  struct Map_Position {
 //    Component::Position chunk;

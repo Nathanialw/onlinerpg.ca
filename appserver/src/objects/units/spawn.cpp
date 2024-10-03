@@ -28,7 +28,7 @@ namespace Spawn {
   }
 
   void Add_Unit(Units::Objects &objects, int level, Component::Position location, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
-    Units::Unit unit{};
+    Units::Unit unit(level, location);
     unit.name = name;
     unit.def.gender = gender;
     unit.def.species = species;
@@ -37,8 +37,16 @@ namespace Spawn {
     unit.position.x = x;
     unit.position.y = y;
 
-    unit.level = level;
-    unit.location = location;
+    unit.age = 16;
+
+    unit.speed = 1;
+    unit.maxSpeed = 1;
+    unit.minDamage = 0;
+    unit.maxDamage = 10;
+    unit.vision = 6;
+    unit.AC = 10;
+    unit.health = 30;
+    unit.healthMax = 30;
 
     auto &units = objects.units;
     auto &unitsPositions = objects.unitPositions;
@@ -116,7 +124,7 @@ namespace Spawn {
   void Init(int level, Component::Position location, char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
 
     if (objects.units.empty()) { //To save the 0 index for the player
-      Units::Unit playerPlaceholder;
+      Units::Unit playerPlaceholder(level, location);
       objects.units.emplace_back(playerPlaceholder);
     }
     Place_Entities_On_Map(rooms, level, location, objects);
