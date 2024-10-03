@@ -38,23 +38,28 @@ namespace Update {
       auto formerPos = game.Get_Player().position;
       auto location = game.Get_Player().location;
       auto level = game.Get_Player().level;
+      std::cout << "new position: " << px + x << ", " << py + y << std::endl;
 
       if (game.Get_Player().position.x + x < 0) {
+        std::cout << "player position x less than 0 moving to left chunk" << std::endl;
         game.Get_Player().location.x--;
         game.location.x--;
         game.Get_Player().position.x = Component::mapWidth - 1;
         newChunk = true;
       } else if (game.Get_Player().position.x + x >= Component::mapWidth) {
+        std::cout << "player position x greater than map width moving to right chunk" << std::endl;
         game.Get_Player().location.x++;
         game.location.x++;
         game.Get_Player().position.x = 0;
         newChunk = true;
       } else if (game.Get_Player().position.y + y < 0) {
+        std::cout << "player position y less than 0 moving to top chunk" << std::endl;
         game.Get_Player().location.y--;
         game.location.y--;
         game.Get_Player().position.y = Component::mapWidth - 1;
         newChunk = true;
       } else if (game.Get_Player().position.y + y >= Component::mapWidth) {
+        std::cout << "player position y greater than map width moving to bottom chunk" << std::endl;
         game.Get_Player().location.y++;
         game.location.y++;
         game.Get_Player().position.y = 0;

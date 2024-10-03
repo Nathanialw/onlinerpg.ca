@@ -106,8 +106,8 @@ namespace Map {
     Set_Tile(game.map[level][location].chunk, px + x, py + y, tile);
   }
 
-  void Update(Game::State &game, int level, Component::Position position, Component::Position newPosition, Component::Position location, Component::Position newLocation, const char &tile) {
-    Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, position.x, position.y);
+  void Update(Game::State &game, int level, Component::Position formerPosition, Component::Position newPosition, Component::Position formerLocation, Component::Position newLocation, const char &tile) {
+    Reset_Tile(game.map[level][formerLocation].defaultChunk, game.map[level][formerLocation].chunk, formerPosition.x, formerPosition.y);
     Set_Tile(game.map[level][newLocation].chunk, newPosition.x, newPosition.y, tile);
   }
 
