@@ -72,6 +72,8 @@ namespace Update {
         std::cout << "old position: " << formerPos.x << ", " << formerPos.y << std::endl;
         std::cout << "new position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
+        std::cout << "Set position direct: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.x << ", " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.y << std::endl;
+        std::cout << "Set position function: " << game.Get_Player().position.x << ", " << game.Get_Player().position.y << std::endl;
 
         Units::Remove_Unit(game.objects[level][location].unitPositions, game.objects[level][location].emptyUnitSlots, formerPos.x, formerPos.y);
         game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions.emplace(game.Get_Player().position, 0);
