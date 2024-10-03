@@ -47,7 +47,8 @@ namespace Game {
 
 
     //map
-
+    int level = 0;
+    Component::Position location = {0, 0};
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //seed
@@ -58,7 +59,7 @@ namespace Game {
       return objects.units[0];
     }
 
-    Chunk::Map_Chunk &Get_Map(int level, Component::Position location) {
+    Chunk::Map_Chunk &Get_Map() {
       return map[level][location];
     }
 
