@@ -27,61 +27,61 @@ namespace Update {
   };
 
   void Update_Player_Position(Game::State &game, int &px, int &py, int &x, int &y, Units::Species &species) {
-    auto &player = game.Get_Player();
-    std::cout << "initial player position: " << player.position.x << " " << player.position.y << std::endl;
-    std::cout << "initial player location: " << player.location.x << " " << player.location.y << std::endl;
+
+    std::cout << "initial player position: " << game.Get_Player().position.x << " " << game.Get_Player().position.y << std::endl;
+    std::cout << "initial player location: " << game.Get_Player().location.x << " " << game.Get_Player().location.y << std::endl;
 
     bool newChunk = false;
 
     //if at edge of map
-    if (player.position.x + x < 0 || player.position.x + x >= Component::mapWidth || player.position.y + y < 0 || player.position.y + y >= Component::mapWidth) {
-      auto formerPos = player.position;
-      auto location = player.location;
-      auto level = player.level;
+    if (game.Get_Player().position.x + x < 0 || game.Get_Player().position.x + x >= Component::mapWidth || game.Get_Player().position.y + y < 0 || game.Get_Player().position.y + y >= Component::mapWidth) {
+      auto formerPos = game.Get_Player().position;
+      auto location = game.Get_Player().location;
+      auto level = game.Get_Player().level;
 
-      if (player.position.x + x < 0) {
-        player.location.x--;
+      if (game.Get_Player().position.x + x < 0) {
+        game.Get_Player().location.x--;
         game.location.x--;
-        player.position.x = Component::mapWidth - 1;
+        game.Get_Player().position.x = Component::mapWidth - 1;
         newChunk = true;
-      } else if (player.position.x + x >= Component::mapWidth) {
-        player.location.x++;
+      } else if (game.Get_Player().position.x + x >= Component::mapWidth) {
+        game.Get_Player().location.x++;
         game.location.x++;
-        player.position.x = 0;
+        game.Get_Player().position.x = 0;
         newChunk = true;
-      } else if (player.position.y + y < 0) {
-        player.location.y--;
+      } else if (game.Get_Player().position.y + y < 0) {
+        game.Get_Player().location.y--;
         game.location.y--;
-        player.position.y = Component::mapWidth - 1;
+        game.Get_Player().position.y = Component::mapWidth - 1;
         newChunk = true;
-      } else if (player.position.y + y >= Component::mapWidth) {
-        player.location.y++;
+      } else if (game.Get_Player().position.y + y >= Component::mapWidth) {
+        game.Get_Player().location.y++;
         game.location.y++;
-        player.position.y = 0;
+        game.Get_Player().position.y = 0;
         newChunk = true;
       }
       if (newChunk) {
         std::cout << "Moving to new chunk..." << std::endl;
-        Map::Update(game, player.level, formerPos, player.position, location, player.location, Spawn::Get_Unit_Char(player.def.species));
-        Units::Update_Unit_Position(game.objects[player.level][player.location].unitPositions, formerPos.x, formerPos.y, player.position.x, player.position.y);
+        Map::Update(game, game.Get_Player().level, formerPos, game.Get_Player().position, location, game.Get_Player().location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
+        Units::Update_Unit_Position(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, formerPos.x, formerPos.y, game.Get_Player().position.x, game.Get_Player().position.y);
         //insert player at 0 index
-        std::cout << "Num units in new zone: " << game.objects[player.level][player.location].units.size() << std::endl;
+        std::cout << "Num units in new zone: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
         std::cout << "need to inserts player " << std::endl;
-        game.objects[player.level][player.location].units[0] = player;
+        game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.Get_Player();
         std::cout << "the zero index should always bee left open for the player " << std::endl;
         Units::Remove_Unit(game.objects[level][location].unitPositions, game.objects[level][location].emptyUnitSlots, formerPos.x, formerPos.y);
       }
     }
 
     if (!newChunk) {
-      Map::Update(game, player.level, player.location, px, py, x, y, Spawn::Get_Unit_Char(species));
-      Units::Update_Unit_Position(game.objects[player.level][player.location].unitPositions, px, py, px + x, py + y);
+      Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
+      Units::Update_Unit_Position(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, px, py, px + x, py + y);
       Movement::Move(game, x, y);
     }
 
 //    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);
-    std::cout << "new player position: " << player.position.x << " " << player.position.y << std::endl;
-    std::cout << "new player location: " << player.location.x << " " << player.location.y << std::endl;
+    std::cout << "new player position: " << game.Get_Player().position.x << " " << game.Get_Player().position.y << std::endl;
+    std::cout << "new player location: " << game.Get_Player().location.x << " " << game.Get_Player().location.y << std::endl;
   }
 
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
@@ -111,7 +111,7 @@ namespace Update {
           std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
           std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
           // check next cell and move/attack
-          if (Map::Get_Adjacent_Tile(game, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
+          if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
           std::cout << "unit attacks player" << std::endl;
           Attack::Melee(game.objects[unit.level][unit.location], game.map[unit.level][unit.location].defaultChunk, game.map[unit.level][unit.location].chunk, former.x, former.y, moveTo.x, moveTo.y);
           continue;
@@ -131,7 +131,6 @@ namespace Update {
       }
     }
 //    auto &units = game.objects.units;
-//    auto &player = game.Get_Player();
 //
 //    for (int i = 1; i < units.size(); i++) {
 //      if (units[i].health <= 0) {
@@ -178,8 +177,7 @@ namespace Update {
     Move move;
     move = updatePosition[*direction];
 
-    Units::Unit &player = game.Get_Player();
-    std::cout << "num entities on update: " << game.objects[player.level][player.location].units.size() << std::endl;
+    std::cout << "num entities on update: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
     std::cout << "successfully grabbed player from units[]" << std::endl;
 
     //rest
@@ -190,20 +188,20 @@ namespace Update {
     }
 
     // collision
-    if (Collision::Wall_Collision(game, player.position.x, player.position.y, move.x, move.y)) {
+    if (Collision::Wall_Collision(game, game.Get_Player().level, game.Get_Player().location, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
       std::string c = "c";
       return c + " " + "  " + "1";
     }
     // if the nearby cell is an enemy, attack
-    auto melee = Attack::Melee(game.objects[player.level][player.location], game.map[player.level][player.location].defaultChunk, game.map[player.level][player.location].chunk, player.position.x, player.position.y, move.x, move.y);
+    auto melee = Attack::Melee(game.objects[game.Get_Player().level][game.Get_Player().location], game.map[game.Get_Player().level][game.Get_Player().location].defaultChunk, game.map[game.Get_Player().level][game.Get_Player().location].chunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
       return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";
     }
 
     // if the unit survives, return, else move to the cell
-    Update_Player_Position(game, player.position.x, player.position.y, move.x, move.y, player.def.species);
+    Update_Player_Position(game, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y, game.Get_Player().def.species);
     Map::Check_Map_Chunk(game);
 
     std::string m = direction;

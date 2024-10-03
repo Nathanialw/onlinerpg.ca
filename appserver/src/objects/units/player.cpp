@@ -22,16 +22,15 @@ namespace Player {
     //prepend with 0000 to tell which stats are being sent
     //name + gender + species + class + alignment
 
-    auto &player = game.Get_Player();
 
-    auto health = Utils::Prepend_Zero_3Digit(player.health) + Utils::Prepend_Zero_3Digit(player.healthMax);
-    auto speed = std::to_string(player.speed) + std::to_string(player.maxSpeed);
-    auto damage = Utils::Prepend_Zero(player.minDamage) + Utils::Prepend_Zero(player.maxDamage);
-    auto variableStats = player.potrait + Utils::Prepend_Zero(player.AC) + Utils::Prepend_Zero_3Digit(player.age) + health + speed + damage;
+    auto health = Utils::Prepend_Zero_3Digit(game.Get_Player().health) + Utils::Prepend_Zero_3Digit(game.Get_Player().healthMax);
+    auto speed = std::to_string(game.Get_Player().speed) + std::to_string(game.Get_Player().maxSpeed);
+    auto damage = Utils::Prepend_Zero(game.Get_Player().minDamage) + Utils::Prepend_Zero(game.Get_Player().maxDamage);
+    auto variableStats = game.Get_Player().potrait + Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
 
     //    2 + 3 + 3 + 3 + 1 + 1 + 2 + 2
 
-    std::string stats = "1111" + player.name + variableStats + std::to_string((int)player.def.gender) + std::to_string((int)player.def.species) + std::to_string((int)player.def.unitClass) + std::to_string((int)player.def.alignment);
+    std::string stats = "1111" + game.Get_Player().name + variableStats + std::to_string((int)game.Get_Player().def.gender) + std::to_string((int)game.Get_Player().def.species) + std::to_string((int)game.Get_Player().def.unitClass) + std::to_string((int)game.Get_Player().def.alignment);
     std::cout << "3" + stats << " Char stats sent!" << std::endl;
     return "3" + stats;
   }

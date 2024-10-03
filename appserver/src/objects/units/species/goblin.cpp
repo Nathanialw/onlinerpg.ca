@@ -22,12 +22,11 @@
 
 namespace Species {
   std::string Get_Unit_Data_As_string(Game::State &game, const std::string &msg) {
-    auto &player = game.Get_Player();
-    int mapPositionX = player.position.x - player.vision + std::stoi(msg.substr(0, 2));
-    int mapPositionY = player.position.y - player.vision + std::stoi(msg.substr(2, 2));
+    int mapPositionX = game.Get_Player().position.x - game.Get_Player().vision + std::stoi(msg.substr(0, 2));
+    int mapPositionY = game.Get_Player().position.y - game.Get_Player().vision + std::stoi(msg.substr(2, 2));
 
     //will need to use mouse coords to determine level/location, but for now you can only get from the same map chunk/level as the player
-    auto unit = Units::Get_Unit_At_Position(game.objects[player.level][player.location].units, game.objects[player.level][player.location].unitPositions, mapPositionX, mapPositionY);
+    auto unit = Units::Get_Unit_At_Position(game.objects[game.Get_Player().level][game.Get_Player().location].units, game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, mapPositionX, mapPositionY);
 
     auto name = unit.name;
     auto age = Utils::Prepend_Zero_3Digit(unit.age);
