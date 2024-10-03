@@ -129,8 +129,10 @@ namespace Spawn {
     }
     Place_Entities_On_Map(rooms, level, location, objects);
 
-    for (int i = 1; i < objects.units.size(); ++i) {
-      Map::Set_Tile(chunk, objects.units[i].position.x, objects.units[i].position.y, unitChars[(int)objects.units[i].def.species]);
+    for (auto &unit : objects.units) {
+      if (unit.health > 0) {
+        Map::Set_Tile(chunk, unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
+      }
     }
     std::cout << "units inited" << std::endl;
 
