@@ -64,7 +64,7 @@ namespace Chunk {
   }
 
 
-  void Create_Chunk(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects) {
+  void Create_Chunk(int level, Component::Position location, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects) {
     //chunk position
     //seed based on that position
 
@@ -72,7 +72,7 @@ namespace Chunk {
 
     Pathing::Init(pathing, map);
 
-//    Spawn::Init(chunk, rooms, objects); // msg->get_payload()
+    Spawn::Init(level, location, chunk, rooms, objects); // msg->get_payload()
   }
 
 

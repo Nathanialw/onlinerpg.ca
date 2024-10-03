@@ -190,7 +190,9 @@ namespace Map {
       Proc_Gen::Seed seed;
       seed.seed = Proc_Gen::Create_Initial_Seed(location.x, location.y);
 
-      Chunk::Create_Chunk(game.map[level][location].defaultChunk,
+      Chunk::Create_Chunk(level,
+                          location,
+                          game.map[level][location].defaultChunk,
                           game.map[level][location].chunk,
                           game.map[level][location].rooms,
                           game.map[level][location].pathing,
