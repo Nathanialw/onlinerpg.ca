@@ -166,6 +166,7 @@ namespace Units {
 
   int Get_Unit_Index(std::unordered_map<Component::Position, int> &unitPositions, int x, int y);
   void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const int &x, const int &y, const int &newX, const int &newY);
+  void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const Component::Position &pos, const Component::Position &newPos);
   void Remove_Unit(std::unordered_map<Component::Position, int> &unitPositions, std::vector<int> &emptyUnitSlots, int x, int y);
   Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, int x, int y);
   void Update_UnitsString(std::string &unitsString, int x, int y);

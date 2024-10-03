@@ -22,6 +22,21 @@ namespace Units {
     unitPositions.erase(pos);
   }
 
+  void Add_Unit(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, std::vector<int> &emptyUnitSlots, Units::Unit &unit, int x, int y) {
+    if (!emptyUnitSlots.empty()) {
+      int index = emptyUnitSlots[emptyUnitSlots.size() - 1];
+      emptyUnitSlots.pop_back();
+      units[index] = unit;
+      Component::Position pos = {x, y};
+      unitPositions.emplace(pos, index);
+    }
+    else {
+      units.push_back(unit);
+      Component::Position pos = {x, y};
+      unitPositions.emplace(pos, units.size() - 1);
+    }
+  }
+
   Units::Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, int x, int y) {
     return units[Units::Get_Unit_Index(unitPositions, x, y)];
   }
@@ -40,6 +55,13 @@ namespace Units {
     Component::Position pos = {x, y};
     int index = unitPositions[pos];
     Component::Position newPos = {newX, newY};
+    unitPositions.erase(pos);
+    unitPositions.emplace(newPos, index);
+  }
+
+  void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const Component::Position &pos, const Component::Position &newPos) {
+    std::cout << "updating unit position from: " << pos.x << " " << pos.y << " to: " << newPos.x << " " << newPos.y << std::endl;
+    int index = unitPositions[pos];
     unitPositions.erase(pos);
     unitPositions.emplace(newPos, index);
   }
