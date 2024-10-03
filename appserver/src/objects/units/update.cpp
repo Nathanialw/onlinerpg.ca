@@ -73,6 +73,7 @@ namespace Update {
         std::cout << "new position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
         std::cout << "Set position direct: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.x << ", " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.y << std::endl;
+        std::cout << "game level: " << game.level << " game location: " << game.location.x << ", " << game.location.y << std::endl;
         std::cout << "Set position game.: " << game.objects[game.level][game.location].units[0].position.x << ", " << game.objects[game.level][game.location].units[0].position.y << std::endl;
         std::cout << "Set position function: " << game.Get_Player().position.x << ", " << game.Get_Player().position.y << std::endl;
 
