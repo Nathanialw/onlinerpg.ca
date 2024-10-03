@@ -56,7 +56,7 @@ namespace Update {
       Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
       Units::Update_Unit_Position(game.objects.unitPositions, former.x, former.y, player.position.x, player.position.y);
     }
-    else if (player.position.y >= Component::mapWidth) {
+    else if (player.position.y + y >= Component::mapWidth) {
       auto location = game.location;
       game.location.y++;
       auto former = player.position;
