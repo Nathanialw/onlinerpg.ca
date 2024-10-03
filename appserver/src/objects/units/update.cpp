@@ -33,6 +33,7 @@ namespace Update {
     std::cout << "initial player position: " << player.position.x << " " << player.position.y << std::endl;
     std::cout << "initial player location: " << game.location.x << " " << game.location.y << std::endl;
     if (player.position.x < 0) {
+      std::cout << "Moving player to left map chunk..." << std::endl;
       auto location = game.location;
       game.location.x--;
       auto former = player.position;

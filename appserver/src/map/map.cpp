@@ -187,12 +187,12 @@ namespace Map {
 
   void Add_Map_Chunk(Game::State &game, Component::Position location) {
     std::cout << "Add map chunk" << std::endl;
-    std::cout << "location position: " << location.x << ", " << location.y << std::endl;
+    std::cout << "location position to add: " << location.x << ", " << location.y << std::endl;
 
     std::cout << "Checking if location exists in map..." << std::endl;
     if (game.map[game.level].count(location) == 0) {
+      std::cout << "Not found adding chunk..." << std::endl;
       // if player position is close to the edge of the chunk, create a new chunk add a new chunk
-      std::cout << "Creating chunk" << std::endl;
       Proc_Gen::Seed seed;
       seed.seed = Proc_Gen::Create_Initial_Seed(location.x, location.y);
 
