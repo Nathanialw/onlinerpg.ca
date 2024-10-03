@@ -61,7 +61,8 @@ namespace Game {
       if (objects[level][location].units.empty()) {
         std::cout << "Get_Player() no player found..." << std::endl;
       }
-      return objects[level][location].units[0];
+      std::cout << "level: " << level << " " << "game object location: " << location.x << ", " << location.y <<std::endl;
+          return objects[level][location].units[0];
     }
 
     Chunk::Map_Chunk &Get_Map(int currentLevel, Component::Position currentLocation) {
