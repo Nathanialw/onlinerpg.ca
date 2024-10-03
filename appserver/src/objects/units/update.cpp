@@ -66,17 +66,21 @@ namespace Update {
         newChunk = true;
       }
       if (newChunk) {
+        std::cout << "-------------------" << std::endl;
         std::cout << "Moving from chunk... " << location.x << ", " << location.y << std::endl;
         std::cout << "Moving to new chunk... " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         std::cout << "Num units in new zone: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
         std::cout << "old position: " << formerPos.x << ", " << formerPos.y << std::endl;
         std::cout << "new position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
+        std::cout << "-------------------" << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
-        std::cout << "Set position direct: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.x << ", " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.y << std::endl;
+        std::cout << "player level: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         std::cout << "game level: " << game.level << " game location: " << game.location.x << ", " << game.location.y << std::endl;
+        std::cout << "-------------------" << std::endl;
+        std::cout << "Set position direct: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.x << ", " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.y << std::endl;
         std::cout << "Set position game.: " << game.objects[game.level][game.location].units[0].position.x << ", " << game.objects[game.level][game.location].units[0].position.y << std::endl;
         std::cout << "Set position function: " << game.Get_Player().position.x << ", " << game.Get_Player().position.y << std::endl;
-
+        std::cout << "-------------------" << std::endl;
         Units::Remove_Unit(game.objects[level][location].unitPositions, game.objects[level][location].emptyUnitSlots, formerPos.x, formerPos.y);
         game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions.emplace(game.Get_Player().position, 0);
         //update map
@@ -93,6 +97,7 @@ namespace Update {
 //    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);
     std::cout << "new player position: " << game.Get_Player().position.x << " " << game.Get_Player().position.y << std::endl;
     std::cout << "new player location: " << game.Get_Player().location.x << " " << game.Get_Player().location.y << std::endl;
+    std::cout << "-------------------" << std::endl;
   }
 
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
