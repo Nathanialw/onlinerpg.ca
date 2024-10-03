@@ -70,9 +70,9 @@ namespace Update {
         std::cout << "Moving to new chunk... " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         std::cout << "Num units in new zone: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
         std::cout << "old position: " << formerPos.x << ", " << formerPos.y << std::endl;
-        std::cout << "new position: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
-
+        std::cout << "new position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
+
         Units::Remove_Unit(game.objects[level][location].unitPositions, game.objects[level][location].emptyUnitSlots, formerPos.x, formerPos.y);
         game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions.emplace(game.Get_Player().position, 0);
         //update map
