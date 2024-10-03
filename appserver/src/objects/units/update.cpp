@@ -39,6 +39,7 @@ namespace Update {
       auto former = player.position;
       player.position.x = Component::mapWidth - 1;
       Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+      Units::Update_Unit_Position(game.objects.unitPositions, former.x, former.y, player.position.x, player.position.y);
     }
     else if (player.position.x + x >= Component::mapWidth) {
       auto location = game.location;
@@ -46,6 +47,7 @@ namespace Update {
       auto former = player.position;
       player.position.x = 0;
       Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+      Units::Update_Unit_Position(game.objects.unitPositions, former.x, former.y, player.position.x, player.position.y);
     }
 //    else if (player.position.y < 0) {
 //      auto location = game.location;
