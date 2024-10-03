@@ -25,10 +25,10 @@ namespace Send {
     std::string map = Map::Init(game.map[level][location].defaultChunk, game.map[level][location].chunk, game.map[level][location].rooms, game.seed);
     Pathing::Init(game.map[level][location].pathing, map);
     Player::Spawn(game, level, location, x, y, msg);
-    Spawn::Init(level, location, game.map[level][location].chunk, game.map[level][location].rooms, game.objects); // msg->get_payload()
+    Spawn::Init(level, location, game.map[level][location].chunk, game.map[level][location].rooms, game.objects[level][location]); // msg->get_payload()
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 
-    if (!game.objects.units.empty()) {
+    if (!game.objects[level][location].units.empty()) {
       print_server.send(hdl, Map::SendMapSegment(game, "q"), websocketpp::frame::opcode::text);
     }
 
@@ -74,9 +74,9 @@ namespace Send {
                         websocketpp::frame::opcode::text);
       std::cout << "char stats sent!" << std::endl;
 
-      if (!game.objects.units.empty()) {
-        print_server.send(hdl, Map::SendMapSegment(game, "1   0"), websocketpp::frame::opcode::text);
-      }
+//      if (!game.objects.units.empty()) {
+//        print_server.send(hdl, Map::SendMapSegment(game, "1   0"), websocketpp::frame::opcode::text);
+//      }
     }
 
     else if (msg[0] == '5') {

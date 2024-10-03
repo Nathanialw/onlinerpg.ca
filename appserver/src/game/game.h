@@ -32,7 +32,8 @@ namespace Game {
     std::string session_id;
 
     //units
-    Units::Objects objects;
+//    Units::Objects objects;
+    std::array<std::unordered_map<Component::Position, Units::Objects>, 26> objects;
 
     //current turn
     int time = 0;
@@ -48,8 +49,8 @@ namespace Game {
 
 
     //map
-//    int level = 0;
-//    Component::Position location = {0, 0};
+    int level = 0;
+    Component::Position location = {0, 0};
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //seed
@@ -57,10 +58,10 @@ namespace Game {
 
 
     Units::Unit &Get_Player() {
-      if (objects.units.empty()) {
+      if (objects[level][location].units.empty()) {
         std::cout << "Get_Player() no player found..." << std::endl;
       }
-      return objects.units[0];
+      return objects[level][location].units[0];
     }
 
     Chunk::Map_Chunk &Get_Map(int currentLevel, Component::Position currentLocation) {

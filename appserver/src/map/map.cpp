@@ -194,7 +194,7 @@ namespace Map {
                           game.map[player.level][location].chunk,
                           game.map[player.level][location].rooms,
                           game.map[player.level][location].pathing,
-                          seed, game.objects);
+                          seed, game.objects[player.level][location]);
       std::cout << "chunk created" << std::endl;
     }
     else {
@@ -209,44 +209,56 @@ namespace Map {
       Component::Position location = player.location;
       location.x--;
       location.y--;
+      game.location.x--;
+      game.location.y--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x >= Component::mapWidth - player.vision && player.position.y >= Component::mapWidth - player.vision) {
       Component::Position location = player.location;
       location.x++;
       location.y++;
+      game.location.x++;
+      game.location.y++;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x < player.vision && player.position.y >= Component::mapWidth - player.vision) {
       Component::Position location = player.location;
       location.x--;
       location.y++;
+      game.location.x--;
+      game.location.y++;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x >= Component::mapWidth - player.vision && player.position.y < player.vision) {
       Component::Position location = player.location;
       location.x++;
       location.y--;
+      game.location.x++;
+      game.location.y--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x < player.vision) {
       Component::Position location = player.location;
       location.x--;
+      game.location.x--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.x >= Component::mapWidth - player.vision) {
       Component::Position location = player.location;
       location.x++;
+      game.location.x++;
       Add_Map_Chunk(game, location);
     }
     if (player.position.y < player.vision) {
       Component::Position location = player.location;
       location.y--;
+      game.location.y--;
       Add_Map_Chunk(game, location);
     }
     if (player.position.y >= Component::mapWidth - player.vision) {
       Component::Position location = player.location;
       location.y++;
+      game.location.y++;
       Add_Map_Chunk(game, location);
     }
 
