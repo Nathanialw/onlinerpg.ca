@@ -36,7 +36,6 @@ namespace Player {
     return "3" + stats;
   }
 
-
   void Spawn(Game::State &game, int level, Component::Position location, int x, int y, const std::basic_string<char> &characterCreate) {
     game.objects.unitsString += "2";
     // loop through the map x times and lok for 2x2 squares
@@ -44,7 +43,7 @@ namespace Player {
     // I need to send the char and the offset in the map g0317
     auto length = characterCreate.size();
 
-    std::cout << "Crearacter create: " << characterCreate << std::endl;
+    std::cout << "Character create: " << characterCreate << std::endl;
     std::string name = characterCreate.substr(1, length - 5);
     std::cout << "Name: " << name << std::endl;
     std::string genderStr = characterCreate.substr(length - 4, 1);
@@ -62,13 +61,15 @@ namespace Player {
     auto unitClass = (Units::Class)std::stoi(classStr);
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
 
-    Spawn::Add_Unit(game.objects, level, location, 6, 6, name, gender, species, unitClass, alignment);
+    Spawn::Add_Unit(game.objects, level, location, x, y, name, gender, species, unitClass, alignment);
     std::cout << "size: " << game.objects.units.size() << std::endl;
     game.objects.units.at(0).health = 100;
     game.objects.units.at(0).healthMax = 100;
     std::cout << "health: " << game.objects.units.at(0).health << std::endl;
+    std::string xStr = Utils::Prepend_Zero(x);
+    std::string yStr = Utils::Prepend_Zero(y);
 
-    game.objects.unitsString += (std::to_string(Spawn::Get_Unit_Char(species)) + "0606");
+    game.objects.unitsString += (std::to_string(Spawn::Get_Unit_Char(species)) + xStr + yStr);
   }
 
 }
