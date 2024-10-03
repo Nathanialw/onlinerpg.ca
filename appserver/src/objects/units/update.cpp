@@ -37,16 +37,16 @@ namespace Update {
       auto location = game.location;
       game.location.x--;
       auto former = player.position;
-      player.position.x = Component::mapWidth;
+      player.position.x = Component::mapWidth - 1;
       Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
     }
-//    } else if (player.position.x >= Component::mapWidth) {
-//      auto location = game.location;
-//      game.location.x++;
-//      auto former = player.position;
-//      player.position.x = Component::mapWidth - 1;
-//      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
-//    }
+    else if (player.position.x + x >= Component::mapWidth) {
+      auto location = game.location;
+      game.location.x++;
+      auto former = player.position;
+      player.position.x = 0;
+      Map::Update(game, former, player.position, location, game.location, Spawn::Get_Unit_Char(player.def.species));
+    }
 //    else if (player.position.y < 0) {
 //      auto location = game.location;
 //      game.location.y--;
@@ -64,8 +64,8 @@ namespace Update {
 //    }
     else {
       Units::Update_Unit_Position(game.objects.unitPositions, px, py, px + x, py + y);
+      Movement::Move(game, x, y);
     }
-    Movement::Move(game, x, y);
     Units::Update_UnitsString(game.objects.unitsString, x, y);
     std::cout << "new player position: " << player.position.x << " " << player.position.y << std::endl;
     std::cout << "new player location: " << game.location.x << " " << game.location.y << std::endl;
