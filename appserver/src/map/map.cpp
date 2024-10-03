@@ -238,12 +238,12 @@ namespace Map {
           location.x += dir.first;
           location.y += dir.second;
           Add_Map_Chunk(game, location);
+          for (auto &chunk : game.map[game.level]) {
+            std::cout << "Chunk: " << chunk.first.x << ", " << chunk.first.y << std::endl;
+          }
       }
     }
     std::cout << "Number of chunks: " <<  game.map[game.level].size() << std::endl;
-    for (auto &chunk : game.map[game.level]) {
-      std::cout << "Chunk: " << chunk.first.x << ", " << chunk.first.y << std::endl;
-    }
   }
 
 }
