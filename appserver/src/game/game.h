@@ -35,6 +35,7 @@ namespace Game {
     Units::Objects objects;
 
     //current turn
+    int time = 0;
     int turn = 0;
     //start day jan 1 2024
     //attack/move = 1 min
@@ -56,11 +57,14 @@ namespace Game {
 
 
     Units::Unit &Get_Player() {
+      if (objects.units.empty()) {
+        std::cout << "Get_Player() no player found..." << std::endl;
+      }
       return objects.units[0];
     }
 
-    Chunk::Map_Chunk &Get_Map() {
-      return map[level][location];
+    Chunk::Map_Chunk &Get_Map(int currentLevel, Component::Position currentLocation) {
+      return map[currentLevel][currentLocation];
     }
 
     //constructor

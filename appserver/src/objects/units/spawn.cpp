@@ -27,7 +27,7 @@ namespace Spawn {
     return unitChars[(int)species];
   }
 
-  void Add_Unit(Units::Objects &objects, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
+  void Add_Unit(Units::Objects &objects, int level, Component::Position location, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
     Units::Unit unit{};
     unit.name = name;
     unit.def.gender = gender;
@@ -36,6 +36,9 @@ namespace Spawn {
     unit.def.alignment = alignment;
     unit.position.x = x;
     unit.position.y = y;
+
+    unit.level = level;
+    unit.location = location;
 
     auto &units = objects.units;
     auto &unitsPositions = objects.unitPositions;
@@ -66,19 +69,19 @@ namespace Spawn {
     return placements;
   }
 
-  bool Add_Object(Units::Objects &objects, std::string &group, int x, int y) {
+  bool Add_Object(Units::Objects &objects, int level, Component::Position location, std::string &group, int x, int y) {
     if (x > Component::mapWidth - 1 || y > Component::mapWidth - 1 || x < 1 || y < 1) {
       group.clear();
       return false;
     } else {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
-      Add_Unit(objects, x, y, "Blargh", Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
+      Add_Unit(objects, level, location, x, y, "Blargh", Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
       return true;
     }
   }
 
-  std::string Random_Entities(Units::Objects &objects, const char entityType, int numEntities, int x, int y) {
+  std::string Random_Entities(Units::Objects &objects, int level, Component::Position location, const char entityType, int numEntities, int x, int y) {
     std::string group;
     int tries = 10;
   reRoll:
@@ -87,7 +90,7 @@ namespace Spawn {
     }
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
-      if (!Add_Object(objects, group, x + i, y + i)) {
+      if (!Add_Object(objects, level, location, group, x + i, y + i)) {
         tries--;
         goto reRoll;
       }
@@ -95,13 +98,13 @@ namespace Spawn {
     return group;
   }
 
-  void Place_Entities_On_Map(std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
+  void Place_Entities_On_Map(std::vector<Chunk::Room> &rooms, int level, Component::Position location, Units::Objects &objects) {
     auto placements = Spawn_Unit(rooms);
     std::cout << "num placements: " << placements.size() << std::endl;
 
     for (const auto &placement : placements) {
       int numMonsters = rand() % 4;
-      auto unitData = Random_Entities(objects, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
+      auto unitData = Random_Entities(objects, level, location, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
       objects.unitsString += unitData;
       std::cout << "units added: " << unitData << std::endl;
     }
@@ -109,8 +112,9 @@ namespace Spawn {
     std::cout << "init num entities: " << objects.units.size() << std::endl;
   }
 
-  void Init(char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
-    Place_Entities_On_Map(rooms, objects);
+  //we beed the chunk that the unit is being spawned in
+  void Init(int level, Component::Position location, char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
+    Place_Entities_On_Map(rooms, level, location, objects);
 
     for (auto &unit : objects.units) {
         Map::Set_Tile(chunk, unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
