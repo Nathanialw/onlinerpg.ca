@@ -117,11 +117,11 @@ namespace Update {
       }
     }
 
-//    auto mapString = Map::Get_Map(game.map[game.level][game.location].chunk);
-//    std::cout << "Drawing map: "<< std::endl;
-//    for (int i = 0; i < 99; i++) {
-//      std::cout << mapString.substr(i * 99, 99) << std::endl;
-//    }
+    auto mapString = Map::Get_Map(game.map[player.level][player.location].chunk);
+    std::cout << "Drawing map: "<< std::endl;
+    for (int i = 0; i < 99; i++) {
+      std::cout << mapString.substr(i * 99, 99) << std::endl;
+    }
   }
 
   std::string Update_Player(Game::State &game, const char *direction) {
