@@ -1,5 +1,7 @@
 <?php
     session_start();
+    $nonce = base64_encode(random_bytes(16));
+
 ?>
 
 <!doctype html>
