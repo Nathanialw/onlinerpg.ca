@@ -48,7 +48,9 @@ namespace Update {
         newChunk = true;
       } else if (game.Get_Player().position.x + x >= Component::mapWidth) {
         std::cout << "player position x greater than map width moving to right chunk" << std::endl;
+        std::cout << "player location x: " << game.Get_Player().location.x << std::endl;
         game.Get_Player().location.x++;
+        std::cout << "player location x: " << game.Get_Player().location.x << std::endl;
         game.Get_Player().position.x = 0;
         game.location.x++;
         newChunk = true;
@@ -66,6 +68,8 @@ namespace Update {
         newChunk = true;
       }
       if (newChunk) {
+        std::cout << "player location x: " << game.objects[level][location].units[0].location.x << std::endl;
+        std::cout << "player location x: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].location.x << std::endl;
         std::cout << "-------------------" << std::endl;
         std::cout << "Moving from chunk... " << location.x << ", " << location.y << std::endl;
         std::cout << "Moving to new chunk... " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
