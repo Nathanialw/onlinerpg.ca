@@ -170,8 +170,8 @@ namespace Update {
 
     auto targetLocation = Attack::Check_Target_Location(attacker, move);
     auto &targetList = game.objects[game.Get_Player().level][targetLocation];
-    auto defaultChunk = game.map[game.Get_Player().level][targetLocation].defaultChunk;
-    auto targetChunk = game.map[game.Get_Player().level][targetLocation].chunk;
+    auto &defaultChunk = game.map[game.Get_Player().level][targetLocation].defaultChunk;
+    auto &targetChunk = game.map[game.Get_Player().level][targetLocation].chunk;
 
     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
