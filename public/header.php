@@ -9,7 +9,7 @@
     <head>
         <title>Browser RPG, an ASCII game where you explore and fight monsters</title>
         <meta name="description" content="Browser RPG game in the vein of rogue. An ASCII-graphics roguelike game where you can explore the world and fight monsters and level up.">
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://ajax.googleapis.com; object-src 'none'" >
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' https://ajax.googleapis.com; object-src 'none'" >
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
