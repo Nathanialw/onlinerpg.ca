@@ -9,7 +9,7 @@
 namespace Attack {
 
 void Check_Target_List(Game::State &game, const Units::Unit &unit, const Component::Position &moveTo,  Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char targetChunk[Component::mapWidth][Component::mapWidth]) {
-    auto location = Component::Position{unit.location.x, unit.location.y};
+    auto location = unit.location;
     if (unit.position.x + moveTo.x < 0) {
       location.x--;
     }
