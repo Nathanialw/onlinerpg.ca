@@ -13,12 +13,8 @@
 #include "spawn.h"
 
 namespace Update {
-  struct Move {
-    int x = 0;
-    int y = 0;
-  };
 
-  std::unordered_map<char, Move> updatePosition = {
+  std::unordered_map<char, Component::Position> updatePosition = {
     {'w', {0,-1}},
     {'a', {-1,0}},
     {'s', {0,1}},
@@ -114,25 +110,15 @@ namespace Update {
               if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
 
-                int attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
-                auto &attacker = game.objects[game.Get_Player().level][game.Get_Player().location].units[attackerIndex];
+                int attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position.x, unit.position.y);
+                auto &attacker = game.objects[unit.level][unit.location].units[attackerIndex];
 
-                auto &targetList = game.objects[game.Get_Player().level][game.Get_Player().location];
-                auto &defaultChunk = game.map[game.Get_Player().level][game.Get_Player().location].defaultChunk;
-                auto &chunk = game.map[game.Get_Player().level][game.Get_Player().location].chunk;
-                if (game.Get_Player().position.x + moveTo.x < 0) {
-                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-                }
-                else if (game.Get_Player().position.x + moveTo.x >= Component::mapWidth) {
-                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-                }
-                else if (game.Get_Player().position.y + moveTo.y < 0) {
-                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-                }
-                else if (game.Get_Player().position.y + moveTo.y >= Component::mapWidth) {
-                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-                }
-                auto melee = Attack::Melee(attacker, targetList, defaultChunk, chunk, game.Get_Player().position.x, game.Get_Player().position.y, moveTo.x, moveTo.y);
+                auto &targetList = game.objects[unit.level][unit.location];
+                auto &defaultChunk = game.map[unit.level][unit.location].defaultChunk;
+                auto &targetChunk = game.map[unit.level][unit.location].chunk;
+                Attack::Check_Target_List(game, attacker, moveTo, targetList, defaultChunk, targetChunk);
+
+                auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, unit.position.x, unit.position.y, moveTo.x, moveTo.y);
                 continue;
               }
 
@@ -160,8 +146,7 @@ namespace Update {
   }
 
   std::string Update_Player(Game::State &game, const char *direction) {
-    Move move;
-    move = updatePosition[*direction];
+    auto move = updatePosition[*direction];
 
     std::cout << "num entities on update: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
     std::cout << "successfully grabbed player from units[]" << std::endl;
@@ -183,23 +168,13 @@ namespace Update {
     int attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
     auto &attacker = game.objects[game.Get_Player().level][game.Get_Player().location].units[attackerIndex];
 
+
     auto &targetList = game.objects[game.Get_Player().level][game.Get_Player().location];
     auto &defaultChunk = game.map[game.Get_Player().level][game.Get_Player().location].defaultChunk;
-    auto &chunk = game.map[game.Get_Player().level][game.Get_Player().location].chunk;
-    if (game.Get_Player().position.x + move.x < 0) {
-      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-    }
-    else if (game.Get_Player().position.x + move.x >= Component::mapWidth) {
-      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-    }
-    else if (game.Get_Player().position.y + move.y < 0) {
-      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-    }
-    else if (game.Get_Player().position.y + move.y >= Component::mapWidth) {
-      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
-    }
+    auto &targetChunk = game.map[game.Get_Player().level][game.Get_Player().location].chunk;
+    Attack::Check_Target_List(game, attacker, move, targetList, defaultChunk, targetChunk);
 
-    auto melee = Attack::Melee(attacker, targetList, defaultChunk, chunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
+    auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
       return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";

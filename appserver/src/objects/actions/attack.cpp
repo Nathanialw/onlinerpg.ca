@@ -8,6 +8,26 @@
 
 namespace Attack {
 
+void Check_Target_List(Game::State &game, const Units::Unit &unit, const Component::Position &moveTo,  Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char targetChunk[Component::mapWidth][Component::mapWidth]) {
+    auto location = Component::Position{unit.location.x, unit.location.y};
+    if (unit.position.x + moveTo.x < 0) {
+      location = Component::Position{unit.location.x - 1, unit.location.y};
+    }
+    else if (unit.position.x + moveTo.x >= Component::mapWidth) {
+      location = Component::Position{unit.location.x + 1, unit.location.y};
+    }
+    else if (unit.position.y + moveTo.y < 0) {
+      location = Component::Position{unit.location.x, unit.location.y - 1};
+    }
+    else if (unit.position.y + moveTo.y >= Component::mapWidth) {
+      location = Component::Position{unit.location.x, unit.location.y + 1};
+    }
+
+    targets = game.objects[unit.level][location];
+    defaultChunk = game.map[unit.level][location].defaultChunk;
+    targetChunk = game.map[unit.level][location].chunk;
+}
+
   int Check_Target(Units::Objects &targets, int px, int py, int x, int y) {
     //if at the edge of the map
     int targetIndex;
