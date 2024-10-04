@@ -8,7 +8,7 @@
 
 namespace Attack {
 
-void Check_Target_List(Game::State &game, const Units::Unit &unit, const Component::Position &moveTo,  Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char targetChunk[Component::mapWidth][Component::mapWidth]) {
+Component::Position Check_Target_Location(const Units::Unit &unit, const Component::Position &moveTo) {
     auto location = unit.location;
     if (unit.position.x + moveTo.x < 0) {
       location.x--;
@@ -22,10 +22,7 @@ void Check_Target_List(Game::State &game, const Units::Unit &unit, const Compone
     else if (unit.position.y + moveTo.y >= Component::mapWidth) {
       location.y++;
     }
-
-    targets = game.objects[unit.level][location];
-    defaultChunk = game.map[unit.level][location].defaultChunk;
-    targetChunk = game.map[unit.level][location].chunk;
+    return location;
 }
 
   int Check_Target(Units::Objects &targets, int px, int py, int x, int y) {

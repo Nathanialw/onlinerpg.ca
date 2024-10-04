@@ -113,10 +113,10 @@ namespace Update {
                 int attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position.x, unit.position.y);
                 auto &attacker = game.objects[unit.level][unit.location].units[attackerIndex];
 
-                auto &targetList = game.objects[unit.level][unit.location];
-                auto &defaultChunk = game.map[unit.level][unit.location].defaultChunk;
-                auto &targetChunk = game.map[unit.level][unit.location].chunk;
-                Attack::Check_Target_List(game, attacker, moveTo, targetList, defaultChunk, targetChunk);
+                auto targetLocation = Attack::Check_Target_Location(attacker, moveTo);
+                auto &targetList = game.objects[game.Get_Player().level][targetLocation];
+                auto defaultChunk = game.map[game.Get_Player().level][targetLocation].defaultChunk;
+                auto targetChunk = game.map[game.Get_Player().level][targetLocation].chunk;
 
                 auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, unit.position.x, unit.position.y, moveTo.x, moveTo.y);
                 continue;
@@ -168,11 +168,10 @@ namespace Update {
     int attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
     auto &attacker = game.objects[game.Get_Player().level][game.Get_Player().location].units[attackerIndex];
 
-
-    auto &targetList = game.objects[game.Get_Player().level][game.Get_Player().location];
-    auto &defaultChunk = game.map[game.Get_Player().level][game.Get_Player().location].defaultChunk;
-    auto &targetChunk = game.map[game.Get_Player().level][game.Get_Player().location].chunk;
-    Attack::Check_Target_List(game, attacker, move, targetList, defaultChunk, targetChunk);
+    auto targetLocation = Attack::Check_Target_Location(attacker, move);
+    auto &targetList = game.objects[game.Get_Player().level][targetLocation];
+    auto defaultChunk = game.map[game.Get_Player().level][targetLocation].defaultChunk;
+    auto targetChunk = game.map[game.Get_Player().level][targetLocation].chunk;
 
     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
