@@ -113,7 +113,26 @@ namespace Update {
               // check next cell and move/attack
               if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
-                Attack::Melee(game.objects[unit.level][unit.location], game.map[unit.level][unit.location].defaultChunk, game.map[unit.level][unit.location].chunk, former.x, former.y, moveTo.x, moveTo.y);
+
+                int attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
+                auto &attacker = game.objects[game.Get_Player().level][game.Get_Player().location].units[attackerIndex];
+
+                auto &targetList = game.objects[game.Get_Player().level][game.Get_Player().location];
+                auto &defaultChunk = game.map[game.Get_Player().level][game.Get_Player().location].defaultChunk;
+                auto &chunk = game.map[game.Get_Player().level][game.Get_Player().location].chunk;
+                if (game.Get_Player().position.x + moveTo.x < 0) {
+                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+                }
+                else if (game.Get_Player().position.x + moveTo.x >= Component::mapWidth) {
+                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+                }
+                else if (game.Get_Player().position.y + moveTo.y < 0) {
+                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+                }
+                else if (game.Get_Player().position.y + moveTo.y >= Component::mapWidth) {
+                  targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+                }
+                auto melee = Attack::Melee(attacker, targetList, defaultChunk, chunk, game.Get_Player().position.x, game.Get_Player().position.y, moveTo.x, moveTo.y);
                 continue;
               }
 
@@ -161,7 +180,26 @@ namespace Update {
       return c + " " + "  " + "1";
     }
     // if the nearby cell is an enemy, attack
-    auto melee = Attack::Melee(game.objects[game.Get_Player().level][game.Get_Player().location], game.map[game.Get_Player().level][game.Get_Player().location].defaultChunk, game.map[game.Get_Player().level][game.Get_Player().location].chunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
+    int attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
+    auto &attacker = game.objects[game.Get_Player().level][game.Get_Player().location].units[attackerIndex];
+
+    auto &targetList = game.objects[game.Get_Player().level][game.Get_Player().location];
+    auto &defaultChunk = game.map[game.Get_Player().level][game.Get_Player().location].defaultChunk;
+    auto &chunk = game.map[game.Get_Player().level][game.Get_Player().location].chunk;
+    if (game.Get_Player().position.x + move.x < 0) {
+      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+    }
+    else if (game.Get_Player().position.x + move.x >= Component::mapWidth) {
+      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+    }
+    else if (game.Get_Player().position.y + move.y < 0) {
+      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+    }
+    else if (game.Get_Player().position.y + move.y >= Component::mapWidth) {
+      targetList = game.objects[game.Get_Player().level][{game.Get_Player().location.x + 1, game.Get_Player().location.y}];
+    }
+
+    auto melee = Attack::Melee(attacker, targetList, defaultChunk, chunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
       return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";
