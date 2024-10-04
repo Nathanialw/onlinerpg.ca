@@ -38,6 +38,10 @@ namespace Units {
   }
 
   Units::Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, int x, int y) {
+    if (Get_Unit_Index(unitPositions, x, y) == -1) {
+      std::cout << "unit not found at: " << x << " " << y << std::endl;
+      return units[0];
+    }
     return units[Units::Get_Unit_Index(unitPositions, x, y)];
   }
 

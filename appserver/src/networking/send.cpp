@@ -70,8 +70,7 @@ namespace Send {
 
     else if (msg[0] == '4') {
       std::cout << "4" << msg << std::endl;
-      print_server.send(hdl, Player::Get_Stats(game),
-                        websocketpp::frame::opcode::text);
+      print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
       std::cout << "char stats sent!" << std::endl;
 
 //      if (!game.objects.units.empty()) {
