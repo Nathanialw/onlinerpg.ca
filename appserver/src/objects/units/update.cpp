@@ -86,12 +86,6 @@ namespace Update {
     std::cout << "-------------------" << std::endl;
   }
 
-  bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
-    if (abs(position.x - target.x) < 6 && abs(position.y - target.y) < 6)
-      return true;
-    return false;
-  }
-
   void Update_Enemies(Game::State &game) {
     // cycle through all units
 
@@ -108,7 +102,7 @@ namespace Update {
           //if player in same map chunk
           if (game.Get_Player().location == unit.location) {
             //if player is in vision
-            if (Check_For_Target(unit.position, game.Get_Player().position)) {
+            if (Attack::Check_For_Target(unit.position, game.Get_Player().position)) {
               std::cout << "player in vision, moving towards!" << std::endl;
               // cache position
               Component::Position former = unit.position;

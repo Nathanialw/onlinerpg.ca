@@ -11,5 +11,5 @@ namespace Attack {
   };
 
   Damage Melee(Units::Objects &objects, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int px, int py, int x, int y);
-
+  bool Check_For_Target(const Component::Position &position, const Component::Position &target);
 }

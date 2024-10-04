@@ -5,6 +5,7 @@
 <!doctype html>
 <html>
     <head>
+        <title>Browser RPG, an ASCII game where you explore and fight monsters</title>
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
         <script> WebFont.load({google: {families: ['Press Start 2P']}});</script>
         

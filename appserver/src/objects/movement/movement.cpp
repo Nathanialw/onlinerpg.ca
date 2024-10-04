@@ -1,5 +1,7 @@
 #include "movement.h"
 #include "units.h"
+#include "pathing.h"
+#include "attack.h"
 
 namespace Movement {
 
@@ -9,5 +11,8 @@ namespace Movement {
     game.Get_Player().position.y += y;
   }
 
+  void asd(const Component::Position &position, const Component::Position &target) {
+    Attack::Check_For_Target(position, target);
+  }
 
 }

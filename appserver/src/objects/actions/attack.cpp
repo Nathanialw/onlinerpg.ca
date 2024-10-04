@@ -54,5 +54,41 @@ namespace Attack {
     return {std::to_string((int)target.def.species), unit.maxDamage, false};
   }
 
+  bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
+    if (abs(position.x - target.x) < 6 && abs(position.y - target.y) < 6)
+        return true;
+    return false;
+  }
 
+  void Check_For_Target_On_Map_Chunk(const Component::Position &position, const Component::Position &target) {
+    //only one of these can be true
+    //need to create a temporary pathing map that merges the map chunks
+    //corner cases merge 4 map chunks
+    //edge cases merge 2 map chunks, unless close to the corner, then merge 4
+
+    if (target.x < 0 && target.y < 0) {
+        //target is on the top left map chunk
+    }
+    else if (target.x >= Component::mapWidth && target.y < 0) {
+        //target is on the top right map chunk
+    }
+    else if (target.x < 0 && target.y >= Component::mapWidth) {
+        //target is on the bottom left map chunk
+    }
+    else if (target.x >= Component::mapWidth && target.y >= Component::mapWidth) {
+        //target is on the bottom right map chunk
+    }
+    else if (target.x < 0) {
+        //target is on the left map chunk
+    }
+    else if (target.x >= Component::mapWidth) {
+        //target is on the right map chunk
+    }
+    else if (target.y < 0) {
+        //target is on the top map chunk
+    }
+    else if (target.y >= Component::mapWidth) {
+        //target is on the bottom map chunk
+    }
+  }
 }

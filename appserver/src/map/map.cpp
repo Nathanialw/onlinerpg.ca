@@ -159,7 +159,6 @@ namespace Map {
 //    for (int i = 0; i < player.vision * 2 + 1; i++) {
 //      std::cout << sentMap.substr(i * (player.vision * 2 + 1), player.vision * 2 + 1) << std::endl;
 //    }
-
     return mapSegment;
   }
 
