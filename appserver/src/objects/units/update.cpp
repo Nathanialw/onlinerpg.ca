@@ -66,13 +66,7 @@ namespace Update {
         newChunk = true;
       }
       if (newChunk) {
-        std::cout << "old player location: " << game.objects[level][location].units[0].location.x << ", " << game.objects[level][location].units[0].location.y << std::endl;
-        std::cout << "old player player position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
-        game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
-        std::cout << "position: " << game.objects[game.level][game.location].units[0].position.x << ", " << game.objects[game.level][game.location].units[0].position.y << std::endl;
-        std::cout << "location: " << game.objects[game.level][game.location].units[0].location.x << ", " << game.objects[game.level][game.location].units[0].location.y << std::endl;
-
-
+        game.objects[game.level][game.location].units[0] = game.objects[level][location].units[0];
         Units::Remove_Unit(game.objects[level][location].unitPositions, game.objects[level][location].emptyUnitSlots, formerPos.x, formerPos.y);
         game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions.emplace(game.Get_Player().position, 0);
         //update map
