@@ -1,8 +1,5 @@
 /* nav bar */
 
-nav {
-}
-
 .nav-center {
   margin: 0;
 }
@@ -27,10 +24,8 @@ nav {
   background: transparent;
   border: transparent;
   color: var(--primary-500);
-  font-size: 3.5rem;
+  font-size: 3rem;
   transition: var(--transition);
-  height: 100%;
-  aspect-ratio: 1;
 }
 
 .bars:hover {
