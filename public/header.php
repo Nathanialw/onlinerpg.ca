@@ -3,9 +3,13 @@
 ?>
 
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <title>Browser RPG, an ASCII game where you explore and fight monsters</title>
+        <meta name="description" content="Browser RPG game in the vein of rogue. An ASCII-graphics roguelike game where you can explore the world and fight monsters and level up.">
+
+        <meta http-equiv="Content-Security-Policy" content="script-src 'none'">
+
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
         <script> WebFont.load({google: {families: ['Press Start 2P']}});</script>
         
