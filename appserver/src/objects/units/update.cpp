@@ -48,13 +48,9 @@ namespace Update {
         newChunk = true;
       } else if (game.Get_Player().position.x + x >= Component::mapWidth) {
         std::cout << "player position x greater than map width moving to right chunk" << std::endl;
-        std::cout << "player location x: " << game.Get_Player().location.x << std::endl;
         game.Get_Player().location.x++;
-        std::cout << "player location x: " << game.Get_Player().location.x << std::endl;
         game.Get_Player().position.x = 0;
-        std::cout << "game location x: " << game.location.x << std::endl;
         game.location.x++;
-        std::cout << "game location x: " << game.location.x << std::endl;
         newChunk = true;
       } else if (game.Get_Player().position.y + y < 0) {
         std::cout << "player position y less than 0 moving to top chunk" << std::endl;
@@ -70,26 +66,13 @@ namespace Update {
         newChunk = true;
       }
       if (newChunk) {
-        std::cout << "player location x: " << game.objects[level][location].units[0].location.x << std::endl;
-        std::cout << "player location x: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].location.x << std::endl;
-        std::cout << "game location x: " << game.location.x << std::endl;
-        std::cout << "-------------------" << std::endl;
-        std::cout << "Moving from chunk... " << location.x << ", " << location.y << std::endl;
-        std::cout << "Moving to new chunk... " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
-        std::cout << "Num units in new zone: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
-        std::cout << "old position: " << formerPos.x << ", " << formerPos.y << std::endl;
-        std::cout << "new position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
-        std::cout << "-------------------" << std::endl;
-        std::cout << "player level before: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
+        std::cout << "old player location: " << game.objects[level][location].units[0].location.x << ", " << game.objects[level][location].units[0].location.y << std::endl;
+        std::cout << "old player player position: " << game.objects[level][location].units[0].position.x << ", " << game.objects[level][location].units[0].position.y << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
-        std::cout << "game location x: " << game.location.x << std::endl;
-        std::cout << "player level after: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
-        std::cout << "game level: " << game.level << " game location: " << game.location.x << ", " << game.location.y << std::endl;
-        std::cout << "-------------------" << std::endl;
-        std::cout << "Set position direct: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.x << ", " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].position.y << std::endl;
-        std::cout << "Set position game.: " << game.objects[game.level][game.location].units[0].position.x << ", " << game.objects[game.level][game.location].units[0].position.y << std::endl;
-        std::cout << "Set position function: " << game.Get_Player().position.x << ", " << game.Get_Player().position.y << std::endl;
-        std::cout << "-------------------" << std::endl;
+        std::cout << "position: " << game.objects[game.level][game.location].units[0].position.x << ", " << game.objects[game.level][game.location].units[0].position.y << std::endl;
+        std::cout << "location: " << game.objects[game.level][game.location].units[0].location.x << ", " << game.objects[game.level][game.location].units[0].location.y << std::endl;
+
+
         Units::Remove_Unit(game.objects[level][location].unitPositions, game.objects[level][location].emptyUnitSlots, formerPos.x, formerPos.y);
         game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions.emplace(game.Get_Player().position, 0);
         //update map
