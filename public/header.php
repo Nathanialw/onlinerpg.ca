@@ -15,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" nonce="<?php echo $nonce; ?>">></script>
-        <script src="/js/frontend/webfont-loader.js"></script>
+        <script nonce="<?php echo $nonce; ?>">WebFont.load({google: {families: ['Press Start 2P']}});</script>
         
         <link rel="icon"       href="/assets/icons/css/all.css" title="icons"/>
         <link rel="stylesheet" href="/assets/icons/css/all.css"/>
