@@ -9,13 +9,11 @@
     <head>
         <title>Browser RPG, an ASCII game where you explore and fight monsters</title>
         <meta name="description" content="Browser RPG game in the vein of rogue. An ASCII-graphics roguelike game where you can explore the world and fight monsters and level up.">
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://ajax.googleapis.com; 'nonce-<?php echo $nonce; ?>'; object-src 'none'" >
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://ajax.googleapis.com; object-src 'none'" >
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" nonce="<?php echo $nonce; ?>">></script>
-        <script nonce="<?php echo $nonce; ?>">WebFont.load({google: {families: ['Press Start 2P']}});</script>
         
         <link rel="icon"       href="/assets/icons/css/all.css" title="icons"/>
         <link rel="stylesheet" href="/assets/icons/css/all.css"/>
@@ -56,5 +54,6 @@
                 </ul>
             </nav>
         </header>     
-
+        
+        <script src="/js/frontend/webfont-loader.js"></script>
         <script src="/js/frontend/nav.js"></script>            
