@@ -52,7 +52,9 @@ namespace Update {
         game.Get_Player().location.x++;
         std::cout << "player location x: " << game.Get_Player().location.x << std::endl;
         game.Get_Player().position.x = 0;
+        std::cout << "game location x: " << game.location.x << std::endl;
         game.location.x++;
+        std::cout << "game location x: " << game.location.x << std::endl;
         newChunk = true;
       } else if (game.Get_Player().position.y + y < 0) {
         std::cout << "player position y less than 0 moving to top chunk" << std::endl;
@@ -70,6 +72,7 @@ namespace Update {
       if (newChunk) {
         std::cout << "player location x: " << game.objects[level][location].units[0].location.x << std::endl;
         std::cout << "player location x: " << game.objects[game.Get_Player().level][game.Get_Player().location].units[0].location.x << std::endl;
+        std::cout << "game location x: " << game.location.x << std::endl;
         std::cout << "-------------------" << std::endl;
         std::cout << "Moving from chunk... " << location.x << ", " << location.y << std::endl;
         std::cout << "Moving to new chunk... " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
@@ -79,6 +82,7 @@ namespace Update {
         std::cout << "-------------------" << std::endl;
         std::cout << "player level before: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         game.objects[game.Get_Player().level][game.Get_Player().location].units[0] = game.objects[level][location].units[0];
+        std::cout << "game location x: " << game.location.x << std::endl;
         std::cout << "player level after: " << game.Get_Player().level << " player location: " << game.Get_Player().location.x << ", " << game.Get_Player().location.y << std::endl;
         std::cout << "game level: " << game.level << " game location: " << game.location.x << ", " << game.location.y << std::endl;
         std::cout << "-------------------" << std::endl;
