@@ -29,13 +29,7 @@ body {
     align-items: center;
     margin-top: 0.5rem;  
 }
-/* 
-#hero-class {
-    margin: 5rem auto;
-    font-weight: 800;
-    color: var(--primary-500)
-}
- */
+
 /* phone  */
 @media screen and (min-width: 390px) {
     /* Title and Description */
@@ -126,7 +120,7 @@ body {
     }
 
     .startButton {
-        margin-bottom: 7rem;                
+        margin-bottom: 8rem;                
     }
     
 }
