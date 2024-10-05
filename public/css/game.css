@@ -170,8 +170,14 @@ body {
 
 /* 1080 */
 @media screen and (max-width: 1920px) {
-    .options {
-        /* max-width: 1200px; */
+    .options-container {
+        /* display: flex; */
+        margin: 0 auto;
+        width: 1200px;   
+    }    
+
+     button.btn-block {
+        max-width: 15rem;
     }
 }
 
