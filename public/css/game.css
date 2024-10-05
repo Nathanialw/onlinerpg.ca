@@ -101,6 +101,7 @@ body {
     /* name input */
     section.nameInput {
         margin-top: 0rem;        
+        margin-bottom: 10rem;   
         /* width: 100%: */
         display:flex;
         flex-direction: column;
