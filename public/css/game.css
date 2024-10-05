@@ -147,7 +147,8 @@ body {
     }
     
     button.btn-block {
-        max-width: 10rem;        
+        max-width: 10rem;
+        font-size: .8rem;
     }
 
     .hero-class {
@@ -178,6 +179,7 @@ body {
 
      button.btn-block {
         max-width: 15rem;
+        font-size: 1rem;
     }
 }
 
