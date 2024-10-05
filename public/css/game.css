@@ -133,11 +133,19 @@ body {
 
 /* tablet  */
 @media screen and (min-width: 712px) {
-
+    
     .wrapper {
         margin-top: 5rem;
     }
     
+    .wrapper h1 {
+        font-size: 2.5rem;        
+    }
+
+    .splashContent {
+        font-size: 1rem;        
+    }
+
     .options {
         justify-content: space-evenly;        
         flex-shrink: 4;
