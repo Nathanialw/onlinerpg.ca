@@ -126,7 +126,7 @@ body {
     }
 
     .startButton {
-        margin-bottom: 8rem;                
+        margin-bottom: 7rem;                
     }
     
 }
@@ -151,10 +151,9 @@ body {
     .hero-class {
         margin-top: 5rem;
     }
-
-    .btn-center {
-        margin: 2rem 7rem auto;        
-        width: 20rem;
+    
+    .startButton {
+        margin-bottom: 2rem;                
     }
 
 }
