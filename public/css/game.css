@@ -169,24 +169,26 @@ body {
 
 
 /* ipad */
-@media screen and (min-width: 992px) {
+/* @media screen and (min-width: 992px) {
 
 }
-
+ */
 
 /* 1080 */
-@media screen and (min-width: 1080px) {
-
+@media screen and (max-width: 1920px) {
+    .options {
+        /* max-width: 1200px; */
+    }
 }
 
 
 /* 1440 */
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 2560px) {
 
 }
 
 
 /* 2160 */
-@media screen and (min-width: 2160px) {
+@media screen and (min-width: 3840px) {
 
 }
