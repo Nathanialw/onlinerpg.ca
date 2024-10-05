@@ -193,7 +193,8 @@ body {
     }
 
     .splashContent {
-        font-size: 1.4rem;        
+        font-size: 1.4rem;  
+        line-height: 1.4rem;
     }
     
     .options-container {
@@ -219,7 +220,8 @@ body {
     }
 
     .splashContent {
-        font-size: 1.4rem;        
+        font-size: 1.6rem;    
+        line-height: 1.6rem;
     }
     
     .options-container {
