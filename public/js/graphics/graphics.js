@@ -40,7 +40,7 @@ export async function Create_Canvas() {
     const canvasHeight = window.innerHeight - footerHeight;
 
     // Initialize the PIXI application with the calculated dimensions
-    app.init({resizeTo: Window});
+    await app.init({resizeTo: Window});
 
     await Init_Graphics();
 
