@@ -75,8 +75,9 @@
             <li class="option"><button id="Evil" class='btn btn-block'>Evil</button></li>
         </ul>
     </div>
-    <h1 id="hero-class"></h1>
 </section>
+
+<h1 id="hero-class"></h1>
 
 <section class='nameInput'>
     <form method='POST' id="myForm">
