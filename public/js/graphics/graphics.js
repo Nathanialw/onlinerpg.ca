@@ -44,11 +44,11 @@ export async function Create_Canvas() {
 
     await Init_Graphics();
 
-    app.view.style.position = 'absolute';
-    app.view.style.left = '0px';
-    app.view.style.top = '0px';
+    app.canvas.style.position = 'absolute';
+    app.canvas.style.left = '0px';
+    app.canvas.style.top = '0px';
 
-    document.getElementById('gameCanvas').appendChild(app.view);
+    document.getElementById('gameCanvas').appendChild(app.canvas);
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
