@@ -68,6 +68,7 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        flex-shrink: 4;
         flex-wrap: wrap;
     }
 
@@ -82,7 +83,7 @@ body {
     }
     
     button.btn-block {
-        width: 5rem;
+        max-width: 5.5rem;
         margin: 0rem;
         padding: 0rem;        
         font-size: 0.5rem;
@@ -129,40 +130,23 @@ body {
 
 /* tablet  */
 @media screen and (min-width: 712px) {
-    .options {
-        margin-top: 0rem;
-    }
 
-    #hero-class {
-        margin-top: 0rem;
+    .wrapper {
+        margin-top: 5rem;
     }
     
-    li.option {
-        margin-top: 1rem;        
-        width: 0.2rem;        
-    }
-    
-    .main-links {
-        display: flex;
-        width: 100%;
-        gap: 10rem;
+    .options {
+        justify-content: space-evenly;        
+        flex-shrink: 4;
+        margin-top: 5rem;        
     }
     
     button.btn-block {
-        /* width: 10rem;    */
-        font-size: 1rem;        
+        max-width: 10rem;        
     }
 
-    .nameInput {
-        /* margin-top: 0rem; */
-        /* display:flex;          */
-        /* justify-content: center; */
-        /* flex-direction: column; */
-        /* align-items: center; */
-    }
-    
-    .btn-center {
-        /* width: 30rem; */
+    .hero-class {
+        margin-top: 5rem;
     }
 
 }
