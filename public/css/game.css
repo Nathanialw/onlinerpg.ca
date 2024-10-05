@@ -62,10 +62,39 @@ body {
     color: var(--primary-500)
 }
 
-
 /* phone  */
 @media screen and (min-width: 430px) {
+    .options {
+        margin-top: 0rem;
+    }
 
+    #hero-class {
+        margin-top: 0rem;
+    }
+
+    li.option {
+        margin: 0rem;        
+        padding: 0rem;
+        height: 3rem;
+        width: 0.1rem;
+    }
+    
+    .main-links {
+        display: flex;
+        width: 100%;
+        gap: 6rem;
+    }
+    
+    button.btn-block {
+        width: 6rem;   
+        margin-top: 0rem;
+        font-size: 0.6rem;
+    }
+    
+    section.nameInput {
+        width: 8rem;        
+        margin-top: 0rem;
+    }
 }
 
 /* tablet  */
