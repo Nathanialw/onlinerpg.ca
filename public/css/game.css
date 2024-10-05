@@ -13,19 +13,6 @@ body {
     align-items: center;
 }
 
-.options {
-    /* margin-top: 10rem;
-    display:flex;
-    flex-direction: column;
-    align-items: center; */
-}
-
-.nameInput {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .nameInput label {
     color: white;    
 }
@@ -115,7 +102,11 @@ body {
     section.nameInput {
         margin-top: 0rem;        
         /* width: 100%: */
+        display:flex;
+        flex-direction: column;
+        align-items: center;
     }
+    
     form {
         display: flex;                
     }

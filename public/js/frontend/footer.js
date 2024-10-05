@@ -4,3 +4,17 @@
 
   //document.getElementById("footer").insertAdjacentHTML("beforeend", footer);
 
+  document.addEventListener('DOMContentLoaded', function() {
+    const footer = document.getElementById('footer');
+    const inputs = document.querySelectorAll('input, textarea');
+
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            footer.style.display = 'none';
+        });
+
+        input.addEventListener('blur', function() {
+            footer.style.display = 'block';
+        });
+    });
+});
