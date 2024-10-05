@@ -75,36 +75,31 @@ body {
         margin-top: 0rem;
     }
 
-    li.option {
-        margin: 0rem;        
-        height: 3rem;
-        width: 0.1rem;
-    }
     
     .options {
         padding: 0rem;   
         margin: 0rem;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        flex-shrink: 1;
-        flex-grow: 2;
-        width: 100%;
-        /* gap:  1fr 1fr 1fr 1fr; */
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+     
+    li.option {
+        margin: 0.7rem 0.2rem;        
     }
 
     .btn {
         margin: 0rem;
         padding: 0rem;        
-        width: 6rem;
     }
     
     button.btn-block {
-        width: 6rem;
-        /* width: 1rem;    */
+        width: 5rem;
         margin: 0rem;
         padding: 0rem;        
-        font-size: 0.6rem;
+        font-size: 0.5rem;
     }
     
     section.nameInput {
