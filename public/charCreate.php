@@ -76,7 +76,7 @@
 </section>
 
 <section class="hero-wrapper">
-    <h1 id="hero-class"></h1>
+    <h1 id="hero-class" class="hero-class"></h1>
 </section>
 
 <section class='nameInput'>
