@@ -184,11 +184,51 @@ body {
 
 /* 1440 */
 @media screen and (min-width: 2560px) {
+    .wrapper {
+        margin-top: 8rem;
+    }
+    
+    .wrapper h1 {
+        font-size: 3.5rem;        
+    }
 
+    .splashContent {
+        font-size: 1.4rem;        
+    }
+    
+    .options-container {
+        /* display: flex; */
+        margin: 0 auto;
+        width: 1400px;   
+    }    
+
+     button.btn-block {
+        max-width: 20rem;
+    }
 }
 
 
 /* 2160 */
 @media screen and (min-width: 3840px) {
+    .wrapper {
+        margin-top: 10rem;
+    }
+    
+    .wrapper h1 {
+        font-size: 4rem;        
+    }
 
+    .splashContent {
+        font-size: 1.4rem;        
+    }
+    
+    .options-container {
+        /* display: flex; */
+        margin: 0 auto;
+        width: 1800px;   
+    }    
+
+     button.btn-block {
+        max-width: 30rem;
+    }
 }
