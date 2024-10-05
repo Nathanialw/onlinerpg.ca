@@ -64,18 +64,29 @@ body {
 
 /* phone  */
 @media screen and (min-width: 390px) {
+    /* Title and Description */
     .wrapper {
         margin-top: 2rem;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    
-    #hero-class {
-        margin-top: 0rem;
+
+    .startTitle {
+        text-align: center;
+        margin: 0;
+        color: var(--primary-600);
+        font-size: 1rem;        
     }
 
-    
+    .splashContent {
+        text-align: center;
+        margin: 0;
+        color: var(--primary-600);
+        font-size: 0.5rem;        
+    }
+ 
+    /* options */    
     .options {
         padding: 0rem;   
         margin: 0rem;
@@ -85,7 +96,7 @@ body {
         flex-wrap: wrap;
     }
 
-     
+
     li.option {
         margin: 0.7rem 0.2rem;        
     }
@@ -101,22 +112,35 @@ body {
         padding: 0rem;        
         font-size: 0.5rem;
     }
-    
+
+    /* class */
+    .hero-wrapper {
+        width: 100%;
+        display: flex;
+    }
+       
+    #hero-class {
+        margin: 0.5rem auto;        
+    }
+
+    /* name input */
     section.nameInput {
         margin-top: 0rem;        
+        /* width: 100%: */
+    }
+    form {
+        display: flex;                
     }
 
     .form-input {
-        /* max-width: 20rem; */
+        margin: 0.5rem auto;                
+        width: 80%;
     }
 
     .btn-center {
         width: 20rem;
     }
-
-    .hero-wrapper {
-        width: 100%
-    }
+    
 }
 
 /* tablet  */

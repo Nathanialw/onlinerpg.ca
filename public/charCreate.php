@@ -76,12 +76,11 @@
 </section>
 
 <section class="hero-wrapper">
-<h1 id="hero-class"></h1>
+    <h1 id="hero-class"></h1>
 </section>
 
 <section class='nameInput'>
     <form method='POST' id="myForm">
-        <label class="form-label" for="name">Name:</label>
         <input class="form-input form-row" type="text" id="name" name="name" value="John">
         <br> 
     </form>
