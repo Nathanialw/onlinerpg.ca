@@ -26,13 +26,13 @@ export async function Load_Target_Image(x, y, path) {
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
-// export async function Create_Canvas() {
-//     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
-//     await Init_Graphics();
-//     app.canvas.x = 0;
-//     app.canvas.y = 0;
-//     document.getElementById('gameCanvas').appendChild(app.canvas);
-// }
+export async function Create_Canvas() {
+    await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
+    await Init_Graphics();
+    app.canvas.x = 0;
+    app.canvas.y = 0;
+    document.getElementById('gameCanvas').appendChild(app.canvas);
+}
 
 export async function Create_Canvas() {
     // Set the canvas size based on the window size
@@ -40,7 +40,7 @@ export async function Create_Canvas() {
     const canvasHeight = window.innerHeight - footerHeight;
 
     // Initialize the PIXI application with the calculated dimensions
-    app.resizeTo(Window);
+    app.init({resizeTo: Window});
 
     await Init_Graphics();
 
@@ -48,7 +48,7 @@ export async function Create_Canvas() {
     app.view.style.left = '0px';
     app.view.style.top = '0px';
 
-    document.getElementById('gameCanvas').appendChild(app.canvas);
+    document.getElementById('gameCanvas').appendChild(app.view);
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
