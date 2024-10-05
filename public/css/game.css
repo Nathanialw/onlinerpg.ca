@@ -122,8 +122,11 @@ body {
     }
 
     .btn-center {
-        margin: 2rem 7rem auto;        
         width: 20rem;
+    }
+
+    .startButton {
+        margin: 0rem 7rem auto;                
     }
     
 }
