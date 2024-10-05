@@ -53,7 +53,6 @@ body {
         margin: 1rem 0;
         color: var(--primary-600);
         font-size: 0.5rem;        
-        hyphens: none;
     }
  
     /* options */    
@@ -195,7 +194,7 @@ body {
 
     .splashContent {
         font-size: 1.4rem;  
-        line-height: 1.4rem;
+        line-height: 1.6rem;
     }
     
     .options-container {
@@ -222,7 +221,7 @@ body {
 
     .splashContent {
         font-size: 1.6rem;    
-        line-height: 1.6rem;
+        line-height: 1.8rem;        
     }
     
     .options-container {
