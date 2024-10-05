@@ -26,13 +26,13 @@ export async function Load_Target_Image(x, y, path) {
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
-export async function Create_Canvas() {
-    await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
-    await Init_Graphics();
-    app.canvas.x = 0;
-    app.canvas.y = 0;
-    document.getElementById('gameCanvas').appendChild(app.canvas);
-}
+// export async function Create_Canvas() {
+//     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
+//     await Init_Graphics();
+//     app.canvas.x = 0;
+//     app.canvas.y = 0;
+//     document.getElementById('gameCanvas').appendChild(app.canvas);
+// }
 
 export async function Create_Canvas() {
     // Set the canvas size based on the window size
