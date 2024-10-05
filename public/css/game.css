@@ -29,13 +29,13 @@ body {
     align-items: center;
     margin-top: 0.5rem;  
 }
-
+/* 
 #hero-class {
     margin: 5rem auto;
     font-weight: 800;
     color: var(--primary-500)
 }
-
+ */
 /* phone  */
 @media screen and (min-width: 390px) {
     /* Title and Description */
@@ -95,13 +95,12 @@ body {
     }
        
     .hero-class {
-        margin: 0.5rem auto;        
-    }
-
-    .hero-class h1 {
+        margin: 1rem auto;
+        font-weight: 800;
+        color: var(--primary-500);
         font-family: 'Press Start 2P', sans-serif;
         font-size: 2rem;
-    }       
+    }
 
     /* name input */
     section.nameInput {
