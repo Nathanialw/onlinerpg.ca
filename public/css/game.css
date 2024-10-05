@@ -15,17 +15,17 @@ body {
 }
 
 .startButton {
-    display:flex;
+    display:flex; 
     flex-direction: column;
     align-items: center;
     margin-bottom: 10rem;
 }
 
 .options {
-    margin-top: 10rem;
+    /* margin-top: 10rem;
     display:flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
 }
 
 .nameInput {
@@ -57,7 +57,7 @@ body {
 }
 
 #hero-class {
-    margin-top: 5rem;
+    margin: 5rem auto;
     font-weight: 800;
     color: var(--primary-500)
 }
@@ -71,13 +71,6 @@ body {
         align-items: center;
     }
     
-    .options {
-        /* margin-top: 2rem; */
-        padding: 0rem;        
-        margin: 0rem;
-        gap: 0rem;        
-    }
-
     #hero-class {
         margin-top: 0rem;
     }
@@ -88,23 +81,27 @@ body {
         width: 0.1rem;
     }
     
-    .main-links {
-        padding: 0rem;        
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+    .options {
+        padding: 0rem;   
         margin: 0rem;
-        gap: 0rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-shrink: 1;
+        flex-grow: 2;
+        width: 100%;
+        /* gap:  1fr 1fr 1fr 1fr; */
     }
 
     .btn {
         margin: 0rem;
         padding: 0rem;        
-        
+        width: 6rem;
     }
     
     button.btn-block {
-        width: 5rem;   
+        width: 6rem;
+        /* width: 1rem;    */
         margin: 0rem;
         padding: 0rem;        
         font-size: 0.6rem;
@@ -120,6 +117,10 @@ body {
 
     .btn-center {
         width: 20rem;
+    }
+
+    .hero-wrapper {
+        width: 100%
     }
 }
 
