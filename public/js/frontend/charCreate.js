@@ -105,7 +105,7 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     loadScript('/js/frontend/game.js', 'module');
     loadScript('/js/networking/receive.js', 'module');
     loadScript('/js/input/keyboard.js', 'module');
-    loadScript('/js/graphics/scale.js', 'module');
+    loadScript('/js/graphics/scale.js', 'module');        
     Send();
 
     const description = document.querySelector('.wrapper');
