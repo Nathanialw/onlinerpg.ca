@@ -5,10 +5,10 @@ import { Update_Screen } from '../frontend/ui.js';
 
 // List of media queries with their respective min-width values
 const mediaQueries = [
-    { query: window.matchMedia('(max-width: 1280px)'), width: 1280 },
-    { query: window.matchMedia('(max-width: 1920px)'), width: 1920 },
-    { query: window.matchMedia('(max-width: 2560px)'), width: 2560 },
-    { query: window.matchMedia('(max-width: 3840px)'), width: 3840 }
+    { query: window.matchMedia('(min-width: 1280px)'), width: 1280 },
+    { query: window.matchMedia('(min-width: 1920px)'), width: 1920 },
+    { query: window.matchMedia('(min-width: 2560px)'), width: 2560 },
+    { query: window.matchMedia('(min-width: 3840px)'), width: 3840 }
 ];
 
 function Update8() {
@@ -36,6 +36,7 @@ let Update = {
 }
 
 function handleMediaQueryChange() {
+
     // Loop through the media queries and log the matched width
     mediaQueries.forEach(({ query, width }) => {
         if (query.matches) {
