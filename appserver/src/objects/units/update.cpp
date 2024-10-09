@@ -157,6 +157,7 @@ namespace Update {
     if (move.x == 0 && move.y == 0) {
       std::string r = "r";
       std::cout << "rest" << std::endl;
+      game.Get_Player().health += 5;
       return r + " " + "  " + "1";
     }
 
