@@ -118,6 +118,9 @@ namespace Map {
     std::cout << "location to add: " << location.x << ", " << location.y << std::endl;
     std::cout << "game level: " << game.level << std::endl;
     std::cout << "player level: " << game.Get_Player().level << std::endl;
+    std::cout << "i: " << i << " j: " << j << std::endl;
+    std::cout << "segment: " << game.map[game.Get_Player().level][location].chunk[j][i] << std::endl;
+    
     mapSegment += game.map[game.Get_Player().level][location].chunk[j][i];
   }
 
