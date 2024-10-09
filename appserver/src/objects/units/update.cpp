@@ -139,11 +139,12 @@ namespace Update {
     }
 
     auto mapString = Map::Get_Map(game.map[game.Get_Player().level][game.Get_Player().location].chunk);
-    std::cout << "Drawing map start: "<< std::endl;
-    for (int i = 0; i < Component::mapWidth; i++) {
-      std::cout << mapString.substr(i * Component::mapWidth, Component::mapWidth) << std::endl;
-    }
-    std::cout << "Drawing map end: "<< std::endl;
+    
+//    std::cout << "Drawing map start: "<< std::endl;
+//    for (int i = 0; i < Component::mapWidth; i++) {
+//      std::cout << mapString.substr(i * Component::mapWidth, Component::mapWidth) << std::endl;
+//    }
+//    std::cout << "Drawing map end: "<< std::endl;
   }
 
   std::string Update_Player(Game::State &game, const char *direction) {
