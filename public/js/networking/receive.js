@@ -3,7 +3,6 @@
 import {Populate_Map} from '../map/map.js';
 import {Map} from '../frontend/ui.js';
 
-import {app} from '../graphics/graphics.js';
 import {socket} from './socket.js';
 import {UpdatePlayerInfo} from '../units/unitdef.js';
 import { Get_Target_Stats_From_Server } from '../frontend/stats.js';
@@ -36,11 +35,7 @@ socket().websocket.onmessage = function(event) {
         console.log("received empty string")
         return
     }
-    //clear map
-    if (type == 1) {
-        console.log("Clearing map");
-        app.stage.removeChildren();
-    }
+    
     //need to use a hash map
     Update[type](data);
     

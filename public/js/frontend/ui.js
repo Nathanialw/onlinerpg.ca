@@ -1,7 +1,7 @@
 'use strict'
-import {Create_Combat_Log_Line, Draw_UI} from '../graphics/graphics.js';
-import {Make_Map, Draw_Map} from '../map/map.js';
-import {characterInfo, Species} from '../units/unitdef.js';
+import { app, Create_Combat_Log_Line, Draw_UI} from '../graphics/graphics.js';
+import { Make_Map, Draw_Map} from '../map/map.js';
+import { characterInfo, Species} from '../units/unitdef.js';
 import { Render_Target_Stats } from './stats.js';   
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
@@ -75,20 +75,14 @@ export function Map(data) {
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     serverMap = data.substring(7);
-    
-    console.log("Redrawing Game");
-    Draw_UI(characterInfo);
-    Make_Map(serverMap, visionWidth);
-    Draw_Map(visionWidth, direction);
-    
-    // Display_Damage_Taken(species, damageTaken);
-    Display_Damage(species, damage, isDead)
-    Render_Log();
-    Render_Target_Stats();
+    Update_Screen();
 }
 
 
 export function Update_Screen() {
+    console.log("Clearing screen");
+    app.stage.removeChildren();
+    
     Draw_UI(characterInfo);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
