@@ -1,7 +1,7 @@
 'use strict'
 
 import { cellSize, minimapCellSize, Make_Map, Draw_Map, Draw_UI } from './graphics.js';
-import { characterInfo } from '../frontend/unitdef.js';
+import { characterInfo } from '../units/unitdef.js';
 import { Render_Target_Stats } from '../frontend/stats.js';
 import { visionWidth, direction, species, damage, isDead, serverMap, Render_Log, Display_Damage } from '../frontend/ui.js';
 
