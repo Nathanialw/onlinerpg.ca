@@ -136,7 +136,7 @@ export function Get_Right_Panel_Width() {
 }
 
 
-export function Draw_Panel(x, y, w, h, backGroundColor) {
+function Draw_Panel(x, y, w, h, backGroundColor) {
     console.log('Draw_Panel');
     let panel = new PIXI.Graphics();
     // panel.beginFill(backGroundColor);  
@@ -246,7 +246,7 @@ export function Create_Combat_Log_Line(char, indexHeight) {
 }
 
 export function Clear_Target() {    
-    return Draw_Panel(Get_Right_Panel_Origin_x(), Get_Right_Panel_Origin_y(), Get_Right_Panel_Width(), (leftPanelHeight * cellSize) - (10 * minimapCellSize), black);
+    Draw_Panel(Get_Right_Panel_Origin_x(), Get_Right_Panel_Origin_y(), Get_Right_Panel_Width(), (leftPanelHeight * cellSize) - (10 * minimapCellSize), black);
 }
 
 export function Create_Text_Line(char, fontSize, indexHeight, x, y) {

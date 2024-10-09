@@ -18,7 +18,7 @@ let Update = {
     1: Map,
     2: Populate_Map,
     3: UpdatePlayerInfo,
-    5: Map,
+    5: Get_Target_Stats_From_Server,
 }
 
 socket().websocket.onmessage = function(event) {    
