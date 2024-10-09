@@ -46,7 +46,6 @@ export async function Create_Canvas() {
 
     // app.canvas.style.position = 'absolute';
     // app.canvas.style.left = '0px';
-    app.canvas.style.height = 'calc(100vh - 3.5rem - 125px)';
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);

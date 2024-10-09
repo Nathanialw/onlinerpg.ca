@@ -88,28 +88,32 @@ function Send() {
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
-    //remove form <section class='startButton'>
-    const formSection = document.querySelector('.options');
-    if (formSection) {
-        formSection.remove();
+    const description = document.querySelector('.wrapper');
+    if (description) {
+        description.remove();
     }
 
-    const btnSection = document.querySelector('.startButton');
-    if (btnSection) {
-        btnSection.remove();
-    }
-    
-    const wrapper = document.querySelector('.wrapper');
-    if (wrapper) {
-        wrapper.remove();
+    const options = document.querySelector('.options-container');
+    if (options) {
+        options.remove();
     }
 
-        
-    const className = document.querySelector('.hero-wrapper');
+     const className = document.querySelector('.hero-wrapper');
     if (className) {
         className.remove();
     }
 
+    const nameInput = document.querySelector('.nameInput');
+    if (nameInput) {
+        nameInput.remove();
+    }
+        
+     const btnSection = document.querySelector('.startButton');
+    if (btnSection) {
+        btnSection.remove();
+    }
+    
+    
     const canvas = document.querySelector('.canvasContainer');
     if (canvas) {
         canvas.style.height = 'calc(100vh - 3.5rem - 125px)';

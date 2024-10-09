@@ -29,7 +29,6 @@ body {
     align-items: center;
     margin: 0 auto; 
     background-color: blueviolet; 
-    /* height = window - navHeight - footerHeight */
     height: 0;
 }
 
@@ -186,7 +185,7 @@ body {
     }
 
     .canvasContainer {
-        width: 1200px;
+        /* width: 1500px; */
     }
 }
 
@@ -217,7 +216,7 @@ body {
     }
 
     .canvasContainer {
-        width: 1400px;
+        /* width: 2400px; */
     }
 }
 
@@ -248,6 +247,6 @@ body {
     }
 
     .canvasContainer {
-        width: 1800px;
+        /* width: 2800px; */
     }
 }
