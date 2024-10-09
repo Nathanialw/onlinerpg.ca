@@ -30,6 +30,7 @@ namespace Game {
 
     //session
     std::string session_id;
+    int duration = 0;
 
     //units
 //    Units::Objects objects;
