@@ -10,7 +10,7 @@ async function Splash_Screen() {
 
     // Send R key to server
     Actions("r");
-    Draw_UI();
+    // Draw_UI();
     // Draw_Title_Screen();
 }
 Splash_Screen()
