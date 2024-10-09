@@ -13,7 +13,7 @@ let Update = {
     s: Move,
     d: Move,
     r: Move,
-    Space: Move,
+    ' ': Move,
     Control: SoundPlay
 }
 
@@ -23,7 +23,7 @@ document.addEventListener("keypress", (event) => {
 			  
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
-
+    console.log("KEYNAME ==:", keyName, ":==");
     //use a hash map instead
     if (Update[keyName](keyName)) {
 	    return;
