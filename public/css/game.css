@@ -32,6 +32,10 @@ body {
     height: 0;
 }
 
+#gameCanvas {
+    height: inherit;
+}
+
 /* phone  */
 @media screen and (min-width: 390px) {
     /* Title and Description */
