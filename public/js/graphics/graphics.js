@@ -49,8 +49,8 @@ export async function Create_Canvas() {
     app.canvas.style.top = '0px';
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
-    app.renderer.resize(newWidth, newHeight);
-    
+    app.renderer.resize(canvasWidth, canvasHeight);
+
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
         const newWidth = window.innerWidth;
