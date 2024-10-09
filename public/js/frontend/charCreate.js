@@ -88,6 +88,25 @@ function Send() {
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
+    const canvas = document.querySelector('.canvasContainer');
+    if (canvas) {
+        canvas.style.height = 'calc(100vh - 3.5rem - 125px)';
+    }
+    
+    // Function to dynamically load a script
+    function loadScript(src, type = 'text/javascript') {
+        const script = document.createElement('script');
+        script.src = src;
+        script.type = type;
+        document.body.appendChild(script);
+    }
+    
+    // Load required JavaScript files
+    loadScript('/js/frontend/game.js', 'module');
+    loadScript('/js/networking/receive.js', 'module');
+    loadScript('/js/input/keyboard.js', 'module');
+    Send();
+
     const description = document.querySelector('.wrapper');
     if (description) {
         description.remove();
@@ -112,27 +131,6 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     if (btnSection) {
         btnSection.remove();
     }
-    
-    
-    const canvas = document.querySelector('.canvasContainer');
-    if (canvas) {
-        canvas.style.height = 'calc(100vh - 3.5rem - 125px)';
-    }
-
-    
-    // Function to dynamically load a script
-    function loadScript(src, type = 'text/javascript') {
-        const script = document.createElement('script');
-        script.src = src;
-        script.type = type;
-        document.body.appendChild(script);
-    }
-    
-    // Load required JavaScript files
-    loadScript('/js/frontend/game.js', 'module');
-    loadScript('/js/networking/receive.js', 'module');
-    loadScript('/js/input/keyboard.js', 'module');
-    Send();
 });
 
 
