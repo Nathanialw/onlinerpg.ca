@@ -124,6 +124,8 @@ namespace Map {
   }
 
   void Handle_Boundary(Game::State &game, int i, int j, std::string &mapSegment) {
+    std::cout << "i: " << i << " j: " << j << std::endl;
+
     static const std::unordered_map<std::string, std::function<void()>> boundaryHandlers = {
         {"-1,-1", [&]() { Add_Map_Segment(game, Component::mapWidth + i, Component::mapWidth + j, -1, -1, mapSegment); }},
         {"1,1",   [&]() { Add_Map_Segment(game, i - Component::mapWidth, j - Component::mapWidth, 1, 1, mapSegment); }},
@@ -134,9 +136,12 @@ namespace Map {
         {"0,-1",  [&]() { Add_Map_Segment(game, i, Component::mapWidth + j, 0, -1, mapSegment); }},
         {"0,1",   [&]() { Add_Map_Segment(game, i, j - Component::mapWidth, 0, 1, mapSegment); }}
     };
+    std::cout << "i: " << i << " j: " << j << std::endl;
 
     std::string key = std::to_string((i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0) + "," + std::to_string((j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0);
     std::cout << "key: " << key << std::endl;
+    std::cout << "i: " << i << " j: " << j << std::endl;
+
     if (boundaryHandlers.find(key) != boundaryHandlers.end()) {
       boundaryHandlers.at(key)();
     } else {
