@@ -100,10 +100,10 @@ let gameWindow = viewportWidth + 0;
 
 // List of media queries with their respective min-width values
 const mediaQueries = [
-    { query: window.matchMedia('(min-width: 1280px)'), width: 1280 },
-    { query: window.matchMedia('(min-width: 1920px)'), width: 1920 },
-    { query: window.matchMedia('(min-width: 2560px)'), width: 2560 },
-    { query: window.matchMedia('(min-width: 3840px)'), width: 3840 }
+    { query: window.matchMedia('(max-width: 1280px)'), width: 1280 },
+    { query: window.matchMedia('(max-width: 1920px)'), width: 1920 },
+    { query: window.matchMedia('(max-width: 2560px)'), width: 2560 },
+    { query: window.matchMedia('(max-width: 3840px)'), width: 3840 }
 ];
 
 function handleMediaQueryChange() {
@@ -113,34 +113,18 @@ function handleMediaQueryChange() {
             console.log(`Media Query Matched! Width: ${width}px`);
         }
         if (query.matches && width === 1280) {
-            // sidePanelWidth = 30;
-            // viewportWidth = 41;
-            // viewportHeight = 41;
-            // topPanelHeight = 10;
             cellSize = 8;
             minimapCellSize = 4;
         }
         if (query.matches && width === 1920) {
-            // sidePanelWidth = 30;
-            // viewportWidth = 41;
-            // viewportHeight = 41;
-            // topPanelHeight = 10;
             cellSize = 12;
             minimapCellSize = 6;
         }
         if (query.matches && width === 2560) {
-            // sidePanelWidth = 30;
-            // viewportWidth = 41;
-            // viewportHeight = 41;
-            // topPanelHeight = 10;
             cellSize = 16;
             minimapCellSize = 8;
         }
         if (query.matches && width === 3840) {
-            // sidePanelWidth = 30;
-            // viewportWidth = 41;
-            // viewportHeight = 41;
-            // topPanelHeight = 10;
             cellSize = 24;
             minimapCellSize = 12;
         }        
