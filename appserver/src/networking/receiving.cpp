@@ -24,8 +24,6 @@ namespace Network {
     }
   };
   std::unordered_map<websocketpp::connection_hdl, Game::Instance*, connection_hdl_hash, connection_hdl_equal> reverse_client_connections;
-
-
   std::unordered_map<std::string, Game::Instance> game_instances;
 
   std::string Get_SessionID(const websocketpp::connection_hdl& hdl) {
@@ -64,12 +62,12 @@ namespace Network {
     //if it already exists, send update
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
-      std::cout << "old handle: " << &it->second << std::endl;
       std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
-      std::cout << "reconnecting player: " << reverse_client_connections[it->second]->Get_Player().name << std::endl;
-      reverse_client_connections[hdl] = reverse_client_connections[it->second];
-      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
       reverse_client_connections.erase(it->second);
+      client_connections.erase(it);
+      std::cout << "removed ol hdl " << std::endl;
+      reverse_client_connections[hdl] = &game_instances[session_id];
+      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
 
       client_connections[session_id] = hdl;
       std::cout << "hdl reconnected: " << &hdl << std::endl;
