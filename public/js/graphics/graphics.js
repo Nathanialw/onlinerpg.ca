@@ -36,11 +36,11 @@ export async function Load_Target_Image(x, y, path) {
 
 export async function Create_Canvas() {
     // Set the canvas size based on the window size
-    const canvasWidth = window.innerWidth;
-    const canvasHeight = window.innerHeight - footerHeight;
+    // const canvasWidth = window.innerWidth;
+    // const canvasHeight = window.innerHeight - footerHeight;
 
     // Initialize the PIXI application with the calculated dimensions
-    await app.init({resizeTo: Window});
+    await app.init({resizeTo: gameCanvas});
 
     await Init_Graphics();
 
@@ -49,14 +49,15 @@ export async function Create_Canvas() {
     app.canvas.style.top = '0px';
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
-    app.renderer.resize(canvasWidth, canvasHeight);
+    app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
-        const newWidth = window.innerWidth;
-        const newHeight = window.innerHeight - footerHeight;
-        app.renderer.resize(newWidth, newHeight);
+        // const newWidth = window.innerWidth;
+        // const newHeight = window.innerHeight - footerHeight;
+        app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
     });
+
 }
 
 
@@ -99,6 +100,26 @@ let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
 let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);
 
 let gameWindow = viewportWidth + 0;
+
+// Create a condition that targets viewports at least 768px wide
+// const mediaQuery = window.matchMedia('(min-width: 1920px)')
+
+// function handleTabletChange(e) {
+//   // Check if the media query is true
+//   if (e.matches) {
+//     // Then log the following message to the console
+//     console.log('Media Query Matched!')
+//   }
+// }
+
+//     // Register event listener
+//     mediaQuery.addEventListener(handleTabletChange)
+
+//     // Initial check
+//     handleTabletChange(mediaQuery)
+
+
+
 
 function Set_Window_Width() {
     return (viewportWidth * cellSize) + (leftPanelWidth * cellSize) + (rightPanelWidth * cellSize);
