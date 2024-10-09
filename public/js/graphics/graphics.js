@@ -245,7 +245,7 @@ export function Create_Combat_Log_Line(char, indexHeight) {
     return object;
 }
 
-export function Clear_Target(char, indexHeight) {    
+export function Clear_Target() {    
     return Draw_Panel(Get_Right_Panel_Origin_x(), Get_Right_Panel_Origin_y(), Get_Right_Panel_Width(), (leftPanelHeight * cellSize) - (10 * minimapCellSize), black);
 }
 
