@@ -79,15 +79,11 @@ let white = 0xffffff;
 let black = 0x111111;
 let black_100 = 0x222222;
 
-let footerHeight = 125;
-let gameWindowOrigin_x = 0;
-let gameWindowOrigin_y = 56; //3.5rem as per navbar height
 let sidePanelWidth = 30;
-
 export let viewportWidth = 41;
 export let viewportHeight = 41;
-
 let topPanelHeight = 10;
+
 let topPanelWidth = viewportWidth;
 
 export let rightPanelWidth = sidePanelWidth;
@@ -101,23 +97,27 @@ let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topP
 
 let gameWindow = viewportWidth + 0;
 
-// Create a condition that targets viewports at least 768px wide
-// const mediaQuery = window.matchMedia('(min-width: 1920px)')
-
-// function handleTabletChange(e) {
-//   // Check if the media query is true
-//   if (e.matches) {
-//     // Then log the following message to the console
-//     console.log('Media Query Matched!')
-//   }
-// }
-
-//     // Register event listener
-//     mediaQuery.addEventListener(handleTabletChange)
-
-//     // Initial check
-//     handleTabletChange(mediaQuery)
-
+// List of media queries with their respective min-width values
+const mediaQueries = [
+    { query: window.matchMedia('(min-width: 1280px)'), width: 1280 },
+    { query: window.matchMedia('(min-width: 1920px)'), width: 1920 },
+    { query: window.matchMedia('(min-width: 2560px)'), width: 2560 },
+    { query: window.matchMedia('(min-width: 3840px)'), width: 3840 }
+  ];
+  
+  function handleMediaQueryChange(e, width) {
+    // Check if the media query is true
+    if (e.matches) {
+      // Log the matched width to the console
+      console.log(`Media Query Matched! Width: ${width}px`);
+    }
+  }
+  
+  // Register event listeners and perform initial check
+  mediaQueries.forEach(({ query, width }) => {
+    query.addEventListener('change', (e) => handleMediaQueryChange(e, width));
+    handleMediaQueryChange(query, width); // Initial check
+  });
 
 
 
