@@ -112,6 +112,8 @@ namespace Map {
   }
 
   void Add_Map_Segment(Game::State &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment) {
+    std::cout << "i: " << i << " j: " << j << std::endl;
+
     auto location = game.Get_Player().location;
     location.x += offsetX;
     location.y += offsetY;
