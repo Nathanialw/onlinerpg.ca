@@ -23,7 +23,7 @@ namespace Network {
       return !hdl1.owner_before(hdl2) && !hdl2.owner_before(hdl1);
     }
   };
-  std::unordered_map<websocketpp::connection_hdl, Game::State, connection_hdl_hash, connection_hdl_equal> reverse_client_connections;
+  std::unordered_map<websocketpp::connection_hdl, Game::Instance, connection_hdl_hash, connection_hdl_equal> reverse_client_connections;
 
   std::string Get_SessionID(const websocketpp::connection_hdl& hdl) {
     server::connection_ptr con = print_server.get_con_from_hdl(hdl);
@@ -61,6 +61,11 @@ namespace Network {
     //if it already exists, send update
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
+      auto oldhdl = client_connections[session_id];
+      reverse_client_connections[hdl] = reverse_client_connections[oldhdl];
+      reverse_client_connections.erase(oldhdl);
+
+      client_connections[session_id] = hdl;
       std::cout << "hdl reconnected: " << &hdl << std::endl;
       response = "1r";
       Send::On_Message(hdl, response, print_server, reverse_client_connections[hdl]);

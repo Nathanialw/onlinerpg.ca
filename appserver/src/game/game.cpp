@@ -6,8 +6,8 @@
 namespace Game {
 
 //  void Run() {
-  State Init(const std::string& session_id) {
-        State state;
+Instance Init(const std::string& session_id) {
+  Instance state;
         state.session_id = session_id;
         return state;
   }

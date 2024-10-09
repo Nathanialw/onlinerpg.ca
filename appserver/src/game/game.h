@@ -24,7 +24,7 @@ namespace Game {
 
 
   //all of these need to be saved into a database
-  struct State {
+  struct Instance {
     //player id
     //saved into the db to link the player to the game data
 
@@ -70,13 +70,13 @@ namespace Game {
     }
 
     //constructor
-//      State() {
+//      Instance() {
 //        seed.seed = Proc_Gen::Create_Initial_Seed(Get_Player().name[0], Get_Player().name[3]);
 //      }
 
 
   };
 
-  State Init(const std::string& session_id);
+  Instance Init(const std::string& session_id);
   void Run();
 }

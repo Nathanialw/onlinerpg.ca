@@ -22,7 +22,7 @@ namespace Update {
     {'r', {0,0}}
   };
 
-  void Update_Player_Position(Game::State &game, int &px, int &py, int &x, int &y, Units::Species &species) {
+  void Update_Player_Position(Game::Instance &game, int &px, int &py, int &x, int &y, Units::Species &species) {
 
     std::cout << "initial player position: " << game.Get_Player().position.x << " " << game.Get_Player().position.y << std::endl;
     std::cout << "initial player location: " << game.Get_Player().location.x << " " << game.Get_Player().location.y << std::endl;
@@ -82,7 +82,7 @@ namespace Update {
     std::cout << "-------------------" << std::endl;
   }
 
-  void Update_Enemies(Game::State &game) {
+  void Update_Enemies(Game::Instance &game) {
     // cycle through all units
 
     for (auto &level : game.objects) {
@@ -147,7 +147,7 @@ namespace Update {
     std::cout << "Drawing map end: "<< std::endl;
   }
 
-  std::string Update_Player(Game::State &game, const char *direction) {
+  std::string Update_Player(Game::Instance &game, const char *direction) {
     auto move = updatePosition[*direction];
 
     std::cout << "num entities on update: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
@@ -195,7 +195,7 @@ namespace Update {
     return m + " " + "  " + "1";
   }
 
-  std::string Update_Units(Game::State &game, const char *direction) {
+  std::string Update_Units(Game::Instance &game, const char *direction) {
     auto action = Update_Player(game, direction);
     Update_Enemies(game);
     return action;

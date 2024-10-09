@@ -21,7 +21,7 @@
 //type? (fire/ice/etc maybe not sure if will use)
 
 namespace Species {
-  std::string Get_Unit_Data_As_string(Game::State &game, const std::string &msg) {
+  std::string Get_Unit_Data_As_string(Game::Instance &game, const std::string &msg) {
     int mapPositionX = game.Get_Player().position.x - game.Get_Player().vision + std::stoi(msg.substr(0, 2));
     int mapPositionY = game.Get_Player().position.y - game.Get_Player().vision + std::stoi(msg.substr(2, 2));
 

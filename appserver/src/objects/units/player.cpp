@@ -11,11 +11,11 @@
 
 namespace Player {
 
-//  Units::Unit Get(Game::State &game) {
+//  Units::Unit Get(Game::Instance &game) {
 //    return game.units[0];
 //  }
 
-  std::string Get_Stats(Game::State &game) {
+  std::string Get_Stats(Game::Instance &game) {
     //only append with what is being updated
     //when the stat IS updated on then add it to the string
 
@@ -35,7 +35,7 @@ namespace Player {
     return "3" + stats;
   }
 
-  void Spawn(Game::State &game, int level, Component::Position location, int x, int y, const std::basic_string<char> &characterCreate) {
+  void Spawn(Game::Instance &game, int level, Component::Position location, int x, int y, const std::basic_string<char> &characterCreate) {
     game.objects[level][location].unitsString += "2";
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square

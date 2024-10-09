@@ -16,7 +16,7 @@
 
 namespace Send {
 
-  void Init(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
+  void Init(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
     int level = 0;
     Component::Position location = {0, 0};
     int x = 6;
@@ -35,7 +35,7 @@ namespace Send {
     std::cout << "Ready!" << std::endl;
   }
 
-  void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
+  void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
     // move player
     std::cout << "sending char stats back  to client" << std::endl;
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
@@ -46,7 +46,7 @@ namespace Send {
     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
   }
 
-  void On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
+  void On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
     // keep websocket alive
     std::string response;
 
