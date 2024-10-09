@@ -44,9 +44,9 @@ export async function Create_Canvas() {
 
     await Init_Graphics();
 
-    app.canvas.style.position = 'absolute';
-    app.canvas.style.left = '0px';
-    app.canvas.style.top = '0px';
+    // app.canvas.style.position = 'absolute';
+    // app.canvas.style.left = '0px';
+    // app.canvas.style.top = '0px';
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
