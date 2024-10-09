@@ -159,7 +159,6 @@ namespace Map {
 
     std::cout << "x: " << game.Get_Player().position.x << " y: " << game.Get_Player().position.y << std::endl;
     std::cout << "vision: " << game.Get_Player().vision << std::endl;
-    std::cout << "mapSegment start: " << mapSegment << std::endl;
 
     for (int j = game.Get_Player().position.y - game.Get_Player().vision; j <= game.Get_Player().position.y + game.Get_Player().vision; j++) {
         for (int i = game.Get_Player().position.x - game.Get_Player().vision; i <= game.Get_Player().position.x + game.Get_Player().vision; i++) {

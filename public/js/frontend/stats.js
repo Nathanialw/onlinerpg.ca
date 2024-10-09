@@ -1,6 +1,6 @@
 
 //get string from server
-import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, Get_Right_Panel_Width, minimapCellSize} from "../graphics/graphics.js"
+import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, Get_Right_Panel_Width, minimapCellSize, cellSize, Clear_Target} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -61,6 +61,10 @@ export function Render_Target_Stats() {
     if (!targetStats.target) {
         return
     }
+
+    //display rect 
+    Clear_Target();
+
     targetStatsDisplay = []
     let x = Get_Right_Panel_Origin_x();
     let y = Get_Right_Panel_Origin_y()
@@ -94,4 +98,5 @@ export function Render_Target_Stats() {
             }
         }
     }
+
 }
