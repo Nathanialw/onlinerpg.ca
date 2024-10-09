@@ -51,6 +51,6 @@ socket().websocket.onmessage = function(event) {
       //update positions
       //update damage
       //get new chunk to emplace in map array
-     Draw_UI();
+    //  Draw_UI();
 
 };

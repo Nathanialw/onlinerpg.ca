@@ -37,17 +37,13 @@ namespace Send {
 
   void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
     // move player
+    std::cout << "sending char stats back  to client" << std::endl;
+    print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+
     const char *direction = &msg[1];
     auto action = Update::Update_Units(game, direction);
     // send map
     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
-
-    std::string response = "0I hear you pressing: ";
-    response.append(&msg[1]);
-    print_server.send(hdl, response, websocketpp::frame::opcode::text);
-
-    std::cout << "sending char stats back  to client" << std::endl;
-    print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
   }
 
   void On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
