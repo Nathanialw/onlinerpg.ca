@@ -58,14 +58,22 @@ namespace Network {
       print_server.close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
       return;
     }
+    //if it already exists, send update
+    auto it = client_connections.find(session_id);
+    if (it != client_connections.end()) {
+      std::cout << "hdl reconnected: " << &hdl << std::endl;
+      response = "1r";
+      Send::On_Message(hdl, response, print_server, reverse_client_connections[hdl]);
+    }
+    else {
+      client_connections[session_id] = hdl;
+      std::cout << "New connection opened with session ID: " << session_id << std::endl;
+      reverse_client_connections[hdl] = Game::Init(session_id);
+      std::cout << "hdl: " << &hdl << std::endl;
+      std::cout << "mapped hdl: " << reverse_client_connections[hdl].session_id << std::endl;
+      SendDataToSession(session_id, "0sending units: ");
+    }
 
-    client_connections[session_id] = hdl;
-    std::cout << "New connection opened with session ID: " << session_id << std::endl;
-    reverse_client_connections[hdl] = Game::Init(session_id);
-    std::cout << "hdl: " << &hdl << std::endl;
-    std::cout << "mapped hdl: " << reverse_client_connections[hdl].session_id << std::endl;
-
-    SendDataToSession(session_id, "0sending units: ");
   }
 
   // This function will be called when a new connection is opened.
