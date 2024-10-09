@@ -103,6 +103,12 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     if (wrapper) {
         wrapper.remove();
     }
+
+    const canvas = document.querySelector('.canvasContainer');
+    if (canvas) {
+        canvas.style.height = 'calc(100vh - 3.5rem - 125px)';
+    }
+
     
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
