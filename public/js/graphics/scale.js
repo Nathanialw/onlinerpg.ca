@@ -41,4 +41,4 @@ mediaQueries.forEach(({ query }) => {
     query.addEventListener('change', handleMediaQueryChange);
 });
 
-handleMediaQueryChange(); // Initial check
+// handleMediaQueryChange(); // Initial check
