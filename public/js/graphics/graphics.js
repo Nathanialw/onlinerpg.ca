@@ -56,6 +56,7 @@ export async function Create_Canvas() {
         // const newWidth = window.innerWidth;
         // const newHeight = window.innerHeight - footerHeight;
         app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
+        console.log('Resized to: ', gameCanvas.clientWidth, gameCanvas.clientHeight);
     });
 
 }
