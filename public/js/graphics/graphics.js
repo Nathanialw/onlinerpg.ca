@@ -294,6 +294,15 @@ export function Draw_Vision_Background(visionWidth) {
     Draw_Panel(x, y, w, h, 0x228b22);
 }
 
+export function Draw_Vision_Background_Phone(visionWidth) {
+    let x = (0 + Set_Map_Within_Viewport(visionWidth)) * cellSize
+    let y = (0 + Set_Map_Within_Viewport(visionWidth)) * cellSize
+    let w = visionWidth * cellSize;
+    let h = visionWidth * cellSize;
+    Draw_Panel(x, y, w, h, 0x228b22);
+}
+
+
 function Set_Map_Within_Viewport(visionWidth) {
     let vision = ((viewportWidth - 1) / 2) - ((visionWidth - 1) / 2);
     return vision;

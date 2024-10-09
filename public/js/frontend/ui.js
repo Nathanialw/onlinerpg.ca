@@ -1,5 +1,5 @@
 'use strict'
-import { app, Create_Combat_Log_Line, Draw_UI} from '../graphics/graphics.js';
+import { app, Create_Combat_Log_Line, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
 import { Make_Map, Draw_Map, Draw_Map_Phone} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Render_Target_Stats } from './stats.js';   
@@ -83,7 +83,8 @@ export function Update_Screen_Phone() {
     console.log("Clearing screen");
     app.stage.removeChildren();
     
-    Draw_UI(characterInfo);
+    Draw_UI_Phone(characterInfo);
+    Draw_Vision_Background_Phone(visionWidth);
     Make_Map(serverMap, visionWidth);
     Draw_Map_Phone(visionWidth, direction);
     
@@ -98,6 +99,7 @@ export function Update_Screen() {
     app.stage.removeChildren();
     
     Draw_UI(characterInfo);
+    Draw_Vision_Background(visionWidth);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
     
