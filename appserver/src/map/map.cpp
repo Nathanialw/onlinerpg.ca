@@ -115,8 +115,10 @@ namespace Map {
     auto location = game.Get_Player().location;
     location.x += offsetX;
     location.y += offsetY;
-    auto c = game.map[game.Get_Player().level][location].chunk[j][i];
-    mapSegment += c;
+    std::cout << "location to add: " << location.x << ", " << location.y << std::endl;
+    std::cout << "game level: " << game.level << std::endl;
+    std::cout << "player level: " << game.Get_Player().level << std::endl;
+    mapSegment += game.map[game.Get_Player().level][location].chunk[j][i];
   }
 
   void Handle_Boundary(Game::State &game, int i, int j, std::string &mapSegment) {
