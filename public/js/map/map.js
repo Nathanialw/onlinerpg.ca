@@ -1,6 +1,6 @@
 'use strict'
 
-import {Create_Object_Sprite, Create_Map_Line, Create_MiniMap_Line, Draw_Vision_Background} from '../graphics/graphics.js';
+import {Create_Object_Sprite, Create_Map_Line, Create_MiniMap_Line, Create_MiniMap_Line_Phone, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 import {Send_Web_Socket_Message} from  '../networking/socket.js';
 
@@ -156,6 +156,24 @@ export function Draw_Map(visionWidth, direction) {
         console.log("Map not updated");
     }
 }   
+
+export function Draw_Map_Phone(visionWidth, direction) {
+    //get postion of player
+    //update the section of the map that the player is in
+    if (Update_Map(visionWidth, direction)) {
+        for (let i = 0; i < height; i++) {
+            let start = i * width;
+            let end = start + width;
+            let mapLine = minimap.substring(start, end);
+            console.log(mapLine);
+            minimapDisplay[i] = Create_MiniMap_Line_Phone(mapLine, i);
+        }
+    }
+    else {
+        console.log("Map not updated");
+    }
+}   
+
 
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 let objects = []

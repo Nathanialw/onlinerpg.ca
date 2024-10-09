@@ -1,7 +1,7 @@
 'use strict'
 
 import { Set_Font_Size } from './graphics.js';
-import { Update_Screen } from '../frontend/ui.js';
+import { Update_Screen, Update_Screen_Phone } from '../frontend/ui.js';
 
 // List of media queries with their respective min-width values
 const mediaQueries = [
@@ -12,30 +12,6 @@ const mediaQueries = [
     { query: window.matchMedia('(min-width: 3840px)'), width: 3840 }
 ];
 
-function Update8() {
-    Set_Font_Size(8);
-    Update_Screen()
-}
-function Update12() {
-    Set_Font_Size(12);
-    Update_Screen()
-}
-function Update16() {
-    Set_Font_Size(16);
-    Update_Screen()
-}
-function Update24() {
-    Set_Font_Size(24);
-    Update_Screen()
-}
-
-let Update = {
-    1280: Update8,
-    1920: Update12,
-    2560: Update16,
-    3840: Update24,
-}
-
 function handleMediaQueryChange() {
 
     // Loop through the media queries and log the matched width
@@ -45,26 +21,31 @@ function handleMediaQueryChange() {
         }
         if (query.matches && width === 1) {
             Set_Font_Size(8);        
+            Update_Screen_Phone();
+        }
+        if (query.matches && width === 391) { //phone   
+            Set_Font_Size(8);
+            Update_Screen_Phone()
+        }
+        if (query.matches && width === 712) { //tablet
+            Set_Font_Size(8);
+            Update_Screen_Phone()
         }
         if (query.matches && width === 1280) {
             Set_Font_Size(12);
             Update_Screen()
-            return;
         }
-        else if (query.matches && width === 1920) {
+        if (query.matches && width === 1920) {
             Set_Font_Size(16);
             Update_Screen()
-            return;
         }
-        else if (query.matches && width === 2560) {
+        if (query.matches && width === 2560) {
             Set_Font_Size(24);
             Update_Screen()
-            return;
         }
-        else if (query.matches && width === 3840) {
+        if (query.matches && width === 3840) {
             Set_Font_Size(24);
             Update_Screen()
-            return;
         }        
     });
 }
@@ -74,4 +55,4 @@ mediaQueries.forEach(({ query }) => {
     query.addEventListener('change', handleMediaQueryChange);
 });
 
-// handleMediaQueryChange(); // Initial check
+handleMediaQueryChange(); // Initial check

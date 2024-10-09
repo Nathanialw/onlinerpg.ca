@@ -277,6 +277,15 @@ export function Create_MiniMap_Line(char, indexHeight) {
     return object;
 }
 
+export function Create_MiniMap_Line_Phone(char, indexHeight) {
+    // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'});
+    object.x = (0);  // Assuming each cell is 24 pixels tall
+    object.y = (0) + (indexHeight * minimapCellSize);  // Assuming each cell is 24 pixels tall
+    app.stage.addChild(object);
+    return object;
+}
+
 export function Draw_Vision_Background(visionWidth) {
     let x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize
     let y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth)) * cellSize
@@ -292,6 +301,24 @@ function Set_Map_Within_Viewport(visionWidth) {
 
 function Set_Player_Within_Viewport() {
     return ((viewportWidth - 1) / 2);
+}
+
+export function Draw_UI_Phone() {
+    //top    
+    Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, black)
+    //right
+    // Draw_Panel(Get_Right_Panel_Origin_x() * cellSize, Get_Right_Panel_Origin_y() * cellSize, rightPanelWidth * cellSize, rightPanelHeight * cellSize, black);
+    //left
+    // Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, inventory);
+    //bottom
+    // Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);
+    //viewport
+    Draw_Panel(0, 0, viewportWidth * cellSize, viewportHeight * cellSize, black_100);
+    Draw_Stats();
+    // Draw_Map_Border();
+    // Draw_Player_Stats();
+    // Draw_Player_Stats_Border();
+
 }
 
 export function Draw_UI() {
