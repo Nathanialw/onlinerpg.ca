@@ -23,7 +23,10 @@ namespace Network {
       return !hdl1.owner_before(hdl2) && !hdl2.owner_before(hdl1);
     }
   };
-  std::unordered_map<websocketpp::connection_hdl, Game::Instance, connection_hdl_hash, connection_hdl_equal> reverse_client_connections;
+  std::unordered_map<websocketpp::connection_hdl, Game::Instance*, connection_hdl_hash, connection_hdl_equal> reverse_client_connections;
+
+
+  std::unordered_map<std::string, Game::Instance> game_instances;
 
   std::string Get_SessionID(const websocketpp::connection_hdl& hdl) {
     server::connection_ptr con = print_server.get_con_from_hdl(hdl);
@@ -61,24 +64,25 @@ namespace Network {
     //if it already exists, send update
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
-      std::cout << "old handle: " << it->second.lock().get() << std::endl;
-      std::cout << "reconnecting player: " << reverse_client_connections[it->second].Get_Player().name << std::endl;
+      std::cout << "old handle: " << &it->second << std::endl;
+      std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
+      std::cout << "reconnecting player: " << reverse_client_connections[it->second]->Get_Player().name << std::endl;
       reverse_client_connections[hdl] = reverse_client_connections[it->second];
-      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl].Get_Player().name << std::endl;
+      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
       reverse_client_connections.erase(it->second);
 
       client_connections[session_id] = hdl;
       std::cout << "hdl reconnected: " << &hdl << std::endl;
       response = "1r";
-      Send::On_Message(hdl, response, print_server, reverse_client_connections[hdl]);
+      Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
     }
     else {
       client_connections[session_id] = hdl;
       std::cout << "New connection opened with session ID: " << session_id << std::endl;
-      reverse_client_connections[hdl] = Game::Init(session_id);
+      game_instances[session_id] = Game::Init(session_id);
+      reverse_client_connections[hdl] = &game_instances[session_id];
       std::cout << "hdl: " << &hdl << std::endl;
-      std::cout << "mapped hdl: " << reverse_client_connections[hdl].session_id << std::endl;
-      SendDataToSession(session_id, "0sending units: ");
+      std::cout << "mapped sessionID from hdl: " << reverse_client_connections[hdl]->session_id << std::endl;
     }
 
   }
@@ -135,7 +139,7 @@ namespace Network {
   }
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
-    Send::On_Message(hdl, msg->get_payload(), print_server, reverse_client_connections[hdl]);
+    Send::On_Message(hdl, msg->get_payload(), print_server, *reverse_client_connections[hdl]);
     //when a player moves, send the new position to all the clients except the one that sent it right away
 
     //every entity needs to be saved as a uID
