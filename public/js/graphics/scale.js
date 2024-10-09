@@ -21,15 +21,15 @@ function handleMediaQueryChange() {
             Set_Font_Size(8);
             Update_Screen()
         }
-        if (query.matches && width === 1920) {
+        else if (query.matches && width === 1920) {
             Set_Font_Size(12);
             Update_Screen()
         }
-        if (query.matches && width === 2560) {
+        else if (query.matches && width === 2560) {
             Set_Font_Size(16);
             Update_Screen()
         }
-        if (query.matches && width === 3840) {
+        else if (query.matches && width === 3840) {
             Set_Font_Size(24);
             Update_Screen()
         }        
