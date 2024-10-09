@@ -37,8 +37,31 @@ let Update = {
 
 function handleMediaQueryChange() {
     // Loop through the media queries and log the matched width
-    Update[width]();        
-    console.log('Matched width:', width);
+    mediaQueries.forEach(({ query, width }) => {
+        if (query.matches) {
+            console.log(`Media Query Matched! Width: ${width}px`);
+        }
+        if (query.matches && width === 1280) {
+            Set_Font_Size(8);
+            Update_Screen()
+            return;
+        }
+        else if (query.matches && width === 1920) {
+            Set_Font_Size(12);
+            Update_Screen()
+            return;
+        }
+        else if (query.matches && width === 2560) {
+            Set_Font_Size(16);
+            Update_Screen()
+            return;
+        }
+        else if (query.matches && width === 3840) {
+            Set_Font_Size(24);
+            Update_Screen()
+            return;
+        }        
+    });
 }
 
 // Register event listeners and perform initial check
