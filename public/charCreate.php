@@ -47,8 +47,8 @@
         //mystic+evil= warlock -> necromancer -> lich 
  -->
 <section class="canvasContainer">
- <div id="gameCanvas"></div>
- </section>
+    <div id="gameCanvas"></div>
+</section>
 
 <section class="options-container">
     <article class='options'>    

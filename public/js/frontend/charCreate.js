@@ -104,6 +104,12 @@ document.getElementById('startGame').addEventListener('click', (event) => {
         wrapper.remove();
     }
 
+        
+    const className = document.querySelector('.hero-wrapper');
+    if (className) {
+        className.remove();
+    }
+
     const canvas = document.querySelector('.canvasContainer');
     if (canvas) {
         canvas.style.height = 'calc(100vh - 3.5rem - 125px)';
