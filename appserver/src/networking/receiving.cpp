@@ -71,7 +71,9 @@ namespace Network {
       reverse_client_connections[hdl] = &game_instances[session_id];
       std::cout << "mapped sessionID from hdl: " << reverse_client_connections[hdl]->session_id << std::endl;
     }
-
+    std::cout << "number of connections: " << client_connections.size() << std::endl;
+    std::cout << "number of reverse connections: " << reverse_client_connections.size() << std::endl;
+    std::cout << "number of game instances: " << game_instances.size() << std::endl;
   }
 
   // This function will be called when a new connection is opened.
