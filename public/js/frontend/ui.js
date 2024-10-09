@@ -21,7 +21,7 @@ function Add_Line(line) {
     }
 }
 
-function Render_Log() {
+export function Render_Log() {
     let logLine;
     let beginLine;
     let endLine = log.length;
@@ -47,7 +47,7 @@ function Display_Damage_Taken(species, damageTaken) {
     Add_Line(text);
 }
 
-function Display_Damage(species, damage, isDead) {
+export function Display_Damage(species, damage, isDead) {
     if (damage === "  ") {
         return
     }
@@ -58,15 +58,24 @@ function Display_Damage(species, damage, isDead) {
     Add_Line(text);
 }
 
+export let visionWidth;
+export let direction;
+export let species;
+export let damage;
+export let isDead;
+export let serverMap;
+
+
 export function Map(data) {
-    let visionWidth = parseInt(data.substring(0, 2), 10);
-    let direction = data.substring(2,3);
-    let species = Species[data.substring(3,4)];
-    let damage = data.substring(4,6);
-    let isDead = data.substring(6,7);
+    visionWidth = parseInt(data.substring(0, 2), 10);
+    direction = data.substring(2,3);
+    species = Species[data.substring(3,4)];
+    damage = data.substring(4,6);
+    isDead = data.substring(6,7);
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
-    let serverMap = data.substring(7);
+    serverMap = data.substring(7);
+    
     console.log("Redrawing Game");
     Draw_UI(characterInfo);
     Make_Map(serverMap, visionWidth);
