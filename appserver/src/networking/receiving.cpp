@@ -61,6 +61,7 @@ namespace Network {
     //if it already exists, send update
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
+      std::cout << "old handle: " << it->second.lock().get() << std::endl;
       std::cout << "reconnecting player: " << reverse_client_connections[it->second].Get_Player().name << std::endl;
       reverse_client_connections[hdl] = reverse_client_connections[it->second];
       std::cout << "successfully reconnected player: " << reverse_client_connections[hdl].Get_Player().name << std::endl;
@@ -97,9 +98,8 @@ namespace Network {
       return;
     }
 
-    client_connections[session_id] = hdl;
-    std::cout << "New connection opened with session ID: " << session_id << std::endl;
-
+//    client_connections[session_id] = hdl;
+//    std::cout << "New connection opened with session ID: " << session_id << std::endl;
     std::cout << "Connection Closed: " << hdl.lock().get() << std::endl;
   }
 
