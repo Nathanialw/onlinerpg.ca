@@ -108,7 +108,8 @@ namespace Network {
   }
 
   void On_pong(const websocketpp::connection_hdl& hdl, const std::string& payload) {
-
+      std::string response = "ping received: ";
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
   }
 
   void On_pong_timeout(const websocketpp::connection_hdl& hdl, const std::string& payload) {
