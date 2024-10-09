@@ -112,15 +112,15 @@ namespace Map {
   }
 
   void Add_Map_Segment(Game::State &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment) {
-    std::cout << "i: " << i << " j: " << j << std::endl;
+//    std::cout << "i: " << i << " j: " << j << std::endl;
     auto location = game.Get_Player().location;
     location.x += offsetX;
     location.y += offsetY;
-    std::cout << "location to add: " << location.x << ", " << location.y << std::endl;
-    std::cout << "game level: " << game.level << std::endl;
-    std::cout << "player level: " << game.Get_Player().level << std::endl;
-    std::cout << "i: " << i << " j: " << j << std::endl;
-    std::cout << "segment: " << game.map[game.Get_Player().level][location].chunk[j][i] << std::endl;
+//    std::cout << "location to add: " << location.x << ", " << location.y << std::endl;
+//    std::cout << "game level: " << game.level << std::endl;
+//    std::cout << "player level: " << game.Get_Player().level << std::endl;
+//    std::cout << "i: " << i << " j: " << j << std::endl;
+//    std::cout << "segment: " << game.map[game.Get_Player().level][location].chunk[j][i] << std::endl;
     mapSegment += game.map[game.Get_Player().level][location].chunk[j][i];
   }
 
@@ -138,9 +138,7 @@ namespace Map {
     };
 
     std::string key = std::to_string((i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0) + "," + std::to_string((j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0);
-    std::cout << "key: " << key << std::endl;
-
-    std::cout << "i: " << i << " j: " << j << std::endl;
+//    std::cout << "key: " << key << std::endl;
     if (boundaryHandlers.find(key) != boundaryHandlers.end()) {
       if (key == "-1,-1") Add_Map_Segment(game, Component::mapWidth + i, Component::mapWidth + j, -1, -1, mapSegment);
       else if (key == "1,1") Add_Map_Segment(game, i - Component::mapWidth, j - Component::mapWidth, 1, 1, mapSegment);
@@ -152,6 +150,7 @@ namespace Map {
       else if (key == "0,1") Add_Map_Segment(game, i, j - Component::mapWidth, 0, 1, mapSegment);
 //      boundaryHandlers.at(key)();
     } else {
+      std::cout << "key: " << key << std::endl;
       mapSegment += game.map[game.Get_Player().level][game.Get_Player().location].chunk[j][i];
     }
   }
