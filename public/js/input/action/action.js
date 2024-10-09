@@ -8,10 +8,12 @@ import {socket} from "../../networking/socket.js"
 //replace local with server position of they aren't the same
 
 export function Actions(keyName) {
-    console.log("Enter key pressed");
-    let conn = socket() 
-    
+    console.log("Action: " + keyName);
+    let conn = socket()
     if (conn.isConnected) {
-        conn.websocket.send("4");       
-    }    
+        conn.websocket.send("1" + keyName);
+        // conn.websocket.send("1".concat(keyName));
+        return true;       
+    }
+    return false;  
 }

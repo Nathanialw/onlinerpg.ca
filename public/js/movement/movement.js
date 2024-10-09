@@ -7,7 +7,7 @@ import {socket} from "../networking/socket.js"
 //recieve position from server
 //replace local with server position of they aren't the same
 
-function Move(keyName) {
+export function Move(keyName) {
     console.log("Move");
     let conn = socket()
     if (conn.isConnected) {
@@ -18,4 +18,3 @@ function Move(keyName) {
     return false;
 }
 
-export {Move}
