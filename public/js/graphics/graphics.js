@@ -49,6 +49,7 @@ export async function Create_Canvas() {
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
+    handleMediaQueryChange(); // Initial check
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
@@ -103,23 +104,21 @@ const mediaQueries = [
     { query: window.matchMedia('(min-width: 1920px)'), width: 1920 },
     { query: window.matchMedia('(min-width: 2560px)'), width: 2560 },
     { query: window.matchMedia('(min-width: 3840px)'), width: 3840 }
-  ];
-  
-  function handleMediaQueryChange(e, width) {
-    // Check if the media query is true
-    if (e.matches) {
-      // Log the matched width to the console
-      console.log(`Media Query Matched! Width: ${width}px`);
-    }
-  }
-  
-  // Register event listeners and perform initial check
-  mediaQueries.forEach(({ query, width }) => {
-    query.addEventListener('change', (e) => handleMediaQueryChange(e, width));
-    handleMediaQueryChange(query, width); // Initial check
-  });
+];
 
+function handleMediaQueryChange() {
+    // Loop through the media queries and log the matched width
+    mediaQueries.forEach(({ query, width }) => {
+        if (query.matches) {
+            console.log(`Media Query Matched! Width: ${width}px`);
+        }
+    });
+}
 
+// Register event listeners and perform initial check
+mediaQueries.forEach(({ query }) => {
+    query.addEventListener('change', handleMediaQueryChange);
+});
 
 function Set_Window_Width() {
     return (viewportWidth * cellSize) + (leftPanelWidth * cellSize) + (rightPanelWidth * cellSize);
