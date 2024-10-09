@@ -149,16 +149,24 @@ namespace Map {
     mapSegment += direction;
     std::string mapString;
 
+    std::cout << "x: " << game.Get_Player().position.x << " y: " << game.Get_Player().position.y << std::endl;
+    std::cout << "vision: " << game.Get_Player().vision << std::endl;
+    std::cout << "mapSegment start: " << mapSegment << std::endl;
+
     for (int j = game.Get_Player().position.y - game.Get_Player().vision; j <= game.Get_Player().position.y + game.Get_Player().vision; j++) {
         for (int i = game.Get_Player().position.x - game.Get_Player().vision; i <= game.Get_Player().position.x + game.Get_Player().vision; i++) {
           Handle_Boundary(game, i, j, mapSegment);
       }
     }
-//    std::cout << "map sent!" << std::endl;
-//    auto sentMap = mapSegment.substr(8);
-//    for (int i = 0; i < player.vision * 2 + 1; i++) {
-//      std::cout << sentMap.substr(i * (player.vision * 2 + 1), player.vision * 2 + 1) << std::endl;
-//    }
+
+    std::cout << "mapSegment end: " << mapSegment << std::endl;
+
+    auto sentMap = mapSegment.substr(8);
+    for (int i = 0; i < game.Get_Player().vision * 2 + 1; i++) {
+      std::cout << sentMap.substr(i * (game.Get_Player().vision * 2 + 1), game.Get_Player().vision * 2 + 1) << std::endl;
+    }
+    std::cout << "map sent!" << std::endl;
+
     return mapSegment;
   }
 
