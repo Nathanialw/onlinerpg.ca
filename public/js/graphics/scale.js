@@ -5,6 +5,7 @@ import { Update_Screen } from '../frontend/ui.js';
 
 // List of media queries with their respective min-width values
 const mediaQueries = [
+    { query: window.matchMedia('(min-width: 1px)'), width: 1 },
     { query: window.matchMedia('(min-width: 1280px)'), width: 1280 },
     { query: window.matchMedia('(min-width: 1920px)'), width: 1920 },
     { query: window.matchMedia('(min-width: 2560px)'), width: 2560 },
@@ -42,18 +43,21 @@ function handleMediaQueryChange() {
         if (query.matches) {
             console.log(`Media Query Matched! Width: ${width}px`);
         }
-        if (query.matches && width === 1280) {
-            Set_Font_Size(8);
-            Update_Screen()
-            return;
+        if (query.matches && width === 1) {
+            Set_Font_Size(8);        
         }
-        else if (query.matches && width === 1920) {
+        if (query.matches && width === 1280) {
             Set_Font_Size(12);
             Update_Screen()
             return;
         }
-        else if (query.matches && width === 2560) {
+        else if (query.matches && width === 1920) {
             Set_Font_Size(16);
+            Update_Screen()
+            return;
+        }
+        else if (query.matches && width === 2560) {
+            Set_Font_Size(24);
             Update_Screen()
             return;
         }
