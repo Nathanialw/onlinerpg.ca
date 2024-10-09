@@ -112,6 +112,38 @@ function handleMediaQueryChange() {
         if (query.matches) {
             console.log(`Media Query Matched! Width: ${width}px`);
         }
+        if (query.matches && width === 1280) {
+            // sidePanelWidth = 30;
+            // viewportWidth = 41;
+            // viewportHeight = 41;
+            // topPanelHeight = 10;
+            cellSize = 8;
+            minimapCellSize = 4;
+        }
+        if (query.matches && width === 1920) {
+            // sidePanelWidth = 30;
+            // viewportWidth = 41;
+            // viewportHeight = 41;
+            // topPanelHeight = 10;
+            cellSize = 12;
+            minimapCellSize = 6;
+        }
+        if (query.matches && width === 2560) {
+            // sidePanelWidth = 30;
+            // viewportWidth = 41;
+            // viewportHeight = 41;
+            // topPanelHeight = 10;
+            cellSize = 16;
+            minimapCellSize = 8;
+        }
+        if (query.matches && width === 3840) {
+            // sidePanelWidth = 30;
+            // viewportWidth = 41;
+            // viewportHeight = 41;
+            // topPanelHeight = 10;
+            cellSize = 24;
+            minimapCellSize = 12;
+        }        
     });
 }
 
