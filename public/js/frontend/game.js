@@ -6,7 +6,8 @@ Init();
 
 async function Splash_Screen() {
     await Create_Canvas();
-    //Get Data from server, Map(), UpdatePlayerInfo(), Get_Target_Stats_From_Server()
+    //trigger window resize
+
     // Send R key to server
     Actions("r");
     Draw_UI();
