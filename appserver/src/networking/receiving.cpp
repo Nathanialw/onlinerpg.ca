@@ -54,7 +54,6 @@ namespace Network {
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
       std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
-      reverse_client_connections.erase(client_connections[session_id]);
       client_connections.erase(it);
       std::cout << "removed ol hdl " << std::endl;
       reverse_client_connections[hdl] = &game_instances[session_id];
@@ -90,6 +89,7 @@ namespace Network {
       print_server.close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
       return;
     }
+    reverse_client_connections.erase(client_connections[session_id]);
 
 //    client_connections[session_id] = hdl;
 //    std::cout << "New connection opened with session ID: " << session_id << std::endl;
