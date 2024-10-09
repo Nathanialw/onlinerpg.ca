@@ -6,7 +6,7 @@ Init();
 
 async function Splash_Screen() {
     await Create_Canvas();
-    Actions("r");
+    Actions(" ");
 }
 
 Splash_Screen()
