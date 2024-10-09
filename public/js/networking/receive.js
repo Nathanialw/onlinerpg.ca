@@ -2,7 +2,6 @@
 
 import {Populate_Map} from '../map/map.js';
 import {Map} from '../frontend/ui.js';
-import {Draw_UI} from '../graphics/graphics.js';
 
 import {app} from '../graphics/graphics.js';
 import {socket} from './socket.js';
@@ -51,6 +50,4 @@ socket().websocket.onmessage = function(event) {
       //update positions
       //update damage
       //get new chunk to emplace in map array
-    //  Draw_UI();
-
 };

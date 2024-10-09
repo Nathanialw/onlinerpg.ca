@@ -1,18 +1,14 @@
 import { Init } from "../sound/sound.js";
-import { Create_Canvas, Draw_UI} from '../graphics/graphics.js';
+import { Create_Canvas} from '../graphics/graphics.js';
 import { Actions } from "../input/action/action.js";
 
 Init();
 
 async function Splash_Screen() {
     await Create_Canvas();
-    //trigger window resize
-
-    // Send R key to server
     Actions("r");
-    // Draw_UI();
-    // Draw_Title_Screen();
 }
+
 Splash_Screen()
 
 export function Close_Game() {
