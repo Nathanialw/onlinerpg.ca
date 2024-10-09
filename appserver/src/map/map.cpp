@@ -155,6 +155,8 @@ namespace Map {
 
     for (int j = game.Get_Player().position.y - game.Get_Player().vision; j <= game.Get_Player().position.y + game.Get_Player().vision; j++) {
         for (int i = game.Get_Player().position.x - game.Get_Player().vision; i <= game.Get_Player().position.x + game.Get_Player().vision; i++) {
+          std::cout << "i: " << i << " j: " << j << std::endl;
+          std::cout << "mapSegment: " << mapSegment << std::endl;
           Handle_Boundary(game, i, j, mapSegment);
       }
     }

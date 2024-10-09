@@ -105,7 +105,7 @@ namespace Update {
               // calculate next cell
               Component::Position moveTo = Pathing::Move_To(game.map[unit.level][unit.location].pathing, unit.position, game.Get_Player().position);
               std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
-              std::cout << "unit moves to: " << moveTo.x << ", " << moveTo.y << std::endl;
+              std::cout << "unit moves by: " << moveTo.x << ", " << moveTo.y << std::endl;
               // check next cell and move/attack
               if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
