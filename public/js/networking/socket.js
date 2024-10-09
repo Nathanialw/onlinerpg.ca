@@ -1,5 +1,7 @@
 'use strict';
 
+import { Update } from './receive.js';
+
 // Function to fetch the session ID from the PHP script
 async function getSessionId() {
     try {
@@ -42,6 +44,37 @@ export async function createWebSocket() {
 
     websocket.onopen = () => {
         console.log("WebSocket connection opened");
+        // onMessage listener
+        websocket.onmessage = (event) => {
+            console.log("WebSocket message received:", event.data);
+            // Handle incoming messages here
+            websocket.onmessage = function(event) {    
+                console.log(event.data)
+                
+                if (event.data === 0) {
+                    return
+                }
+            
+                let type = event.data[0];
+                let data = event.data.substring(1);
+                console.log(type, data)
+                // if empty string
+                if (data.length == 0) {
+                    console.log("received empty string")
+                    return
+                }
+                
+                //need to use a hash map
+                Update[type](data);
+                
+                
+                //populate map on startup
+                //on periodic update
+                //update positions
+                //update damage
+                //get new chunk to emplace in map array
+            };
+        };
     };
 
     websocket.onclose = () => {
@@ -85,7 +118,7 @@ export function socket() {
     }
 }
 
-export function closeWebSocket() {
+function closeWebSocket() {
     if (websocket) {
         websocket.close();
     }

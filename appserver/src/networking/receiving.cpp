@@ -33,15 +33,6 @@ namespace Network {
     return session_id;
   }
 
-  void SendDataToSession(const std::string& session_id, const std::string& data) {
-    auto it = client_connections.find(session_id);
-    if (it != client_connections.end()) {
-      websocketpp::connection_hdl hdl = it->second;
-      print_server.send(hdl, data, websocketpp::frame::opcode::text);
-    } else {
-      std::cerr << "Session ID not found: " << session_id << std::endl;
-    }
-  }
   //need a map of hdl to Games
 
   //receive a message from a client
@@ -70,7 +61,6 @@ namespace Network {
       std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
 
       client_connections[session_id] = hdl;
-      std::cout << "hdl reconnected: " << &hdl << std::endl;
       response = "1r";
       Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
     }
@@ -79,7 +69,6 @@ namespace Network {
       std::cout << "New connection opened with session ID: " << session_id << std::endl;
       game_instances[session_id] = Game::Init(session_id);
       reverse_client_connections[hdl] = &game_instances[session_id];
-      std::cout << "hdl: " << &hdl << std::endl;
       std::cout << "mapped sessionID from hdl: " << reverse_client_connections[hdl]->session_id << std::endl;
     }
 
