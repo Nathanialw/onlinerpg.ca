@@ -44,6 +44,12 @@ namespace Send {
     auto action = Update::Update_Units(game, direction);
     // send map
     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
+
+    //update target
+    std::string response;
+    response.append(msg.substr(1, 4));
+    response = "5" + Species::Get_Unit_Data_As_string(game, response);
+    print_server.send(hdl, response, websocketpp::frame::opcode::text);
   }
 
   void On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::State &game) {
