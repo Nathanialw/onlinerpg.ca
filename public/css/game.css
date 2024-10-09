@@ -189,7 +189,7 @@ body {
     }
 
     .canvasContainer {
-        /* width: 1500px; */
+        width: 1500px;
     }
 }
 
@@ -220,7 +220,7 @@ body {
     }
 
     .canvasContainer {
-        /* width: 2400px; */
+        width: 2400px;
     }
 }
 
@@ -251,6 +251,6 @@ body {
     }
 
     .canvasContainer {
-        /* width: 2800px; */
+        width: 2800px;
     }
 }
