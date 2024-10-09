@@ -1,6 +1,6 @@
 'use strict'
 
-import { cellSize, minimapCellSize } from './graphics.js';
+import { Set_Font_Size } from './graphics.js';
 import { Update_Screen } from '../frontend/ui.js';
 
 // List of media queries with their respective min-width values
@@ -18,23 +18,19 @@ function handleMediaQueryChange() {
             console.log(`Media Query Matched! Width: ${width}px`);
         }
         if (query.matches && width === 1280) {
-            cellSize = 8;
-            minimapCellSize = 4;
+            Set_Font_Size(8);
             Update_Screen()
         }
         if (query.matches && width === 1920) {
-            cellSize = 12;
-            minimapCellSize = 6;
+            Set_Font_Size(12);
             Update_Screen()
         }
         if (query.matches && width === 2560) {
-            cellSize = 16;
-            minimapCellSize = 8;
+            Set_Font_Size(16);
             Update_Screen()
         }
         if (query.matches && width === 3840) {
-            cellSize = 24;
-            minimapCellSize = 12;
+            Set_Font_Size(24);
             Update_Screen()
         }        
     });

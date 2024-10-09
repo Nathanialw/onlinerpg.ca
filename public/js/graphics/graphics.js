@@ -49,7 +49,6 @@ export async function Create_Canvas() {
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
-    handleMediaQueryChange(); // Initial check
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
@@ -61,9 +60,14 @@ export async function Create_Canvas() {
 
 }
 
-
 export let cellSize = 24;
 export let minimapCellSize = 12;
+
+export function Set_Font_Size(size) {
+    cellSize = size;
+    minimapCellSize = size / 2;
+}
+
 
 let grey50 = 0xf8fafc;
 let grey100 = 0xf1f5f9;
@@ -97,44 +101,6 @@ let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
 let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);
 
 let gameWindow = viewportWidth + 0;
-
-// List of media queries with their respective min-width values
-const mediaQueries = [
-    { query: window.matchMedia('(max-width: 1280px)'), width: 1280 },
-    { query: window.matchMedia('(max-width: 1920px)'), width: 1920 },
-    { query: window.matchMedia('(max-width: 2560px)'), width: 2560 },
-    { query: window.matchMedia('(max-width: 3840px)'), width: 3840 }
-];
-
-function handleMediaQueryChange() {
-    // Loop through the media queries and log the matched width
-    mediaQueries.forEach(({ query, width }) => {
-        if (query.matches) {
-            console.log(`Media Query Matched! Width: ${width}px`);
-        }
-        if (query.matches && width === 1280) {
-            cellSize = 8;
-            minimapCellSize = 4;
-        }
-        if (query.matches && width === 1920) {
-            cellSize = 12;
-            minimapCellSize = 6;
-        }
-        if (query.matches && width === 2560) {
-            cellSize = 16;
-            minimapCellSize = 8;
-        }
-        if (query.matches && width === 3840) {
-            cellSize = 24;
-            minimapCellSize = 12;
-        }        
-    });
-}
-
-// Register event listeners and perform initial check
-mediaQueries.forEach(({ query }) => {
-    query.addEventListener('change', handleMediaQueryChange);
-});
 
 function Set_Window_Width() {
     return (viewportWidth * cellSize) + (leftPanelWidth * cellSize) + (rightPanelWidth * cellSize);
