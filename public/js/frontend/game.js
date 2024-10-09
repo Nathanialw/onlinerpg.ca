@@ -1,10 +1,14 @@
 import { Init } from "../sound/sound.js";
-import { Draw_Title_Screen, Create_Canvas, Draw_UI} from '../graphics/graphics.js';
+import { Create_Canvas, Draw_UI} from '../graphics/graphics.js';
+import { Actions } from "../input/action/action.js";
 
 Init();
 
 async function Splash_Screen() {
     await Create_Canvas();
+    //Get Data from server, Map(), UpdatePlayerInfo(), Get_Target_Stats_From_Server()
+    // Send R key to server
+    Actions("r");
     Draw_UI();
     // Draw_Title_Screen();
 }
