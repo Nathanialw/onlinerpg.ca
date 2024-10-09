@@ -1,20 +1,7 @@
 'use strict'
 
-import { cellSize, minimapCellSize, Make_Map, Draw_Map, Draw_UI } from './graphics.js';
-import { characterInfo } from '../units/unitdef.js';
-import { Render_Target_Stats } from '../frontend/stats.js';
-import { visionWidth, direction, species, damage, isDead, serverMap, Render_Log, Display_Damage } from '../frontend/ui.js';
-
-export function Update_Screen() {
-    Draw_UI(characterInfo);
-    Make_Map(serverMap, visionWidth);
-    Draw_Map(visionWidth, direction);
-    
-    // Display_Damage_Taken(species, damageTaken);
-    Display_Damage(species, damage, isDead)
-    Render_Log();
-    Render_Target_Stats();
-}
+import { cellSize, minimapCellSize } from './graphics.js';
+import { Update_Screen } from '../frontend/ui.js';
 
 // List of media queries with their respective min-width values
 const mediaQueries = [

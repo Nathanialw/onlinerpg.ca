@@ -21,7 +21,7 @@ function Add_Line(line) {
     }
 }
 
-export function Render_Log() {
+function Render_Log() {
     let logLine;
     let beginLine;
     let endLine = log.length;
@@ -47,7 +47,7 @@ function Display_Damage_Taken(species, damageTaken) {
     Add_Line(text);
 }
 
-export function Display_Damage(species, damage, isDead) {
+function Display_Damage(species, damage, isDead) {
     if (damage === "  ") {
         return
     }
@@ -58,12 +58,12 @@ export function Display_Damage(species, damage, isDead) {
     Add_Line(text);
 }
 
-export let visionWidth;
-export let direction;
-export let species;
-export let damage;
-export let isDead;
-export let serverMap;
+let visionWidth;
+let direction;
+let species;
+let damage;
+let isDead;
+let serverMap;
 
 
 export function Map(data) {
@@ -77,6 +77,18 @@ export function Map(data) {
     serverMap = data.substring(7);
     
     console.log("Redrawing Game");
+    Draw_UI(characterInfo);
+    Make_Map(serverMap, visionWidth);
+    Draw_Map(visionWidth, direction);
+    
+    // Display_Damage_Taken(species, damageTaken);
+    Display_Damage(species, damage, isDead)
+    Render_Log();
+    Render_Target_Stats();
+}
+
+
+export function Update_Screen() {
     Draw_UI(characterInfo);
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
