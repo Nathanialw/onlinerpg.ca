@@ -113,6 +113,9 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
     else if (direction == 'r') {
         console.log("resting");
     }
+    else if (direction == ' ') {
+        console.log("skipping turn");
+    }
     else {
         minimap = updatedMap
     }
@@ -180,7 +183,6 @@ let objects = []
 let objectDisplay = []
 
 export function Make_Map(serverMap, visionWidth) { 
-    Draw_Vision_Background(visionWidth);
     //parse the map and pull out the characters and replace with spaces
     //create a sprite at the location of the space that is clickable
     //query the server using the x and y of the sprite to get the sprite data

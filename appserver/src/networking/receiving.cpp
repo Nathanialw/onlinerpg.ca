@@ -60,7 +60,7 @@ namespace Network {
       std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
 
       client_connections[session_id] = hdl;
-      response = "1r";
+      response = "1 ";
       Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
     }
     else {
@@ -82,17 +82,13 @@ namespace Network {
   }
 
   void On_close(const websocketpp::connection_hdl& hdl) {
-    server::connection_ptr con = print_server.get_con_from_hdl(hdl);
-    std::string session_id = con->get_resource().substr(con->get_resource().find('=') + 1);
+    std::string session_id = Get_SessionID(hdl);
 
     if (session_id.empty()) {
       print_server.close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
       return;
     }
-    reverse_client_connections.erase(client_connections[session_id]);
-
-//    client_connections[session_id] = hdl;
-//    std::cout << "New connection opened with session ID: " << session_id << std::endl;
+    reverse_client_connections.erase(hdl);
     std::cout << "Connection Closed: " << hdl.lock().get() << std::endl;
   }
 
@@ -101,15 +97,14 @@ namespace Network {
   }
 
   bool On_ping(const websocketpp::connection_hdl& hdl, const std::string& payload) {
-      std::string response = "pinging: ";
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      reverse_client_connections[hdl]->duration++;
+//      std::string response = "pinging: ";
+//      print_server.send(hdl, response, websocketpp::frame::opcode::text);
       return true;
   }
 
   void On_pong(const websocketpp::connection_hdl& hdl, const std::string& payload) {
-      std::string response = "ping received: ";
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+//      std::string response = "ping received: ";
+//      print_server.send(hdl, response, websocketpp::frame::opcode::text);
   }
 
   void On_pong_timeout(const websocketpp::connection_hdl& hdl, const std::string& payload) {

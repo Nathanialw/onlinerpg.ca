@@ -13,6 +13,7 @@ let Update = {
     s: Move,
     d: Move,
     r: Move,
+    Space: Move,
     Control: SoundPlay
 }
 
