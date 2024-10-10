@@ -161,21 +161,23 @@ namespace Update {
 //      return r + " " + "  " + "1";
 //    }
 
-    //rest
-    if (*direction == 'r') {
-      std::string r = "r";
-      std::cout << "rest" << std::endl;
-      if (game.Get_Player().health < game.Get_Player().healthMax)
-        game.Get_Player().health += 5;
-      return r + " " + "  " + "1";
-    }
-
     // collision
     if (Collision::Wall_Collision(game, game.Get_Player().level, game.Get_Player().location, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
       std::string c = "c";
       return c + " " + "  " + "1";
     }
+
+    //rest
+    if (*direction == 'r') {
+      std::string r = "r";
+      std::cout << "rest" << std::endl;
+      if (game.Get_Player().health < game.Get_Player().healthMax) {
+        game.Get_Player().health += 5;
+      }
+      return r + " " + "  " + "1";
+    }
+
     // if the nearby cell is an enemy, attack
     int attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
     auto &attacker = game.objects[game.Get_Player().level][game.Get_Player().location].units[attackerIndex];
@@ -208,6 +210,9 @@ namespace Update {
       return "    1";
 
     auto action = Update_Player(game, direction);
+    if (action[0] == 'c')
+      return action;
+
     Update_Enemies(game);
     return action;
   }

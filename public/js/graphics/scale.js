@@ -3,78 +3,22 @@
 import { Set_Font_Size } from './graphics.js';
 import { Update_Screen, Update_Screen_Phone } from '../frontend/ui.js';
 
-// // List of media queries with their respective min-width values
-// const mediaQueries = [
-//     { query: window.matchMedia('(min-width: 1px)'), width: 1 },
-//     { query: window.matchMedia('(min-width: 1280px)'), width: 1280 },
-//     { query: window.matchMedia('(min-width: 1920px)'), width: 1920 },
-//     { query: window.matchMedia('(min-width: 2560px)'), width: 2560 },
-//     { query: window.matchMedia('(min-width: 3840px)'), width: 3840 }
-// ];
-
-// function handleMediaQueryChange() {
-
-//     // Loop through the media queries and log the matched width
-//     mediaQueries.forEach(({ query, width }) => {
-//         if (query.matches) {
-//             console.log("width: ", window.width);
-//             console.log(`Media Query Matched! Width: ${width}px`);
-//         }
-//         if (query.matches && width === 1) {
-//             Set_Font_Size(8);        
-//             Update_Screen_Phone();
-//         }
-//         if (query.matches && width === 391) { //phone   
-//             Set_Font_Size(8);
-//             Update_Screen_Phone()
-//         }
-//         if (query.matches && width === 712) { //tablet
-//             Set_Font_Size(8);
-//             Update_Screen_Phone()
-//         }
-//         if (query.matches && width === 1280) {
-//             Set_Font_Size(12);
-//             Update_Screen()
-//         }
-//         if (query.matches && width === 1920) {
-//             Set_Font_Size(16);
-//             Update_Screen()
-//         }
-//         if (query.matches && width === 2560) {
-//             Set_Font_Size(24);
-//             Update_Screen()
-//         }
-//         if (query.matches && width === 3840) {
-//             Set_Font_Size(24);
-//             Update_Screen()
-//         }        
-//     });
-// }
-
-// // Register event listeners and perform initial check
-// mediaQueries.forEach(({ query }) => {
-//     query.addEventListener('change', handleMediaQueryChange);
-// });
-
-// handleMediaQueryChange(); // Initial check
-
-
 const mediaQueries = [
-    { query: window.matchMedia('(min-width: 1px) and (max-width: 390px)'), width: 8 },
-    { query: window.matchMedia('(min-width: 391px) and (max-width: 711px)'), width: 8 },
-    { query: window.matchMedia('(min-width: 712px) and (max-width: 1279px)'), width: 8 },
-    { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), width: 12 },
-    { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), width: 16 },
-    { query: window.matchMedia('(min-width: 2560px) and (max-width: 3839px)'), width: 24 },
-    { query: window.matchMedia('(min-width: 3840px)'), width: 24 }
+    { query: window.matchMedia('(min-width: 1px) and (max-width: 390px)'), size: 8 },
+    { query: window.matchMedia('(min-width: 391px) and (max-width: 711px)'), size: 8 },
+    { query: window.matchMedia('(min-width: 712px) and (max-width: 1279px)'), size: 8 },
+    { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), size: 12 },
+    { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), size: 16 },
+    { query: window.matchMedia('(min-width: 2560px) and (max-width: 3839px)'), size: 24 },
+    { query: window.matchMedia('(min-width: 3840px)'), size: 24 }
 ];
 
 function handleMediaQueryChange() {
-    // Loop through the media queries in descending order and log the matched width
-    for (let { query, width } of mediaQueries) {
+    // Loop through the media queries in descending order and log the matched size
+    for (let { query, size } of mediaQueries) {
         if (query.matches) {
-            console.log(`Media Query Matched! Width: ${width}px`);
-            Set_Font_Size(width);
+            console.log(`Media Query Matched! Width: ${size}px`);
+            Set_Font_Size(size);
             Update_Screen()
             break; // Exit the loop after the first match
         }
