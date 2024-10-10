@@ -17,7 +17,7 @@ function CreateSound(path) {
 export function Init () {
     console.log("sound init");
     swoosh = CreateSound('../../assets/sounds/swish_2.wav');
-    cave = CreateSound('../..//assets/music/forest/Dungeon_-_Catacomb_Crawler.ogg');
+    cave = CreateSound('../..//assets/music/cave/Dungeon_-_Catacomb_Crawler.ogg');
     forest = CreateSound('../../assets/music/forest/Dungeon_-_Thorn_Maze.ogg');
 }
 
