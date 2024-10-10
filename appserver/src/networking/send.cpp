@@ -36,12 +36,10 @@ namespace Send {
   }
 
   void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
-    // move player
-    std::cout << "sending char stats back  to client" << std::endl;
+    //  update units
+    auto action = Update::Update_Units(game, &msg[1]);
+    //  send stats
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
-
-    const char *direction = &msg[1];
-    auto action = Update::Update_Units(game, direction);
     // send map
     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
   }

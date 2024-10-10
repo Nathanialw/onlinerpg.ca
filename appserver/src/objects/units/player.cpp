@@ -16,6 +16,8 @@ namespace Player {
 //  }
 
   std::string Get_Stats(Game::Instance &game) {
+    std::cout << "sending char stats back  to client" << std::endl;
+
     //only append with what is being updated
     //when the stat IS updated on then add it to the string
 

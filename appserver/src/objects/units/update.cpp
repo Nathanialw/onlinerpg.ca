@@ -19,8 +19,8 @@ namespace Update {
     {'a', {-1,0}},
     {'s', {0,1}},
     {'d', {1,0}},
-    {'r', {0,0}},
-    {' ', {0,0}}
+    {'r', {0,0}}
+//    {' ', {0,0}}
   };
 
   void Update_Player_Position(Game::Instance &game, int &px, int &py, int &x, int &y, Units::Species &species) {
@@ -154,12 +154,12 @@ namespace Update {
     std::cout << "num entities on update: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
     std::cout << "successfully grabbed player from units[]" << std::endl;
 
-    //skip 1 turn
-    if (*direction == ' ') {
-      std::string r = " ";
-      std::cout << "skipping turn" << std::endl;
-      return r + " " + "  " + "1";
-    }
+//    //skip 1 turn
+//    if (*direction == ' ') {
+//      std::string r = " ";
+//      std::cout << "skipping turn" << std::endl;
+//      return r + " " + "  " + "1";
+//    }
 
     //rest
     if (*direction == 'r') {
@@ -204,6 +204,9 @@ namespace Update {
   }
 
   std::string Update_Units(Game::Instance &game, const char *direction) {
+    if (*direction != ' ')
+      return " ";
+
     auto action = Update_Player(game, direction);
     Update_Enemies(game);
     return action;
