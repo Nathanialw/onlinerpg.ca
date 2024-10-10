@@ -31,6 +31,10 @@ export function SoundPlay(keyName) {
 }
 
 export function Music_Play(zone) {
+    forest.stop();
+    title.stop();
+    cave.stop();
+
     if (zone === "forest") {
         forest.loop(true);
         forest.play();
