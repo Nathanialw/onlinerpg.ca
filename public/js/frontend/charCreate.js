@@ -144,7 +144,7 @@ document.getElementById('startGame').addEventListener('click', (event) => {
     Remove_Elements();
 });
 
-function OnReconnect() {
+export function OnReconnect() {
     Set_Canvas();
     Load_Scripts();
     Remove_Elements();
