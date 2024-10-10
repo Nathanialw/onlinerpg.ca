@@ -22,5 +22,6 @@ export function SoundPlay(keyName) {
 }
 
 export function SoundAttack() {
+    console.log("Attack sound play!");
     swoosh.play();
 }

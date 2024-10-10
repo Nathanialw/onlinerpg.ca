@@ -20,10 +20,10 @@ function handleMediaQueryChange() {
             console.log("width: ", window.width);
             console.log(`Media Query Matched! Width: ${width}px`);
         }
-        if (query.matches && width === 1) {
-            Set_Font_Size(8);        
-            Update_Screen_Phone();
-        }
+        // if (query.matches && width === 1) {
+        //     Set_Font_Size(8);        
+        //     Update_Screen_Phone();
+        // }
         if (query.matches && width === 391) { //phone   
             Set_Font_Size(8);
             Update_Screen_Phone()
