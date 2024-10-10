@@ -17,6 +17,7 @@ function handleMediaQueryChange() {
     // Loop through the media queries and log the matched width
     mediaQueries.forEach(({ query, width }) => {
         if (query.matches) {
+            console.log("width: ", window.width);
             console.log(`Media Query Matched! Width: ${width}px`);
         }
         if (query.matches && width === 1) {
