@@ -17,6 +17,6 @@ export function Init () {
 
 export function SoundPlay(keyName) {
     console.log("SoundPlay");
-    swoosh.play;
+    swoosh.play();
     return true
 }
