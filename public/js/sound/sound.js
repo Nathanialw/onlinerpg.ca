@@ -4,6 +4,7 @@ var swoosh;
 var title;
 var forest;
 var cave;
+var playing;
 
 function CreateSound(path) {
     var sound = new Howl ({
@@ -31,25 +32,21 @@ export function SoundPlay(keyName) {
 }
 
 export function Music_Play(zone) {
-    forest.stop();
-    title.stop();
-    cave.stop();
+    if (playing) {
+        playing.stop();
+    }
 
     if (zone === "forest") {
-        forest.loop(true);
-        forest.play();
+        playing = forest;
     }
     else if (zone === "cave") {
-        cave.loop(true);
-        cave.play();
+        playing = cave;
     }
     else if (zone === "title") {
-        title.loop(true);
-        title.play();
+        playing = title;
     }
-    else {
-        console.log("Invalid zone");
-    }
+    playing.loop(true);
+    playing.play();
 }
 
 export function SoundAttack() {
