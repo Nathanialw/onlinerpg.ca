@@ -158,8 +158,6 @@ namespace Update {
     if (*direction == ' ') {
       std::string r = " ";
       std::cout << "skipping turn" << std::endl;
-      if (game.Get_Player().health < game.Get_Player().healthMax)
-        game.Get_Player().health += 5;
       return r + " " + "  " + "1";
     }
 

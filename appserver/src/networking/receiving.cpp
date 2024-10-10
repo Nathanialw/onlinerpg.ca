@@ -58,8 +58,8 @@ namespace Network {
       std::cout << "removed ol hdl " << std::endl;
       reverse_client_connections[hdl] = &game_instances[session_id];
       std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
-
       client_connections[session_id] = hdl;
+
       response = "1 ";
       Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
     }
