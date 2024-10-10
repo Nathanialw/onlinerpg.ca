@@ -205,7 +205,7 @@ namespace Update {
 
   std::string Update_Units(Game::Instance &game, const char *direction) {
     if (*direction == ' ')
-      return " ";
+      return "    1";
 
     auto action = Update_Player(game, direction);
     Update_Enemies(game);

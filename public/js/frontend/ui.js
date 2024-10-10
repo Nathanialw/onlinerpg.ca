@@ -3,6 +3,7 @@ import { app, Create_Combat_Log_Line, Draw_UI, Draw_UI_Phone, Draw_Vision_Backgr
 import { Make_Map, Draw_Map, Draw_Map_Phone} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Render_Target_Stats } from './stats.js';   
+import { SoundAttack } from '../sound/sound.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -55,6 +56,7 @@ function Display_Damage(species, damage, isDead) {
     if (isDead === "0") {
         text += " and killed it!";
     }
+    SoundAttack();
     Add_Line(text);
 }
 

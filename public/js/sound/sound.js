@@ -20,3 +20,7 @@ export function SoundPlay(keyName) {
     swoosh.play();
     return true
 }
+
+export function SoundAttack() {
+    swoosh.play();
+}
