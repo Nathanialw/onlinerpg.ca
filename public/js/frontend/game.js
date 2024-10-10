@@ -1,10 +1,11 @@
-import { Init } from "../sound/sound.js";
+import { Init, Music_Play } from "../sound/sound.js";
 import { Create_Canvas} from '../graphics/graphics.js';
 import { Actions } from "../input/action/action.js";
 
-Init();
 
 async function Splash_Screen() {
+    Init();
+    Music_Play("forest");
     await Create_Canvas();
     Actions(" ");
 }

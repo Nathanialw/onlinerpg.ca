@@ -26,38 +26,19 @@ export async function Load_Target_Image(x, y, path) {
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
-// export async function Create_Canvas() {
-//     await app.init({ width: Set_Window_Width(), height: Set_Window_Height() - (footerHeight) })
-//     await Init_Graphics();
-//     app.canvas.x = 0;
-//     app.canvas.y = 0;
-//     document.getElementById('gameCanvas').appendChild(app.canvas);
-// }
-
 export async function Create_Canvas() {
-    // Set the canvas size based on the window size
-    // const canvasWidth = window.innerWidth;
-    // const canvasHeight = window.innerHeight - footerHeight;
-
-    // Initialize the PIXI application with the calculated dimensions
     await app.init({resizeTo: gameCanvas});
 
     await Init_Graphics();
-
-    // app.canvas.style.position = 'absolute';
-    // app.canvas.style.left = '0px';
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
-        // const newWidth = window.innerWidth;
-        // const newHeight = window.innerHeight - footerHeight;
         app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
         console.log('Resized to: ', gameCanvas.clientWidth, gameCanvas.clientHeight);
     });
-
 }
 
 export let cellSize = 24;

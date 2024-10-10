@@ -22,9 +22,8 @@ let maxY = 13;
 let height = 13;
 let width = 13;
 
-
-
 let mapCellSize = 64;
+
 //position
 function asdasf() {
     let cell = minimap2d[mapCellSize][mapCellSize] //returns a sctring of a cell size 16x16 or 256 chars 64*64=4096
@@ -32,7 +31,6 @@ function asdasf() {
     //when you move far enough in y or -y add a new cell to the array
     //calculate with cells your viewport intersects and populate them the the correct characters
 }
-
 
 function Rebuid_Map(visionWidth, updatedMap, direction) {
     let rebuiltMinimap = minimap;
