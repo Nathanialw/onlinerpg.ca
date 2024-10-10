@@ -63,9 +63,9 @@ namespace Send {
     }
 
     else if (msg[0] == '4') { // Reconnect
-      response = "4";
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      Update(hdl, msg, print_server, game);
+      print_server.send(hdl, msg, websocketpp::frame::opcode::text);
+      response.append(msg.substr(1));
+      Update(hdl, response, print_server, game);
     }
 
     else if (msg[0] == '5') { // click event
