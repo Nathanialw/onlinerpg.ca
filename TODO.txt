@@ -3,7 +3,7 @@
 -keep it single page
 
 constraints
--attacks are linear spells/arrows, instant spells, and melee instant
+-attacks are linear axis spells/arrows, instant spells, and melee instant
 -MAYBE diagonal projectiles, not sure yet
 -enemies walk direct at and attack, no AI
 -only NSEW movement
