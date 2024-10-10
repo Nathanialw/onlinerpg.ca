@@ -13,12 +13,12 @@ function Message(data) {
 function Reconnect(data) {
     console.log("Reconnected to server")
     let type = data[0];
-    let data = data.substring(1);
+    let data2 = data.substring(1);
     OnReconnect();
     //set proper html
 
     //update game
-    Update[type](data);
+    Update[type](data2);
 }
 
 export let Update = {
