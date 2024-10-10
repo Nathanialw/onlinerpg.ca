@@ -215,10 +215,10 @@ namespace Pathing {
       //connect up
       for (int i = 0; i < Component::mapWidth; i++) {
           std::cout << "i: " << i << std::endl;
-          std::cout << "((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i: " << ((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i << std::endl;
+          std::cout << "((Component::mapWidth * Component::mapWidth) - Component::mapWidth - 1) + i: " << ((Component::mapWidth * Component::mapWidth) - Component::mapWidth - 1) + i << std::endl;
           std::cout << "total mapSize: " << Component::mapWidth * Component::mapWidth << std::endl;
-          chunk[i].vecNeighbours.push_back(&toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i]);
-          toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i].vecNeighbours.push_back(&chunk[i]);
+          chunk[i].vecNeighbours.push_back(&toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth - 1) + i]);
+          toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth - 1) + i].vecNeighbours.push_back(&chunk[i]);
       }
       std::cout << "connected up" << std::endl;
     }
