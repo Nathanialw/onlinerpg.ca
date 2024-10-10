@@ -12,13 +12,8 @@ function Message(data) {
 
 function Reconnect(data) {
     console.log("Reconnected to server")
-    let type = data[0];
-    let data2 = data.substring(1);
-    OnReconnect();
     //set proper html
-
-    //update game
-    Update[type](data2);
+    OnReconnect();
 }
 
 export let Update = {

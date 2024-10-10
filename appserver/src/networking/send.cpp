@@ -50,37 +50,36 @@ namespace Send {
     // keep websocket alive
     std::string response;
 
-    if (msg[0] == '1') { //"1" is the action turn, right now it only means move.
+    if (msg[0] == '1') { // Update
       Update(hdl, msg, print_server, game);
     }
 
     else if (msg[0] == '2') { //unused
-      response = "0 response \"2\" is unused, message was: ";
-      response.append(&msg[1]);
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+      //
     }
 
     else if (msg[0] == '3') { // send map
       Init(hdl, msg, print_server, game);
     }
 
-    else if (msg[0] == '4') {
-      std::cout << "4" << msg << std::endl;
-      print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
-      std::cout << "char stats sent!" << std::endl;
-
-//      if (!game.objects.units.empty()) {
-//        print_server.send(hdl, Map::SendMapSegment(game, "1   0"), websocketpp::frame::opcode::text);
-//      }
+    else if (msg[0] == '4') { // Reconnect
+      response = "4";
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+      Update(hdl, msg, print_server, game);
     }
 
-    else if (msg[0] == '5') {
+    else if (msg[0] == '5') { // click event
       response.append(msg.substr(1, 4));
       response = "5" + Species::Get_Unit_Data_As_string(game, response);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
 
+    else if (msg[0] == '6') {
+      //
+    }
+
     else {
+      //
     }
 
     //[0] message type [1-2] ID (uint16_t stored as 2 chars) [3] message;
