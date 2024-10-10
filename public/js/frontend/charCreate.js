@@ -1,7 +1,11 @@
 import { createWebSocket, socket } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
+import { Init_Title, SoundPlay } from '../sound/sound';
 
 document.addEventListener('DOMContentLoaded', () => {
+    Init_Title();
+    Music_Play("title");
+    
     createWebSocket();
     Buttons(races);
     Buttons(genders);

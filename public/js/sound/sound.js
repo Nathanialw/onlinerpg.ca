@@ -1,10 +1,13 @@
 'use strict'
 
 var swoosh;
+var title;
+var forest;
+var cave;
 
-function CreateSound() {
+function CreateSound(path) {
     var sound = new Howl ({
-        src: ['../../assets/sounds/swish_2.wav'],
+        src: [path],
         html5: true
     });
     return sound;
@@ -12,7 +15,13 @@ function CreateSound() {
 
 export function Init () {
     console.log("sound init");
-    swoosh = CreateSound();
+    swoosh = CreateSound('../../assets/sounds/swish_2.wav');
+    cave = CreateSound('../..//assets/music/forest/Dungeon_-_Catacomb_Crawler.ogg');
+    forest = CreateSound('../../assets/music/forest/Dungeon_-_Thorn_Maze.ogg');
+}
+
+export function Init_Title() {
+    title = CreateSound('../../assets/music/title/Title_Screen.ogg');
 }
 
 export function SoundPlay(keyName) {
@@ -21,7 +30,26 @@ export function SoundPlay(keyName) {
     return true
 }
 
+export function Music_Play(zone) {
+    if (zone === "forest") {
+        forest.loop(true);
+        forest.play();
+    }
+    else if (zone === "cave") {
+        cave.loop(true);
+        cave.play();
+    }
+    else if (zone === "title") {
+        title.loop(true);
+        title.play();
+    }
+    else {
+        console.log("Invalid zone");
+    }
+}
+
 export function SoundAttack() {
     console.log("Attack sound play!");
     swoosh.play();
 }
+
