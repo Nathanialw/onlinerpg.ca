@@ -21,7 +21,7 @@ export function Init () {
 }
 
 export function Init_Title() {
-    title = CreateSound('../../assets/music/title/Title_Screen.ogg');
+    title = CreateSound('../../assets/music/title/Battle_-_Temple_Tussle.ogg');
 }
 
 export function SoundPlay(keyName) {
