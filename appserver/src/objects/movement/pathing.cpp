@@ -202,12 +202,12 @@ namespace Pathing {
     }
     else if (x == 1) {
       //connect right
-      for (int i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth - 1) {
+      for (int i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
           std::cout << "i: " << i << std::endl;
-          std::cout << "i - Component::mapWidth: " << i - Component::mapWidth - 1 << std::endl;
+          std::cout << "i - Component::mapWidth: " << i - Component::mapWidth << std::endl;
           std::cout << "total mapSize: " << Component::mapWidth * Component::mapWidth << std::endl;
-          chunk[i].vecNeighbours.push_back(&toConnect[i - Component::mapWidth  - 1]);
-          toConnect[i - Component::mapWidth  - 1].vecNeighbours.push_back(&chunk[i]);
+          chunk[i].vecNeighbours.push_back(&toConnect[i - Component::mapWidth]);
+          toConnect[i - Component::mapWidth].vecNeighbours.push_back(&chunk[i]);
       }
       std::cout << "connected right" << std::endl;
     }
