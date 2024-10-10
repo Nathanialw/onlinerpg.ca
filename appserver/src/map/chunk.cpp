@@ -69,9 +69,7 @@ namespace Chunk {
     // seed based on that position
 
     std::string map = Map::Init(defaultChunk, chunk, rooms, seed);
-
     Pathing::Init(pathing, map);
-
     Spawn::Init(level, location, chunk, rooms, objects); // msg->get_payload()
   }
 

@@ -38,7 +38,6 @@ gamey
 
 
 short term:
--responsive site graphics
 -enemies to follow between map chunks with pathing
 -login and db to save game state
 

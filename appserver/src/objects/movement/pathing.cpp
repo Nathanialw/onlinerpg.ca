@@ -190,6 +190,42 @@ namespace Pathing {
     return true;
   }
 
+  void Connect_Chunks(Component::sNode chunk[Component::mapWidth * Component::mapWidth], Component::sNode toConnect[Component::mapWidth * Component::mapWidth], int x, int y) {
+    //mutually connect the chunks
+    if (x == -1) {
+      //connect left
+      for (int i = 0; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth - 1) {
+          chunk[i].vecNeighbours.push_back(&toConnect[i + Component::mapWidth]);
+          toConnect[i + Component::mapWidth].vecNeighbours.push_back(&chunk[i]);
+      }
+      std::cout << "connected left" << std::endl;
+    }
+    else if (x == 1) {
+      //connect right
+      for (int i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth - 1) {
+          chunk[i].vecNeighbours.push_back(&toConnect[i - Component::mapWidth  - 1]);
+          toConnect[i - Component::mapWidth  - 1].vecNeighbours.push_back(&chunk[i]);
+      }
+      std::cout << "connected right" << std::endl;
+    }
+    else if (y == -1) {
+      //connect up
+      for (int i = 0; i < Component::mapWidth; i++) {
+          chunk[i].vecNeighbours.push_back(&toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i]);
+          toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i].vecNeighbours.push_back(&chunk[i]);
+      }
+      std::cout << "connected up" << std::endl;
+    }
+    else if (y == 1) {
+      //connect down
+      for (int i = (Component::mapWidth * Component::mapWidth) - Component::mapWidth; i < Component::mapWidth * Component::mapWidth; i++) {
+          chunk[i - ((Component::mapWidth * Component::mapWidth) - Component::mapWidth)].vecNeighbours.push_back(&toConnect[i]);
+          toConnect[i].vecNeighbours.push_back(&chunk[i - ((Component::mapWidth * Component::mapWidth) - Component::mapWidth)]);
+      }
+    }
+    std::cout << "connected down" << std::endl;
+  }
+
   Component::Position Move_To(Component::sNode nodes[Component::mapWidth * Component::mapWidth], Component::Position &position, const Component::Position &targetPosition) {
     //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
     std::vector<Component::Position> path = {};
