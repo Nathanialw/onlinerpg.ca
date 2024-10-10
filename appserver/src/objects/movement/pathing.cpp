@@ -203,9 +203,6 @@ namespace Pathing {
     else if (x == 1) {
       //connect right
       for (int i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
-          std::cout << "i: " << i << std::endl;
-          std::cout << "i - Component::mapWidth: " << i - (Component::mapWidth - 1) << std::endl;
-          std::cout << "total mapSize: " << Component::mapWidth * Component::mapWidth << std::endl;
           chunk[i].vecNeighbours.push_back(&toConnect[i - (Component::mapWidth - 1)]);
           toConnect[i - (Component::mapWidth - 1)].vecNeighbours.push_back(&chunk[i]);
       }
@@ -214,6 +211,9 @@ namespace Pathing {
     else if (y == -1) {
       //connect up
       for (int i = 0; i < Component::mapWidth; i++) {
+          std::cout << "i: " << i << std::endl;
+          std::cout << "i - Component::mapWidth: " << ((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i << std::endl;
+          std::cout << "total mapSize: " << Component::mapWidth * Component::mapWidth << std::endl;
           chunk[i].vecNeighbours.push_back(&toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i]);
           toConnect[((Component::mapWidth * Component::mapWidth) - Component::mapWidth) + i].vecNeighbours.push_back(&chunk[i]);
       }
