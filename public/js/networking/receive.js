@@ -19,7 +19,7 @@ function Reconnect(data) {
 export let Update = {
     0: Message,
     1: Map,
-    2: Populate_Map,
+    // 2: Populate_Map,
     3: UpdatePlayerInfo,
     4: Reconnect,
     5: Get_Target_Stats_From_Server,

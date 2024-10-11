@@ -46,6 +46,7 @@ short term:
   //-1 for subspecies
   -4 class
   -1 for alignment
+    -// can swap these out if you find books of spells, but can only know a max num of spells
 
 -when holding down move, if it colides into a unit. just stop instead of attacking
 -come up with a list of spells
@@ -57,6 +58,8 @@ short term:
   -rest = 10 mins and heals one health | unless you get attacked
 -have enemies drop an item when they die
 -scroll bar on the combat log
+-fog of war/vision blocking by terrain
+-local client side DB SQL.js to store static data, like item descriptions
 
 medium term:
 -items
