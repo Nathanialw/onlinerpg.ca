@@ -21,7 +21,7 @@ async function Init_Graphics() {
     equipment = new PIXI.Sprite(equipmentTexture);
     chat = new PIXI.Sprite(chatTexture);
     menu = new PIXI.Sprite(menuTexture);
-    inventory = new PIXI.Sprite(texture);
+    inventory = new PIXI.Sprite(inventoryTexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
 }
