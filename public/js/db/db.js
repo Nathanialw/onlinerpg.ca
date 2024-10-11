@@ -32,7 +32,7 @@ loadSqlJsLibrary(() => {
         const db = new SQL.Database(dbData);
 
         // Query the data
-        const result = db.exec("SELECT * FROM test");
+        const result = db.exec("SELECT * FROM Items");
 
         // Log the result
         console.log(result);
