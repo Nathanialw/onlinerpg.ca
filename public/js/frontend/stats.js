@@ -1,5 +1,6 @@
 
 //get string from server
+import { min } from "lodash";
 import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, Get_Right_Panel_Width, minimapCellSize, Clear_Target} from "../graphics/graphics.js"
 
 let targetStatsDisplay = []
@@ -66,10 +67,10 @@ export function Render_Target_Stats() {
     Clear_Target();
 
     targetStatsDisplay = []
-    let x = Get_Right_Panel_Origin_x();
+    let x = Get_Right_Panel_Origin_x() + (minimapCellSize * 3);
     let y = Get_Right_Panel_Origin_y()
     Load_Target_Image(x, y, targetStats.pic)    
-    y = Get_Right_Panel_Origin_y() + 10; 
+    y = Get_Right_Panel_Origin_y() + 14; 
 
     let line = 0;
     line = Display_Line("Name: " + targetStats.name, line, x, y);
@@ -82,14 +83,14 @@ export function Render_Target_Stats() {
     line = Display_Line("Speed: " + targetStats.speed, line, x, y);
     line = Display_Line("Vision: " + targetStats.vision, line, x, y);
     line = Display_Line("", line, x, y);
-    let width = Get_Right_Panel_Width()/minimapCellSize;
-    // let lines = Math.ceil(targetStats.bio.length/width);
+    let lineWidth = 23;
+    // let lines = Math.ceil(targetStats.bio.length/lineWidth);
     let currentPos = 0;
 
     // for (let i = 0; i < lines; i++) {
     while (currentPos < targetStats.bio.length) {
         //itertate backwards to find the last space in the line
-        let bioLine = targetStats.bio.substring(currentPos, currentPos + width);
+        let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
         for (let j = bioLine.length; j > 0; j--) {
             if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === ",") {
                 line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
