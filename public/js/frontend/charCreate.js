@@ -132,6 +132,7 @@ function Load_Scripts() {
     loadScript('/js/networking/receive.js', 'module');
     loadScript('/js/input/keyboard.js', 'module');
     loadScript('/js/graphics/scale.js', 'module');  
+    loadScript('/js/db/db.js', 'module');  
 }
 
 function Set_Canvas() {
