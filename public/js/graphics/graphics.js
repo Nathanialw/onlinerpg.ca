@@ -339,7 +339,7 @@ export function Draw_UI() {
     //tabs
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , l(eftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, inventory);
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, inventory);
     //loot
     Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, loot);
     
