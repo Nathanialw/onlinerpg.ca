@@ -8,6 +8,7 @@ let chat;
 let menu;
 let tabs;
 let inventory;
+let loot;
 let target;
 let targetImg;
 let playerImg;
@@ -16,6 +17,7 @@ async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
     const inventoryTexture = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
+    const lootTexture = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
     const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
     const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
     const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
@@ -24,6 +26,7 @@ async function Init_Graphics() {
     menu = new PIXI.Sprite(menuTexture);
     tabs = new PIXI.Sprite(menuTexture);
     inventory = new PIXI.Sprite(inventoryTexture);
+    inventory = new PIXI.Sprite(lootTexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
 }
@@ -332,9 +335,13 @@ export function Draw_UI() {
     //menu
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
     //eqipment
-    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, (leftPanelHeight * 2/3) * cellSize, equipment);
+    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 2/3) - (topPanelHeight / 4)) * cellSize, equipment);
+    //tabs
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((et_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventory);
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, inventory);
+    //loot
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, loot);
     
     //tabs
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
