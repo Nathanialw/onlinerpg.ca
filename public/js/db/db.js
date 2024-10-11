@@ -22,7 +22,9 @@ function base64ToUint8Array(base64) {
 
 // Initialize the database after the library is loaded
 loadSqlJsLibrary(() => {
-    initSqlJs().then(function(SQL) {
+    initSqlJs({
+        locateFile: file => `/js/libs/${file}` // Ensure this path is correct
+    }).then(function(SQL) {
         // Convert base64 to Uint8Array
         const dbData = base64ToUint8Array(base64Database);
 
