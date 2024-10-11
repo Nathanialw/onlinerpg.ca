@@ -337,7 +337,7 @@ export function Draw_UI() {
     //eqipment
     Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 2/3) - (topPanelHeight / 4)) * cellSize, equipment);
     //tabs
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((et_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
     //inventory
     Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, inventory);
     //loot
