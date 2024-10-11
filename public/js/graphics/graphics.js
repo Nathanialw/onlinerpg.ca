@@ -33,8 +33,8 @@ export async function Load_Target_Image(x, y, path) {
     y *= cellSize;
     const texture = await PIXI.Assets.load(path);
     targetImg = new PIXI.Sprite(texture);
-    let w = 8 * cellSize;
-    let h = 8 * cellSize;
+    let w = 12 * cellSize;
+    let h = 12 * cellSize;
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
