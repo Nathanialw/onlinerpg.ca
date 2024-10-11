@@ -7,6 +7,7 @@ let equipment;
 let chat;
 let menu;
 let tabs;
+let invTabs;
 let inventory;
 let loot;
 let target;
@@ -25,6 +26,7 @@ async function Init_Graphics() {
     chat = new PIXI.Sprite(chatTexture);
     menu = new PIXI.Sprite(menuTexture);
     tabs = new PIXI.Sprite(menuTexture);
+    invTabs = new PIXI.Sprite(menuTexture);
     inventory = new PIXI.Sprite(inventoryTexture);
     inventory = new PIXI.Sprite(lootTexture);
     playerImg = new PIXI.Sprite(playerTexture);
@@ -337,11 +339,11 @@ export function Draw_UI() {
     //eqipment
     Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 2/3) - (topPanelHeight / 4)) * cellSize, equipment);
     //tabs
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, invTabs);
     //inventory
     Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, inventory);
     //loot
-    Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, loot);
+    Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, loot);
     
     //tabs
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
