@@ -332,8 +332,8 @@ export function Draw_UI() {
     Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, (leftPanelHeight * 2/3) * cellSize, equipment);
     //inventory
     Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventory);
-    //right
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, rightPanelHeight * cellSize, target);
+    //overview
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize,(rightPanelHeight  * cellSize) - (10 * minimapCellSize), target);
     //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);
     //viewport
