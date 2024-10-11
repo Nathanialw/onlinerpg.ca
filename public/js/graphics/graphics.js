@@ -28,7 +28,7 @@ async function Init_Graphics() {
     tabs = new PIXI.Sprite(menuTexture);
     invTabs = new PIXI.Sprite(menuTexture);
     inventory = new PIXI.Sprite(inventoryTexture);
-    inventory = new PIXI.Sprite(lootTexture);
+    loot = new PIXI.Sprite(lootTexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
 }
@@ -341,7 +341,7 @@ export function Draw_UI() {
     //tabs
     Draw_Sprite(0, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, invTabs);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, inventory);
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventory);
     //loot
     // Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 2)) * cellSize, loot);
     
