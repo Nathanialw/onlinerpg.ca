@@ -14,6 +14,7 @@ let playerImg;
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
+    const inventoryTexture = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
     const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
     const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
     const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
