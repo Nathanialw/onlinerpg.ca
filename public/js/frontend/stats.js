@@ -66,9 +66,9 @@ export function Render_Target_Stats() {
     Clear_Target();
 
     targetStatsDisplay = []
-    let x = Get_Right_Panel_Origin_x() + (minimapCellSize * 3);
+    let x = Get_Right_Panel_Origin_x() + 1.3;
     let y = Get_Right_Panel_Origin_y()
-    Load_Target_Image(x, y, targetStats.pic)    
+    Load_Target_Image(x - 0.5, y + 1, targetStats.pic)        
     y = Get_Right_Panel_Origin_y() + 14; 
 
     let line = 0;
@@ -82,7 +82,7 @@ export function Render_Target_Stats() {
     line = Display_Line("Speed: " + targetStats.speed, line, x, y);
     line = Display_Line("Vision: " + targetStats.vision, line, x, y);
     line = Display_Line("", line, x, y);
-    let lineWidth = 23;
+    let lineWidth = 24;
     // let lines = Math.ceil(targetStats.bio.length/lineWidth);
     let currentPos = 0;
 

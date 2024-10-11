@@ -33,8 +33,8 @@ export async function Load_Target_Image(x, y, path) {
     y *= cellSize;
     const texture = await PIXI.Assets.load(path);
     targetImg = new PIXI.Sprite(texture);
-    let w = 12 * cellSize;
-    let h = 12 * cellSize;
+    let w = 11 * cellSize;
+    let h = 11 * cellSize;
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
@@ -333,7 +333,7 @@ export function Draw_UI() {
     //inventory
     Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventory);
     //overview
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize,(rightPanelHeight  * cellSize) - (10 * minimapCellSize), target);
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize,((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (10 * minimapCellSize), target);
     //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);
     //viewport
