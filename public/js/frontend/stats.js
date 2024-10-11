@@ -68,8 +68,8 @@ export function Render_Target_Stats() {
     targetStatsDisplay = []
     let x = Get_Right_Panel_Origin_x() + 1.3;
     let y = Get_Right_Panel_Origin_y()
-    Load_Target_Image(x - 0.5, y + 1, targetStats.pic)        
-    y = Get_Right_Panel_Origin_y() + 14; 
+    Load_Target_Image(x - 1, y + 3, targetStats.pic)        
+    y = Get_Right_Panel_Origin_y() + 15.4; 
 
     let line = 0;
     line = Display_Line("Name: " + targetStats.name, line, x, y);
