@@ -6,6 +6,7 @@ export const app = new PIXI.Application();
 let equipment;
 let chat;
 let menu;
+let tabs;
 let inventory;
 let target;
 let targetImg;
@@ -21,6 +22,7 @@ async function Init_Graphics() {
     equipment = new PIXI.Sprite(equipmentTexture);
     chat = new PIXI.Sprite(chatTexture);
     menu = new PIXI.Sprite(menuTexture);
+    tabs = new PIXI.Sprite(menuTexture);
     inventory = new PIXI.Sprite(inventoryTexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
@@ -335,7 +337,7 @@ export function Draw_UI() {
     Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventory);
     
     //tabs
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
     //overview
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize,((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (10 * minimapCellSize), target);
     
