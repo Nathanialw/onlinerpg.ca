@@ -241,7 +241,7 @@ export function Create_Combat_Log_Line(char, indexHeight) {
 }
 
 export function Clear_Target() { 
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize,(rightPanelHeight  * cellSize) - (10 * minimapCellSize), target);
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize,((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (10 * minimapCellSize), target);
 }
 
 export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
