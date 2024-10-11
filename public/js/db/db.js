@@ -36,5 +36,6 @@ loadSqlJsLibrary(() => {
 
         // Log the result
         console.log(result);
+        console.log("querying db successful!");
     });
 });

@@ -3,15 +3,26 @@ import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
 
+let equipment;
+let chat;
+let menu;
 let inventory;
+let target;
 let targetImg;
 let playerImg;
 
 async function Init_Graphics() {
-    const texture = await PIXI.Assets.load('assets/graphics/ui/itsmars_Inventory.png');
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
+    const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
+    const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
+    const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
+    const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    equipment = new PIXI.Sprite(equipmentTexture);
+    chat = new PIXI.Sprite(chatTexture);
+    menu = new PIXI.Sprite(menuTexture);
     inventory = new PIXI.Sprite(texture);
     playerImg = new PIXI.Sprite(playerTexture);
+    target = new PIXI.Sprite(targetTexture);
 }
 
 export async function Load_Target_Image(x, y, path) {
@@ -314,10 +325,14 @@ export function Draw_UI_Phone() {
 export function Draw_UI() {
     //top    
     Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, black)
+    //menu
+    Draw_Sprite(0, 0, rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
+    //eqipment
+    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, (leftPanelHeight * 2/3) * cellSize, equipment);
+    //inventory
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize  , leftPanelWidth * cellSize, (leftPanelHeight * 1/3) * cellSize, inventory);
     //right
-    Draw_Panel(Get_Right_Panel_Origin_x() * cellSize, Get_Right_Panel_Origin_y() * cellSize, rightPanelWidth * cellSize, rightPanelHeight * cellSize, black);
-    //left
-    Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, inventory);
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, rightPanelHeight * cellSize, target);
     //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);
     //viewport
