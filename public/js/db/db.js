@@ -2,7 +2,7 @@
 
 function loadSqlJsLibrary(callback) {
     const script = document.createElement('script');
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js";
+    script.src = "/js/libs/sql-wasm.js";
     script.onload = callback;
     document.head.appendChild(script);
 }
