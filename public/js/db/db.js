@@ -49,7 +49,7 @@ export function Print_Icon(uID) {
         return;
     }
 
-    const sql = `SELECT icon FROM Items WHERE uID = ?`;
+    const sql = `SELECT * FROM Items WHERE uID = ?`;
     const stmt = db.prepare(sql);
     stmt.bind([uID]);
     
