@@ -140,6 +140,19 @@ namespace Units {
     int level;
     Component::Position location{};
 
+    int equipment[12];
+
+    //items are just an ID that is in the db
+      //db contains the damage, AC, icon path, description, etc
+    int bag[16];      //items
+    int belt[16];     //potions
+    int tome[16];     //scrolls
+    int keyring[16];  //keys
+
+    int copper = 0;
+    int silver = 0;
+    int gold = 0;
+
     //constructor
     Unit(int iLevel, Component::Position sLocation) {
       level = iLevel;
