@@ -14,8 +14,8 @@ namespace Component {
   static const uint8_t mapWidth = 99;
 
   struct Position {
-    int8_t x;
-    int8_t y;
+    int x;
+    int y;
 
     bool operator==(const Position &other) const {
       return x == other.x && y == other.y;
@@ -38,7 +38,7 @@ namespace Component {
 namespace std {
   template <> struct hash<Component::Position> {
       std::size_t operator()(const Component::Position &pos) const {
-        return std::hash<int8_t>()(pos.x) ^ (std::hash<int8_t>()(pos.y) << 1);
+        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
       }
   };
 }

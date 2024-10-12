@@ -16,4 +16,5 @@ namespace Utils {
   std::string Prepend_Zero_3Digit(int num);
   int8_t Add(int8_t a, int8_t b);
   uint8_t Add(uint8_t a, uint8_t b);
+  int Add(int a, int b);
 }
