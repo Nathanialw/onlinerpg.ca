@@ -93,7 +93,7 @@ function Send() {
     alignment = alignments.value;
 
     if (conn.isConnected) {
-        conn.websocket.send("3" + name + gender + race + unitClasse + alignment);       
+        conn.websocket.send("3" + name + gender + race + unitClass + alignment);       
         console.log("char create Data sent to server")
     }
     else {
