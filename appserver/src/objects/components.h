@@ -38,7 +38,7 @@ namespace Component {
 namespace std {
   template <> struct hash<Component::Position> {
       std::size_t operator()(const Component::Position &pos) const {
-        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
+        return std::hash<int8_t>()(pos.x) ^ (std::hash<int8_t>()(pos.y) << 1);
       }
   };
 }
