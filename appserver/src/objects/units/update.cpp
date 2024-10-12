@@ -187,10 +187,11 @@ namespace Update {
     auto &defaultChunk = game.map[game.Get_Player().level][targetLocation].defaultChunk;
     auto &targetChunk = game.map[game.Get_Player().level][targetLocation].chunk;
 
+    std::string items;
     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
-      return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1" + "0";
+      return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1" + items;
     }
 
     // if the unit survives, return, else move to the cell
@@ -224,9 +225,9 @@ namespace Update {
 
     if (melee.isDead) {
       std::cout << "goblin dead" << std::endl;
-      return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0";
+      return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0" + items;
     }
-    return m + " " + "  " + "1";
+    return m + " " + "  " + "1" + items;
   }
 
   std::string Update_Units(Game::Instance &game, const char *direction) {
