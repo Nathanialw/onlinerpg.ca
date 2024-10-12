@@ -203,7 +203,7 @@ namespace Update {
     if (melee.isDead) {
       for ( auto &item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
         //random between 1 and 2
-        item = 2;
+        item = rand() % 2 + 1;
       }
       std::cout << "items dropped" << std::endl;
     }

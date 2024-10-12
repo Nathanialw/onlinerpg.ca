@@ -70,20 +70,14 @@ let items;
 
 export function Map(data) {
     visionWidth = parseInt(data.substring(0, 2), 10);
-    console.log("Vision Width: " + visionWidth);
     direction = data.substring(2,3);
-    console.log("Direction: " + direction);
     species = Species[data.substring(3,4)];
-    console.log("Species: " + species);
     damage = data.substring(4,6);
-    console.log("Damage: " + damage);
     isDead = data.substring(6,7);
-    console.log("Is Dead: " + isDead);
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     
     items = data.substring(7,8);
-    console.log("Items: " + items);
     if (items > "0") {
         for (let i = 0; i < items; i++) {
             console.log("Item ID: " + data.substring(8 + (i * 3), 8 + ((i + 1) * 3)));
@@ -93,7 +87,6 @@ export function Map(data) {
     else {
         console.log("No items");
         serverMap = data.substring(8);
-        console.log("Server Map: " + serverMap);
     }
 
     // serverMap = data.substring(8);
