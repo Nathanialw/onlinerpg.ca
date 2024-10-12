@@ -150,6 +150,7 @@ namespace Update {
 
   std::string Update_Player(Game::Instance &game, const char *direction) {
     auto move = updatePosition[*direction];
+    std::string items = "0";
 
     std::cout << "num entities on update: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
     std::cout << "successfully grabbed player from units[]" << std::endl;
@@ -158,14 +159,14 @@ namespace Update {
 //    if (*direction == ' ') {
 //      std::string r = " ";
 //      std::cout << "skipping turn" << std::endl;
-//      return r + " " + "  " + "1";
+//      return r + " " + "  " + "1" + items;
 //    }
 
     // collision
     if (Collision::Wall_Collision(game, game.Get_Player().level, game.Get_Player().location, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y)) {
       std::cout << "wall collision" << std::endl;
       std::string c = "c";
-      return c + " " + "  " + "1";
+      return c + " " + "  " + "1" + items;
     }
 
     //rest
@@ -175,7 +176,7 @@ namespace Update {
       if (game.Get_Player().health < game.Get_Player().healthMax) {
         game.Get_Player().health += 5;
       }
-      return r + " " + "  " + "1";
+      return r + " " + "  " + "1" + items;
     }
 
     // if the nearby cell is an enemy, attack
@@ -187,7 +188,6 @@ namespace Update {
     auto &defaultChunk = game.map[game.Get_Player().level][targetLocation].defaultChunk;
     auto &targetChunk = game.map[game.Get_Player().level][targetLocation].chunk;
 
-    std::string items = "0";
     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
