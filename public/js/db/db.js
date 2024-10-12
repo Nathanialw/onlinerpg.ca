@@ -44,8 +44,9 @@ loadSqlJsLibrary(() => {
 });
 
 export function Print_Icon(uID) {
-    const stmt = db.prepare("SELECT * FROM Items WHERE uID = ?");
-    stmt.bind([uID]);
+    // const stmt = db.prepare("SELECT * FROM Items WHERE uID = ?");
+    const stmt = db.prepare("SELECT * FROM Items");
+    // stmt.bind([uID]);
     const result = stmt.getAsObject();
     stmt.free();
     
