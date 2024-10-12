@@ -202,7 +202,7 @@ namespace Update {
     if (melee.isDead) {
       for ( auto &item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
         //random between 1 and 2
-        item = rand() % 2 + 1;
+        item = 2;
       }
       std::cout << "items dropped" << std::endl;
     }
@@ -212,8 +212,8 @@ namespace Update {
     if (game.items[game.Get_Player().level][game.Get_Player().location].find(game.Get_Player().position) != game.items[game.Get_Player().level][game.Get_Player().location].end()) {
       items = "";
       for (auto item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
-        items += Utils::Prepend_Zero_3Digit(item);
         std::cout << "item found: " << item << std::endl;
+        items += Utils::Prepend_Zero_3Digit(item);
         std::cout << "item found: " << items << std::endl;
       }
       std::cout << "items found: " << game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size() << std::endl;
