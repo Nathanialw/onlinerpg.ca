@@ -30,7 +30,7 @@ namespace Utils {
     std::string str = std::to_string(num);
     if (num < 10)
       str = "00" + str;
-    if (num < 100)
+    else if (num < 100)
       str = "0" + str;
     return str;
   }

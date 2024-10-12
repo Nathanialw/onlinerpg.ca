@@ -168,7 +168,7 @@ namespace Map {
 
     std::cout << "mapSegment end: " << mapSegment << std::endl;
 
-    auto sentMap = mapSegment.substr(8);
+    auto sentMap = mapSegment.substr(mapSegment.size() - (game.Get_Player().vision * 2 + 1) * (game.Get_Player().vision * 2 + 1));
     for (int i = 0; i < game.Get_Player().vision * 2 + 1; i++) {
       std::cout << sentMap.substr(i * (game.Get_Player().vision * 2 + 1), game.Get_Player().vision * 2 + 1) << std::endl;
     }
