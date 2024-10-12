@@ -187,7 +187,7 @@ namespace Update {
     auto &defaultChunk = game.map[game.Get_Player().level][targetLocation].defaultChunk;
     auto &targetChunk = game.map[game.Get_Player().level][targetLocation].chunk;
 
-    std::string items;
+    std::string items = "0";
     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
@@ -200,28 +200,27 @@ namespace Update {
     std::string m = direction;
 
     //generate items
-//    if (melee.isDead) {
-//      for ( auto &item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
-//        //random between 1 and 2
-//        item = 2;
-//      }
-//      std::cout << "items dropped" << std::endl;
-//    }
+    if (melee.isDead) {
+      for ( auto &item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
+        //random between 1 and 2
+        item = 2;
+      }
+      std::cout << "items dropped" << std::endl;
+    }
 
-    //query for items
-//    std::string items = "0";
-//    if (game.items[game.Get_Player().level][game.Get_Player().location].find(game.Get_Player().position) != game.items[game.Get_Player().level][game.Get_Player().location].end()) {
-//      items = "";
-//      for (auto item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
-//        std::cout << "item found: " << item << std::endl;
-//        items += Utils::Prepend_Zero_3Digit(item);
-//        std::cout << "item found: " << items << std::endl;
-//      }
-//      std::cout << "items found: " << game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size() << std::endl;
-//      std::cout << "items found: " << items << std::endl;
-//      items = std::to_string(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size()) + items;
-//      std::cout << "items found and prepended with number of: " << items << std::endl;
-//    }
+//    query for items
+    if (game.items[game.Get_Player().level][game.Get_Player().location].find(game.Get_Player().position) != game.items[game.Get_Player().level][game.Get_Player().location].end()) {
+      items = "";
+      for (auto item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
+        std::cout << "item found: " << item << std::endl;
+        items += Utils::Prepend_Zero_3Digit(item);
+        std::cout << "item found: " << items << std::endl;
+      }
+      std::cout << "items found: " << game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size() << std::endl;
+      std::cout << "items found: " << items << std::endl;
+      items = std::to_string(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size()) + items;
+      std::cout << "items found and prepended with number of: " << items << std::endl;
+    }
 
     if (melee.isDead) {
       std::cout << "goblin dead" << std::endl;

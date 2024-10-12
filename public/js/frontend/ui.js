@@ -77,17 +77,17 @@ export function Map(data) {
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     
-    // items = data.substring(7,8);
-    // if (items > "0") {
-    //     for (let i = 0; i < items; i++) {
-    //         console.log("Item ID: " + data.substring(8 + (i * 3), 8 + ((i + 1) * 3)));
-    //     }
-    //     serverMap = data.substring(8 + (items * 3));
-    // }
-    // else {
-    //     console.log("No items");
-    //     serverMap = data.substring(8);
-    // }
+    items = data.substring(7,8);
+    if (items > "0") {
+        for (let i = 0; i < items; i++) {
+            console.log("Item ID: " + data.substring(8 + (i * 3), 8 + ((i + 1) * 3)));
+        }
+        serverMap = data.substring(8 + (items * 3));
+    }
+    else {
+        console.log("No items");
+        serverMap = data.substring(8);
+    }
 
     serverMap = data.substring(7);
     Update_Screen();

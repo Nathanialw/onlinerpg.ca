@@ -210,6 +210,7 @@ namespace Map {
       //Connect Pathing
         //check which adjacent chunks exist
         //if they exist, add them to the pathing map
+
 //        if (game.map[level].count({location.x--, location.y}) > 0) {
 //          std::cout << "connecting left chunk" << std::endl;
 //          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x--, location.y}].pathing, -1, 0);
@@ -226,6 +227,7 @@ namespace Map {
 //          std::cout << "connecting bottom chunk" << std::endl;
 //          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y++}].pathing, 0, 1);
 //        }
+
         //Connect_Chunks(pathing, chunk);
     }
     else {
