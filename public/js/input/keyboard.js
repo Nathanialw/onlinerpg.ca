@@ -4,13 +4,17 @@ import {Move} from "../movement/movement.js"
 import {Actions} from "./action/action.js"
 import {SoundPlay} from "../sound/sound.js"
 import {Send_Web_Socket_Message} from "../networking/socket.js"
+import {Restart} from "../frontend/charCreate.js"
 
+//restart with all the same input stats
 function Restart(data) {
     console.log("Restarting game")
     Send_Web_Socket_Message("6")
+    Restart();
     //set proper html
 }
 
+//quit to main page
 function Quit(data) {
     console.log("Quitting game")
     Send_Web_Socket_Message("7")

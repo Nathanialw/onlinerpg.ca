@@ -69,26 +69,48 @@ function updateHeroClass() {
     heroClass.textContent = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
 }
 
+let name;
+let gender;
+let race;
+let unitClass;
+let alignment;
+
 //send data to server
 function Send() {
     let conn = socket()
     
     //get data from form
-    let name = document.getElementById("name").value;
+    name = document.getElementById("name").value;
     
     const nameInput = document.querySelector('.nameInput');
     if (nameInput) {
         nameInput.remove();
     }
     
+    gender = genders.value;
+    race = races.value;
+    unitClass = unitClasses.value;
+    alignment = alignments.value;
+
     if (conn.isConnected) {
-        conn.websocket.send("3" + name + genders.value + races.value + unitClasses.value + alignments.value);       
+        conn.websocket.send("3" + name + gender + race + unitClasse + alignment);       
         console.log("char create Data sent to server")
     }
     else {
         console.log("Error: Server is not connected")
-    }
+    }    
+}
+
+export function Restart() {
+    let conn = socket()
     
+    if (conn.isConnected) {
+        conn.websocket.send("3" + name + gender + race + unitClass + alignment);       
+        console.log("char create Data sent to server")
+    }
+    else {
+        console.log("Error: Server is not connected")
+    }    
 }
 
 function Remove_Elements() {
