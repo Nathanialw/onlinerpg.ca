@@ -48,5 +48,14 @@ export function Print_Icon(uID) {
     stmt.bind([uID]);
     const result = stmt.getAsObject();
     stmt.free();
-    console.log("uID: ", uID, " result: ", result.icon);    
+    
+    // Log the entire result object to see what it contains
+    console.log("uID: ", uID, " result: ", result);
+    
+    // Check if the result contains the 'icon' field and print it
+    if (result && result.icon !== undefined) {
+        console.log("uID: ", uID, " icon: ", result.icon);
+    } else {
+        console.log("uID: ", uID, " No icon found or icon is undefined");
+    }
 }
