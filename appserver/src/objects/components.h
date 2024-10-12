@@ -11,7 +11,7 @@
 #endif // BROWSERRPG_COMPONENTS_H
 
 namespace Component {
-  static const uint8_t mapWidth = 99;
+  static const int mapWidth = 99;
 
   struct Position {
     int x;

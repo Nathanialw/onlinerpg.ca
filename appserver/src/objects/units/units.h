@@ -127,7 +127,7 @@ namespace Units {
     uint8_t age = 0;
     Def def;
 
-    uint8_t vision = 0;
+    int vision = 0;
     uint8_t speed = 0;
     uint8_t maxSpeed = 0;
     uint8_t minDamage = 0;
