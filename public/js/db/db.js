@@ -62,8 +62,8 @@ export function Print_Icon(uID) {
     // Log the entire result object to see what it contains
     console.log("uID: ", uID, " result: ", result);
     
-    if (result.length > 0 && result[0].icon !== undefined) {
-        console.log("uID: ", uID, " icon: ", result[0].icon);
+    if (result.length > 0 && result[0].AC !== undefined) {
+        console.log("uID: ", uID, " icon: ", result[0].AC);
     } else {
         console.log("uID: ", uID, " No icon found or icon is undefined");
     }
