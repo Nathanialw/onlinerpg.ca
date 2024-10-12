@@ -9,16 +9,17 @@ let menu;
 let tabs;
 let invTabs;
 let inventory;
-let loot;
+let lootUI;
 let target;
 let targetImg;
 let playerImg;
+let loot = [];
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
     const inventoryTexture = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
-    const lootTexture = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
+    const lootUITexture = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
     const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
     const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
     const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
@@ -28,9 +29,19 @@ async function Init_Graphics() {
     tabs = new PIXI.Sprite(menuTexture);
     invTabs = new PIXI.Sprite(menuTexture);
     inventory = new PIXI.Sprite(inventoryTexture);
-    loot = new PIXI.Sprite(lootTexture);
+    lootUI = new PIXI.Sprite(lootUITexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
+}
+
+export async function Load_Icons(item, num) {
+    if (num === 0) {
+        loot = [];
+    }
+    
+    const lootIcon = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    loot.push(new PIXI.Sprite(lootIcon));
+    return loot[num];
 }
 
 export async function Load_Target_Image(x, y, path) {
@@ -343,7 +354,7 @@ export function Draw_UI() {
     //inventory
     Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventory);
     //loot
-    Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, loot);
+    Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, lootUI);
     
     //tabs
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
