@@ -44,19 +44,18 @@ loadSqlJsLibrary(() => {
 });
 
 export function Print_Icon(uID) {
-    // const stmt = db.prepare("SELECT * FROM Items WHERE uID = ?");
-    const result = db.exec("SELECT * FROM Items");
-
-    // stmt.bind([uID]);
-    // const result = stmt.getAsObject();
-    // stmt.free();
+    
+    const sql = `SELECT icon FROM Items WHERE uID = :id`;
+    const binds = [{ type: sqljs.BindType.INTEGER, value: uID }];
+    const result = db.execute(sql, binds);
     
     // Log the entire result object to see what it contains
     console.log("uID: ", uID, " result: ", result);
     
-    // Check if the result contains the 'icon' field and print it
-    if (result && result.icon !== undefined) {
-        console.log("uID: ", uID, " icon: ", result.icon);
+    if (result.length > 0 && result[0].values.length > 0) {
+        // Extract the icon value from the first row
+        const icon = result[0].values[0][0];
+        console.log("uID: ", uID, " icon: ", icon);
     } else {
         console.log("uID: ", uID, " No icon found or icon is undefined");
     }
