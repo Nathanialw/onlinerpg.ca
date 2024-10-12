@@ -35,6 +35,7 @@ namespace Send {
     std::cout << "Ready!" << std::endl;
   }
 
+
   void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
     //  update units
     auto action = Update::Update_Units(game, &msg[1]);
@@ -44,7 +45,7 @@ namespace Send {
     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
   }
 
-  void On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
+  int On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
     // keep websocket alive
     std::string response;
 
@@ -72,8 +73,12 @@ namespace Send {
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
 
-    else if (msg[0] == '6') {
-      //
+    else if (msg[0] == '6') { // restart game
+      return 0;
+    }
+
+    else if (msg[0] == '7') { // close game
+      return 1;
     }
 
     else {
@@ -84,6 +89,7 @@ namespace Send {
     // ie: 1a2w;
     if (!msg.empty()) {
     }
+    return -1;
   }
 }
 

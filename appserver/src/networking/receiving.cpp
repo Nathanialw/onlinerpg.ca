@@ -40,6 +40,32 @@ namespace Network {
   //run update on that game world
   //send the message back to the client that sent it
 
+  void Resume_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
+    std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
+    client_connections.erase(session_id);
+    std::cout << "removed ol hdl " << std::endl;
+    reverse_client_connections[hdl] = &game_instances[session_id];
+    std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
+    client_connections[session_id] = hdl;
+
+    std:: string response = "41 ";
+    Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
+  }
+
+  void Start_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
+    client_connections[session_id] = hdl;
+    std::cout << "New connection opened with session ID: " << session_id << std::endl;
+    game_instances[session_id] = Game::Init(session_id);
+    reverse_client_connections[hdl] = &game_instances[session_id];
+    std::cout << "mapped sessionID from hdl: " << reverse_client_connections[hdl]->session_id << std::endl;
+  }
+
+  void Close_Game(const std::string& session_id) {
+    game_instances.erase(session_id);
+    reverse_client_connections.erase(client_connections[session_id]);
+    client_connections.erase(session_id);
+  }
+
   void Init_Connection(const websocketpp::connection_hdl& hdl) {
     std::cout << "New connection opened: " << hdl.lock().get() << std::endl;
     std::string response = "0You have initially connected to the server, yay!";
@@ -53,22 +79,10 @@ namespace Network {
     //if it already exists, send update
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
-      std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
-      client_connections.erase(it);
-      std::cout << "removed ol hdl " << std::endl;
-      reverse_client_connections[hdl] = &game_instances[session_id];
-      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
-      client_connections[session_id] = hdl;
-
-      response = "41 ";
-      Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
+      Resume_Game(session_id, hdl);
     }
     else {
-      client_connections[session_id] = hdl;
-      std::cout << "New connection opened with session ID: " << session_id << std::endl;
-      game_instances[session_id] = Game::Init(session_id);
-      reverse_client_connections[hdl] = &game_instances[session_id];
-      std::cout << "mapped sessionID from hdl: " << reverse_client_connections[hdl]->session_id << std::endl;
+      Start_Game(session_id, hdl);
     }
     std::cout << "number of connections: " << client_connections.size() << std::endl;
     std::cout << "number of reverse connections: " << reverse_client_connections.size() << std::endl;
@@ -125,7 +139,17 @@ namespace Network {
   }
 
   void On_Message(const websocketpp::connection_hdl& hdl, const server::message_ptr& msg) {
-    Send::On_Message(hdl, msg->get_payload(), print_server, *reverse_client_connections[hdl]);
+    auto gg = Send::On_Message(hdl, msg->get_payload(), print_server, *reverse_client_connections[hdl]);
+    if (gg == 0) {
+      Close_Game(Get_SessionID(hdl));
+      auto session_id = Get_SessionID(hdl);
+      Start_Game(session_id, hdl);
+    }
+    else if (gg == 1) {
+      Close_Game(Get_SessionID(hdl));
+      print_server.close(hdl, websocketpp::close::status::normal, "Game Closed");
+    }
+
     //when a player moves, send the new position to all the clients except the one that sent it right away
 
     //every entity needs to be saved as a uID
