@@ -13,8 +13,8 @@ namespace Map {
 
   std::string Get_Map(char chunk[Component::mapWidth][Component::mapWidth]) {
     std::string map;
-    for (int j = 0; j < Component::mapWidth; j++) {
-      for (int i = 0; i < Component::mapWidth; i++) {
+    for (auto j = 0; j < Component::mapWidth; j++) {
+      for (auto i = 0; i < Component::mapWidth; i++) {
         if (i < 0 || i > Component::mapWidth || j < 0 || j > Component::mapWidth)
           map += ' ';
         else
@@ -111,7 +111,7 @@ namespace Map {
     Set_Tile(game.map[level][newLocation].chunk, newPosition.x, newPosition.y, tile);
   }
 
-  void Add_Map_Segment(Game::Instance &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment) {
+  void Add_Map_Segment(Game::Instance &game, int i, int j, int8_t offsetX, int8_t offsetY, std::string &mapSegment) {
 //    std::cout << "i: " << i << " j: " << j << std::endl;
     auto location = game.Get_Player().location;
     location.x += offsetX;
@@ -177,7 +177,7 @@ namespace Map {
     return mapSegment;
   }
 
-  std::string Get_Adjacent_Tile(Game::Instance &game, int level, Component::Position location, int x, int y) {
+  std::string Get_Adjacent_Tile(Game::Instance &game, uint8_t level, Component::Position location, int x, int y) {
     std::string tile;
     if (x < 0 || x >= Component::mapWidth || y < 0 || y >= Component::mapWidth)
         tile = " ";
@@ -210,21 +210,21 @@ namespace Map {
       //Connect Pathing
         //check which adjacent chunks exist
         //if they exist, add them to the pathing map
-        if (game.map[level].count({location.x - 1, location.y}) > 0) {
+        if (game.map[level].count({location.x--, location.y}) > 0) {
           std::cout << "connecting left chunk" << std::endl;
-          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x - 1, location.y}].pathing, -1, 0);
+          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x--, location.y}].pathing, -1, 0);
         }
-        if (game.map[level].count({location.x + 1, location.y}) > 0) {
+        if (game.map[level].count({location.x++, location.y}) > 0) {
           std::cout << "connecting right chunk" << std::endl;
-          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x + 1, location.y}].pathing, 1, 0);
+          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x++, location.y}].pathing, 1, 0);
         }
-        if (game.map[level].count({location.x, location.y - 1}) > 0) {
+        if (game.map[level].count({location.x, location.y--}) > 0) {
           std::cout << "connecting top chunk" << std::endl;
-          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y - 1}].pathing, -1, 0);
+          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y--}].pathing, -1, 0);
         }
-        if (game.map[level].count({location.x, location.y + 1}) > 0) {
+        if (game.map[level].count({location.x, location.y++}) > 0) {
           std::cout << "connecting bottom chunk" << std::endl;
-          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y + 1}].pathing, 0, 1);
+          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y++}].pathing, 0, 1);
         }
         //Connect_Chunks(pathing, chunk);
     }

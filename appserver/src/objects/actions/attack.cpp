@@ -8,7 +8,7 @@
 
 namespace Attack {
 
-Component::Position Check_Target_Location(const Units::Unit &unit, const Component::Position &moveTo) {
+  Component::Position Check_Target_Location(const Units::Unit &unit, const Component::Position &moveTo) {
     auto location = unit.location;
     if (unit.position.x + moveTo.x < 0) {
       location.x--;
@@ -23,31 +23,30 @@ Component::Position Check_Target_Location(const Units::Unit &unit, const Compone
       location.y++;
     }
     return location;
-}
+  }
 
-  int Check_Target(Units::Objects &targets, int px, int py, int x, int y) {
+  int8_t Check_Target(Units::Objects &targets, int8_t px, int8_t py, int8_t x, int8_t y) {
     //if at the edge of the map
-    int targetIndex;
+    int8_t targetIndex;
 
     if (px+x < 0) {
-      //get position of unit in the new chunk
-      auto newPos = Component::Position{Component::mapWidth-1, py+y};
+      Component::Position newPos = {Component::mapWidth-1, static_cast<int8_t>(py+y)};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else if (px+x >= Component::mapWidth) {
-      auto newPos = Component::Position{0, py+y};
+      Component::Position newPos = {0, static_cast<int8_t>(py+y)};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else if (py+y < 0) {
-      auto newPos = Component::Position{px+x, Component::mapWidth-1};
+      Component::Position newPos = {static_cast<int8_t>(px+x), Component::mapWidth-1};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else if (py+y >= Component::mapWidth) {
-      auto newPos = Component::Position{px+x, 0};
+      Component::Position newPos = {static_cast<int8_t>(px+x), 0};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else {
-      targetIndex = Units::Get_Unit_Index(targets.unitPositions, px + x, py + y);
+      targetIndex = Units::Get_Unit_Index(targets.unitPositions, px+x, py+y);
     }
     return targetIndex;
   }
@@ -58,8 +57,8 @@ Component::Position Check_Target_Location(const Units::Unit &unit, const Compone
   //then grab the index of the attacker
   //then grab the index of the target
     //which may be in a different chunk
-  Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int px, int py, int x, int y) {
-    int targetIndex = Check_Target(targets, px, py, x, y);
+  Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int8_t px, int8_t py, int8_t x, int8_t y) {
+    int8_t targetIndex = Check_Target(targets, px, py, x, y);
 
     if (targetIndex == -1) {
       std::cout << "no target found" << std::endl;
@@ -74,6 +73,9 @@ Component::Position Check_Target_Location(const Units::Unit &unit, const Compone
         std::cout << "target dead" << std::endl;
         Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, px+x, py+y);
         //need the grab the chunk the target is in
+        //if items drop
+          //send the uIDs of the items to the client when he moves over them
+        //else
         Map::Reset_Tile(defaultChunk, chunk, px+x, py+y);
         return {std::to_string((int)target.def.species), attacker.maxDamage, true};
     }

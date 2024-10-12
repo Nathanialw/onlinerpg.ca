@@ -23,7 +23,7 @@ namespace Update {
 //    {' ', {0,0}}
   };
 
-  void Update_Player_Position(Game::Instance &game, int &px, int &py, int &x, int &y, Units::Species &species) {
+  void Update_Player_Position(Game::Instance &game, int8_t &px, int8_t &py, int8_t &x, int8_t &y, Units::Species &species) {
 
     std::cout << "initial player position: " << game.Get_Player().position.x << " " << game.Get_Player().position.y << std::endl;
     std::cout << "initial player location: " << game.Get_Player().location.x << " " << game.Get_Player().location.y << std::endl;
@@ -111,7 +111,7 @@ namespace Update {
               if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
 
-                int attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position.x, unit.position.y);
+                int8_t attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position.x, unit.position.y);
                 auto &attacker = game.objects[unit.level][unit.location].units[attackerIndex];
 
                 auto targetLocation = Attack::Check_Target_Location(attacker, moveTo);

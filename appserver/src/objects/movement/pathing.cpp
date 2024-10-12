@@ -255,6 +255,6 @@ namespace Pathing {
     int cell = 1;
     std::cout << path.size() << std::endl;
     std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
-    return {path[path.size() - cell].x - position.x, path[path.size() - cell].y - position.y};
+    return {static_cast<int8_t>(path[path.size() - cell].x - position.x), static_cast<int8_t>(path[path.size() - cell].y - position.y)};
   }
 }

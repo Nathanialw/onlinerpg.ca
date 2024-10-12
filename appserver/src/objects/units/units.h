@@ -102,12 +102,12 @@ namespace Units {
   };
 
   struct Stats {
-    int srength = 10; // damage melee and ranged
-    int intelligence = 10; // magic
-    int dexterity = 10; // dual wielding
-    int constitution = 10; // health
-    int authority = 10; // leadership
-    int charisma = 10; // social interactions
+    uint8_t srength = 10; // damage melee and ranged
+    uint8_t intelligence = 10; // magic
+    uint8_t dexterity = 10; // dual wielding
+    uint8_t constitution = 10; // health
+    uint8_t authority = 10; // leadership
+    uint8_t charisma = 10; // social interactions
   };
 
   struct Def {
@@ -124,34 +124,35 @@ namespace Units {
     //unit data to send
     Component::Position position{};
     std::string name = "Default";
-    int age = 0;
+    uint8_t age = 0;
     Def def;
 
-    int vision = 0;
-    int speed = 0;
-    int maxSpeed = 0;
-    int minDamage = 0;
-    int maxDamage = 0;
-    int AC = 0;
-    int health = 0;
-    int healthMax = 0;
+    uint8_t vision = 0;
+    uint8_t speed = 0;
+    uint8_t maxSpeed = 0;
+    uint8_t minDamage = 0;
+    uint8_t maxDamage = 0;
+    uint8_t AC = 0;
+    uint8_t health = 0;
+    uint8_t healthMax = 0;
 //    bool dead = false;
 
-    int level;
+    uint8_t level;
     Component::Position location{};
 
-    int equipment[12];
-
+    std::array<uint8_t, 15> equipment{};
     //items are just an ID that is in the db
       //db contains the damage, AC, icon path, description, etc
-    int bag[16];      //items
-    int belt[16];     //potions
-    int tome[16];     //scrolls
-    int keyring[16];  //keys
+    std::array<uint8_t, 16> bag{};      //items
+    std::array<uint8_t, 16> belt{};     //potions
+    std::array<uint8_t, 16> tome{};     //scrolls
+    std::array<uint8_t, 16> keyring{};  //keys
 
-    int copper = 0;
-    int silver = 0;
-    int gold = 0;
+    uint8_t copper = 0;
+    uint8_t silver = 0;
+    uint8_t gold = 0;
+
+    std::array<uint8_t, 8> spells{};
 
     //constructor
     Unit(int iLevel, Component::Position sLocation) {
@@ -171,18 +172,18 @@ namespace Units {
 
   struct Objects {
     std::vector<Unit> units;
-    std::unordered_map<Component::Position, int> unitPositions;
+    std::unordered_map<Component::Position, uint8_t> unitPositions;
 //    std::unordered_map<Map_Position, int> unitPositionss;
-    std::vector<int> emptyUnitSlots;
+    std::vector<uint8_t> emptyUnitSlots;
     std::string unitsString;
   };
 
-  int Get_Unit_Index(std::unordered_map<Component::Position, int> &unitPositions, int x, int y);
-  void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const int &x, const int &y, const int &newX, const int &newY);
-  void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const Component::Position &pos, const Component::Position &newPos);
-  void Remove_Unit(std::unordered_map<Component::Position, int> &unitPositions, std::vector<int> &emptyUnitSlots, int x, int y);
-  Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, int x, int y);
-  void Update_UnitsString(std::string &unitsString, int x, int y);
+  int8_t Get_Unit_Index(std::unordered_map<Component::Position, uint8_t> &unitPositions, int8_t x, int8_t y);
+  void Update_Unit_Position(std::unordered_map<Component::Position, uint8_t> &unitPositions, const int8_t &x, const int8_t &y, const int8_t &newX, const int8_t &newY);
+  void Update_Unit_Position(std::unordered_map<Component::Position, uint8_t> &unitPositions, const Component::Position &pos, const Component::Position &newPos);
+  void Remove_Unit(std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<uint8_t> &emptyUnitSlots, int8_t x, int8_t y);
+  Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, uint8_t> &unitPositions, int8_t x, int8_t y);
+  void Update_UnitsString(std::string &unitsString, int8_t x, int8_t y);
 
 }
 

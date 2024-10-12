@@ -30,15 +30,17 @@ namespace Game {
 
     //session
     std::string session_id;
-    int duration = 0;
+//    int duration = 0;
 
     //units
 //    Units::Objects objects;
     std::array<std::unordered_map<Component::Position, Units::Objects>, 26> objects;
+    //up to 4 items per tile
+    std::array<std::unordered_map<Component::Position, std::array<Units::Objects, 4>>, 26> items;
 
     //current turn
-    int time = 0;
-    int turn = 0;
+//    int time = 0;
+//    int turn = 0;
     //start day jan 1 2024
     //attack/move = 1 min
     //1 day = 1440 min
@@ -50,7 +52,7 @@ namespace Game {
 
 
     //map
-    int level = 0;
+    uint8_t level = 0;
     Component::Position location = {0, 0};
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
@@ -66,7 +68,7 @@ namespace Game {
           return objects[level][location].units[0];
     }
 
-    Chunk::Map_Chunk &Get_Map(int currentLevel, Component::Position currentLocation) {
+    Chunk::Map_Chunk &Get_Map(uint8_t currentLevel, Component::Position currentLocation) {
       return map[currentLevel][currentLocation];
     }
 
