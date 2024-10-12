@@ -13,7 +13,7 @@ export function Draw_Loot(items) {
 
 
     for (let i = 0; i < items.length; i++) {
-        Draw_Icons(items[i], i, 3, 20, 20)
+        Draw_Icons(items[i], i, 1, 2, 3, 3)
     }
 }
 
