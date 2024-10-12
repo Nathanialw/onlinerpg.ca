@@ -101,7 +101,7 @@ function Send() {
     }    
 }
 
-export function Restart() {
+export function ReSend() {
     let conn = socket()
     
     if (conn.isConnected) {
