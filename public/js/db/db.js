@@ -40,7 +40,7 @@ loadSqlJsLibrary(() => {
     });
 });
 
-function Print_Icon(uID) {
+export function Print_Icon(uID) {
     const stmt = db.exec("SELECT icon FROM Items WHERE uID = ?");
     stmt.bind([uID]);
     const result = stmt.getAsObject();
