@@ -44,18 +44,26 @@ loadSqlJsLibrary(() => {
 });
 
 export function Print_Icon(uID) {
+    if (!db) {
+        console.error("Database is not initialized.");
+        return;
+    }
+
+    const sql = `SELECT icon FROM Items WHERE uID = ?`;
+    const stmt = db.prepare(sql);
+    stmt.bind([uID]);
     
-    const sql = `SELECT icon FROM Items WHERE uID = :id`;
-    const binds = [{ type: sqljs.BindType.INTEGER, value: uID }];
-    const result = db.execute(sql, binds);
+    const result = [];
+    while (stmt.step()) {
+        result.push(stmt.getAsObject());
+    }
+    stmt.free();
     
     // Log the entire result object to see what it contains
     console.log("uID: ", uID, " result: ", result);
     
-    if (result.length > 0 && result[0].values.length > 0) {
-        // Extract the icon value from the first row
-        const icon = result[0].values[0][0];
-        console.log("uID: ", uID, " icon: ", icon);
+    if (result.length > 0 && result[0].icon !== undefined) {
+        console.log("uID: ", uID, " icon: ", result[0].icon);
     } else {
         console.log("uID: ", uID, " No icon found or icon is undefined");
     }
