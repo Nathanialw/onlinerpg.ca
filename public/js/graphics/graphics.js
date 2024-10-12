@@ -106,7 +106,7 @@ export let rightPanelWidth = sidePanelWidth;
 let rightPanelHeight = viewportHeight + topPanelHeight;
 
 export let leftPanelWidth = sidePanelWidth;
-let leftPanelHeight = viewportHeight + topPanelHeight;
+export let leftPanelHeight = viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
 let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);

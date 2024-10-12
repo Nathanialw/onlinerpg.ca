@@ -1,5 +1,5 @@
 'use strict'
-import { Load_Icons, Draw_Sprite, leftPanelWidth, topPanelHeight, cellSize  } from '../graphics/graphics.js';
+import { Load_Icons, Draw_Sprite, leftPanelWidth, leftPanelHeight, topPanelHeight, cellSize  } from '../graphics/graphics.js';
 
 //when I move on to a new tile
 //check if there is loot
