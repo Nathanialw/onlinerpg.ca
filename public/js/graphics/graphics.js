@@ -98,14 +98,14 @@ let black_100 = 0x222222;
 let sidePanelWidth = 30;
 export let viewportWidth = 41;
 export let viewportHeight = 41;
-let topPanelHeight = 10;
+export let topPanelHeight = 10;
 
 let topPanelWidth = viewportWidth;
 
 export let rightPanelWidth = sidePanelWidth;
 let rightPanelHeight = viewportHeight + topPanelHeight;
 
-let leftPanelWidth = sidePanelWidth;
+export let leftPanelWidth = sidePanelWidth;
 let leftPanelHeight = viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
