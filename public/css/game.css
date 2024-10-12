@@ -62,6 +62,12 @@ body {
         font-size: 0.5rem;     
         hyphens: none;   
     }
+
+    .options-container {
+        /* display: flex; */
+        margin: 0 auto;
+        width: 400px;   
+    } 
  
     /* options */    
     .options {
@@ -148,14 +154,21 @@ body {
         font-size: 1rem;        
     }
 
+    .options-container {
+        /* display: flex; */
+        margin: 0 auto;
+        width: 600px;   
+    } 
+
     .options {
         justify-content: space-evenly;        
         flex-shrink: 4;
-        margin-top: 5rem;        
+        flex-wrap: nowrap;
+        margin-top: 5rem; 
     }
     
     button.btn-block {
-        max-width: 10rem;
+        max-width: 9rem;
         font-size: .8rem;
     }
 
@@ -188,7 +201,7 @@ body {
     }    
 
      button.btn-block {
-        max-width: 15rem;
+        max-width: 13rem;
         font-size: 1rem;
     }
 
@@ -207,7 +220,7 @@ body {
     }    
 
      button.btn-block {
-        max-width: 15rem;
+        max-width: 18rem;
         font-size: 1rem;
     }
 
