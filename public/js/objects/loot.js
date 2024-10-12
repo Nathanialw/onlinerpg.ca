@@ -8,6 +8,8 @@ import { Load_Icons, Draw_Sprite, leftPanelWidth, leftPanelHeight, topPanelHeigh
 //display the icon in the loot box
 
 export function Draw_Loot(items) {
+    console.log('Drawing loot');
+
     let x = (leftPanelWidth / 2) * cellSize
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
     // let w = (leftPanelWidth / 2) * cellSize

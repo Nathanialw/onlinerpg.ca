@@ -39,7 +39,7 @@ export async function Load_Icons(item, num) {
         loot = [];
     }
     
-    const lootIcon = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    const lootIcon = await PIXI.Assets.load(item);
     loot.push(new PIXI.Sprite(lootIcon));
     return loot[num];
 }
