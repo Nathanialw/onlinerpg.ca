@@ -73,7 +73,7 @@ namespace Update {
 
     if (!newChunk) {
       Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
-      Units::Update_Unit_Position(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, px, py, px + x, py + y);
+      Units::Update_Unit_Position(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, px, py, Utils::Add(px, x), Utils::Add(py, y));
       Movement::Move(game, x, y);
     }
 
@@ -123,8 +123,8 @@ namespace Update {
                 continue;
               }
 
-              unit.position.x += moveTo.x;
-              unit.position.y += moveTo.y;
+              unit.position.x = Utils::Add(unit.position.x, moveTo.x);
+              unit.position.y = Utils::Add(unit.position.y, moveTo.y);
 
               Map::Update(game, unit.level, unit.location, former.x, former.y, moveTo.x, moveTo.y, Spawn::Get_Unit_Char(unit.def.species));
               auto map = Map::Get_Map(game.map[unit.level][unit.location].chunk);
@@ -179,7 +179,7 @@ namespace Update {
     }
 
     // if the nearby cell is an enemy, attack
-    int attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
+    auto attackerIndex = Units::Get_Unit_Index(game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, game.Get_Player().position.x, game.Get_Player().position.y);
     auto &attacker = game.objects[game.Get_Player().level][game.Get_Player().location].units[attackerIndex];
 
     auto targetLocation = Attack::Check_Target_Location(attacker, move);
@@ -190,19 +190,38 @@ namespace Update {
     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y);
     if (melee.damageDone > 0 && !melee.isDead) {
       std::cout << "attack goblin" << std::endl;
-      return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1";
+      return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1" + "0";
     }
 
     // if the unit survives, return, else move to the cell
     Update_Player_Position(game, game.Get_Player().position.x, game.Get_Player().position.y, move.x, move.y, game.Get_Player().def.species);
     Map::Check_Map_Chunk(game);
-
     std::string m = direction;
+
+    //generate items
+    if (melee.isDead) {
+      for ( auto &item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
+        //random between 1 and 2
+        item = rand() % 2 + 1;
+      }
+      std::cout << "items dropped" << std::endl;
+    }
+
+    //query for items
+    std::string items = "0";
+    if (game.items[game.Get_Player().level][game.Get_Player().location].find(game.Get_Player().position) != game.items[game.Get_Player().level][game.Get_Player().location].end()) {
+      for (auto item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
+        items += Utils::Prepend_Zero_3Digit(item);
+      }
+      std::cout << "items found: " << game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size() << std::endl;
+      items = std::to_string(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size()) + items;
+    }
+
     if (melee.isDead) {
       std::cout << "goblin dead" << std::endl;
-      return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0";
+      return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0" + items;
     }
-    return m + " " + "  " + "1";
+    return m + " " + "  " + "1" + items;
   }
 
   std::string Update_Units(Game::Instance &game, const char *direction) {
@@ -216,5 +235,6 @@ namespace Update {
     Update_Enemies(game);
     return action;
   }
+
 
 }

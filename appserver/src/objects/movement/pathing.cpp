@@ -45,8 +45,8 @@ namespace Pathing {
   }
 
   bool Init(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString) {
-    for (int y = 0; y < Component::mapWidth; y++) {
-      for (int x = 0; x < Component::mapWidth; x++) {
+    for (int8_t y = 0; y < Component::mapWidth; y++) {
+      for (int8_t x = 0; x < Component::mapWidth; x++) {
         nodes[y * Component::mapWidth + x].x = x;
         nodes[y * Component::mapWidth + x].y = y;
         nodes[y * Component::mapWidth + x].bObstacle = true;
@@ -68,7 +68,7 @@ namespace Pathing {
           nodes[y * Component::mapWidth + x].vecNeighbours.push_back(&nodes[(y + 0) * Component::mapWidth + (x + 1)]);
       }
 
-    // Manually position the start and end markers so they are not nullptr
+    // Manually position the start and end markers, so they are not nullptr
 //    nodeStart = &nodes[(Component::mapWidth / 2) * Component::mapWidth + 1];
 //    nodeEnd = &nodes[(Component::mapWidth / 2) * Component::mapWidth + Component::mapWidth - 2];
 
@@ -79,12 +79,9 @@ namespace Pathing {
   }
 
   bool Solve_AStar(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
-    Component::sNode *nodeStart = nullptr;
-    Component::sNode *nodeEnd = nullptr;
-
     // Reset Navigation Graph - default all node states
-    nodeStart = &nodes[(position.y * Component::mapWidth) + position.x];
-    nodeEnd = &nodes[(target.y * Component::mapWidth) + target.x];
+    Component::sNode *nodeStart = &nodes[(position.y * Component::mapWidth) + position.x];
+    Component::sNode *nodeEnd = &nodes[(target.y * Component::mapWidth) + target.x];
 
     int numCellsToCheck;
 //    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
@@ -122,9 +119,9 @@ namespace Pathing {
     // if the not tested list contains nodes, there may be better paths
     // which have not yet been explored. However, we will also stop
     // searching when we reach the target - there may well be better
-    // paths but this one will do - it wont be the longest.
+    // paths but this one will do - it won't be the longest.
     int i = 0;
-    while (!listNotTestedNodes.empty() && nodeCurrent != nodeEnd)// Find absolutely shortest path // && nodeCurrent != nodeEnd)
+    while (!listNotTestedNodes.empty() && nodeCurrent != nodeEnd)// Find absolute shortest path // && nodeCurrent != nodeEnd)
     {
       if (i > numCellsToCheck) {
         Component::sNode *k = nodeCurrent;

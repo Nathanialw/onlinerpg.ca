@@ -5,6 +5,7 @@
 #include "iostream"
 #include "map.h"
 #include "spawn.h"
+#include "utils.h"
 
 namespace Attack {
 
@@ -30,23 +31,23 @@ namespace Attack {
     int8_t targetIndex;
 
     if (px+x < 0) {
-      Component::Position newPos = {Component::mapWidth-1, static_cast<int8_t>(py+y)};
+      Component::Position newPos = {Component::mapWidth-1, Utils::Add(py, y)};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else if (px+x >= Component::mapWidth) {
-      Component::Position newPos = {0, static_cast<int8_t>(py+y)};
+      Component::Position newPos = {0, Utils::Add(py, y)};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else if (py+y < 0) {
-      Component::Position newPos = {static_cast<int8_t>(px+x), Component::mapWidth-1};
+      Component::Position newPos = {Utils::Add(px, x), Component::mapWidth-1};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else if (py+y >= Component::mapWidth) {
-      Component::Position newPos = {static_cast<int8_t>(px+x), 0};
+      Component::Position newPos = {Utils::Add(px, x), 0};
       targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
     }
     else {
-      targetIndex = Units::Get_Unit_Index(targets.unitPositions, px+x, py+y);
+      targetIndex = Units::Get_Unit_Index(targets.unitPositions, Utils::Add(px, x), Utils::Add(py, y));
     }
     return targetIndex;
   }
@@ -71,7 +72,7 @@ namespace Attack {
     std::cout << Spawn::Get_Unit_Char(attacker.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << attacker.maxDamage << " damage" << std::endl;
     if (target.health <= 0) {
         std::cout << "target dead" << std::endl;
-        Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, px+x, py+y);
+        Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, Utils::Add(px, x), Utils::Add(py, y));
         //need the grab the chunk the target is in
         //if items drop
           //send the uIDs of the items to the client when he moves over them

@@ -64,7 +64,7 @@ namespace Units {
     POLTERGEIST,
     QAFFIR,
     ROC,
-  SATYR,
+    SATYR,
     TROLL,
     URIAS,
     VAMPIRE,
@@ -140,17 +140,17 @@ namespace Units {
     uint8_t level;
     Component::Position location{};
 
-//    std::array<uint8_t, 15> equipment{};
-//    //items are just an ID that is in the db
-//      //db contains the damage, AC, icon path, description, etc
-//    std::array<uint8_t, 16> bag{};      //items
-//    std::array<uint8_t, 16> belt{};     //potions
-//    std::array<uint8_t, 16> tome{};     //scrolls
-//    std::array<uint8_t, 16> keyring{};  //keys
-//
-//    uint8_t copper = 0;
-//    uint8_t silver = 0;
-//    uint8_t gold = 0;
+    std::array<uint8_t, 15> equipment{};
+    //items are just an ID that is in the db
+      //db contains the damage, AC, icon path, description, etc
+    std::array<uint8_t, 16> bag{};      //items
+    std::array<uint8_t, 16> belt{};     //potions
+    std::array<uint8_t, 16> tome{};     //scrolls
+    std::array<uint8_t, 16> keyring{};  //keys
+
+    uint8_t copper = 0;
+    uint8_t silver = 0;
+    uint8_t gold = 0;
 
     std::array<uint8_t, 8> spells{};
 

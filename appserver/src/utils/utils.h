@@ -14,4 +14,6 @@ namespace Utils {
   uint16_t charsToUint16(const std::string& str);
   std::string Prepend_Zero(int num);
   std::string Prepend_Zero_3Digit(int num);
+  int8_t Add(int8_t a, int8_t b);
+  uint8_t Add(uint8_t a, uint8_t b);
 }
