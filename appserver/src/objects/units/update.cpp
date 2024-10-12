@@ -213,9 +213,13 @@ namespace Update {
       items = "";
       for (auto item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
         items += Utils::Prepend_Zero_3Digit(item);
+        std::cout << "item found: " << item << std::endl;
+        std::cout << "item found: " << items << std::endl;
       }
       std::cout << "items found: " << game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size() << std::endl;
+      std::cout << "items found: " << items << std::endl;
       items = std::to_string(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size()) + items;
+      std::cout << "items found and prepended with number of: " << items << std::endl;
     }
 
     if (melee.isDead) {

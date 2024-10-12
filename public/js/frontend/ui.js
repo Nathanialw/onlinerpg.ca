@@ -80,7 +80,7 @@ export function Map(data) {
     items = data.substring(7,8);
     if (items > "0") {
         for (let i = 0; i < items; i++) {
-            console.log("Item ID: " + item);
+            console.log("Item ID: " + data.substring(8 + (i * 3), 8 + ((i + 1) * 3)));
         }
         serverMap = data.substring(8 + (items * 3));
     }
