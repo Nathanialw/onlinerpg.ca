@@ -28,8 +28,8 @@ namespace Component {
     float fGlobalGoal{};
     float fLocalGoal{};
     // position
-    int8_t x{};
-    int8_t y{};
+    int x{};
+    int y{};
     std::vector<sNode *> vecNeighbours;
     sNode *parent{};
   };

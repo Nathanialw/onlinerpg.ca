@@ -36,7 +36,7 @@ namespace Game {
 //    Units::Objects objects;
     std::array<std::unordered_map<Component::Position, Units::Objects>, 26> objects;
     //up to 4 items per tile
-    std::array<std::unordered_map<Component::Position, std::unordered_map<Component::Position, std::array<uint8_t , 4>>>, 26> items{};
+    std::array<std::unordered_map<Component::Position, std::unordered_map<Component::Position, std::array<int , 4>>>, 26> items{};
 
     //current turn
 //    int time = 0;
@@ -52,7 +52,7 @@ namespace Game {
 
 
     //map
-    uint8_t level = 0;
+    int level = 0;
     Component::Position location = {0, 0};
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
@@ -68,7 +68,7 @@ namespace Game {
           return objects[level][location].units[0];
     }
 
-    Chunk::Map_Chunk &Get_Map(uint8_t currentLevel, Component::Position currentLocation) {
+    Chunk::Map_Chunk &Get_Map(int currentLevel, Component::Position currentLocation) {
       return map[currentLevel][currentLocation];
     }
 

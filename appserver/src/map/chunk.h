@@ -16,10 +16,10 @@
 namespace Chunk {
 
   struct Room {
-    uint8_t x;
-    uint8_t y;
-    uint8_t w;
-    uint8_t h;
+    int x;
+    int y;
+    int w;
+    int h;
   };
 
   struct Map_Chunk {

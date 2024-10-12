@@ -111,7 +111,7 @@ namespace Map {
     Set_Tile(game.map[level][newLocation].chunk, newPosition.x, newPosition.y, tile);
   }
 
-  void Add_Map_Segment(Game::Instance &game, int i, int j, int8_t offsetX, int8_t offsetY, std::string &mapSegment) {
+  void Add_Map_Segment(Game::Instance &game, int i, int j, int offsetX, int offsetY, std::string &mapSegment) {
 //    std::cout << "i: " << i << " j: " << j << std::endl;
     auto location = game.Get_Player().location;
     location.x += offsetX;
@@ -177,7 +177,7 @@ namespace Map {
     return mapSegment;
   }
 
-  std::string Get_Adjacent_Tile(Game::Instance &game, uint8_t level, Component::Position location, int x, int y) {
+  std::string Get_Adjacent_Tile(Game::Instance &game, int level, Component::Position location, int x, int y) {
     std::string tile;
     if (x < 0 || x >= Component::mapWidth || y < 0 || y >= Component::mapWidth)
         tile = " ";

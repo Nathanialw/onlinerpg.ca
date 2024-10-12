@@ -45,8 +45,8 @@ namespace Pathing {
   }
 
   bool Init(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString) {
-    for (int8_t y = 0; y < Component::mapWidth; y++) {
-      for (int8_t x = 0; x < Component::mapWidth; x++) {
+    for (int y = 0; y < Component::mapWidth; y++) {
+      for (int x = 0; x < Component::mapWidth; x++) {
         nodes[y * Component::mapWidth + x].x = x;
         nodes[y * Component::mapWidth + x].y = y;
         nodes[y * Component::mapWidth + x].bObstacle = true;
@@ -252,6 +252,6 @@ namespace Pathing {
     int cell = 1;
     std::cout << path.size() << std::endl;
     std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
-    return {static_cast<int8_t>(path[path.size() - cell].x - position.x), static_cast<int8_t>(path[path.size() - cell].y - position.y)};
+    return {(path[path.size() - cell].x - position.x), (path[path.size() - cell].y - position.y)};
   }
 }

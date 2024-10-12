@@ -26,9 +26,9 @@ namespace Attack {
     return location;
   }
 
-  int8_t Check_Target(Units::Objects &targets, int8_t px, int8_t py, int8_t x, int8_t y) {
+  int Check_Target(Units::Objects &targets, int px, int py, int x, int y) {
     //if at the edge of the map
-    int8_t targetIndex;
+    int targetIndex;
 
     if (px+x < 0) {
       Component::Position newPos = {Component::mapWidth-1, Utils::Add(py, y)};
@@ -58,8 +58,8 @@ namespace Attack {
   //then grab the index of the attacker
   //then grab the index of the target
     //which may be in a different chunk
-  Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int8_t px, int8_t py, int8_t x, int8_t y) {
-    int8_t targetIndex = Check_Target(targets, px, py, x, y);
+  Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int px, int py, int x, int y) {
+    auto targetIndex = Check_Target(targets, px, py, x, y);
 
     if (targetIndex == -1) {
       std::cout << "no target found" << std::endl;

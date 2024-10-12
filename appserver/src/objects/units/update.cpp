@@ -111,7 +111,7 @@ namespace Update {
               if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
 
-                int8_t attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position.x, unit.position.y);
+                int attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position.x, unit.position.y);
                 auto &attacker = game.objects[unit.level][unit.location].units[attackerIndex];
 
                 auto targetLocation = Attack::Check_Target_Location(attacker, moveTo);
