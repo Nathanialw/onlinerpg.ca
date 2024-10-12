@@ -1,5 +1,5 @@
 'use strict'
-import { Load_Icons } from '../graphics/graphics.js';
+import { Draw_Icons } from '../graphics/graphics.js';
 
 //when I move on to a new tile
 //check if there is loot
