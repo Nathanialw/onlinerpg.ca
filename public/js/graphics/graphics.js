@@ -56,7 +56,7 @@ export async function Create_Canvas() {
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
         app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
-        console.log('Resized to: ', gameCanvas.clientWidth, gameCanvas.clientHeight);
+        // console.log('Resized to: ', gameCanvas.clientWidth, gameCanvas.clientHeight);
     });
 }
 
