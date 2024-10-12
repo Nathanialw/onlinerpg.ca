@@ -8,12 +8,12 @@ import { Get_Icon_Path } from '../db/db.js';
 //read from db
 //display the icon in the loot box
 
-export function Draw_Loot(items) {
+export async function Draw_Loot(items) {
     console.log('Drawing loot');
 
 
     for (let i = 0; i < items.length; i++) {
-        Draw_Icons(items[i], i, 1, 2, 2.5, 2.5)
+        await Draw_Icons(items[i], i, 1, 2, 2.5)
     }
 }
 
