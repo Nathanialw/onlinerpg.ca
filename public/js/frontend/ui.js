@@ -79,9 +79,10 @@ export function Map(data) {
     // let currentHealth = data.substring(6,8);
     
     numItems = data.substring(7,8);
+    items = [];
     if (numItems > "0") {
         items = Query_Loot(numItems, data);
-    }
+    }    
     serverMap = data.substring(8 + (numItems * 3));
 
     // serverMap = data.substring(8);
