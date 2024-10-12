@@ -48,5 +48,5 @@ export function Print_Icon(uID) {
     stmt.bind([uID]);
     const result = stmt.getAsObject();
     stmt.free();
-    console.log("result: ", result);    
+    console.log("uID: ". uID, " result: ", result);    
 }
