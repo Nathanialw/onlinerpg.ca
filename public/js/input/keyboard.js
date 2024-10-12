@@ -32,7 +32,7 @@ let Update = {
     ' ': Move,
     Control: SoundPlay,
     p: Restart,
-    Esc: Quit,
+    Escape: Quit,
 }
 
 document.addEventListener("keypress", (event) => {
