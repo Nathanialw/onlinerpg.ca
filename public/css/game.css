@@ -247,6 +247,34 @@ body {
     }
 }
 
+@media screen and (min-width: 3240px) {
+    .wrapper {
+        margin-top: 10rem;
+    }
+    
+    .wrapper h1 {
+        font-size: 4rem;        
+    }
+
+    .splashContent {
+        font-size: 1.6rem;    
+        line-height: 1.8rem;        
+    }
+    
+    .options-container {
+        /* display: flex; */
+        margin: 0 auto;
+        width: 1800px;   
+    }    
+
+     button.btn-block {
+        max-width: 30rem;
+    }
+
+    .canvasContainer {
+        width: 2828px;
+    }
+}
 
 /* 2160 */
 @media screen and (min-width: 3840px) {
@@ -274,6 +302,6 @@ body {
     }
 
     .canvasContainer {
-        width: 2424px;
+        width: 3232px;
     }
 }
