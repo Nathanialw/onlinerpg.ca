@@ -66,7 +66,7 @@ let species;
 let damage;
 let isDead;
 let serverMap;
-
+let items;
 
 export function Map(data) {
     visionWidth = parseInt(data.substring(0, 2), 10);
