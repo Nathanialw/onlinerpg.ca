@@ -20,7 +20,7 @@ export function Draw_Loot(items) {
 }
 
 export function Query_Loot(numItems, data) {
-    items = [];
+    let items = [];
     for (let i = 0; i < numItems; i++) {
         //isert as an int
         items.push(parseInt(data.substring(8 + (i * 3), 8 + ((i + 1) * 3)), 10));
