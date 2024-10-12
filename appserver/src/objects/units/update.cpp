@@ -210,6 +210,7 @@ namespace Update {
     //query for items
     std::string items = "0";
     if (game.items[game.Get_Player().level][game.Get_Player().location].find(game.Get_Player().position) != game.items[game.Get_Player().level][game.Get_Player().location].end()) {
+      items = "";
       for (auto item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
         items += Utils::Prepend_Zero_3Digit(item);
       }
