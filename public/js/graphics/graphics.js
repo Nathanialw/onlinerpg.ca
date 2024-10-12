@@ -44,7 +44,7 @@ export async function Draw_Icons(iconPath, num, xOffset, yOffset, w) {
     
     const lootIcon = await PIXI.Assets.load(iconPath);
     loot.push(new PIXI.Sprite(lootIcon));
-    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (h * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
+    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
 
     // Draw_Sprite((x + xOffset) * cellSize, (y + yOffset) * cellSize + (h * num * cellSize), w * cellSize, h * cellSize, loot[num]);
 
