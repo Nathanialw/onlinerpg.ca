@@ -89,7 +89,7 @@ export function Map(data) {
         serverMap = data.substring(8);
     }
 
-    serverMap = data.substring(7);
+    // serverMap = data.substring(8);
     Update_Screen();
 }
 
