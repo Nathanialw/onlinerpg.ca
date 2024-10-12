@@ -76,7 +76,18 @@ export function Map(data) {
     isDead = data.substring(6,7);
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
-    serverMap = data.substring(7);
+    
+    items = data.substring(7,8);
+    if (items > "0") {
+        for (let i = 0; i < items; i++) {
+            console.log("Item ID: " + item);
+        }
+        serverMap = data.substring(8 + (items * 3));
+    }
+    else {
+        console.log("No items");
+        serverMap = data.substring(8);
+    }
     Update_Screen();
 }
 
