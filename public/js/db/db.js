@@ -45,10 +45,11 @@ loadSqlJsLibrary(() => {
 
 export function Print_Icon(uID) {
     // const stmt = db.prepare("SELECT * FROM Items WHERE uID = ?");
-    const stmt = db.prepare("SELECT * FROM Items");
+    const result = db.exec("SELECT * FROM Items");
+
     // stmt.bind([uID]);
-    const result = stmt.getAsObject();
-    stmt.free();
+    // const result = stmt.getAsObject();
+    // stmt.free();
     
     // Log the entire result object to see what it contains
     console.log("uID: ", uID, " result: ", result);
