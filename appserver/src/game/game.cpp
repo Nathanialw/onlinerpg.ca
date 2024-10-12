@@ -7,9 +7,9 @@ namespace Game {
 
 //  void Run() {
 Instance Init(const std::string& session_id) {
-  Instance state;
-        state.session_id = session_id;
-        return state;
+  Instance Game;
+    Game.session_id = session_id;
+    return Game;
   }
 
 }

@@ -40,16 +40,21 @@ namespace Network {
   //run update on that game world
   //send the message back to the client that sent it
 
-  void Resume_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
-    std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
-    client_connections.erase(session_id);
-    std::cout << "removed ol hdl " << std::endl;
-    reverse_client_connections[hdl] = &game_instances[session_id];
-    std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
-    client_connections[session_id] = hdl;
+  bool Resume_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
+    auto it = client_connections.find(session_id);
+    if (it != client_connections.end()) {
+      std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
+      client_connections.erase(session_id);
+      std::cout << "removed ol hdl " << std::endl;
+      reverse_client_connections[hdl] = &game_instances[session_id];
+      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
+      client_connections[session_id] = hdl;
 
-    std:: string response = "41 ";
-    Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
+      std:: string response = "41 ";
+      Send::On_Message(hdl, response, print_server, *reverse_client_connections[hdl]);
+      return true;
+    }
+    return false;
   }
 
   void Start_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
@@ -76,14 +81,11 @@ namespace Network {
       print_server.close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
       return;
     }
-    //if it already exists, send update
-    auto it = client_connections.find(session_id);
-    if (it != client_connections.end()) {
-      Resume_Game(session_id, hdl);
-    }
-    else {
+
+    if (!Resume_Game(session_id, hdl)) {
       Start_Game(session_id, hdl);
     }
+
     std::cout << "number of connections: " << client_connections.size() << std::endl;
     std::cout << "number of reverse connections: " << reverse_client_connections.size() << std::endl;
     std::cout << "number of game instances: " << game_instances.size() << std::endl;
