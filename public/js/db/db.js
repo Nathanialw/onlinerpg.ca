@@ -68,3 +68,30 @@ export function Print_Icon(uID) {
         console.log("uID: ", uID, " No icon found or icon is undefined");
     }
 }
+
+export function Get_Icon_Path(uID) {
+    if (!db) {
+        console.error("Database is not initialized.");
+        return;
+    }
+
+    const sql = `SELECT * FROM Items WHERE uID = ?`;
+    const stmt = db.prepare(sql);
+    stmt.bind([uID]);
+    
+    const result = [];
+    while (stmt.step()) {
+        result.push(stmt.getAsObject());
+    }
+    stmt.free();
+    
+    // Log the entire result object to see what it contains
+    
+    if (result.length > 0 && result[0].icon !== undefined) {
+        console.log("uID: ", uID, " icon: ", result[0].icon);
+    } else {
+        console.log("uID: ", uID, " No icon found or icon is undefined");
+    }
+
+    return result[0].icon;
+}

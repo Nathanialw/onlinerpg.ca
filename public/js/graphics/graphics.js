@@ -34,14 +34,17 @@ async function Init_Graphics() {
     target = new PIXI.Sprite(targetTexture);
 }
 
-export async function Load_Icons(item, num) {
+export async function Draw_Icons(iconPath, num, offset, w, h) {
+    let x = (leftPanelWidth / 2) * cellSize
+    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
+
     if (num === 0) {
         loot = [];
     }
     
-    const lootIcon = await PIXI.Assets.load(item);
+    const lootIcon = await PIXI.Assets.load(iconPath);
     loot.push(new PIXI.Sprite(lootIcon));
-    return loot[num];
+    Draw_Sprite(x + offset, y + offset + (h * i), w, h, loot[num]);
 }
 
 export async function Load_Target_Image(x, y, path) {
