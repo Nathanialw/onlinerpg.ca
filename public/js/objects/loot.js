@@ -13,7 +13,7 @@ export async function Draw_Loot(items) {
 
 
     for (let i = 0; i < items.length; i++) {
-        await Draw_Icons(items[i], i, 1, 2, 2.5)
+        await Draw_Icons(items[i], i, 1, 2.5, 2.5)
     }
 }
 
