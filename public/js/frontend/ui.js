@@ -4,6 +4,7 @@ import { Make_Map, Draw_Map, Draw_Map_Phone} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Render_Target_Stats } from './stats.js';   
 import { SoundAttack } from '../sound/sound.js';
+import { Print_Icon } from '../db/db.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -66,8 +67,8 @@ let species;
 let damage;
 let isDead;
 let serverMap;
-let items;
-
+let numItems;
+let items = [];
 export function Map(data) {
     visionWidth = parseInt(data.substring(0, 2), 10);
     direction = data.substring(2,3);
@@ -77,12 +78,15 @@ export function Map(data) {
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     
-    items = data.substring(7,8);
-    if (items > "0") {
-        for (let i = 0; i < items; i++) {
-            console.log("Item ID: " + data.substring(8 + (i * 3), 8 + ((i + 1) * 3)));
+    numItems = data.substring(7,8);
+    if (numItems > "0") {
+        items = [];
+        for (let i = 0; i < numItems; i++) {
+            //isert as an int
+            items.push(parseInt(data.substring(8 + (i * 3), 8 + ((i + 1) * 3)), 10));
+            Print_Icon(items[i]);
         }
-        serverMap = data.substring(8 + (items * 3));
+        serverMap = data.substring(8 + (numItems * 3));
     }
     else {
         console.log("No items");
@@ -107,6 +111,7 @@ export function Update_Screen_Phone() {
     // Display_Damage(species, damage, isDead)
     // Render_Log();
     // Render_Target_Stats();
+
 }
 
 export function Update_Screen() {
