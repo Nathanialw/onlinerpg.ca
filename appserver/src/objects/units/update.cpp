@@ -151,7 +151,7 @@ namespace Update {
 
   std::string Update_Player(Game::Instance &game, const char *direction) {
     auto move = updatePosition[*direction];
-    std::string items = "0";
+    std::string items = Loot::Query_Loot(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]);
 
     std::cout << "num entities on update: " << game.objects[game.Get_Player().level][game.Get_Player().location].units.size() << std::endl;
     std::cout << "successfully grabbed player from units[]" << std::endl;
