@@ -60,10 +60,13 @@ namespace Send {
     else if (msg[0] == '2') {  // loot item
       std::cout << "Looting item at index: " << msg.substr(1) << std::endl;
 //      response = "2";
-      if (msg.substr(1,2) == "0") {
+      auto type = msg.substr(1, 1);
+      std::cout << "panel clicked: " << type << std::endl;
+
+      if (type == "0") {
         Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, stoi(msg.substr(2)));
       }
-      else if (msg.substr(1,2) == "1") {
+      else if (type == "1") {
         //interact with inventory
       }
 
