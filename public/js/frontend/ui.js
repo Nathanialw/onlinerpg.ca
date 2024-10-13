@@ -79,7 +79,7 @@ function Parse(numItems, start, data, Query, size, items) {
     console.log("numItems: ", numItems);
     items = [];
     if (numItems > "0") {
-        items = Query(numItems, data, start);
+        items.push(...Query(numItems, data, start));
     }    
     return start + (numItems * size); 
 }
