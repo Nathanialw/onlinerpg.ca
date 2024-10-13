@@ -17,7 +17,7 @@ namespace DB {
 
   std::string Query(const int &itemIB) {
       //take a single string and return a single string from the db
-      std::string query = "SELECT item_name FROM items WHERE item_id = " + std::to_string(itemIB);
+      std::string query = "SELECT equipSlot FROM Items WHERE uID = " + std::to_string(itemIB);
       std::cout << query << std::endl;
 
       sqlite3_stmt *stmt;
