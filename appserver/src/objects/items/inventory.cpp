@@ -21,7 +21,7 @@ namespace Inventory {
       inventoryStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(items[i], 3);
     }
 
-    return inventoryStr;
+    return std::to_string(items.size()) + inventoryStr;
   }
 
 };
