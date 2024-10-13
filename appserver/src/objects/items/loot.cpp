@@ -21,12 +21,14 @@ namespace Loot {
 
   std::string Query_Loot(std::array<uint8_t , 4> &items) {
     std::string itemsStr;
+    int size = 0;
     for (auto item : items) {
       if (item == 0)
         break;
       itemsStr += Utils::Prepend_Zero_3Digit(item);
+      size++;
     }
-    itemsStr = std::to_string(items.size()) + itemsStr;
+    itemsStr = std::to_string(size) + itemsStr;
     std::cout << "items found and prepended with number of: " << itemsStr << std::endl;
     return itemsStr;
   }
