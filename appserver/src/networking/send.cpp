@@ -60,7 +60,8 @@ namespace Send {
       auto updateInv = Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, stoi(msg.substr(1)));
       response.append(updateInv);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      Update(hdl, msg, print_server, game);
+      std::string skip = " ";
+      Update(hdl, skip, print_server, game);
     }
 
     else if (msg[0] == '3') { // send map
