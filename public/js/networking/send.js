@@ -5,7 +5,7 @@
 export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     let message = "5" + x + y;
 
-    objectDisplay[i].on('pointerdown', (event) => { 
+    objectDisplay.on('pointerdown', (event) => { 
         Send_Web_Socket_Message(message); 
         console.log("Click Message sent: ", message); 
     }); //query the server for the object data
