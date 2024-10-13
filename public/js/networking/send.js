@@ -15,7 +15,7 @@ export function Set_Send_On_Loot_Click_Listener(objectDisplay, i) {
     //send the index of the item in the loot array
     let message = "2" + i;
 
-    objectDisplay[i].on('pointerdown', (event) => { 
+    objectDisplay.on('pointerdown', (event) => { 
         Send_Web_Socket_Message(message); 
         console.log("Click Message sent: ", message); 
     }); //query the server for the object data

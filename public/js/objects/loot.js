@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Icons, loot } from '../graphics/graphics.js';
+import { Draw_Icons } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -14,8 +14,8 @@ export async function Draw_Loot(items) {
 
 
     for (let i = 0; i < items.length; i++) {
-        await Draw_Icons(items[i], i, 1, 2.5, 2.5)
-        Set_Send_On_Loot_Click_Listener(loot[i], i);   
+        let item = await Draw_Icons(items[i], i, 1, 2.5, 2.5)
+        Set_Send_On_Loot_Click_Listener(item, i);   
     }
 }
 
