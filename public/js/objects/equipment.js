@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Inventory_Icons } from '../graphics/graphics.js';
+import { Draw_Equipment_Icons } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -9,17 +9,17 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
-export async function Draw_Inventory(items) {
+export async function Draw_Equipment(items) {
     console.log('Drawing Inventory');
 
 
     for (let i = 0; i < items.length; i++) {
-        let item = await Draw_Inventory_Icons(items[i], i, 1, 1, 2.5)        
+        let item = await Draw_Equipment_Icons(items[i], i, 1, 1, 2.5)        
         Set_Send_On_Loot_Click_Listener(item, '1', i);   //1 means inventory panel
     }
 }
 
-export function Query_Inventory(numItems, data, start) {
+export function Query_Equipment(numItems, data, start) {
     let items = [];
     for (let i = 0; i < numItems; i++) {
         //isert teh path

@@ -46,6 +46,8 @@ namespace Send {
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
     // append inventory
     action.append(Inventory::Update_Inventory(game.Get_Player().inventory));
+    // append equipment
+    action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
     // send map
     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
   }
@@ -70,14 +72,11 @@ namespace Send {
       else if (type == "1") {
         std::cout << "interacting with inventory at index: " << msg.substr(2) << std::endl;
         Equipment::Equip_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(msg.substr(2)));
+
+        //send updated inventory and equipment
         //interact with inventory
       }
 
-//      auto updateInv = Inventory::Update_Inventory(game.Get_Player().inventory);
-//      response.append(updateInv);
-//      print_server.send(hdl, response, websocketpp::frame::opcode::text);
-//      if (updateInv == " ")
-//        return -1;
       std::string skip = "1 ";
       Update(hdl, skip, print_server, game);
     }

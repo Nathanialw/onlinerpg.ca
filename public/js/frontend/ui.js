@@ -5,7 +5,8 @@ import { characterInfo, Species} from '../units/unitdef.js';
 import { Render_Target_Stats } from './stats.js';   
 import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
-import { Draw_Invetory, Query_Inventory } from '../objects/inventory.js';
+import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
+import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -72,6 +73,7 @@ let serverMap;
 let items = [];
 // let numInventory;
 let inventory = [];
+let equipment = [];
 
 export function Map(data) {
     visionWidth = parseInt(data.substring(0, 2), 10);
@@ -96,9 +98,16 @@ export function Map(data) {
         inventory = Query_Inventory(numInventory, data, endLoot + 2);
     }    
     const endInventory = (endLoot + 2) + (numInventory * 5);
- 
 
-    serverMap = data.substring(endInventory);
+    const numEquipment = data.substring(endInventory, endInventory + 2);
+    equipment = [];
+    if (numEquipment > 0) {
+        console.log("numEquipment: ", numEquipment);
+        equipment = Query_Equipment(numEquipment, data, endInventory + 2);
+    }    
+    const endEquipment = (endInventory + 2) + (numEquipment * 5);
+ 
+    serverMap = data.substring(endEquipment);
 
     // serverMap = data.substring(8);
     Update_Screen();
@@ -131,7 +140,8 @@ export function Update_Screen() {
     Draw_Map(visionWidth, direction);
     
     Draw_Loot(items);
-    Draw_Invetory(inventory);
+    Draw_Inventory(inventory);
+    Draw_Equipment(equipment);
 
     // Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)

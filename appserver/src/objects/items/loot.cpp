@@ -59,7 +59,7 @@ namespace Loot {
     }
     loot[loot.size() - 1] = 0; // Set the last element to 0
 
-    // return the index of the inventory to update and the index of the item in the db
+    // return the index of the inventory slot to update and the index of the item in the db
     std::string inventoryStr = Utils::Prepend_Zero_By_Digits(inventoryIndex, 2) + Utils::Prepend_Zero_By_Digits(itemID, 3);
     return inventoryStr;
   }

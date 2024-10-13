@@ -29,6 +29,7 @@ namespace Items {
     weaponMain,
     weaponOffhand,
     ranged,
+    ammo,
     SIZE,
   };
 

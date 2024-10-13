@@ -3,7 +3,7 @@ import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
 
-let equipment;
+let equipmentUI;
 let chat;
 let menu;
 let tabs;
@@ -15,6 +15,7 @@ let targetImg;
 let playerImg;
 let loot = [];
 let inventory = [];
+let equipment = []
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
@@ -24,7 +25,7 @@ async function Init_Graphics() {
     const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
     const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
     const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    equipment = new PIXI.Sprite(equipmentTexture);
+    equipmentUI = new PIXI.Sprite(equipmentTexture);
     chat = new PIXI.Sprite(chatTexture);
     menu = new PIXI.Sprite(menuTexture);
     tabs = new PIXI.Sprite(menuTexture);
@@ -33,6 +34,27 @@ async function Init_Graphics() {
     lootUI = new PIXI.Sprite(lootUITexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
+}
+
+export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
+    let x = 0;
+    let y = ((topPanelHeight / 4) + (leftPanelHeight * 1 / 3)) * cellSize;
+    
+    let row = Math.floor(num / 4);
+    let column = num % 4;
+    
+    let rowPosition = y + (row * (w * cellSize) + xOffset * cellSize);
+    let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
+    let squareSize = w * cellSize;
+    
+    if (num === 0) {
+        equipment = [];
+    }
+    
+    const equipmentIcon = await PIXI.Assets.load(iconPath);
+    equipment.push(new PIXI.Sprite(equipmentIcon));
+    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
+    return equipment[num]
 }
 
 export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {    
@@ -374,7 +396,7 @@ export function Draw_UI() {
     //menu
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
     //eqipment
-    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 2/3) - (topPanelHeight / 4)) * cellSize, equipment);
+    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 2/3) - (topPanelHeight / 4)) * cellSize, equipmentUI);
     //tabs
     Draw_Sprite(0, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, invTabs);
     //inventory

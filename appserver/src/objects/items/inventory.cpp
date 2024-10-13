@@ -28,11 +28,13 @@ namespace Inventory {
   }
 
   std::string Get_Inventory(std::array<std::array<int, 16>, 4> &inventory) {
-    std::string itemsStr;
     auto items = inventory[(int)Items::BagType::Items];
-    for (const int &item : items) {
-      itemsStr += Utils::Prepend_Zero_By_Digits(item, 3);
+    std::string itemsStr = Utils::Prepend_Zero_By_Digits(items.size(), 2);
+
+    for (int i = 0; i < items.size(); ++i) {
+      itemsStr +=  Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(items[i], 3);
     }
+
     std::cout << "inventories sent: " << itemsStr << std::endl;
     return itemsStr;
   }

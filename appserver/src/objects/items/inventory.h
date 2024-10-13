@@ -12,7 +12,7 @@
 namespace Inventory {
 
   std::string Update_Inventory(std::array<std::array<int, 16>, 4> &inventory);
-
+  std::string Get_Inventory(std::array<std::array<int, 16>, 4> &inventory);
 };
 
 #endif // BROWSERRPG_INVENTORY_H
