@@ -50,6 +50,9 @@ namespace Equipment {
     std::cout << "equipment slot: " << equipment[stoi(slotNum)] << std::endl;
     inventory[(int)Items::BagType::Items][index] = 0;
 
+    for (auto i : equipment) {
+      std::cout << "equipment: " << i << std::endl;
+    }
         // add item to inventory array
 //    inventory[Items::BagType::Items][inventoryIndex] = itemID;
     //remove from loot array and resize

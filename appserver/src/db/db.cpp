@@ -11,6 +11,10 @@ namespace DB {
 //create db
 sqlite3 *db;
 
+std::string Append_Quotes(std::string str) {
+  return "'" + str + "'";
+}
+
 void Init() {
   const char *db_filepath = "db/data.db";
   int rc = sqlite3_open(db_filepath, &db);
@@ -28,7 +32,8 @@ std::string Query(const std::string &retrieve, const std::string &table, const s
     std::cerr << "Database not initialized" << std::endl;
     return "";
   }
-  std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = '" + equals + "'";  std::cout << query << std::endl;
+
+  std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + Append_Quotes(equals);
 
   sqlite3_stmt *stmt;
   std::cout << "querying" << std::endl;
