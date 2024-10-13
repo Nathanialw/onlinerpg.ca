@@ -93,7 +93,7 @@ export function Map(data) {
     inventory = [];
     if (numInventory > 0) {
         console.log("numInventory: ", numInventory);
-        inventory = Query_Inventory(numItems, data, endLoot + 2);
+        inventory = Query_Inventory(numInventory, data, endLoot + 2);
     }    
     const endInventory = (endLoot + 2) + (numInventory * 5);
  
