@@ -35,7 +35,7 @@ async function Init_Graphics() {
     target = new PIXI.Sprite(targetTexture);
 }
 
-export async function Draw_Icons(iconPath, num, xOffset, yOffset, w) {    
+export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {    
     let x = 0;
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
     
