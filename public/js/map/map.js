@@ -221,7 +221,7 @@ export function Make_Map(serverMap, visionWidth) {
         if  (y < 10) {
             y = "0" + y;
         }
-        Set_Send_On_Map_Click_Listener(objectDisplay, x, y);
+        Set_Send_On_Map_Click_Listener(objectDisplay[i], x, y);
     }
     //draw the units on top of the map
 }
