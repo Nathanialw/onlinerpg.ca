@@ -24,10 +24,10 @@ include_directories(src/objects/movement/pathing)
 include_directories(src/objects/units/class)
 include_directories(src/objects/units/species)
 
-add_executable(BrowserRPG
+set(SOURCES
         libs/sqlite3/sqlite3.c
-        libs/websocketpp/server.hpp
-        libs/websocketpp/config/asio_no_tls.hpp
+#        libs/websocketpp/server.hpp
+#        libs/websocketpp/config/asio_no_tls.hpp
 
         src/db/db.cpp
         src/server/main.cpp
@@ -67,4 +67,12 @@ add_executable(BrowserRPG
         src/objects/collision/collision.cpp
 
         src/procgen/procgen.cpp
+)
+
+add_executable(BrowserRPG ${SOURCES})
+
+target_include_directories(BrowserRPG PRIVATE
+        libs/sqlite3
+        libs/websocketpp
+        libs/websocketpp/config
 )
