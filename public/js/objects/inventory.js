@@ -19,7 +19,7 @@ export async function Draw_Invetory(items) {
     }
 }
 
-export function Query_Invetory(numItems, data, start) {
+export function Query_Inventory(numItems, data, start) {
     let items = [];
     for (let i = 0; i < numItems; i++) {
         //isert teh path
