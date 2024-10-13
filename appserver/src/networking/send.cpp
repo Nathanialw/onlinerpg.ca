@@ -43,6 +43,8 @@ namespace Send {
     auto action = Update::Update_Units(game, &msg[1]);
     //  send stats
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+    // append inventory
+    action.append(Inventory::Update_Inventory(game.Get_Player().inventory));
     // send map
     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
   }
@@ -57,13 +59,13 @@ namespace Send {
 
     else if (msg[0] == '2') {  // loot item
       std::cout << "Looting item at index: " << msg.substr(1) << std::endl;
-      response = "2";
+//      response = "2";
       Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, stoi(msg.substr(1)));
-      auto updateInv = Inventory::Update_Inventory(game.Get_Player().inventory);
-      response.append(updateInv);
-      print_server.send(hdl, response, websocketpp::frame::opcode::text);
-      if (updateInv == " ")
-        return -1;
+//      auto updateInv = Inventory::Update_Inventory(game.Get_Player().inventory);
+//      response.append(updateInv);
+//      print_server.send(hdl, response, websocketpp::frame::opcode::text);
+//      if (updateInv == " ")
+//        return -1;
       std::string skip = "1 ";
       Update(hdl, skip, print_server, game);
     }

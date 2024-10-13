@@ -67,8 +67,11 @@ let species;
 let damage;
 let isDead;
 let serverMap;
-let numItems;
+// let numItems;
 let items = [];
+// let numInventory;
+let inventory = [];
+
 export function Map(data) {
     visionWidth = parseInt(data.substring(0, 2), 10);
     direction = data.substring(2,3);
@@ -78,12 +81,23 @@ export function Map(data) {
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     
-    numItems = data.substring(7,8);
+    const numItems = data.substring(7,8);
     items = [];
     if (numItems > "0") {
         items = Query_Loot(numItems, data);
     }    
-    serverMap = data.substring(8 + (numItems * 3));
+    const endLoot = 8 + (numItems * 3);
+
+    const numInventory = data.substring(endLoot, endLoot + 1);
+    inventory = [];
+    if (numInventory > "0") {
+        console.log("numInventory: ", numInventory);
+        // inventory = Query_Loot(numItems, data);
+    }    
+    const endInventory = (endLoot + 1) + (numInventory * 3);
+
+
+    serverMap = data.substring(endInventory);
 
     // serverMap = data.substring(8);
     Update_Screen();

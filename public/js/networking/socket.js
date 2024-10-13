@@ -49,7 +49,7 @@ export async function createWebSocket() {
             console.log("WebSocket message received:", event.data);
             // Handle incoming messages here
             websocket.onmessage = function(event) {    
-                console.log(event.data)
+                console.log("raw received: ", event.data)
                 
                 if (event.data === 0) {
                     return
@@ -57,7 +57,7 @@ export async function createWebSocket() {
             
                 let type = event.data[0];
                 let data = event.data.substring(1);
-                console.log(type, data)
+                console.log("type: ", type, "payload: ", data)
                 // if empty string
                 if (data.length == 0) {
                     console.log("received empty string")
