@@ -37,17 +37,23 @@ async function Init_Graphics() {
 
 export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {    
     let x = 0;
-    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
+    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2 / 3)) * cellSize;
     
-
+    let row = Math.floor(num / 4);
+    let column = num % 4;
+    
+    let rowPosition = y + (row * (w * cellSize));
+    let columnPosition = x + (column * (w * cellSize));
+    let squareSize = w * cellSize;
+    
     if (num === 0) {
         inventory = [];
     }
     
     const inventoryIcon = await PIXI.Assets.load(iconPath);
     inventory.push(new PIXI.Sprite(inventoryIcon));
-    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, inventory[num]);
-    return inventory[num];
+    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, inventory[num]);
+    return inventory[num]
 }
 
 export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {    
