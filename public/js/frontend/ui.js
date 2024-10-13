@@ -81,7 +81,7 @@ function aa(numItems, start, data, Query, size) {
     if (numItems > "0") {
         items = Query(numItems, data);
     }    
-    return endLoot = start + (numItems * size); 
+    return start + (numItems * size); 
 }
 
 export function Map(data) {
