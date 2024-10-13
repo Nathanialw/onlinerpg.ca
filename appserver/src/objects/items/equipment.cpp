@@ -40,6 +40,7 @@ namespace Equipment {
 //        return " ";
 //      }
 //    }
+    std::cout << "itemID: " << itemID << std::endl;
 
     auto slot = DB::Query(itemID); //retrieve slot using itemID from the db
     std::cout << "equip slot: " << slot << std::endl;
