@@ -70,10 +70,10 @@ export function Print_Icon(uID) {
 }
 
 export function Get_Icon_Path(uID) {
-    console.error("uID: ", uID);
+    console.log("uID: ", uID);
     if (uID === 0) {
         let path = "assets/graphics/icons/PVG/Book1.png"
-        console.error("default icon: ", path);
+        console.log("default icon: ", path);
         return path
     }
 

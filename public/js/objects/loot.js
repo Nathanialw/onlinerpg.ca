@@ -19,11 +19,11 @@ export async function Draw_Loot(items) {
     }
 }
 
-export function Query_Loot(numItems, data) {
+export function Query_Loot(numItems, data, start) {
     let items = [];
     for (let i = 0; i < numItems; i++) {
         //isert teh path
-        items.push(Get_Icon_Path(parseInt(data.substring(8 + (i * 3), 8 + ((i + 1) * 3)), 10)));
+        items.push(Get_Icon_Path(parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3)), 10)));
         
     }
 

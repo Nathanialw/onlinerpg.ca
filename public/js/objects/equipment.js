@@ -15,7 +15,7 @@ export async function Draw_Equipment(items) {
 
     for (let i = 0; i < items.length; i++) {
         let item = await Draw_Equipment_Icons(items[i], i, 1, 1, 2.5)        
-        Set_Send_On_Loot_Click_Listener(item, '1', i);   //1 means inventory panel
+        Set_Send_On_Loot_Click_Listener(item, '2', i);   //1 means inventory panel
     }
 }
 
