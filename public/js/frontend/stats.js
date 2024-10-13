@@ -65,7 +65,7 @@ export function Render_Target_Stats() {
     //display rect 
     Clear_Target();
 
-    targetStatsDisplay = []
+    targetStatsDisplay.length = 0;
     let x = Get_Right_Panel_Origin_x() + 1.3;
     let y = Get_Right_Panel_Origin_y()
     Load_Target_Image(x - 1, y + 3, targetStats.pic)        

@@ -48,7 +48,7 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     let squareSize = w * cellSize;
     
     if (num === 0) {
-        equipment = [];
+        equipment.length = 0;
     }
     
     const equipmentIcon = await PIXI.Assets.load(iconPath);
@@ -69,7 +69,7 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     let squareSize = w * cellSize;
     
     if (num === 0) {
-        inventory = [];
+        inventory.length = 0;
     }
     
     const inventoryIcon = await PIXI.Assets.load(iconPath);
@@ -83,7 +83,7 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
 
     if (num === 0) {
-        loot = [];
+        loot.length = 0;
     }
     
     const lootIcon = await PIXI.Assets.load(iconPath);

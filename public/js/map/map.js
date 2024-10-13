@@ -184,8 +184,8 @@ export function Make_Map(serverMap, visionWidth) {
     //parse the map and pull out the characters and replace with spaces
     //create a sprite at the location of the space that is clickable
     //query the server using the x and y of the sprite to get the sprite data
-    objects = [];
-    objectDisplay = [];
+    objects.length = 0;;
+    objectDisplay.length = 0;;
     for (let i = 0; i < serverMap.length; i++) {
         if (serverMap[i] == "#") {
             objects.push([i, "˛"]); // save the location of the enemy
