@@ -67,6 +67,7 @@ namespace Send {
         Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, stoi(msg.substr(2)));
       }
       else if (type == "1") {
+        std::cout << "interacting with inventory at index: " << msg.substr(2) << std::endl;
         //interact with inventory
       }
 
