@@ -89,13 +89,13 @@ export function Map(data) {
     }    
     const endLoot = 8 + (numItems * 3);
 
-    const numInventory = data.substring(endLoot, endLoot + 1);
+    const numInventory = data.substring(endLoot, endLoot + 2);
     inventory = [];
-    if (numInventory > "0") {
+    if (numInventory > 0) {
         console.log("numInventory: ", numInventory);
         inventory = Query_Invetory(numItems, data);
     }    
-    const endInventory = (endLoot + 1) + (numInventory * 3);
+    const endInventory = (endLoot + 2) + (numInventory * 3);
 
 
     serverMap = data.substring(endInventory);
