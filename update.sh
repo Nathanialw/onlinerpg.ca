@@ -6,7 +6,7 @@ git pull
 #sudo service rpgwebserver restart
 #sudo service rpgwebserver status
 
-chmod +x /var/www/onlinerpg.ca/appserver/cmake-build-minsizerel/BrowserRPG
+chmod +x /var/www/onlinerpg.ca/appserver/release/BrowserRPG
 #sudo service rpgserver restart
 #sudo service rpgserver status
 # sudo service rpgserver restart
