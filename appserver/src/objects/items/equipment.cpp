@@ -44,7 +44,7 @@ namespace Equipment {
 
     auto slot = DB::Query("equipSlot", "Items", "uID", "1");; //retrieve slotName using itemID from the db
     std::cout << "equip slot: " << slot << std::endl;
-    auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", "slot"); //retrieve slotNum using slotName from the db
+    auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
     std::cout << "equip slot num: " << slotNum << std::endl;
     equipment[stoi(slotNum)] = inventory[(int)Items::BagType::Items][index];
     std::cout << "equipment slot: " << equipment[stoi(slotNum)] << std::endl;
