@@ -50,16 +50,13 @@ namespace Loot {
       }
     }
 
-    // remove  from loot array
-    inventory[Items::BagType::Items][index] = loot[index];
+    // add item to inventory array
+    inventory[Items::BagType::Items][inventoryIndex] = itemID;
     //remove from loot array and resize
     for (int i = index; i < loot.size() - 1; ++i) {
       loot[i] = loot[i + 1];
     }
     loot[loot.size() - 1] = 0; // Set the last element to 0
-
-
-    // add itemID to inventory array
 
     // return the index of the inventory to update and the index of the item in the db
     std::string inventoryStr = Utils::Prepend_Zero_By_Digits(inventoryIndex, 2) + Utils::Prepend_Zero_By_Digits(itemID, 3);
