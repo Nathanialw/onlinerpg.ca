@@ -12,7 +12,8 @@ namespace DB {
 sqlite3 *db;
 
 void Init() {
-  int rc = sqlite3_open("db/data.db", &db);
+  const char *db_filepath = "db/data.db";
+  int rc = sqlite3_open(db_filepath, &db);
   if (rc) {
     std::cerr << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
     sqlite3_close(db);
