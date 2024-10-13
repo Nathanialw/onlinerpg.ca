@@ -8,12 +8,13 @@ let chat;
 let menu;
 let tabs;
 let invTabs;
-let inventory;
+let inventoryUI;
 let lootUI;
 let target;
 let targetImg;
 let playerImg;
 let loot = [];
+let inventory = [];
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
@@ -28,14 +29,28 @@ async function Init_Graphics() {
     menu = new PIXI.Sprite(menuTexture);
     tabs = new PIXI.Sprite(menuTexture);
     invTabs = new PIXI.Sprite(menuTexture);
-    inventory = new PIXI.Sprite(inventoryTexture);
+    inventoryUI = new PIXI.Sprite(inventoryTexture);
     lootUI = new PIXI.Sprite(lootUITexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
 }
 
-export async function Draw_Icons(iconPath, num, xOffset, yOffset, w) {
+export async function Draw_Icons(iconPath, num, xOffset, yOffset, w) {    
+    let x = 0;
+    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
     
+
+    if (num === 0) {
+        inventory = [];
+    }
+    
+    const inventoryIcon = await PIXI.Assets.load(iconPath);
+    inventory.push(new PIXI.Sprite(inventoryIcon));
+    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
+    return inventory[num];
+}
+
+export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {    
     let x = (leftPanelWidth / 2) * cellSize
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
 
@@ -334,7 +349,7 @@ export function Draw_UI_Phone() {
     //right
     // Draw_Panel(Get_Right_Panel_Origin_x() * cellSize, Get_Right_Panel_Origin_y() * cellSize, rightPanelWidth * cellSize, rightPanelHeight * cellSize, black);
     //left
-    // Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, inventory);
+    // Draw_Sprite(0, 0, leftPanelWidth * cellSize, leftPanelHeight * cellSize, inventoryUI);
     //bottom
     // Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);
     //viewport
@@ -357,7 +372,7 @@ export function Draw_UI() {
     //tabs
     Draw_Sprite(0, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, invTabs);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventory);
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventoryUI);
     //loot
     Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, lootUI);
     

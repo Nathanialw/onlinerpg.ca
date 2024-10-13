@@ -5,6 +5,7 @@ import { characterInfo, Species} from '../units/unitdef.js';
 import { Render_Target_Stats } from './stats.js';   
 import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
+import { Draw_Invetory, Query_Invetory } from '../objects/inventory.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -92,7 +93,7 @@ export function Map(data) {
     inventory = [];
     if (numInventory > "0") {
         console.log("numInventory: ", numInventory);
-        // inventory = Query_Loot(numItems, data);
+        inventory = Query_Invetory(numItems, data);
     }    
     const endInventory = (endLoot + 1) + (numInventory * 3);
 
@@ -130,6 +131,7 @@ export function Update_Screen() {
     Draw_Map(visionWidth, direction);
     
     Draw_Loot(items);
+    Draw_Invetory(inventory);
 
     // Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)
