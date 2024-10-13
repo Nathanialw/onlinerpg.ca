@@ -218,8 +218,10 @@ namespace Update {
   }
 
   std::string Update_Units(Game::Instance &game, const char *direction) {
-    if (*direction == ' ')
-      return "    10";
+    if (*direction == ' ') {
+      std::string items = Loot::Query_Loot(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]);
+      return "    10" + items;
+    }
 
     auto action = Update_Player(game, direction);
     if (action[0] == 'c')
