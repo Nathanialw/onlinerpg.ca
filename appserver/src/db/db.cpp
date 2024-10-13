@@ -3,16 +3,34 @@
 //
 
 #include "db.h"
+#include "iostream"
 #include "sqlite3.h"
 #include "string"
-#include "iostream"
+#include <fstream>
+#include <iostream>
+#include <limits.h>
+#include <unistd.h>
 
 namespace DB {
-//create db
 sqlite3 *db;
 
 void Init() {
-  const char *db_filepath = "/var/www/onlinerpg.ca/appserver/db/data.db";
+  char cwd[PATH_MAX];
+  if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+    std::cout << "Current working directory: " << cwd << std::endl;
+  } else {
+    std::cerr << "getcwd() error" << std::endl;
+  }
+
+  const char *db_filepath = "db/data.db";
+
+  // Check if the file exists
+  std::ifstream file(db_filepath);
+  if (!file) {
+    std::cerr << "Database file not found: " << db_filepath << std::endl;
+    return;
+  }
+
   int rc = sqlite3_open(db_filepath, &db);
   if (rc) {
     std::cerr << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
@@ -22,6 +40,7 @@ void Init() {
     std::cout << "Opened database successfully" << std::endl;
   }
 }
+
 
 std::string Query(const int &itemIB) {
   if (!db) {
