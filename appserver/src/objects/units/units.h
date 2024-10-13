@@ -117,6 +117,8 @@ namespace Units {
     Alignment alignment = Alignment::NEUTRAL;
   };
 
+
+
   struct Unit {
     Stats stats;
     std::string potrait = "001";
@@ -143,10 +145,7 @@ namespace Units {
     std::array<int, 15> equipment{};
     //items are just an ID that is in the db
       //db contains the damage, AC, icon path, description, etc
-    std::array<int, 16> bag{};      //items
-    std::array<int, 16> belt{};     //potions
-    std::array<int, 16> tome{};     //scrolls
-    std::array<int, 16> keyring{};  //keys
+    std::array<std::array<int, 16>, 4> inventory{}; //items
 
     int copper = 0;
     int silver = 0;

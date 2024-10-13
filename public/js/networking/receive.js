@@ -17,12 +17,47 @@ function Reconnect(data) {
     OnReconnect();
 }
 
+function Update_Inventory(data) {
+    console.log("update inventory: ", data)
+
+    //redraw loot panel
+    //update inventory
+}
+
+function Update_Loot(data) {
+    
+}
+
+function Update_Equipment(data) {
+}
+
+function Update_Minimap(data) {
+
+}
+
+function Update_Merchant_Panel(data) {
+
+}
+
+function Update_Building_Panel(data) {
+
+}
+
+function Update_Spellbook(data) {
+
+}
+
+function Update_(data) {
+
+}
+
+
 
 
 export let Update = {
     0: Message,
     1: Map,
-    // 2: Populate_Map,
+    2: Update_Inventory,
     3: UpdatePlayerInfo,
     4: Reconnect,
     5: Get_Target_Stats_From_Server,

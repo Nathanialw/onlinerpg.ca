@@ -11,6 +11,7 @@
 #include "utils.h"
 #include "pathing.h"
 #include "spawn.h"
+#include "loot.h"
 
 namespace Update {
 
@@ -201,25 +202,12 @@ namespace Update {
 
     //generate items
     if (melee.isDead) {
-      for ( auto &item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
-        //random between 1 and 2
-        item = rand() % 2 + 1;
-      }
-      std::cout << "items dropped" << std::endl;
+      Loot::Generate_Loot(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]);
     }
 
 //    query for items
     if (game.items[game.Get_Player().level][game.Get_Player().location].find(game.Get_Player().position) != game.items[game.Get_Player().level][game.Get_Player().location].end()) {
-      items = "";
-      for (auto item : game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]) {
-        std::cout << "item found: " << item << std::endl;
-        items += Utils::Prepend_Zero_3Digit(item);
-        std::cout << "item found: " << items << std::endl;
-      }
-      std::cout << "items found: " << game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size() << std::endl;
-      std::cout << "items found: " << items << std::endl;
-      items = std::to_string(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position].size()) + items;
-      std::cout << "items found and prepended with number of: " << items << std::endl;
+      items = Loot::Query_Loot(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]);
     }
 
     if (melee.isDead) {

@@ -1,0 +1,52 @@
+//
+// Created by desktop on 10/12/24.
+//
+#include "loot.h"
+#include "components.h"
+#include "iostream"
+#include "utils.h"
+#include "items.h"
+
+namespace Loot {
+
+  void Generate_Loot(std::array<uint8_t , 4> &items) {
+    uint8_t numItems = rand() % 4 + 1;
+    for (int i = 0; i < numItems; ++i) {
+      //random between 1 and 2 as there are only 2 items currently
+      uint8_t itemID = rand() % 2 + 1;
+      items[i] = itemID;
+    }
+    std::cout << "items dropped" << std::endl;
+  }
+
+  std::string Query_Loot(std::array<uint8_t , 4> &items) {
+    std::string itemsStr;
+    for (auto item : items) {
+      if (item == 0)
+        break;
+      itemsStr += Utils::Prepend_Zero_3Digit(item);
+    }
+    itemsStr = std::to_string(items.size()) + itemsStr;
+    std::cout << "items found and prepended with number of: " << itemsStr << std::endl;
+    return itemsStr;
+  }
+
+  std::string Pick_Up_Item(std::array<int , 4> &loot, std::array<std::array<int, 16>, 4> inventory, uint8_t index) {
+    int itemID;
+    int inventoryIndex;
+    // remove  from loot array
+    inventory[Items::BagType::Items][index] = loot[index];
+    //remove from loot array and resize
+    for (int i = index; i < loot.size() - 1; ++i) {
+      loot[i] = loot[i + 1];
+    }
+    loot[loot.size() - 1] = 0; // Set the last element to 0
+
+
+    // add itemID to inventory array
+
+    // return the index of the inventory to update and the index of the item in the db
+    std::string inventoryStr = Utils::Prepend_Zero_By_Digits(inventoryIndex, 2) + Utils::Prepend_Zero_By_Digits(itemID, 3);
+    return inventoryStr;
+  }
+}

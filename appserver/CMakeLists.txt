@@ -14,6 +14,7 @@ include_directories(src/objects/units)
 include_directories(src/objects/actions)
 include_directories(src/objects/collision)
 include_directories(src/objects/movement)
+include_directories(src/objects/items)
 include_directories(src/objects/movement/pathing)
 include_directories(src/objects/units/class)
 include_directories(src/objects/units/species)
@@ -44,6 +45,8 @@ add_executable(BrowserRPG
         src/objects/units/species/goblin.cpp
         src/objects/units/spawn.cpp
 
+        src/objects/items/loot.cpp
+
         src/objects/actions/attack.cpp
         src/objects/actions/death.cpp
 
@@ -52,4 +55,6 @@ add_executable(BrowserRPG
         src/objects/collision/collision.cpp
 
         src/procgen/procgen.cpp
+        src/objects/items/items.cpp
+        src/objects/items/items.h
 )

@@ -55,6 +55,9 @@ namespace Send {
 
     else if (msg[0] == '2') {  // loot item
       std::cout << "Looting item at: " << msg.substr(1) << std::endl;
+
+      response = "2";
+      print_server.send(hdl, response, websocketpp::frame::opcode::text);
     }
 
     else if (msg[0] == '3') { // send map
