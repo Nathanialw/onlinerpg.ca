@@ -3,34 +3,16 @@
 //
 
 #include "db.h"
-#include "iostream"
 #include "sqlite3.h"
 #include "string"
-#include <fstream>
-#include <iostream>
-#include <limits.h>
-#include <unistd.h>
+#include "iostream"
 
 namespace DB {
+//create db
 sqlite3 *db;
 
 void Init() {
-  char cwd[PATH_MAX];
-  if (getcwd(cwd, sizeof(cwd)) != nullptr) {
-    std::cout << "Current working directory: " << cwd << std::endl;
-  } else {
-    std::cerr << "getcwd() error" << std::endl;
-  }
-
   const char *db_filepath = "db/data.db";
-
-  // Check if the file exists
-  std::ifstream file(db_filepath);
-  if (!file) {
-    std::cerr << "Database file not found: " << db_filepath << std::endl;
-    return;
-  }
-
   int rc = sqlite3_open(db_filepath, &db);
   if (rc) {
     std::cerr << "Can't open database: " << sqlite3_errmsg(db) << std::endl;
@@ -41,14 +23,13 @@ void Init() {
   }
 }
 
-
-std::string Query(const int &itemIB) {
+std::string Query(const std::string &retrieve, const std::string &table, const std::string &where, const std::string &equals) {
   if (!db) {
     std::cerr << "Database not initialized" << std::endl;
     return "";
   }
-
-  std::string query = "SELECT equipSlot FROM Items WHERE uID = " + std::to_string(itemIB);
+  std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + equals;
+//  std::string query = "SELECT equipSlot FROM Items WHERE uID = " + std::to_string(itemIB);
   std::cout << query << std::endl;
 
   sqlite3_stmt *stmt;

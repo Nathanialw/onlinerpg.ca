@@ -8,7 +8,7 @@
 #include "string"
 
 namespace DB {
-  std::string Query(const int &itemIB);
+  std::string Query(const std::string &retrieve, const std::string &table, const std::string &where, const std::string &equals);
   void Init();
 };
 
