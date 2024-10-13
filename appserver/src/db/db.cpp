@@ -28,9 +28,7 @@ std::string Query(const std::string &retrieve, const std::string &table, const s
     std::cerr << "Database not initialized" << std::endl;
     return "";
   }
-  std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + equals;
-//  std::string query = "SELECT equipSlot FROM Items WHERE uID = " + std::to_string(itemIB);
-  std::cout << query << std::endl;
+  std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = '" + equals + "'";  std::cout << query << std::endl;
 
   sqlite3_stmt *stmt;
   std::cout << "querying" << std::endl;
