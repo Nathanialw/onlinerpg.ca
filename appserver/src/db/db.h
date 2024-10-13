@@ -5,9 +5,11 @@
 
 #ifndef BROWSERRPG_DB_H
 #define BROWSERRPG_DB_H
+#include "string"
 
-namespace db {
-
+namespace DB {
+  std::string Query(const int &itemIB);
+  void Init();
 };
 
 #endif // BROWSERRPG_DB_H

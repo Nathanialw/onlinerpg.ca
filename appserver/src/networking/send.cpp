@@ -15,6 +15,7 @@
 #include "player.h"
 #include "loot.h"
 #include "inventory.h"
+#include "equipment.h"
 
 namespace Send {
 
@@ -68,6 +69,7 @@ namespace Send {
       }
       else if (type == "1") {
         std::cout << "interacting with inventory at index: " << msg.substr(2) << std::endl;
+        Equipment::Equip_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(msg.substr(2)));
         //interact with inventory
       }
 
