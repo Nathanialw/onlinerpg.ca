@@ -46,7 +46,7 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     
     const inventoryIcon = await PIXI.Assets.load(iconPath);
     inventory.push(new PIXI.Sprite(inventoryIcon));
-    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
+    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, inventory[num]);
     return inventory[num];
 }
 
