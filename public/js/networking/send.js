@@ -1,5 +1,5 @@
 'use strict'
-
+import { Send_Web_Socket_Message } from './socket.js';
 
 
 export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
