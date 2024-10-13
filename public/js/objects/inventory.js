@@ -23,8 +23,9 @@ export function Query_Inventory(numItems, data, start) {
     let items = [];
     for (let i = 0; i < numItems; i++) {
         //isert teh path
-        let invIndex = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);
+        let invIndex = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
         let itemID = str.substring(2, 5);
+        console.log("invIndex: ", invIndex, " itemID: ", itemID);
         items.push(Get_Icon_Path(parseInt(itemID)));
     }
 

@@ -95,7 +95,7 @@ export function Map(data) {
         console.log("numInventory: ", numInventory);
         inventory = Query_Inventory(numItems, data, endLoot + 2);
     }    
-    const endInventory = (endLoot + 2) + (numInventory * 3);
+    const endInventory = (endLoot + 2) + (numInventory * 5);
  
 
     serverMap = data.substring(endInventory);
