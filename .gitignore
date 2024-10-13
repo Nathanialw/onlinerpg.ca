@@ -6,14 +6,14 @@ package.json
 appserver/cmake-build-debug/*
 appserver/cmake-build-release/*
 appserver/cmake-build-relwithdebinfo/*
-appserver/cmake-build-minsizerel/build.ninja
-appserver/cmake-build-minsizerel/CMakeCache.txt
-appserver/cmake-build-minsizerel/cmake_install.cmake
-appserver/cmake-build-minsizerel/.ninja_log
-appserver/cmake-build-minsizerel/.ninja_deps
-appserver/cmake-build-minsizerel/.cmake/*
-appserver/cmake-build-minsizerel/Testing/*
-appserver/cmake-build-minsizerel/CMakeFiles/*
+appserver/release/build.ninja
+appserver/release/CMakeCache.txt
+appserver/release/cmake_install.cmake
+appserver/release/.ninja_log
+appserver/release/.ninja_deps
+appserver/release/.cmake/*
+appserver/release/Testing/*
+appserver/release/CMakeFiles/*
 appserver/.idea
 
 
