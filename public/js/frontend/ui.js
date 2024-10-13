@@ -75,7 +75,7 @@ let loot = [];
 let inventory = [];
 let equipment = [];
 
-function aa(numItems, start, data, Query, size, items) {
+function Parse(numItems, start, data, Query, size, items) {
     console.log("numItems: ", numItems);
     items = [];
     if (numItems > "0") {
@@ -92,31 +92,10 @@ export function Map(data) {
     isDead = data.substring(6,7);
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
-    
-    // const numItems = data.substring(7,8);
-    // items = [];
-    // if (numItems > "0") {
-    //     items = Query_Loot(numItems, data);
-    // }    
-    // const endLoot = 8 + (numItems * 3);
 
-    const endLoot = aa(data.substring(7,8), 8, data, Query_Loot, 3, loot);
-    const endInventory = aa(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5, inventory);
-    const endEquipment = aa(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
-
-    // const numInventory = data.substring(endLoot, endLoot + 2);
-    // inventory = [];
-    // if (numInventory > 0) {
-    //     inventory = Query_Inventory(numInventory, data, endLoot + 2);
-    // }    
-    // const endInventory = (endLoot + 2) + (numInventory * 5);
-
-    // const numEquipment = data.substring(endInventory, endInventory + 2);
-    // equipment = [];
-    // if (numEquipment > 0) {
-    //     equipment = Query_Equipment(numEquipment, data, endInventory + 2);
-    // }    
-    // const endEquipment = (endInventory + 2) + (numEquipment * 5);
+    const endLoot = Parse(data.substring(7,8), 8, data, Query_Loot, 3, loot);
+    const endInventory = Parse(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5, inventory);
+    const endEquipment = Parse(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
  
     serverMap = data.substring(endEquipment);
 
