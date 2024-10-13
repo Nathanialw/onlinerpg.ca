@@ -42,7 +42,7 @@ namespace Equipment {
 //    }
     std::cout << "itemID: " << itemID << std::endl;
 
-    auto slot = DB::Query("equipSlot", "Items", "uID", "1");; //retrieve slotName using itemID from the db
+    auto slot = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve slotName using itemID from the db
     std::cout << "equip slot: " << slot << std::endl;
     auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
     std::cout << "equip slot num: " << slotNum << std::endl;
