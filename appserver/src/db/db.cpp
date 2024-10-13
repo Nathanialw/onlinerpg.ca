@@ -29,7 +29,7 @@ namespace DB {
       sqlite3_step(stmt);
       std::cout << "step success" << std::endl;
 
-      std::string result = (char *) sqlite3_column_text(stmt, 0);
+      std::string result = std::string(reinterpret_cast<const char *>(sqlite3_column_text(stmt, 0)));
       std::cout << "result: " << result << std::endl;
 
       sqlite3_finalize(stmt);
