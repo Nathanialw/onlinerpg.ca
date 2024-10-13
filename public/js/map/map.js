@@ -2,7 +2,7 @@
 
 import {Create_Object_Sprite, Create_Map_Line, Create_MiniMap_Line, Create_MiniMap_Line_Phone, Draw_Vision_Background} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
-import {Send_Web_Socket_Message} from  '../networking/socket.js';
+import {Set_Send_On_Map_Click_Listener} from '../networking/send.js';
 
 let mapDisplay = [];
 let mapString = "";
@@ -221,8 +221,7 @@ export function Make_Map(serverMap, visionWidth) {
         if  (y < 10) {
             y = "0" + y;
         }
-        let message = "5" + x + y;
-        objectDisplay[i].on('pointerdown', (event) => { Send_Web_Socket_Message(message); console.log("Click Message sent: ", message); }); //query the server for the object data
+        Set_Send_On_Map_Click_Listener(objectDisplay, x, y);
     }
     //draw the units on top of the map
 }

@@ -1,6 +1,7 @@
 'use strict'
-import { Draw_Icons } from '../graphics/graphics.js';
+import { Draw_Icons, loot } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
+import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
 //when I move on to a new tile
 //check if there is loot
@@ -14,6 +15,7 @@ export async function Draw_Loot(items) {
 
     for (let i = 0; i < items.length; i++) {
         await Draw_Icons(items[i], i, 1, 2.5, 2.5)
+        Set_Send_On_Loot_Click_Listener(loot[i], i);   
     }
 }
 
@@ -22,6 +24,7 @@ export function Query_Loot(numItems, data) {
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         items.push(Get_Icon_Path(parseInt(data.substring(8 + (i * 3), 8 + ((i + 1) * 3)), 10)));
+        
     }
 
     return items;

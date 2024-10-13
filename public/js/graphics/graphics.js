@@ -13,7 +13,7 @@ let lootUI;
 let target;
 let targetImg;
 let playerImg;
-let loot = [];
+export let loot = [];
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
@@ -35,6 +35,7 @@ async function Init_Graphics() {
 }
 
 export async function Draw_Icons(iconPath, num, xOffset, yOffset, w) {
+    
     let x = (leftPanelWidth / 2) * cellSize
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
 
@@ -45,7 +46,6 @@ export async function Draw_Icons(iconPath, num, xOffset, yOffset, w) {
     const lootIcon = await PIXI.Assets.load(iconPath);
     loot.push(new PIXI.Sprite(lootIcon));
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
-
     // Draw_Sprite((x + xOffset) * cellSize, (y + yOffset) * cellSize + (h * num * cellSize), w * cellSize, h * cellSize, loot[num]);
 
 }

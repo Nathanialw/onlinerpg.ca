@@ -53,8 +53,8 @@ namespace Send {
       Update(hdl, msg, print_server, game);
     }
 
-    else if (msg[0] == '2') { //unused
-      //
+    else if (msg[0] == '2') {  // loot item
+      std::cout << "Looting item at: " << msg.substr(1) << std::endl;
     }
 
     else if (msg[0] == '3') { // send map
@@ -67,7 +67,7 @@ namespace Send {
       Update(hdl, response, print_server, game);
     }
 
-    else if (msg[0] == '5') { // click event
+    else if (msg[0] == '5') { // query map object
       response.append(msg.substr(1, 4));
       response = "5" + Species::Get_Unit_Data_As_string(game, response);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
