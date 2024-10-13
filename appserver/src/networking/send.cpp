@@ -60,10 +60,10 @@ namespace Send {
     else if (msg[0] == '2') {  // loot item
       std::cout << "Looting item at index: " << msg.substr(1) << std::endl;
 //      response = "2";
-      if (msg.substr(1) == "0") {
+      if (msg.substr(1,2) == "0") {
         Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, stoi(msg.substr(2)));
       }
-      else if (msg.substr(1) == "1") {
+      else if (msg.substr(1,2) == "1") {
         //interact with inventory
       }
 

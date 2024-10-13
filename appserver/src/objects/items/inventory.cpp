@@ -27,4 +27,14 @@ namespace Inventory {
     return Utils::Prepend_Zero_By_Digits(numItems, 2) + inventoryStr;
   }
 
+  std::string Get_Inventory(std::array<std::array<int, 16>, 4> &inventory) {
+    std::string itemsStr;
+    auto items = inventory[Items::BagType::Items];
+    for (const int &item : items) {
+      itemsStr += Utils::Prepend_Zero_By_Digits(item, 3);
+    }
+    std::cout << "inventories sent: " << itemsStr << std::endl;
+    return itemsStr;
+  }
+
 };

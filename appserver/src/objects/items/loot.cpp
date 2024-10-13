@@ -42,6 +42,7 @@ namespace Loot {
     for (int i = 0; i < inventory[Items::BagType::Items].size(); ++i) {
       if (inventory[Items::BagType::Items][i] == 0) {
             inventoryIndex = i;
+            std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
             break;
       }
       if (i == inventory[Items::BagType::Items].size() - 1) {
