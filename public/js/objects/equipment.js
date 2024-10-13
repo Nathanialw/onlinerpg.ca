@@ -24,9 +24,9 @@ export function Query_Equipment(numItems, data, start) {
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
-        let invIndex = str.substring(0, 2);
+        let equipmentIndex = str.substring(0, 2);
         let itemID = str.substring(2, 5);
-        console.log("invIndex: ", invIndex, " itemID: ", itemID);
+        console.log("invIndex: ", equipmentIndex, " itemID: ", itemID);
         items.push(Get_Icon_Path(parseInt(itemID)));
     }
 

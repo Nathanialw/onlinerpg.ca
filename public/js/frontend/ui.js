@@ -70,16 +70,16 @@ let damage;
 let isDead;
 let serverMap;
 // let numItems;
-let items = [];
+let loot = [];
 // let numInventory;
 let inventory = [];
 let equipment = [];
 
-function aa(numItems, start, data, Query, size) {
+function aa(numItems, start, data, Query, size, items) {
     console.log("numItems: ", numItems);
     items = [];
     if (numItems > "0") {
-        items = Query(numItems, data);
+        items = Query(numItems, data, start);
     }    
     return start + (numItems * size); 
 }
@@ -100,9 +100,9 @@ export function Map(data) {
     // }    
     // const endLoot = 8 + (numItems * 3);
 
-    const endLoot = aa(data.substring(7,8), 8, data, Query_Loot, 3);
-    const endInventory = aa(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5);
-    const endEquipment = aa(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5);
+    const endLoot = aa(data.substring(7,8), 8, data, Query_Loot, 3, loot);
+    const endInventory = aa(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5, inventory);
+    const endEquipment = aa(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
 
     // const numInventory = data.substring(endLoot, endLoot + 2);
     // inventory = [];
