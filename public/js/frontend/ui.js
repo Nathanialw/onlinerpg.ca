@@ -81,9 +81,7 @@ function Parse(numItems, start, data, Query, size, items) {
     if (numItems > "0") {
         items.push(...Query(numItems, data, start));
     }    
-    for (let i = 0; i < numItems; i++) {
-        console.log("item: ", items[i]);
-    }
+    
     return start + (numItems * size); 
 }
 
@@ -132,8 +130,17 @@ export function Update_Screen() {
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
     
+    for (let i = 0; i < loot.length; i++) {
+        console.log("item: ", loot[i]);
+    }
     Draw_Loot(loot);
+    for (let i = 0; i < inventory.length; i++) {
+        console.log("inventory: ", inventory[i]);
+    }
     Draw_Inventory(inventory);
+    for (let i = 0; i < equipment.length; i++) {
+        console.log("equipment: ", equipment[i]);
+    }
     Draw_Equipment(equipment);
 
     // Display_Damage_Taken(species, damageTaken);

@@ -10,7 +10,7 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //display the icon in the loot box
 
 export async function Draw_Equipment(items) {
-    console.log('Drawing Inventory');
+    console.log('Drawing Equipment');
 
 
     for (let i = 0; i < items.length; i++) {
