@@ -213,14 +213,6 @@ export function Make_Map(serverMap, visionWidth) {
         let x = objects[i][0] % visionWidth;
         let y = Math.floor(objects[i][0] / visionWidth);
         objectDisplay[i] = Create_Object_Sprite(objects[i][1], x, y, visionWidth);
-        objectDisplay[i].eventMode = 'static';
-        objectDisplay[i].cursor = 'pointer';
-        if  (x < 10) {
-            x = "0" + x;
-        }
-        if  (y < 10) {
-            y = "0" + y;
-        }
         Set_Send_On_Map_Click_Listener(objectDisplay[i], x, y);
     }
     //draw the units on top of the map

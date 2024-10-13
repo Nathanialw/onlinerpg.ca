@@ -14,7 +14,7 @@ export async function Draw_Loot(items) {
 
 
     for (let i = 0; i < items.length; i++) {
-        let item = await Draw_Icons(items[i], i, 1, 2.5, 2.5)
+        let item = await Draw_Icons(items[i], i, 1, 2.5, 2.5)        
         Set_Send_On_Loot_Click_Listener(item, i);   
     }
 }
