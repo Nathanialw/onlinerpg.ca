@@ -221,7 +221,9 @@ export function Make_Map(serverMap, visionWidth) {
         if  (y < 10) {
             y = "0" + y;
         }
-        Set_Send_On_Map_Click_Listener(objectDisplay[i], x, y);
+        // Set_Send_On_Map_Click_Listener(objectDisplay[i], x, y);
+        let message = "5" + x + y;
+        objectDisplay[i].on('pointerdown', (event) => { Send_Web_Socket_Message(message); console.log("Click Message sent: ", message); }); //query the server for the object data
     }
     //draw the units on top of the map
 }
