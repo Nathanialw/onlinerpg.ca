@@ -12,7 +12,7 @@ namespace DB {
 sqlite3 *db;
 
 void Init() {
-  const char *db_filepath = "db/data.db";
+  const char *db_filepath = "/var/www/onlinerpg.ca/appserver/db/data.db";
   int rc = sqlite3_open(db_filepath, &db);
   if (rc) {
     std::cerr << "Can't open database: " << sqlite3_errmsg(db) << std::endl;

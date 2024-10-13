@@ -26,8 +26,6 @@ include_directories(src/objects/units/species)
 
 set(SOURCES
         libs/sqlite3/sqlite3.c
-#        libs/websocketpp/server.hpp
-#        libs/websocketpp/config/asio_no_tls.hpp
 
         src/db/db.cpp
         src/server/main.cpp
