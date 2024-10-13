@@ -129,7 +129,7 @@ export function Update_Screen() {
     Make_Map(serverMap, visionWidth);
     Draw_Map(visionWidth, direction);
     
-    Draw_Loot(items);
+    Draw_Loot(loot);
     Draw_Inventory(inventory);
     Draw_Equipment(equipment);
 
