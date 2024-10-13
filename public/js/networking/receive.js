@@ -24,8 +24,9 @@ function Update_Inventory(data) {
     }
     console.log("update inventory: ", data)
 
+    //zero out inventory
+    //redraw inventory
     //redraw loot panel
-    //update inventory
 }
 
 function Update_Loot(data) {

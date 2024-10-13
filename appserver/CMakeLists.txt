@@ -46,6 +46,8 @@ add_executable(BrowserRPG
         src/objects/units/spawn.cpp
 
         src/objects/items/loot.cpp
+        src/objects/items/items.cpp
+        src/objects/items/inventory.cpp
 
         src/objects/actions/attack.cpp
         src/objects/actions/death.cpp
@@ -55,6 +57,4 @@ add_executable(BrowserRPG
         src/objects/collision/collision.cpp
 
         src/procgen/procgen.cpp
-        src/objects/items/items.cpp
-        src/objects/items/items.h
 )

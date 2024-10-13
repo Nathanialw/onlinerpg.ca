@@ -166,13 +166,13 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
 }
 
 export function Draw_Sprite(x, y, w, h, sprite) {
-    console.log('Draw_Sprite');
+    // console.log('Draw_Sprite');
     sprite.x = x;
     sprite.y = y;
     sprite.width = w;
     sprite.height = h;
     app.stage.addChild(sprite);
-    console.log("x" + x + " y" + y + " w" + w + " h" + h, sprite);
+    // console.log("x" + x + " y" + y + " w" + w + " h" + h, sprite);
 
     sprite.texture.baseTexture.on('error', (error) => {
         console.error('Error loading texture:', error);

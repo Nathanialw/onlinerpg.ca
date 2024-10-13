@@ -14,6 +14,7 @@
 #include "game.h"
 #include "player.h"
 #include "loot.h"
+#include "inventory.h"
 
 namespace Send {
 
@@ -57,7 +58,8 @@ namespace Send {
     else if (msg[0] == '2') {  // loot item
       std::cout << "Looting item at index: " << msg.substr(1) << std::endl;
       response = "2";
-      auto updateInv = Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, stoi(msg.substr(1)));
+      Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, stoi(msg.substr(1)));
+      auto updateInv = Inventory::Update_Inventory(game.Get_Player().inventory);
       response.append(updateInv);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
       if (updateInv == " ")
