@@ -36,8 +36,20 @@ namespace Loot {
   }
 
   std::string Pick_Up_Item(std::array<uint8_t , 4> &loot, std::array<std::array<int, 16>, 4> &inventory, uint8_t index) {
-    int itemID;
+    int itemID = loot[index];
     int inventoryIndex;
+    //search for first empty slot in inventory
+    for (int i = 0; i < inventory[Items::BagType::Items].size(); ++i) {
+      if (inventory[Items::BagType::Items][i] == 0) {
+            inventoryIndex = i;
+            break;
+      }
+      if (i == inventory[Items::BagType::Items].size() - 1) {
+        std::cout << "inventory full" << std::endl;
+        return " ";
+      }
+    }
+
     // remove  from loot array
     inventory[Items::BagType::Items][index] = loot[index];
     //remove from loot array and resize

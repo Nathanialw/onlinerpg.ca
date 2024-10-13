@@ -18,6 +18,10 @@ function Reconnect(data) {
 }
 
 function Update_Inventory(data) {
+    if (data === " ") {
+        console.log("inventory is full")
+        return
+    }
     console.log("update inventory: ", data)
 
     //redraw loot panel
