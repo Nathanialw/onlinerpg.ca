@@ -19,11 +19,13 @@ export async function Draw_Invetory(items) {
     }
 }
 
-export function Query_Invetory(numItems, data) {
+export function Query_Invetory(numItems, data, start) {
     let items = [];
     for (let i = 0; i < numItems; i++) {
         //isert teh path
-        items.push(Get_Icon_Path(parseInt(data.substring(8 + (i * 3), 8 + ((i + 1) * 3)), 10)));
+        let invIndex = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);
+        let itemID = str.substring(2, 5);
+        items.push(Get_Icon_Path(parseInt(itemID)));
     }
 
     return items;

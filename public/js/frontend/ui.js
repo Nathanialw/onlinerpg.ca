@@ -5,7 +5,7 @@ import { characterInfo, Species} from '../units/unitdef.js';
 import { Render_Target_Stats } from './stats.js';   
 import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
-import { Draw_Invetory, Query_Invetory } from '../objects/inventory.js';
+import { Draw_Invetory, Query_Inventory } from '../objects/inventory.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -93,10 +93,10 @@ export function Map(data) {
     inventory = [];
     if (numInventory > 0) {
         console.log("numInventory: ", numInventory);
-        inventory = Query_Invetory(numItems, data);
+        inventory = Query_Inventory(numItems, data, endLoot + 2);
     }    
     const endInventory = (endLoot + 2) + (numInventory * 3);
-
+ 
 
     serverMap = data.substring(endInventory);
 
