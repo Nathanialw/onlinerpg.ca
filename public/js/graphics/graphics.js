@@ -42,8 +42,8 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     let row = Math.floor(num / 4);
     let column = num % 4;
     
-    let rowPosition = y + (row * (w * cellSize));
-    let columnPosition = x + (column * (w * cellSize));
+    let rowPosition = y + (row * (w * cellSize) + xOffset * cellSize);
+    let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
     let squareSize = w * cellSize;
     
     if (num === 0) {
