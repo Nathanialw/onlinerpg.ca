@@ -74,7 +74,7 @@ export function Get_Icon_Path(uID) {
     if (uID === 0) {
         let path = "assets/graphics/icons/PVG/Book1.png"
         console.error("default icon: ", path);
-        return "path"
+        return path
     }
 
     if (!db) {
