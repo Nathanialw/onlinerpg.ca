@@ -33,7 +33,7 @@ namespace Loot {
     return itemsStr;
   }
 
-  std::string Pick_Up_Item(std::array<int , 4> &loot, std::array<std::array<int, 16>, 4> inventory, uint8_t index) {
+  std::string Pick_Up_Item(std::array<uint8_t , 4> &loot, std::array<std::array<int, 16>, 4> &inventory, uint8_t index) {
     int itemID;
     int inventoryIndex;
     // remove  from loot array

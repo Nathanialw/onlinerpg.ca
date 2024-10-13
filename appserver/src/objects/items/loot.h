@@ -13,4 +13,5 @@
 namespace Loot {
   void Generate_Loot(std::array<uint8_t , 4> &items);
   std::string Query_Loot(std::array<uint8_t , 4> &items);
+  std::string Pick_Up_Item(std::array<uint8_t , 4> &loot, std::array<std::array<int, 16>, 4> &inventory, uint8_t index);
 }
