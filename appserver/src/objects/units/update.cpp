@@ -206,9 +206,7 @@ namespace Update {
     }
 
 //    query for items
-    if (game.items[game.Get_Player().level][game.Get_Player().location].find(game.Get_Player().position) != game.items[game.Get_Player().level][game.Get_Player().location].end()) {
-      items = Loot::Query_Loot(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]);
-    }
+    items = Loot::Query_Loot(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position]);
 
     if (melee.isDead) {
       std::cout << "goblin dead" << std::endl;
