@@ -62,7 +62,7 @@ namespace Send {
       print_server.send(hdl, response, websocketpp::frame::opcode::text);
       if (updateInv == " ")
         return -1;
-      std::string skip = " ";
+      std::string skip = "1 ";
       Update(hdl, skip, print_server, game);
     }
 
