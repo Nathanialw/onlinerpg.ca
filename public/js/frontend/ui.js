@@ -77,8 +77,8 @@ let equipment = [];
 
 function Parse(numItems, start, data, Query, size, items) {
     console.log("numItems: ", numItems);
-    items = [];
-    if (numItems > "0") {
+    items.length = 0; // Clear the array without reassigning it
+    if (numItems > 0) {
         items.push(...Query(numItems, data, start));
     }    
     
