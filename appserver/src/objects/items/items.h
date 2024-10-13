@@ -1,3 +1,4 @@
+#pragma once
 //
 // Created by desktop on 10/12/24.
 //
@@ -6,14 +7,30 @@
 #define BROWSERRPG_ITEMS_H
 
 namespace Items {
-  enum BagType {
+  enum class BagType {
     Items,
     Potions,
     Scrolls,
     Keys,
-    SIZE
+    SIZE,
   };
 
+  enum class ItemSlot {
+    Helmet,
+    amulet,
+    cloak,
+    chest,
+    bracers,
+    belt,
+    leggings,
+    boots,
+    ring,
+    trinket,
+    weaponMain,
+    weaponOffhand,
+    ranged,
+    SIZE,
+  };
 
 }
 

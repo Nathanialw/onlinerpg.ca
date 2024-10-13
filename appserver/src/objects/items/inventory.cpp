@@ -15,7 +15,7 @@ namespace Inventory {
     std::cout << "inventory updated" << std::endl;
     std::string inventoryStr;
     uint8_t numItems = 0;
-    auto items = inventory[Items::BagType::Items];
+    auto items = inventory[(int)Items::BagType::Items];
     for (int i = 0; i < items.size(); ++i) {
       if (items[i] == 0)
         break;
@@ -29,7 +29,7 @@ namespace Inventory {
 
   std::string Get_Inventory(std::array<std::array<int, 16>, 4> &inventory) {
     std::string itemsStr;
-    auto items = inventory[Items::BagType::Items];
+    auto items = inventory[(int)Items::BagType::Items];
     for (const int &item : items) {
       itemsStr += Utils::Prepend_Zero_By_Digits(item, 3);
     }

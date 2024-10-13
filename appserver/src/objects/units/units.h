@@ -15,6 +15,7 @@
 #include "iostream"
 
 #include "components.h"
+#include "items.h"
 
 namespace Units {
 
@@ -142,10 +143,10 @@ namespace Units {
     int level;
     Component::Position location{};
 
-    std::array<int, 15> equipment{};
+    std::array<int, (int)Items::ItemSlot::SIZE> equipment{};
     //items are just an ID that is in the db
       //db contains the damage, AC, icon path, description, etc
-    std::array<std::array<int, 16>, 4> inventory{}; //items
+    std::array<std::array<int, 16>, (int)Items::BagType::SIZE> inventory{}; //items
 
     int copper = 0;
     int silver = 0;

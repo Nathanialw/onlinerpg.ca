@@ -83,7 +83,7 @@ export async function Load_Target_Image(x, y, path) {
 }
 
 export async function Create_Canvas() {
-    await app.init({resizeTo: gameCanvas, disableOnContextMenu: true});
+    await app.init({resizeTo: gameCanvas});
 
     await Init_Graphics();
 

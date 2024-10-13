@@ -1,7 +1,7 @@
 #include "string"
 
-#include "websocketpp/config/asio_no_tls.hpp"
-#include "websocketpp/server.hpp"
+#include "config/asio_no_tls.hpp"
+#include "server.hpp"
 #include "receiving.h"
 
 #include "send.h"

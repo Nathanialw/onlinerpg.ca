@@ -4,6 +4,11 @@ project(BrowserRPG)
 #websocketpp will currently only compile with C++17
 set(CMAKE_CXX_STANDARD 17)
 
+include_directories(libs/sqlite3)
+include_directories(libs/websocketpp)
+include_directories(libs)
+
+include_directories(src/db)
 include_directories(src/networking)
 include_directories(src/map)
 include_directories(src/game)
@@ -20,7 +25,11 @@ include_directories(src/objects/units/class)
 include_directories(src/objects/units/species)
 
 add_executable(BrowserRPG
+        libs/sqlite3/sqlite3.c
+        libs/websocketpp/server.hpp
+        libs/websocketpp/config/asio_no_tls.hpp
 
+        src/db/db.cpp
         src/server/main.cpp
         src/game/game.cpp
 
@@ -48,6 +57,7 @@ add_executable(BrowserRPG
         src/objects/items/loot.cpp
         src/objects/items/items.cpp
         src/objects/items/inventory.cpp
+        src/objects/items/equipment.cpp
 
         src/objects/actions/attack.cpp
         src/objects/actions/death.cpp

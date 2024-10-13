@@ -39,20 +39,20 @@ namespace Loot {
     int itemID = loot[index];
     int inventoryIndex;
     //search for first empty slot in inventory
-    for (int i = 0; i < inventory[Items::BagType::Items].size(); ++i) {
-      if (inventory[Items::BagType::Items][i] == 0) {
+    for (int i = 0; i < inventory[(int)Items::BagType::Items].size(); ++i) {
+      if (inventory[(int)Items::BagType::Items][i] == 0) {
             inventoryIndex = i;
             std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
             break;
       }
-      if (i == inventory[Items::BagType::Items].size() - 1) {
+      if (i == inventory[(int)Items::BagType::Items].size() - 1) {
         std::cout << "inventory full" << std::endl;
         return " ";
       }
     }
 
     // add item to inventory array
-    inventory[Items::BagType::Items][inventoryIndex] = itemID;
+    inventory[(int)Items::BagType::Items][inventoryIndex] = itemID;
     //remove from loot array and resize
     for (int i = index; i < loot.size() - 1; ++i) {
       loot[i] = loot[i + 1];
