@@ -46,6 +46,21 @@ export function Clear_Sprite_Array(spriteArray) {
     spriteArray.length = 0; // Clear the array
 }
 
+async function Load_Icon(path) {
+    console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
+
+    if (PIXI.Assets.cache.has(path)) {
+        console.log("fetching from cache")
+        return PIXI.Assets.cache.get(path);
+        console.log("fetch: ", icon)
+    } else {
+        console.log("loading loot")
+        let icon = await PIXI.Assets.load(path);
+        PIXI.Assets.cache.set(icon)        
+        return icon;
+    }
+}
+
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
     let spaceBetweenCol1 = 1 * cellSize;
     let fromTopCol1 = 5.1 * cellSize;
@@ -159,21 +174,20 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
-    console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
+    // console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
 
-    let icon 
-    if (PIXI.Assets.cache.has(iconPath)) {
-        console.log("fetching from cache")
-        lootIcon = PIXI.Assets.cache.get(iconPath);
-        console.log("fetch: ", lootIcon)
-    } else {
-        console.log("loading loot")
-        lootIcon = await PIXI.Assets.load(iconPath);
-        PIXI.Assets.cache.set(lootIcon)        
-    }
+    // if (PIXI.Assets.cache.has(iconPath)) {
+    //     console.log("fetching from cache")
+    //     lootIcon = PIXI.Assets.cache.get(iconPath);
+    //     console.log("fetch: ", lootIcon)
+    // } else {
+    //     console.log("loading loot")
+    //     lootIcon = await PIXI.Assets.load(iconPath);
+    //     PIXI.Assets.cache.set(lootIcon)        
+    // }
+    lootIcon = Load_Icon(path);
 
-    icon = new PIXI.Sprite(lootIcon)
-    loot.push(icon);        
+    loot.push(new PIXI.Sprite(lootIcon));        
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
     console.log(loot.length)
