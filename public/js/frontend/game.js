@@ -10,7 +10,7 @@ async function Splash_Screen() {
     Actions(" ");
 }
 
-Splash_Screen()
+await Splash_Screen()
 
 export function Close_Game() {
     document.getElementById('gameCanvas').removeChild(app.canvas);    
