@@ -141,7 +141,7 @@ function Remove_Elements() {
     }
 }
 
-async function Load_Scripts() {
+function Load_Scripts() {
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
         const script = document.createElement('script');
@@ -157,7 +157,6 @@ async function Load_Scripts() {
     loadScript('/js/graphics/scale.js', 'module');  
     loadScript('/js/db/db.js', 'module');  
 
-    await Splash_Screen();
 }
 
 function Set_Canvas() {
@@ -167,9 +166,10 @@ function Set_Canvas() {
     }
 }
 
-document.getElementById('startGame').addEventListener('click', (event) => {
+document.getElementById('startGame').addEventListener('click', async (event) => {    
     Set_Canvas();
     Load_Scripts();
+    await Splash_Screen();
     Send();
     Remove_Elements();
 });
