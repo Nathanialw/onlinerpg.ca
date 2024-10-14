@@ -48,7 +48,7 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     let squareSize = w * cellSize;
         
     const equipmentIcon = await PIXI.Assets.load(iconPath);
-    equipment.push(new PIXI.Sprite(equipmentIcon));
+    equipment[num] = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
     return equipment[num]
 }
