@@ -1,4 +1,4 @@
-import { Init, Music_Play } from "../sound/sound.js";
+import { Init, Music_Play, StopAllSounds } from "../sound/sound.js";
 import { Create_Canvas} from '../graphics/graphics.js';
 import { Actions } from "../input/action/action.js";
 
@@ -13,6 +13,8 @@ async function Splash_Screen() {
 await Splash_Screen()
 
 export function Close_Game() {
+    StopAllSounds();
+
     document.getElementById('gameCanvas').removeChild(app.canvas);    
     app.destroy(true, {children: true, texture: true, source: true});
         // Create a form element

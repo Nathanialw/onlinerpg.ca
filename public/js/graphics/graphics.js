@@ -253,6 +253,11 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
 }
 
 export function Draw_Sprite(x, y, w, h, sprite) {
+    if (!texture) {
+        console.error("Texture is undefined");
+        return;
+    }
+    
     sprite.x = x;
     sprite.y = y;
     sprite.width = w;
