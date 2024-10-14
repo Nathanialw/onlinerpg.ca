@@ -174,10 +174,14 @@ function Set_Canvas() {
 
 document.getElementById('startGame').addEventListener('click', async (event) => {    
     Set_Canvas();
-    await Load_Scripts();
-    await Splash_Screen();
-    Send();
-    Remove_Elements();
+    try {
+        await Load_Scripts();
+        await Splash_Screen();
+        Send();
+        Remove_Elements();
+    } catch (error) {
+        console.error('Error loading scripts:', error);
+    }
 });
 
 export function OnReconnect() {
