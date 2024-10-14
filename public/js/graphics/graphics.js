@@ -284,7 +284,7 @@ export function Draw_Title_Screen() {
 
 function createTextWithBackground(textString, style, backgroundColor) {
     // Create the text object
-    let text = new PIXI.Text({textString, style});
+    let text = new PIXI.Text({text: textString, style});
     
     // Create a new Graphics object and draw a rectangle on it
     let background = new PIXI.Graphics();
