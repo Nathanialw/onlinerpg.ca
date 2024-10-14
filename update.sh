@@ -8,6 +8,6 @@ git pull
 
 chmod +x /var/www/onlinerpg.ca/appserver/release/BrowserRPG
 chmod 666 /var/www/onlinerpg.ca/appserver/db/data.db
-#sudo service rpgserver restart
-#sudo service rpgserver status
+sudo service rpgserver restart
+sudo service rpgserver status
 # sudo service rpgserver restart
