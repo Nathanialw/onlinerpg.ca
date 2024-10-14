@@ -334,7 +334,7 @@ color.set('♂', white); //brown
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'};
-    let object = new PIXI.Text({char, style)};
+    let object = new PIXI.Text({char, style});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
