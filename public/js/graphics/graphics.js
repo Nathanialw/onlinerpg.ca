@@ -334,7 +334,7 @@ color.set('♂', white); //brown
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'}
-    let object = new PIXI.Text(char, style);
+    let object = new PIXI.Text({text: char, style});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
@@ -343,7 +343,7 @@ export function Create_Object_Sprite(char, x, y, visionWidth) {
 
 export function Create_Combat_Log_Line(char, indexHeight) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
-    let object = new PIXI.Text(char, style);
+    let object = new PIXI.Text({text: char, style});
     object.x = (Get_Right_Panel_Origin_x()) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = ((Get_Right_Panel_Origin_y() + leftPanelHeight) * cellSize) + (indexHeight * minimapCellSize) - (10 * minimapCellSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
