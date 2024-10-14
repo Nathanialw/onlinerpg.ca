@@ -333,8 +333,7 @@ color.set('♀', white); //brown
 color.set('♂', white); //brown
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
-    const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'};
-    let object = new PIXI.Text({char, style);
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
@@ -342,8 +341,7 @@ export function Create_Object_Sprite(char, x, y, visionWidth) {
 }
 
 export function Create_Combat_Log_Line(char, indexHeight) {
-    const style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'};
-    let object = new PIXI.Text({char, style});
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'});
     object.x = (Get_Right_Panel_Origin_x()) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = ((Get_Right_Panel_Origin_y() + leftPanelHeight) * cellSize) + (indexHeight * minimapCellSize) - (10 * minimapCellSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
@@ -355,8 +353,7 @@ export function Clear_Target() {
 }
 
 export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
-    const style = {fontFamily : "'Press Start 2P'", fontSize: fontSize, fill : grey50, align : 'center'}
-    let object = new PIXI.Text({char, style});
+    let object = new PIXI.Text(char, {fontFamily : "'Press Start 2P'", fontSize: fontSize, fill : grey50, align : 'center'});
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (y * cellSize) + (indexHeight * fontSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
@@ -365,7 +362,7 @@ export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
 
 export function Create_Map_Line(char, indexHeight, visionWidth) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
-    const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}
+    let style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}
     let object = new PIXI.Text({char, style});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
