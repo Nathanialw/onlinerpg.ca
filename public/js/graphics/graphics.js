@@ -39,7 +39,7 @@ async function Init_Graphics() {
 export function Clear_Sprite_Array(spriteArray) {
     // for (let i = 0; i < spriteArray.length; i++) {
     //     if (spriteArray[i]) {
-    //         PIXI.Assets.unload(spriteArray[i].texture);source
+    //         PIXI.Assets.unload(spriteArray[i].texture);baseTexture
     //         spriteArray[i].destroy({ children: true, texture: true, : true });
     //     }
     // }
@@ -134,11 +134,10 @@ export function Draw_Texture(x, y, sprite) {
     sprite.y = y;
     app.stage.addChild(sprite);
 
-    sprite.texture.source.on('error', (error) => {
+    sprite.texture.baseTexture.on('error', (error) => {
         console.error('Error loading texture:', error);
     });
 }
-
 export async function Load_Target_Image(x, y, path) {
     x += 1;
     y += 1;
@@ -260,7 +259,7 @@ export function Draw_Sprite(x, y, w, h, sprite) {
     sprite.height = h;
     app.stage.addChild(sprite);
 
-    sprite.texture.source.on('error', (error) => {
+    sprite.texture.baseTexture.on('error', (error) => {
         console.error('Error loading texture:', error);
     });
 }
