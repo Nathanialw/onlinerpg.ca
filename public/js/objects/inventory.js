@@ -14,6 +14,9 @@ export async function Draw_Inventory(items) {
 
 
     for (let i = 0; i < items.length; i++) {
+        if (items[i] === "default") {
+            continue
+        }
         let item = await Draw_Inventory_Icons(items[i], i, 1, 1, 2.5)        
         Set_Send_On_Loot_Click_Listener(item, '1', i);   //1 means inventory panel
     }

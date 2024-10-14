@@ -72,7 +72,9 @@ export function Print_Icon(uID) {
 export function Get_Icon_Path(uID) {
     console.log("uID: ", uID);
     if (uID === 0) {
-        let path = "assets/graphics/icons/PVG/Book1.png"
+        //draw nothing in the slot
+        // let path = "assets/graphics/icons/PVG/Book1.png"
+        let path = "none"
         console.log("default icon: ", path);
         return path
     }

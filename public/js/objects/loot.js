@@ -14,6 +14,9 @@ export async function Draw_Loot(items) {
 
 
     for (let i = 0; i < items.length; i++) {
+        if (items[i] === "default") {
+            continue
+        }
         let item = await Draw_Loot_Icons(items[i], i, 1, 2.5, 2.5)        
         Set_Send_On_Loot_Click_Listener(item, '0', i);  //0 means loot panel
     }
