@@ -185,7 +185,7 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     //     lootIcon = await PIXI.Assets.load(iconPath);
     //     PIXI.Assets.cache.set(lootIcon)        
     // }
-    lootIcon = Load_Icon(path);
+    lootIcon = Load_Icon(iconPath);
 
     loot.push(new PIXI.Sprite(lootIcon));        
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
