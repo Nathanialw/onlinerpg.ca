@@ -83,4 +83,9 @@ long term:
 
 
 bugs:
-  pathing stops if target location is inacceible, it should just find the closest cell and go there
+  pathing stops if target location is inaccessible, it should just find the closest cell and go there
+
+
+unit ideas:
+  totems ex.  Totem of Healing, heals all neady units
+              Totem of Undeath, resurects dead units to zombies

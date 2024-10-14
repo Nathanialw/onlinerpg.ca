@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Loot_Icons, loot } from '../graphics/graphics.js';
+import { Clear_Sprite_Array, Draw_Loot_Icons, loot } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -11,6 +11,7 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
 export async function Draw_Loot(items) {
     console.log('Drawing loot');
+    Clear_Sprite_Array(loot);
     loot.length = 0;
 
     for (let i = 0; i < items.length; i++) {

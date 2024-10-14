@@ -36,6 +36,15 @@ async function Init_Graphics() {
     target = new PIXI.Sprite(targetTexture);
 }
 
+function Clear_Sprite_Array(spriteArray) {
+    for (let i = 0; i < spriteArray.length; i++) {
+        if (spriteArray[i]) {
+            spriteArray[i].destroy({ children: true, texture: true, baseTexture: true });
+        }
+    }
+    spriteArray.length = 0; // Clear the array
+}
+
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
     let spaceBetweenCol1 = 1 * cellSize;
     let fromTopCol1 = 5.1 * cellSize;
