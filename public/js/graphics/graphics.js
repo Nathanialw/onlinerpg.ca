@@ -366,7 +366,7 @@ export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
 export function Create_Map_Line(char, indexHeight, visionWidth) {
     // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
     const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}
-    let object = new PIXI.Text({char, style});
+    let object = new PIXI.Text({har, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
