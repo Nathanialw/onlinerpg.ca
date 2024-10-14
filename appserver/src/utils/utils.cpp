@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "string"
 #include "utils.h"
+#include "random"
 
 namespace Utils {
 
@@ -55,5 +56,12 @@ namespace Utils {
       return a + b;
   }
 
+  int Random(int min, int max) {
+      return min + (rand() % static_cast<int>(max - min + 1));
+  }
+
+  float Random(float min, float max) {
+    return min + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (max - min)));
+  }
 }
 

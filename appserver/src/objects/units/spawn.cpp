@@ -111,7 +111,7 @@ namespace Spawn {
     std::cout << "num placements: " << placements.size() << std::endl;
 
     for (const auto &placement : placements) {
-      int numMonsters = rand() % 4;
+      int numMonsters = Utils::Random(0,3);
       auto unitData = Random_Entities(objects, level, location, unitChars[(int)Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
       objects.unitsString += unitData;
       std::cout << "units added: " << unitData << std::endl;

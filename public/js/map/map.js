@@ -134,8 +134,8 @@ function Update_Map(visionWidth, direction) {
             let tempMap = updatedMap;
             updatedMap = tempMap + mapLine;
         }
-        Rebuid_Map(visionWidth, updatedMap, direction);
-        console.log(minimap);
+        // Rebuid_Map(visionWidth, updatedMap, direction);
+        // console.log(minimap);
         return true;
     }
     return false;
@@ -185,7 +185,7 @@ export function Make_Map(serverMap, visionWidth) {
     //create a sprite at the location of the space that is clickable
     //query the server using the x and y of the sprite to get the sprite data
     objects.length = 0;;
-    objectDisplay.length = 0;;
+    objectDisplay.length = 0;
     for (let i = 0; i < serverMap.length; i++) {
         if (serverMap[i] == "#") {
             objects.push([i, "˛"]); // save the location of the enemy

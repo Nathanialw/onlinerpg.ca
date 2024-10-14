@@ -112,7 +112,7 @@ export function Update_Screen_Phone() {
     Draw_UI_Phone(characterInfo);
     Draw_Vision_Background_Phone(visionWidth);
     Make_Map(serverMap, visionWidth);
-    Draw_Map_Phone(visionWidth, direction);
+    // Draw_Map_Phone(visionWidth, direction);
     
     // Display_Damage_Taken(species, damageTaken);
     // Display_Damage(species, damage, isDead)
@@ -128,7 +128,7 @@ export function Update_Screen() {
     Draw_UI(characterInfo);
     Draw_Vision_Background(visionWidth);
     Make_Map(serverMap, visionWidth);
-    Draw_Map(visionWidth, direction);
+    // Draw_Map(visionWidth, direction);
     
     Draw_Loot(loot);
     Draw_Inventory(inventory);
