@@ -21,6 +21,7 @@ namespace Items {
     cloak,
     chest,
     bracers,
+    gloves,
     belt,
     leggings,
     boots,

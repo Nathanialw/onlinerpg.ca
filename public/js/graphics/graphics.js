@@ -41,8 +41,8 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     let fromTopCol1 = 5.1 * cellSize;
     let fromleftCol1 = 3.5 * cellSize;
 
-    let spaceBetweenCol2 = 1 * cellSize;
-    let fromTopCol2 = 12 * cellSize;
+    let spaceBetweenCol2 = .85 * cellSize;
+    let fromTopCol2 = 9 * cellSize;
     let fromleftCol2 = 24.3 * cellSize;
 
     let spaceBetweenBottom = 1.2 * cellSize;
@@ -60,13 +60,13 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
         rowPosition = y + fromTopCol1 + ((squareSize + spaceBetweenCol1) * num);
         columnPosition = x + fromleftCol1;
     }
-    else if (num < 10) {
+    else if (num < 11) {
         let ind = num - 6;
         rowPosition = y + fromTopCol2 + ((squareSize + spaceBetweenCol2) * ind);
         columnPosition = x + fromleftCol2;
     }
     else {
-        let ind = num - 10;
+        let ind = num - 11;
         rowPosition = y + fromTopBottom;
         columnPosition = x + fromleftBottom + ((squareSize + spaceBetweenBottom) * ind);
     }

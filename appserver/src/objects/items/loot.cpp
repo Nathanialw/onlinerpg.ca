@@ -12,7 +12,7 @@ namespace Loot {
   void Generate_Loot(std::array<uint8_t , 4> &items) {
     uint8_t numItems = Utils::Random(1, 4);
     for (int i = 0; i < numItems; ++i) {
-      uint8_t itemID = Utils::Random(1 , 16);
+      uint8_t itemID = Utils::Random(1 , 21);
       items[i] = itemID;
     }
     std::cout << "items dropped" << std::endl;
