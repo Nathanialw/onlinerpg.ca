@@ -12,7 +12,6 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 export async function Draw_Inventory(items) {
     console.log('Drawing Inventory');
     Clear_Sprite_Array(inventory);
-    inventory.length = 0;
 
     for (let i = 0; i < items.length; i++) {
         if (items[i] === "none") {
