@@ -39,8 +39,6 @@ loadSqlJsLibrary(() => {
         const result = db.exec("SELECT * FROM Items");
 
         // Log the result
-        Print_Debug(debugDB, result);
-        Print_Debug(debugDB, "querying db successful!");
     });
 });
 
