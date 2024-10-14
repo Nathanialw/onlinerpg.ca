@@ -1,7 +1,7 @@
 import { Init, Music_Play, StopAllSounds } from "../sound/sound.js";
 import { Create_Canvas} from '../graphics/graphics.js';
 import { Actions } from "../input/action/action.js";
-import { handleMediaQueryChange } from "../graphics/scale.js";
+import { Set_Scale_Queries } from "../graphics/scale.js";
 
 
 async function Splash_Screen() {
@@ -9,7 +9,8 @@ async function Splash_Screen() {
     Music_Play("forest");
     await Create_Canvas();
     Actions(" ");
-    // handleMediaQueryChange(); // Initial check
+
+    Set_Scale_Queries();
     console.log("Splash Screen");
 }
 
@@ -38,3 +39,4 @@ export function Close_Game() {
         // Append the form to the gameCanvas
         document.getElementById('gameCanvas').appendChild(form);    
 }
+

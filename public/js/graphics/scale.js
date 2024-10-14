@@ -15,7 +15,7 @@ const mediaQueries = [
     { query: window.matchMedia('(min-width: 3840px)'), size: 32 }
 ];
 
-export function handleMediaQueryChange() {
+function handleMediaQueryChange() {
     // Loop through the media queries in descending order and log the matched size
     for (let { query, size } of mediaQueries) {
         if (query.matches) {
@@ -26,7 +26,10 @@ export function handleMediaQueryChange() {
     }
 }
 
-// Register event listeners and perform initial check
-mediaQueries.forEach(({ query }) => {
-    query.addEventListener('change', handleMediaQueryChange);
-});
+export function Set_Scale_Queries() {
+    // Register event listeners and perform initial check
+    mediaQueries.forEach(({ query }) => {
+        query.addEventListener('change', handleMediaQueryChange);
+    });
+    handleMediaQueryChange(); // Initial check
+}
