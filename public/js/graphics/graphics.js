@@ -36,7 +36,7 @@ async function Init_Graphics() {
     target = new PIXI.Sprite(targetTexture);
 }
 
-function Clear_Sprite_Array(spriteArray) {
+export function Clear_Sprite_Array(spriteArray) {
     for (let i = 0; i < spriteArray.length; i++) {
         if (spriteArray[i]) {
             spriteArray[i].destroy({ children: true, texture: true, baseTexture: true });
