@@ -101,9 +101,7 @@ export function Map(data) {
     serverMap = data.substring(endEquipment);
 
     // serverMap = data.substring(8);
-    console.log("Map updating");
     Update_Screen();
-    console.log("Map updated");
 }
 
 

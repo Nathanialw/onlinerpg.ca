@@ -37,13 +37,17 @@ async function Init_Graphics() {
 }
 
 export function Clear_Sprite_Array(spriteArray) {
-    // for (let i = 0; i < spriteArray.length; i++) {
-    //     if (spriteArray[i]) {
-    //         PIXI.Assets.unload(spriteArray[i].texture);
-    //         spriteArray[i].destroy({ children: true, texture: true, : true });
-    //     }
-    // }
+    for (let i = 0; i < spriteArray.length; i++) {
+        if (spriteArray[i]) {
+        }
+    }
     spriteArray.length = 0; // Clear the array
+}
+
+function Remove_Event_Listeners(sprite) {
+    if (sprite && sprite.removeAllListeners) {
+        sprite.removeAllListeners();
+    }
 }
 
 async function Load_Icon(path) {
@@ -92,6 +96,9 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
         columnPosition = x + fromleftBottom + ((squareSize + spaceBetweenBottom) * ind);
     }
 
+    // check if equipment[num] has an event listener, remove if it does
+    Remove_Event_Listeners(equipment[num]);
+
     let equipmentIcon = await Load_Icon(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
@@ -109,8 +116,9 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
     let squareSize = w * cellSize;
 
+    Remove_Event_Listeners(inventory[num]);
+    
     let inventoryIcon = await Load_Icon(iconPath);
-
     inventory.push(new PIXI.Sprite(inventoryIcon));
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, inventory[num]);
     return inventory[num]
@@ -120,8 +128,9 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     let x = (leftPanelWidth / 2) * cellSize
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
 
-    let lootIcon = await Load_Icon(iconPath);
-
+    Remove_Event_Listeners(loot[num]);
+    
+    let lootIcon = await Load_Icon(iconPath);    
     loot.push(new PIXI.Sprite(lootIcon));        
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
@@ -254,7 +263,7 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
 
 export function Draw_Sprite(x, y, w, h, sprite) {
     if (!sprite) {
-        console.error("Texture is undefined");
+        console.error("Texture is not loaded");
         return;
     }
 
