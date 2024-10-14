@@ -94,9 +94,9 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
     
-    try {
+    if (PIXI.Assets.cache.has(iconPath)) {
         equipmentIcon = PIXI.Texture.from(iconPath);
-    } catch (e) {
+    } else {
         equipmentIcon = await PIXI.Assets.load(iconPath);
     }
 
@@ -130,9 +130,9 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
-    try {
+    if (PIXI.Assets.cache.has(iconPath)) {
         inventoryIcon = PIXI.Texture.from(iconPath);
-    } catch (e) {
+    } else {
         inventoryIcon = await PIXI.Assets.load(iconPath);
     }
 
@@ -158,9 +158,9 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
-    try {
+    if (PIXI.Assets.cache.has(iconPath)) {
         lootIcon = PIXI.Texture.from(iconPath);
-    } catch (e) {
+    } else {
         lootIcon = await PIXI.Assets.load(iconPath);
     }
 
