@@ -28,9 +28,9 @@ function handleMediaQueryChange() {
 
 export function Set_Scale_Queries() {
     // Register event listeners and perform initial check
-    // handleMediaQueryChange(); // Initial check
-
-    // mediaQueries.forEach(({ query }) => {
-    //     query.addEventListener('change', handleMediaQueryChange);
-    // });
+    handleMediaQueryChange(); // Initial check
+    
+    mediaQueries.forEach(({ query }) => {
+        query.addEventListener('change', handleMediaQueryChange);
+    });
 }
