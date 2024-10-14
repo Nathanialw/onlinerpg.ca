@@ -51,13 +51,28 @@ async function Load_Icon(path) {
 
     if (PIXI.Assets.cache.has(path)) {
         console.log("fetching from cache")
-        return PIXI.Assets.cache.get(path);
+        let icon = PIXI.Assets.cache.get(path);
+        console.log("fetch: ", icon)
+        return icon;
     } else {
         console.log("loading loot")
         let icon = await PIXI.Assets.load(path);
         PIXI.Assets.cache.set(icon)        
         return icon;
     }
+
+    // console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
+
+    // if (PIXI.Assets.cache.has(iconPath)) {
+    //     console.log("fetching from cache")
+    //     lootIcon = PIXI.Assets.cache.get(iconPath);
+    //     console.log("fetch: ", lootIcon)
+    // } else {
+    //     console.log("loading loot")
+    //     lootIcon = await PIXI.Assets.load(iconPath);
+    //     PIXI.Assets.cache.set(lootIcon)        
+    // }
+    // l
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
@@ -172,19 +187,19 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     // if (PIXI.utils.TextureCache[iconPath]) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
-    // }
-    console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
+    // // }
+    // console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
 
-    if (PIXI.Assets.cache.has(iconPath)) {
-        console.log("fetching from cache")
-        lootIcon = PIXI.Assets.cache.get(iconPath);
-        console.log("fetch: ", lootIcon)
-    } else {
-        console.log("loading loot")
-        lootIcon = await PIXI.Assets.load(iconPath);
-        PIXI.Assets.cache.set(lootIcon)        
-    }
-    // lootIcon = Load_Icon(iconPath);
+    // if (PIXI.Assets.cache.has(iconPath)) {
+    //     console.log("fetching from cache")
+    //     lootIcon = PIXI.Assets.cache.get(iconPath);
+    //     console.log("fetch: ", lootIcon)
+    // } else {
+    //     console.log("loading loot")
+    //     lootIcon = await PIXI.Assets.load(iconPath);
+    //     PIXI.Assets.cache.set(lootIcon)        
+    // }
+    lootIcon = Load_Icon(iconPath);
 
     loot.push(new PIXI.Sprite(lootIcon));        
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
