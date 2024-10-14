@@ -37,13 +37,13 @@ async function Init_Graphics() {
 }
 
 export function Clear_Sprite_Array(spriteArray) {
-    for (let i = 0; i < spriteArray.length; i++) {
-        if (spriteArray[i]) {
-            PIXI.Assets.unload(spriteArray[i].texture);
-            spriteArray[i].destroy({ children: true, texture: true, baseTexture: true });
-        }
-    }
-    spriteArray.length = 0; // Clear the array
+    // for (let i = 0; i < spriteArray.length; i++) {
+    //     if (spriteArray[i]) {
+    //         PIXI.Assets.unload(spriteArray[i].texture);
+    //         spriteArray[i].destroy({ children: true, texture: true, baseTexture: true });
+    //     }
+    // }
+    // spriteArray.length = 0; // Clear the array
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
@@ -159,11 +159,16 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
+    console.log(PIXI.Assets.cache.has("has icon cache", iconPath))
+    
     if (PIXI.Assets.cache.has(iconPath)) {
-        lootIcon = PIXI.Texture.from(iconPath);
+        // lootIcon = PIXI.Texture.from(iconPath);
     } else {
+        console.log("loading loot")
         lootIcon = await PIXI.Assets.load(iconPath);
+        PIXI.Assets.cache.set(lootIcon)
     }
+    
 
 
     loot.push(new PIXI.Sprite(lootIcon));
