@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Equipment_Icons } from '../graphics/graphics.js';
+import { Draw_Equipment_Icons, equipment } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -11,7 +11,7 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
 export async function Draw_Equipment(items) {
     console.log('Drawing Equipment');
-
+    equipment.length = 0;
 
     for (let i = 0; i < items.length; i++) {
         if (items[i] === "none") {

@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Inventory_Icons } from '../graphics/graphics.js';
+import { Draw_Inventory_Icons, inventory } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -11,10 +11,10 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
 export async function Draw_Inventory(items) {
     console.log('Drawing Inventory');
-
+    inventory.length = 0;
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i] === "default") {
+        if (items[i] === "none") {
             continue
         }
         let item = await Draw_Inventory_Icons(items[i], i, 1, 1, 2.5)        

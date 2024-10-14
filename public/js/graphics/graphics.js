@@ -13,9 +13,9 @@ let lootUI;
 let target;
 let targetImg;
 let playerImg;
-let loot = [];
-let inventory = [];
-let equipment = []
+export let loot = [];
+export let inventory = [];
+export let equipment = []
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
@@ -46,11 +46,7 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     let rowPosition = y + (row * (w * cellSize) + xOffset * cellSize);
     let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
     let squareSize = w * cellSize;
-    
-    if (num === 0) {
-        equipment.length = 0;
-    }
-    
+        
     const equipmentIcon = await PIXI.Assets.load(iconPath);
     equipment.push(new PIXI.Sprite(equipmentIcon));
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
@@ -67,10 +63,7 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     let rowPosition = y + (row * (w * cellSize) + xOffset * cellSize);
     let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
     let squareSize = w * cellSize;
-    
-    if (num === 0) {
-        inventory.length = 0;
-    }
+
     
     const inventoryIcon = await PIXI.Assets.load(iconPath);
     inventory.push(new PIXI.Sprite(inventoryIcon));
@@ -82,10 +75,6 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     let x = (leftPanelWidth / 2) * cellSize
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
 
-    if (num === 0) {
-        loot.length = 0;
-    }
-    
     const lootIcon = await PIXI.Assets.load(iconPath);
     loot.push(new PIXI.Sprite(lootIcon));
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
