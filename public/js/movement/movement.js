@@ -8,7 +8,6 @@ import {socket} from "../networking/socket.js"
 //replace local with server position of they aren't the same
 
 export function Move(keyName) {
-    console.log("Move");
     let conn = socket()
     if (conn.isConnected) {
         conn.websocket.send("1" + keyName);
