@@ -47,12 +47,11 @@ export function Clear_Sprite_Array(spriteArray) {
 }
 
 async function Load_Icon(path) {
-    console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
+    console.log("has icon cache", PIXI.Assets.cache.has(path))
 
     if (PIXI.Assets.cache.has(path)) {
         console.log("fetching from cache")
         return PIXI.Assets.cache.get(path);
-        console.log("fetch: ", icon)
     } else {
         console.log("loading loot")
         let icon = await PIXI.Assets.load(path);
