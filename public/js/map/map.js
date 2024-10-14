@@ -103,16 +103,12 @@ function Rebuid_Map(visionWidth, updatedMap, direction) {
         }
     }
     else if (direction == 'm') {
-        console.log("melee attacking target");
     }
     else if (direction == 'c') {
-        console.log("wall collision");
     }
     else if (direction == 'r') {
-        console.log("resting");
     }
     else if (direction == ' ') {
-        console.log("skipping turn");
     }
     else {
         minimap = updatedMap
@@ -130,12 +126,10 @@ function Update_Map(visionWidth, direction) {
             let start = j * mapSize;
             let end = start + mapSize;
             let mapLine = mapString.substring(start, end);
-            console.log(mapLine);
             let tempMap = updatedMap;
             updatedMap = tempMap + mapLine;
         }
         // Rebuid_Map(visionWidth, updatedMap, direction);
-        // console.log(minimap);
         return true;
     }
     return false;
@@ -149,12 +143,10 @@ export function Draw_Map(visionWidth, direction) {
             let start = i * width;
             let end = start + width;
             let mapLine = minimap.substring(start, end);
-            console.log(mapLine);
             minimapDisplay[i] = Create_MiniMap_Line(mapLine, i);
         }
     }
     else {
-        console.log("Map not updated");
     }
 }   
 
@@ -166,12 +158,10 @@ export function Draw_Map_Phone(visionWidth, direction) {
             let start = i * width;
             let end = start + width;
             let mapLine = minimap.substring(start, end);
-            console.log(mapLine);
             minimapDisplay[i] = Create_MiniMap_Line_Phone(mapLine, i);
         }
     }
     else {
-        console.log("Map not updated");
     }
 }   
 

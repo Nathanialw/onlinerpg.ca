@@ -97,7 +97,6 @@ export let characterInfo = {
 
 export function UpdatePlayerInfo(characterCreate) {
     let length = characterCreate.length;
-    console.log("received characterInfo: ", characterCreate);
 
     //health/max
     //AC
@@ -143,5 +142,4 @@ export function UpdatePlayerInfo(characterCreate) {
     //max speed
     //+damage
     
-    console.log(characterInfo);
 }

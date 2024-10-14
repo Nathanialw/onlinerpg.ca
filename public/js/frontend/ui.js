@@ -76,7 +76,6 @@ let inventory = [];
 let equipment = [];
 
 function Parse(numItems, start, data, Query, size, items) {
-    console.log("numItems: ", numItems);
     removeEventListenersFromArray(items);
     items.length = 0; // Clear the array without reassigning it
     if (numItems > 0) {
@@ -107,7 +106,6 @@ export function Map(data) {
 
 
 export function Update_Screen_Phone() {
-    console.log("Clearing screen");
     app.stage.removeChildren();
     
     Draw_UI_Phone(characterInfo);
@@ -123,7 +121,6 @@ export function Update_Screen_Phone() {
 }
 
 export function Update_Screen() {
-    console.log("Clearing screen");
     app.stage.removeChildren();
     
     Draw_UI(characterInfo);

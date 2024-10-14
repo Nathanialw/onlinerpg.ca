@@ -8,7 +8,6 @@ import {ReSend} from "../frontend/charCreate.js"
 
 //restart with all the same input stats
 function Restart(data) {
-    console.log("Restarting game")
     Send_Web_Socket_Message("6")
     ReSend();
     //set proper html
@@ -16,7 +15,6 @@ function Restart(data) {
 
 //quit to main page
 function Quit(data) {
-    console.log("Quitting game")
     Send_Web_Socket_Message("7")
     //set proper html
 }
@@ -41,7 +39,6 @@ document.addEventListener("keypress", (event) => {
 			  
 document.addEventListener("keydown", (event) => {
     const keyName = event.key;
-    console.log("KEYNAME ==:", keyName, ":==");
     //use a hash map instead
     if (Update[keyName](keyName)) {
 	    return;

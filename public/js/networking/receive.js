@@ -22,7 +22,6 @@ function Update_Inventory(data) {
         console.log("inventory is full")
         return
     }
-    console.log("update inventory: ", data)
 
     //zero out inventory
     //redraw inventory

@@ -1,5 +1,6 @@
 'use strict';
 
+
 function loadSqlJsLibrary(callback) {
     const script = document.createElement('script');
     script.src = "/js/libs/sql-wasm.js";
@@ -38,8 +39,8 @@ loadSqlJsLibrary(() => {
         const result = db.exec("SELECT * FROM Items");
 
         // Log the result
-        console.log(result);
-        console.log("querying db successful!");
+        Print_Debug(debugDB, result);
+        Print_Debug(debugDB, "querying db successful!");
     });
 });
 
@@ -58,24 +59,14 @@ export function Print_Icon(uID) {
         result.push(stmt.getAsObject());
     }
     stmt.free();
-    
-    // Log the entire result object to see what it contains
-    console.log("uID: ", uID, " result: ", result);
-    
-    if (result.length > 0 && result[0].icon !== undefined) {
-        console.log("uID: ", uID, " icon: ", result[0].icon);
-    } else {
-        console.log("uID: ", uID, " No icon found or icon is undefined");
-    }
+
 }
 
 export function Get_Icon_Path(uID) {
-    console.log("uID: ", uID);
     if (uID === 0) {
         //draw nothing in the slot
         // let path = "assets/graphics/icons/PVG/Book1.png"
         let path = "none"
-        console.log("default icon: ", path);
         return path
     }
 
@@ -95,12 +86,5 @@ export function Get_Icon_Path(uID) {
     stmt.free();
     
     // Log the entire result object to see what it contains
-    
-    if (result.length > 0 && result[0].icon !== undefined) {
-        console.log("uID: ", uID, " icon: ", result[0].icon);
-    } else {
-        console.log("uID: ", uID, " No icon found or icon is undefined");
-    }
-
     return result[0].icon;
 }

@@ -19,7 +19,6 @@ function handleMediaQueryChange() {
     // Loop through the media queries in descending order and log the matched size
     for (let { query, size } of mediaQueries) {
         if (query.matches) {
-            console.log(`Media Query Matched! Width: ${size}px`);
             Set_Font_Size(size);
             Update_Screen()
             break; // Exit the loop after the first match

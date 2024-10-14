@@ -47,32 +47,14 @@ export function Clear_Sprite_Array(spriteArray) {
 }
 
 async function Load_Icon(path) {
-    console.log("has icon cache", PIXI.Assets.cache.has(path))
-
     if (PIXI.Assets.cache.has(path)) {
-        console.log("fetching from cache")
         let icon = PIXI.Assets.cache.get(path);
-        console.log("fetch: ", icon)
         return icon;
     } else {
-        console.log("loading loot")
         let icon = await PIXI.Assets.load(path);
         PIXI.Assets.cache.set(icon)        
         return icon;
     }
-
-    // console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
-
-    // if (PIXI.Assets.cache.has(iconPath)) {
-    //     console.log("fetching from cache")
-    //     lootIcon = PIXI.Assets.cache.get(iconPath);
-    //     console.log("fetch: ", lootIcon)
-    // } else {
-    //     console.log("loading loot")
-    //     lootIcon = await PIXI.Assets.load(iconPath);
-    //     PIXI.Assets.cache.set(lootIcon)        
-    // }
-    // l
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
@@ -143,17 +125,14 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     loot.push(new PIXI.Sprite(lootIcon));        
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
-    console.log(loot.length)
     return loot[num];
 }
 
 
 export function Draw_Texture(x, y, sprite) {
-    // console.log('Draw_Sprite');
     sprite.x = x;
     sprite.y = y;
     app.stage.addChild(sprite);
-    // console.log("x" + x + " y" + y + " w" + w + " h" + h, sprite);
 
     sprite.texture.baseTexture.on('error', (error) => {
         console.error('Error loading texture:', error);
@@ -182,7 +161,6 @@ export async function Create_Canvas() {
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
         app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
-        // console.log('Resized to: ', gameCanvas.clientWidth, gameCanvas.clientHeight);
     });
 }
 
@@ -265,7 +243,6 @@ export function Get_Right_Panel_Width() {
 
 
 function Draw_Panel(x, y, w, h, backGroundColor) {
-    console.log('Draw_Panel');
     let panel = new PIXI.Graphics();
     // panel.beginFill(backGroundColor);  
     // panel.drawRect(x, y, w, h);
@@ -276,13 +253,11 @@ function Draw_Panel(x, y, w, h, backGroundColor) {
 }
 
 export function Draw_Sprite(x, y, w, h, sprite) {
-    // console.log('Draw_Sprite');
     sprite.x = x;
     sprite.y = y;
     sprite.width = w;
     sprite.height = h;
     app.stage.addChild(sprite);
-    // console.log("x" + x + " y" + y + " w" + w + " h" + h, sprite);
 
     sprite.texture.baseTexture.on('error', (error) => {
         console.error('Error loading texture:', error);

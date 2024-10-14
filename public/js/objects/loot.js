@@ -10,7 +10,6 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //display the icon in the loot box
 
 export async function Draw_Loot(items) {
-    console.log('Drawing loot');
     Clear_Sprite_Array(loot);
 
     for (let i = 0; i < items.length; i++) {

@@ -10,7 +10,6 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //display the icon in the loot box
 
 export async function Draw_Inventory(items) {
-    console.log('Drawing Inventory');
     Clear_Sprite_Array(inventory);
 
     for (let i = 0; i < items.length; i++) {
@@ -29,7 +28,6 @@ export function Query_Inventory(numItems, data, start) {
         let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
         let invIndex = str.substring(0, 2);
         let itemID = str.substring(2, 5);
-        console.log("invIndex: ", invIndex, " itemID: ", itemID);
         items.push(Get_Icon_Path(parseInt(itemID)));
     }
 
