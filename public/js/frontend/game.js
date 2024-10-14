@@ -8,6 +8,7 @@ async function Splash_Screen() {
     Init();
     Music_Play("forest");
     await Create_Canvas();
+    console.log("ui sprites loaded")
     Actions(" ");
 
     Set_Scale_Queries();
