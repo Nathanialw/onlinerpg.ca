@@ -1,6 +1,6 @@
 'use strict'
 import { characterInfo } from '../units/unitdef.js';
-import * as PIXI from 'pixi.js';
+import * as PIXI from '/js/libs/pixi.js';
 
 export const app = new PIXI.Application();
 
