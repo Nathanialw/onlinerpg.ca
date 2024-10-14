@@ -10,7 +10,7 @@ async function Splash_Screen() {
     await Create_Canvas();
     Actions(" ");
     handleMediaQueryChange(); // Initial check
-
+    console.log("Splash Screen");
 }
 
 await Splash_Screen()
