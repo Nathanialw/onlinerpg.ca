@@ -15,7 +15,7 @@ const mediaQueries = [
     { query: window.matchMedia('(min-width: 3840px)'), size: 32 }
 ];
 
-function handleMediaQueryChange() {
+export function handleMediaQueryChange() {
     // Loop through the media queries in descending order and log the matched size
     for (let { query, size } of mediaQueries) {
         if (query.matches) {
@@ -30,4 +30,3 @@ function handleMediaQueryChange() {
 mediaQueries.forEach(({ query }) => {
     query.addEventListener('change', handleMediaQueryChange);
 });
-handleMediaQueryChange(); // Initial check

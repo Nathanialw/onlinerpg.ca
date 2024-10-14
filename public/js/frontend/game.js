@@ -1,6 +1,7 @@
 import { Init, Music_Play, StopAllSounds } from "../sound/sound.js";
 import { Create_Canvas} from '../graphics/graphics.js';
 import { Actions } from "../input/action/action.js";
+import { handleMediaQueryChange } from "../graphics/scale.js";
 
 
 async function Splash_Screen() {
@@ -8,6 +9,8 @@ async function Splash_Screen() {
     Music_Play("forest");
     await Create_Canvas();
     Actions(" ");
+    handleMediaQueryChange(); // Initial check
+
 }
 
 await Splash_Screen()
