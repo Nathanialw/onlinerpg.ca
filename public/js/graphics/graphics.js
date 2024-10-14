@@ -37,15 +37,37 @@ async function Init_Graphics() {
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
-    let x = 0;
-    let y = ((topPanelHeight / 4) + (leftPanelHeight * 1 / 3)) * cellSize;
+    let spaceBetween = 1 * cellSize;
+    let fromTopCol1 = 5.2 * cellSize;
+    let fromleftCol1 = 3.5 * cellSize;
+
+    let fromTopCol2 = 5 * cellSize;
+    let fromleftCol2 = 20 * cellSize;
+
+    let fromTopBottom = 26.5 * cellSize;
+    let fromleftBottom = 13.2 * cellSize;
     
-    let row = Math.floor(num / 4);
-    let column = num % 4;
-    
-    let rowPosition = y + (row * (w * cellSize) + xOffset * cellSize);
-    let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
     let squareSize = w * cellSize;
+
+    let x = 0;
+    let y = (topPanelHeight / 4) * cellSize;
+
+    let rowPosition = y;
+    let columnPosition = x;
+    if (num < 7) {
+        rowPosition = y + fromTopCol1 + ((squareSize + spaceBetween) * num);
+        columnPosition = x + fromleftCol1;
+    }
+    else if (num < 11) {
+        let ind = num - 7;
+        rowPosition = y + fromTopCol2 + ((squareSize + spaceBetween) * ind);
+        columnPosition = x + fromleftCol2;
+    }
+    else {
+        let ind = num - 11;
+        rowPosition = y + fromTopBottom;
+        columnPosition = x + fromleftBottom + ((squareSize + spaceBetween) * ind);
+    }
         
     const equipmentIcon = await PIXI.Assets.load(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
