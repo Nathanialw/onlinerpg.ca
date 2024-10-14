@@ -142,22 +142,28 @@ function Remove_Elements() {
 }
 
 function Load_Scripts() {
-    // Function to dynamically load a script
+    // Function to dynamically load a script and return a promise
     function loadScript(src, type = 'text/javascript') {
-        const script = document.createElement('script');
-        script.src = src;
-        script.type = type;
-        document.body.appendChild(script);
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.type = type;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
+        });
     }
     
-    // Load required JavaScript files
-    loadScript('/js/frontend/game.js', 'module');
-    loadScript('/js/networking/receive.js', 'module');
-    loadScript('/js/input/keyboard.js', 'module');
-    loadScript('/js/graphics/scale.js', 'module');  
-    loadScript('/js/db/db.js', 'module');  
-
+    // Load required JavaScript files and wait for all of them to load
+    return Promise.all([
+        loadScript('/js/frontend/game.js', 'module'),
+        loadScript('/js/networking/receive.js', 'module'),
+        loadScript('/js/input/keyboard.js', 'module'),
+        loadScript('/js/graphics/scale.js', 'module'),
+        loadScript('/js/db/db.js', 'module')
+    ]);
 }
+
 
 function Set_Canvas() {
     const canvas = document.querySelector('.canvasContainer');
@@ -168,7 +174,7 @@ function Set_Canvas() {
 
 document.getElementById('startGame').addEventListener('click', async (event) => {    
     Set_Canvas();
-    Load_Scripts();
+    await Load_Scripts();
     await Splash_Screen();
     Send();
     Remove_Elements();
