@@ -14,6 +14,7 @@ export async function Draw_Equipment(items) {
 
 
     for (let i = 0; i < items.length; i++) {
+        console.log(items[i]);
         if (items[i] === "default") {
             continue
         }
