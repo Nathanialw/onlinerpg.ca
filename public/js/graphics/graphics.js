@@ -110,26 +110,7 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
         columnPosition = x + fromleftBottom + ((squareSize + spaceBetweenBottom) * ind);
     }
 
-    // let equipmentIcon;
-    // if (PIXI.utils.TextureCache[iconPath]) {
-    //     equipmentIcon = Cache[iconPath];
-    // } else {
-    //     equipmentIcon = await PIXI.Assets.load(iconPath);
-    // }
-
-    // Clear the cache for the specific key
-    // if (PIXI.utils.TextureCache[iconPath]) {
-    //     PIXI.utils.TextureCache[iconPath].destroy(true);
-    //     delete PIXI.utils.TextureCache[iconPath];
-    // }
-    
-    // if (PIXI.Assets.cache.has(iconPath)) {
-    //     console.log('Cache has iconPath');
-    //     // equipmentIcon = PIXI.Texture.get(iconPath);
-    // } else {
-    // }
-    
-    equipmentIcon = await PIXI.Assets.load(iconPath);
+    let equipmentIcon = await Load_Icon(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
     return equipment[num]
@@ -146,25 +127,7 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
     let squareSize = w * cellSize;
 
-
-
-    let inventoryIcon;
-    // if (PIXI.utils.TextureCache[iconPath]) {
-    //     inventoryIcon = PIXI.utils.TextureCache[iconPath];
-    // } else {
-    //     inventoryIcon = await PIXI.Assets.load(iconPath);
-    // }
-
-    // // Clear the cache for the specific key
-    // if (PIXI.utils.TextureCache[iconPath]) {
-    //     PIXI.utils.TextureCache[iconPath].destroy(true);
-    //     delete PIXI.utils.TextureCache[iconPath];
-    // }
-    if (PIXI.Assets.cache.has(iconPath)) {
-        inventoryIcon = PIXI.Texture.from(iconPath);
-    } else {
-        inventoryIcon = await PIXI.Assets.load(iconPath);
-    }
+    let inventoryIcon = await Load_Icon(iconPath);
 
     inventory.push(new PIXI.Sprite(inventoryIcon));
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, inventory[num]);
@@ -175,31 +138,7 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     let x = (leftPanelWidth / 2) * cellSize
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
 
-
-    let lootIcon;
-    // if (PIXI.utils.TextureCache[iconPath]) {
-    //     lootIcon = Cache[iconPath];
-    // } else {
-    //     lootIcon = await PIXI.Assets.load(iconPath);
-    // }
-
-    // Clear the cache for the specific key
-    // if (PIXI.utils.TextureCache[iconPath]) {
-    //     PIXI.utils.TextureCache[iconPath].destroy(true);
-    //     delete PIXI.utils.TextureCache[iconPath];
-    // // }
-    // console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
-
-    // if (PIXI.Assets.cache.has(iconPath)) {
-    //     console.log("fetching from cache")
-    //     lootIcon = PIXI.Assets.cache.get(iconPath);
-    //     console.log("fetch: ", lootIcon)
-    // } else {
-    //     console.log("loading loot")
-    //     lootIcon = await PIXI.Assets.load(iconPath);
-    //     PIXI.Assets.cache.set(lootIcon)        
-    // }
-    lootIcon = await Load_Icon(iconPath);
+    let lootIcon = await Load_Icon(iconPath);
 
     loot.push(new PIXI.Sprite(lootIcon));        
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
