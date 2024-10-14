@@ -4,7 +4,7 @@ import { Actions } from "../input/action/action.js";
 import { Set_Scale_Queries } from "../graphics/scale.js";
 
 
-async function Splash_Screen() {
+export async function Splash_Screen() {
     Init();
     Music_Play("forest");
     await Create_Canvas();
@@ -15,7 +15,6 @@ async function Splash_Screen() {
     console.log("Splash Screen");
 }
 
-await Splash_Screen()
 
 export function Close_Game() {
     StopAllSounds();

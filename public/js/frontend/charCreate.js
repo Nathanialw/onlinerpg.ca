@@ -1,6 +1,7 @@
 import { createWebSocket, socket } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
+import { Splash_Screen } from './game.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     Init_Title();
@@ -157,11 +158,12 @@ function Load_Scripts() {
     loadScript('/js/db/db.js', 'module');  
 }
 
-function Set_Canvas() {
+async function Set_Canvas() {
     const canvas = document.querySelector('.canvasContainer');
     if (canvas) {
         canvas.style.height = 'calc(100vh - 3.5rem - 125px)';
     }
+    await Splash_Screen();
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
