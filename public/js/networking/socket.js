@@ -29,6 +29,14 @@ export async function createWebSocket() {
         return;
     }
 
+    if (websocket) {
+        websocket.onopen = null;
+        websocket.onmessage = null;
+        websocket.onclose = null;
+        websocket.onerror = null;
+    }
+
+
     websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
 
     websocket.onopen = () => {

@@ -77,6 +77,7 @@ let equipment = [];
 
 function Parse(numItems, start, data, Query, size, items) {
     console.log("numItems: ", numItems);
+    removeEventListenersFromArray(items);
     items.length = 0; // Clear the array without reassigning it
     if (numItems > 0) {
         items.push(...Query(numItems, data, start));
@@ -138,4 +139,13 @@ export function Update_Screen() {
     Display_Damage(species, damage, isDead)
     Render_Log();
     Render_Target_Stats();
+}
+
+// Function to remove event listeners from an array of objects
+function removeEventListenersFromArray(array) {
+    array.forEach(item => {
+        if (item && item.removeAllListeners) {
+            item.removeAllListeners();
+        }
+    });
 }
