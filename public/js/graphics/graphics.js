@@ -164,20 +164,17 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     let icon 
     if (PIXI.Assets.cache.has(iconPath)) {
         console.log("fetching from cache")
-        icon = PIXI.Assets.cache.get(iconPath);
-        console.log("fetch: ", icon)
-        loot.push(icon);        
-        Draw_Texture(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, loot[num])
+        iconIcon = PIXI.Assets.cache.get(iconPath);
+        console.log("fetch: ", iconIcon)
     } else {
         console.log("loading loot")
-        let ss = PIXI.Texture.fromImage(iconPath)
-        console.log("loaded: ", ss)
-        // lootIcon = await PIXI.Assets.load(iconPath);
-        // PIXI.Assets.cache.set(lootIcon)
-        // icon = new PIXI.Sprite(lootIcon)
-        loot.push(icon);        
-        Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
+        lootIcon = await PIXI.Assets.load(iconPath);
+        PIXI.Assets.cache.set(lootIcon)        
     }
+
+    icon = new PIXI.Sprite(lootIcon)
+    loot.push(icon);        
+    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
     console.log(loot.length)
     return loot[num];
