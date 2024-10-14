@@ -14,7 +14,7 @@ Splash_Screen()
 
 export function Close_Game() {
     document.getElementById('gameCanvas').removeChild(app.canvas);    
-    app.destroy(true, {children: true, texture: true, baseTexture: true});
+    app.destroy(true, {children: true, texture: true, source: true});
         // Create a form element
         const form = document.createElement('form');
         form.method = 'post';
