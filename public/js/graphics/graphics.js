@@ -1,8 +1,8 @@
 'use strict'
 import { characterInfo } from '../units/unitdef.js';
-import { Application } from '../libs/pixi.js';
+import * as PIXI from 'pixi.js';
 
-export const app = new Application();
+export const app = new PIXI.Application();
 
 let equipmentUI;
 let chat;
