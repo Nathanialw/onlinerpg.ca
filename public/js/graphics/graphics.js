@@ -2,6 +2,7 @@
 import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
+PIXI.utils.TextureCache = new PIXI.utils.TextureCache();
 
 let equipmentUI;
 let chat;
