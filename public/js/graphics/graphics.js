@@ -93,7 +93,12 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
-    equipmentIcon = await PIXI.Assets.load(iconPath);
+    
+    try {
+        equipmentIcon = PIXI.Texture.from(iconPath);
+    } catch (e) {
+        equipmentIcon = await PIXI.Assets.load(iconPath);
+    }
 
     equipment[num] = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
@@ -125,7 +130,11 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
-    inventoryIcon = await PIXI.Assets.load(iconPath);
+    try {
+        inventoryIcon = PIXI.Texture.from(iconPath);
+    } catch (e) {
+        inventoryIcon = await PIXI.Assets.load(iconPath);
+    }
 
     inventory.push(new PIXI.Sprite(inventoryIcon));
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, inventory[num]);
@@ -149,7 +158,12 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
-    lootIcon = await PIXI.Assets.load(iconPath);
+    try {
+        lootIcon = PIXI.Texture.from(iconPath);
+    } catch (e) {
+        lootIcon = await PIXI.Assets.load(iconPath);
+    }
+
 
     loot.push(new PIXI.Sprite(lootIcon));
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
