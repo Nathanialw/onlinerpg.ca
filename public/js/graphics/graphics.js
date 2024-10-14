@@ -81,7 +81,7 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
         columnPosition = x + fromleftBottom + ((squareSize + spaceBetweenBottom) * ind);
     }
 
-    let equipmentIcon;
+    // let equipmentIcon;
     // if (PIXI.utils.TextureCache[iconPath]) {
     //     equipmentIcon = Cache[iconPath];
     // } else {
@@ -95,11 +95,12 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     // }
     
     if (PIXI.Assets.cache.has(iconPath)) {
-        equipmentIcon = PIXI.Texture.from(iconPath);
+        console.log('Cache has iconPath');
+        // equipmentIcon = PIXI.Texture.get(iconPath);
     } else {
-        equipmentIcon = await PIXI.Assets.load(iconPath);
     }
-
+    
+    equipmentIcon = await PIXI.Assets.load(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
     return equipment[num]
