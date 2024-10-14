@@ -5,8 +5,10 @@ import { Set_Scale_Queries } from "../graphics/scale.js";
 
 
 export async function Splash_Screen() {
+
     Init();
     Music_Play("forest");
+    console.log("ui sprites load start")
     await Create_Canvas();
     console.log("ui sprites loaded")
     Actions(" ");
