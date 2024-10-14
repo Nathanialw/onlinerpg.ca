@@ -141,7 +141,7 @@ function Remove_Elements() {
     }
 }
 
-function Load_Scripts() {
+async function Load_Scripts() {
     // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
         const script = document.createElement('script');
@@ -156,14 +156,15 @@ function Load_Scripts() {
     loadScript('/js/input/keyboard.js', 'module');
     loadScript('/js/graphics/scale.js', 'module');  
     loadScript('/js/db/db.js', 'module');  
+
+    await Splash_Screen();
 }
 
-async function Set_Canvas() {
+function Set_Canvas() {
     const canvas = document.querySelector('.canvasContainer');
     if (canvas) {
         canvas.style.height = 'calc(100vh - 3.5rem - 125px)';
     }
-    await Splash_Screen();
 }
 
 document.getElementById('startGame').addEventListener('click', (event) => {
