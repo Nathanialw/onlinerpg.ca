@@ -43,7 +43,7 @@ export function Clear_Sprite_Array(spriteArray) {
     //         spriteArray[i].destroy({ children: true, texture: true, baseTexture: true });
     //     }
     // }
-    // spriteArray.length = 0; // Clear the array
+    spriteArray.length = 0; // Clear the array
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
@@ -94,11 +94,11 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
     
-    if (PIXI.Assets.cache.has(iconPath)) {
-        console.log('Cache has iconPath');
-        // equipmentIcon = PIXI.Texture.get(iconPath);
-    } else {
-    }
+    // if (PIXI.Assets.cache.has(iconPath)) {
+    //     console.log('Cache has iconPath');
+    //     // equipmentIcon = PIXI.Texture.get(iconPath);
+    // } else {
+    // }
     
     equipmentIcon = await PIXI.Assets.load(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
@@ -159,23 +159,42 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     //     PIXI.utils.TextureCache[iconPath].destroy(true);
     //     delete PIXI.utils.TextureCache[iconPath];
     // }
-    console.log(PIXI.Assets.cache.has("has icon cache", iconPath))
-    
+    console.log("has icon cache", PIXI.Assets.cache.has(iconPath))
+
+    let icon 
     if (PIXI.Assets.cache.has(iconPath)) {
-        // lootIcon = PIXI.Texture.from(iconPath);
+        console.log("fetching from cache")
+        icon = PIXI.Assets.cache.get(iconPath);
+        console.log("fetch: ", icon)
+        loot.push(icon);        
+        Draw_Texture(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, loot[num])
     } else {
         console.log("loading loot")
-        lootIcon = await PIXI.Assets.load(iconPath);
-        PIXI.Assets.cache.set(lootIcon)
+        let ss = PIXI.Texture.fromImage(iconPath)
+        console.log("loaded: ", ss)
+        // lootIcon = await PIXI.Assets.load(iconPath);
+        // PIXI.Assets.cache.set(lootIcon)
+        // icon = new PIXI.Sprite(lootIcon)
+        loot.push(icon);        
+        Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     }
     
-
-
-    loot.push(new PIXI.Sprite(lootIcon));
-    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);
+    console.log(loot.length)
     return loot[num];
 }
 
+
+export function Draw_Texture(x, y, sprite) {
+    // console.log('Draw_Sprite');
+    sprite.x = x;
+    sprite.y = y;
+    app.stage.addChild(sprite);
+    // console.log("x" + x + " y" + y + " w" + w + " h" + h, sprite);
+
+    sprite.texture.baseTexture.on('error', (error) => {
+        console.error('Error loading texture:', error);
+    });
+}
 export async function Load_Target_Image(x, y, path) {
     x += 1;
     y += 1;
