@@ -37,15 +37,17 @@ async function Init_Graphics() {
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
-    let spaceBetween = 1 * cellSize;
-    let fromTopCol1 = 5.2 * cellSize;
+    let spaceBetweenCol1 = 1 * cellSize;
+    let fromTopCol1 = 5.1 * cellSize;
     let fromleftCol1 = 3.5 * cellSize;
 
-    let fromTopCol2 = 5 * cellSize;
-    let fromleftCol2 = 20 * cellSize;
+    let spaceBetweenCol2 = 1 * cellSize;
+    let fromTopCol2 = 12 * cellSize;
+    let fromleftCol2 = 24.3 * cellSize;
 
+    let spaceBetweenBottom = 1.2 * cellSize;
     let fromTopBottom = 26.5 * cellSize;
-    let fromleftBottom = 13.2 * cellSize;
+    let fromleftBottom = 9.2 * cellSize;
     
     let squareSize = w * cellSize;
 
@@ -54,21 +56,21 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
 
     let rowPosition = y;
     let columnPosition = x;
-    if (num < 7) {
-        rowPosition = y + fromTopCol1 + ((squareSize + spaceBetween) * num);
+    if (num < 6) {
+        rowPosition = y + fromTopCol1 + ((squareSize + spaceBetweenCol1) * num);
         columnPosition = x + fromleftCol1;
     }
-    else if (num < 11) {
-        let ind = num - 7;
-        rowPosition = y + fromTopCol2 + ((squareSize + spaceBetween) * ind);
+    else if (num < 10) {
+        let ind = num - 6;
+        rowPosition = y + fromTopCol2 + ((squareSize + spaceBetweenCol2) * ind);
         columnPosition = x + fromleftCol2;
     }
     else {
-        let ind = num - 11;
+        let ind = num - 10;
         rowPosition = y + fromTopBottom;
-        columnPosition = x + fromleftBottom + ((squareSize + spaceBetween) * ind);
+        columnPosition = x + fromleftBottom + ((squareSize + spaceBetweenBottom) * ind);
     }
-        
+
     const equipmentIcon = await PIXI.Assets.load(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
