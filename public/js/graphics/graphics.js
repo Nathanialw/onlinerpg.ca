@@ -164,8 +164,8 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     let icon 
     if (PIXI.Assets.cache.has(iconPath)) {
         console.log("fetching from cache")
-        iconIcon = PIXI.Assets.cache.get(iconPath);
-        console.log("fetch: ", iconIcon)
+        lootIcon = PIXI.Assets.cache.get(iconPath);
+        console.log("fetch: ", lootIcon)
     } else {
         console.log("loading loot")
         lootIcon = await PIXI.Assets.load(iconPath);
