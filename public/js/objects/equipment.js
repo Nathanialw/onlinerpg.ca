@@ -14,8 +14,7 @@ export async function Draw_Equipment(items) {
 
 
     for (let i = 0; i < items.length; i++) {
-        console.log(items[i]);
-        if (items[i] === "default") {
+        if (items[i] === "none") {
             continue
         }
         let item = await Draw_Equipment_Icons(items[i], i, 1, 1, 2.5)        
