@@ -2,7 +2,7 @@
 import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
-import * as PIXI from '../libs/pixi.js';
+// import * as PIXI from '../libs/pixi.js';
 
 let equipmentUI;
 let chat;
