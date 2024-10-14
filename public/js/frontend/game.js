@@ -9,7 +9,7 @@ async function Splash_Screen() {
     Music_Play("forest");
     await Create_Canvas();
     Actions(" ");
-    handleMediaQueryChange(); // Initial check
+    // handleMediaQueryChange(); // Initial check
     console.log("Splash Screen");
 }
 
