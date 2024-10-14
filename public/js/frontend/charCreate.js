@@ -1,7 +1,6 @@
 import { createWebSocket, socket } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
-import { Splash_Screen } from './game.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     Init_Title();
@@ -142,28 +141,21 @@ function Remove_Elements() {
 }
 
 function Load_Scripts() {
-    // Function to dynamically load a script and return a promise
+    // Function to dynamically load a script
     function loadScript(src, type = 'text/javascript') {
-        return new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = src;
-            script.type = type;
-            script.onload = resolve;
-            script.onerror = reject;
-            document.body.appendChild(script);
-        });
+        const script = document.createElement('script');
+        script.src = src;
+        script.type = type;
+        document.body.appendChild(script);
     }
     
-    // Load required JavaScript files and wait for all of them to load
-    return Promise.all([
-        loadScript('/js/frontend/game.js', 'module'),
-        loadScript('/js/networking/receive.js', 'module'),
-        loadScript('/js/input/keyboard.js', 'module'),
-        loadScript('/js/graphics/scale.js', 'module'),
-        loadScript('/js/db/db.js', 'module')
-    ]);
+    // Load required JavaScript files
+    loadScript('/js/frontend/game.js', 'module');
+    loadScript('/js/networking/receive.js', 'module');
+    loadScript('/js/input/keyboard.js', 'module');
+    loadScript('/js/graphics/scale.js', 'module');  
+    loadScript('/js/db/db.js', 'module');  
 }
-
 
 function Set_Canvas() {
     const canvas = document.querySelector('.canvasContainer');
@@ -172,21 +164,11 @@ function Set_Canvas() {
     }
 }
 
-document.getElementById('startGame').addEventListener('click', async (event) => {    
+document.getElementById('startGame').addEventListener('click', (event) => {
     Set_Canvas();
-    try {
-        console.log('Loading scripts...');
-        await Load_Scripts();
-        console.log('Scripts loaded');
-        await Splash_Screen();
-        console.log('Splash Screen loaded');
-        Send();
-        console.log('Data sent to server');
-        Remove_Elements();
-        console.log('Elements removed');
-    } catch (error) {
-        console.error('Error loading scripts:', error);
-    }
+    Load_Scripts();
+    Send();
+    Remove_Elements();
 });
 
 export function OnReconnect() {

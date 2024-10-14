@@ -4,8 +4,9 @@ import { Actions } from "../input/action/action.js";
 import { Set_Scale_Queries } from "../graphics/scale.js";
 
 
-export async function Splash_Screen() {
 
+//we want this it happen before the game starts
+export async function Splash_Screen() {
     Init();
     Music_Play("forest");
     console.log("ui sprites load start")
@@ -16,7 +17,7 @@ export async function Splash_Screen() {
     Set_Scale_Queries();
     console.log("Splash Screen");
 }
-
+Splash_Screen()
 
 export function Close_Game() {
     StopAllSounds();
