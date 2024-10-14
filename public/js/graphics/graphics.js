@@ -134,10 +134,11 @@ export function Draw_Texture(x, y, sprite) {
     sprite.y = y;
     app.stage.addChild(sprite);
 
-    sprite.texture.baseTexture.on('error', (error) => {
+    sprite.texture.source.on('error', (error) => {
         console.error('Error loading texture:', error);
     });
 }
+
 export async function Load_Target_Image(x, y, path) {
     x += 1;
     y += 1;
