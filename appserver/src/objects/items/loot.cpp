@@ -13,7 +13,7 @@ namespace Loot {
     uint8_t numItems = rand() % 4 + 1;
     for (int i = 0; i < numItems; ++i) {
       //random between 1 and 2 as there are only 2 items currently
-      uint8_t itemID = rand() % 2 + 1;
+      uint8_t itemID = rand() % 16 + 1;
       items[i] = itemID;
     }
     std::cout << "items dropped" << std::endl;
