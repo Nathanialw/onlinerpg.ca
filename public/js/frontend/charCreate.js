@@ -175,10 +175,15 @@ function Set_Canvas() {
 document.getElementById('startGame').addEventListener('click', async (event) => {    
     Set_Canvas();
     try {
+        console.log('Loading scripts...');
         await Load_Scripts();
+        console.log('Scripts loaded');
         await Splash_Screen();
+        console.log('Splash Screen loaded');
         Send();
+        console.log('Data sent to server');
         Remove_Elements();
+        console.log('Elements removed');
     } catch (error) {
         console.error('Error loading scripts:', error);
     }
