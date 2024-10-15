@@ -27,9 +27,9 @@ namespace Items {
     boots,
     ring,
     trinket,
-    weaponMainHand,
-    weaponOffHand,
-    weapon2h,
+    mainHand,
+    offHand,
+    twoHanded,
     ammo,
     SIZE,
   };

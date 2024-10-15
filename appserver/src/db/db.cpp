@@ -104,4 +104,45 @@ namespace DB {
 
     return result;
   }
+
+//  int Query(const std::string &retrieve, const std::string &table, const std::string &where, const std::string &equals) {
+//    if (!db) {
+//      std::cerr << "Database not initialized" << std::endl;
+//      return 0;
+//    }
+//
+//    std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + Append_Quotes(equals);
+//
+//    sqlite3_stmt *stmt;
+//    std::cout << "querying" << std::endl;
+//
+//    int rc = sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, nullptr);
+//    if (rc != SQLITE_OK) {
+//      std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+//      return 0;
+//    }
+//
+//    std::cout << "step" << std::endl;
+//    rc = sqlite3_step(stmt);
+//    std::cout << "step success" << std::endl;
+//
+//    int result;
+//    if (rc == SQLITE_ROW) {
+//      int num = sqlite3_column_int(stmt, 0);
+//      if (num) {
+//        result = num;
+//      } else {
+//        result = 0; // or handle the null case as needed
+//      }
+//    } else if (rc != SQLITE_DONE) {
+//      std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+//    }
+//
+//    std::cout << "result: " << result << std::endl;
+//
+//    sqlite3_finalize(stmt);
+//    std::cout << "finalized" << std::endl;
+//
+//    return result;
+//  }
 };

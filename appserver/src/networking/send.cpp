@@ -79,6 +79,7 @@ namespace Send {
         }
         else if (mod == "a") { //equip offhand
           std::cout << "alt clicked" << std::endl;
+          Equipment::Equip_Offhand(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index));
         }
         else if (mod == "s") { //
           std::cout << "shift clicked, thusfar unused" << std::endl;
