@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Check if the correct number of arguments are provided
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <restart_process> "
-    exit 1
-fi
+# if [ "$#" -ne 1 ]; then
+#     echo "Usage: $0 <restart_process> "
+#     exit 1
+# fi
 
 # Assign arguments to variables
 RESTART=$1
