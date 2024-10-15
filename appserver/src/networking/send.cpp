@@ -74,18 +74,18 @@ namespace Send {
       else if (type == "1") {
         std::cout << "interacting with inventory at index: " << index << std::endl;
         if (mod == "c") { //throw away
-          std::cout << "control clicked" << std::endl;
+          std::cout << "control clicked: " << mod << std::endl;
           Inventory::Drop_Item(game.Get_Player().inventory, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(index));
         }
         else if (mod == "a") { //equip offhand
-          std::cout << "alt clicked" << std::endl;
+          std::cout << "alt clicked: " << mod << std::endl;
           Equipment::Equip_Offhand(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index));
         }
         else if (mod == "s") { //
           std::cout << "shift clicked, thusfar unused" << std::endl;
         }
         else { //equip standard / use item
-          std::cout << "unmodded clicked" << std::endl;
+          std::cout << "unmodded clicked: " << mod << std::endl;
           auto item = Equipment::Use_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index));
           if (!item.empty()) {
             std::cout << "item not equippable, use item: " << item << std::endl;

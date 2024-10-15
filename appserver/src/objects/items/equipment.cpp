@@ -36,49 +36,50 @@ namespace Equipment {
   }
 
   void Equip_Item(std::array<std::array<int, 16>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index, const std::string &equipSlot) {
-    auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", equipSlot); //retrieve slotNum using slotName from the db
+    auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", equipSlot)); //retrieve slotNum using slotName from the db
 
     std::cout << "equip slot num: " << slotNum << std::endl;
 
     //if slotNum == 11, then it can fit in 11 or 12
-    if (slotNum == "11") {
+    if (slotNum == 11) {
       if (equipment[11] == 0)
-            slotNum = "11";
+            slotNum = 11;
       else if (equipment[12] == 0)
-            slotNum = "12";
+            slotNum = 12;
       else
-            slotNum = "11";
+            slotNum = 11;
     }
 
     std::cout << "equip slot num: " << slotNum << std::endl;
 
-    Swap_Item(inventory, equipment, stoi(slotNum), index);
+    Swap_Item(inventory, equipment, slotNum, index);
   }
 
   void Equip_Offhand(std::array<std::array<int, 16>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index) {
     auto itemID = inventory[(int)Items::BagType::Items][index];
-    auto equipSlot = stoi(DB::Query("equipSlot", "Items", "uID", std::to_string(itemID))); //retrieve equipSlot using itemID from the db
+    auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
+    auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
 
-    if (equipSlot != 11 && equipSlot != 12) {
+    if (slotNum != 11 && slotNum != 12) {
       return;
     }
 
-    Swap_Item(inventory, equipment, equipSlot, index);
+    Swap_Item(inventory, equipment, slotNum, index);
   }
 
   std::string Use_Item(std::array<std::array<int, 16>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t invSlot) {
     int itemID = inventory[(int)Items::BagType::Items][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
 
-    auto slot = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
-    std::cout << "equip slot: " << slot << std::endl;
+    auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
+    std::cout << "equip slot: " << slotStr << std::endl;
 
-    if (slot == "notEquippable") {
+    if (slotStr == "notEquippable") {
       // query the effect of the item and apply it
 //      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
       return "no query yet";
     }
-    Equip_Item(inventory, equipment, invSlot, slot);
+    Equip_Item(inventory, equipment, invSlot, slotStr);
     return "";
   }
 

@@ -21,9 +21,6 @@
 //type? (fire/ice/etc maybe not sure if will use)
 
 namespace Species {
-
-  //send the uID of the unit so the client can get the data from the DB
-  //append the modifiers to be applied to the unit data
   std::string Get_Unit_Data_As_string(Game::Instance &game, const std::string &msg) {
     int mapPositionX = game.Get_Player().position.x - game.Get_Player().vision + std::stoi(msg.substr(0, 2));
     int mapPositionY = game.Get_Player().position.y - game.Get_Player().vision + std::stoi(msg.substr(2, 2));
@@ -42,7 +39,7 @@ namespace Species {
     auto AC = Utils::Prepend_Zero(unit.AC);
     auto speed = std::to_string(unit.speed);
     auto vision = Utils::Prepend_Zero(unit.vision);
-    std::string bio = "in the db";
+    std::string bio = "Swamp goblins inhabit the murky, mist-shrouded wetlands of the Shadowlands, where they thrive in the damp, oxygen-poor environment. These peculiar creatures have adapted to their surroundings, developing scaly, moss-covered skin that blends seamlessly with the surrounding vegetation. Their eyes glow like lanterns in the dark, emitting a faint, eerie light that allows them to navigate the treacherous, waterlogged terrain with ease. Their limbs are long and spindly, ending in webbed fingers and toes that enable them to propel themselves through the murky waters with surprising agility.";
     return name + "_" + age + gender + alignment + pic + "_" + health + damage + AC + speed + vision + bio;
   }
 }
