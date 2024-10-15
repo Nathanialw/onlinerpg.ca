@@ -28,7 +28,6 @@ let Update = {
     d: Move,
     r: Move,
     ' ': Move,
-    Control: SoundPlay,
     p: Restart,
     Escape: Quit,
 }
@@ -38,6 +37,19 @@ document.addEventListener("keypress", (event) => {
 })
 			  
 document.addEventListener("keydown", (event) => {
+    if (event.repeat) {
+        return;
+    }
+    if (event.ctrlKey) {
+        return;
+    }
+    if (event.altKey) {
+        return;
+    }
+    if (event.shiftKey) {
+        return;
+    }
+
     const keyName = event.key;
     //use a hash map instead
     if (Update[keyName](keyName)) {
