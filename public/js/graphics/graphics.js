@@ -106,14 +106,16 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
 }
 
 export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {    
-    let x = 0;
+    let spaceBetweenY = .4;
+    let spaceBetweenX = .8;
+    let x = 6;
     let y = ((topPanelHeight / 4) + (leftPanelHeight * 2 / 3)) * cellSize;
     
     let row = Math.floor(num / 4);
     let column = num % 4;
     
-    let rowPosition = y + (row * (w * cellSize) + xOffset * cellSize);
-    let columnPosition = x + (column * (w * cellSize) + yOffset * cellSize);
+    let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + xOffset * cellSize);
+    let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + yOffset * cellSize);
     let squareSize = w * cellSize;
 
     Remove_Event_Listeners(inventory[num]);
