@@ -94,6 +94,9 @@ export function Map(data) {
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
 
+    loot.length = 0;
+    inventory.length = 0;
+    equipment.length = 0;
     const endLoot = Parse(data.substring(7,8), 8, data, Query_Loot, 3, loot);
     const endInventory = Parse(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5, inventory);
     const endEquipment = Parse(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
