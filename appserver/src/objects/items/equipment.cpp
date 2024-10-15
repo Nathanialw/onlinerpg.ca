@@ -30,6 +30,8 @@ namespace Equipment {
             slotNum = "11";
     }
 
+    std::cout << "equip slot num: " << slotNum << std::endl;
+
     //swap inventory itemID with equipment slot itemID
     auto swapItemID = equipment[stoi(slotNum)];
     equipment[stoi(slotNum)] = inventory[(int)Items::BagType::Items][index];
