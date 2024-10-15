@@ -134,8 +134,10 @@ namespace Map {
   void Handle_Boundary(Game::Instance &game, int i, int j, std::string &mapSegment) {
     std::string key = std::to_string((i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0) + "," + std::to_string((j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0);
     Component::Position chunk = { (i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0,  (j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0 };
-    if (chunk.x == 0 && chunk.y == 0) mapSegment += game.map[game.Get_Player().level][game.Get_Player().location].chunk[j][i];
-
+    if (chunk.x == 0 && chunk.y == 0) {
+      mapSegment += game.map[game.Get_Player().level][game.Get_Player().location].chunk[j][i];
+      return;
+    }
 //    Component::Position direction[] = { {0, 0},       {1, -1}, {-1, 1}, {1, 1}, {-1, -1},       {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
     Component::Position cell{ i, j };
