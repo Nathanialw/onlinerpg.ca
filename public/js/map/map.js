@@ -186,7 +186,7 @@ export function Make_Map(serverMap, visionWidth) {
             objects.push([i, "▲"]); // save the location of the enemy
             Clear_Space(serverMap, i)
         }
-        else if (serverMap[i] == "\u00F4") {
+        else if (serverMap[i] == ".") {
             Clear_Space(serverMap, i)
         }
         // else if ((serverMap[i] == "ô")) {
