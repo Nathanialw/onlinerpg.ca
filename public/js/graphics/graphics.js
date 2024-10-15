@@ -338,14 +338,20 @@ export function Update(){
     //redraw map
 }
 
+const yellow = 0xffff00;
+const green =  0x00ff00;
+const green_dark = 0x013220;
+const brown_dark = 0x964b00;
+const brown = 0x8b4513;
+
 const color = new Map();
-color.set('h', 0xffff00);
-color.set('e', 0xffff00);
-color.set('g', 0x00ff00);
-color.set('#', 0x00ff00);
-color.set('▲', 0x013220); //dark green
-color.set('˛', 0x964b00); //brown
-color.set(',', 0x8b4513); //brown
+color.set('h', yellow);
+color.set('e', yellow);
+color.set('g', green);
+color.set('#', green);
+color.set('▲', green_dark); //dark green
+color.set('˛', brown_dark); //brown
+color.set('ô', brown); //brown
 color.set('♀', white); //brown
 color.set('♂', white); //brown
 
