@@ -1,8 +1,10 @@
+#!/bin/bash
+
 # Check if the correct number of arguments are provided
-# if [ "$#" -ne 1 ]; then
-#     echo "Usage: $0 <restart_process> "
-#     exit 1
-# fi
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <restart_process>"
+    exit 1
+fi
 
 # Assign arguments to variables
 RESTART=$1
@@ -17,7 +19,8 @@ git pull
 
 chmod +x /var/www/onlinerpg.ca/appserver/release/BrowserRPG
 chmod 666 /var/www/onlinerpg.ca/appserver/db/data.db
-if [ $RESTART == "restart" ]; then
+
+if [ "$RESTART" == "restart" ]; then
     sudo service rpgserver restart
     sudo service rpgserver status
     bg
