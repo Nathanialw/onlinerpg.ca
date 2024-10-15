@@ -111,11 +111,11 @@ namespace Map {
     Set_Tile(game.map[level][newLocation].chunk, newPosition.x, newPosition.y, tile);
   }
 
-  void Add_Map_Segment(Game::Instance &game, Component::Position cellPostion, Component::Position offset, std::string &mapSegment) {
+  void Add_Map_Segment(Game::Instance &game, Component::Position cell, Component::Position offset, std::string &mapSegment) {
     auto location = game.Get_Player().location;
     location.x += offset.x;
     location.y += offset.y;
-    mapSegment += game.map[game.Get_Player().level][location].chunk[cellPostion.y][cellPostion.x];
+    mapSegment += game.map[game.Get_Player().level][location].chunk[cell.y][cell.x];
   }
 
   void Handle_Boundary(Game::Instance &game, int i, int j, std::string &mapSegment) {
@@ -125,7 +125,7 @@ namespace Map {
       return;
     }
 
-    Component::Position cell{ i, j };
+    Component::Position cell = { i, j };
     if      (chunk.x == -1) cell.x = Component::mapWidth + i;
     else if (chunk.x == 1)  cell.x = i - Component::mapWidth;
 
