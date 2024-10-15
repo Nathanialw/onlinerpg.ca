@@ -24,11 +24,10 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
     item.eventMode = 'static';
     item.cursor = 'pointer';
 
-    let message = "2" + panel + i;
     console.log("message: " + message);
 
     item.on('pointerdown', (event) => { 
-        console.log("sending message: " + message);
+        console.log("panel:", panel, " index:" + i);
         Send_Web_Socket_Message(message); 
     }); //query the server for the object data
 }
