@@ -10,6 +10,7 @@
 namespace DB {
   std::string Query(const std::string &retrieve, const std::string &table, const std::string &where, const std::string &equals);
   void Init();
+  int Get_Num_Items();
 };
 
 #endif // BROWSERRPG_DB_H
