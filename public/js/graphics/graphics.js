@@ -119,7 +119,7 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     Remove_Event_Listeners(inventory[num]);
     
     let inventoryIcon = await Load_Icon(iconPath);
-    inventory.push(new PIXI.Sprite(inventoryIcon));
+    inventory[num] = new PIXI.Sprite(inventoryIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, inventory[num]);
     return inventory[num]
 }
