@@ -20,6 +20,16 @@ namespace Equipment {
     auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
     std::cout << "equip slot num: " << slotNum << std::endl;
 
+    //if slotNum == 11, then it can fit in 11 or 12
+    if (slotNum == "11") {
+      if (equipment[11] == 0)
+            slotNum = "11";
+      else if (equipment[12] == 0)
+            slotNum = "12";
+      else
+            slotNum = "11";
+    }
+
     //swap inventory itemID with equipment slot itemID
     auto swapItemID = equipment[stoi(slotNum)];
     equipment[stoi(slotNum)] = inventory[(int)Items::BagType::Items][index];
