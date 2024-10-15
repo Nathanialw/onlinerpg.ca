@@ -71,7 +71,10 @@ namespace Send {
       }
       else if (type == "1") {
         std::cout << "interacting with inventory at index: " << msg.substr(2) << std::endl;
-        Equipment::Equip_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(msg.substr(2)));
+        auto item = Equipment::Use_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(msg.substr(2)));
+        if (!item.empty()) {
+          std::cout << "item not equippable, use item: " << item << std::endl;
+        }
       }
       else if (type == "2") {
         std::cout << "interacting with equipment at index: " << msg.substr(2) << std::endl;
