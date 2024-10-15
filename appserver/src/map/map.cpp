@@ -93,21 +93,29 @@ namespace Map {
     return Get_Map(chunk);
   }
 
-  void Set_Tile(char chunk[Component::mapWidth][Component::mapWidth], int x, int y, const char &tile) {
-    chunk[y][x] = tile;
-  }
-
   void Reset_Tile(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int x, int y) {
     chunk[y][x] = defaultChunk[y][x];
   }
 
+  void Set_Tile(char chunk[Component::mapWidth][Component::mapWidth], int x, int y, const char &tile) {
+    chunk[y][x] = tile;
+  }
+
+  //does not take into account traversing map chunks
   void Update(Game::Instance &game, int level, Component::Position location, int px, int py, int x, int y, const char &tile) {
-    Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, px, py);
+    //check item at location
+    if (!game.items[level][location][{px, py}].empty())
+      game.map[level][location].chunk[py][px] = ',';
+    else
+      Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, px, py);
     Set_Tile(game.map[level][location].chunk, px + x, py + y, tile);
   }
 
   void Update(Game::Instance &game, int level, Component::Position formerPosition, Component::Position newPosition, Component::Position formerLocation, Component::Position newLocation, const char &tile) {
-    Reset_Tile(game.map[level][formerLocation].defaultChunk, game.map[level][formerLocation].chunk, formerPosition.x, formerPosition.y);
+    if (!game.items[level][formerLocation][{formerPosition.x, formerPosition.y}].empty())
+      game.map[level][formerLocation].chunk[formerPosition.y][formerPosition.x] = ',';
+    else
+      Reset_Tile(game.map[level][formerLocation].defaultChunk, game.map[level][formerLocation].chunk, formerPosition.x, formerPosition.y);
     Set_Tile(game.map[level][newLocation].chunk, newPosition.x, newPosition.y, tile);
   }
 
