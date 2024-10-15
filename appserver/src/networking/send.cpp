@@ -78,6 +78,7 @@ namespace Send {
       }
       else if (type == "2") {
         std::cout << "interacting with equipment at index: " << msg.substr(2) << std::endl;
+        Equipment::Unequip_Item(game.Get_Player().inventory, game.Get_Player().equipment, msg.substr(2));
       }
 
       std::string skip = "1 ";
