@@ -88,3 +88,10 @@ bugs:
 unit ideas:
   totems ex.  Totem of Healing, heals all neady units
               Totem of Undeath, resurects dead units to zombies
+
+
+
+^ = tree
+. = empty space
+a-z A-Z = units
+ô = item
