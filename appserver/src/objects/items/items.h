@@ -28,7 +28,7 @@ namespace Items {
     ring,
     trinket,
     weaponMainHand,
-//    weaponOffHand,
+    weaponOffHand,
     weapon2h,
     ammo,
     SIZE,
