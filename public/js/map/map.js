@@ -181,7 +181,7 @@ export function Make_Map(serverMap, visionWidth) {
     objects.length = 0;;
     objectDisplay.length = 0;
     for (let i = 0; i < serverMap.length; i++) {
-        if (serverMap[i] == "#") {
+        if (serverMap[i] == "^") {
             objects.push([i, "˛"]); // save the location of the enemy
             objects.push([i, "▲"]); // save the location of the enemy
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);

@@ -48,7 +48,7 @@ namespace Map {
 //    for (int i = 0; i < Component::mapWidth; i++) {
 //      for (int j = 0; j < Component::mapWidth; j++) {
 //        if (i == 0 || i == Component::mapWidth - 1 || j == 0 || j == Component::mapWidth - 1) {
-//          game.map[game.level][game.location].defaultChunk[i][j] = '#';
+//          game.map[game.level][game.location].defaultChunk[i][j] = '^';
 //          game.map[game.level][game.location].chunk[i][j] = game.map[game.level][game.location].defaultChunk[i][j];
 //        } else {
 //          game.map[game.level][game.location].defaultChunk[i][j] = '.';
