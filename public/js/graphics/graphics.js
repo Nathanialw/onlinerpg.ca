@@ -345,6 +345,7 @@ color.set('g', 0x00ff00);
 color.set('#', 0x00ff00);
 color.set('▲', 0x013220); //dark green
 color.set('˛', 0x964b00); //brown
+color.set(',', 0x8b4513); //brown
 color.set('♀', white); //brown
 color.set('♂', white); //brown
 
