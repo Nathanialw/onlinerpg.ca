@@ -184,17 +184,17 @@ export function Make_Map(serverMap, visionWidth) {
         if (serverMap[i] == "#") {
             objects.push([i, "˛"]); // save the location of the enemy
             objects.push([i, "▲"]); // save the location of the enemy
-            Clear_Space(serverMap, i)
+            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
         else if (serverMap[i] == ".") {
-            Clear_Space(serverMap, i)
+            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
         // else if ((serverMap[i] == "ô")) {
             
         // }
         else {
             objects.push([i, serverMap[i]]); // save the location of the enemy
-            Clear_Space(serverMap, i)
+            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
         }
         //bag      
     }
