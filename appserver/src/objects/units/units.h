@@ -20,8 +20,6 @@
 namespace Units {
 
   enum class Species {
-    EMPTY,
-
     ALPACA,
     BASILISK,
     CENTAUR,
@@ -75,6 +73,8 @@ namespace Units {
     XANTHUS, //man-eating horse
     YETI,
     Ziburinis, //lithuanian glowing skeleton
+
+    EMPTY,
 
     SIZE
   };
