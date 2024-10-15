@@ -14,8 +14,7 @@ namespace Equipment {
 
   //set equipment slot index to itemID
   //clear inventory slot index
-  void Unequip_Item(std::array<std::array<int, 16>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, const std::string &slot) {
-      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
+  void Unequip_Item(std::array<std::array<int, 16>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, const std::string &slotNum) {
 
       //swap equipment slot itemID with inventory itemID
       auto swapItemID = equipment[stoi(slotNum)];
@@ -31,6 +30,7 @@ namespace Equipment {
 
   void Equip_Item(std::array<std::array<int, 16>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index, const std::string &slot) {
     auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
+
     std::cout << "equip slot num: " << slotNum << std::endl;
 
     //if slotNum == 11, then it can fit in 11 or 12
