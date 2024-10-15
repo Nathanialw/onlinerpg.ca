@@ -138,13 +138,11 @@ namespace Map {
 
 //    Component::Position direction[] = { {0, 0},       {1, -1}, {-1, 1}, {1, 1}, {-1, -1},       {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
-    Component::Position cell{};
+    Component::Position cell{ i, j };
     if      (chunk.x == -1) cell.x = Component::mapWidth + i;
-    else if (chunk.x == 0)  cell.x = i;
     else if (chunk.x == 1)  cell.x = i - Component::mapWidth;
 
     if      (chunk.y == -1) cell.y = Component::mapWidth + j;
-    else if (chunk.y == 0)  cell.y = j;
     else if (chunk.y == 1)  cell.y = j - Component::mapWidth;
 
     Add_Map_Segment(game, cell, chunk, mapSegment);
