@@ -166,6 +166,10 @@ export function Draw_Map_Phone(visionWidth, direction) {
 }   
 
 
+function Clear_Space(serverMap, i) {
+    serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
+}
+
 // instead this function should create a blank map of . and it should get filled in in 8x8 chunks from the server as the player moves, 
 let objects = []
 let objectDisplay = []
@@ -180,14 +184,16 @@ export function Make_Map(serverMap, visionWidth) {
         if (serverMap[i] == "#") {
             objects.push([i, "˛"]); // save the location of the enemy
             objects.push([i, "▲"]); // save the location of the enemy
-            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
+            Clear_Space(serverMap, i)
         }
         else if (serverMap[i] == ".") {
-            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
+            Clear_Space(serverMap, i)
+        }
+        else if ((serverMap[i] == ",")) {
         }
         else {
             objects.push([i, serverMap[i]]); // save the location of the enemy
-            serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1);
+            Clear_Space(serverMap, i)
         }
         //bag      
     }
