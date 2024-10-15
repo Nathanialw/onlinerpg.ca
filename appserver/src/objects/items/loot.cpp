@@ -12,10 +12,12 @@ namespace Loot {
   void Generate_Loot(std::array<uint8_t , 4> &items) {
     uint8_t numItems = Utils::Random(1, 4);
     for (int i = 0; i < numItems; ++i) {
-      uint8_t itemID = Utils::Random(1 , 21);
+      uint8_t itemID = Utils::Random(1 , 23);
+      std::cout << "item dropped: " << itemID << std::endl;
+      if (itemID == 23)
+        std::cout << "IT DID IN FACT WORK WIT WILL DROP AT 23 AS THE MAX VALUE " << itemID << std::endl;
       items[i] = itemID;
     }
-    std::cout << "items dropped" << std::endl;
   }
 
   std::string Query_Loot(std::array<uint8_t , 4> &items) {
