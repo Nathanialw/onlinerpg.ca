@@ -115,7 +115,7 @@ namespace Map {
     auto location = game.Get_Player().location;
     location.x += offset.x;
     location.y += offset.y;
-    mapSegment += game.map[game.Get_Player().level][location].chunk[cellPostion.x][cellPostion.y];
+    mapSegment += game.map[game.Get_Player().level][location].chunk[cellPostion.y][cellPostion.x];
   }
 
 //  typedef void (*AddMapSegmentFunc)(Game::Instance &game, int i, int j, Component::Position offset, std::string &mapSegment);
