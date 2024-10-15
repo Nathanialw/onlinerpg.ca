@@ -58,6 +58,36 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         console.log("Pointer out of item");
         // Optionally, you can handle pointer out event
     });
+
+    item.on('pointermove', (event) => { 
+        console.log("Pointer moving over item");
+        // Optionally, you can handle pointer move event
+    });
+
+    item.on('pointertap', (event) => { 
+        console.log("Item tapped");
+        // Optionally, you can handle pointer tap event
+    });
+
+    item.on('rightdown', (event) => { 
+        console.log("Right mouse button down on item");
+        // Optionally, you can handle right mouse button down event
+    });
+
+    item.on('rightup', (event) => { 
+        console.log("Right mouse button up on item");
+        // Optionally, you can handle right mouse button up event
+    });
+
+    item.on('rightclick', (event) => { 
+        console.log("Right mouse button clicked on item");
+        // Optionally, you can handle right mouse button click event
+    });
+
+    item.on('contextmenu', (event) => {
+        event.preventDefault();
+        console.log("Context menu prevented");
+    });
 }
 
 // In PIXI.js, you can use various mouse and pointer event listeners to handle different types of user interactions. Here are some common event listeners you can use:
