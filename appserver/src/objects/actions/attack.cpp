@@ -77,7 +77,7 @@ namespace Attack {
         //if items drop
           //send the uIDs of the items to the client when he moves over them
         //else
-        chunk[px+x][py+y] = ',';
+        chunk[py+y][px+x] = ',';
         return {std::to_string((int)target.def.species), attacker.maxDamage, true};
     }
     return {std::to_string((int)target.def.species), attacker.maxDamage, false};
