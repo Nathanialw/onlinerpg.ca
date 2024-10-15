@@ -25,8 +25,8 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
     item.cursor = 'pointer';
 
     let message = "2" + panel + i;
+    console.log("message: " + message);
 
-    console.log("click = ", message)
     item.on('pointerdown', (event) => { 
         Send_Web_Socket_Message(message); 
     }); //query the server for the object data
