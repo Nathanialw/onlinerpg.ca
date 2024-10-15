@@ -46,4 +46,11 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         console.log("message: ", message);
         Send_Web_Socket_Message(message); 
     }); 
+
+    item.on('hover', (event) => { 
+        let message;
+        message = "2" + panel + "0" + i;
+        
+        console.log("message: ", message);
+    }); 
 }

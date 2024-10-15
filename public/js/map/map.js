@@ -198,7 +198,6 @@ export function Make_Map(serverMap, visionWidth) {
             objects.push([i, serverMap[i]]); // save the location of the enemy
             serverMap = serverMap.substring(0, i) + " " + serverMap.substring(i + 1); //background char
         }
-        //bag      
     }
 
     mapString = "";    
