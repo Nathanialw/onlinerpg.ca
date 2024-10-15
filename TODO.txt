@@ -48,7 +48,6 @@ short term:
   -1 for alignment
     -// can swap these out if you find books of spells, but can only know a max num of spells
 
--when holding down move, if it colides into a unit. just stop instead of attacking
 -come up with a list of spells
 
 -if the data is already loaded it doesn't fetch it again, unless there is new info to grab
@@ -56,10 +55,10 @@ short term:
 -time system
   -1 move/attack = 1 minute
   -rest = 10 mins and heals one health | unless you get attacked
--have enemies drop an item when they die
 -scroll bar on the combat log
 -fog of war/vision blocking by terrain
--local client side DB SQL.js to store static data, like item descriptions
+-get unit data from the local database instead of sending it
+-create the buttons for the UI
 
 medium term:
 -items
