@@ -40,14 +40,14 @@ namespace Equipment {
 
     std::cout << "equip slot num: " << slotNum << std::endl;
 
-    //if slotNum == 11, then it can fit in 11 or 12
-    if (slotNum == 11) {
-      if (equipment[11] == 0)
-            slotNum = 11;
-      else if (equipment[12] == 0)
-            slotNum = 12;
+    //if slotNum == Items::ItemSlot::mainHand, then it can fit in Items::ItemSlot::mainHand or Items::ItemSlot::offHand
+    if (slotNum == (int)Items::ItemSlot::mainHand) {
+      if (equipment[(int)Items::ItemSlot::mainHand] == 0)
+        slotNum = (int)Items::ItemSlot::mainHand;
+      else if (equipment[(int)Items::ItemSlot::offHand] == 0)
+        slotNum = (int)Items::ItemSlot::offHand;
       else
-            slotNum = 11;
+        slotNum = (int)Items::ItemSlot::mainHand;
     }
 
     std::cout << "equip slot num: " << slotNum << std::endl;
@@ -60,11 +60,11 @@ namespace Equipment {
     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
 
-    if (slotNum != 11 && slotNum != 12) {
+    if (slotNum != (int)Items::ItemSlot::mainHand && slotNum != (int)Items::ItemSlot::offHand) {
       return;
     }
 
-    Swap_Item(inventory, equipment, slotNum, index);
+    Swap_Item(inventory, equipment, (int)Items::ItemSlot::offHand, index);
   }
 
   std::string Use_Item(std::array<std::array<int, 16>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t invSlot) {
