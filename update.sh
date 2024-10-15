@@ -18,6 +18,7 @@ git pull
 #sudo service rpgwebserver status
 
 chmod +x /var/www/onlinerpg.ca/appserver/release/BrowserRPG
+chmod +x /var/www/onlinerpg.ca/update.sh
 chmod 666 /var/www/onlinerpg.ca/appserver/db/data.db
 
 if [ "$RESTART" = "restart" ]; then
