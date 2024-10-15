@@ -101,10 +101,17 @@ namespace Map {
     chunk[y][x] = tile;
   }
 
+  //only needs to check the first item
+  bool Check_For_Item(std::array<uint8_t , 4> &items) {
+    if (items[0] != 0)
+      return true;
+    return false;
+  }
+
   //does not take into account traversing map chunks
   void Update(Game::Instance &game, int level, Component::Position location, int px, int py, int x, int y, const char &tile) {
     //check item at location
-    if (!game.items[level][location][{px, py}].empty())
+    if (Check_For_Item(game.items[level][location][{px, py}]))
       game.map[level][location].chunk[py][px] = ',';
     else
       Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, px, py);
@@ -112,7 +119,7 @@ namespace Map {
   }
 
   void Update(Game::Instance &game, int level, Component::Position formerPosition, Component::Position newPosition, Component::Position formerLocation, Component::Position newLocation, const char &tile) {
-    if (!game.items[level][formerLocation][{formerPosition.x, formerPosition.y}].empty())
+    if (Check_For_Item(game.items[level][formerLocation][{formerPosition.x, formerPosition.y}]))
       game.map[level][formerLocation].chunk[formerPosition.y][formerPosition.x] = ',';
     else
       Reset_Tile(game.map[level][formerLocation].defaultChunk, game.map[level][formerLocation].chunk, formerPosition.x, formerPosition.y);
