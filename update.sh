@@ -1,13 +1,12 @@
 #!/bin/bash
 
 # Check if the correct number of arguments are provided
+RESTART="norestart"
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 <restart_process>"
-    exit 1
+    RESTART=$1
 fi
 
 # Assign arguments to variables
-RESTART=$1
 
 git checkout -- *
 git pull
