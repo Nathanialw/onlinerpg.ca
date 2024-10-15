@@ -35,7 +35,7 @@ namespace Equipment {
     //swap inventory itemID with equipment slot itemID
     auto swapItemID = equipment[stoi(slotNum)];
     equipment[stoi(slotNum)] = inventory[(int)Items::BagType::Items][index];
-    std::cout << "equipment slot: " << equipment[stoi(slotNum)] << std::endl;
+    std::cout << "equipment slot now contains itemID: " << equipment[stoi(slotNum)] << std::endl;
     inventory[(int)Items::BagType::Items][index] = swapItemID;
   }
 
