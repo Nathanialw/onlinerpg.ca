@@ -47,10 +47,36 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         Send_Web_Socket_Message(message); 
     }); 
 
-    item.on('hover', (event) => { 
-        let message;
-        message = "2" + panel + "0" + i;
-        
-        console.log("message: ", message);
-    }); 
+    item.on('pointerover', (event) => { 
+        let message = "2" + panel + "0" + i;
+        console.log("Hover message: ", message);
+        // Optionally, you can send a message on hover
+        // Send_Web_Socket_Message(message); 
+    });
+
+    item.on('pointerout', (event) => { 
+        console.log("Pointer out of item");
+        // Optionally, you can handle pointer out event
+    });
 }
+
+// In PIXI.js, you can use various mouse and pointer event listeners to handle different types of user interactions. Here are some common event listeners you can use:
+
+// pointerdown:         Triggered when a pointer (mouse, touch, pen) is pressed down.
+// pointerup:           Triggered when a pointer is released.
+// pointerupoutside:    Triggered when a pointer is released outside the element.
+// pointermove:         Triggered when a pointer moves over the element.
+// pointerover:         Triggered when a pointer moves onto the element.
+// pointerout:          Triggered when a pointer moves out of the element.
+// pointertap:          Triggered when a pointer is tapped (quick press and release).
+// rightdown:           Triggered when the right mouse button is pressed down.
+// rightup:             Triggered when the right mouse button is released.
+// rightupoutside:      Triggered when the right mouse button is released outside the element.
+// mousedown:           Triggered when the left mouse button is pressed down.
+// mouseup:             Triggered when the left mouse button is released.
+// mouseupoutside:      Triggered when the left mouse button is released outside the element.
+// mousemove:           Triggered when the mouse moves over the element.
+// mouseover:           Triggered when the mouse moves onto the element.
+// mouseout:            Triggered when the mouse moves out of the element.
+// click:               Triggered when the left mouse button is clicked.
+// rightclick:          Triggered when the right mouse button is clicked.
