@@ -291,7 +291,7 @@ export async function Draw_Tooltip(x, y) {
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     tooltip = new PIXI.Sprite(tooltipTexture);
-    return Draw_Sprite(x, y, 40, 40, tooltip);
+    return Draw_Sprite(x, y, 10*cellSize, 14*cellSize, tooltip);
 }
 
 export function Remove_Tooltip() {
