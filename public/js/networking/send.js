@@ -85,7 +85,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         // Optionally, you can handle right mouse button click event
     });
 
-    item.on('contextmenu', (event) => {
+    item.addEventListener('contextmenu', (event) => {
         event.preventDefault();
         event.stopPropagation();
         console.log("Context menu prevented");
