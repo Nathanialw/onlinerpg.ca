@@ -85,7 +85,9 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         // Optionally, you can handle right mouse button click event
     });
 
-    item.on('rightclick', (event) => {
+    item.on('rightclick', (event) => { 
+        console.log("Right mouse button clicked on item");
+        // Prevent the context menu
         event.preventDefault();
         event.stopPropagation();
         console.log("Context menu prevented");
