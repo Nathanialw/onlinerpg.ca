@@ -1,3 +1,4 @@
+import { Get_Item_Stats } from '../db/db.js';
 import { app, cellSize, Create_Text_Line, Draw_Sprite, minimapCellSize } from '../graphics/graphics.js';
 
 let tooltip;
@@ -10,17 +11,32 @@ export async function Draw_Tooltip(x, y) {
 
     //get the itemID of the item in the loot array
 
+    // HOW???
+    const itemID = 2;
     //read in the properties from the db
-        
+    const itemStats = await Get_Item_Stats(itemID);
+
     properties.push("");
-    properties.push("Iron Sword");
+    properties.push(itemStats.name);
     properties.push("");
-    properties.push("Damage: 1-5");
-    properties.push("Speed: 1.5");
+    if (itemStats.equipSlot !== "notequppable") {
+        properties.push(itemStats.equipSlot);
+    }
+    if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
+        properties.push("Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);
+    }
+    if (itemStats.AC !== null) {
+        properties.push("Armour: " + itemStats.AC);
+    }
+    // properties.push("Speed: 1.5");
     properties.push("Range: 1");
     properties.push("");
     properties.push("Durability: 10");
     properties.push("Weight: 1");
+    properties.push("");
+    if (itemStats.description !== null) {
+        properties.push(itemStats.description);
+    }
     properties.push("");
 
     //keep track of the longest line
