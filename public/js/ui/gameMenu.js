@@ -9,18 +9,18 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 //add event listener
 //send message to server on click
 
-function Options() {console.log("Game Menu Options()")}
-function Graphics() {console.log("Game Menu Graphics()")}
-function Sound() {console.log("Game Menu Sound()")}
-function New_Game() {console.log("Game Menu New_Game()")}
-function Exit() {console.log("Game Menu Exit()")}
+function Target() {console.log("Target()")}
+function Spellbook() {console.log("Spellbook()")}
+function Combat_Log() {console.log("Combat_Log()")}
+function Minimap() {console.log("Minimap()")}
+function Crafting() {console.log("Crafting()")}
 
 const functions = [
-    Options,    //open options menu
-    Graphics,   //open graphics menu
-    Sound,      //open sound menu
-    New_Game,   //start new game
-    Exit,       //exit game
+    Target,     // target stats  
+    Spellbook,  // spellbook
+    Combat_Log, // extended combat log
+    Minimap,    // minimap  
+    Crafting,       // 
 ]
 
 let set = false;
