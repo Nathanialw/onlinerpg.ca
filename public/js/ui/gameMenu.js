@@ -38,12 +38,14 @@ export async function Draw_Main_Menu() {
     for (let i = 0; i < mainMenuSprites.length; i++) {
         let addListener = false;
         if (!mainMenuSprites[i]) {
+            console.log("toggling addListener: ", addListener);
             addListener = true;
         }
         
         let button = await Draw_Main_Menu_Icons(i, 1, 2.5, 2.5)           
         
         if (addListener) {
+            console.log("adding Listener: ", addListener);
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
         }
     }
