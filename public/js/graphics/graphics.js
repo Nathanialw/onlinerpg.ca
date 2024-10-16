@@ -71,7 +71,7 @@ export async function Draw_Main_Menu_Icons(menu, num, xOff) {
     let x = 0.4 * cellSize + ((num * 5) + spaceBetween) * cellSize;
     let y = 0.5 * cellSize;
     let h = 1.5 * cellSize;
-    let w = 4.5 * cellSize;
+    let w = xOff * cellSize;
 
     // Remove_Event_Listeners(mainMenuSprites[num]);    
     // let button = await Load_Icon(iconPath);    

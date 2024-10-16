@@ -1,7 +1,6 @@
 'use strict'
 import { Clear_Sprite_Array, Draw_Main_Menu_Icons, gameMenuSprites } from '../graphics/graphics.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
-import { Init } from '../sound/sound.js';
 
 
 //STATIC MENUS
@@ -26,7 +25,7 @@ const functions = [
 
 let set = false;
 
-export function  Init_Main_Menu() { //set listers on the sprites stored
+export function  Draw_Game_Menu() { //set listers on the sprites stored
     for (let i = 0; i < gameMenuSprites.length; i++) {
         Set_Send_On_Menu_Click_Listener(button, functions[i]);
     }
