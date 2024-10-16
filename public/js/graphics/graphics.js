@@ -18,6 +18,7 @@ export let loot = [];
 export let inventory = [];
 export let equipment = []
 export let mainMenuSprites = []
+export let gameMenuSprites = []
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
@@ -45,6 +46,10 @@ async function Init_Graphics() {
         
     //load bag menu buttons
     //load game menu buttons
+    for (let i = 0; i < 5; i++) {
+        const button = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
+        gameMenuSprites[i] = new PIXI.Sprite(button);
+    }
 }
 
 export function Clear_Sprite_Array(spriteArray) {
@@ -61,7 +66,7 @@ function Remove_Event_Listeners(sprite) {
     }
 }
 
-export async function Draw_Main_Menu_Icons(num) {    
+export async function Draw_Main_Menu_Icons(menu, num, xOff) {    
     let spaceBetween = 2.2;    
     let x = 0.4 * cellSize + ((num * 5) + spaceBetween) * cellSize;
     let y = 0.5 * cellSize;
@@ -71,8 +76,8 @@ export async function Draw_Main_Menu_Icons(num) {
     // Remove_Event_Listeners(mainMenuSprites[num]);    
     // let button = await Load_Icon(iconPath);    
     // mainMenuSprites.push(new PIXI.Sprite(button));        
-    Draw_Sprite(x, y, w, h, mainMenuSprites[num]);            
-    return mainMenuSprites[num];
+    Draw_Sprite(x, y, w, h, menu[num]);            
+    return menu[num];
 }
 
 async function Load_Icon(path) {

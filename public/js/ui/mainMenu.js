@@ -36,7 +36,7 @@ export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        let button = await Draw_Main_Menu_Icons(i, 0.4)           
+        let button = await Draw_Main_Menu_Icons(mainMenuSprites, i, 0.4)           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
