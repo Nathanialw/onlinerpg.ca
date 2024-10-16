@@ -31,7 +31,7 @@ const functions = [
     Exit,       //exit game
 ]
 
-let set = true;
+let set = false;
 
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
