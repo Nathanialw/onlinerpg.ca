@@ -1,5 +1,5 @@
 // import * as PIXI from '/js/libs/pixi.js';
-import { app, cellSize } from './graphics.js';
+import { app, cellSize } from '../graphics/graphics.js';
 
 
 export async function Draw_Tooltip(x, y) {
