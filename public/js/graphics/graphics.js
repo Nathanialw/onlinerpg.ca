@@ -167,9 +167,8 @@ export async function Create_Canvas() {
 
     app.view.addEventListener('contextmenu', (event) => {
         event.preventDefault();
-        console.log("Context menu prevented on canvas");
     });
-    
+
     await Init_Graphics();
 
     document.getElementById('gameCanvas').appendChild(app.canvas);

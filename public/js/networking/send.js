@@ -24,10 +24,6 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
     item.eventMode = 'static';
     item.cursor = 'pointer';
 
-    
-    item.on('pointerdown', (event) => { 
-        console.log("Pointer Down: ");        
-    }); 
 
     item.on('pointerover', (event) => { 
         let message = "2" + panel + "0" + i;
@@ -41,33 +37,11 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         // Optionally, you can handle pointer out event
     });
 
-    //TOO SPAMMY
-    // item.on('pointermove', (event) => { 
-    //     console.log("Pointer moving over item");
-    //     // Optionally, you can handle pointer move event
-    // });
-
-    item.on('pointertap', (event) => { 
-        console.log("Item tapped");
-        // Optionally, you can handle pointer tap event
-    });
-
-    // item.on('rightdown', (event) => { 
-    //     console.log("Right mouse button down on item");
-    //     // Optionally, you can handle right mouse button down event
-    // });
 
 
-
-
-
-
-
-
-
-    //DEKTOP ONLY
-    item.on('mouseclick', (event) => { 
-        console.log("Right mouse button clicked on item, open conext menu to decide action");
+    //
+    item.on('mousedown', (event) => { 
+        console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
 
     });
