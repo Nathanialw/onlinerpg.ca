@@ -287,6 +287,8 @@ export function Draw_Sprite(x, y, w, h, sprite) {
 }
 
 export async function Draw_Tooltip(x, y) {
+    Remove_Tooltip();
+
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     tooltip = new PIXI.Sprite(tooltipTexture);
     return Draw_Sprite(x, y, 40, 40, tooltip);
@@ -295,6 +297,7 @@ export async function Draw_Tooltip(x, y) {
 export function Remove_Tooltip() {
     if (tooltip) {
         app.stage.removeChild(tooltip);
+        tooltip.destroy({ texture: true, baseTexture: true });
         tooltip = null;
     }
 }
