@@ -9,9 +9,6 @@ export async function Draw_Tooltip(x, y, itemID) {
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
 
-    //get the itemID of the item in the loot array
-
-    // HOW???
     //read in the properties from the db
     const itemStatsArray = await Get_Item_Stats(itemID);
     const itemStats = itemStatsArray[0];
@@ -60,12 +57,9 @@ export async function Draw_Tooltip(x, y, itemID) {
     for (let i = 0; i < numLines; i++) {
         properties[i] = Create_Text_Line(" " + properties[i] + " ", minimapCellSize, i, x / cellSize, y / cellSize);
     }
-    console.log("lines:", properties.length);
-
 }
 
 export function Remove_Tooltip() {
-    console.log("lines:", properties.length);
     if (properties) {
         for (let i = 0; i < properties.length; i++) {
             app.stage.removeChild(properties[i]);

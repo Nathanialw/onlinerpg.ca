@@ -34,8 +34,6 @@ export function Query_Inventory(numItems, data, start) {
         let itemID = parseInt(str.substring(2, 5));
 
         inv.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
-
     }
-
     return inv;
 }

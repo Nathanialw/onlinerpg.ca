@@ -32,7 +32,6 @@ export function Query_Equipment(numItems, data, start) {
         let itemID = parseInt(str.substring(2, 5));
         equipped.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
     }
-
     return equipped;
 }
 
