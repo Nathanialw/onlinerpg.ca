@@ -2,6 +2,10 @@
 import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
+app.view.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+    console.log("Context menu prevented on canvas");
+});
 
 let equipmentUI;
 let chat;
