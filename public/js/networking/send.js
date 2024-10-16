@@ -20,7 +20,6 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     }); 
 }
 
-let tooltip;
 
 export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
     //send the index of the item in the loot array
@@ -32,12 +31,12 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         // Get mouse position
         const mousePosition = event.data.global;
         console.log("Mouse position (over):", mousePosition);
-        tooltip = Draw_Tooltip(mousePosition.x, mousePosition.y);
+        Draw_Tooltip(mousePosition.x, mousePosition.y);
     });
 
     item.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
-        Remove_Tooltip(tooltip);
+        Remove_Tooltip();
     }); 
 
     //
