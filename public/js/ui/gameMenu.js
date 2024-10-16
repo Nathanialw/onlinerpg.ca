@@ -25,7 +25,7 @@ const functions = [
 
 let set = false;
 
-export function  Draw_Game_Menu() { //set listers on the sprites stored
+export function  Init_Game_Menu() { //set listers on the sprites stored
     for (let i = 0; i < gameMenuSprites.length; i++) {
         Set_Send_On_Menu_Click_Listener(button, functions[i]);
     }
@@ -33,7 +33,7 @@ export function  Draw_Game_Menu() { //set listers on the sprites stored
 
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
-
+    console.log("gameMenuSprites: ", gameMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
         let button = await Draw_Main_Menu_Icons(gameMenuSprites, i, 20)           
         
