@@ -137,6 +137,7 @@ export function Update_Screen() {
     Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
 
     Draw_Main_Menu();
+    Draw_Game_Menu();
 
     // Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)
