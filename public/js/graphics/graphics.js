@@ -297,7 +297,7 @@ export async function Draw_Tooltip(x, y) {
 export function Remove_Tooltip() {
     if (tooltip) {
         app.stage.removeChild(tooltip);
-        tooltip.destroy({ texture: true, baseTexture: true });
+        tooltip.unload({ texture: true, baseTexture: true });
         tooltip = null;
     }
 }
