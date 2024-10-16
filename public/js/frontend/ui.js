@@ -7,6 +7,7 @@ import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
+import { Draw_Main_Menu } from '../ui/gameMenu.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -73,7 +74,7 @@ let serverMap;
 let loot = [];
 // let numInventory;
 let inventory = [];
-let equipment = [];
+let equipment = []; //list of item {slot, itemID, path string)
 
 function Parse(numItems, start, data, Query, size, items) {
     removeEventListenersFromArray(items);
@@ -133,7 +134,9 @@ export function Update_Screen() {
     
     Draw_Loot(loot);
     Draw_Inventory(inventory);
-    Draw_Equipment(equipment);
+    Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
+
+    Draw_Main_Menu();
 
     // Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)

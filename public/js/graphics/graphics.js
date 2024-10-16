@@ -17,6 +17,7 @@ let playerImg;
 export let loot = [];
 export let inventory = [];
 export let equipment = []
+export let mainMenuSprites = []
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
@@ -35,6 +36,15 @@ async function Init_Graphics() {
     lootUI = new PIXI.Sprite(lootUITexture);
     playerImg = new PIXI.Sprite(playerTexture);
     target = new PIXI.Sprite(targetTexture);
+
+    //load main menu buttons
+    for (let i = 0; i < 5; i++) {
+        const button = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
+        mainMenuSprites[i]= PIXI.Sprite(button);
+    }
+        
+    //load bag menu buttons
+    //load game menu buttons
 }
 
 export function Clear_Sprite_Array(spriteArray) {
@@ -49,6 +59,17 @@ function Remove_Event_Listeners(sprite) {
     if (sprite && sprite.removeAllListeners) {
         sprite.removeAllListeners();
     }
+}
+
+export async function Draw_Main_Menu_Icons(num, xOffset, yOffset, w) {    
+    let x = (leftPanelWidth / 2) * cellSize
+    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
+
+    // Remove_Event_Listeners(mainMenuSprites[num]);    
+    // let button = await Load_Icon(iconPath);    
+    // mainMenuSprites.push(new PIXI.Sprite(button));        
+    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, mainMenuSprites[num]);            
+    return mainMenuSprites[num];
 }
 
 async function Load_Icon(path) {
@@ -284,8 +305,6 @@ export function Draw_Sprite(x, y, w, h, sprite) {
         console.error('Error loading texture:', error);
     });
 }
-
-
 
 // function Draw_Map_Border() {
 //     let mapBorder = new PIXI.Graphics();

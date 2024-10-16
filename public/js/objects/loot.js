@@ -9,7 +9,15 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
-// let loot = []; //store item IDs
+export function Query_Loot(numItems, data, start) {
+    let drops = []
+    for (let i = 0; i < numItems; i++) {
+        //isert teh path
+        let itemID = parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3), 10));
+        drops.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});    
+    }
+    return drops;
+}
 
 export async function Draw_Loot(items) {
     Clear_Sprite_Array(loot);
@@ -23,12 +31,3 @@ export async function Draw_Loot(items) {
     }
 }
 
-export function Query_Loot(numItems, data, start) {
-    let drops = []
-    for (let i = 0; i < numItems; i++) {
-        //isert teh path
-        let itemID = parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3), 10));
-        drops.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});    
-    }
-    return drops;
-}

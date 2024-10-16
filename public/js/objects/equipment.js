@@ -9,20 +9,6 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
-// let equipment = [];
-
-export async function Draw_Equipment(items) {
-    Clear_Sprite_Array(equipment);
-
-    for (let i = 0; i < items.length; i++) {
-        if (items[i].path === "none") {
-            continue
-        }
-        let item = await Draw_Equipment_Icons(items[i].path, i, 1, 1, 2.5)        
-        Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID);   //1 means inventory panel
-    }
-}
-
 export function Query_Equipment(numItems, data, start) {
     let equipped = []
     for (let i = 0; i < numItems; i++) {
@@ -35,3 +21,15 @@ export function Query_Equipment(numItems, data, start) {
     return equipped;
 }
 
+
+export async function Draw_Equipment(items) {
+    Clear_Sprite_Array(equipment);
+
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].path === "none") {
+            continue
+        }
+        let item = await Draw_Equipment_Icons(items[i].path, i, 1, 1, 2.5)        
+        Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID);   //1 means inventory panel
+    }
+}
