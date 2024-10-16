@@ -20,8 +20,8 @@ export async function Draw_Inventory(items) {
         }
         //clear event listene from index i
 
-        let item = await Draw_Inventory_Icons(items[i], i, 1, 1, 2.5)            
-        Set_Send_On_Loot_Click_Listener(item, '1', i, inventory);   //1 means inventory panel
+        let item = await Draw_Inventory_Icons(items[i].path, i, 1, 1, 2.5)            
+        Set_Send_On_Loot_Click_Listener(item, '1', i, inventory.itemID);   //1 means inventory panel
     }
 }
 
@@ -30,10 +30,11 @@ export function Query_Inventory(numItems, data, start) {
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
-        let invIndex = str.substring(0, 2);
-        let itemID = str.substring(2, 5);
+        let invIndex = parseInt(str.substring(0, 2));
+        let itemID = parseInt(str.substring(2, 5));
 
-        inventory.push(Get_Icon_Path(parseInt(itemID)));
+        inventory.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
+
     }
 
     return inventory;

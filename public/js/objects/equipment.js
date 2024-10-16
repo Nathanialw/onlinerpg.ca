@@ -18,8 +18,8 @@ export async function Draw_Equipment(items) {
         if (items[i] === "none") {
             continue
         }
-        let item = await Draw_Equipment_Icons(items[i], i, 1, 1, 2.5)        
-        Set_Send_On_Loot_Click_Listener(item, '2', i, equipment);   //1 means inventory panel
+        let item = await Draw_Equipment_Icons(items[i].path, i, 1, 1, 2.5)        
+        Set_Send_On_Loot_Click_Listener(item, '2', i, equipment.itemID);   //1 means inventory panel
     }
 }
 
@@ -28,9 +28,9 @@ export function Query_Equipment(numItems, data, start) {
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
-        let equipmentIndex = str.substring(0, 2);
-        let itemID = str.substring(2, 5);
-        equipment.push(Get_Icon_Path(parseInt(itemID)));
+        let equipmentIndex = parseInt(str.substring(0, 2));
+        let itemID = parseInt(str.substring(2, 5));
+        equipment.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
     }
 
     return equipment;

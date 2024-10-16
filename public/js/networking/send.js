@@ -21,7 +21,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
 }
 
 
-export function Set_Send_On_Loot_Click_Listener(item, panel, i, items) {
+export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'pointer';
@@ -31,7 +31,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, items) {
         // Get mouse position
         const mousePosition = event.data.global;
         console.log("Mouse position (over):", mousePosition);
-        await Draw_Tooltip(mousePosition.x, mousePosition.y, items[i]);
+        await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 
     item.on('mouseout', (event) => { 
