@@ -19,18 +19,18 @@ export async function Draw_Loot(items) {
             continue
         }
         let item = await Draw_Loot_Icons(items[i].path, i, 1, 2.5, 2.5)        
-        Set_Send_On_Loot_Click_Listener(item, '0', i, loot[i].itemID);  //0 means loot panel
+        Set_Send_On_Loot_Click_Listener(item, '0', i, items[i].itemID);  //0 means loot panel
     }
 }
 
 export function Query_Loot(numItems, data, start) {
-    loot.length = 0;
+    let drops = []
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         let itemID = parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3), 10));
-        loot.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
+        drops.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
         
     }
 
-    return loot;
+    return drops;
 }
