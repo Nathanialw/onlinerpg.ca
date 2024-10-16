@@ -14,7 +14,8 @@ export async function Draw_Tooltip(x, y) {
     // HOW???
     const itemID = 2;
     //read in the properties from the db
-    const itemStats = await Get_Item_Stats(itemID);
+    const itemStatsArray = await Get_Item_Stats(itemID);
+    const itemStats = itemStatsArray[0];
 
     properties.push("");
     properties.push(itemStats.name);
