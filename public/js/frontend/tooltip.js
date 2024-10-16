@@ -12,28 +12,30 @@ export async function Draw_Tooltip(x, y) {
 
     //read in the properties from the db
         
-    properties.push("Sword");
+    properties.push("");
+    properties.push("Iron Sword");
     properties.push("Damage: 1-5");
     properties.push("Speed: 1.5");
     properties.push("Range: 1");
     properties.push("Durability: 10");
     properties.push("Weight: 1");
+    properties.push("");
 
     //keep track of the longest line
     let maxLengthLine = 10;
     for (let i = 0; i < properties.length; i++) {
         if (properties[i].length > maxLengthLine) {
-            maxLengthLine = properties[i].length;
+            maxLengthLine = properties[i].length + 2;
         }
     }
     //keep track of the number of lines
-    let numLines = properties,length;
+    let numLines = properties.length;
 
     tooltip = new PIXI.Sprite(tooltipTexture);
     Draw_Sprite(x, y, maxLengthLine * cellSize, numLines * cellSize, tooltip);
 
     for (let i = 0; i < numLines; i++) {
-        properties[i] = Create_Text_Line(properties[i], minimapCellSize, i, x / cellSize, y / cellSize);
+        properties[i] = Create_Text_Line(" " + properties[i] + " ", minimapCellSize, i, x / cellSize, y / cellSize);
     }
     console.log("lines:", properties.length);
 
