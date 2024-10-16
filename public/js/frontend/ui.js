@@ -7,7 +7,8 @@ import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
-import { Draw_Main_Menu } from '../ui/gameMenu.js';
+import { Draw_Game_Menu } from '../ui/gameMenu.js';
+import { Draw_Main_Menu } from '../ui/mainMenu.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
