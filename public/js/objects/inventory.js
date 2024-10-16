@@ -9,7 +9,7 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
-let inventory = [];
+// let inventory = [];
 
 export async function Draw_Inventory(items) {
     Clear_Sprite_Array(inventory);

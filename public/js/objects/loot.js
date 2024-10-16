@@ -9,7 +9,7 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
-let loot = []; //store item IDs
+// let loot = []; //store item IDs
 
 export async function Draw_Loot(items) {
     Clear_Sprite_Array(loot);
