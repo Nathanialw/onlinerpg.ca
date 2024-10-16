@@ -12,7 +12,6 @@ export async function Draw_Tooltip(x, y, itemID) {
     //get the itemID of the item in the loot array
 
     // HOW???
-    const itemID = 2;
     //read in the properties from the db
     const itemStatsArray = await Get_Item_Stats(itemID);
     const itemStats = itemStatsArray[0];
