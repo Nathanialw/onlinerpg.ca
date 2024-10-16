@@ -29,18 +29,19 @@ export async function Draw_Tooltip(x, y, itemID) {
     properties.push("");
     if (itemStats.description !== null) {
         properties.push(itemStats.description);
+        properties.push("");
     }
-    properties.push("");
 
     //keep track of the longest line
     let maxLengthLine = 10;
     for (let i = 0; i < properties.length; i++) {
         if (properties[i]) {
             if (properties[i].length > maxLengthLine) {
-                maxLengthLine = properties[i].length + 2;
+                maxLengthLine = properties[i].length;
             }
         }
     }
+    maxLengthLine += 2;
 
     //set equpslot of the right side of the tooltip
     if (itemStats.equipSlot !== "notEquippable") {
