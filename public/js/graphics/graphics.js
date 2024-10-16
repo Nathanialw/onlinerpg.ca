@@ -285,6 +285,11 @@ export function Draw_Sprite(x, y, w, h, sprite) {
     });
 }
 
+export function Draw_Tooltip() {
+    let mousePosition = app.renderer.plugins.interaction.mouse.global;
+    return Draw_Sprite(mousePosition.x, mousePosition.y, 40, 40, playerImg);
+}
+
 // function Draw_Map_Border() {
 //     let mapBorder = new PIXI.Graphics();
 //     mapBorder.lineStyle(1, 0xffffff, 1);

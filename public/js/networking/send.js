@@ -1,4 +1,5 @@
 'use strict'
+import { Draw_Tooltip } from '../graphics/graphics.js';
 import { Send_Web_Socket_Message } from './socket.js';
 
 
@@ -29,9 +30,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
     item.on('pointerover', (event) => { 
         //display a sprite that shows the item stats in a frame
         //get mouse position
-        let mousePosition = event.data.getLocalPosition(app.stage);
-
-        tooltip = Draw_Sprite(mousePosition.x, mousePosition.y, 40, 40, equipmentUI);
+        tooltip = Draw_Tooltip();
     });
 
     item.on('pointerout', (event) => { 
