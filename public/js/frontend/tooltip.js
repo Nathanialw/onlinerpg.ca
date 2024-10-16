@@ -20,13 +20,13 @@ export async function Draw_Tooltip(x, y) {
     properties.push("");
     properties.push(itemStats.name);
     properties.push("");
-    if (itemStats.equipSlot !== "notequppable") {
-        properties.push(itemStats.equipSlot);
+    if (itemStats.equipSlot !== "notEquppable") {
+        properties.push("");
     }
-    if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
+    if (itemStats.minDamage !== 0 && itemStats.maxDamage !== 0) {
         properties.push("Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);
     }
-    if (itemStats.AC !== null) {
+    if (itemStats.AC !== 0) {
         properties.push("Armour: " + itemStats.AC);
     }
     // properties.push("Speed: 1.5");
@@ -35,7 +35,7 @@ export async function Draw_Tooltip(x, y) {
     properties.push("Durability: 10");
     properties.push("Weight: 1");
     properties.push("");
-    if (itemStats.description !== null) {
+    if (itemStats.description !== 0) {
         properties.push(itemStats.description);
     }
     properties.push("");
@@ -47,6 +47,13 @@ export async function Draw_Tooltip(x, y) {
             maxLengthLine = properties[i].length + 2;
         }
     }
+
+    //set equpslot of the right side of the tooltip
+    if (itemStats.equipSlot !== "notEquppable") {
+        const spaces = " ".repeat(maxLengthLine - itemStats.equipSlot.length - 2);
+        properties[3] = spaces + itemStats.equipSlot;
+    }
+
     //keep track of the number of lines
     let numLines = properties.length;
 
