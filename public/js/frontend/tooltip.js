@@ -4,7 +4,7 @@ import { app, cellSize, Create_Text_Line, Draw_Sprite, minimapCellSize } from '.
 let tooltip;
 let properties = [];
 
-export async function Draw_Tooltip(x, y) {
+export async function Draw_Tooltip(x, y, itemID) {
     Remove_Tooltip();
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
