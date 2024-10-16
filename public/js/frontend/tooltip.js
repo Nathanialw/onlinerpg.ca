@@ -1,14 +1,13 @@
 import { app, cellSize, Create_Text_Line, Draw_Sprite, minimapCellSize } from '../graphics/graphics.js';
 
 let tooltip;
-let lines = [];
+let properties = [];
 
 export async function Draw_Tooltip(x, y) {
     Remove_Tooltip();
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
 
-    let properties = [];
     //get the itemID of the item in the loot array
 
     //read in the properties from the db
@@ -34,19 +33,19 @@ export async function Draw_Tooltip(x, y) {
     Draw_Sprite(x, y, maxLengthLine * cellSize, numLines * cellSize, tooltip);
 
     for (let i = 0; i < numLines; i++) {
-        lines[i] = Create_Text_Line(properties[i], minimapCellSize, i, x / cellSize, y / cellSize);
+        properties[i] = Create_Text_Line(properties[i], minimapCellSize, i, x / cellSize, y / cellSize);
     }
-    console.log("lines:", lines.length);
+    console.log("lines:", properties.length);
 
 }
 
 export function Remove_Tooltip() {
-    console.log("lines:", lines.length);
-    if (lines) {
-        for (let i = 0; i < lines.length; i++) {
-            app.stage.removeChild(lines[i]);
+    console.log("lines:", properties.length);
+    if (properties) {
+        for (let i = 0; i < properties.length; i++) {
+            app.stage.removeChild(properties[i]);
         }
-        lines.length = 0;
+        properties.length = 0;
     }
 
     if (tooltip) {
