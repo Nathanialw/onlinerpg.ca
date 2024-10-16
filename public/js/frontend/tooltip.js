@@ -19,7 +19,7 @@ export async function Draw_Tooltip(x, y, itemID) {
     properties.push("");
     properties.push(itemStats.name);
     properties.push("");
-    if (itemStats.equipSlot !== "notEquppable") {
+    if (itemStats.equipSlot !== "notEquippable") {
         properties.push("");
     }
     if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
@@ -50,7 +50,7 @@ export async function Draw_Tooltip(x, y, itemID) {
     }
 
     //set equpslot of the right side of the tooltip
-    if (itemStats.equipSlot !== "notEquppable") {
+    if (itemStats.equipSlot !== "notEquippable") {
         const spaces = " ".repeat(maxLengthLine - itemStats.equipSlot.length - 2);
         properties[3] = spaces + itemStats.equipSlot;
     }
