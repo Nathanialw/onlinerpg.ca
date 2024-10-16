@@ -1,5 +1,5 @@
 // import * as PIXI from '/js/libs/pixi.js';
-import { app, cellSize } from '../graphics/graphics.js';
+import { app, cellSize, Draw_Sprite } from '../graphics/graphics.js';
 
 let tooltip;
 
