@@ -2,10 +2,7 @@
 import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
-app.view.addEventListener('contextmenu', (event) => {
-    event.preventDefault();
-    console.log("Context menu prevented on canvas");
-});
+
 
 let equipmentUI;
 let chat;
@@ -168,6 +165,11 @@ export async function Load_Target_Image(x, y, path) {
 export async function Create_Canvas() {
     await app.init({resizeTo: gameCanvas});
 
+    app.view.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+        console.log("Context menu prevented on canvas");
+    });
+    
     await Init_Graphics();
 
     document.getElementById('gameCanvas').appendChild(app.canvas);
