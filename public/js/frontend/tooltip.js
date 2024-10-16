@@ -1,6 +1,5 @@
-import { app, cellSize, Create_Text_Line, Draw_Sprite } from '../graphics/graphics.js';
+import { app, cellSize, Create_Text_Line, Draw_Sprite, minimapCellSize } from '../graphics/graphics.js';
 
-const font = 12;
 let tooltip;
 let lines = [];
 
@@ -14,8 +13,8 @@ export async function Draw_Tooltip(x, y) {
     tooltip = new PIXI.Sprite(tooltipTexture);
     Draw_Sprite(x, y, maxLengthLine * cellSize, numLines * cellSize, tooltip);
 
-    lines[0] = Create_Text_Line("This is a test", font, 1, x / cellSize, y / cellSize);
-    lines[1] = Create_Text_Line("This is a test line 2", font, 2, x / cellSize, y/ cellSize);
+    lines[0] = Create_Text_Line("This is a test", minimapCellSize, 1, x / cellSize, y / cellSize);
+    lines[1] = Create_Text_Line("This is a test line 2", minimapCellSize, 2, x / cellSize, y/ cellSize);
     console.log("lines:", lines.length);
 
 }
