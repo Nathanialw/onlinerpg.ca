@@ -1,6 +1,7 @@
 import * as PIXI from '/js/libs/pixi.js';
-import { tooltip, app, cellSize } from '../graphics/graphics.js';
+import { app, cellSize } from '../graphics/graphics.js';
 
+let tooltip;
 
 export async function Draw_Tooltip(x, y) {
     Remove_Tooltip();
