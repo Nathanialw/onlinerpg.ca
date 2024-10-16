@@ -34,7 +34,7 @@ export async function Draw_Tooltip(x, y) {
     let numLines = properties.length;
 
     tooltip = new PIXI.Sprite(tooltipTexture);
-    Draw_Sprite(x, y, maxLengthLine * cellSize, numLines * cellSize, tooltip);
+    Draw_Sprite(x, y, maxLengthLine * minimapCellSize, numLines * minimapCellSize, tooltip);
 
     for (let i = 0; i < numLines; i++) {
         properties[i] = Create_Text_Line(" " + properties[i] + " ", minimapCellSize, i, x / cellSize, y / cellSize);
