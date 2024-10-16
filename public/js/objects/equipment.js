@@ -15,7 +15,7 @@ export async function Draw_Equipment(items) {
     Clear_Sprite_Array(equipment);
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i] === "none") {
+        if (items[i].path === "none") {
             continue
         }
         let item = await Draw_Equipment_Icons(items[i].path, i, 1, 1, 2.5)        

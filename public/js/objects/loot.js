@@ -15,7 +15,7 @@ export async function Draw_Loot(items) {
     Clear_Sprite_Array(loot);
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i] === "none") {
+        if (items[i].path === "none") {
             continue
         }
         let item = await Draw_Loot_Icons(items[i].path, i, 1, 2.5, 2.5)        
