@@ -166,7 +166,7 @@ export async function Load_Target_Image(x, y, path) {
 export async function Create_Canvas() {
     await app.init({resizeTo: gameCanvas});
 
-    app.view.addEventListener('contextmenu', (event) => {
+    app.canvas.addEventListener('contextmenu', (event) => {
         event.preventDefault();
     });
 
