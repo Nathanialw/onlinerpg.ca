@@ -15,7 +15,7 @@ chmod +x /var/www/onlinerpg.ca/appserver/release/BrowserRPG
 chmod 666 /var/www/onlinerpg.ca/appserver/db/data.db
 
 # Restart the rpgserver service if the argument is "restart"
-if [ "$RESTART" = "restart" ]; then
+if [ "$RESTART" = "-r" ]; then
     sudo service rpgserver restart
     sudo service rpgserver status
 fi
