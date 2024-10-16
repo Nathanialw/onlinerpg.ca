@@ -29,10 +29,6 @@ export async function Draw_Tooltip(x, y, itemID) {
         properties.push("Armour: " + itemStats.AC);
     }
     // properties.push("Speed: 1.5");
-    properties.push("Range: 1");
-    properties.push("");
-    properties.push("Durability: 10");
-    properties.push("Weight: 1");
     properties.push("");
     if (itemStats.description !== null) {
         properties.push(itemStats.description);
