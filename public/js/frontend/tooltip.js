@@ -8,13 +8,33 @@ export async function Draw_Tooltip(x, y) {
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
 
+    let properties = [];
+    //get the itemID of the item in the loot array
+
+    //read in the properties from the db
+        
+    properties.push("Sword");
+    properties.push("Damage: 1-5");
+    properties.push("Speed: 1.5");
+    properties.push("Range: 1");
+    properties.push("Durability: 10");
+    properties.push("Weight: 1");
+
+    //keep track of the longest line
     let maxLengthLine = 10;
-    let numLines = 12;
+    for (let i = 0; i < properties.length; i++) {
+        if (properties[i].length > maxLengthLine) {
+            maxLengthLine = properties[i].length;
+        }
+    //keep track of the number of lines
+    let numLines = properties,length;
+
     tooltip = new PIXI.Sprite(tooltipTexture);
     Draw_Sprite(x, y, maxLengthLine * cellSize, numLines * cellSize, tooltip);
 
-    lines[0] = Create_Text_Line("This is a test", minimapCellSize, 1, x / cellSize, y / cellSize);
-    lines[1] = Create_Text_Line("This is a test line 2", minimapCellSize, 2, x / cellSize, y/ cellSize);
+    for (let i = 0; i < numLines; i++) {
+        lines[i] = Create_Text_Line(properties[i], minimapCellSize, i, x / cellSize, y / cellSize);
+    }
     console.log("lines:", lines.length);
 
 }
