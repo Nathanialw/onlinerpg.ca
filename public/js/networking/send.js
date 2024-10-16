@@ -59,10 +59,11 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         // Optionally, you can handle pointer out event
     });
 
-    item.on('pointermove', (event) => { 
-        console.log("Pointer moving over item");
-        // Optionally, you can handle pointer move event
-    });
+    //TOO SPAMMY
+    // item.on('pointermove', (event) => { 
+    //     console.log("Pointer moving over item");
+    //     // Optionally, you can handle pointer move event
+    // });
 
     item.on('pointertap', (event) => { 
         console.log("Item tapped");
@@ -86,6 +87,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
 
     item.on('contextmenu', (event) => {
         event.preventDefault();
+        event.stopPropagation();
         console.log("Context menu prevented");
     });
 }
