@@ -36,6 +36,7 @@ export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
+        console.log("mainMenuSprites[i]: ", mainMenuSprites[i]);
         let addListener = false;
         if (!mainMenuSprites[i]) {
             console.log("toggling addListener: ", addListener);
