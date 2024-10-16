@@ -297,7 +297,6 @@ export async function Draw_Tooltip(x, y) {
 export function Remove_Tooltip() {
     if (tooltip) {
         app.stage.removeChild(tooltip);
-        PIXI.Assets.unload('assets/graphics/imgs/human/male/001.jpg');
         tooltip = null;
     }
 }
