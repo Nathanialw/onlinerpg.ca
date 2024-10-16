@@ -1,6 +1,7 @@
 'use strict'
 import { Clear_Sprite_Array, Draw_Main_Menu_Icons, mainMenuSprites } from '../graphics/graphics.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
+import { Init } from '../sound/sound.js';
 
 
 //STATIC MENUS
@@ -8,14 +9,6 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 //create menu button sprite
 //add event listener
 //send message to server on click
-
-// const buttons = [
-//     "assets/graphics/imgs/human/male/001.jpg", //general options
-//     "assets/graphics/imgs/human/male/001.jpg", //graphics
-//     "assets/graphics/imgs/human/male/001.jpg", //sound
-//     "assets/graphics/imgs/human/male/001.jpg", //new game
-//     "assets/graphics/imgs/human/male/001.jpg", //exit
-// ]
 
 function Options() {console.log("Options()")}
 function Graphics() {console.log("Graphics()")}
@@ -33,14 +26,19 @@ const functions = [
 
 let set = false;
 
+export function  Init_Main_Menu() { //set listers on the sprites stored
+    for (let i = 0; i < mainMenuSprites.length; i++) {
+        Set_Send_On_Menu_Click_Listener(button, functions[i]);
+    }
+}
+
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        let button = await Draw_Main_Menu_Icons(i, 1, 2.5, 2.5)           
+        let button = await Draw_Main_Menu_Icons(i)           
         
-        if (!set) {
-            console.log("adding Listener: ", addListener);
+        if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
             if (i == mainMenuSprites.length - 1) {
                 set = true;
@@ -50,7 +48,7 @@ export async function Draw_Main_Menu() {
 }
 
 
-export function Set_Send_On_Menu_Click_Listener(item, action) {
+function Set_Send_On_Menu_Click_Listener(item, action) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'pointer';

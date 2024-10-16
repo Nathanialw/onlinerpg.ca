@@ -61,14 +61,17 @@ function Remove_Event_Listeners(sprite) {
     }
 }
 
-export async function Draw_Main_Menu_Icons(num, xOffset, yOffset, w) {    
-    let x = ((topPanelHeight / 2) + (num * w + xOffset)) * cellSize
-    let y = (topPanelHeight / 2) * cellSize
+export async function Draw_Main_Menu_Icons(num) {    
+    let spaceBetween = 2.2;    
+    let x = 0.4 * cellSize + ((num * 5) + spaceBetween) * cellSize;
+    let y = 0.5 * cellSize;
+    let h = 1.5 * cellSize;
+    let w = 4.5 * cellSize;
 
     // Remove_Event_Listeners(mainMenuSprites[num]);    
     // let button = await Load_Icon(iconPath);    
     // mainMenuSprites.push(new PIXI.Sprite(button));        
-    Draw_Sprite(x, y, w * cellSize, w * cellSize, mainMenuSprites[num]);            
+    Draw_Sprite(x, y, w, h, mainMenuSprites[num]);            
     return mainMenuSprites[num];
 }
 
