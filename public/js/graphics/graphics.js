@@ -40,7 +40,7 @@ async function Init_Graphics() {
     //load main menu buttons
     for (let i = 0; i < 5; i++) {
         const button = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
-        mainMenuSprites[i] = PIXI.Sprite(button);
+        mainMenuSprites[i] = new PIXI.Sprite(button);
     }
         
     //load bag menu buttons
