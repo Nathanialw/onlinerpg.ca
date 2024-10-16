@@ -1,4 +1,4 @@
-// import * as PIXI from '/js/libs/pixi.js';
+import * as PIXI from '/js/libs/pixi.js';
 import { app, cellSize } from '../graphics/graphics.js';
 
 
