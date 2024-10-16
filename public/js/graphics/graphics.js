@@ -21,14 +21,12 @@ export let equipment = []
 
 async function Init_Graphics() {
     const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
-    const tooltipTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
     const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
     const inventoryTexture = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
     const lootUITexture = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
     const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
     const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
     const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    tooltip = new PIXI.Sprite(tooltipTexture);
     equipmentUI = new PIXI.Sprite(equipmentTexture);
     chat = new PIXI.Sprite(chatTexture);
     menu = new PIXI.Sprite(menuTexture);
@@ -288,7 +286,9 @@ export function Draw_Sprite(x, y, w, h, sprite) {
     });
 }
 
-export function Draw_Tooltip(x, y) {
+export async function Draw_Tooltip(x, y) {
+    const tooltipTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
+    tooltip = new PIXI.Sprite(tooltipTexture);
     return Draw_Sprite(x, y, 40, 40, tooltip);
 }
 
