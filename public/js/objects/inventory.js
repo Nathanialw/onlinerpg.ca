@@ -26,16 +26,16 @@ export async function Draw_Inventory(items) {
 }
 
 export function Query_Inventory(numItems, data, start) {
-    inventory.length = 0;
+    let inv = []
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
         let invIndex = parseInt(str.substring(0, 2));
         let itemID = parseInt(str.substring(2, 5));
 
-        inventory.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
+        inv.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
 
     }
 
-    return inventory;
+    return inv;
 }
