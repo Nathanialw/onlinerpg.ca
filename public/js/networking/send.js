@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Tooltip } from '../graphics/graphics.js';
+import { Draw_Tooltip, Remove_Tooltip } from '../graphics/graphics.js';
 import { Send_Web_Socket_Message } from './socket.js';
 
 
@@ -37,10 +37,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
 
     item.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
-        if (tooltip) {
-            app.stage.removeChild(tooltip);
-            tooltip = null;
-        }
+        Remove_Tooltip(tooltip);
     }); 
 
     //
