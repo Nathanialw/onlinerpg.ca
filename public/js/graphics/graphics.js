@@ -14,7 +14,6 @@ let lootUI;
 let target;
 let targetImg;
 let playerImg;
-let tooltip;
 export let loot = [];
 export let inventory = [];
 export let equipment = []
@@ -286,20 +285,7 @@ export function Draw_Sprite(x, y, w, h, sprite) {
     });
 }
 
-export async function Draw_Tooltip(x, y) {
-    Remove_Tooltip();
 
-    const tooltipTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
-    tooltip = new PIXI.Sprite(tooltipTexture);
-    return Draw_Sprite(x, y, 10*cellSize, 12*cellSize, tooltip);
-}
-
-export function Remove_Tooltip() {
-    if (tooltip) {
-        app.stage.removeChild(tooltip);
-        tooltip = null;
-    }
-}
 
 // function Draw_Map_Border() {
 //     let mapBorder = new PIXI.Graphics();
@@ -376,15 +362,6 @@ color.set('ô', brown); //brown
 color.set('♀', white); //brown
 color.set('♂', white); //brown
 
-export function Create_Object_Sprite(char, x, y, visionWidth) {
-    const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'}
-    let object = new PIXI.Text({text: char, style});
-    object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
-    app.stage.addChild(object);
-    return object;
-}
-
 export function Create_Combat_Log_Line(char, indexHeight) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
     let object = new PIXI.Text({text: char, style});
@@ -408,11 +385,19 @@ export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
 }
 
 export function Create_Map_Line(char, indexHeight, visionWidth) {
-    // let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: 24, fill : grey50, align : 'center'}, grey100);
     let style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}
     let object = new PIXI.Text({text: char, style});
     object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
+    app.stage.addChild(object);
+    return object;
+}
+
+export function Create_Object_Sprite(char, x, y, visionWidth) {
+    const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'}
+    let object = new PIXI.Text({text: char, style});
+    object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth) + x) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + y) * cellSize;  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
