@@ -8,8 +8,8 @@ export async function Draw_Tooltip(x, y) {
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
 
-    maxLengthLine = 10;
-    numLines = 12;
+    let maxLengthLine = 10;
+    let numLines = 12;
     tooltip = new PIXI.Sprite(tooltipTexture);
     Draw_Sprite(x, y, maxLengthLine * cellSize, numLines * cellSize, tooltip);
     Create_Text_Line("This is a test", cellSize, 1, x, y);
