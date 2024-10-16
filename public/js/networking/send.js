@@ -11,7 +11,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     }
     objectDisplay.eventMode = 'static';
     objectDisplay.cursor = 'pointer';
-    
+
     let message = "5" + x + y;
 
     objectDisplay.on('pointerdown', (event) => { 
@@ -19,25 +19,24 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     }); 
 }
 
+let tooltip;
+
 export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'pointer';
 
-
     item.on('pointerover', (event) => { 
-        let message = "2" + panel + "0" + i;
-        console.log("Hover message: ", message);
-        // Optionally, you can send a message on hover
-        // Send_Web_Socket_Message(message); 
+        //display a sprite that shows the item stats in a frame
+        //get mouse position
+        let mousePosition = event.data.getLocalPosition(app.stage);
+
+        tooltip = Draw_Sprite(mousePosition.x, mousePosition.y, 40, 40, equipmentUI);
     });
 
     item.on('pointerout', (event) => { 
-        console.log("Pointer out of item");
-        // Optionally, you can handle pointer out event
+        //remove the sprite that shows the item stats in a frame
     });
-
-
 
     //
     item.on('mousedown', (event) => { 
@@ -45,7 +44,6 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         // Optionally, you can handle right mouse button click event
 
     });
-
 
     //DEKTOP ONLY
     item.on('rightclick', (event) => { 
@@ -71,7 +69,6 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         console.log("message: ", message);
         Send_Web_Socket_Message(message); 
     });
-
 }
 
 // In PIXI.js, you can use various mouse and pointer event listeners to handle different types of user interactions. Here are some common event listeners you can use:
