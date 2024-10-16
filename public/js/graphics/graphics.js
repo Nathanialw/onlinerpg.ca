@@ -62,7 +62,7 @@ function Remove_Event_Listeners(sprite) {
 }
 
 export async function Draw_Main_Menu_Icons(num, xOffset, yOffset, w) {    
-    let x = ((topPanelHeight / 2) + (i * w + xOffset)) * cellSize
+    let x = ((topPanelHeight / 2) + (num * w + xOffset)) * cellSize
     let y = (topPanelHeight / 2) * cellSize
 
     // Remove_Event_Listeners(mainMenuSprites[num]);    

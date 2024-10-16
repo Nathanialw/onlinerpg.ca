@@ -35,7 +35,7 @@ const functions = [
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
-    for (let i = 0; i < items.length; i++) {
+    for (let i = 0; i < mainMenuSprites.length; i++) {
         let addListener = false;
         if (!mainMenuSprites[i]) {
             addListener = true;
