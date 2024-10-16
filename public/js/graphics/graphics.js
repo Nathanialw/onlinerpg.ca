@@ -378,8 +378,8 @@ export function Clear_Target() {
 export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: fontSize, fill : grey50, align : 'center'};
     let object = new PIXI.Text({text: char, style});
-    object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (y * cellSize) + (indexHeight * fontSize);  // Assuming each cell is 24 pixels tall
+    object.x = x * fontSize;  // Assuming each cell is 24 pixels tall
+    object.y = (y * fontSize) + (indexHeight * fontSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
