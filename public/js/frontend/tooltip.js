@@ -14,9 +14,11 @@ export async function Draw_Tooltip(x, y) {
         
     properties.push("");
     properties.push("Iron Sword");
+    properties.push("");
     properties.push("Damage: 1-5");
     properties.push("Speed: 1.5");
     properties.push("Range: 1");
+    properties.push("");
     properties.push("Durability: 10");
     properties.push("Weight: 1");
     properties.push("");
