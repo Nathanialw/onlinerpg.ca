@@ -31,23 +31,20 @@ const functions = [
     Exit,       //exit game
 ]
 
+let set = true;
 
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        console.log("mainMenuSprites[i]: ", mainMenuSprites[i]);
-        let addListener = false;
-        if (!mainMenuSprites[i]) {
-            console.log("toggling addListener: ", addListener);
-            addListener = true;
-        }
-        
         let button = await Draw_Main_Menu_Icons(i, 1, 2.5, 2.5)           
         
-        if (addListener) {
+        if (!set) {
             console.log("adding Listener: ", addListener);
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
+            if (i == mainMenuSprites.length - 1) {
+                set = true;
+            }
         }
     }
 }
