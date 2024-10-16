@@ -62,13 +62,13 @@ function Remove_Event_Listeners(sprite) {
 }
 
 export async function Draw_Main_Menu_Icons(num, xOffset, yOffset, w) {    
-    let x = (leftPanelWidth / 2) * cellSize
-    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
+    let x = ((topPanelHeight / 2) + (i * w + xOffset)) * cellSize
+    let y = (topPanelHeight / 2) * cellSize
 
     // Remove_Event_Listeners(mainMenuSprites[num]);    
     // let button = await Load_Icon(iconPath);    
     // mainMenuSprites.push(new PIXI.Sprite(button));        
-    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, mainMenuSprites[num]);            
+    Draw_Sprite(x, y, w * cellSize, w * cellSize, mainMenuSprites[num]);            
     return mainMenuSprites[num];
 }
 
