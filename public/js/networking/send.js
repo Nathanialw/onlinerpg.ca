@@ -26,7 +26,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
 
     
     item.on('pointerdown', (event) => { 
-        console.log("Pointer Down: ", message);        
+        console.log("Pointer Down: ");        
     }); 
 
     item.on('pointerover', (event) => { 
@@ -65,18 +65,13 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
 
 
 
+    //DEKTOP ONLY
+    item.on('mouseclick', (event) => { 
+        console.log("Right mouse button clicked on item, open conext menu to decide action");
+        // Optionally, you can handle right mouse button click event
 
-
-
-
-
-
-
-
-    item.on('rightup', (event) => { 
-        console.log("Right mouse button up on item");
-        // Optionally, you can handle right mouse button up event
     });
+
 
     //DEKTOP ONLY
     item.on('rightclick', (event) => { 
@@ -103,15 +98,6 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         Send_Web_Socket_Message(message); 
     });
 
-
-    
-    // item.on('rightdown', (event) => { 
-    //     console.log("Right mouse button clicked on item");
-    //     // Prevent the context menu
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //     console.log("Context menu prevented");
-    // });
 }
 
 // In PIXI.js, you can use various mouse and pointer event listeners to handle different types of user interactions. Here are some common event listeners you can use:
