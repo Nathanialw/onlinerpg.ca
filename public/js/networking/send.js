@@ -36,8 +36,12 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
     });
 
     item.on('mouseout', (event) => { 
-        //remove the sprite that shows the item stats in a frame
-    });
+        //remove the sprite that shows the item stats in a frame from the stage
+        if (tooltip) {
+            app.stage.removeChild(tooltip);
+            tooltip = null;
+        }
+    }); 
 
     //
     item.on('mousedown', (event) => { 

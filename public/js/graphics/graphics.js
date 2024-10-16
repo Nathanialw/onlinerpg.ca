@@ -289,6 +289,13 @@ export function Draw_Tooltip(x, y) {
     return Draw_Sprite(x, y, 40, 40, playerImg);
 }
 
+export function Remove_Tooltip(tooltip) {
+    if (tooltip) {
+        app.stage.removeChild(tooltip);
+        tooltip = null;
+    }
+}
+
 // function Draw_Map_Border() {
 //     let mapBorder = new PIXI.Graphics();
 //     mapBorder.lineStyle(1, 0xffffff, 1);
