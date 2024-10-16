@@ -29,8 +29,10 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
 
     item.on('pointerover', (event) => { 
         //display a sprite that shows the item stats in a frame
-        //get mouse position
-        tooltip = Draw_Tooltip();
+        // Get mouse position
+        const mousePosition = event.data.global;
+        console.log("Mouse position (over):", mousePosition);
+        tooltip = Draw_Tooltip(mousePosition.x, mousePosition.y);
     });
 
     item.on('pointerout', (event) => { 
