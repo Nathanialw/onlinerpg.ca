@@ -26,6 +26,7 @@ export async function Draw_Tooltip(x, y) {
         if (properties[i].length > maxLengthLine) {
             maxLengthLine = properties[i].length;
         }
+    }
     //keep track of the number of lines
     let numLines = properties,length;
 
