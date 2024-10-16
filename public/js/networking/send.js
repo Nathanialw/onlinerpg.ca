@@ -26,25 +26,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
 
     
     item.on('pointerdown', (event) => { 
-        let message;
-        //if ctrl clicked
-        if (event.ctrlKey) {
-            message = "2" + panel + "c" + i;
-        }
-        //if shift clicked
-        else if (event.shiftKey) {
-            message = "2" + panel + "s" + i;
-        }
-        //if alt clicked
-        else if (event.altKey) {
-            message = "2" + panel + "a" + i;
-        }    
-        else {
-            message = "2" + panel + "0" + i;
-        }  
-        
-        console.log("message: ", message);
-        Send_Web_Socket_Message(message); 
+        console.log("Pointer Down: ", message);        
     }); 
 
     item.on('pointerover', (event) => { 
@@ -80,11 +62,33 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i) {
         // Optionally, you can handle right mouse button up event
     });
 
+    //DEKTOP ONLY
     item.on('rightclick', (event) => { 
         console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
+        let message;
+        //if ctrl clicked
+        if (event.ctrlKey) {
+            message = "2" + panel + "c" + i;
+        }
+        //if shift clicked
+        else if (event.shiftKey) {
+            message = "2" + panel + "s" + i;
+        }
+        //if alt clicked
+        else if (event.altKey) {
+            message = "2" + panel + "a" + i;
+        }    
+        else {
+            message = "2" + panel + "0" + i;
+        }  
+        
+        console.log("message: ", message);
+        Send_Web_Socket_Message(message); 
     });
 
+
+    
     item.on('rightdown', (event) => { 
         console.log("Right mouse button clicked on item");
         // Prevent the context menu
