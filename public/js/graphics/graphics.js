@@ -297,7 +297,7 @@ export async function Draw_Tooltip(x, y) {
 export function Remove_Tooltip() {
     if (tooltip) {
         app.stage.removeChild(tooltip);
-        tooltip.unload({ texture: true, baseTexture: true });
+        PIXI.Assets.unload({ texture: true, baseTexture: true });
         tooltip = null;
     }
 }
