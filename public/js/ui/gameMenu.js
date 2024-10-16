@@ -9,11 +9,11 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 //add event listener
 //send message to server on click
 
-function Options() {console.log("Options()")}
-function Graphics() {console.log("Graphics()")}
-function Sound() {console.log("Sound()")}
-function New_Game() {console.log("New_Game()")}
-function Exit() {console.log("Exit()")}
+function Options() {console.log("Game Menu Options()")}
+function Graphics() {console.log("Game Menu Graphics()")}
+function Sound() {console.log("Game Menu Sound()")}
+function New_Game() {console.log("Game Menu New_Game()")}
+function Exit() {console.log("Game Menu Exit()")}
 
 const functions = [
     Options,    //open options menu
