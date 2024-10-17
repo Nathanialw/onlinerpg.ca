@@ -77,7 +77,7 @@ function Set_Send_On_Menu_Click_Listener(item, action, index) {
     item.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
         // Optionally, you can handle right mouse button click event
-        functions(index);        
+        functions[index](index);        
         // Send_Web_Socket_Message(message); 
     });
 
