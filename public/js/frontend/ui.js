@@ -146,9 +146,7 @@ export function Update_Screen() {
     Render_Log();
     
     //render fame panel ie. target stats, spell book, combat log, minimap, crafting
-    Render_Game_Panel(gamePanelIndex);
-
-    
+    Render_Game_Panel(gamePanelIndex);    
 }
 
 // Function to remove event listeners from an array of objects

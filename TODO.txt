@@ -60,6 +60,8 @@ short term:
 -get unit data from the local database instead of sending it
 -create the buttons for the UI
 -right click on map will move to that location, server will send the move updates one at a time
+-crate unit locations to place on map ie. ogre mound with ogre around it
+
 
 medium term:
 -traits based on the unit's parents and what it does while alive
