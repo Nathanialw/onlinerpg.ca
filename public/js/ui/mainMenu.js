@@ -10,9 +10,9 @@ import { Restart, Quit } from '../game/game.js';
 //add event listener
 //send message to server on click
 
-function Options() {console.log("Options()")}
-function Graphics() {console.log("Graphics()")}
-function Sound() {console.log("Sound()")}
+function Options(data) {console.log("Options()")}
+function Graphics(data) {console.log("Graphics()")}
+function Sound(data) {console.log("Sound()")}
 
 const functions = [
     Options,    //open options menu
@@ -50,6 +50,7 @@ function Set_Send_On_Menu_Click_Listener(item, action) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'pointer';
+    let message = 'message';
 
     item.on('mouseover', async (event) => { 
         //display a sprite that shows the item stats in a frame
@@ -66,7 +67,7 @@ function Set_Send_On_Menu_Click_Listener(item, action) {
     item.on('mousedown', (event) => { 
         console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
-        action();
+        action(message);
         // Send_Web_Socket_Message(message); 
     });
 
