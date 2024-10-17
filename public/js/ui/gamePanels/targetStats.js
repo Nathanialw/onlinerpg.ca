@@ -3,6 +3,7 @@
 import { Update_Screen } from "../../frontend/ui.js"
 //get string from server
 import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, minimapCellSize, Clear_Target} from "../../graphics/graphics.js"
+import { gamePanelIndex } from "../gameMenu.js"
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -51,6 +52,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.vision = stats.substring(13, 15);
     targetStats.bio = stats.substring(15);
     
+    gamePanelIndex = 0;
     Update_Screen();
 }
 
