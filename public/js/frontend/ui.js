@@ -2,13 +2,13 @@
 import { app, Create_Combat_Log_Line, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
 import { Make_Map, Draw_Map, Draw_Map_Phone} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
-import { Target_Stats } from '../ui/gamePanels/targetStats.js';   
 import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/mainMenu.js';
+import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -146,7 +146,7 @@ export function Update_Screen() {
     Render_Log();
     
     //render fame panel ie. target stats, spell book, combat log, minimap, crafting
-    Target_Stats();
+    Render_Game_Panel(gamePanelIndex);
 
     
 }

@@ -12,3 +12,7 @@ const GamePanels = [
     Minimap,
     Crafting,
 ]
+
+export function Render_Game_Panel(gamePanelIndex) {
+    GamePanels[gamePanelIndex]();
+}
