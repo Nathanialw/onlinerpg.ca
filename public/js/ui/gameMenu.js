@@ -1,6 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Main_Menu_Icons, gameMenuSprites } from '../graphics/graphics.js';
-import { Send_Web_Socket_Message } from '../networking/socket.js';
+import { Draw_Main_Menu_Icons, gameMenuSprites } from '../graphics/graphics.js';
 import { Update_Screen } from '../frontend/ui.js';
 
 //STATIC MENUS
@@ -10,36 +9,11 @@ import { Update_Screen } from '../frontend/ui.js';
 //send message to server on click
 
 export let gamePanelIndex = 0;
-
-function Target(i) {
-    gamePanelIndex = i;
-}
-function Spellbook(i) {
-    gamePanelIndex = i;
-}
-function Combat_Log(i) {
-    gamePanelIndex = i;
-}
-function Minimap(i) {
-    gamePanelIndex = i;
-}
-function Crafting(i) {
-    gamePanelIndex = i;
-}
-
-const functions = [
-    Target,     // target stats  
-    Spellbook,  // spellbook
-    Combat_Log, // extended combat log
-    Minimap,    // minimap  
-    Crafting,       // 
-]
-
 let set = false;
 
 export function  Init_Game_Menu() { //set listers on the sprites stored
     for (let i = 0; i < gameMenuSprites.length; i++) {
-        Set_Send_On_Menu_Click_Listener(button, functions[i]);
+        Set_Send_On_Menu_Click_Listener(button, i);
     }
 }
 
@@ -49,7 +23,7 @@ export async function Draw_Game_Menu() {
         let button = await Draw_Main_Menu_Icons(gameMenuSprites, i, 71.4)           
         
         if (!set) { //set listers only once
-            Set_Send_On_Menu_Click_Listener(button, functions[i], i);
+            Set_Send_On_Menu_Click_Listener(button, i);
             if (i == gameMenuSprites.length - 1) {
                 set = true;
             }
@@ -58,7 +32,7 @@ export async function Draw_Game_Menu() {
 }
 
 
-function Set_Send_On_Menu_Click_Listener(item, action, index) {
+function Set_Send_On_Menu_Click_Listener(item, index) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'pointer';
@@ -78,31 +52,10 @@ function Set_Send_On_Menu_Click_Listener(item, action, index) {
     item.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
         //set panel index
-        functions[index](index);      
+        gamePanelIndex = index;
         // trigger redraw
         Update_Screen();
     });
-
-    //DEKTOP ONLY
-    // item.on('rightclick', (event) => { 
-    //     console.log("Right mouse button clicked on item");
-    //     // Optionally, you can handle right mouse button click event
-    //     let message;
-    //     //if ctrl clicked
-    //     if (event.ctrlKey) {
-    //     }
-    //     //if shift clicked
-    //     else if (event.shiftKey) {
-    //     }
-    //     //if alt clicked
-    //     else if (event.altKey) {
-    //     }    
-    //     else {
-    //     }  
-        
-    //     console.log("message: ", message);
-    //     Send_Web_Socket_Message(message); 
-    // });
 }
 
 // In PIXI.js, you can use various mouse and pointer event listeners to handle different types of user interactions. Here are some common event listeners you can use:
