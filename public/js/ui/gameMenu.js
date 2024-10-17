@@ -75,9 +75,9 @@ function Set_Send_On_Menu_Click_Listener(item, action, index) {
 
     //
     item.on('mousedown', (event) => { 
-        console.log("Left mouse button clicked on item, open conext menu to decide action");
+        console.log("change game panel to: ", index);
         // Optionally, you can handle right mouse button click event
-        action(index);        
+        functions(index);        
         // Send_Web_Socket_Message(message); 
     });
 
