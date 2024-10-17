@@ -38,7 +38,7 @@ let actionBar = {
 
 
 function Action_Bar(keyName) {
-    actionBar[keyName]()
+    actionBar[keyName](keyName)
 }
 
 
