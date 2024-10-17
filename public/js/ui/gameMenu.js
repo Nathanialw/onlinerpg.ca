@@ -11,19 +11,19 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 export let gamePanelIndex = 0;
 
 function Target(i) {
-    index = i;
+    gamePanelIndex = i;
 }
 function Spellbook(i) {
-    index = i;
+    gamePanelIndex = i;
 }
 function Combat_Log(i) {
-    index = i;
+    gamePanelIndex = i;
 }
 function Minimap(i) {
-    index = i;
+    gamePanelIndex = i;
 }
 function Crafting(i) {
-    index = i;
+    gamePanelIndex = i;
 }
 
 const functions = [
