@@ -1,6 +1,6 @@
 'use strict'
 
-import {Create_Object_Sprite, Create_Map_Line, Create_MiniMap_Line, Create_MiniMap_Line_Phone, Draw_Vision_Background} from '../graphics/graphics.js';
+import {Create_Object_Sprite, Create_Map_Line, Create_MiniMap_Line, Create_MiniMap_Line_Phone, Draw_Vision_Background, removeEventListener} from '../graphics/graphics.js';
 import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 import {Set_Send_On_Map_Click_Listener} from '../networking/send.js';
 
@@ -178,6 +178,10 @@ export function Make_Map(serverMap, visionWidth) {
     //parse the map and pull out the characters and replace with spaces
     //create a sprite at the location of the space that is clickable
     //query the server using the x and y of the sprite to get the sprite data
+    for (let i = 0; i < objects.length; i++) {
+        removeEventListener(objectDisplay[i]);
+    }
+
     objects.length = 0;;
     objectDisplay.length = 0;
     for (let i = 0; i < serverMap.length; i++) {
