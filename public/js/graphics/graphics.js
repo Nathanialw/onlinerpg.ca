@@ -60,7 +60,7 @@ export function Clear_Sprite_Array(spriteArray) {
     spriteArray.length = 0; // Clear the array
 }
 
-function Remove_Event_Listeners(sprite) {
+export function Remove_Event_Listeners(sprite) {
     if (sprite && sprite.removeAllListeners) {
         sprite.removeAllListeners();
     }
