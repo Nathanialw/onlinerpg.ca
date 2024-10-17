@@ -52,16 +52,16 @@ async function Init_Graphics() {
         gameMenuSprites[i] = new PIXI.Sprite(button);
     }
 
-    const panel = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    gamePanels[0] = new PIXI.Sprite(panel);
-    panel = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
-    gamePanels[1] = new PIXI.Sprite(panel);
-    panel = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
-    gamePanels[2] = new PIXI.Sprite(panel);
-    panel = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    gamePanels[3] = new PIXI.Sprite(panel);
-    panel = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
-    gamePanels[4] = new PIXI.Sprite(panel);
+    const panel0 = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    gamePanels[0] = new PIXI.Sprite(panel0);
+    const panel1 = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
+    gamePanels[1] = new PIXI.Sprite(panel1);
+    const panel2 = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
+    gamePanels[2] = new PIXI.Sprite(panel2);
+    const panel3 = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    gamePanels[3] = new PIXI.Sprite(panel3);
+    const panel4 = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
+    gamePanels[4] = new PIXI.Sprite(panel4);
 }
 
 export function Clear_Sprite_Array(spriteArray) {
