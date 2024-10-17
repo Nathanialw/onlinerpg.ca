@@ -49,7 +49,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.speed = stats.substring(12, 13);
     targetStats.vision = stats.substring(13, 15);
     targetStats.bio = stats.substring(15);
-    Render_Target_Stats()
+    Target_Stats()
 }
 
 function Display_Line(value, i, x, y) {
@@ -58,7 +58,7 @@ function Display_Line(value, i, x, y) {
     return i;
 }
 
-export function Render_Target_Stats() {
+export function Target_Stats() {
     if (!targetStats.target) {
         return
     }
