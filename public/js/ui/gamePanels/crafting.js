@@ -3,6 +3,6 @@
 
 
 
-function Crafting() {
+export function Crafting() {
     console.log("Crafting panel");
 }
