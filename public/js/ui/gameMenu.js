@@ -2,7 +2,6 @@
 import { Clear_Sprite_Array, Draw_Main_Menu_Icons, gameMenuSprites } from '../graphics/graphics.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
 
-
 //STATIC MENUS
 
 //create menu button sprite

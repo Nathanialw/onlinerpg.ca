@@ -1,6 +1,7 @@
 'use strict'
 import { Clear_Sprite_Array, Draw_Main_Menu_Icons, mainMenuSprites } from '../graphics/graphics.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
+import { Restart, Quit } from '../game/game.js';
 
 
 //STATIC MENUS
@@ -12,15 +13,13 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 function Options() {console.log("Options()")}
 function Graphics() {console.log("Graphics()")}
 function Sound() {console.log("Sound()")}
-function New_Game() {console.log("New_Game()")}
-function Exit() {console.log("Exit()")}
 
 const functions = [
     Options,    //open options menu
     Graphics,   //open graphics menu
     Sound,      //open sound menu
-    New_Game,   //start new game
-    Exit,       //exit game
+    Restart,   //start new game
+    Quit,       //exit game
 ]
 
 let set = false;
