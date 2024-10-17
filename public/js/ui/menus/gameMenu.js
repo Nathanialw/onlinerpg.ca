@@ -1,6 +1,6 @@
 'use strict'
-import { Draw_Main_Menu_Icons, gameMenuSprites } from '../graphics/graphics.js';
-import { Update_Screen } from '../frontend/ui.js';
+import { Draw_Main_Menu_Icons, gameMenuSprites } from '../../graphics/graphics.js';
+import { Update_Screen } from '../../frontend/ui.js';
 
 //STATIC MENUS
 

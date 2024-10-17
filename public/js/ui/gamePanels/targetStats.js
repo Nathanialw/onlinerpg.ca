@@ -3,7 +3,7 @@
 import { Update_Screen } from "../../frontend/ui.js"
 //get string from server
 import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, minimapCellSize, Clear_Target} from "../../graphics/graphics.js"
-import { Set_Game_Panel_Index } from "../gameMenu.js"
+import { Set_Game_Panel_Index } from "../menus/gameMenu.js"
 
 let targetStatsDisplay = []
 export let targetStats = {

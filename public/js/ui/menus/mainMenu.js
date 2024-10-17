@@ -1,7 +1,7 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Main_Menu_Icons, mainMenuSprites } from '../graphics/graphics.js';
-import { Send_Web_Socket_Message } from '../networking/socket.js';
-import { Restart, Quit } from '../game/game.js';
+import { Clear_Sprite_Array, Draw_Main_Menu_Icons, mainMenuSprites } from '../../graphics/graphics.js';
+import { Send_Web_Socket_Message } from '../../networking/socket.js';
+import { Restart, Quit } from '../../game/game.js';
 
 
 //STATIC MENUS
