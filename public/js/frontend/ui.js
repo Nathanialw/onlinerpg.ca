@@ -2,7 +2,7 @@
 import { app, Create_Combat_Log_Line, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
 import { Make_Map, Draw_Map, Draw_Map_Phone} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
-import { Render_Target_Stats } from './stats.js';   
+import { Render_Target_Stats } from '../ui/gamePanels/targetStats.js';   
 import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
@@ -144,6 +144,8 @@ export function Update_Screen() {
     // Display_Damage_Taken(species, damageTaken);
     Display_Damage(species, damage, isDead)
     Render_Log();
+    
+    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
     Render_Target_Stats();
 }
 
