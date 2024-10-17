@@ -12,6 +12,7 @@ let invTabs;
 let inventoryUI;
 let lootUI;
 let target;
+let gamePanels = [];
 let targetImg;
 let playerImg;
 export let loot = [];
@@ -50,6 +51,17 @@ async function Init_Graphics() {
         const button = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
         gameMenuSprites[i] = new PIXI.Sprite(button);
     }
+
+    const panel = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    gamePanels[0] = new PIXI.Sprite(panel);
+    panel = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
+    gamePanels[1] = new PIXI.Sprite(panel);
+    panel = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
+    gamePanels[2] = new PIXI.Sprite(panel);
+    panel = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    gamePanels[3] = new PIXI.Sprite(panel);
+    panel = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
+    gamePanels[4] = new PIXI.Sprite(panel);
 }
 
 export function Clear_Sprite_Array(spriteArray) {
@@ -493,11 +505,11 @@ export function Draw_UI_Phone() {
 
 }
 
-export function Draw_UI() {
+export function Draw_UI(index) {
     //top    
     Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, black)
     
-    //menu
+    //menu background
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
     //eqipment
     Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 2/3) - (topPanelHeight / 4)) * cellSize, equipmentUI);
@@ -508,10 +520,10 @@ export function Draw_UI() {
     //loot
     Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, lootUI);
     
-    //tabs
+    //tab background
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, (Get_Right_Panel_Origin_y() * cellSize), rightPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, tabs);
-    //overview
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize,((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (10 * minimapCellSize), target);
+    //overview //pass the current sprite active
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize,((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (10 * minimapCellSize), gamePanels[index]);
     
     //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);

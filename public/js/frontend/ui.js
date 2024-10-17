@@ -7,7 +7,7 @@ import { SoundAttack } from '../sound/sound.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
-import { Draw_Game_Menu } from '../ui/gameMenu.js';
+import { Draw_Game_Menu, gamePanelIndex } from '../ui/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/mainMenu.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
@@ -128,7 +128,7 @@ export function Update_Screen_Phone() {
 export function Update_Screen() {
     app.stage.removeChildren();
     
-    Draw_UI(characterInfo);
+    Draw_UI(gamePanelIndex);
     Draw_Vision_Background(visionWidth);
     Make_Map(serverMap, visionWidth);
     // Draw_Map(visionWidth, direction);

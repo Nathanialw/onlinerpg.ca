@@ -8,11 +8,23 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 //add event listener
 //send message to server on click
 
-function Target() {console.log("Target()")}
-function Spellbook() {console.log("Spellbook()")}
-function Combat_Log() {console.log("Combat_Log()")}
-function Minimap() {console.log("Minimap()")}
-function Crafting() {console.log("Crafting()")}
+export let gamePanelIndex = 0;
+
+function Target(i) {
+    index = i;
+}
+function Spellbook(i) {
+    index = i;
+}
+function Combat_Log(i) {
+    index = i;
+}
+function Minimap(i) {
+    index = i;
+}
+function Crafting(i) {
+    index = i;
+}
 
 const functions = [
     Target,     // target stats  
@@ -36,7 +48,7 @@ export async function Draw_Game_Menu() {
         let button = await Draw_Main_Menu_Icons(gameMenuSprites, i, 71.4)           
         
         if (!set) { //set listers only once
-            Set_Send_On_Menu_Click_Listener(button, functions[i]);
+            Set_Send_On_Menu_Click_Listener(button, functions[i], i);
             if (i == gameMenuSprites.length - 1) {
                 set = true;
             }
@@ -45,7 +57,7 @@ export async function Draw_Game_Menu() {
 }
 
 
-function Set_Send_On_Menu_Click_Listener(item, action) {
+function Set_Send_On_Menu_Click_Listener(item, action, index) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'pointer';
@@ -65,7 +77,7 @@ function Set_Send_On_Menu_Click_Listener(item, action) {
     item.on('mousedown', (event) => { 
         console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
-        action();
+        action(index);        
         // Send_Web_Socket_Message(message); 
     });
 
