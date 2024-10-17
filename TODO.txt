@@ -59,20 +59,15 @@ short term:
 -fog of war/vision blocking by terrain
 -get unit data from the local database instead of sending it
 -create the buttons for the UI
+-right click on map will move to that location, server will send the move updates one at a time
 
 medium term:
--items
--UI equipment
--UI bags
--UI spells
--UI status
 -traits based on the unit's parents and what it does while alive
 
 
 long term:
 -mines to enter
 -build buildings
--start with ally families where you can use the men as units
 -store world state in db
 -proc gen maps
 -simple enemy AI

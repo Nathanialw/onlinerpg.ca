@@ -75,50 +75,6 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
     });
 }
 
-export function Set_Send_On_Menu_Click_Listener(item, panel, i, itemID) {
-    //send the index of the item in the loot array
-    item.eventMode = 'static';
-    item.cursor = 'pointer';
-
-    item.on('mouseover', async (event) => { 
-        //display a sprite that shows the item stats in a frame
-        // Get mouse position
-        const mousePosition = event.data.global;
-        console.log("Mouse position (over):", mousePosition);
-    });
-
-    item.on('mouseout', (event) => { 
-        //remove the sprite that shows the item stats in a frame from the stage
-    }); 
-
-    //
-    item.on('mousedown', (event) => { 
-        console.log("Left mouse button clicked on item, open conext menu to decide action");
-        // Optionally, you can handle right mouse button click event
-
-    });
-
-    //DEKTOP ONLY
-    item.on('rightclick', (event) => { 
-        console.log("Right mouse button clicked on item");
-        // Optionally, you can handle right mouse button click event
-        let message;
-        //if ctrl clicked
-        if (event.ctrlKey) {
-        }
-        //if shift clicked
-        else if (event.shiftKey) {
-        }
-        //if alt clicked
-        else if (event.altKey) {
-        }    
-        else {
-        }  
-        
-        console.log("message: ", message);
-        Send_Web_Socket_Message(message); 
-    });
-}
 
 // In PIXI.js, you can use various mouse and pointer event listeners to handle different types of user interactions. Here are some common event listeners you can use:
 

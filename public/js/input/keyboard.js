@@ -19,6 +19,28 @@ function Quit(data) {
     //set proper html
 }
 
+function Spell(keyName) {
+    console.log("spell", keyName)
+}
+
+let actionBar = {
+    1: Spell,
+    2: Spell,
+    3: Spell,
+    4: Spell,
+    5: Spell,
+    6: Spell,
+    7: Spell,
+    8: Spell,
+    9: Spell,
+    0: Spell,
+}
+
+
+function Action_Bar(keyName) {
+    actionBar[keyName]()
+}
+
 
 let Update = {
     Enter: Actions,
@@ -30,6 +52,16 @@ let Update = {
     ' ': Move,
     p: Restart,
     Escape: Quit,
+    1: Action_Bar,
+    2: Action_Bar,
+    3: Action_Bar,
+    4: Action_Bar,
+    5: Action_Bar,
+    6: Action_Bar,
+    7: Action_Bar,
+    8: Action_Bar,
+    9: Action_Bar,
+    0: Action_Bar,
 }
 
 document.addEventListener("keypress", (event) => {
