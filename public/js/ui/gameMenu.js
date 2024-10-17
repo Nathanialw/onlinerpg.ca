@@ -1,6 +1,7 @@
 'use strict'
 import { Clear_Sprite_Array, Draw_Main_Menu_Icons, gameMenuSprites } from '../graphics/graphics.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
+import { Update_Screen } from '../frontend/ui.js';
 
 //STATIC MENUS
 
@@ -76,9 +77,10 @@ function Set_Send_On_Menu_Click_Listener(item, action, index) {
     //
     item.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
-        // Optionally, you can handle right mouse button click event
-        functions[index](index);        
-        // Send_Web_Socket_Message(message); 
+        //set panel index
+        functions[index](index);      
+        // trigger redraw
+        Update_Screen();
     });
 
     //DEKTOP ONLY
