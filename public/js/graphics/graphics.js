@@ -78,12 +78,12 @@ export async function Create_Canvas() {
 
     await Init_Graphics();
 
+    document.getElementById('gameCanvas').appendChild(app.canvas);
+    app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
+
     // Add custom cursor styles
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
-
-    document.getElementById('gameCanvas').appendChild(app.canvas);
-    app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
