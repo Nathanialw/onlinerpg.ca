@@ -64,14 +64,14 @@ const text = [
 ]
 
 
+
+// export function  Init_Main_Menu() { //set listers on the sprites stored
+//     for (let i = 0; i < mainMenuSprites.length; i++) {
+    //         Set_Send_On_Menu_Click_Listener(button, functions[i]);
+    //     }
+    // }
+    
 let set = false;
-
-export function  Init_Main_Menu() { //set listers on the sprites stored
-    for (let i = 0; i < mainMenuSprites.length; i++) {
-        Set_Send_On_Menu_Click_Listener(button, functions[i]);
-    }
-}
-
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 

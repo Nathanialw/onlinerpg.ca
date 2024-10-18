@@ -9,7 +9,6 @@ import { Update_Screen } from '../../frontend/ui.js';
 //send message to server on click
 
 export let gamePanelIndex = 0;
-let set = false;
 
 export function Set_Game_Panel_Index(index) {
     gamePanelIndex = index;
@@ -24,12 +23,13 @@ const text = [
 ]
 
 
-export function  Init_Game_Menu() { //set listers on the sprites stored
-    for (let i = 0; i < gameMenuSprites.length; i++) {
-        Set_Send_On_Menu_Click_Listener(button, i);
-    }
-}
-
+// export function  Init_Game_Menu() { //set listers on the sprites stored
+//     for (let i = 0; i < gameMenuSprites.length; i++) {
+    //         Set_Send_On_Menu_Click_Listener(button, i);
+    //     }
+    // }
+    
+let set = false;
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
@@ -44,19 +44,17 @@ export async function Draw_Game_Menu() {
     }
 }
 
+function onButtonDown()
+{
+    this.texture = buttonHover;
+}
 
 function Set_Send_On_Menu_Click_Listener(item, index) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'hover';
 
-    item.on('mouseover', async (event) => { 
-        //display a sprite that shows the item stats in a frame
-        // Get mouse position
-        // const mousePosition = event.data.global;
-        
-        // item.texture = buttonHover;
-    });
+    item.on('mouseover', onButtonDown);
 
     item.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
