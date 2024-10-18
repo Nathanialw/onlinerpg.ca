@@ -6,7 +6,7 @@ import { SoundAttack } from '../../sound/sound.js';
 let log = [];
 let logDisplay = [];
 
-let maxLines = 17;
+let maxLines = 18;
 let currentLine = maxLines;
 
 function Add_Line(line) {
