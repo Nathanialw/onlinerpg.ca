@@ -55,20 +55,20 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
     button.eventMode = 'static';
     button.cursor = 'hover';
 
-    button.on('mouseover', (event) => { 
+    button.texture,on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
         button.text.style.fill = 0xffd700;
     }); 
 
-    button.on('mouseout', (event) => { 
+    button.texture,on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
         button.text.style.fill = 0xffffff;
     }); 
 
     //
-    button.on('mousedown', (event) => { 
+    button.texture,on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
         
         

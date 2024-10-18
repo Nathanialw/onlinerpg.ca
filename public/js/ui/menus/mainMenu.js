@@ -94,19 +94,19 @@ function Set_Send_On_Menu_Click_Listener(button, action) {
     button.cursor = 'hover';
     let message = 'message';
 
-    button.on('mouseover', (event) => { 
+    button.texture,on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
         button.text.style.fill = 0xffd700;
     }); 
 
-    button.on('mouseout', (event) => { 
+    button.texture,on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
         button.text.style.fill = 0xffffff;
     }); 
     //
-    button.on('mousedown', (event) => { 
+    button.texture,on('mousedown', (event) => { 
         console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
         action(message);
