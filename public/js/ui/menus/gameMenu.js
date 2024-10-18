@@ -50,6 +50,14 @@ export async function Draw_Game_Menu() {
 //     this.texture = buttonHover;
 // }
 
+const defaultStyle = new PIXI.TextStyle({
+    fill: 'white',
+});
+
+const hoverStyle = new PIXI.TextStyle({
+    fill: 0xffd700,
+});
+
 function Set_Send_On_Menu_Click_Listener(button, index) {
     //send the index of the item in the loot array
     button.texture.eventMode = 'static';
@@ -58,14 +66,16 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
     button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
-        button.text.style.fill = 0xffd700;
-    }); 
+        if (item instanceof PIXI.Text) {
+            item.style = hoverStyle;
+        }    }); 
 
     button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
-        button.text.style.fill = 0xffffff;
-    }); 
+        if (item instanceof PIXI.Text) {
+            item.style = defaultStyle;
+        }    }); 
 
     //
     button.texture.on('mousedown', (event) => { 
