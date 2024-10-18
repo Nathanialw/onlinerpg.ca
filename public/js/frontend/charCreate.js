@@ -2,6 +2,9 @@ import { createWebSocket, socket } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 
+const minNameLength = 2;
+const maxNameLength = 20;
+
 document.addEventListener('DOMContentLoaded', () => {
     Init_Title();
     Music_Play("title");
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nameInput = document.getElementById('name');
         const nameError = document.getElementById('nameError');
     
-        if (nameInput.value.length >= 3 && nameInput.value.length <= 20) {
+        if (nameInput.value.length >= minNameLength && nameInput.value.length <= maxNameLength) {
             nameInput.classList.remove('error'); // Remove error class if valid
             nameError.style.display = 'none'; // Hide error message
         }
@@ -178,14 +181,14 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
     const nameInput = document.getElementById('name');
     const nameError = document.getElementById('nameError');
     
-    if (nameInput.value.length < 3 || nameInput.value.length > 20) {
+    if (nameInput.value.length < minNameLength || nameInput.value.length > maxNameLength) {
         event.preventDefault(); // Prevent form submission
         nameInput.classList.add('error'); // Add error class to input
         nameError.style.display = 'block'; // Show error message
-        if (nameInput.value.length < 3) {
-            nameError.textContent = 'Name must be at least 3 characters long.';
+        if (nameInput.value.length < minNameLength) {
+            nameError.textContent = `Name must be at least ${minNameLength} characters long.`;
         } else {
-            nameError.textContent = 'Name must be no more than 20 characters long.';
+            nameError.textContent = `Name must be no more than ${maxNameLength} characters long.`;
         }
       
     } else {
