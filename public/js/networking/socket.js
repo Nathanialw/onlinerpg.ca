@@ -22,6 +22,9 @@ let websocket;
 let reconnectInterval = 10000; // 10 seconds
 let pingInterval;
 
+let reconnectAttempts = 0;
+const maxReconnectAttempts = 2;
+
 export async function createWebSocket() {
     sessionId = await getSessionId();
     if (!sessionId) {
@@ -41,9 +44,9 @@ export async function createWebSocket() {
 
         websocket.onopen = () => {
             console.log("WebSocket connection opened");
+            reconnectAttempts = 0; // Reset the counter on successful connection
 
             websocket.onmessage = (event) => {
-
                 if (event.data === '0') {
                     return;
                 }
@@ -72,9 +75,16 @@ export async function createWebSocket() {
         websocket.onclose = () => {
             console.log("WebSocket connection closed, attempting to reconnect...");
             clearInterval(pingInterval); // Clear the ping interval
-            setTimeout(() => {
-                createWebSocket();
-            }, reconnectInterval);
+
+            if (reconnectAttempts < maxReconnectAttempts) {
+                reconnectAttempts++;
+                setTimeout(() => {
+                    createWebSocket();
+                }, reconnectInterval);
+            } else {
+                console.error(`Failed to reconnect after ${maxReconnectAttempts} attempts.`);
+                reject(new Error(`Failed to reconnect after ${maxReconnectAttempts} attempts.`));
+            }
         };
 
         websocket.onerror = (error) => {

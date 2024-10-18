@@ -190,7 +190,7 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
         } else {
             nameError.textContent = `Name must be no more than ${maxNameLength} characters long.`;
         }
-      
+        
     } else {
         const loadingText = document.getElementById('loading-text');
         loadingText.classList.add('loading-text'); // Add error class to input
@@ -203,6 +203,7 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
             Remove_Elements();
         } catch (error) {
             console.error("Failed to establish WebSocket connection:", error);
+            loadingText.textContent = `Failed to establish connection.`;
         }  
     }
 });
