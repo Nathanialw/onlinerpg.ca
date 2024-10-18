@@ -98,7 +98,6 @@ function Set_Send_On_Menu_Click_Listener(item, action) {
         //display a sprite that shows the item stats in a frame
         // Get mouse position
         const mousePosition = event.data.global;
-        console.log("Mouse position (over):", mousePosition);
     });
 
     item.on('mouseout', (event) => { 

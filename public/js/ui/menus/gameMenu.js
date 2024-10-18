@@ -17,10 +17,10 @@ export function Set_Game_Panel_Index(index) {
 
 const text = [
     'Target',       //exit game
-    'Map',   //start new game
-    'Spellbook',    //open options menu
-    'Crafting',   //open graphics menu
+    'Spells',    //open options menu
     'Log',      //open sound menu
+    'Map',   //start new game
+    'Craft',   //open graphics menu
 ]
 
 
@@ -54,7 +54,6 @@ function Set_Send_On_Menu_Click_Listener(item, index) {
         //display a sprite that shows the item stats in a frame
         // Get mouse position
         const mousePosition = event.data.global;
-        console.log("Mouse position (over):", mousePosition);
     });
 
     item.on('mouseout', (event) => { 
@@ -64,9 +63,8 @@ function Set_Send_On_Menu_Click_Listener(item, index) {
     //
     item.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
-        //set panel index
-        gamePanelIndex = index;
-        // trigger redraw
+
+        Set_Game_Panel_Index(index);
         Update_Screen();
     });
 }
