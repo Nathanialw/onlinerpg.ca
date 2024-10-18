@@ -36,49 +36,53 @@ export async function createWebSocket() {
         websocket.onerror = null;
     }
 
+    return new Promise((resolve, reject) => {
+        websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
 
-    websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
+        websocket.onopen = () => {
+            console.log("WebSocket connection opened");
 
-    websocket.onopen = () => {
-        console.log("WebSocket connection opened");
+            websocket.onmessage = (event) => {
 
-        websocket.onmessage = (event) => {
+                if (event.data === '0') {
+                    return;
+                }
 
-            if (event.data === '0') {
-                return;
-            }
+                let type = event.data[0];
+                let data = event.data.substring(1);
 
-            let type = event.data[0];
-            let data = event.data.substring(1);
+                if (data.length === 0) {
+                    return;
+                }
 
-            if (data.length === 0) {
-                return;
-            }
+                // Use a hash map to update
+                Update[type](data);
+            };
 
-            // Use a hash map to update
-            Update[type](data);
+            // Set up ping interval
+            pingInterval = setInterval(() => {
+                if (websocket.readyState === WebSocket.OPEN) {
+                    websocket.send(JSON.stringify({ event: "ping" }));
+                }
+            }, 2500);
+
+            resolve(); // Resolve the promise when the connection is opened
         };
 
-        // Set up ping interval
-        pingInterval = setInterval(() => {
-            if (websocket.readyState === WebSocket.OPEN) {
-                websocket.send(JSON.stringify({ event: "ping" }));
-            }
-        }, 2500);
-    };
+        websocket.onclose = () => {
+            console.log("WebSocket connection closed, attempting to reconnect...");
+            clearInterval(pingInterval); // Clear the ping interval
+            setTimeout(() => {
+                createWebSocket();
+            }, reconnectInterval);
+        };
 
-    websocket.onclose = () => {
-        console.log("WebSocket connection closed, attempting to reconnect...");
-        clearInterval(pingInterval); // Clear the ping interval
-        setTimeout(() => {
-            createWebSocket();
-        }, reconnectInterval);
-    };
-
-    websocket.onerror = (error) => {
-        console.error("WebSocket error:", error);
-        websocket.close();
-    };
+        websocket.onerror = (error) => {
+            console.error("WebSocket error:", error);
+            websocket.close();
+            reject(error);
+        };
+    });
 }
 
 export function socket() {

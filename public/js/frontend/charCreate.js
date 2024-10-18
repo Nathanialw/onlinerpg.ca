@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     Init_Title();
     Music_Play("title");
 
-    createWebSocket();
     Buttons(races);
     Buttons(genders);
     Buttons(unitClasses);
@@ -164,11 +163,16 @@ function Set_Canvas() {
     }
 }
 
-document.getElementById('startGame').addEventListener('click', (event) => {
-    Set_Canvas();
-    Load_Scripts();
-    Send();
-    Remove_Elements();
+document.getElementById('startGame').addEventListener('click', async (event) => {
+    try {
+        await createWebSocket();
+        Set_Canvas();
+        Load_Scripts();
+        Send();
+        Remove_Elements();
+    } catch (error) {
+        console.error("Failed to establish WebSocket connection:", error);
+    }
 });
 
 export function OnReconnect() {
