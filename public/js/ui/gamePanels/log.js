@@ -21,11 +21,11 @@ function Render_Log() {
     let beginLine;
     let endLine = log.length;
     if (log.length > maxLines) {
-        logLine = -10;
+        logLine = -9;
         beginLine = log.length - maxLines;
     }
     else {
-        logLine = 8 - log.length;
+        logLine = 7 - log.length;
         beginLine = 0;
     }
     for (let i = beginLine; i < endLine; i++) {
