@@ -1,5 +1,5 @@
 'use strict'
-import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone, loot} from '../graphics/graphics.js';
+import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
