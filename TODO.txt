@@ -65,6 +65,9 @@ short term:
 -right click on map will move to that location, server will send the move updates one at a time
 -crate unit locations to place on map ie. ogre mound with ogre around itw
 
+-draw the ui game panels 
+-draw the menu buttons
+-reorganize the inventory panel - put the loot panel on the game panels side
 
 medium term:
 -traits based on the unit's parents and what it does while alive

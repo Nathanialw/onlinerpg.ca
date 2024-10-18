@@ -26,23 +26,37 @@ export let equipment = []
 export let mainMenuSprites = []
 export let gameMenuSprites = []
 
+async function Load_Texture(path) {
+    return await PIXI.Assets.load(path);
+}
+
 async function Init_Graphics() {
-    const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
-    const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
-    const inventoryTexture = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
-    const lootUITexture = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
-    const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
-    const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
-    const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    equipmentUI = new PIXI.Sprite(equipmentTexture);
-    chat = new PIXI.Sprite(chatTexture);
-    menu = new PIXI.Sprite(menuTexture);
-    tabs = new PIXI.Sprite(menuTexture);
-    invTabs = new PIXI.Sprite(menuTexture);
-    inventoryUI = new PIXI.Sprite(inventoryTexture);
-    lootUI = new PIXI.Sprite(lootUITexture);
-    playerImg = new PIXI.Sprite(playerTexture);
-    target = new PIXI.Sprite(targetTexture);
+    // const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
+    // const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
+    // const inventoryTexture = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
+    // const lootUITexture = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
+    // const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
+    // const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
+    // const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
+    // playerImg = new PIXI.Sprite(playerTexture);
+    // equipmentUI = new PIXI.Sprite(equipmentTexture);
+    // inventoryUI = new PIXI.Sprite(inventoryTexture);
+    // lootUI = new PIXI.Sprite(lootUITexture);
+    // chat = new PIXI.Sprite(chatTexture);
+    // menu = new PIXI.Sprite(menuTexture);
+    // tabs = new PIXI.Sprite(menuTexture);
+    // invTabs = new PIXI.Sprite(menuTexture);
+    // target = new PIXI.Sprite(targetTexture);
+    
+    equipmentUI = Load_Texture('assets/graphics/ui/equipment/equipment.png')
+    chat = Load_Texture('assets/graphics/ui/log/chat_main_bg.png')
+    menu = Load_Texture('assets/graphics/ui/menu/main_menu.png')
+    tabs = Load_Texture('assets/graphics/ui/menu/main_menu.png')
+    invTabs = Load_Texture('assets/graphics/ui/menu/main_menu.png')
+    inventoryUI = Load_Texture('assets/graphics/ui/inventory/inventory_body.png')
+    lootUI = Load_Texture('assets/graphics/ui/loot/inventory_body.png')
+    playerImg = Load_Texture('assets/graphics/imgs/human/male/001.jpg')
+    target = Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
     for (let i = 0; i < 5; i++) {
