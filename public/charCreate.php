@@ -93,7 +93,7 @@
     <button id="startGame" class='btn btn-center'>Start Game</button>
     <br> 
     <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
-    <div id="loading-text" class="loading-message" style="color: white; display: none;">Loading...</div>
+    <div id="loading-text" class="loading-message" style="color: white; display: none;">Connecting...</div>
 </section>
 
 <script src="/js/frontend/charCreate.js" type="module"></script>

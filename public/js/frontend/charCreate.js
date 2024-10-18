@@ -180,6 +180,7 @@ function Set_Canvas() {
 document.getElementById('startGame').addEventListener('click', async (event) => {
     const nameInput = document.getElementById('name');
     const nameError = document.getElementById('nameError');
+    const loadingText = document.getElementById('loading-text');
     
     if (nameInput.value.length < minNameLength || nameInput.value.length > maxNameLength) {
         event.preventDefault(); // Prevent form submission
@@ -192,7 +193,6 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
         }
         
     } else {
-        const loadingText = document.getElementById('loading-text');
         loadingText.classList.add('loading-text'); // Add error class to input
         loadingText.style.display = 'block'; // Show error message
         try {
