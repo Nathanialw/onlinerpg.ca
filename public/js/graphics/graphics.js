@@ -80,7 +80,7 @@ export async function Create_Canvas() {
 
     // Add custom cursor styles
     const defaultIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor.png\'),auto';
-    const hoverIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_blue.png');
+    const hoverIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor_outline_blue.png\'),auto';
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
 
