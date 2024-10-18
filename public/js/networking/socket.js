@@ -87,6 +87,7 @@ export async function createWebSocket() {
                     loadingText.style.color = 'red';
                     loadingText.textContent = `Failed to establish connection.`;
                 }
+                reconnectAttempts = 0;
                 console.error(`Failed to reconnect after ${maxReconnectAttempts} attempts.`);                
                 reject(new Error(`Failed to reconnect after ${maxReconnectAttempts} attempts.`));
             }
