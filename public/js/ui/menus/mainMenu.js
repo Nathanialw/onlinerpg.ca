@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Main_Menu_Icons, mainMenuSprites } from '../../graphics/graphics.js';
+import { Draw_Menu_Icons, mainMenuSprites, buttonHover, buttonNormal } from '../../graphics/graphics.js';
 import { Restart, Quit } from '../../game/game.js';
 
 
@@ -72,11 +72,12 @@ const text = [
     // }
     
 let set = false;
+let hover = false;
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        let button = await Draw_Main_Menu_Icons(mainMenuSprites, i, 0.4, text[i])           
+        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, hover, text[i])           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
@@ -94,16 +95,18 @@ function Set_Send_On_Menu_Click_Listener(item, action) {
     item.cursor = 'hover';
     let message = 'message';
 
-    item.on('mouseover', async (event) => { 
-        //display a sprite that shows the item stats in a frame
-        // Get mouse position
-        const mousePosition = event.data.global;
-    });
+    item.on('mouseover', (event) => { 
+        //remove the sprite that shows the item stats in a frame from the stage
+        hover = true;
+        item.texture = buttonHover;
+    }); 
 
     item.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
-    }); 
+        hover = false;
+        item.texture = buttonNormal;
 
+    }); 
     //
     item.on('mousedown', (event) => { 
         console.log("Left mouse button clicked on item, open conext menu to decide action");
