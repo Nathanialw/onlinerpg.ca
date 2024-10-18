@@ -172,20 +172,27 @@ function Set_Canvas() {
 }
 
 document.getElementById('startGame').addEventListener('click', async (event) => {
-    const nameInput = document.querySelector('.nameInput');
+    const nameInput = document.getElementById('name');
+    const nameError = document.getElementById('nameError');
+
     if (nameInput.value.length >= 3) {
         nameInput.classList.remove('error'); // Remove error class if valid
+        nameError.style.display = 'none'; // Hide error message
+
+        try {
+            await createWebSocket();
+            Set_Canvas();
+            Load_Scripts();
+            Send();
+            Remove_Elements();
+        } catch (error) {
+            console.error("Failed to establish WebSocket connection:", error);
+        }
     } else {
-    try {
-        await createWebSocket();
-        Set_Canvas();
-        Load_Scripts();
-        Send();
-        Remove_Elements();
-    } catch (error) {
-        console.error("Failed to establish WebSocket connection:", error);
+        event.preventDefault(); // Prevent form submission
+        nameInput.classList.add('error'); // Add error class to input
+        nameError.style.display = 'block'; // Show error message
     }
-}
 });
 
 export function OnReconnect() {
