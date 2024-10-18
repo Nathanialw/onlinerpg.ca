@@ -40,7 +40,7 @@ async function Init_Graphics() {
     inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory_body.png')
     lootUI = await Load_Texture('assets/graphics/ui/loot/inventory_body.png')
     playerImg = await Load_Texture('assets/graphics/imgs/human/male/001.jpg')
-    target = 'assets/graphics/ui/overview/crafting_box_merge1.png')
+    target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
     for (let i = 0; i < 5; i++) {
