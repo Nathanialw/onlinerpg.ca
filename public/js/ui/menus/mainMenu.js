@@ -72,7 +72,7 @@ const text = [
     // }
     
 let set = false;
-let style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
+let style = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffffff, align : 'center'}
 
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
