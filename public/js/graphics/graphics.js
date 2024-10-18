@@ -10,6 +10,7 @@ let hoverAlly;
 let hoverEnemy;
 
 export let buttonHover;
+export let buttonNormal;
 
 let equipmentUI;
 let chat;
