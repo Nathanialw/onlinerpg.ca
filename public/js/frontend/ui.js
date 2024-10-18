@@ -9,7 +9,7 @@ import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
-import { loot } from '../ui/gamePanels/loot.js';
+// import { loot } from '../ui/gamePanels/loot.js';
 import { Set_Game_Panel_Index } from '../ui/menus/gameMenu.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
