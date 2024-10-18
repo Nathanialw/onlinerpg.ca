@@ -48,15 +48,15 @@ async function Init_Graphics() {
     // invTabs = new PIXI.Sprite(menuTexture);
     // target = new PIXI.Sprite(targetTexture);
     
-    equipmentUI = Load_Texture('assets/graphics/ui/equipment/equipment.png')
-    chat = Load_Texture('assets/graphics/ui/log/chat_main_bg.png')
-    menu = Load_Texture('assets/graphics/ui/menu/main_menu.png')
-    tabs = Load_Texture('assets/graphics/ui/menu/main_menu.png')
-    invTabs = Load_Texture('assets/graphics/ui/menu/main_menu.png')
-    inventoryUI = Load_Texture('assets/graphics/ui/inventory/inventory_body.png')
-    lootUI = Load_Texture('assets/graphics/ui/loot/inventory_body.png')
-    playerImg = Load_Texture('assets/graphics/imgs/human/male/001.jpg')
-    target = Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
+    equipmentUI = await Load_Texture('assets/graphics/ui/equipment/equipment.png')
+    chat = await Load_Texture('assets/graphics/ui/log/chat_main_bg.png')
+    menu = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
+    tabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
+    invTabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
+    inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory_body.png')
+    lootUI = await Load_Texture('assets/graphics/ui/loot/inventory_body.png')
+    playerImg = await Load_Texture('assets/graphics/imgs/human/male/001.jpg')
+    target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
     for (let i = 0; i < 5; i++) {
