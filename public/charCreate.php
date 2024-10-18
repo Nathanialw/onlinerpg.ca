@@ -86,12 +86,12 @@
     <form method='POST' id="myForm">
         <input class="form-input form-row" type="text" id="name" name="name" value="" required minlength="3">
     </form>
-    <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
     <br> 
 </section>
 
 <section class='startButton'>
     <button id="startGame" class='btn btn-center'>Start Game</button>
+    <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
 </section>
 
 <script src="/js/frontend/charCreate.js" type="module"></script>
