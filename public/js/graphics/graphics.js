@@ -3,9 +3,6 @@ import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
 
-let defaultIcon;
-let hoverIcon;
-
 let equipmentUI;
 let chat;
 let menu;
@@ -65,8 +62,8 @@ async function Init_Graphics() {
     const panel4 = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
     gamePanels[4] = new PIXI.Sprite(panel4);
 
-    defaultIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
-    hoverIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_blue.png');
+    // defaultIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
+    // hoverIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_blue.png');
 }
 
 export async function Create_Canvas() {
@@ -82,12 +79,10 @@ export async function Create_Canvas() {
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
 
     // Add custom cursor styles
-    // app.renderer.events.cursorStyles.default = defaultIcon;
-    // app.renderer.events.cursorStyles.hover = hoverIcon;
-    // const defaultIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
     const defaultIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor.png\'),auto';
-    // Add custom cursor styles
+    const hoverIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_blue.png');
     app.renderer.events.cursorStyles.default = defaultIcon;
+    app.renderer.events.cursorStyles.hover = hoverIcon;
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
