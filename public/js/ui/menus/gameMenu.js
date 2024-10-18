@@ -22,6 +22,10 @@ const text = [
     'Craft',   //open graphics menu
 ]
 
+
+let defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
+let hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffd700, align : 'center'}
+
 const styles = [
     defaultStyle,
     defaultStyle,
@@ -38,8 +42,6 @@ const styles = [
     // }
     
 let set = false;
-let defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
-let hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffd700, align : 'center'}
 
 
 
