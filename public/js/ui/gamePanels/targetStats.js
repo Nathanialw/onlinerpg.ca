@@ -103,4 +103,14 @@ export function Target_Stats() {
             }
         }
     }
+
+
+    //traits
+    x = Get_Right_Panel_Origin_x() + 14.3;
+    y = Get_Right_Panel_Origin_y() + 14.4;
+    line = 0
+    line = Display_Line("Traits: ", line, x, y);
+
+    //get traits from server as IDs and fetch the IDs from the db to get the trait names and descriptions
+
 }

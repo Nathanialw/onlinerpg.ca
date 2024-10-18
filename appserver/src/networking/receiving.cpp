@@ -66,9 +66,9 @@ namespace Network {
   }
 
   void Close_Game(const std::string& session_id) {
-//    game_instances.erase(session_id);
-//    reverse_client_connections.erase(client_connections[session_id]);
-//    client_connections.erase(session_id);
+    game_instances.erase(session_id);
+    reverse_client_connections.erase(client_connections[session_id]);
+    client_connections.erase(session_id);
   }
 
   void Init_Connection(const websocketpp::connection_hdl& hdl) {

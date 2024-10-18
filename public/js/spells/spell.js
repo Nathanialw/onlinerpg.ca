@@ -7,7 +7,11 @@ function Spell(keyName) {
 }
 
 let actionBar = {
-    1: Spell,
+    q: Spell,
+    e: Spell,
+    r: Spell,
+    f: Spell,
+
     2: Spell,
     3: Spell,
     4: Spell,

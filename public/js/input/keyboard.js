@@ -7,15 +7,12 @@ import {Restart, Quit} from "../game/game.js"
 
 
 let Update = {
-    Enter: Actions,
     a: Move,
     w: Move,
     s: Move,
     d: Move,
-    r: Move,
+    // r: Move, //rest
     ' ': Move,
-    p: Restart,
-    Escape: Quit,
     1: Action_Bar,
     2: Action_Bar,
     3: Action_Bar,
@@ -26,6 +23,10 @@ let Update = {
     8: Action_Bar,
     9: Action_Bar,
     0: Action_Bar,
+    q: Action_Bar,
+    e: Action_Bar,
+    r: Action_Bar,
+    f: Action_Bar,
 }
 
 document.addEventListener("keypress", (event) => {
