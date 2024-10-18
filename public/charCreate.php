@@ -91,6 +91,7 @@
 
 <section class='startButton'>
     <button id="startGame" class='btn btn-center'>Start Game</button>
+    <br> 
     <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
 </section>
 
