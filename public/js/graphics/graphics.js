@@ -98,8 +98,8 @@ export async function Create_Canvas() {
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.crosshair = hoverEnemy;
 
-    defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
-    hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffd700, align : 'center'}
+    defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : grey50, align : 'center'}
+    hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffd700, align : 'center'}
     //all cursor styles:
     //auto, default, none, context-menu, help, pointer, progress, wait, cell, crosshair, text, verticaltext, alias, copy, move, nodrop, notallowed, eresize, nresize, neresize, nwresize, sresize, seresize, swresize, wresize, nsresize, ewresize, neswresize, colresize, nwseresize, rowresize, allscroll, zoomin, zoomout, grab, grabbing
 
