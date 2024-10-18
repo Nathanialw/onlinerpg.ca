@@ -33,10 +33,10 @@ export function  Init_Game_Menu() { //set listers on the sprites stored
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
-        let button = await Draw_Main_Menu_Icons(gameMenuSprites, i, 71.4)           
+        let button = await Draw_Main_Menu_Icons(gameMenuSprites, i, 71.4, text[i])           
         
         if (!set) { //set listers only once
-            Set_Send_On_Menu_Click_Listener(button, i, text[i]);
+            Set_Send_On_Menu_Click_Listener(button, i,);
             if (i == gameMenuSprites.length - 1) {
                 set = true;
             }
