@@ -84,7 +84,7 @@
 
 <section class='nameInput'>
     <form method='POST' id="myForm">
-        <input class="form-input form-row" type="text" id="name" name="name" value="John">
+        <input class="form-input form-row" type="text" id="name" name="name" value="" require>
         <br> 
     </form>
 </section>
