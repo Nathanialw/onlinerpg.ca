@@ -181,7 +181,9 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
         
         const loading = document.getElementById('loading');
         loading.classList.add('loading'); // Add error class to input
-        loading.style.display = 'block'; // Show error message
+        const loadingText = document.getElementById('loading-text');
+        loadingText.classList.add('loading-text'); // Add error class to input
+        loadingText.style.display = 'block'; // Show error message
         try {
             await createWebSocket();
             Set_Canvas();
