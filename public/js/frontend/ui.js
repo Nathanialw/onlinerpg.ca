@@ -79,9 +79,6 @@ export function Update_Screen_Phone() {
 
 export function Update_Screen() {
     app.stage.removeChildren();
-    if (loot.length > 0) {
-        Set_Game_Panel_Index(3);
-    }
 
     Draw_UI(gamePanelIndex);
     Draw_Vision_Background(visionWidth);
