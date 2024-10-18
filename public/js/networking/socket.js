@@ -83,7 +83,9 @@ export async function createWebSocket() {
                 }, reconnectInterval);
             } else {
                 const loadingText = document.getElementById('loading-text');
-                loadingText.textContent = `Failed to establish connection.`;
+                if (loadingText) {
+                    loadingText.textContent = `Failed to establish connection.`;
+                }
                 console.error(`Failed to reconnect after ${maxReconnectAttempts} attempts.`);                
                 reject(new Error(`Failed to reconnect after ${maxReconnectAttempts} attempts.`));
             }
