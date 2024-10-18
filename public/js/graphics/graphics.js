@@ -31,24 +31,7 @@ async function Load_Texture(path) {
     return new PIXI.Sprite(texture);
 }
 
-async function Init_Graphics() {
-    // const playerTexture = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
-    // const equipmentTexture = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
-    // const inventoryTexture = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
-    // const lootUITexture = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
-    // const chatTexture = await PIXI.Assets.load('assets/graphics/ui/log/chat_main_bg.png');
-    // const menuTexture = await PIXI.Assets.load('assets/graphics/ui/menu/main_menu.png');
-    // const targetTexture = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    // playerImg = new PIXI.Sprite(playerTexture);
-    // equipmentUI = new PIXI.Sprite(equipmentTexture);
-    // inventoryUI = new PIXI.Sprite(inventoryTexture);
-    // lootUI = new PIXI.Sprite(lootUITexture);
-    // chat = new PIXI.Sprite(chatTexture);
-    // menu = new PIXI.Sprite(menuTexture);
-    // tabs = new PIXI.Sprite(menuTexture);
-    // invTabs = new PIXI.Sprite(menuTexture);
-    // target = new PIXI.Sprite(targetTexture);
-    
+async function Init_Graphics() {  
     equipmentUI = await Load_Texture('assets/graphics/ui/equipment/equipment.png')
     chat = await Load_Texture('assets/graphics/ui/log/chat_main_bg.png')
     menu = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
@@ -57,31 +40,24 @@ async function Init_Graphics() {
     inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory_body.png')
     lootUI = await Load_Texture('assets/graphics/ui/loot/inventory_body.png')
     playerImg = await Load_Texture('assets/graphics/imgs/human/male/001.jpg')
-    target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
+    target = 'assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
     for (let i = 0; i < 5; i++) {
-        const button = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
-        mainMenuSprites[i] = new PIXI.Sprite(button);
+        mainMenuSprites[i] = await Load_Texture('assets/graphics/imgs/human/male/001.jpg');
     }
         
     //load bag menu buttons
     //load game menu buttons
     for (let i = 0; i < 5; i++) {
-        const button = await PIXI.Assets.load('assets/graphics/imgs/human/male/001.jpg');
-        gameMenuSprites[i] = new PIXI.Sprite(button);
+        gameMenuSprites[i] = await Load_Texture('assets/graphics/imgs/human/male/001.jpg');
     }
 
-    const panel0 = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    gamePanels[0] = new PIXI.Sprite(panel0);
-    const panel1 = await PIXI.Assets.load('assets/graphics/ui/inventory/inventory_body.png');
-    gamePanels[1] = new PIXI.Sprite(panel1);
-    const panel2 = await PIXI.Assets.load('assets/graphics/ui/equipment/equipment.png');
-    gamePanels[2] = new PIXI.Sprite(panel2);
-    const panel3 = await PIXI.Assets.load('assets/graphics/ui/overview/crafting_box_merge1.png');
-    gamePanels[3] = new PIXI.Sprite(panel3);
-    const panel4 = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
-    gamePanels[4] = new PIXI.Sprite(panel4);
+    gamePanels[0] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
+    gamePanels[1] = await Load_Texture('assets/graphics/ui/inventory/inventory_body.png');
+    gamePanels[2] = await Load_Texture('assets/graphics/ui/equipment/equipment.png');
+    gamePanels[3] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
+    gamePanels[4] = await Load_Texture('assets/graphics/ui/loot/inventory_body.png');
 }
 
 export async function Create_Canvas() {
