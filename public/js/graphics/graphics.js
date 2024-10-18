@@ -45,12 +45,14 @@ async function Init_Graphics() {
     target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
+    buttonNormal = await PIXI.Assets.load('assets/graphics/menu/button/standardbut_n.png');
     buttonHover = await PIXI.Assets.load('assets/graphics/menu/button/standardbut_h.png');
-    mainMenuSprites[0] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
-    mainMenuSprites[1] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
-    mainMenuSprites[2] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
-    mainMenuSprites[3] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
-    mainMenuSprites[4] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    
+    mainMenuSprites[0] = await  new PIXI.Sprite(buttonNormal);
+    mainMenuSprites[1] = await  new PIXI.Sprite(buttonNormal);
+    mainMenuSprites[2] = await  new PIXI.Sprite(buttonNormal);
+    mainMenuSprites[3] = await  new PIXI.Sprite(buttonNormal);
+    mainMenuSprites[4] = await  new PIXI.Sprite(buttonNormal);
         
     //load bag menu buttons
     //

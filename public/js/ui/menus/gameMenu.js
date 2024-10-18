@@ -44,20 +44,25 @@ export async function Draw_Game_Menu() {
     }
 }
 
-function onButtonDown()
-{
-    this.texture = buttonHover;
-}
+// function onButtonDown()
+// {
+//     this.texture = buttonHover;
+// }
 
 function Set_Send_On_Menu_Click_Listener(item, index) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
     item.cursor = 'hover';
 
-    item.on('mouseover', onButtonDown);
+    item.on('mouseover', (event) => { 
+        //remove the sprite that shows the item stats in a frame from the stage
+        item.texture = buttonHover;
+    }); 
 
     item.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
+        item.texture = buttonNormal;
+
     }); 
 
     //
