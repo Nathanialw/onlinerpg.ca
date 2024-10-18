@@ -27,7 +27,8 @@ export let mainMenuSprites = []
 export let gameMenuSprites = []
 
 async function Load_Texture(path) {
-    return await PIXI.Assets.load(path);
+    const texture = await PIXI.Assets.load(path);
+    return new PIXI.Sprite(texture);
 }
 
 async function Init_Graphics() {
