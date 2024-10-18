@@ -3,6 +3,8 @@ import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
 
+let defaultIcon;
+let hoverIcon;
 
 let equipmentUI;
 let chat;
@@ -63,15 +65,32 @@ async function Init_Graphics() {
     const panel4 = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
     gamePanels[4] = new PIXI.Sprite(panel4);
 
-    // const defaultIcon = 'url(\'https://pixijs.com/assets/graphics/mouse/cursor.png\'),auto';
-    const defaultIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
-    // const hoverIcon = 'url(\'https://pixijs.com/assets/graphics/mouse/cursor_outline_blue.png\'),auto';
-    const hoverIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_blue.png');
+    defaultIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
+    hoverIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_blue.png');
+}
+
+export async function Create_Canvas() {
+    await app.init({resizeTo: gameCanvas});
+
+    app.canvas.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+    });
+
+    await Init_Graphics();
 
     // Add custom cursor styles
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
+
+    document.getElementById('gameCanvas').appendChild(app.canvas);
+    app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
+
+    // Add an event listener to handle window resize events
+    window.addEventListener('resize', () => {
+        app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
+    });
 }
+
 
 export function Clear_Sprite_Array(spriteArray) {
     for (let i = 0; i < spriteArray.length; i++) {
@@ -210,24 +229,6 @@ export async function Load_Target_Image(x, y, path) {
     let w = 11 * cellSize;
     let h = 11 * cellSize;
     Draw_Sprite(x, y, w, h, targetImg);
-}
-
-export async function Create_Canvas() {
-    await app.init({resizeTo: gameCanvas});
-
-    app.canvas.addEventListener('contextmenu', (event) => {
-        event.preventDefault();
-    });
-
-    await Init_Graphics();
-
-    document.getElementById('gameCanvas').appendChild(app.canvas);
-    app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
-
-    // Add an event listener to handle window resize events
-    window.addEventListener('resize', () => {
-        app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
-    });
 }
 
 export let cellSize = 24;
