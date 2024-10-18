@@ -9,10 +9,10 @@ import {Quests} from "./quests.js"
 
 const GamePanels = [
     Target_Stats,
-    Spell_Book,
-    Combat_Log,
     Minimap,
+    Spell_Book,
     Crafting,
+    Combat_Log,
     
     //not added yet
     Loot,  // sp it is out of the way unless needed

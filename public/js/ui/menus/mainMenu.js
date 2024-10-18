@@ -52,6 +52,7 @@ const functions = [
     Options,    //open options menu
     Graphics,   //open graphics menu
     Sound,      //open sound menu
+    //Keybinds,   //open keybinds menu    
 ]
 
 

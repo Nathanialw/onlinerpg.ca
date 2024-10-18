@@ -128,7 +128,6 @@ export function Update_Screen_Phone() {
 export function Update_Screen() {
     app.stage.removeChildren();
     
-    console.log("panel index: ", gamePanelIndex)
     Draw_UI(gamePanelIndex);
     Draw_Vision_Background(visionWidth);
     Make_Map(serverMap, visionWidth);

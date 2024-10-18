@@ -11,15 +11,16 @@ import { Update_Screen } from '../../frontend/ui.js';
 export let gamePanelIndex = 0;
 
 export function Set_Game_Panel_Index(index) {
+    console.log("change game panel to: ", index);
     gamePanelIndex = index;
 }
 
 const text = [
     'Target',       //exit game
-    'Spells',    //open options menu
-    'Log',      //open sound menu
     'Map',   //start new game
+    'Spells',    //open options menu
     'Craft',   //open graphics menu
+    'Log',      //open sound menu
 ]
 
 
@@ -70,8 +71,6 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
 
     //
     button.texture.on('mousedown', (event) => { 
-        console.log("change game panel to: ", index);
-        
         Set_Game_Panel_Index(index);
         Update_Screen();
     });
