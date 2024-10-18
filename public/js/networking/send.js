@@ -1,4 +1,5 @@
 'use strict'
+import { hoverAlly, hoverEnemy, hoverNeutral } from '../graphics/graphics.js';
 import { Draw_Tooltip, Remove_Tooltip } from '../frontend/tooltip.js';
 import { Send_Web_Socket_Message } from './socket.js';
 
@@ -11,7 +12,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
         y = "0" + y;
     }
     objectDisplay.eventMode = 'static';
-    objectDisplay.cursor = 'pointer';
+    objectDisplay.cursor = 'crosshair';
 
     let message = "5" + x + y;
 
@@ -24,7 +25,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
 export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
-    item.cursor = 'pointer';
+    item.cursor = 'hover';
 
     item.on('mouseover', async (event) => { 
         //display a sprite that shows the item stats in a frame
