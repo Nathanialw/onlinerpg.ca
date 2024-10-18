@@ -118,7 +118,7 @@ export function Remove_Event_Listeners(sprite) {
     }
 }
 
-export async function Draw_Menu_Icons(menu, num, xOff, text = 'default') {    
+export async function Draw_Menu_Icons(menu, num, xOff, style, text = 'default') {    
     let spaceBetween = 2.2;    
     let x = xOff * cellSize + ((num * 5) + spaceBetween) * cellSize;
     let y = 0.5 * cellSize;
@@ -131,7 +131,6 @@ export async function Draw_Menu_Icons(menu, num, xOff, text = 'default') {
     Draw_Sprite(x, y, w, h, menu[num]);    
     
     //Draw the text   
-    let style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
     let textObject = new PIXI.Text({text: text, style});
     textObject.x = x + (w / 2) - (textObject.width / 2);
     textObject.y = y + (h / 2) - (textObject.height / 2);

@@ -22,6 +22,14 @@ const text = [
     'Craft',   //open graphics menu
 ]
 
+const styles = [
+    defaultStyle,
+    defaultStyle,
+    defaultStyle,
+    defaultStyle,
+    defaultStyle,
+]
+
 
 // export function  Init_Game_Menu() { //set listers on the sprites stored
 //     for (let i = 0; i < gameMenuSprites.length; i++) {
@@ -30,11 +38,15 @@ const text = [
     // }
     
 let set = false;
-let hover = false;
+let defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
+let hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffd700, align : 'center'}
+
+
+
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, text[i])           
+        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, styles[i], text[i])           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, i,);
@@ -50,14 +62,6 @@ export async function Draw_Game_Menu() {
 //     this.texture = buttonHover;
 // }
 
-const defaultStyle = new PIXI.TextStyle({
-    fill: 'white',
-});
-
-const hoverStyle = new PIXI.TextStyle({
-    fill: 0xffd700,
-});
-
 function Set_Send_On_Menu_Click_Listener(button, index) {
     //send the index of the item in the loot array
     button.texture.eventMode = 'static';
@@ -66,21 +70,20 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
     button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
+        styles[index] = hoverStyle;
     }); 
 
 
     button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
-     
+        styles[index] = defaultStyle     
     }); 
 
     //
     button.texture.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
         
-        
-
         Set_Game_Panel_Index(index);
         Update_Screen();
     });
