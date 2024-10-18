@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Main_Menu_Icons, gameMenuSprites } from '../../graphics/graphics.js';
+import { Draw_Main_Menu_Icons, gameMenuSprites, buttonHover } from '../../graphics/graphics.js';
 import { Update_Screen } from '../../frontend/ui.js';
 
 //STATIC MENUS
@@ -53,7 +53,9 @@ function Set_Send_On_Menu_Click_Listener(item, index) {
     item.on('mouseover', async (event) => { 
         //display a sprite that shows the item stats in a frame
         // Get mouse position
-        const mousePosition = event.data.global;
+        // const mousePosition = event.data.global;
+        
+        item.texture = buttonHover;
     });
 
     item.on('mouseout', (event) => { 
@@ -63,6 +65,8 @@ function Set_Send_On_Menu_Click_Listener(item, index) {
     //
     item.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
+        
+        
 
         Set_Game_Panel_Index(index);
         Update_Screen();
