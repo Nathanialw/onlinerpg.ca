@@ -43,16 +43,24 @@ async function Init_Graphics() {
     target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
-    for (let i = 0; i < 5; i++) {
-        mainMenuSprites[i] = await Load_Texture('assets/graphics/imgs/human/male/001.jpg');
-    }
+    mainMenuSprites[0] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    mainMenuSprites[1] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    mainMenuSprites[2] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    mainMenuSprites[3] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    mainMenuSprites[4] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
         
     //load bag menu buttons
-    //load game menu buttons
-    for (let i = 0; i < 5; i++) {
-        gameMenuSprites[i] = await Load_Texture('assets/graphics/imgs/human/male/001.jpg');
-    }
+    //
 
+    //load game menu buttons
+    
+    gameMenuSprites[0] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    gameMenuSprites[1] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    gameMenuSprites[2] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    gameMenuSprites[3] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+    gameMenuSprites[4] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+
+    //load panel ui backgrounds
     gamePanels[0] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
     gamePanels[1] = await Load_Texture('assets/graphics/ui/inventory/inventory_body.png');
     gamePanels[2] = await Load_Texture('assets/graphics/ui/equipment/equipment.png');
@@ -104,7 +112,7 @@ export function Remove_Event_Listeners(sprite) {
     }
 }
 
-export async function Draw_Main_Menu_Icons(menu, num, xOff) {    
+export async function Draw_Main_Menu_Icons(menu, num, xOff, text = 'default') {    
     let spaceBetween = 2.2;    
     let x = xOff * cellSize + ((num * 5) + spaceBetween) * cellSize;
     let y = 0.5 * cellSize;
@@ -114,7 +122,14 @@ export async function Draw_Main_Menu_Icons(menu, num, xOff) {
     // Remove_Event_Listeners(mainMenuSprites[num]);    
     // let button = await Load_Icon(iconPath);    
     // mainMenuSprites.push(new PIXI.Sprite(button));        
-    Draw_Sprite(x, y, w, h, menu[num]);            
+    Draw_Sprite(x, y, w, h, menu[num]);    
+    //Draw the text
+    let style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}
+    let textObject = new PIXI.Text({text: text, style});
+    textObject.x = x + (w / 2) - (textObject.width / 2);
+    textObject.y = y + (h / 2) - (textObject.height / 2);
+    app.stage.addChild(textObject);
+    
     return menu[num];
 }
 

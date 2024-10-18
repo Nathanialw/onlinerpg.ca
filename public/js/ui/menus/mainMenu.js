@@ -1,6 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Main_Menu_Icons, mainMenuSprites } from '../../graphics/graphics.js';
-import { Send_Web_Socket_Message } from '../../networking/socket.js';
+import { Draw_Main_Menu_Icons, mainMenuSprites } from '../../graphics/graphics.js';
 import { Restart, Quit } from '../../game/game.js';
 
 
@@ -10,16 +9,49 @@ import { Restart, Quit } from '../../game/game.js';
 //add event listener
 //send message to server on click
 
-function Options(data) {console.log("Options()")}
-function Graphics(data) {console.log("Graphics()")}
-function Sound(data) {console.log("Sound()")}
+function Options(data) {
+    console.log("Options()")
+}
+
+function Graphics(data) {
+    console.log("Graphics()")
+}
+
+function Sound(data) {
+    console.log("Sound()")
+}
+
+function Restart_Confirm(data) {
+    //create a confirmation window with a bg, query and two buttons
+    if (firstBtnClicked) {
+        // Restart(data);
+        console.log("Restart()")
+    }
+    else if (secondBtnClicked) {
+        //close the confirmation window
+        console.log("Close Restart Query Window()")
+    }
+}
+
+function Quit_Confirm(data) {
+    // Quit(data);
+    if (firstBtnClicked) {
+        // Restart(data);
+        console.log("Quit()")
+    }
+    else if (secondBtnClicked) {
+        //close the confirmation window
+        console.log("Close Quit Query Window()")
+    }
+
+}
 
 const functions = [
     Options,    //open options menu
     Graphics,   //open graphics menu
     Sound,      //open sound menu
-    Restart,   //start new game
-    Quit,       //exit game
+    Restart_Confirm,   //start new game
+    Quit_Confirm,       //exit game
 ]
 
 let set = false;
