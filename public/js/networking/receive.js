@@ -1,7 +1,7 @@
 'use strict'
 
 import { Populate_Map } from '../map/map.js';
-import { Map } from '../frontend/ui.js';
+import { Parse_Game_Update } from '../frontend/ui.js';
 import { UpdatePlayerInfo } from '../units/unitdef.js';
 import { Get_Target_Stats_From_Server } from '../ui/gamePanels/targetStats.js';
 import { OnReconnect } from '../frontend/charCreate.js';
@@ -60,7 +60,7 @@ function Update_(data) {
 
 export let Update = {
     0: Message,
-    1: Map,
+    1: Parse_Game_Update,
     2: Update_Inventory,
     3: UpdatePlayerInfo,
     4: Reconnect,
