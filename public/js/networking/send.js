@@ -1,5 +1,4 @@
 'use strict'
-import { hoverAlly, hoverEnemy, hoverNeutral } from '../graphics/graphics.js';
 import { Draw_Tooltip, Remove_Tooltip } from '../frontend/tooltip.js';
 import { Send_Web_Socket_Message } from './socket.js';
 
