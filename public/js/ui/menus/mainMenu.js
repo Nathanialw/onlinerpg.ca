@@ -23,26 +23,30 @@ function Sound(data) {
 
 function Restart_Confirm(data) {
     //create a confirmation window with a bg, query and two buttons
-    if (firstBtnClicked) {
-        // Restart(data);
-        console.log("Restart()")
-    }
-    else if (secondBtnClicked) {
-        //close the confirmation window
-        console.log("Close Restart Query Window()")
-    }
+    Restart(data);
+    // if (firstBtnClicked) {
+    //     // Restart(data);
+    //     console.log("Restart()")
+    // }
+    // else if (secondBtnClicked) {
+    //     //close the confirmation window
+    //     console.log("Close Restart Query Window()")
+    // }
 }
 
 function Quit_Confirm(data) {
     // Quit(data);
-    if (firstBtnClicked) {
-        // Restart(data);
-        console.log("Quit()")
-    }
-    else if (secondBtnClicked) {
-        //close the confirmation window
-        console.log("Close Quit Query Window()")
-    }
+
+    Quit(data);
+
+    // if (firstBtnClicked) {
+    //     // Restart(data);
+    //     console.log("Quit()")
+    // }
+    // else if (secondBtnClicked) {
+    //     //close the confirmation window
+    //     console.log("Close Quit Query Window()")
+    // }
 
 }
 
