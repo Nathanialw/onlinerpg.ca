@@ -85,9 +85,9 @@
 <section class='nameInput'>
     <form method='POST' id="myForm">
         <input class="form-input form-row" type="text" id="name" name="name" value="" required minlength="3">
-        <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
-        <br> 
     </form>
+    <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
+    <br> 
 </section>
 
 <section class='startButton'>
