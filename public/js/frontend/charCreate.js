@@ -194,6 +194,8 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
         
     } else {
         loadingText.classList.add('loading-text'); // Add error class to input
+        loadingText.style.color = 'white';
+        loadingText.textContent = `Connecting...`;
         loadingText.style.display = 'block'; // Show error message
         try {
             await createWebSocket();
