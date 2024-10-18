@@ -218,8 +218,8 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
 }
 
 export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {    
-    let x = (leftPanelWidth / 2) * cellSize
-    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize
+    let x = (Get_Right_Panel_Origin_x() + 0.5) * cellSize
+    let y = (Get_Right_Panel_Origin_y() + 1.5) * cellSize
 
     Remove_Event_Listeners(loot[num]);
     

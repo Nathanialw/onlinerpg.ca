@@ -1,5 +1,5 @@
 'use strict'
-import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
+import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone, loot} from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Query_Loot, Draw_Loot } from '../objects/loot.js';
@@ -9,7 +9,7 @@ import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
-import { loot } from '../ui/gamePanels/loot.js';
+import { Loot } from '../ui/gamePanels/loot.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -88,11 +88,12 @@ export function Update_Screen() {
     Draw_Game_Menu();
 
     Update_Log(species, damage, isDead);    
+    if (loot.length > 0) {
+        gamePanelIndex = 3;
+    }
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
-    if (gamePanelIndex == 4) {
-        Draw_Loot(loot);
-    }
+    Draw_Loot(loot);
     Draw_Inventory(inventory);
     Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
 }
