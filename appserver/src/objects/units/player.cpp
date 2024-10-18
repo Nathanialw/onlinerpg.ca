@@ -64,8 +64,8 @@ namespace Player {
 
     Spawn::Add_Unit(game.objects[level][location], level, location, x, y, name, gender, species, unitClass, alignment);
     std::cout << "size: " << game.objects[level][location].units.size() << std::endl;
-    game.objects[level][location].units.at(0).health = 100;
-    game.objects[level][location].units.at(0).healthMax = 100;
+    game.objects[level][location].units.at(0).health = 1000;
+    game.objects[level][location].units.at(0).healthMax = 1000;
     std::cout << "health: " << game.objects[level][location].units.at(0).health << std::endl;
     std::string xStr = Utils::Prepend_Zero(x);
     std::string yStr = Utils::Prepend_Zero(y);

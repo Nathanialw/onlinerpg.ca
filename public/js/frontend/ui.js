@@ -36,7 +36,7 @@ function Render_Log() {
         beginLine = log.length - maxLines;
     }
     else {
-        logLine = 9 - log.length;
+        logLine = 0 - log.length;
         beginLine = 0;
     }
     for (let i = beginLine; i < endLine; i++) {
