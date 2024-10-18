@@ -72,13 +72,12 @@ const text = [
     // }
     
 let set = false;
-let style = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffffff, align : 'center'}
 
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, style, text[i])           
+        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, text[i])           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
@@ -99,13 +98,11 @@ function Set_Send_On_Menu_Click_Listener(button, action) {
     button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
-        button.text.style.fill = 0xffd700;
     }); 
 
     button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
-        button.text.style.fill = 0xffffff;
     }); 
     //
     button.texture.on('mousedown', (event) => { 

@@ -23,17 +23,6 @@ const text = [
 ]
 
 
-
-
-const styles = [
-    defaultStyle,
-    defaultStyle,
-    defaultStyle,
-    defaultStyle,
-    defaultStyle,
-]
-
-
 // export function  Init_Game_Menu() { //set listers on the sprites stored
 //     for (let i = 0; i < gameMenuSprites.length; i++) {
     //         Set_Send_On_Menu_Click_Listener(button, i);
@@ -47,7 +36,7 @@ let set = false;
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, styles[i], text[i])           
+        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, text[i])           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, i,);
@@ -71,14 +60,12 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
     button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
-        styles[index] = hoverStyle;
     }); 
 
 
     button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
-        styles[index] = defaultStyle     
     }); 
 
     //

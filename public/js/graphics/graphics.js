@@ -11,8 +11,6 @@ let hoverEnemy;
 
 export let buttonHover;
 export let buttonNormal;
-export let defaultStyle;
-export let hoverStyle;
 
 let equipmentUI;
 let chat;
@@ -97,9 +95,6 @@ export async function Create_Canvas() {
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.crosshair = hoverEnemy;
-
-    defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : grey50, align : 'center'}
-    hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffd700, align : 'center'}
     //all cursor styles:
     //auto, default, none, context-menu, help, pointer, progress, wait, cell, crosshair, text, verticaltext, alias, copy, move, nodrop, notallowed, eresize, nresize, neresize, nwresize, sresize, seresize, swresize, wresize, nsresize, ewresize, neswresize, colresize, nwseresize, rowresize, allscroll, zoomin, zoomout, grab, grabbing
 
@@ -124,7 +119,7 @@ export function Remove_Event_Listeners(sprite) {
     }
 }
 
-export async function Draw_Menu_Icons(menu, num, xOff, style, text = 'default') {    
+export async function Draw_Menu_Icons(menu, num, xOff, text = 'default') {    
     let spaceBetween = 2.2;    
     let x = xOff * cellSize + ((num * 5) + spaceBetween) * cellSize;
     let y = 0.5 * cellSize;
@@ -137,6 +132,7 @@ export async function Draw_Menu_Icons(menu, num, xOff, style, text = 'default') 
     Draw_Sprite(x, y, w, h, menu[num]);    
     
     //Draw the text   
+    let style = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffffff, align : 'center'}
     let textObject = new PIXI.Text({text: text, style});
     textObject.x = x + (w / 2) - (textObject.width / 2);
     textObject.y = y + (h / 2) - (textObject.height / 2);
