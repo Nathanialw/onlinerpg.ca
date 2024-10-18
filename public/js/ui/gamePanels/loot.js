@@ -7,11 +7,11 @@ export let loot = [];
 //     loot = Query_Loot();
 // }
 
-// export function Loot() {
+export function Loot() {
 
-//     Draw_Loot(loot);
-//     console.log("Loot panel")
-// }
+    // Draw_Loot(loot);
+    console.log("Loot panel")
+}
 
 
 
