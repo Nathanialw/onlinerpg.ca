@@ -259,16 +259,16 @@ export function Set_Font_Size(size) {
 }
 
 
-const grey50 = 0xf8fafc;
-const grey100 = 0xf1f5f9;
-const grey200 = 0xe2e8f0;
-const grey300 = 0xcbd5e1;
-const grey400 = 0x94a3b8;
-const grey500 = 0x64748b;
-const grey600 = 0x475569;
-const grey700 = 0x334155;
-const grey800 = 0x1e293b;
-const grey900 = 0x0f172a;
+export const grey50 = 0xf8fafc;
+export const grey100 = 0xf1f5f9;
+export const grey200 = 0xe2e8f0;
+export const grey300 = 0xcbd5e1;
+export const grey400 = 0x94a3b8;
+export const grey500 = 0x64748b;
+export const grey600 = 0x475569;
+export const grey700 = 0x334155;
+export const grey800 = 0x1e293b;
+export const grey900 = 0x0f172a;
 // const lightBlack = 0x222222;
 const white = 0xffffff;
 const black = 0x111111;
