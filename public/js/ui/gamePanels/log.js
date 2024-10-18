@@ -21,7 +21,7 @@ function Render_Log() {
     let beginLine;
     let endLine = log.length;
     if (log.length > maxLines) {
-        logLine = -9;
+        logLine = -11;
         beginLine = log.length - maxLines;
     }
     else {
