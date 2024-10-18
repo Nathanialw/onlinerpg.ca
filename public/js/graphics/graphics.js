@@ -84,8 +84,8 @@ export async function Create_Canvas() {
     // Add custom cursor styles
     // app.renderer.events.cursorStyles.default = defaultIcon;
     // app.renderer.events.cursorStyles.hover = hoverIcon;
-    const defaultIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
-    // const defaultIcon = 'url(\'https://pixijs.com/assets/bunny.png\'),auto';
+    // const defaultIcon = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
+    const defaultIcon = 'assets/graphics/mouse/cursor.png, auto';
     // Add custom cursor styles
     app.renderer.events.cursorStyles.default = defaultIcon;
 
