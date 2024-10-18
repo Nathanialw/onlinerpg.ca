@@ -49,7 +49,7 @@ export async function Draw_Main_Menu() {
 function Set_Send_On_Menu_Click_Listener(item, action) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
-    item.cursor = 'pointer';
+    item.cursor = 'hover';
     let message = 'message';
 
     item.on('mouseover', async (event) => { 

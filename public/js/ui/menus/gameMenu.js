@@ -39,7 +39,7 @@ export async function Draw_Game_Menu() {
 function Set_Send_On_Menu_Click_Listener(item, index) {
     //send the index of the item in the loot array
     item.eventMode = 'static';
-    item.cursor = 'pointer';
+    item.cursor = 'hover';
 
     item.on('mouseover', async (event) => { 
         //display a sprite that shows the item stats in a frame
