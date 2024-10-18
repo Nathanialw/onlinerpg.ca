@@ -203,8 +203,8 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
             Remove_Elements();
         } catch (error) {
             console.error("Failed to establish WebSocket connection:", error);
-            loadingText.textContent = `Failed to establish connection.`;
         }  
+        loadingText.textContent = `Failed to establish connection.`;
     }
 });
 
