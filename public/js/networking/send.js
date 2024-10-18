@@ -30,7 +30,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
         //display a sprite that shows the item stats in a frame
         // Get mouse position
         const mousePosition = event.data.global;
-        console.log("Mouse position (over):", mousePosition);
+        // console.log("Mouse position (over):", mousePosition);
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 
@@ -41,14 +41,14 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
 
     //
     item.on('mousedown', (event) => { 
-        console.log("Left mouse button clicked on item, open conext menu to decide action");
+        // console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
 
     });
 
     //DEKTOP ONLY
     item.on('rightclick', (event) => { 
-        console.log("Right mouse button clicked on item");
+        // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
         let message;
         //if ctrl clicked
@@ -70,7 +70,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
         }  
         
         //equip sound
-        console.log("message: ", message);
+        // console.log("message: ", message);
         Send_Web_Socket_Message(message); 
     });
 }
