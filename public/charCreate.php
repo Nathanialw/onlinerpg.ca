@@ -85,8 +85,8 @@
 <section class='nameInput'>
     <form method='POST' id="myForm">
         <input class="form-input form-row" type="text" id="name" name="name" value="" required minlength="3">
+        <br> 
     </form>
-    <br> 
 </section>
 
 <section class='startButton'>
