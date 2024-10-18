@@ -10,17 +10,6 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //display the icon in the loot box
 
 
-function Parse(numItems, start, data, Query, size, items) {
-    removeEventListenersFromArray(items);
-    items.length = 0; // Clear the array without reassigning it
-    if (numItems > 0) {
-        items.push(...Query(numItems, data, start));
-    }    
-    
-    return start + (numItems * size); 
-}
-
-
 export function Query_Equipment(numItems, data, start) {
     let equipped = []
     for (let i = 0; i < numItems; i++) {
