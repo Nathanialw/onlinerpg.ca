@@ -35,12 +35,15 @@ gamey
     means you are strong at low levels and then have to specialize later
 -have the viewport sit in the window with the UI elements below 
     and the name of the game above
+-time
+  -time in caves passes slower than on the surface
+
 
 
 short term:
 -enemies to follow between map chunks with pathing
 -login and db to save game state
-
+-remove bracers
 -spells 
   -1 for species
   //-1 for subspecies
@@ -60,7 +63,7 @@ short term:
 -get unit data from the local database instead of sending it
 -create the buttons for the UI
 -right click on map will move to that location, server will send the move updates one at a time
--crate unit locations to place on map ie. ogre mound with ogre around it
+-crate unit locations to place on map ie. ogre mound with ogre around itw
 
 
 medium term:
@@ -73,9 +76,6 @@ long term:
 -store world state in db
 -proc gen maps
 -simple enemy AI
-
-
-
 
 
 bugs:

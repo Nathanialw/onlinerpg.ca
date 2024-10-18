@@ -61,7 +61,7 @@ function Display_Damage(species, damage, isDead) {
     if (isDead === "0") {
         text += " and killed it!";
     }
-    SoundAttack();
+    SoundAttack(); //play attack sound based on weapon equipped
     Add_Line(text);
 }
 

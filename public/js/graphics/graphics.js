@@ -62,6 +62,13 @@ async function Init_Graphics() {
     gamePanels[3] = new PIXI.Sprite(panel3);
     const panel4 = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
     gamePanels[4] = new PIXI.Sprite(panel4);
+
+    const defaultIcon = 'url(\'https://pixijs.com/assets/graphics/mouse/cursor.png\'),auto';
+    const hoverIcon = 'url(\'https://pixijs.com/assets/graphics/mouse/cursor_outline_blue.png\'),auto';
+
+    // Add custom cursor styles
+    app.renderer.events.cursorStyles.default = defaultIcon;
+    app.renderer.events.cursorStyles.hover = hoverIcon;
 }
 
 export function Clear_Sprite_Array(spriteArray) {
