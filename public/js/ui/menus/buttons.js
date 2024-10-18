@@ -5,19 +5,6 @@
 
 
 
-
-
-//all cursor styles:
-    //auto, default, none, context-menu, help, pointer, progress, wait, cell, crosshair, text, verticaltext, alias, copy, move, nodrop, notallowed, eresize, nresize, neresize, nwresize, sresize, seresize, swresize, wresize, nsresize, ewresize, neswresize, colresize, nwseresize, rowresize, allscroll, zoomin, zoomout, grab, grabbing
-
-
-
-
-
-
-
-
-
 ////menu buttons
 // Load textures
     // await Assets.load([

@@ -80,6 +80,9 @@ export async function Create_Canvas() {
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.crosshair = hoverEnemy;
 
+    //all cursor styles:
+    //auto, default, none, context-menu, help, pointer, progress, wait, cell, crosshair, text, verticaltext, alias, copy, move, nodrop, notallowed, eresize, nresize, neresize, nwresize, sresize, seresize, swresize, wresize, nsresize, ewresize, neswresize, colresize, nwseresize, rowresize, allscroll, zoomin, zoomout, grab, grabbing
+
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
         app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
@@ -127,22 +130,22 @@ async function Load_Icon(path) {
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
-    let spaceBetweenCol1 = 1 * cellSize;
-    let fromTopCol1 = 5.1 * cellSize;
-    let fromleftCol1 = 3.5 * cellSize;
+    const spaceBetweenCol1 = 1 * cellSize;
+    const fromTopCol1 = 5.1 * cellSize;
+    const fromleftCol1 = 3.5 * cellSize;
 
-    let spaceBetweenCol2 = .85 * cellSize;
-    let fromTopCol2 = 9 * cellSize;
-    let fromleftCol2 = 24.3 * cellSize;
+    const spaceBetweenCol2 = .85 * cellSize;
+    const fromTopCol2 = 9 * cellSize;
+    const fromleftCol2 = 24.3 * cellSize;
 
-    let spaceBetweenBottom = 1.2 * cellSize;
-    let fromTopBottom = 26.5 * cellSize;
-    let fromleftBottom = 9.2 * cellSize;
+    const spaceBetweenBottom = 1.2 * cellSize;
+    const fromTopBottom = 26.5 * cellSize;
+    const fromleftBottom = 9.2 * cellSize;
     
-    let squareSize = w * cellSize;
+    const squareSize = w * cellSize;
 
-    let x = 0;
-    let y = (topPanelHeight / 4) * cellSize;
+    const x = 0;
+    const y = (topPanelHeight / 4) * cellSize;
 
     let rowPosition = y;
     let columnPosition = x;
@@ -235,33 +238,33 @@ export function Set_Font_Size(size) {
 }
 
 
-let grey50 = 0xf8fafc;
-let grey100 = 0xf1f5f9;
-let grey200 = 0xe2e8f0;
-let grey300 = 0xcbd5e1;
-let grey400 = 0x94a3b8;
-let grey500 = 0x64748b;
-let grey600 = 0x475569;
-let grey700 = 0x334155;
-let grey800 = 0x1e293b;
-let grey900 = 0x0f172a;
-// let lightBlack = 0x222222;
-let white = 0xffffff;
-let black = 0x111111;
-let black_100 = 0x222222;
+const grey50 = 0xf8fafc;
+const grey100 = 0xf1f5f9;
+const grey200 = 0xe2e8f0;
+const grey300 = 0xcbd5e1;
+const grey400 = 0x94a3b8;
+const grey500 = 0x64748b;
+const grey600 = 0x475569;
+const grey700 = 0x334155;
+const grey800 = 0x1e293b;
+const grey900 = 0x0f172a;
+// const lightBlack = 0x222222;
+const white = 0xffffff;
+const black = 0x111111;
+const black_100 = 0x222222;
 
-let sidePanelWidth = 30;
-export let viewportWidth = 41;
-export let viewportHeight = 41;
-export let topPanelHeight = 10;
+const sidePanelWidth = 30;
+export const viewportWidth = 41;
+export const viewportHeight = 41;
+export const topPanelHeight = 10;
 
-let topPanelWidth = viewportWidth;
+const topPanelWidth = viewportWidth;
 
-export let rightPanelWidth = sidePanelWidth;
-let rightPanelHeight = viewportHeight + topPanelHeight;
+export const rightPanelWidth = sidePanelWidth;
+const rightPanelHeight = viewportHeight + topPanelHeight;
 
-export let leftPanelWidth = sidePanelWidth;
-export let leftPanelHeight = viewportHeight + topPanelHeight;
+export const leftPanelWidth = sidePanelWidth;
+export const leftPanelHeight = viewportHeight + topPanelHeight;
 
 let bottomPanelWidth = leftPanelWidth + rightPanelWidth + viewportWidth;
 let bottomPanelHeight = (window.innerHeight / cellSize) - (viewportHeight + topPanelHeight);
