@@ -21,8 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('name').addEventListener('input', function() {
         const nameInput = document.getElementById('name');
-        if (nameInput.value.length >= 3) {
+        const nameError = document.getElementById('nameError');
+    
+        if (nameInput.value.length >= 3 && nameInput.value.length <= 20) {
             nameInput.classList.remove('error'); // Remove error class if valid
+            nameError.style.display = 'none'; // Hide error message
         }
     });
 
@@ -175,10 +178,17 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
     const nameInput = document.getElementById('name');
     const nameError = document.getElementById('nameError');
     
-    if (nameInput.value.length >= 3) {
-        nameInput.classList.remove('error'); // Remove error class if valid
-        nameError.style.display = 'none'; // Hide error message
-        
+    if (nameInput.value.length < 3 || nameInput.value.length > 20) {
+        event.preventDefault(); // Prevent form submission
+        nameInput.classList.add('error'); // Add error class to input
+        nameError.style.display = 'block'; // Show error message
+        if (nameInput.value.length < 3) {
+            nameError.textContent = 'Name must be at least 3 characters long.';
+        } else {
+            nameError.textContent = 'Name must be no more than 20 characters long.';
+        }
+      
+    } else {
         const loadingText = document.getElementById('loading-text');
         loadingText.classList.add('loading-text'); // Add error class to input
         loadingText.style.display = 'block'; // Show error message
@@ -190,11 +200,7 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
             Remove_Elements();
         } catch (error) {
             console.error("Failed to establish WebSocket connection:", error);
-        }
-    } else {
-        event.preventDefault(); // Prevent form submission
-        nameInput.classList.add('error'); // Add error class to input
-        nameError.style.display = 'block'; // Show error message
+        }  
     }
 });
 
