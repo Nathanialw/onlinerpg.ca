@@ -174,11 +174,14 @@ function Set_Canvas() {
 document.getElementById('startGame').addEventListener('click', async (event) => {
     const nameInput = document.getElementById('name');
     const nameError = document.getElementById('nameError');
-
+    
     if (nameInput.value.length >= 3) {
         nameInput.classList.remove('error'); // Remove error class if valid
         nameError.style.display = 'none'; // Hide error message
-
+        
+        const loading = document.getElementById('loading');
+        loading.classList.add('loading'); // Add error class to input
+        loading.style.display = 'block'; // Show error message
         try {
             await createWebSocket();
             Set_Canvas();
