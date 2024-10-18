@@ -55,7 +55,7 @@ function Set_Send_On_Menu_Click_Listener(item, index) {
         // Get mouse position
         // const mousePosition = event.data.global;
         
-        item.texture = buttonHover;
+        // item.texture = buttonHover;
     });
 
     item.on('mouseout', (event) => { 
