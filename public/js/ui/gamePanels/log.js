@@ -1,6 +1,6 @@
 'use strict';
-import { Create_Combat_Log_Line } from './logLine.js';
-import { SoundAttack } from '../sound/sound.js';
+import { Create_Combat_Log_Line } from '../../graphics/graphics.js';
+import { SoundAttack } from '../../sound/sound.js';
 
 
 let log = [];
