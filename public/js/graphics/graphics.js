@@ -82,7 +82,7 @@ export async function Create_Canvas() {
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
 
     // Add custom cursor styles
-    app.renderer.events.cursorStyles.default = defaultIcon;
+    // app.renderer.events.cursorStyles.default = defaultIcon;
     // app.renderer.events.cursorStyles.hover = hoverIcon;
     const defaultIcon = 'url(\'https://pixijs.com/assets/bunny.png\'),auto';
     // Add custom cursor styles
