@@ -67,14 +67,6 @@ async function Init_Graphics() {
     gamePanels[3] = new PIXI.Sprite(panel3);
     const panel4 = await PIXI.Assets.load('assets/graphics/ui/loot/inventory_body.png');
     gamePanels[4] = new PIXI.Sprite(panel4);
-
-    const defaultIconTexture = await PIXI.Assets.load('assets/graphics/mouse/cursor.png');
-    const hoverIconTexture = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_blue.png');
-    const hoverEnemyTexture = await PIXI.Assets.load('assets/graphics/mouse/cursor_outline_red.png');
-
-    defaultIcon  = new PIXI.Sprite(defaultIconTexture);
-    hoverIcon  = new PIXI.Sprite(hoverIconTexture);
-    hoverEnemy  = new PIXI.Sprite(hoverEnemyTexture);
 }
 
 export async function Create_Canvas() {
@@ -90,8 +82,9 @@ export async function Create_Canvas() {
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
 
     // Add custom cursor styles
-    // const defaultIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor.png\'),auto';
-    // const hoverIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor_outline_blue.png\'),auto';
+    defaultIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor.png\'),auto';
+    hoverIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor_outline_blue.png\'),auto';
+    hoverEnemy = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor_outline_red.png\'),auto';
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.crosshair = hoverEnemy;
