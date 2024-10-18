@@ -52,23 +52,23 @@ export async function Draw_Game_Menu() {
 
 function Set_Send_On_Menu_Click_Listener(button, index) {
     //send the index of the item in the loot array
-    button.eventMode = 'static';
-    button.cursor = 'hover';
+    button.texture.eventMode = 'static';
+    button.texture.cursor = 'hover';
 
-    button.texture,on('mouseover', (event) => { 
+    button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
         button.text.style.fill = 0xffd700;
     }); 
 
-    button.texture,on('mouseout', (event) => { 
+    button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
         button.text.style.fill = 0xffffff;
     }); 
 
     //
-    button.texture,on('mousedown', (event) => { 
+    button.texture.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
         
         
