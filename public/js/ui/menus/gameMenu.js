@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Menu_Icons, gameMenuSprites, buttonHover, buttonNormal, minimapCellSize, grey50 } from '../../graphics/graphics.js';
+import { Draw_Menu_Icons, gameMenuSprites, buttonHover, buttonNormal, defaultStyle, hoverStyle } from '../../graphics/graphics.js';
 import { Update_Screen } from '../../frontend/ui.js';
 
 //STATIC MENUS
@@ -23,8 +23,7 @@ const text = [
 ]
 
 
-let defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
-let hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffd700, align : 'center'}
+
 
 const styles = [
     defaultStyle,

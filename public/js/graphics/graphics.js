@@ -11,6 +11,8 @@ let hoverEnemy;
 
 export let buttonHover;
 export let buttonNormal;
+export let defaultStyle;
+export let hoverStyle;
 
 let equipmentUI;
 let chat;
@@ -72,6 +74,8 @@ async function Init_Graphics() {
     gamePanels[2] = await Load_Texture('assets/graphics/ui/equipment/equipment.png');
     gamePanels[3] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
     gamePanels[4] = await Load_Texture('assets/graphics/ui/loot/inventory_body.png');
+
+    
 }
 
 export async function Create_Canvas() {
@@ -94,6 +98,8 @@ export async function Create_Canvas() {
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.crosshair = hoverEnemy;
 
+    defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
+    hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffd700, align : 'center'}
     //all cursor styles:
     //auto, default, none, context-menu, help, pointer, progress, wait, cell, crosshair, text, verticaltext, alias, copy, move, nodrop, notallowed, eresize, nresize, neresize, nwresize, sresize, seresize, swresize, wresize, nsresize, ewresize, neswresize, colresize, nwseresize, rowresize, allscroll, zoomin, zoomout, grab, grabbing
 
