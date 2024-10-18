@@ -34,7 +34,7 @@ let hover = false;
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, hover, text[i])           
+        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, text[i])           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, i,);
@@ -50,26 +50,25 @@ export async function Draw_Game_Menu() {
 //     this.texture = buttonHover;
 // }
 
-function Set_Send_On_Menu_Click_Listener(item, index) {
+function Set_Send_On_Menu_Click_Listener(button, index) {
     //send the index of the item in the loot array
-    item.eventMode = 'static';
-    item.cursor = 'hover';
+    button.eventMode = 'static';
+    button.cursor = 'hover';
 
-    item.on('mouseover', (event) => { 
+    button.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
-        hover = true;
-        item.texture = buttonHover;
+        button.texture.texture = buttonHover;
+        button.text.style.fill = 0xffd700;
     }); 
 
-    item.on('mouseout', (event) => { 
+    button.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
-        hover = false;
-        item.texture = buttonNormal;
-
+        button.texture.texture = buttonNormal;
+        button.text.style.fill = 0xffffff;
     }); 
 
     //
-    item.on('mousedown', (event) => { 
+    button.on('mousedown', (event) => { 
         console.log("change game panel to: ", index);
         
         

@@ -72,12 +72,11 @@ const text = [
     // }
     
 let set = false;
-let hover = false;
 export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, hover, text[i])           
+        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, text[i])           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
@@ -89,26 +88,25 @@ export async function Draw_Main_Menu() {
 }
 
 
-function Set_Send_On_Menu_Click_Listener(item, action) {
+function Set_Send_On_Menu_Click_Listener(button, action) {
     //send the index of the item in the loot array
-    item.eventMode = 'static';
-    item.cursor = 'hover';
+    button.eventMode = 'static';
+    button.cursor = 'hover';
     let message = 'message';
 
-    item.on('mouseover', (event) => { 
+    button.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
-        hover = true;
-        item.texture = buttonHover;
+        button.texture.texture = buttonHover;
+        button.text.style.fill = 0xffd700;
     }); 
 
-    item.on('mouseout', (event) => { 
+    button.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
-        hover = false;
-        item.texture = buttonNormal;
-
+        button.texture.texture = buttonNormal;
+        button.text.style.fill = 0xffffff;
     }); 
     //
-    item.on('mousedown', (event) => { 
+    button.on('mousedown', (event) => { 
         console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
         action(message);
