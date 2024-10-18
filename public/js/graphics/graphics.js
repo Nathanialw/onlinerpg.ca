@@ -124,12 +124,12 @@ export async function Draw_Main_Menu_Icons(menu, num, xOff, text = 'default') {
     // mainMenuSprites.push(new PIXI.Sprite(button));        
     Draw_Sprite(x, y, w, h, menu[num]);    
     //Draw the text
-    let style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}
+    let style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
     let textObject = new PIXI.Text({text: text, style});
     textObject.x = x + (w / 2) - (textObject.width / 2);
     textObject.y = y + (h / 2) - (textObject.height / 2);
     app.stage.addChild(textObject);
-    
+
     return menu[num];
 }
 

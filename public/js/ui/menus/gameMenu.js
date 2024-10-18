@@ -15,6 +15,15 @@ export function Set_Game_Panel_Index(index) {
     gamePanelIndex = index;
 }
 
+const text = [
+    'Target',       //exit game
+    'Map',   //start new game
+    'Spellbook',    //open options menu
+    'Crafting',   //open graphics menu
+    'Log',      //open sound menu
+]
+
+
 export function  Init_Game_Menu() { //set listers on the sprites stored
     for (let i = 0; i < gameMenuSprites.length; i++) {
         Set_Send_On_Menu_Click_Listener(button, i);
@@ -27,7 +36,7 @@ export async function Draw_Game_Menu() {
         let button = await Draw_Main_Menu_Icons(gameMenuSprites, i, 71.4)           
         
         if (!set) { //set listers only once
-            Set_Send_On_Menu_Click_Listener(button, i);
+            Set_Send_On_Menu_Click_Listener(button, i, text[i]);
             if (i == gameMenuSprites.length - 1) {
                 set = true;
             }
