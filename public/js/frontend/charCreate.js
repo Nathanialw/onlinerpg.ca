@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nameInput.classList.remove('error'); // Remove error class if valid
         }
     });
-    
+
     updateHeroClass()
 })
 
@@ -172,6 +172,10 @@ function Set_Canvas() {
 }
 
 document.getElementById('startGame').addEventListener('click', async (event) => {
+    const nameInput = document.querySelector('.nameInput');
+    if (nameInput.value.length >= 3) {
+        nameInput.classList.remove('error'); // Remove error class if valid
+    } else {
     try {
         await createWebSocket();
         Set_Canvas();
@@ -181,6 +185,7 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
     }
+}
 });
 
 export function OnReconnect() {
