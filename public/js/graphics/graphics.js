@@ -83,7 +83,10 @@ export async function Create_Canvas() {
 
     // Add custom cursor styles
     app.renderer.events.cursorStyles.default = defaultIcon;
-    app.renderer.events.cursorStyles.hover = hoverIcon;
+    // app.renderer.events.cursorStyles.hover = hoverIcon;
+    const defaultIcon = 'url(\'https://pixijs.com/assets/bunny.png\'),auto';
+    // Add custom cursor styles
+    app.renderer.events.cursorStyles.default = defaultIcon;
 
     // Add an event listener to handle window resize events
     window.addEventListener('resize', () => {
