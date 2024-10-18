@@ -18,6 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     document.getElementById('hero-class').value = classes.get(races.value + genders.value + unitClasses.value + alignments.value);
+
+    document.getElementById('name').addEventListener('input', function() {
+        const nameInput = document.getElementById('name');
+        if (nameInput.value.length >= 3) {
+            nameInput.classList.remove('error'); // Remove error class if valid
+        }
+    });
+    
     updateHeroClass()
 })
 
