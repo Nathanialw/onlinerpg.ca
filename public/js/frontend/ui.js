@@ -9,7 +9,8 @@ import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
-import { Loot } from '../ui/gamePanels/loot.js';
+import { loot } from '../ui/gamePanels/loot.js';
+import { Set_Game_Panel_Index } from '../ui/menus/gameMenu.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -78,7 +79,10 @@ export function Update_Screen_Phone() {
 
 export function Update_Screen() {
     app.stage.removeChildren();
-    
+    if (loot.length > 0) {
+        Set_Game_Panel_Index(3);
+    }
+
     Draw_UI(gamePanelIndex);
     Draw_Vision_Background(visionWidth);
     Make_Map(serverMap, visionWidth);
@@ -87,10 +91,7 @@ export function Update_Screen() {
     Draw_Main_Menu();
     Draw_Game_Menu();
 
-    Update_Log(species, damage, isDead);    
-    if (loot.length > 0) {
-        gamePanelIndex = 3;
-    }
+    Update_Log(species, damage, isDead);  
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
     Draw_Loot(loot);
