@@ -9,61 +9,13 @@ import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
+import { Update_Log } from '../ui/gamePanels/log.js';
+
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
 // import {characterInfo} from '../units/unitdef.js';
 
-let log = [];
-let logDisplay = [];
-
-let maxLines = 10;
-let currentLine = maxLines;
-
-function Add_Line(line) {
-    log.push(line)
-    for (let i = 0; i < log.length; i++) {
-        currentLine--;
-    }
-}
-
-function Render_Log() {
-    let logLine;
-    let beginLine;
-    let endLine = log.length;
-    if (log.length > maxLines) {
-        logLine = 0;
-        beginLine = log.length - maxLines;
-    }
-    else {
-        logLine = 0 - log.length;
-        beginLine = 0;
-    }
-    for (let i = beginLine; i < endLine; i++) {
-        logDisplay[logLine] = Create_Combat_Log_Line(log[i], logLine);
-        logLine++;
-    }
-}
-
-function Display_Damage_Taken(species, damageTaken) {
-    if (damage === "  ") {
-        return
-    }
-    let text = "You have been struck by a " + species + " for " + damageTaken + " damage"
-    Add_Line(text);
-}
-
-function Display_Damage(species, damage, isDead) {
-    if (damage === "  ") {
-        return
-    }
-    let text = "You have done " + damage + " damage to a " + species; 
-    if (isDead === "0") {
-        text += " and killed it!";
-    }
-    SoundAttack(); //play attack sound based on weapon equipped
-    Add_Line(text);
-}
 
 let visionWidth;
 let direction;
@@ -141,8 +93,7 @@ export function Update_Screen() {
     Draw_Game_Menu();
 
     // Display_Damage_Taken(species, damageTaken);
-    Display_Damage(species, damage, isDead)
-    Render_Log();
+    Update_Log(species, damage, isDead);    
     
     //render fame panel ie. target stats, spell book, combat log, minimap, crafting
     Render_Game_Panel(gamePanelIndex);    
