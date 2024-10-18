@@ -68,10 +68,10 @@ async function Init_Graphics() {
 
     //load panel ui backgrounds
     gamePanels[0] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
-    gamePanels[1] = await Load_Texture('assets/graphics/ui/inventory/inventory_body.png');
-    gamePanels[2] = await Load_Texture('assets/graphics/ui/equipment/equipment.png');
-    gamePanels[3] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
-    gamePanels[4] = await Load_Texture('assets/graphics/ui/loot/inventory_body.png');
+    gamePanels[1] = await Load_Texture('assets/graphics/ui/overview/mm_box_body.png');
+    gamePanels[2] = await Load_Texture('assets/graphics/ui/overview/mm_box_body.png');
+    gamePanels[3] = await Load_Texture('assets/graphics/ui/overview/mm_box_body.png');
+    gamePanels[4] = await Load_Texture('assets/graphics/ui/overview/mm_box_body.png');
 
     
 }
