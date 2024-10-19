@@ -29,7 +29,6 @@ export async function Draw_Loot(items) {
         if (items[i].path === "none") {
             continue
         }
-        
         // draw loot background and border
         let item = await Draw_Loot_Icons(items[i].path, i, 1, 2.5, 2.5, items[i].name);        
         //draw loot name

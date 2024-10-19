@@ -17,7 +17,7 @@ export function Query_Equipment(numItems, data, start) {
         let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
         let equipmentIndex = parseInt(str.substring(0, 2));
         let itemID = parseInt(str.substring(2, 5));
-        equipped.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
+        equipped.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID).icon});        
     }
     return equipped;
 }

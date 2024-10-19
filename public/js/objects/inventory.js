@@ -17,7 +17,7 @@ export function Query_Inventory(numItems, data, start) {
         let invIndex = parseInt(str.substring(0, 2));
         let itemID = parseInt(str.substring(2, 5));
 
-        inv.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID)});        
+        inv.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID).icon});        
     }
     return inv;
 }
