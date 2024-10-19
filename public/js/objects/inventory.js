@@ -26,7 +26,7 @@ export async function Draw_Inventory(items) {
     Clear_Sprite_Array(inventory);
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i].path === "none") {
+        if (items[i].path === undefined || items[i].path === "none") {
             continue
         }
         //clear event listene from index i
