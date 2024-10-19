@@ -17,10 +17,12 @@ export function Set_Game_Panel_Index(index) {
 
 const text = [
     'Target',       //exit game
-    'Map',   //start new game
     'Spells',    //open options menu
     'Craft',   //open graphics menu
+    'Loot',   //start new game
     'Log',      //open sound menu
+    // 'Map',   //start new game
+    // 'Quests',   //start new game
 ]
 
 
