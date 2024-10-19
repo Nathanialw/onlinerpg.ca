@@ -11,7 +11,7 @@
 
 namespace Inventory {
 
-  void Drop_Item(std::array<std::array<int, 16>, 4> &inventory, std::array<uint8_t , 4> &groundItems, uint8_t index) {
+  void Drop_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<uint8_t , 4> &groundItems, uint8_t index) {
     auto itemID = inventory[(int)Items::BagType::Items][index];
     for (unsigned char & groundItem : groundItems) {
       if (groundItem == 0) {
@@ -23,7 +23,7 @@ namespace Inventory {
     std::cout << "item dropped: " << itemID << std::endl;
   }
 
-  std::string Update_Inventory(std::array<std::array<int, 16>, 4> &inventory) {
+  std::string Update_Inventory(std::array<std::array<int, 48>, 4> &inventory) {
     std::cout << "inventory updated" << std::endl;
     std::string inventoryStr;
     uint8_t numItems = 0;
@@ -37,7 +37,7 @@ namespace Inventory {
     return Utils::Prepend_Zero_By_Digits(numItems, 2) + inventoryStr;
   }
 
-  std::string Get_Inventory(std::array<std::array<int, 16>, 4> &inventory) {
+  std::string Get_Inventory(std::array<std::array<int, 48>, 4> &inventory) {
     auto items = inventory[(int)Items::BagType::Items];
     std::string itemsStr = Utils::Prepend_Zero_By_Digits(items.size(), 2);
 

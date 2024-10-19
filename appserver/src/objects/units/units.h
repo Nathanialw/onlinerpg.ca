@@ -147,7 +147,7 @@ namespace Units {
     std::array<int, (int)Items::ItemSlot::SIZE> equipment{};
     //items are just an ID that is in the db
       //db contains the damage, AC, icon path, description, etc
-    std::array<std::array<int, 16>, (int)Items::BagType::SIZE> inventory{}; //items
+    std::array<std::array<int, 48>, (int)Items::BagType::SIZE> inventory{}; //items
 
     int copper = 0;
     int silver = 0;

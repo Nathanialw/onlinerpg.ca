@@ -201,13 +201,13 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
 }
 
 export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {    
-    let spaceBetweenY = .4;
-    let spaceBetweenX = .8;
-    let x = 6;
-    let y = ((topPanelHeight / 4) + (leftPanelHeight * 2 / 3)) * cellSize;
+    let spaceBetweenY = .7;
+    let spaceBetweenX = .95;
+    let x = .8 * cellSize;
+    let y = ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
     
-    let row = Math.floor(num / 4);
-    let column = num % 4;
+    let row = Math.floor(num / 8);
+    let column = num % 8;
     
     let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + xOffset * cellSize);
     let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + yOffset * cellSize);
@@ -555,26 +555,11 @@ export function Draw_UI(index) {
     //menu background
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
     //eqipment
-    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 2/3) - (topPanelHeight / 4)) * cellSize, equipmentUI);
-    //tabs
-    Draw_Sprite(0, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, invTabs);
+    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2)) * cellSize, equipmentUI);
+    //bag slots
+    Draw_Sprite(0, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 1/2) + (topPanelHeight / 4)) * cellSize), leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, invTabs);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, inventoryUI);
-    //loot
-    Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, lootUI);
-
-    /*
-        //menu background
-        Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
-        //eqipment
-        Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2)) * cellSize, equipmentUI);
-        //tabs
-        // Draw_Sprite(0, ((Get_Right_Panel_Origin_y() + (leftPanelHeight * 2/3)) * cellSize), leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, invTabs);
-        //inventory
-        Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 1/2)) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 4)) * cellSize, inventoryUI);
-        //loot
-        // Draw_Sprite((leftPanelWidth / 2) * cellSize, ((topPanelHeight / 4) + (leftPanelHeight * 2/3)) * cellSize, (leftPanelWidth / 2) * cellSize, ((leftPanelHeight * 1/3) - (topPanelHeight / 4)) * cellSize, lootUI);
-    */    
+    Draw_Sprite(0, ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 2)) * cellSize, inventoryUI);
 
 
     //tab background
