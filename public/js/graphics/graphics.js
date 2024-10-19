@@ -217,7 +217,7 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     return inventory[num]
 }
 
-export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {    
+export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w, text) {    
     let x = (Get_Right_Panel_Origin_x() + 0.5) * cellSize
     let y = (Get_Right_Panel_Origin_y() + 1.5) * cellSize
 
@@ -227,6 +227,13 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w) {
     loot.push(new PIXI.Sprite(lootIcon));        
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
+    //Draw the text   
+    let style = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffffff, align : 'center' }
+    let textObject = new PIXI.Text({text: text, style});
+    textObject.x = x + ((3 + xOffset) * cellSize);
+    textObject.y = y + ((1 + yOffset) * cellSize) + (w * num) * cellSize;
+    app.stage.addChild(textObject);
+
     return loot[num];
 }
 
