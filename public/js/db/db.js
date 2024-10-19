@@ -84,34 +84,7 @@ export function Get_Icon_Path(uID) {
     stmt.free();
     
     // Log the entire result object to see what it contains
-    return result[0].icon;
-}
-
-export function Get_Item_Name(uID) {
-    if (uID === 0) {
-        //draw nothing in the slot
-        // let path = "assets/graphics/icons/PVG/Book1.png"
-        let path = "none"
-        return path
-    }
-
-    if (!db) {
-        console.error("Database is not initialized.");
-        return;
-    }
-
-    const sql = `SELECT * FROM Items WHERE uID = ?`;
-    const stmt = db.prepare(sql);
-    stmt.bind([uID]);
-    
-    const result = [];
-    while (stmt.step()) {
-        result.push(stmt.getAsObject());
-    }
-    stmt.free();
-    
-    // Log the entire result object to see what it contains
-    return result[0].name;
+    return result[0];
 }
 
 export async function Get_Item_Stats(uID) {
