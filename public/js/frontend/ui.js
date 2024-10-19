@@ -91,7 +91,9 @@ export function Update_Screen() {
     Update_Log(species, damage, isDead);  
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
-    Draw_Loot(loot);
+    if (gamePanelIndex == 3) {
+        Draw_Loot(loot);    
+    }
     Draw_Inventory(inventory);
     Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
 }
