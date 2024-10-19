@@ -123,7 +123,7 @@ namespace Units {
 
   struct Unit {
     Stats stats;
-    std::string potrait = "001";
+    std::string portrait = "001";
 
     //unit data to send
     Component::Position position{};

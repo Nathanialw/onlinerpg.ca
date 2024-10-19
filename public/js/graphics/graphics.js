@@ -35,7 +35,7 @@ async function Load_Texture(path) {
 }
 
 async function Init_Graphics() {  
-    equipmentUI = await Load_Texture('assets/graphics/ui/equipment/equipment.png')
+    equipmentUI = await Load_Texture('assets/graphics/ui/equipment/equipment2.png')
     chat = await Load_Texture('assets/graphics/ui/log/chat_main_bg.png')
     menu = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     tabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
@@ -201,9 +201,9 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
 }
 
 export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {    
-    let spaceBetweenY = .7;
-    let spaceBetweenX = .95;
-    let x = .8 * cellSize;
+    let spaceBetweenY = .66;
+    let spaceBetweenX = .91;
+    let x = .88 * cellSize;
     let y = ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
     
     let row = Math.floor(num / 8);

@@ -28,7 +28,7 @@ namespace Player {
     auto health = Utils::Prepend_Zero_3Digit(game.Get_Player().health) + Utils::Prepend_Zero_3Digit(game.Get_Player().healthMax);
     auto speed = std::to_string(game.Get_Player().speed) + std::to_string(game.Get_Player().maxSpeed);
     auto damage = Utils::Prepend_Zero(game.Get_Player().minDamage) + Utils::Prepend_Zero(game.Get_Player().maxDamage);
-    auto variableStats = game.Get_Player().potrait + Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
+    auto variableStats = game.Get_Player().portrait + Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
 
     //    2 + 3 + 3 + 3 + 1 + 1 + 2 + 2
 
