@@ -142,6 +142,10 @@ export async function Draw_Menu_Icons(menu, num, xOff, text = 'default') {
 }
 
 async function Load_Icon(path) {
+    if (!path || typeof path !== 'string') {
+        throw new Error('Invalid path provided to Load_Icon');
+    }
+    
     if (PIXI.Assets.cache.has(path)) {
         let icon = PIXI.Assets.cache.get(path);
         return icon;
