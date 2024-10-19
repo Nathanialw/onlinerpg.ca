@@ -29,6 +29,35 @@ export let equipment = []
 export let mainMenuSprites = []
 export let gameMenuSprites = []
 
+let equipSlotsDefault = {
+    ammo: null,
+    chain: null,
+    neck: null,
+    wrists: null,
+    arms: null,
+    waist: null,
+    feet: null,
+    chest: null,
+    back: null,
+    drink: null,
+    face: null,
+    food: null,
+    hands: null,
+    mainHand: null,
+    offHand: null,
+    head: null,
+    legs: null,
+    twoHand: null,
+    ring0: null,
+    ring1: null,
+    trinket0: null,
+    trinket1: null,
+
+    hoverEffect: null,
+    ammoBorder: null,
+    slotBorder: null,
+}
+
 async function Load_Texture(path) {
     const texture = await PIXI.Assets.load(path);
     return new PIXI.Sprite(texture);
@@ -73,7 +102,32 @@ async function Init_Graphics() {
     gamePanels[3] = await Load_Texture('assets/graphics/ui/overview/tall_Panel.png');
     gamePanels[4] = await Load_Texture('assets/graphics/ui/overview/tall_Panel.png');
 
+    equipSlotsDefault.ammo = await Load_Texture('assets/graphics/ui/equipment/ammo_slot.png');
+    equipSlotsDefault.chain = await Load_Texture('assets/graphics/ui/equipment/chain_link.png');
+    equipSlotsDefault.neck = await Load_Texture('assets/graphics/ui/equipment/empty_amulet.png');
+    equipSlotsDefault.wrists = await Load_Texture('assets/graphics/ui/equipment/empty_armguards.png');
+    equipSlotsDefault.arms = await Load_Texture('assets/graphics/ui/equipment/empty_arms.png');
+    equipSlotsDefault.waist = await Load_Texture('assets/graphics/ui/equipment/empty_belt.png');
+    equipSlotsDefault.feet = await Load_Texture('assets/graphics/ui/equipment/empty_boots.png');
+    equipSlotsDefault.chest = await Load_Texture('assets/graphics/ui/equipment/empty_chest.png');
+    equipSlotsDefault.back = await Load_Texture('assets/graphics/ui/equipment/empty_cloak.png');
+    equipSlotsDefault.drink = await Load_Texture('assets/graphics/ui/equipment/empty_drink.png');
+    equipSlotsDefault.face = await Load_Texture('assets/graphics/ui/equipment/empty_face.png');
+    equipSlotsDefault.food = await Load_Texture('assets/graphics/ui/equipment/empty_food.png');
+    equipSlotsDefault.hands = await Load_Texture('assets/graphics/ui/equipment/empty_gloves.png');
+    equipSlotsDefault.mainHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
+    equipSlotsDefault.offHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
+    equipSlotsDefault.head = await Load_Texture('assets/graphics/ui/equipment/empty_helmet.png');
+    equipSlotsDefault.legs = await Load_Texture('assets/graphics/ui/equipment/empty_pants.png');
+    equipSlotsDefault.twoHand = await Load_Texture('assets/graphics/ui/equipment/empty_ranged.png');
+    equipSlotsDefault.ring0 = await Load_Texture('assets/graphics/ui/equipment/empty_ring.png');
+    equipSlotsDefault.ring1 = await Load_Texture('assets/graphics/ui/equipment/empty_ring.png');
+    equipSlotsDefault.trinket0 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
+    equipSlotsDefault.trinket1 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
     
+    equipSlotsDefault.hoverEffect = await Load_Texture('assets/graphics/ui/equipment/item_hover_effect.png');
+    equipSlotsDefault.ammoBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame_ammo.png');
+    equipSlotsDefault.slotBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame.png');
 }
 
 export async function Create_Canvas() {
