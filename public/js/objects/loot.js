@@ -17,7 +17,6 @@ export function Query_Loot(numItems, data, start) {
         let itemID = parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3), 10));
         let item = Get_Icon_Path(itemID);
         drops.push({index: i, itemID: itemID, path: item.icon, name: item.name});    
-        console.log(drops[i]);
     }
     return drops;
 }

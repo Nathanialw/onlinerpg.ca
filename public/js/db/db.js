@@ -84,8 +84,9 @@ export function Get_Icon_Path(uID) {
     stmt.free();
     
     // Log the entire result object to see what it contains
-    return result[0];
+    return result[0].icon;
 }
+
 
 export async function Get_Item_Stats(uID) {
     if (uID === 0) {

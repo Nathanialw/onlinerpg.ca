@@ -93,7 +93,7 @@ export function Update_Screen() {
     Update_Log(species, damage, isDead);  
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
-    if (gamePanelIndex == 3) {
+    if (gamePanelIndex == 3) { //only render if loot panel is open
         Draw_Loot(loot);    
     }
     Draw_Inventory(inventory);
