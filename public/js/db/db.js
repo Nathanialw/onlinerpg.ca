@@ -84,7 +84,7 @@ export function Get_Icon_Path(uID) {
     stmt.free();
     
     // Log the entire result object to see what it contains
-    return result[0].icon;
+    return result[0];
 }
 
 
