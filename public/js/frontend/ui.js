@@ -55,6 +55,8 @@ export function Parse_Game_Update(data) {
     const endInventory = Parse(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5, inventory);
     const endEquipment = Parse(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
  
+    
+    
     serverMap = data.substring(endEquipment);
 
     // serverMap = data.substring(8);
