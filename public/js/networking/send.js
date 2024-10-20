@@ -1,8 +1,9 @@
 'use strict'
 import { Draw_Tooltip, Remove_Tooltip } from '../frontend/tooltip.js';
 import { Send_Web_Socket_Message } from './socket.js';
+import { Set_Cursor_Hover } from '../input/mouse.js';
 
-
+//query map object
 export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     if  (x < 10) {
         x = "0" + x;
@@ -10,8 +11,8 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     if  (y < 10) {
         y = "0" + y;
     }
-    objectDisplay.eventMode = 'static';
-    objectDisplay.cursor = 'crosshair';
+
+    Set_Cursor_Hover(item, 'enemy');
 
     let message = "5" + x + y;
 
@@ -23,19 +24,17 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
 
 export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
     //send the index of the item in the loot array
-    item.eventMode = 'static';
-    item.cursor = 'hover';
+    Set_Cursor_Hover(item, 'neutral');
 
     item.on('mouseover', async (event) => { 
-        //display a sprite that shows the item stats in a frame
-        // Get mouse position
         const mousePosition = event.data.global;
-        // console.log("Mouse position (over):", mousePosition);
+
+        //toggle the tooltip as drawable / update the tooltip 
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 
     item.on('mouseout', (event) => { 
-        //remove the sprite that shows the item stats in a frame from the stage
+        //toggle the tooltip as not drawable
         Remove_Tooltip();
     }); 
 

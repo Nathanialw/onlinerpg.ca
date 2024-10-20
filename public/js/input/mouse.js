@@ -12,3 +12,18 @@ function Interrogate_Cell() {
 }
 
 
+export function Set_Cursor_Hover(target, target) {
+    target.eventMode = 'static';
+    if (target === 'enemy') {
+        target.cursor = 'crosshair';
+    }
+    else if (target === 'ally') {
+        target.cursor = 'hover';
+    }
+    else if (target === 'neutral') {
+        target.cursor = 'hover';
+    }
+    else {
+        console.log("invalid target text");
+    }
+}
