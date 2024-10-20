@@ -218,11 +218,11 @@ export async function Draw_Menu_Icons(menu, num, xOff, text) {
     Draw_Sprite(x, y, w, h, menu[num]);    
     
     //Draw the text   
-    text.x = x + (w / 2) - (textObject.width / 2);
-    text.y = y + (h / 2) - (textObject.height / 2);
+    text.x = x + (w / 2) - (text.width / 2);
+    text.y = y + (h / 2) - (text.height / 2);
     app.stage.addChild(text);
 
-    return {texture: menu[num], text: textObject};
+    return {texture: menu[num], text: text};
 }
 
 async function Load_Icon(path) {
