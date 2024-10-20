@@ -28,7 +28,7 @@ let set = false;
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, gameMenuText[i]);          
+        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, gameMenuText);          
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, i,);
@@ -48,16 +48,14 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
         console.log("hovering over: ", gameMenuText[index]);
-        // gameMenuText[index].style = hoverStyle;
-        button.gameMenuText.style = hoverStyle;
+        gameMenuText[index].style = hoverStyle;
     }); 
 
 
     button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
-        // gameMenuText[index].style = defaultStyle;
-        button.gameMenuText.style = defaultStyle;
+        gameMenuText[index].style = defaultStyle;
     }); 
 
     //

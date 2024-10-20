@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Menu_Icons, mainMenuSprites, buttonHover, buttonNormal, mainMenuText } from '../../graphics/graphics.js';
+import { Draw_Menu_Icons, mainMenuSprites, buttonHover, buttonNormal, mainMenuText, defaultStyle, hoverStyle } from '../../graphics/graphics.js';
 import { Restart, Quit } from '../../game/game.js';
 
 
@@ -72,7 +72,7 @@ export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, mainMenuText[i])           
+        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, mainMenuText)           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, functions[i]);
@@ -93,11 +93,13 @@ function Set_Send_On_Menu_Click_Listener(button, action) {
     button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
+        mainMenuText[index].style = hoverStyle;
     }); 
 
     button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
+        mainMenuText[index].style = defaultStyle;
     }); 
     //
     button.texture.on('mousedown', (event) => { 
