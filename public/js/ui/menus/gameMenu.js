@@ -47,7 +47,6 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
     button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
-        console.log("hovering over: ", gameMenuText[index]);
         gameMenuText[index].style = hoverStyle;
     }); 
 
