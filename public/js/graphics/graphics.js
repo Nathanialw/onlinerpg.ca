@@ -100,27 +100,27 @@ async function Init_Graphics() {
     gamePanels[3] = await Load_Texture('assets/graphics/ui/overview/tall_Panel.png');
     gamePanels[4] = await Load_Texture('assets/graphics/ui/overview/tall_Panel.png');
 
-    // equipSlotsDefault.ammo = await Load_Texture('assets/graphics/ui/equipment/ammo_slot.png');
-    // equipSlotsDefault.neck = await Load_Texture('assets/graphics/ui/equipment/empty_amulet.png');
-    // equipSlotsDefault.waist = await Load_Texture('assets/graphics/ui/equipment/empty_belt.png');
-    // equipSlotsDefault.feet = await Load_Texture('assets/graphics/ui/equipment/empty_boots.png');
-    // equipSlotsDefault.chest = await Load_Texture('assets/graphics/ui/equipment/empty_chest.png');
-    // equipSlotsDefault.back = await Load_Texture('assets/graphics/ui/equipment/empty_cloak.png');
-    // equipSlotsDefault.hands = await Load_Texture('assets/graphics/ui/equipment/empty_gloves.png');
-    // equipSlotsDefault.mainHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
-    // equipSlotsDefault.offHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
-    // equipSlotsDefault.head = await Load_Texture('assets/graphics/ui/equipment/empty_helmet.png');
-    // equipSlotsDefault.legs = await Load_Texture('assets/graphics/ui/equipment/empty_pants.png');
-    // equipSlotsDefault.twoHand = await Load_Texture('assets/graphics/ui/equipment/empty_ranged.png');
-    // equipSlotsDefault.ring0 = await Load_Texture('assets/graphics/ui/equipment/empty_ring.png');
-    // equipSlotsDefault.ring1 = await Load_Texture('assets/graphics/ui/equipment/empty_ring.png');
-    // equipSlotsDefault.trinket0 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
-    // equipSlotsDefault.trinket1 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
+    equipSlotsDefault.ammo = await Load_Texture('assets/graphics/ui/equipment/ammo_slot.png');
+    equipSlotsDefault.neck = await Load_Texture('assets/graphics/ui/equipment/empty_amulet.png');
+    equipSlotsDefault.waist = await Load_Texture('assets/graphics/ui/equipment/empty_belt.png');
+    equipSlotsDefault.feet = await Load_Texture('assets/graphics/ui/equipment/empty_boots.png');
+    equipSlotsDefault.chest = await Load_Texture('assets/graphics/ui/equipment/empty_chest.png');
+    equipSlotsDefault.back = await Load_Texture('assets/graphics/ui/equipment/empty_cloak.png');
+    equipSlotsDefault.hands = await Load_Texture('assets/graphics/ui/equipment/empty_gloves.png');
+    equipSlotsDefault.mainHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
+    equipSlotsDefault.offHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
+    equipSlotsDefault.head = await Load_Texture('assets/graphics/ui/equipment/empty_helmet.png');
+    equipSlotsDefault.legs = await Load_Texture('assets/graphics/ui/equipment/empty_pants.png');
+    equipSlotsDefault.twoHand = await Load_Texture('assets/graphics/ui/equipment/empty_ranged.png');
+    equipSlotsDefault.ring0 = await Load_Texture('assets/graphics/ui/equipment/empty_ring.png');
+    equipSlotsDefault.ring1 = await Load_Texture('assets/graphics/ui/equipment/empty_ring.png');
+    equipSlotsDefault.trinket0 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
+    equipSlotsDefault.trinket1 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
     
-    // equipSlotsDefault.chain = await Load_Texture('assets/graphics/ui/equipment/chain_link.png');
-    // equipSlotsDefault.hoverEffect = await Load_Texture('assets/graphics/ui/equipment/item_hover_effect.png');
-    // equipSlotsDefault.ammoBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame_ammo.png');
-    // equipSlotsDefault.slotBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame.png');
+    equipSlotsDefault.chain = await Load_Texture('assets/graphics/ui/equipment/chain_link.png');
+    equipSlotsDefault.hoverEffect = await Load_Texture('assets/graphics/ui/equipment/item_hover_effect.png');
+    equipSlotsDefault.ammoBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame_ammo.png');
+    equipSlotsDefault.slotBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame.png');
 
     // equipSlotsDefault.drink = await Load_Texture('assets/graphics/ui/equipment/empty_drink.png');
     // equipSlotsDefault.wrists = await Load_Texture('assets/graphics/ui/equipment/empty_armguards.png');
