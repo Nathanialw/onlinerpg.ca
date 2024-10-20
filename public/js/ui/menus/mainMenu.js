@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Menu_Icons, mainMenuSprites, buttonHover, buttonNormal } from '../../graphics/graphics.js';
+import { Draw_Menu_Icons, mainMenuSprites, buttonHover, buttonNormal, mainMenuText } from '../../graphics/graphics.js';
 import { Restart, Quit } from '../../game/game.js';
 
 
