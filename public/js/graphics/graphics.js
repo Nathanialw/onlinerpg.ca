@@ -46,8 +46,8 @@ export let mainMenuSprites = []
 export let mainMenuText = []
 export let gameMenuSprites = []
 export let gameMenuText = []
-let defaultStyle;
-let hoverStyle;
+export let defaultStyle;
+export let hoverStyle;
 
 let equipSlotsDefault = {
     ammo: null,
