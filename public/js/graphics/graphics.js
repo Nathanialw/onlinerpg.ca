@@ -18,7 +18,6 @@ let menu;
 let tabs;
 let invTabs;
 let inventoryUI;
-let lootUI;
 let target;
 let gamePanels = [];
 let targetImg;
@@ -70,7 +69,6 @@ async function Init_Graphics() {
     tabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     invTabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory.png')
-    lootUI = await Load_Texture('assets/graphics/ui/loot/inventory_body.png')
     playerImg = await Load_Texture('assets/graphics/imgs/human/male/001.jpg')
     target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
