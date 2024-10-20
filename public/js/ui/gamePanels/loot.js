@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Loot } from '../../graphics/graphics.js';
+import { Draw_Loot } from '../../objects/loot.js';
 
 export let loot = [];
 
