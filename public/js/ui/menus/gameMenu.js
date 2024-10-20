@@ -31,7 +31,7 @@ export async function Draw_Game_Menu() {
         let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, gameMenuText);          
         
         if (!set) { //set listers only once
-            Set_Send_On_Menu_Click_Listener(button, i,);
+            Set_Send_On_Menu_Click_Listener(button, i);
             if (i == gameMenuSprites.length - 1) {
                 set = true;
             }

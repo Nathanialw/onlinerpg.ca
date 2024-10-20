@@ -218,6 +218,7 @@ export async function Draw_Menu_Icons(menu, num, xOff, text) {
     Draw_Sprite(x, y, w, h, menu[num]);    
     
     //Draw the text   
+    text[num].style = defaultStyle;
     text[num].x = x + (w / 2) - (text[num].width / 2);
     text[num].y = y + (h / 2) - (text[num].height / 2);
     app.stage.addChild(text[num]);

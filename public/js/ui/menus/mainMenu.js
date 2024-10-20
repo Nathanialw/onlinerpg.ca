@@ -75,7 +75,7 @@ export async function Draw_Main_Menu() {
         let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, mainMenuText)           
         
         if (!set) { //set listers only once
-            Set_Send_On_Menu_Click_Listener(button, functions[i]);
+            Set_Send_On_Menu_Click_Listener(button, functions[i], i);
             if (i == mainMenuSprites.length - 1) {
                 set = true;
             }
@@ -84,7 +84,7 @@ export async function Draw_Main_Menu() {
 }
 
 
-function Set_Send_On_Menu_Click_Listener(button, action) {
+function Set_Send_On_Menu_Click_Listener(button, action, index) {
     //send the index of the item in the loot array
     button.texture.eventMode = 'static';
     button.texture.cursor = 'hover';
