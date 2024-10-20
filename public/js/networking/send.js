@@ -12,7 +12,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
         y = "0" + y;
     }
 
-    // Set_Cursor_Hover(objectDisplay, 'enemy');
+    Set_Cursor_Hover(objectDisplay, 'enemy');
 
     let message = "5" + x + y;
 
@@ -24,7 +24,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
 
 export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
     //send the index of the item in the loot array
-    // Set_Cursor_Hover(item, 'neutral');
+    Set_Cursor_Hover(item, 'neutral');
 
     item.on('mouseover', async (event) => { 
         const mousePosition = event.data.global;
