@@ -2,7 +2,7 @@
 import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
-import { Query_Loot, Draw_Loot } from '../objects/loot.js';
+import { Query_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
@@ -93,9 +93,6 @@ export function Update_Screen() {
     Update_Log(species, damage, isDead);  
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
-    if (gamePanelIndex == 3) { //only render if loot panel is open
-        Draw_Loot(loot);    
-    }
     Draw_Inventory(inventory);
     Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
 }

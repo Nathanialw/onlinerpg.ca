@@ -103,17 +103,11 @@ async function Init_Graphics() {
     gamePanels[4] = await Load_Texture('assets/graphics/ui/overview/tall_Panel.png');
 
     equipSlotsDefault.ammo = await Load_Texture('assets/graphics/ui/equipment/ammo_slot.png');
-    equipSlotsDefault.chain = await Load_Texture('assets/graphics/ui/equipment/chain_link.png');
     equipSlotsDefault.neck = await Load_Texture('assets/graphics/ui/equipment/empty_amulet.png');
-    equipSlotsDefault.wrists = await Load_Texture('assets/graphics/ui/equipment/empty_armguards.png');
-    equipSlotsDefault.arms = await Load_Texture('assets/graphics/ui/equipment/empty_arms.png');
     equipSlotsDefault.waist = await Load_Texture('assets/graphics/ui/equipment/empty_belt.png');
     equipSlotsDefault.feet = await Load_Texture('assets/graphics/ui/equipment/empty_boots.png');
     equipSlotsDefault.chest = await Load_Texture('assets/graphics/ui/equipment/empty_chest.png');
     equipSlotsDefault.back = await Load_Texture('assets/graphics/ui/equipment/empty_cloak.png');
-    equipSlotsDefault.drink = await Load_Texture('assets/graphics/ui/equipment/empty_drink.png');
-    equipSlotsDefault.face = await Load_Texture('assets/graphics/ui/equipment/empty_face.png');
-    equipSlotsDefault.food = await Load_Texture('assets/graphics/ui/equipment/empty_food.png');
     equipSlotsDefault.hands = await Load_Texture('assets/graphics/ui/equipment/empty_gloves.png');
     equipSlotsDefault.mainHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
     equipSlotsDefault.offHand = await Load_Texture('assets/graphics/ui/equipment/empty_hand.png');
@@ -125,9 +119,16 @@ async function Init_Graphics() {
     equipSlotsDefault.trinket0 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
     equipSlotsDefault.trinket1 = await Load_Texture('assets/graphics/ui/equipment/empty_trinket.png');
     
+    equipSlotsDefault.chain = await Load_Texture('assets/graphics/ui/equipment/chain_link.png');
     equipSlotsDefault.hoverEffect = await Load_Texture('assets/graphics/ui/equipment/item_hover_effect.png');
     equipSlotsDefault.ammoBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame_ammo.png');
     equipSlotsDefault.slotBorder = await Load_Texture('assets/graphics/ui/equipment/slot_frame.png');
+
+    // equipSlotsDefault.drink = await Load_Texture('assets/graphics/ui/equipment/empty_drink.png');
+    // equipSlotsDefault.wrists = await Load_Texture('assets/graphics/ui/equipment/empty_armguards.png');
+    // equipSlotsDefault.arms = await Load_Texture('assets/graphics/ui/equipment/empty_arms.png');
+    // equipSlotsDefault.face = await Load_Texture('assets/graphics/ui/equipment/empty_face.png');
+    // equipSlotsDefault.food = await Load_Texture('assets/graphics/ui/equipment/empty_food.png');
 }
 
 export async function Create_Canvas() {
@@ -186,7 +187,7 @@ export async function Draw_Menu_Icons(menu, num, xOff, text = 'default') {
     Draw_Sprite(x, y, w, h, menu[num]);    
     
     //Draw the text   
-    let style = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffffff, align : 'center'}
+    let style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffffff, align : 'center'}
     let textObject = new PIXI.Text({text: text, style});
     textObject.x = x + (w / 2) - (textObject.width / 2);
     textObject.y = y + (h / 2) - (textObject.height / 2);
@@ -286,7 +287,7 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w, text) 
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
     //Draw the text   
-    let style = {fontFamily : "'Press Start 2P'", fontSize: 12, fill : 0xffffff, align : 'center' }
+    let style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffffff, align : 'center' }
     let textObject = new PIXI.Text({text: text, style});
     textObject.x = x + ((3 + xOffset) * cellSize);
     textObject.y = y + ((1 + yOffset) * cellSize) + (w * num) * cellSize;

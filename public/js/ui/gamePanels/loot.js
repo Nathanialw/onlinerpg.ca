@@ -1,5 +1,5 @@
 'use strict'
-
+import { Draw_Loot } from '../objects/loot.js';
 
 export let loot = [];
 
@@ -8,9 +8,8 @@ export let loot = [];
 // }
 
 export function Loot() {
-
-    // Draw_Loot(loot);
-    console.log("Loot panel")
+    
+    Draw_Loot(loot);    
 }
 
 
