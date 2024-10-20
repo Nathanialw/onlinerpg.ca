@@ -12,15 +12,15 @@ function Interrogate_Cell() {
 }
 
 
-export function Set_Cursor_Hover(target, target) {
+export function Set_Cursor_Hover(target, relation) {
     target.eventMode = 'static';
-    if (target === 'enemy') {
+    if (relation === 'enemy') {
         target.cursor = 'crosshair';
     }
-    else if (target === 'ally') {
+    else if (relation === 'ally') {
         target.cursor = 'hover';
     }
-    else if (target === 'neutral') {
+    else if (relation === 'neutral') {
         target.cursor = 'hover';
     }
     else {
