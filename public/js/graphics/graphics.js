@@ -107,11 +107,11 @@ async function Init_Graphics() {
     //
     defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center' }
     hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : gold, align : 'center' }
-    mainMenuText[0] = new PIXI.Text({text: 'Quit', style});
-    mainMenuText[1] = new PIXI.Text({text: 'Restart', style});
-    mainMenuText[2] = new PIXI.Text({text: 'Options', style});
-    mainMenuText[3] = new PIXI.Text({text: 'Graphics', style});
-    mainMenuText[4] = new PIXI.Text({text: 'Sound', style});
+    mainMenuText[0] = new PIXI.Text({text: 'Quit', defaultStyle});
+    mainMenuText[1] = new PIXI.Text({text: 'Restart', defaultStyle});
+    mainMenuText[2] = new PIXI.Text({text: 'Options', defaultStyle});
+    mainMenuText[3] = new PIXI.Text({text: 'Graphics', defaultStyle});
+    mainMenuText[4] = new PIXI.Text({text: 'Sound', defaultStyle});
     //load game menu buttons
     
     gameMenuSprites[0] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
@@ -120,11 +120,11 @@ async function Init_Graphics() {
     gameMenuSprites[3] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
     gameMenuSprites[4] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
 
-    gameMenuText[0] = new PIXI.Text({text: 'Target', style});
-    gameMenuText[1] = new PIXI.Text({text: 'Spells', style});
-    gameMenuText[2] = new PIXI.Text({text: 'Craft', style});
-    gameMenuText[3] = new PIXI.Text({text: 'Loot', style});
-    gameMenuText[4] = new PIXI.Text({text: 'Log', style});
+    gameMenuText[0] = new PIXI.Text({text: 'Target', defaultStyle});
+    gameMenuText[1] = new PIXI.Text({text: 'Spells', defaultStyle});
+    gameMenuText[2] = new PIXI.Text({text: 'Craft', defaultStyle});
+    gameMenuText[3] = new PIXI.Text({text: 'Loot', defaultStyle});
+    gameMenuText[4] = new PIXI.Text({text: 'Log', defaultStyle});
 
     //load panel ui backgrounds
     gamePanels[0] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
