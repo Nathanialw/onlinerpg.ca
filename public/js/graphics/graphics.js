@@ -3,6 +3,23 @@ import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
 
+
+export const grey50 = 0xf8fafc;
+export const grey100 = 0xf1f5f9;
+export const grey200 = 0xe2e8f0;
+export const grey300 = 0xcbd5e1;
+export const grey400 = 0x94a3b8;
+export const grey500 = 0x64748b;
+export const grey600 = 0x475569;
+export const grey700 = 0x334155;
+export const grey800 = 0x1e293b;
+export const grey900 = 0x0f172a;
+// const lightBlack = 0x222222;
+const white = 0xffffff;
+const black = 0x111111;
+const black_100 = 0x222222;
+const gold = 0xffd700;
+
 let defaultIcon;
 let hoverIcon;
 let hoverNeutral;
@@ -26,7 +43,11 @@ export let loot = [];
 export let inventory = [];
 export let equipment = []
 export let mainMenuSprites = []
+export let mainMenuText = []
 export let gameMenuSprites = []
+export let gameMenuText = []
+let defaultStyle;
+let hoverStyle;
 
 let equipSlotsDefault = {
     ammo: null,
@@ -84,7 +105,13 @@ async function Init_Graphics() {
         
     //load bag menu buttons
     //
-
+    defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center' }
+    hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : gold, align : 'center' }
+    mainMenuText[0] = new PIXI.Text({text: 'Quit', style});
+    mainMenuText[1] = new PIXI.Text({text: 'Restart', style});
+    mainMenuText[2] = new PIXI.Text({text: 'Options', style});
+    mainMenuText[3] = new PIXI.Text({text: 'Graphics', style});
+    mainMenuText[4] = new PIXI.Text({text: 'Sound', style});
     //load game menu buttons
     
     gameMenuSprites[0] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
@@ -92,6 +119,12 @@ async function Init_Graphics() {
     gameMenuSprites[2] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
     gameMenuSprites[3] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
     gameMenuSprites[4] = await Load_Texture('assets/graphics/menu/button/standardbut_n.png');
+
+    gameMenuText[0] = new PIXI.Text({text: 'Target', style});
+    gameMenuText[1] = new PIXI.Text({text: 'Spells', style});
+    gameMenuText[2] = new PIXI.Text({text: 'Craft', style});
+    gameMenuText[3] = new PIXI.Text({text: 'Loot', style});
+    gameMenuText[4] = new PIXI.Text({text: 'Log', style});
 
     //load panel ui backgrounds
     gamePanels[0] = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png');
@@ -172,7 +205,7 @@ export function Remove_Event_Listeners(sprite) {
     }
 }
 
-export async function Draw_Menu_Icons(menu, num, xOff, text = 'default') {    
+export async function Draw_Menu_Icons(menu, num, xOff, text) {    
     let spaceBetween = 2.2;    
     let x = xOff * cellSize + ((num * 5) + spaceBetween) * cellSize;
     let y = 0.5 * cellSize;
@@ -185,11 +218,9 @@ export async function Draw_Menu_Icons(menu, num, xOff, text = 'default') {
     Draw_Sprite(x, y, w, h, menu[num]);    
     
     //Draw the text   
-    let style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffffff, align : 'center'}
-    let textObject = new PIXI.Text({text: text, style});
-    textObject.x = x + (w / 2) - (textObject.width / 2);
-    textObject.y = y + (h / 2) - (textObject.height / 2);
-    app.stage.addChild(textObject);
+    text.x = x + (w / 2) - (textObject.width / 2);
+    text.y = y + (h / 2) - (textObject.height / 2);
+    app.stage.addChild(text);
 
     return {texture: menu[num], text: textObject};
 }
@@ -285,8 +316,7 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w, text) 
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
     //Draw the text   
-    let style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : 0xffffff, align : 'center' }
-    let textObject = new PIXI.Text({text: text, style});
+
     textObject.x = x + ((3 + xOffset) * cellSize);
     textObject.y = y + ((1 + yOffset) * cellSize) + (w * num) * cellSize;
     app.stage.addChild(textObject);
@@ -325,20 +355,6 @@ export function Set_Font_Size(size) {
 }
 
 
-export const grey50 = 0xf8fafc;
-export const grey100 = 0xf1f5f9;
-export const grey200 = 0xe2e8f0;
-export const grey300 = 0xcbd5e1;
-export const grey400 = 0x94a3b8;
-export const grey500 = 0x64748b;
-export const grey600 = 0x475569;
-export const grey700 = 0x334155;
-export const grey800 = 0x1e293b;
-export const grey900 = 0x0f172a;
-// const lightBlack = 0x222222;
-const white = 0xffffff;
-const black = 0x111111;
-const black_100 = 0x222222;
 
 const sidePanelWidth = 30;
 export const viewportWidth = 41;

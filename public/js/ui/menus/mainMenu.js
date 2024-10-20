@@ -60,16 +60,6 @@ const functions = [
 ]
 
 
-const text = [
-    'Quit',       //exit game
-    'Restart',   //start new game
-    'Options',    //open options menu
-    'Graphics',   //open graphics menu
-    'Sound',      //open sound menu
-]
-
-
-
 // export function  Init_Main_Menu() { //set listers on the sprites stored
 //     for (let i = 0; i < mainMenuSprites.length; i++) {
     //         Set_Send_On_Menu_Click_Listener(button, functions[i]);
@@ -82,7 +72,7 @@ export async function Draw_Main_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
 
     for (let i = 0; i < mainMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, text[i])           
+        let button = await Draw_Menu_Icons(mainMenuSprites, i, 0.4, mainMenuText[i])           
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, functions[i]);

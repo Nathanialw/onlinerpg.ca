@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Menu_Icons, gameMenuSprites, buttonHover, buttonNormal } from '../../graphics/graphics.js';
+import { Draw_Menu_Icons, gameMenuSprites, gameMenuText, buttonHover, buttonNormal } from '../../graphics/graphics.js';
 import { Update_Screen } from '../../frontend/ui.js';
 
 //STATIC MENUS
@@ -15,15 +15,6 @@ export function Set_Game_Panel_Index(index) {
     gamePanelIndex = index;
 }
 
-const text = [
-    'Target',       //exit game
-    'Spells',    //open options menu
-    'Craft',   //open graphics menu
-    'Loot',   //start new game
-    'Log',      //open sound menu
-    // 'Map',   //start new game
-    // 'Quests',   //start new game
-]
 
 
 // export function  Init_Game_Menu() { //set listers on the sprites stored
@@ -34,12 +25,10 @@ const text = [
     
 let set = false;
 
-
-
 export async function Draw_Game_Menu() {
     // Clear_Sprite_Array(mainMenuSprites);
     for (let i = 0; i < gameMenuSprites.length; i++) {
-        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, text[i])           
+        let button = await Draw_Menu_Icons(gameMenuSprites, i, 71.4, gameMenuText[i]);          
         
         if (!set) { //set listers only once
             Set_Send_On_Menu_Click_Listener(button, i,);
@@ -50,11 +39,6 @@ export async function Draw_Game_Menu() {
     }
 }
 
-// function onButtonDown()
-// {
-//     this.texture = buttonHover;
-// }
-
 function Set_Send_On_Menu_Click_Listener(button, index) {
     //send the index of the item in the loot array
     button.texture.eventMode = 'static';
@@ -63,6 +47,7 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
     button.texture.on('mouseover', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
+        button.gameMenuText.style.fill = 0x000000;
     }); 
 
 
