@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Menu_Icons, gameMenuSprites, gameMenuText, buttonHover, buttonNormal } from '../../graphics/graphics.js';
+import { Draw_Menu_Icons, gameMenuSprites, gameMenuText, buttonHover, buttonNormal, defaultStyle, hoverStyle } from '../../graphics/graphics.js';
 import { Update_Screen } from '../../frontend/ui.js';
 
 //STATIC MENUS
@@ -48,12 +48,14 @@ function Set_Send_On_Menu_Click_Listener(button, index) {
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonHover;
         console.log("hovering over: ", gameMenuText[index]);
+        gameMenuText[index].style = hoverStyle;
     }); 
 
 
     button.texture.on('mouseout', (event) => { 
         //remove the sprite that shows the item stats in a frame from the stage
         button.texture.texture = buttonNormal;
+        gameMenuText[index].style = defaultStyle;
     }); 
 
     //
