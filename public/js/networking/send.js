@@ -12,7 +12,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
         y = "0" + y;
     }
 
-    Set_Cursor_Hover(item, 'enemy');
+    Set_Cursor_Hover(objectDisplay, 'enemy');
 
     let message = "5" + x + y;
 
