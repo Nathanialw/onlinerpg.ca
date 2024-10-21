@@ -23,18 +23,24 @@ namespace Inventory {
     std::cout << "item dropped: " << itemID << std::endl;
   }
 
-  std::string Update_Inventory(bags &inventory) {
+  std::string Update_Inventory(bags &inventory, const std::array<uint8_t, (int)Items::BagType::SIZE> &maxSlots) {
     std::cout << "inventory updated" << std::endl;
     std::string inventoryStr;
-    uint8_t numItems = 0;
-    auto items = inventory[(int)Items::BagType::Items];
-    for (int i = 0; i < items.size(); ++i) {
-      inventoryStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(items[i], 3);
-      numItems++;
-    }
 
-    std::cout << "inventory updated: " << Utils::Prepend_Zero_By_Digits(numItems, 2) + inventoryStr << std::endl;
-    return Utils::Prepend_Zero_By_Digits(numItems, 2) + inventoryStr;
+//    auto items = inventory[(int)Items::BagType::Items];
+    for (int j = 0; j < (int)Items::BagType::SIZE; ++j) {
+      std::string bagStr;
+      uint8_t numItems = 0;
+
+      for (int i = 0; i < maxSlots[j]; ++i) {
+        inventoryStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(inventory[j][i], 3);
+        numItems++;
+      }
+
+      Utils::Prepend_Zero_By_Digits(numItems, 2) + bagStr;
+      std::cout << "bag updated " << j << ": " << Utils::Prepend_Zero_By_Digits(numItems, 2) + inventoryStr << std::endl;
+    }
+    return inventoryStr;
   }
 
   std::string Get_Inventory(bags &inventory) {

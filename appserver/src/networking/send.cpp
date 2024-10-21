@@ -50,7 +50,7 @@ namespace Send {
     //  send stats
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
     // append inventory
-    action.append(Inventory::Update_Inventory(game.Get_Player().inventory));
+    action.append(Inventory::Update_Inventory(game.Get_Player().inventory, game.Get_Player().maxSlots));
     // append equipment
     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
     // send map
