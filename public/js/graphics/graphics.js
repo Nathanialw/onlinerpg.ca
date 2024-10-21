@@ -556,12 +556,13 @@ color.set('W', green);
 color.set('X', green);
 color.set('Y', green);
 color.set('Z', green);
+
 color.set('#', green);
-color.set('▲', green_dark); //dark green
-color.set('˛', brown_dark); //brown
-color.set('ô', brown); //brown
-color.set('♀', white); //brown
-color.set('♂', white); //brown
+color.set('▲', green_dark);
+color.set('˛', brown_dark);
+color.set('ô', brown); 
+color.set('♀', white); 
+color.set('♂', white); 
 
 export function Create_Combat_Log_Line(char, indexHeight) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
