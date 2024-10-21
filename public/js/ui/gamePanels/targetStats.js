@@ -27,6 +27,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     for (let i = 0; i < statsString.length; i++) {
         if (statsString[i] === "_") {
             targetStats.name = statsString.substring(0, i);
+            targetStats.name = targetStats.name.charAt(0).toUpperCase() + targetStats.name.slice(1);
             stats = statsString.substring(i + 1);
             break;
         }
