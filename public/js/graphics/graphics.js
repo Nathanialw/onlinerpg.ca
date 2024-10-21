@@ -41,6 +41,7 @@ let targetImg;
 let playerImg;
 export let loot = [];
 export let inventory = [];
+export let bags = [];
 export let equipment = []
 export let mainMenuSprites = []
 export let mainMenuText = []
@@ -283,6 +284,27 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
     equipment[num] = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
     return equipment[num]
+}
+
+export async function Draw_Bag_Icons(iconPath, num, w) {    
+    let spaceBetweenY = .66;
+    let spaceBetweenX = .91;
+    let x = .88 * cellSize;
+    let y = -3 + ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
+    
+    let row = 1;
+    let column = num % 5;
+    
+    let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + 1 * cellSize);
+    let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + 1 * cellSize);
+    let squareSize = w * cellSize;
+
+    Remove_Event_Listeners(bags[num]);
+    
+    let bagIcon = await Load_Icon(iconPath);
+    bags[num] = new PIXI.Sprite(inventoryIcon);
+    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, bags[num]);
+    return bags[num]
 }
 
 export async function Draw_Inventory_Icons(iconPath, num, w) {    

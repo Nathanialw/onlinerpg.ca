@@ -59,6 +59,7 @@ export async function Draw_Equipment(items) {
         }
         else {
             let item = await Draw_Equipment_Icons(items[i].path, i, 2.5)        
+            //check the rarity of the item
             if (i === 15) {
                 let border = await Draw_Equipment_Icons(itemFramePath, i, 2.5) //border
             }
