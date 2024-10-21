@@ -78,9 +78,9 @@ namespace Attack {
           //send the uIDs of the items to the client when he moves over them
         //else
         chunk[py+y][px+x] = ',';
-        return {std::to_string((int)target.def.species), attacker.maxDamage, true};
+        return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.maxDamage, true};
     }
-    return {std::to_string((int)target.def.species), attacker.maxDamage, false};
+    return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.maxDamage, false};
   }
 
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
