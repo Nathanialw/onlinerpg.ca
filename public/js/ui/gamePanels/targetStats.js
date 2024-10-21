@@ -9,6 +9,7 @@ let targetStatsDisplay = []
 export let targetStats = {
     target: false,
     name: "??",
+    species: "??",
     age: "??",
     gender: "??",
     alignment: "??",
@@ -36,6 +37,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.age = stats.substring(0, 3);
     targetStats.gender = stats.substring(3, 4);
     targetStats.alignment = stats.substring(4, 5);
+    // targetStats.species = stats.substring(4, 5);
     // pic = stats.substring(2, 3);
 
     for (let i = 5; i < stats.length - 5; i++) {

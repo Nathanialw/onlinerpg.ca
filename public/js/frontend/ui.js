@@ -56,7 +56,7 @@ export function Parse_Game_Update(data) {
     start = end;
     end += 2;
     console.log("direction" ,direction)
-    species = Species[data.substring(start, end)];
+    species = Species[parseInt(data.substring(start, end), 10)];
     start = end;
     end += 2;
     console.log("species", species)
