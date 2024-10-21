@@ -32,7 +32,7 @@ namespace Send {
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 
     if (!game.objects[level][location].units.empty()) {
-      std::string action = "d    1";
+      std::string action = "d    10";
       // append inventory
       action.append(Inventory::Update_Inventory(game.Get_Player().inventory));
       // append equipment
