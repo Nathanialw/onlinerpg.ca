@@ -32,7 +32,7 @@ namespace Send {
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 
     if (!game.objects[level][location].units.empty()) {
-      print_server.send(hdl, Map::SendMapSegment(game, "d   1"), websocketpp::frame::opcode::text);
+      print_server.send(hdl, Map::SendMapSegment(game, "d    1"), websocketpp::frame::opcode::text);
     }
 
     std::cout << "Ready!" << std::endl;
