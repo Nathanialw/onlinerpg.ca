@@ -28,6 +28,7 @@ export function Query_Equipment(numItems, data, start) {
             let path = iconPath + icon;
             equipped.push({index: i, itemID: itemID, path: path}); 
         }
+    }
     return equipped;
 }
 
