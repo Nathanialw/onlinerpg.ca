@@ -265,13 +265,13 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
         rowPosition = y + fromTop + ((squareSize + spaceBetween) * num);
         columnPosition = x + fromleftCol1;
     }
-    else if (num < 11) {
+    else if (num < 12) {
         let ind = num - 6;
         rowPosition = y + fromTop + ((squareSize + spaceBetween) * ind);
         columnPosition = x + fromleftCol2;
     }
     else {
-        let ind = num - 11;
+        let ind = num - 12;
         rowPosition = y + fromTopBottom;
         columnPosition = x + fromleftBottom + ((squareSize + spaceBetween) * ind);
     }
