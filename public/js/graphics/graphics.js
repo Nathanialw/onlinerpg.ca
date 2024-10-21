@@ -313,8 +313,8 @@ export async function Draw_Inventory_Icons(iconPath, num, w) {
     let x = .88 * cellSize;
     let y = ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
     
-    let row = Math.floor(num / 8);
-    let column = num % 8;
+    let row = Math.floor(num / 10);
+    let column = num % 10;
     
     let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + 1 * cellSize);
     let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + 1 * cellSize);

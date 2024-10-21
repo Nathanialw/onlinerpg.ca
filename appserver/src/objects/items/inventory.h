@@ -10,10 +10,11 @@
 #include "array"
 
 namespace Inventory {
+  typedef std::array<std::array<int, 70>, (int)Items::BagType::SIZE> bags; //items
 
-  std::string Update_Inventory(std::array<std::array<int, 48>, 4> &inventory);
-  std::string Get_Inventory(std::array<std::array<int, 48>, 4> &inventory);
-  void Drop_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<uint8_t , 4> &groundItems, uint8_t index);
+  std::string Update_Inventory(bags &inventory);
+  std::string Get_Inventory(bags &inventory);
+  void Drop_Item(bags &inventory, std::array<uint8_t , 4> &groundItems, uint8_t index);
 };
 
 #endif // BROWSERRPG_INVENTORY_H

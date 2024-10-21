@@ -23,7 +23,7 @@ export function Query_Inventory(numItems, data, start) {
 }
 
 const defaultInventoryIcon = 'assets/graphics/ui/inventory/slot_empty.png'
-const defaultBagIcon = 'assets/graphics/ui/inventory/slot_empty.png'
+const defaultBagIcon = 'assets/graphics/ui/inventory/bags_empty_background.png'
 
 const copperIcon = 'assets/graphics/ui/inventory/coin_copper.png'
 const silverIcon = 'assets/graphics/ui/inventory/coin_silver.png'
@@ -47,6 +47,7 @@ export async function Draw_Inventory(items) {
     for (let i = 0; i < numBags; i++) {
         //draw bag icon
         let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2.5)
+        let border = await Draw_Inventory_Icons(itemFramePath, i, 2.5) //border
     }
 
     for (let i = 0; i < items.length; i++) {

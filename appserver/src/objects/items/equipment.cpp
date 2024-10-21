@@ -9,10 +9,11 @@
 #include "items.h"
 #include "utils.h"
 #include "db.h"
+#include "inventory.h"
 
 namespace Equipment {
 
-  void Swap_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, const int equipSlot, const int invSlot) {
+  void Swap_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, const int equipSlot, const int invSlot) {
     auto swapItemID = equipment[equipSlot];
     equipment[equipSlot] = inventory[(int)Items::BagType::Items][invSlot];
     std::cout << "equipment slot now contains itemID: " << equipment[equipSlot] << std::endl;
@@ -21,7 +22,7 @@ namespace Equipment {
 
   //set equipment slot index to itemID
   //clear inventory slot index
-  void Unequip_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, const std::string &slotNum) {
+  void Unequip_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, const std::string &slotNum) {
 
       //swap equipment slot itemID with inventory itemID
       auto swapItemID = equipment[stoi(slotNum)];
@@ -44,7 +45,7 @@ namespace Equipment {
         return slot0;
   }
 
-  void Equip_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index, const std::string &equipSlot) {
+  void Equip_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index, const std::string &equipSlot) {
     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", equipSlot)); //retrieve slotNum using slotName from the db
 
     std::cout << "equip slot num: " << slotNum << std::endl;
@@ -62,7 +63,7 @@ namespace Equipment {
     Swap_Item(inventory, equipment, slotNum, index);
   }
 
-  void Equip_Second_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index) {
+  void Equip_Second_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index) {
     auto itemID = inventory[(int)Items::BagType::Items][index];
     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
@@ -78,7 +79,7 @@ namespace Equipment {
     }
   }
 
-  std::string Use_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t invSlot) {
+  std::string Use_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t invSlot) {
     int itemID = inventory[(int)Items::BagType::Items][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
 
