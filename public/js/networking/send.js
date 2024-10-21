@@ -87,6 +87,61 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, inv) {
     });
 }
 
+export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, j, itemID, inv) {
+    //send the index of the item in the loot array
+    Set_Cursor_Hover(item, 'neutral');
+
+    item.on('mouseover', async (event) => { 
+        const mousePosition = event.data.global;
+
+        //toggle the tooltip as drawable / update the tooltip 
+        highlight = await inv(hover, i, j, 2.5) //border
+        await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
+    });
+
+    item.on('mouseout', (event) => { 
+        //toggle the tooltip as not drawable
+        Remove_Highlight();
+        Remove_Tooltip();
+    }); 
+
+    //
+    item.on('mousedown', (event) => { 
+        // console.log("Left mouse button clicked on item, open conext menu to decide action");
+        // Optionally, you can handle right mouse button click event
+
+    });
+
+    //DEKTOP ONLY
+    item.on('rightclick', (event) => { 
+        // console.log("Right mouse button clicked on item");
+        // Optionally, you can handle right mouse button click event
+        let message;
+        //if ctrl clicked
+        if (event.ctrlKey) {
+            //drop sound
+            message = "2" + panel + "c" + i;
+        }
+        //if shift clicked
+        else if (event.shiftKey) {
+            message = "2" + panel + "s" + i;
+        }
+        //if alt clicked
+        else if (event.altKey) {
+            //equip sound
+            message = "2" + panel + "a" + i;
+        }    
+        else {
+            message = "2" + panel + "0" + i;
+        }  
+        
+        //equip sound
+        // console.log("message: ", message);
+        Send_Web_Socket_Message(message); 
+    });
+}
+
+
 export function Set_Send_On_Loot_Click_Listener_Loot(item, panel, i, itemID, inv) {
     //send the index of the item in the loot array
     Set_Cursor_Hover(item, 'neutral');

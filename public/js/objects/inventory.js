@@ -1,7 +1,7 @@
 'use strict'
 import { Clear_Sprite_Array, Draw_Inventory_Icons, Draw_Bag_Icons, inventory, itemFramePath, bags } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
-import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
+import { Set_Send_On_Loot_Click_Listener_inv } from '../networking/send.js';
 
 //when I move on to a new tile
 //check if there is loot
@@ -63,7 +63,7 @@ export async function Draw_Inventory(items) {
                 let item = await Draw_Inventory_Icons(items[j][i].path, num, j, 2.5)            
                 //check the rarity of the item
                 let border = await Draw_Inventory_Icons(itemFramePath, num, j, 2.5) //border
-                Set_Send_On_Loot_Click_Listener(item, '1', num, items[j][i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
+                Set_Send_On_Loot_Click_Listener_inv(item, '1', num, j, items[j][i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
             }
             num++
         }

@@ -288,8 +288,8 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
 
 export async function Draw_Bag_Icons(iconPath, num, w) {    
     let spaceBetweenY = .1;
-    let spaceBetweenX = 3.2;
-    let x = 2.4 * cellSize;
+    let spaceBetweenX = 3.65;
+    let x = 1.7 * cellSize;
     let y = (-4.5 + (topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
     
     let row = 1;
@@ -310,7 +310,7 @@ export async function Draw_Bag_Icons(iconPath, num, w) {
 export async function Draw_Inventory_Icons(iconPath, num, j, w) {    
     let spaceBetweenY = .1;
     let spaceBetweenX = .1;
-    let x = (.88 * cellSize) + ((w * cellSize *2) * j);
+    let x = (0.1 + (w * j * 2.26)) * cellSize;
     let y = ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
 
 
