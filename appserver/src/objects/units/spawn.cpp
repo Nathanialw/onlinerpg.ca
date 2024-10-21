@@ -7,6 +7,7 @@
 #include "utils.h"
 #include "procgen.h"
 #include "chunk.h"
+#include "db.h"
 
 namespace Spawn {
 
@@ -29,14 +30,19 @@ namespace Spawn {
 
   void Add_Unit(Units::Objects &objects, int level, Component::Position location, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
     Units::Unit unit(level, location);
-    unit.name = name;
-    unit.def.gender = gender;
+
+    //defined by where it is spawned
     unit.def.species = species;
-    unit.def.unitClass = unitClass;
     unit.def.alignment = alignment;
     unit.position.x = x;
     unit.position.y = y;
 
+    //randomize, weighted
+    unit.def.gender = gender;
+    unit.def.unitClass = unitClass;
+
+    //query db for all of this
+    unit.name = name;
     unit.age = 16;
 
     unit.speed = 1;
@@ -84,7 +90,10 @@ namespace Spawn {
     } else {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
-      Add_Unit(objects, level, location, x, y, "Blargh", Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
+      auto names = DB::Get_List("name", "names", "race", "goblin", "type", "male");
+      auto index = Utils::Random(0, names.size() - 1);
+      auto name = names[index];
+      Add_Unit(objects, level, location, x, y, name, Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
       return true;
     }
   }

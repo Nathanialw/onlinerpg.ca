@@ -128,6 +128,11 @@ namespace Units {
     //unit data to send
     Component::Position position{};
     std::string name = "Default";
+    std::string firstName;
+    std::string surname;
+    std::string titlePrefix;
+    std::string titleSuffix;
+
     int age = 0;
     Def def;
 

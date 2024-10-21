@@ -4,7 +4,6 @@
 
 #include "db.h"
 #include "sqlite3.h"
-#include "string"
 #include "iostream"
 
 namespace DB {
@@ -103,6 +102,45 @@ namespace DB {
     std::cout << "finalized" << std::endl;
 
     return result;
+  }
+
+  std::vector<std::string> Get_List(const std::string &retrieve, const std::string &table, const std::string &where, const std::string &equals, const std::string &where2, const std::string &equals2) {
+    std::vector<std::string> results;
+    if (!db) {
+      std::cerr << "Database not initialized" << std::endl;
+      return results;
+    }
+
+    std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + equals + " AND " + where2 + " = " + equals2;
+
+    sqlite3_stmt *stmt;
+    std::cout << "querying" << std::endl;
+
+    int rc = sqlite3_prepare_v2(db, query.c_str(), -1, &stmt, nullptr);
+    if (rc != SQLITE_OK) {
+      std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+      return results;
+    }
+
+    std::cout << "step" << std::endl;
+    rc = sqlite3_step(stmt);
+    std::cout << "step success" << std::endl;
+
+    if (rc == SQLITE_ROW) {
+      const unsigned char *text = sqlite3_column_text(stmt, 0);
+      if (text) {
+        results.emplace_back(reinterpret_cast<const char *>(text));
+      }
+    } else if (rc != SQLITE_DONE) {
+      std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
+    }
+
+    std::cout << "number of results: " << results.size() << std::endl;
+
+    sqlite3_finalize(stmt);
+    std::cout << "finalized" << std::endl;
+
+    return results;
   }
 
 //  int Query(const std::string &retrieve, const std::string &table, const std::string &where, const std::string &equals) {
