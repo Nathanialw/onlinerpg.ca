@@ -105,6 +105,7 @@ export function UpdatePlayerInfo(characterCreate) {
     
     //potrait
     characterInfo.Name = characterCreate.substring(4, length - 24);
+    characterInfo.Name = characterInfo.Name.charAt(0).toUpperCase() + characterInfo.Name.slice(1);
 
     characterInfo.Potrait = characterCreate.substring(length-24, length-21);
     characterInfo.AC = characterCreate.substring(length-21, length-19);
