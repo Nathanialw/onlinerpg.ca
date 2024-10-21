@@ -2,7 +2,7 @@
 import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
-import { Query_Loot } from '../objects/loot.js';
+import { Open_Loot_Panel, Query_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
@@ -51,36 +51,29 @@ export function Parse_Game_Update(data) {
     visionWidth = parseInt(data.substring(start, end), 10);
     start = end;
     end++;
-    console.log("visionWidth", visionWidth)
     direction = data.substring(start, end);
     start = end;
     end += 2;
-    console.log("direction" ,direction)
     species = Species[parseInt(data.substring(start, end), 10)];
     start = end;
     end += 2;
-    console.log("species", species)
     damage = data.substring(start, end);
     start = end;
     end++;
-    console.log("damage", damage)
     isDead = data.substring(start, end);
-    console.log("isdead", isDead)
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
     start = end;
     end++;
-    console.log("loot post:", data.substring(start, end))
     
     loot.length = 0;
     inventory.length = 0;
     equipment.length = 0;
     
     const endLoot = Parse(data.substring(start, end), end, data, Query_Loot, 3, loot);
+    Open_Loot_Panel(direction);
     const endInventory = Parse(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5, inventory);
     const endEquipment = Parse(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
- 
-    
     
     serverMap = data.substring(endEquipment);
 
@@ -106,6 +99,10 @@ export function Update_Screen_Phone() {
 
 export function Update_Screen() {
     app.stage.removeChildren();
+
+    //equal 3 when loot is stepped on, only trigger when initially stepping on loot
+
+    
 
     Draw_UI(gamePanelIndex);
     Draw_Vision_Background(visionWidth);
