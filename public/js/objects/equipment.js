@@ -1,5 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Equipment_Icons, equipment } from '../graphics/graphics.js';
+import { Clear_Sprite_Array, Draw_Equipment_Icons, equipment, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -40,11 +40,9 @@ const defaultEquipmentIcons = [
     'assets/graphics/ui/equipment/empty_hand.png',
     'assets/graphics/ui/equipment/empty_ranged.png',
     'assets/graphics/ui/equipment/ammo_slot.png',
-    'assets/graphics/ui/equipment/chain_link.png',
-    'assets/graphics/ui/equipment/slot_frame.png',
-    'assets/graphics/ui/equipment/slot_frame_ammo.png',
-
 ]
+let chain = 'assets/graphics/ui/equipment/chain_link.png'
+let ammobg = 'assets/graphics/ui/equipment/slot_frame_ammo.png'
 
 export async function Draw_Equipment(items) {
     Clear_Sprite_Array(equipment);
@@ -53,19 +51,19 @@ export async function Draw_Equipment(items) {
         if (items[i].path === undefined || items[i].path === "none") {
             let item = await Draw_Equipment_Icons(defaultEquipmentIcons[i], i, 2.5)        
             if (i === 15) {
-                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[18], i, 2.5) //border
+                let border = await Draw_Equipment_Icons(itemFramePath, i, 2.5) //border
             }
             else {
-                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[17], i, 2.5) //border
+                let border = await Draw_Equipment_Icons(ammobg, i, 2.5) //border
             }
         }
         else {
             let item = await Draw_Equipment_Icons(items[i].path, i, 2.5)        
             if (i === 15) {
-                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[18], i, 2.5) //border
+                let border = await Draw_Equipment_Icons(itemFramePath, i, 2.5) //border
             }
             else {
-                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[17], i, 2.5) //border
+                let border = await Draw_Equipment_Icons(ammobg, i, 2.5) //border
             }
             Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID, Draw_Equipment_Icons);   //1 means inventory panel
         }

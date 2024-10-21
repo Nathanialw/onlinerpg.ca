@@ -1,5 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Inventory_Icons, inventory } from '../graphics/graphics.js';
+import { Clear_Sprite_Array, Draw_Inventory_Icons, inventory, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -32,6 +32,7 @@ export async function Draw_Inventory(items) {
         //clear event listene from index i
 
         let item = await Draw_Inventory_Icons(items[i].path, i, 2.5)            
+        let border = await Draw_Inventory_Icons(itemFramePath, i, 2.5) //border
         Set_Send_On_Loot_Click_Listener(item, '1', i, items[i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
     }
 }

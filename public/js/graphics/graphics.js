@@ -48,6 +48,8 @@ export let gameMenuSprites = []
 export let gameMenuText = []
 export let defaultStyle;
 export let hoverStyle;
+    
+export const itemFramePath = 'assets/graphics/ui/equipment/slot_frame.png';
 
 let equipSlotsDefault = {
     ammo: null,
