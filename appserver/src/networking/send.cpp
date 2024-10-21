@@ -67,6 +67,7 @@ namespace Send {
 
     else if (msg[0] == '2') {  // loot item
 //      response = "2";
+      std::cout << "message: " << msg << std::endl;
       auto type = msg.substr(1, 1);
       auto mod = msg.substr(2, 1);
       auto bag = stoi(msg.substr(3, 1));
