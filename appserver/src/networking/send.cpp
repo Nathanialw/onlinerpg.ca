@@ -32,7 +32,12 @@ namespace Send {
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 
     if (!game.objects[level][location].units.empty()) {
-      print_server.send(hdl, Map::SendMapSegment(game, "d    1000"), websocketpp::frame::opcode::text);
+      std::string action = "d    1";
+      // append inventory
+      action.append(Inventory::Update_Inventory(game.Get_Player().inventory));
+      // append equipment
+      action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
+      print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
     }
 
     std::cout << "Ready!" << std::endl;
