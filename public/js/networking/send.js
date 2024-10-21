@@ -87,7 +87,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, inv) {
     });
 }
 
-export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, j, itemID, inv) {
+export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID, inv) {
     //send the index of the item in the loot array
     Set_Cursor_Hover(item, 'neutral');
 
@@ -95,7 +95,7 @@ export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, j, itemID, i
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
-        highlight = await inv(hover, i, j, 2.5) //border
+        highlight = await inv(hover, i, bag, 2.5) //border
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 
@@ -120,19 +120,19 @@ export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, j, itemID, i
         //if ctrl clicked
         if (event.ctrlKey) {
             //drop sound
-            message = "2" + panel + "c" + i;
+            message = "2" + panel + "c" + bag + i;
         }
         //if shift clicked
         else if (event.shiftKey) {
-            message = "2" + panel + "s" + i;
+            message = "2" + panel + "s" + bag + i;
         }
         //if alt clicked
         else if (event.altKey) {
             //equip sound
-            message = "2" + panel + "a" + i;
+            message = "2" + panel + "a" + bag + i;
         }    
         else {
-            message = "2" + panel + "0" + i;
+            message = "2" + panel + "0" + bag + i;
         }  
         
         //equip sound

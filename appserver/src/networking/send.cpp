@@ -69,7 +69,8 @@ namespace Send {
 //      response = "2";
       auto type = msg.substr(1, 1);
       auto mod = msg.substr(2, 1);
-      auto index = msg.substr(3);
+      auto bag = stoi(msg.substr(3, 1));
+      auto index = msg.substr(4);
       std::cout << "panel clicked: " << type << std::endl;
 
       if (type == "0") {
@@ -80,18 +81,18 @@ namespace Send {
         std::cout << "interacting with inventory at index: " << index << std::endl;
         if (mod == "c") { //throw away
           std::cout << "control clicked: " << mod << std::endl;
-          Inventory::Drop_Item(game.Get_Player().inventory, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(index));
+          Inventory::Drop_Item(game.Get_Player().inventory, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], bag, stoi(index));
         }
         else if (mod == "a") { //equip offhand
           std::cout << "alt clicked: " << mod << std::endl;
-          Equipment::Equip_Second_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index));
+          Equipment::Equip_Second_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index), bag);
         }
         else if (mod == "s") { //
           std::cout << "shift clicked, thusfar unused" << std::endl;
         }
         else { //equip standard / use item
           std::cout << "unmodded clicked: " << mod << std::endl;
-          auto item = Equipment::Use_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index));
+          auto item = Equipment::Use_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index), bag);
           if (!item.empty()) {
             std::cout << "item not equippable, use item: " << item << std::endl;
           }
@@ -99,7 +100,7 @@ namespace Send {
       }
       else if (type == "2") {
         std::cout << "interacting with equipment at index: " << index << std::endl;
-        Equipment::Unequip_Item(game.Get_Player().inventory, game.Get_Player().equipment, index);
+        Equipment::Unequip_Item(game.Get_Player().inventory, game.Get_Player().equipment, index, bag);
       }
 
       std::string skip = "1 ";

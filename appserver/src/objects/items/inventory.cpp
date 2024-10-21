@@ -11,12 +11,13 @@
 
 namespace Inventory {
 
-  void Drop_Item(Items::bags &inventory, Items::ground &groundItems, uint8_t index) {
-    auto itemID = inventory[(int)Items::BagType::Items][index];
+
+  void Drop_Item(Items::bags &inventory, Items::ground &groundItems, uint8_t bag, uint8_t index) {
+    auto itemID = inventory[bag][index];
     for (unsigned char & groundItem : groundItems) {
       if (groundItem == 0) {
         groundItem = itemID;
-        inventory[(int)Items::BagType::Items][index] = 0;
+        inventory[bag][index] = 0;
         return;
       }
     }
@@ -27,7 +28,6 @@ namespace Inventory {
     std::cout << "inventory updated" << std::endl;
     std::string inventoryStr;
 
-//    auto items = inventory[(int)Items::BagType::Items];
     for (int j = 0; j < (int)Items::BagType::SIZE; ++j) {
       std::string bagStr;
       uint8_t numItems = 0;

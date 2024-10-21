@@ -13,7 +13,7 @@ namespace Inventory {
 
   std::string Update_Inventory(Items::bags &inventory, const Items::bagSlots &maxSlots);
   std::string Get_Inventory(Items::bags &inventory);
-  void Drop_Item(Items::bags &inventory, Items::ground &groundItems, uint8_t index);
+  void Drop_Item(Items::bags &inventory, Items::ground &groundItems, uint8_t bag, uint8_t index);
 };
 
 #endif // BROWSERRPG_INVENTORY_H

@@ -12,20 +12,20 @@
 
 namespace Equipment {
 
-  void Swap_Item(Items::bags &inventory, Items::equipped &equipment, const int equipSlot, const int invSlot) {
+  void Swap_Item(Items::bags &inventory, Items::equipped &equipment, const int equipSlot, const int invSlot, uint8_t bag) {
     auto swapItemID = equipment[equipSlot];
-    equipment[equipSlot] = inventory[(int)Items::BagType::Items][invSlot];
+    equipment[equipSlot] = inventory[bag][invSlot];
     std::cout << "equipment slot now contains itemID: " << equipment[equipSlot] << std::endl;
-    inventory[(int)Items::BagType::Items][invSlot] = swapItemID;
+    inventory[bag][invSlot] = swapItemID;
   }
 
   //set equipment slot index to itemID
   //clear inventory slot index
-  void Unequip_Item(Items::bags &inventory, Items::equipped  &equipment, const std::string &slotNum) {
+  void Unequip_Item(Items::bags &inventory, Items::equipped  &equipment, const std::string &slotNum, uint8_t bag) {
 
       //swap equipment slot itemID with inventory itemID
       auto swapItemID = equipment[stoi(slotNum)];
-      for (int &inventorySlot : inventory[(int)Items::BagType::Items]) {
+      for (int &inventorySlot : inventory[bag]) {
         if (inventorySlot == 0) {
           inventorySlot = swapItemID;
           equipment[stoi(slotNum)] = 0;
@@ -44,7 +44,7 @@ namespace Equipment {
         return slot0;
   }
 
-  void Equip_Item(Items::bags &inventory, Items::equipped  &equipment, uint8_t index, const std::string &equipSlot) {
+  void Equip_Item(Items::bags &inventory, Items::equipped  &equipment, uint8_t index, const std::string &equipSlot, uint8_t bag) {
     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", equipSlot)); //retrieve slotNum using slotName from the db
 
     std::cout << "equip slot num: " << slotNum << std::endl;
@@ -59,26 +59,26 @@ namespace Equipment {
 
     std::cout << "equip slot num: " << slotNum << std::endl;
 
-    Swap_Item(inventory, equipment, slotNum, index);
+    Swap_Item(inventory, equipment, slotNum, index, bag);
   }
 
-  void Equip_Second_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t index) {
+  void Equip_Second_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t index, uint8_t bag) {
     auto itemID = inventory[(int)Items::BagType::Items][index];
     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
 
     if (slotNum == (int)Items::ItemSlot::mainHand || slotNum == (int)Items::ItemSlot::offHand) {
-      Swap_Item(inventory, equipment, (int)Items::ItemSlot::offHand, index);
+      Swap_Item(inventory, equipment, (int)Items::ItemSlot::offHand, index, bag);
     }
     else if (slotNum == (int)Items::ItemSlot::ring0 || slotNum == (int)Items::ItemSlot::ring1) {
-      Swap_Item(inventory, equipment, (int)Items::ItemSlot::ring0, index);
+      Swap_Item(inventory, equipment, (int)Items::ItemSlot::ring0, index, bag);
     }
     else if (slotNum == (int)Items::ItemSlot::trinket0 || slotNum == (int)Items::ItemSlot::trinket1) {
-      Swap_Item(inventory, equipment, (int)Items::ItemSlot::trinket0, index);
+      Swap_Item(inventory, equipment, (int)Items::ItemSlot::trinket0, index, bag);
     }
   }
 
-  std::string Use_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t invSlot) {
+  std::string Use_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t invSlot, uint8_t bag) {
     int itemID = inventory[(int)Items::BagType::Items][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
 
@@ -90,7 +90,7 @@ namespace Equipment {
 //      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
       return "no query yet";
     }
-    Equip_Item(inventory, equipment, invSlot, slotStr);
+    Equip_Item(inventory, equipment, invSlot, slotStr, bag);
     return "";
   }
 
