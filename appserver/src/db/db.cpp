@@ -113,7 +113,7 @@ namespace DB {
 
     std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE ";
     for (int i = 0; i < whereEquals.size(); ++i) {
-      query += whereEquals[i].first + " = " + whereEquals[i].second;
+      query += whereEquals[i].first + " = " + Append_Quotes(whereEquals[i].second);
       if (i < whereEquals.size() - 1) {
         query += " AND ";
       }
