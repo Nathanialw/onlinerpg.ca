@@ -18,6 +18,7 @@ chmod 666 /var/www/onlinerpg.ca/appserver/db/data.db
 if [ "$RESTART" = "-r" ]; then
     echo "Restarting rpgserver service..."
     sudo service rpgserver restart
-    timeout 2s sudo service rpgserver status
-    # sudo service rpgserver status
+    # timeout 2s sudo service rpgserver status
+    sudo service rpgserver status
+    fg
 fi
