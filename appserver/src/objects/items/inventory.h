@@ -10,7 +10,7 @@
 #include "array"
 
 namespace Inventory {
-  typedef std::array<std::array<int, 70>, (int)Items::BagType::SIZE> bags; //items
+  typedef std::array<std::array<int, 14>, (int)Items::BagType::SIZE> bags; //items
 
   std::string Update_Inventory(bags &inventory);
   std::string Get_Inventory(bags &inventory);

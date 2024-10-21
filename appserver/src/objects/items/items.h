@@ -9,6 +9,7 @@
 namespace Items {
   enum class BagType {
     Items,
+    Items1,
     Potions,
     Scrolls,
     Keys,
