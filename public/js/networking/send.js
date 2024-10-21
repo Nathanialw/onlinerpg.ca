@@ -23,7 +23,14 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
 }
 
 let hover = 'assets/graphics/ui/equipment/item_hover_effect.png';
+let highlight;
 
+export function Remove_Highlight() {
+    if (highlight) {
+        app.stage.removeChild(highlight);
+        highlight = null;
+    }
+}
 
 export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
     //send the index of the item in the loot array
@@ -39,6 +46,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
 
     item.on('mouseout', (event) => { 
         //toggle the tooltip as not drawable
+        Remove_Highlight();
         Remove_Tooltip();
     }); 
 
