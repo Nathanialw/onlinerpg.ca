@@ -227,9 +227,11 @@ namespace Units {
       level = iLevel;
       location = sLocation;
 
-      for (int i = 0; i < (int)Items::BagType::SIZE; i++) {
-        maxSlots[i] = 2;
-      }
+      maxSlots[0] = 4;
+      maxSlots[1] = 4;
+      maxSlots[2] = 2;
+      maxSlots[3] = 2;
+      maxSlots[4] = 3;
 
     }
 };

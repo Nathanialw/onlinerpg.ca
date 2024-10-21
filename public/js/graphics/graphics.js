@@ -307,12 +307,16 @@ export async function Draw_Bag_Icons(iconPath, num, w) {
     return bags[num]
 }
 
-export async function Draw_Inventory_Icons(iconPath, num, w) {    
+export async function Draw_Inventory_Icons(iconPath, num, j, w) {    
     let spaceBetweenY = .1;
     let spaceBetweenX = .1;
-    let x = .88 * cellSize;
+    let x = (.88 * cellSize) + ((w * cellSize *2) * j);
     let y = ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
-    
+
+
+    //when it goes to the next column 
+        //reset num
+        //move x to the right by (w * cellSize *2)
     let row = Math.floor(num / 2);
     let column = num % 2;
     

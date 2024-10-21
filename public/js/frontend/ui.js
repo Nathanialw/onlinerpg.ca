@@ -72,7 +72,7 @@ export function Parse_Game_Update(data) {
     for (let i = 0; i < 5; i++) {
         let bag = [];
         startBag = Parse(data.substring(startBag, startBag + 2), (startBag + 2), data, Query_Inventory, 5, bag);
-        inventory.push(bag)
+        inventory[i] = bag
     }
     
     const endInventory = startBag;
