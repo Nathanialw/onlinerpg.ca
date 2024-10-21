@@ -22,7 +22,7 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     }); 
 }
 
-let hover = 'assets/graphics/ui/equipment/item_hover_effect.png',
+let hover = 'assets/graphics/ui/equipment/item_hover_effect.png';
 
 
 export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
