@@ -33,12 +33,12 @@ namespace Inventory {
       uint8_t numItems = 0;
 
       for (int i = 0; i < maxSlots[j]; ++i) {
-        inventoryStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(inventory[j][i], 3);
+        bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(inventory[j][i], 3);
         numItems++;
       }
 
-      Utils::Prepend_Zero_By_Digits(numItems, 2) + bagStr;
-      std::cout << "bag updated " << j << ": " << Utils::Prepend_Zero_By_Digits(numItems, 2) + inventoryStr << std::endl;
+      inventoryStr += Utils::Prepend_Zero_By_Digits(numItems, 2) + bagStr;
+      std::cout << "bag updated " << j << ": " <<  Utils::Prepend_Zero_By_Digits(numItems, 2) + bagStr << std::endl;
     }
     return inventoryStr;
   }
