@@ -241,18 +241,16 @@ async function Load_Icon(path) {
     }
 }
 
-export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {    
-    const spaceBetweenCol1 = 1 * cellSize;
-    const fromTopCol1 = 5.1 * cellSize;
+export async function Draw_Equipment_Icons(iconPath, num, w) {    
+    const spaceBetween = .75 * cellSize;
+    const fromTop = 2 * cellSize;
+
     const fromleftCol1 = 3.5 * cellSize;
 
-    const spaceBetweenCol2 = .85 * cellSize;
-    const fromTopCol2 = 9 * cellSize;
-    const fromleftCol2 = 24.3 * cellSize;
+    const fromleftCol2 = 24 * cellSize;
 
-    const spaceBetweenBottom = 1.2 * cellSize;
-    const fromTopBottom = 26.5 * cellSize;
-    const fromleftBottom = 9.2 * cellSize;
+    const fromTopBottom = 21 * cellSize;
+    const fromleftBottom = 9 * cellSize;
     
     const squareSize = w * cellSize;
 
@@ -262,18 +260,18 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     let rowPosition = y;
     let columnPosition = x;
     if (num < 6) {
-        rowPosition = y + fromTopCol1 + ((squareSize + spaceBetweenCol1) * num);
+        rowPosition = y + fromTop + ((squareSize + spaceBetween) * num);
         columnPosition = x + fromleftCol1;
     }
     else if (num < 11) {
         let ind = num - 6;
-        rowPosition = y + fromTopCol2 + ((squareSize + spaceBetweenCol2) * ind);
+        rowPosition = y + fromTop + ((squareSize + spaceBetween) * ind);
         columnPosition = x + fromleftCol2;
     }
     else {
         let ind = num - 11;
         rowPosition = y + fromTopBottom;
-        columnPosition = x + fromleftBottom + ((squareSize + spaceBetweenBottom) * ind);
+        columnPosition = x + fromleftBottom + ((squareSize + spaceBetween) * ind);
     }
 
     // check if equipment[num] has an event listener, remove if it does
@@ -285,7 +283,7 @@ export async function Draw_Equipment_Icons(iconPath, num, xOffset, yOffset, w) {
     return equipment[num]
 }
 
-export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {    
+export async function Draw_Inventory_Icons(iconPath, num, w) {    
     let spaceBetweenY = .66;
     let spaceBetweenX = .91;
     let x = .88 * cellSize;
@@ -294,8 +292,8 @@ export async function Draw_Inventory_Icons(iconPath, num, xOffset, yOffset, w) {
     let row = Math.floor(num / 8);
     let column = num % 8;
     
-    let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + xOffset * cellSize);
-    let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + yOffset * cellSize);
+    let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + 1 * cellSize);
+    let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + 1 * cellSize);
     let squareSize = w * cellSize;
 
     Remove_Event_Listeners(inventory[num]);

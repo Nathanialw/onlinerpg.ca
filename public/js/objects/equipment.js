@@ -24,26 +24,29 @@ export function Query_Equipment(numItems, data, start) {
 }
 
 const defaultEquipmentIcons = [
-    'assets/graphics/ui/equipment/ammo_slot.png',
-    'assets/graphics/ui/equipment/empty_amulet.png',
-    'assets/graphics/ui/equipment/empty_belt.png',
-    'assets/graphics/ui/equipment/empty_boots.png',
-    'assets/graphics/ui/equipment/empty_chest.png',
-    'assets/graphics/ui/equipment/empty_cloak.png',
-    'assets/graphics/ui/equipment/empty_gloves.png',
-    'assets/graphics/ui/equipment/empty_hand.png',
-    'assets/graphics/ui/equipment/empty_hand.png',
     'assets/graphics/ui/equipment/empty_helmet.png',
+    'assets/graphics/ui/equipment/empty_amulet.png',
+    'assets/graphics/ui/equipment/empty_cloak.png',
+    'assets/graphics/ui/equipment/empty_chest.png',
+    'assets/graphics/ui/equipment/empty_belt.png',
+
+    'assets/graphics/ui/equipment/empty_gloves.png',
     'assets/graphics/ui/equipment/empty_pants.png',
+    'assets/graphics/ui/equipment/empty_boots.png',
+    'assets/graphics/ui/equipment/empty_ring.png',
+    'assets/graphics/ui/equipment/empty_ring.png',    
+
+    'assets/graphics/ui/equipment/empty_trinket.png',
+    'assets/graphics/ui/equipment/empty_trinket.png',
+    'assets/graphics/ui/equipment/empty_hand.png',
+    'assets/graphics/ui/equipment/empty_hand.png',
     'assets/graphics/ui/equipment/empty_ranged.png',
-    'assets/graphics/ui/equipment/empty_ring.png',
-    'assets/graphics/ui/equipment/empty_ring.png',
-    'assets/graphics/ui/equipment/empty_trinket.png',
-    'assets/graphics/ui/equipment/empty_trinket.png',
+
+    'assets/graphics/ui/equipment/ammo_slot.png',
     'assets/graphics/ui/equipment/chain_link.png',
-    'assets/graphics/ui/equipment/item_hover_effect.png',
-    'assets/graphics/ui/equipment/slot_frame_ammo.png',
     'assets/graphics/ui/equipment/slot_frame.png',
+    'assets/graphics/ui/equipment/slot_frame_ammo.png',
+    'assets/graphics/ui/equipment/item_hover_effect.png',
 ]
 
 export async function Draw_Equipment(items) {
@@ -51,10 +54,22 @@ export async function Draw_Equipment(items) {
 
     for (let i = 0; i < items.length; i++) {
         if (items[i].path === undefined || items[i].path === "none") {
-            let item = await Draw_Equipment_Icons(defaultEquipmentIcons[i].path, i, 1, 1, 2.5)        
+            let item = await Draw_Equipment_Icons(defaultEquipmentIcons[i], i, 2.5)        
+            if (i === 15) {
+                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[18], i, 2.5) //border
+            }
+            else {
+                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[17], i, 2.5) //border
+            }
         }
         else {
             let item = await Draw_Equipment_Icons(items[i].path, i, 1, 1, 2.5)        
+            if (i === 15) {
+                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[18], i, 2.5) //border
+            }
+            else {
+                let border = await Draw_Equipment_Icons(defaultEquipmentIcons[17], i, 2.5) //border
+            }
             Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID);   //1 means inventory panel
         }
     }

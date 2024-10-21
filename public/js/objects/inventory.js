@@ -31,7 +31,7 @@ export async function Draw_Inventory(items) {
         }
         //clear event listene from index i
 
-        let item = await Draw_Inventory_Icons(items[i].path, i, 1, 1, 2.5)            
+        let item = await Draw_Inventory_Icons(items[i].path, i, 2.5)            
         Set_Send_On_Loot_Click_Listener(item, '1', i, items[i].itemID);   //1 means inventory panel
     }
 }
