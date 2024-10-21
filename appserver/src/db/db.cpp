@@ -111,7 +111,7 @@ namespace DB {
       return results;
     }
 
-    std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + equals + " AND " + where2 + " = " + equals2;
+    std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + Append_Quotes(equals) + " AND " + where2 + " = " + Append_Quotes(equals2);
 
     sqlite3_stmt *stmt;
     std::cout << "querying" << std::endl;
@@ -126,12 +126,15 @@ namespace DB {
     rc = sqlite3_step(stmt);
     std::cout << "step success" << std::endl;
 
-    if (rc == SQLITE_ROW) {
+    while (rc == SQLITE_ROW) {
       const unsigned char *text = sqlite3_column_text(stmt, 0);
       if (text) {
         results.emplace_back(reinterpret_cast<const char *>(text));
       }
-    } else if (rc != SQLITE_DONE) {
+      rc = sqlite3_step(stmt);
+    }
+
+    if (rc != SQLITE_DONE) {
       std::cerr << "SQL error: " << sqlite3_errmsg(db) << std::endl;
     }
 
