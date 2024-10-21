@@ -101,7 +101,7 @@ namespace Send {
       }
       else if (type == "2") {
         std::cout << "interacting with equipment at index: " << index << std::endl;
-        Equipment::Unequip_Item(game.Get_Player().inventory, game.Get_Player().equipment, index, stoi(bag));
+        Equipment::Unequip_Item(game.Get_Player().inventory, game.Get_Player().equipment, index, game.Get_Player().maxSlots);
       }
 
       std::string skip = "1 ";

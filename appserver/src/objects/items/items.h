@@ -12,10 +12,10 @@
 
 namespace Items {
   enum class BagType {
-    Items,
+    Items0,
     Items1,
-    Potions,
     Scrolls,
+    Potions,
     Keys,
     SIZE,
   };

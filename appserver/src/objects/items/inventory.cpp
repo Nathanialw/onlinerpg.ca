@@ -44,7 +44,7 @@ namespace Inventory {
   }
 
   std::string Get_Inventory(Items::bags &inventory) {
-    auto items = inventory[(int)Items::BagType::Items];
+    auto items = inventory[(int)Items::BagType::Items0];
     std::string itemsStr = Utils::Prepend_Zero_By_Digits(items.size(), 2);
 
     for (int i = 0; i < items.size(); ++i) {

@@ -21,15 +21,18 @@ namespace Equipment {
 
   //set equipment slot index to itemID
   //clear inventory slot index
-  void Unequip_Item(Items::bags &inventory, Items::equipped  &equipment, const std::string &slotNum, uint8_t bag) {
+  void Unequip_Item(Items::bags &inventory, Items::equipped  &equipment, const std::string &slotNum, const Items::bagSlots &maxSlots) {
 
       //swap equipment slot itemID with inventory itemID
       auto swapItemID = equipment[stoi(slotNum)];
-      for (int &inventorySlot : inventory[bag]) {
-        if (inventorySlot == 0) {
-          inventorySlot = swapItemID;
-          equipment[stoi(slotNum)] = 0;
-          return;
+
+      for (int bag = 0; bag < (int)Items::BagType::Scrolls; ++bag) {
+        for (int i = 0; i < maxSlots[bag]; ++i) {
+          if (inventory[bag][i] == 0) {
+            inventory[bag][i] = swapItemID;
+            equipment[stoi(slotNum)] = 0;
+            return;
+          }
         }
       }
       std::cout << "no space in inventory" << std::endl;
@@ -63,7 +66,7 @@ namespace Equipment {
   }
 
   void Equip_Second_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t index, uint8_t bag) {
-    auto itemID = inventory[(int)Items::BagType::Items][index];
+    auto itemID = inventory[bag][index];
     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
 
@@ -79,7 +82,8 @@ namespace Equipment {
   }
 
   std::string Use_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t invSlot, uint8_t bag) {
-    int itemID = inventory[(int)Items::BagType::Items][invSlot];
+    ////////////////////////
+    int itemID = inventory[bag][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
 
     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
