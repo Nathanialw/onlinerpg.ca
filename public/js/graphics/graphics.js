@@ -290,7 +290,7 @@ export async function Draw_Bag_Icons(iconPath, num, w) {
     let spaceBetweenY = .66;
     let spaceBetweenX = .91;
     let x = .88 * cellSize;
-    let y = -3 + ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
+    let y = (-6 + (topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
     
     let row = 1;
     let column = num % 5;
@@ -302,7 +302,7 @@ export async function Draw_Bag_Icons(iconPath, num, w) {
     Remove_Event_Listeners(bags[num]);
     
     let bagIcon = await Load_Icon(iconPath);
-    bags[num] = new PIXI.Sprite(inventoryIcon);
+    bags[num] = new PIXI.Sprite(bagIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, bags[num]);
     return bags[num]
 }
