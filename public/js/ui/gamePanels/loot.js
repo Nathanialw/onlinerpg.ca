@@ -7,8 +7,7 @@ export let loot = [];
 //     loot = Query_Loot();
 // }
 
-export function Loot() {
-    
+export function Loot() {    
     Draw_Loot(loot);    
 }
 
