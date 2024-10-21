@@ -150,6 +150,10 @@ namespace DB {
     sqlite3_finalize(stmt);
     std::cout << "finalized" << std::endl;
 
+    if (results.empty()) {
+      std::cerr << "No results found" << std::endl;
+      results.emplace_back("Default");
+    }
     return results;
   }
 
