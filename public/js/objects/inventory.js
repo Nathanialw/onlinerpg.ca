@@ -55,10 +55,11 @@ export async function Draw_Inventory(items) {
             let border = await Draw_Inventory_Icons(itemFramePath, i, 2.5) //border
         }
         //clear event listene from index i
-
-        let item = await Draw_Inventory_Icons(items[i].path, i, 2.5)            
-        //check the rarity of the item
-        let border = await Draw_Inventory_Icons(itemFramePath, i, 2.5) //border
-        Set_Send_On_Loot_Click_Listener(item, '1', i, items[i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
+        else {
+            let item = await Draw_Inventory_Icons(items[i].path, i, 2.5)            
+            //check the rarity of the item
+            let border = await Draw_Inventory_Icons(itemFramePath, i, 2.5) //border
+            Set_Send_On_Loot_Click_Listener(item, '1', i, items[i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
+        }
     }
 }
