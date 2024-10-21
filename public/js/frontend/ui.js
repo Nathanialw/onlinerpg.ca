@@ -97,9 +97,6 @@ export function Update_Screen_Phone() {
 
 }
 
-113d   10480000001
-113m221010480000001
-
 export function Update_Screen() {
     app.stage.removeChildren();
 
