@@ -304,7 +304,7 @@ export async function Draw_Inventory_Icons(iconPath, num, w) {
     return inventory[num]
 }
 
-export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w, text) {    
+export async function Draw_Loot_Icons(iconPath, num, w, text = "") {    
     let x = (Get_Right_Panel_Origin_x() + 0.5) * cellSize
     let y = (Get_Right_Panel_Origin_y() + 1.5) * cellSize
 
@@ -312,13 +312,16 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w, text) 
     
     let lootIcon = await Load_Icon(iconPath);    
     loot.push(new PIXI.Sprite(lootIcon));        
-    Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
+    Draw_Sprite(x + (1 * cellSize), y + (2.5 * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
     //Draw the text   
+    if (text === "") {
+        return loot[num];
+    }
     let textObject = new PIXI.Text({text: text, style: defaultStyle});
 
-    textObject.x = x + ((3 + xOffset) * cellSize);
-    textObject.y = y + ((1 + yOffset) * cellSize) + (w * num) * cellSize;
+    textObject.x = x + ((3 + 1) * cellSize);
+    textObject.y = y + ((1 + 2.5) * cellSize) + (w * num) * cellSize;
     app.stage.addChild(textObject);
 
     return loot[num];

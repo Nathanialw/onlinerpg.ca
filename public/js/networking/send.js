@@ -33,7 +33,7 @@ export function Remove_Highlight() {
     }
 }
 
-export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
+export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, inv) {
     //send the index of the item in the loot array
     Set_Cursor_Hover(item, 'neutral');
 
@@ -41,7 +41,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
-        highlight = await Draw_Equipment_Icons(hover, i, 2.5) //border
+        highlight = await inv(hover, i, 2.5) //border
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 
