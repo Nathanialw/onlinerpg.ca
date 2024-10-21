@@ -313,7 +313,7 @@ export async function Draw_Loot_Icons(iconPath, num, w, text = "") {
     Remove_Event_Listeners(loot[num]);
     
     let lootIcon = await Load_Icon(iconPath);    
-    loot.push(new PIXI.Sprite(lootIcon));        
+    loot[num] = new PIXI.Sprite(lootIcon);        
     Draw_Sprite(x + (1 * cellSize), y + (2.5 * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
     //Draw the text   

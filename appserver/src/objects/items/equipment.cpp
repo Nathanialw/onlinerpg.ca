@@ -35,20 +35,27 @@ namespace Equipment {
       std::cout << "no space in inventory" << std::endl;
   }
 
+  int Dual_Equip(std::array<int, (int)Items::ItemSlot::SIZE> &equipment, int slot0, int slot1) {
+      if (equipment[slot0] == 0)
+        return slot0;
+      else if (equipment[slot1] == 0)
+        return slot1;
+      else
+        return slot0;
+  }
+
   void Equip_Item(std::array<std::array<int, 48>, 4> &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index, const std::string &equipSlot) {
     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", equipSlot)); //retrieve slotNum using slotName from the db
 
     std::cout << "equip slot num: " << slotNum << std::endl;
 
     //if slotNum == Items::ItemSlot::mainHand, then it can fit in Items::ItemSlot::mainHand or Items::ItemSlot::offHand
-    if (slotNum == (int)Items::ItemSlot::mainHand) {
-      if (equipment[(int)Items::ItemSlot::mainHand] == 0)
-        slotNum = (int)Items::ItemSlot::mainHand;
-      else if (equipment[(int)Items::ItemSlot::offHand] == 0)
-        slotNum = (int)Items::ItemSlot::offHand;
-      else
-        slotNum = (int)Items::ItemSlot::mainHand;
-    }
+    if (slotNum == (int)Items::ItemSlot::mainHand)
+      slotNum = Dual_Equip(equipment, (int)Items::ItemSlot::mainHand, (int)Items::ItemSlot::offHand);
+    else if (slotNum == (int)Items::ItemSlot::ring0)
+      slotNum = Dual_Equip(equipment, (int)Items::ItemSlot::ring0, (int)Items::ItemSlot::ring1);
+    else if (slotNum == (int)Items::ItemSlot::trinket0)
+      slotNum = Dual_Equip(equipment, (int)Items::ItemSlot::trinket0, (int)Items::ItemSlot::trinket1);
 
     std::cout << "equip slot num: " << slotNum << std::endl;
 
