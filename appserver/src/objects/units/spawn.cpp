@@ -22,7 +22,7 @@ namespace Spawn {
                                                'G',   'H',    'I',    'J',   'K',
                                                'L',   'M',    'N',    'O',   'P',
                                                'Q',   'R',    'S',    'T',   'U',
-                                               'V',   'W',    'X',    'Y',   'Z', ' '};
+                                               'V',   'W',    'X',    'Y',   'Z'};
 
   char Get_Unit_Char(Units::Species species) {
     return unitChars[(int)species];
@@ -91,11 +91,17 @@ namespace Spawn {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
 
-      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", "goblin"}, {"type", "male"}};
+      auto species = (Units::Species)Utils::Random(0, (int)Units::Species::SIZE - 1);
+      auto gender = (Units::Gender)Utils::Random(0, (int)Units::Gender::SIZE - 1);
+      auto unitClass = (Units::Class)Utils::Random(0, (int)Units::Class::SIZE - 1);
+      auto alignment = (Units::Alignment)Utils::Random(0, (int)Units::Alignment::SIZE - 1);
+
+      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
       auto names = DB::Get_List("name", "names", whereEquals);
-      auto index = Utils::Random(0, names.size() - 1);
+      auto index = Utils::Random(0, (int)names.size() - 1);
       auto name = names[index];
-      Add_Unit(objects, level, location, x, y, name, Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
+
+      Add_Unit(objects, level, location, x, y, name, gender, species, unitClass, alignment);
       return true;
     }
   }

@@ -74,9 +74,64 @@ namespace Units {
     YETI,
     Ziburinis, //lithuanian glowing skeleton
 
-    EMPTY,
+//    EMPTY,
 
     SIZE
+  };
+
+  static std::string species[(int)Species::SIZE] = {
+      "Alpaca",
+        "Basilisk",
+        "Centaur",
+        "Dwarf",
+        "Elf",
+        "Fox",
+        "Goblin",
+        "Human",
+        "Iguana",
+        "Jackal",
+        "Kobold",
+        "Lamia",
+        "Minotaur",
+        "Nymph",
+        "Orc",
+        "Pixie",
+        "Qat",
+        "Rat",
+        "Skeleton",
+        "Treant",
+        "Unicorn",
+        "Valkyrie",
+        "Warg",
+        "Xana",
+        "Yale",
+        "Zombie",
+        "Angel",
+        "Byakhee",
+        "Chimera",
+        "Dragon",
+        "Ebon",
+        "Fairy",
+        "Golem",
+        "Harpy",
+        "Imp",
+        "Jinn",
+        "Kraken",
+        "Lich",
+        "Madusa",
+        "Naga",
+        "Ogre",
+        "Poltergeist",
+        "Qaffir",
+        "Roc",
+        "Satyr",
+        "Troll",
+        "Urias",
+        "Vampire",
+        "Witch",
+        "Xanthus",
+        "Yeti",
+        "Ziburinis"
   };
 
   enum class Race {
@@ -87,6 +142,11 @@ namespace Units {
     MALE,
     FEMALE,
     SIZE,
+  };
+
+  static std::string gender[(int)Gender::SIZE] = {
+      "male",
+      "female"
   };
 
   enum class Class {
