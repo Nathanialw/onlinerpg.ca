@@ -20,9 +20,14 @@ export function Query_Equipment(numItems, data, start) {
         let itemID = parseInt(str.substring(2, 5));
         let item = Get_Icon_Path(itemID);
 
-        let path = iconPath + Get_Icon_Path(itemID).icon;
-        equipped.push({index: i, itemID: itemID, path: path}); 
-    }
+        let icon = item.icon
+        if (icon === undefined || icon === "none") {
+            equipped.push({index: i, itemID: itemID, path: icon}); 
+        }
+        else {
+            let path = iconPath + icon;
+            equipped.push({index: i, itemID: itemID, path: path}); 
+        }
     return equipped;
 }
 

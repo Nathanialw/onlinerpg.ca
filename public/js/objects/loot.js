@@ -16,10 +16,16 @@ export function Query_Loot(numItems, data, start) {
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         let itemID = parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3), 10));
-        let item = Get_Icon_Path(itemID);
 
-        let path = iconPath + item.icon;        
-        drops.push({index: i, itemID: itemID, path: path, name: item.name});    
+        let item = Get_Icon_Path(itemID);
+        let icon = item.icon
+        if (icon === undefined || icon === "none") {
+            drops.push({index: i, itemID: itemID, path: icon}); 
+        }
+        else {
+            let path = iconPath + icon;
+            drops.push({index: i, itemID: itemID, path: path}); 
+        }
     }
     return drops;
 }
