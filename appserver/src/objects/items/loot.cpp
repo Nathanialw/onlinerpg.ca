@@ -51,7 +51,7 @@ namespace Loot {
       //if items bag is full, return "inventory full"
 
     //search for first empty slot in inventory
-    for (int i = 0; i < inventory[bagIndex].size(); ++i) {
+    for (int i = 0; i < maxSlots[bagIndex]; ++i) {
       if (inventory[bagIndex][i] == 0) {
         inventoryIndex = i;
         std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
@@ -61,7 +61,7 @@ namespace Loot {
 
     if (bagIndex == 0 && 999 == inventoryIndex) {
       bagIndex++;
-      for (int i = 0; i < inventory[bagIndex].size(); ++i) {
+      for (int i = 0; i < maxSlots[bagIndex]; ++i) {
         if (inventory[bagIndex][i] == 0) {
           inventoryIndex = i;
           std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
