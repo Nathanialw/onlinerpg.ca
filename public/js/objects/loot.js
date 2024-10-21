@@ -34,9 +34,3 @@ export async function Draw_Loot(items) {
         Set_Send_On_Loot_Click_Listener(item, '0', i, items[i].itemID);  //0 means loot panel
     }
 }
-
-export function Open_Loot_Panel(direction) {
-    if (loot.length > 0 && (direction == 'a' || direction == 'd' || direction == 'w' || direction == 's')) {
-        Set_Game_Panel_Index(3);
-    }
-}

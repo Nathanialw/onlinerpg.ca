@@ -15,8 +15,6 @@ export function Set_Game_Panel_Index(index) {
     gamePanelIndex = index;
 }
 
-
-
 // export function  Init_Game_Menu() { //set listers on the sprites stored
 //     for (let i = 0; i < gameMenuSprites.length; i++) {
     //         Set_Send_On_Menu_Click_Listener(button, i);

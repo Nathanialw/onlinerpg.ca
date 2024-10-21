@@ -2,15 +2,14 @@
 import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
-import { Open_Loot_Panel, Query_Loot } from '../objects/loot.js';
+import { Query_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
-import { loot } from '../ui/gamePanels/loot.js';
-import { Set_Game_Panel_Index } from '../ui/menus/gameMenu.js';
+import { loot, Open_Loot_Panel } from '../ui/gamePanels/loot.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
