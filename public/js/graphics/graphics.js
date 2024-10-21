@@ -317,7 +317,7 @@ export async function Draw_Loot_Icons(iconPath, num, xOffset, yOffset, w, text) 
     Draw_Sprite(x + (xOffset * cellSize), y + (yOffset * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
     
     //Draw the text   
-    let textObject = new PIXI.Text({text: text, defaultStyle});
+    let textObject = new PIXI.Text({text: text, style: defaultStyle});
 
     textObject.x = x + ((3 + xOffset) * cellSize);
     textObject.y = y + ((1 + yOffset) * cellSize) + (w * num) * cellSize;
