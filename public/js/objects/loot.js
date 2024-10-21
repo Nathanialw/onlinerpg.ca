@@ -30,7 +30,7 @@ export async function Draw_Loot(items) {
         }
         // draw loot background and border
         let item = await Draw_Loot_Icons(items[i].path, i, 2.5, items[i].name);      
-        let border = await Draw_Loot_Icons(itemFramePath, i, 2.5) //border
+        // let border = await Draw_Loot_Icons(itemFramePath, i, 2.5) //border
 
         //draw loot name
         Set_Send_On_Loot_Click_Listener_Loot(item, '0', i, items[i].itemID, Draw_Loot_Icons);  //0 means loot panel
