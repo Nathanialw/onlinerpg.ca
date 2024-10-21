@@ -34,7 +34,7 @@ namespace Send {
     if (!game.objects[level][location].units.empty()) {
       std::string action = "d    10";
       // append inventory
-      action.append(Inventory::Update_Inventory(game.Get_Player().inventory));
+      action.append(Inventory::Update_Inventory(game.Get_Player().inventory, game.Get_Player().maxSlots));
       // append equipment
       action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
       print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
