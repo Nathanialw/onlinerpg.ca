@@ -29,24 +29,21 @@ const defaultEquipmentIcons = [
     'assets/graphics/ui/equipment/empty_cloak.png',
     'assets/graphics/ui/equipment/empty_chest.png',
     'assets/graphics/ui/equipment/empty_belt.png',
-
     'assets/graphics/ui/equipment/empty_gloves.png',
     'assets/graphics/ui/equipment/empty_pants.png',
     'assets/graphics/ui/equipment/empty_boots.png',
     'assets/graphics/ui/equipment/empty_ring.png',
     'assets/graphics/ui/equipment/empty_ring.png',    
-
     'assets/graphics/ui/equipment/empty_trinket.png',
     'assets/graphics/ui/equipment/empty_trinket.png',
     'assets/graphics/ui/equipment/empty_hand.png',
     'assets/graphics/ui/equipment/empty_hand.png',
     'assets/graphics/ui/equipment/empty_ranged.png',
-
     'assets/graphics/ui/equipment/ammo_slot.png',
     'assets/graphics/ui/equipment/chain_link.png',
     'assets/graphics/ui/equipment/slot_frame.png',
     'assets/graphics/ui/equipment/slot_frame_ammo.png',
-    'assets/graphics/ui/equipment/item_hover_effect.png',
+
 ]
 
 export async function Draw_Equipment(items) {
@@ -63,7 +60,7 @@ export async function Draw_Equipment(items) {
             }
         }
         else {
-            let item = await Draw_Equipment_Icons(items[i].path, i, 1, 1, 2.5)        
+            let item = await Draw_Equipment_Icons(items[i].path, i, 2.5)        
             if (i === 15) {
                 let border = await Draw_Equipment_Icons(defaultEquipmentIcons[18], i, 2.5) //border
             }

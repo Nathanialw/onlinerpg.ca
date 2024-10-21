@@ -2,6 +2,7 @@
 import { Draw_Tooltip, Remove_Tooltip } from '../frontend/tooltip.js';
 import { Send_Web_Socket_Message } from './socket.js';
 import { Set_Cursor_Hover } from '../input/mouse.js';
+import { Draw_Equipment_Icons } from '../graphics/graphics.js';
 
 //query map object
 export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
@@ -21,6 +22,8 @@ export function Set_Send_On_Map_Click_Listener(objectDisplay, x, y) {
     }); 
 }
 
+let hover = 'assets/graphics/ui/equipment/item_hover_effect.png',
+
 
 export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
     //send the index of the item in the loot array
@@ -30,6 +33,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID) {
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
+        let highlight = await Draw_Equipment_Icons(hover, i, 2.5) //border
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 
