@@ -65,10 +65,6 @@ export function Parse_Game_Update(data) {
     start = end;
     end++;
     
-    loot.length = 0;
-    inventory.length = 0;
-    equipment.length = 0;
-    
     const endLoot = Parse(data.substring(start, end), end, data, Query_Loot, 3, loot);
     Open_Loot_Panel(direction);
     
@@ -131,4 +127,5 @@ function removeEventListenersFromArray(array) {
             item.removeAllListeners();
         }
     });
+
 }
