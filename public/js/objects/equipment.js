@@ -9,6 +9,7 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
+let iconPath = "assets/graphics/icons/"
 
 export function Query_Equipment(numItems, data, start) {
     let equipped = []
@@ -18,7 +19,9 @@ export function Query_Equipment(numItems, data, start) {
         let equipmentIndex = parseInt(str.substring(0, 2));
         let itemID = parseInt(str.substring(2, 5));
         let item = Get_Icon_Path(itemID);
-        equipped.push({index: i, itemID: itemID, path: item.icon});      
+
+        let path = iconPath + Get_Icon_Path(itemID).icon;
+        equipped.push({index: i, itemID: itemID, path: path}); 
     }
     return equipped;
 }
@@ -66,7 +69,7 @@ export async function Draw_Equipment(items) {
             else {
                 let border = await Draw_Equipment_Icons(ammobg, i, 2.5) //border
             }
-            Set_Send_On_Loot_Click_Listener(item[j], '2', i, items[i].itemID, Draw_Equipment_Icons);   //1 means inventory panel
+            Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID, Draw_Equipment_Icons);   //1 means inventory panel
         }
     }
 }

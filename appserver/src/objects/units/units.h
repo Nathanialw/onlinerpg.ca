@@ -209,12 +209,12 @@ namespace Units {
 
     int level;
     Component::Position location{};
-    std::array<int, (int)Items::ItemSlot::SIZE> equipment{};
+    Items::equipped equipment{};
 
     //items are just an ID that is in the db
     //db contains the damage, AC, icon path, description, etc
-    std::array<uint8_t, (int)Items::BagType::SIZE> maxSlots{}; //items
-    Inventory::bags inventory{}; //items
+    Items::bagSlots maxSlots{}; //items
+    Items::bags inventory{}; //items
 
     int copper = 0;
     int silver = 0;

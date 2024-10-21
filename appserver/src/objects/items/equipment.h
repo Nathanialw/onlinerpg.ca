@@ -8,13 +8,12 @@
 #include "array"
 #include "string"
 #include "items.h"
-#include "inventory.h"
 
 namespace Equipment {
-  std::string Use_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t invSlot);
-  std::string Get_Equipment(std::array<int, (int)Items::ItemSlot::SIZE> &equipment);
-  void Unequip_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, const std::string &slot);
-  void Equip_Second_Item(Inventory::bags &inventory, std::array<int, (int)Items::ItemSlot::SIZE>  &equipment, uint8_t index);
+  std::string Use_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t invSlot);
+  std::string Get_Equipment(Items::equipped &equipment);
+  void Unequip_Item(Items::bags &inventory, Items::equipped &equipment, const std::string &slot);
+  void Equip_Second_Item(Items::bags &inventory, Items::equipped &equipment, uint8_t index);
 };
 
 #endif // BROWSERRPG_EQUIPMENT_H

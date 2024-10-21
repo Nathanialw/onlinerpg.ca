@@ -6,6 +6,10 @@
 #ifndef BROWSERRPG_ITEMS_H
 #define BROWSERRPG_ITEMS_H
 
+#include "array"
+#include "string"
+
+
 namespace Items {
   enum class BagType {
     Items,
@@ -36,6 +40,19 @@ namespace Items {
     SIZE,
   };
 
+  typedef std::array<uint8_t, (int)Items::BagType::SIZE> bagSlots;
+  typedef std::array<std::array<int, 14>, (int)Items::BagType::SIZE> bags; //items
+
+//  struct Bags {
+//    bags bag{};
+//    bagSlots maxSlots{};
+//
+//    Bags() {
+//    }
+//  };
+
+  typedef std::array<uint8_t , 4> ground;
+  typedef std::array<int, (int)Items::ItemSlot::SIZE> equipped;
 }
 
 #endif // BROWSERRPG_ITEMS_H

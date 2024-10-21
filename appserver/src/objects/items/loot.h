@@ -9,10 +9,11 @@
 #endif // BROWSERRPG_LOOT_H
 #include "array"
 #include "string"
-#include "inventory.h"
+#include "items.h"
 
 namespace Loot {
-  void Generate_Loot(std::array<uint8_t , 4> &items);
-  std::string Query_Loot(std::array<uint8_t , 4> &items);
-  std::string Pick_Up_Item(std::array<uint8_t , 4> &loot, Inventory::bags &inventory, uint8_t index);
+
+  void Generate_Loot(Items::ground &items);
+  std::string Query_Loot(Items::ground &items);
+  std::string Pick_Up_Item(Items::ground &loot, Items::bags &inventory, const Items::bagSlots &maxSlots, uint8_t index);
 }

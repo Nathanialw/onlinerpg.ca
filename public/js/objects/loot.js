@@ -9,6 +9,7 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
+let iconPath = "assets/graphics/icons/"
 
 export function Query_Loot(numItems, data, start) {
     let drops = []
@@ -16,7 +17,9 @@ export function Query_Loot(numItems, data, start) {
         //isert teh path
         let itemID = parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3), 10));
         let item = Get_Icon_Path(itemID);
-        drops.push({index: i, itemID: itemID, path: item.icon, name: item.name});    
+
+        let path = iconPath + item.icon;        
+        drops.push({index: i, itemID: itemID, path: path, name: item.name});    
     }
     return drops;
 }

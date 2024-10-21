@@ -9,6 +9,8 @@ import { Set_Send_On_Loot_Click_Listener_inv } from '../networking/send.js';
 //read from db
 //display the icon in the loot box
 
+let iconPath = "assets/graphics/icons/"
+    
 export function Query_Inventory(numItems, data, start) {
     let inv = []
     for (let i = 0; i < numItems; i++) {
@@ -17,7 +19,8 @@ export function Query_Inventory(numItems, data, start) {
         let invIndex = parseInt(str.substring(0, 2));
         let itemID = parseInt(str.substring(2, 5));
 
-        inv.push({index: i, itemID: itemID, path: Get_Icon_Path(itemID).icon});        
+        let path = iconPath + Get_Icon_Path(itemID).icon;
+        inv.push({index: i, itemID: itemID, path: path});        
     }
     return inv;
 }

@@ -102,7 +102,7 @@ namespace Map {
   }
 
   //only needs to check the first item
-  bool Check_For_Item(std::array<uint8_t , 4> &items) {
+  bool Check_For_Item(Items::ground &items) {
     if (items[0] != 0)
       return true;
     return false;

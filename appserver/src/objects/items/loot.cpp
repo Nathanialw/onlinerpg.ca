@@ -10,7 +10,7 @@
 
 namespace Loot {
 
-  void Generate_Loot(std::array<uint8_t , 4> &items) {
+  void Generate_Loot(Items::ground &items) {
     uint8_t numItems = Utils::Random(1, 4);
     for (int i = 0; i < numItems; ++i) {
       uint8_t itemID = Utils::Random(1 , DB::Get_Num_Items());
@@ -19,7 +19,7 @@ namespace Loot {
     }
   }
 
-  std::string Query_Loot(std::array<uint8_t , 4> &items) {
+  std::string Query_Loot(Items::ground &items) {
     std::string itemsStr;
     int size = 0;
     for (auto item : items) {
@@ -35,24 +35,48 @@ namespace Loot {
     return itemsStr;
   }
 
-  std::string Pick_Up_Item(std::array<uint8_t , 4> &loot, Inventory::bags &inventory, uint8_t index) {
+  std::string Pick_Up_Item(Items::ground &loot, Items::bags &inventory, const Items::bagSlots &maxSlots, uint8_t index) {
     int itemID = loot[index];
-    int inventoryIndex;
+    int inventoryIndex = 999;
+
+    std::cout << "picked up item: " << itemID << std::endl;
+    auto type = DB::Query("type", "items", "itemID", std::to_string(itemID));
+    std::cout << "item type: " << type << std::endl;
+    auto bagIndex = stoi(DB::Query("slotNum", "equipSlots", "type", type));
+    std::cout << "bag index: " << bagIndex << std::endl;
+
+    //get the type of item items/scroll/potion
+      //put it in the preferred bag
+      //if bag is full, put it in the items bag
+      //if items bag is full, return "inventory full"
+
     //search for first empty slot in inventory
-    for (int i = 0; i < inventory[(int)Items::BagType::Items].size(); ++i) {
-      if (inventory[(int)Items::BagType::Items][i] == 0) {
-            inventoryIndex = i;
-            std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
-            break;
-      }
-      if (i == inventory[(int)Items::BagType::Items].size() - 1) {
-        std::cout << "inventory full" << std::endl;
-        return " ";
+    for (int i = 0; i < inventory[bagIndex].size(); ++i) {
+      if (inventory[bagIndex][i] == 0) {
+        inventoryIndex = i;
+        std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
+        break;
       }
     }
 
+    if (bagIndex == 0 && 999 == inventoryIndex) {
+      bagIndex++;
+      for (int i = 0; i < inventory[bagIndex].size(); ++i) {
+        if (inventory[bagIndex][i] == 0) {
+          inventoryIndex = i;
+          std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
+          break;
+        }
+      }
+    }
+
+    if (999 == inventoryIndex) {
+      std::cout << "inventory full" << std::endl;
+      return " ";
+    }
+
     // add item to inventory array
-    inventory[(int)Items::BagType::Items][inventoryIndex] = itemID;
+    inventory[bagIndex][inventoryIndex] = itemID;
     //remove from loot array and resize
     for (int i = index; i < loot.size() - 1; ++i) {
       loot[i] = loot[i + 1];
