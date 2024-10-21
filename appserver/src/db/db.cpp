@@ -104,14 +104,20 @@ namespace DB {
     return result;
   }
 
-  std::vector<std::string> Get_List(const std::string &retrieve, const std::string &table, const std::string &where, const std::string &equals, const std::string &where2, const std::string &equals2) {
+  std::vector<std::string> Get_List(const std::string &retrieve, const std::string &table, const std::vector<std::pair<std::string, std::string>> &whereEquals) {
     std::vector<std::string> results;
     if (!db) {
       std::cerr << "Database not initialized" << std::endl;
       return results;
     }
 
-    std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE " + where + " = " + Append_Quotes(equals) + " AND " + where2 + " = " + Append_Quotes(equals2);
+    std::string query = "SELECT " + retrieve + " FROM " + table + " WHERE ";
+    for (int i = 0; i < whereEquals.size(); ++i) {
+      query += Append_Quotes(whereEquals[i].first) + " = " + Append_Quotes(whereEquals[i].second);
+      if (i < whereEquals.size() - 1) {
+        query += " AND ";
+      }
+    }
 
     sqlite3_stmt *stmt;
     std::cout << "querying" << std::endl;

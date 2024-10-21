@@ -90,7 +90,9 @@ namespace Spawn {
     } else {
       group += Utils::Prepend_Zero(x);
       group += Utils::Prepend_Zero(y);
-      auto names = DB::Get_List("name", "names", "race", "goblin", "type", "male");
+
+      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", "goblin"}, {"type", "male"}};
+      auto names = DB::Get_List("name", "names", whereEquals);
       auto index = Utils::Random(0, names.size() - 1);
       auto name = names[index];
       Add_Unit(objects, level, location, x, y, name, Units::Gender::MALE, Units::Species::GOBLIN, Units::Class::FIGHTER, Units::Alignment::EVIL);
