@@ -40,7 +40,7 @@ namespace Loot {
     int inventoryIndex = 999;
 
     std::cout << "picked up item: " << itemID << std::endl;
-    auto type = DB::Query("type", "items", "itemID", std::to_string(itemID));
+    auto type = DB::Query("type", "items", "uID", std::to_string(itemID));
     std::cout << "item type: " << type << std::endl;
     auto bagIndex = stoi(DB::Query("slotNum", "equipSlots", "type", type));
     std::cout << "bag index: " << bagIndex << std::endl;
