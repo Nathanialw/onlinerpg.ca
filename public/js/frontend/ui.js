@@ -49,26 +49,33 @@ export function Parse_Game_Update(data) {
     let start = 0;
     let end = 2;
     visionWidth = parseInt(data.substring(start, end), 10);
-    start++;
+    start = end;
     end++;
+    console.log("visionWidth", visionWidth)
     direction = data.substring(start, end);
-    start += 2;
+    start = end;
     end += 2;
+    console.log("direction" ,direction)
     species = Species[data.substring(start, end)];
-    start += 2;
+    start = end;
     end += 2;
+    console.log("species", species)
     damage = data.substring(start, end);
-    start++;
+    start = end;
     end++;
+    console.log("damage", damage)
     isDead = data.substring(start, end);
+    console.log("isdead", isDead)
     // let damageTaken = data.substring(4,6);
     // let currentHealth = data.substring(6,8);
-
+    start = end;
+    end++;
+    console.log("loot post:", data.substring(start, end))
+    
     loot.length = 0;
     inventory.length = 0;
     equipment.length = 0;
-    start++;
-    end++;
+    
     const endLoot = Parse(data.substring(start, end), end, data, Query_Loot, 3, loot);
     const endInventory = Parse(data.substring(endLoot, endLoot + 2), (endLoot + 2), data, Query_Inventory, 5, inventory);
     const endEquipment = Parse(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
