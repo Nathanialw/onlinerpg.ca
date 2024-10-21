@@ -25,7 +25,7 @@ let serverMap;
 // let numItems;
 // let loot = [];
 // let numInventory;
-let inventory = [[]];
+let inventory = [];
 let equipment = []; //list of item {slot, itemID, path string)
 
 function Parse(numItems, start, data, Query, size, items) {
@@ -70,7 +70,9 @@ export function Parse_Game_Update(data) {
     
     let startBag = endLoot;
     for (let i = 0; i < 5; i++) {
-        startBag = Parse(data.substring(startBag, startBag + 2), (startBag + 2), data, Query_Inventory, 5, inventory[i]);
+        let bag = [];
+        startBag = Parse(data.substring(startBag, startBag + 2), (startBag + 2), data, Query_Inventory, 5, bag);
+        inventory.push(bag)
     }
     
     const endInventory = startBag;

@@ -41,8 +41,9 @@ const itemBorders =[
 ]
 
 export async function Draw_Inventory(items) {
-    Clear_Sprite_Array(inventory);
-    Clear_Sprite_Array(bags);
+    for (let i = 0; i < inventory.length; i++) {
+        Clear_Sprite_Array(inventory[i]);
+    }    Clear_Sprite_Array(bags);
     const numBags = 5;
     for (let i = 0; i < numBags; i++) {
         //draw bag icon
