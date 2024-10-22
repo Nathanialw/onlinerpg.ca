@@ -344,7 +344,7 @@ export async function Draw_Loot_Icons(iconPath, num, w, text = "") {
     
     //Draw the text   
     if (text === "") {
-        return loot[num];
+        return {icon: loot[num], text: ""};
     }
     let textObject = new PIXI.Text({text: text, style: defaultStyle});
 
@@ -352,7 +352,7 @@ export async function Draw_Loot_Icons(iconPath, num, w, text = "") {
     textObject.y = y + ((1 + 2.5) * cellSize) + (w * num) * cellSize;
     app.stage.addChild(textObject);
 
-    return loot[num];
+    return {icon: loot[num], text: textObject};
 }
 
 
