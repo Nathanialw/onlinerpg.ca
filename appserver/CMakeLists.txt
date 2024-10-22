@@ -65,6 +65,8 @@ set(SOURCES
     src/objects/collision/collision.cpp
 
     src/procgen/procgen.cpp
+        src/objects/items/backpack.cpp
+        src/objects/items/backpack.h
 )
 
 add_executable(BrowserRPG ${SOURCES})

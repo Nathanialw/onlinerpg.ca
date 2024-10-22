@@ -16,6 +16,7 @@
 #include "loot.h"
 #include "inventory.h"
 #include "equipment.h"
+#include "backpack.h"
 
 namespace Send {
 
@@ -104,9 +105,11 @@ namespace Send {
         std::cout << "interacting with bags at index: " << index << std::endl;
         if (mod == "c") { //unequip bag
           std::cout << "control clicked: " << mod << std::endl;
+          Backpack::Unequip_Bag(game.Get_Player().pack, stoi(index));
         }
         else if (mod == "a") { //equip second bag
           std::cout << "alt clicked: " << mod << std::endl;
+          Backpack::Equip_Bag(game.Get_Player().pack, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(index), stoi(bag), Items::BagType::Items1);
         }
         else if (mod == "s") { //
           std::cout << "shift clicked, thusfar unused" << std::endl;

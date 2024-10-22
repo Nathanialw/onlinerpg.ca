@@ -14,7 +14,7 @@ namespace Inventory {
 
   void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index) {
     auto itemID = inventory[bag][index];
-    for (unsigned char & groundItem : groundItems) {
+    for (auto & groundItem : groundItems) {
       if (groundItem == 0) {
         groundItem = itemID;
         inventory[bag][index] = 0;

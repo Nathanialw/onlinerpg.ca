@@ -9,6 +9,7 @@
 #include "items.h"
 #include "utils.h"
 #include "db.h"
+#include "backpack.h"
 
 namespace Equipment {
 
@@ -80,15 +81,7 @@ namespace Equipment {
     }
   }
 
-  uint8_t Equip_Bag(Items::Backpack &pack, int itemID, uint8_t invSlot, uint8_t bag, uint8_t bagSlot) {
-    auto temp = pack.bags[bagSlot];
-    pack.bags[bagSlot] = itemID;
-    uint8_t tempMaxSlots = pack.maxSlots[bagSlot];
-    pack.maxSlots[bagSlot] = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
-    pack.inventory[bag][invSlot] = temp;
 
-    return tempMaxSlots;
-  }
 
   void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
     int itemID = pack.inventory[bag][invSlot];
@@ -105,70 +98,22 @@ namespace Equipment {
     }
 
     if (slotStr == "bag") {
-      uint8_t tempMaxSlots;
-      uint8_t bagSlot = 0;
+      Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Items0);
+      return;
+    }
 
-      //determine which bag to equip
-      if (pack.bags[bagSlot] == 0) {
-        bagSlot = 0;
-      }
-      else if (pack.bags[bagSlot + 1] == 0) {
-        bagSlot++;
-      }
+    if (slotStr == "tome") {
+      Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Scrolls);
+      return;
+    }
 
-      //check how many slots the bag has
-      auto newBagSlots = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
-      int numItemsInInventory = 0;
-      for (const auto &bagItem : pack.inventory[bagSlot]) {
-        if (bagItem != 0) {
-            numItemsInInventory++;
-        }
-      }
+    if (slotStr == "belt") {
+      Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Potions);
+      return;
+    }
 
-      int numItemsToDrop = numItemsInInventory - newBagSlots;
-
-      if (numItemsToDrop > 0) {
-        std::cout << "old bag has more occupied slots than the new bag has total slots" << std::endl;
-
-        // check how much space the ground cell has
-        int occupiedGroundSpace = 0;
-        for (const auto &groundItem : groundItems) {
-            if (groundItem == 0) {
-              break;
-            }
-            occupiedGroundSpace++;
-        }
-        int groundSpace = groundItems.size() - occupiedGroundSpace;
-
-        std::cout << "numItemsToDrop: " << numItemsToDrop << " groundSpace: " << groundSpace << std::endl;
-        if (numItemsToDrop < groundSpace)
-            std::cout << "plenty of space, equipping the bag" << std::endl;
-        else {
-            std::cout << "not enough space on the ground to equip the bag" << std::endl;
-            return;
-        }
-      }
-      tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
-
-      //throw away items if the bag is overfilled
-      if (pack.maxSlots[bagSlot] < tempMaxSlots) {
-        //drop the items if the bag is overfilled
-        for (int i = pack.maxSlots[bagSlot]; i < tempMaxSlots; ++i) {
-          auto itemIDdrop = pack.inventory[bagSlot][i];
-          for (uint8_t &groundItem : groundItems) {
-            if (groundItem == 0) {
-              groundItem = itemIDdrop;
-              std::cout << "item dropped: " << itemIDdrop << " now on the ground: " << groundItem << std::endl;
-              pack.inventory[bagSlot][i] = 0;
-              break;
-            }
-          }
-          std::cout << "items dropped: " << itemIDdrop << std::endl;
-        }
-      }
-
-      //equip the bag
-
+    if (slotStr == "keyring") {
+      Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Keys);
       return;
     }
 
