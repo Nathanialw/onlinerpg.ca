@@ -1,5 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Loot_Icons, loot, itemFramePath } from '../graphics/graphics.js';
+import { Clear_Sprite_Array, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, loot, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -38,11 +38,13 @@ export async function Draw_Loot(items) {
             continue
         }
         // draw loot background and border
-        let item = await Draw_Loot_Icons(items[i].path, i, 2.5, items[i].name);      
+        let background = await Draw_Loot_Background(i, 2.5); //background
+        let icon = await Draw_Loot_Icons(items[i].path, i, 2.5);   
+        let text = await Draw_Loot_Text(items[i].name, i, 2.5) //text
         let border = await Draw_Loot_Icons(itemFramePath, i, 2.5) //border
 
         //draw loot name
-        Set_Send_On_Loot_Click_Listener(item.icon, '0', i, items[i].itemID, Draw_Loot_Icons);  //0 means loot panel
+        Set_Send_On_Loot_Click_Listener(icon, '0', i, items[i].itemID, Draw_Loot_Icons);  //0 means loot panel
         // Set_Send_On_Loot_Click_Listener(item.text, '0', i, items[i].itemID, Draw_Loot_Icons);  //0 means loot panel
     }
 }
