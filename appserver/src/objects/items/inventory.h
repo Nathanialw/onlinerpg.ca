@@ -11,7 +11,7 @@
 
 namespace Inventory {
 
-  std::string Update_Inventory(Items::Inventory &inventory, const Items::Max_Slots &maxSlots);
+  std::string Update_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots);
   std::string Get_Inventory(Items::Inventory &inventory);
   void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index);
 };

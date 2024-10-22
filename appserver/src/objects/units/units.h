@@ -230,11 +230,21 @@ namespace Units {
       level = iLevel;
       location = sLocation;
 
+      //starting bags
       pack.maxSlots[0] = 4;
+      pack.bags[0] = 34;
+
       pack.maxSlots[1] = 4;
+      pack.bags[1] = 34;
+
       pack.maxSlots[2] = 2;
+      pack.bags[2] = 32;
+
       pack.maxSlots[3] = 2;
+      pack.bags[3] = 32;
+
       pack.maxSlots[4] = 3;
+      pack.bags[4] = 33;
 
     }
 };

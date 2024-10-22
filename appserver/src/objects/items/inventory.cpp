@@ -24,21 +24,19 @@ namespace Inventory {
     std::cout << "item dropped: " << itemID << std::endl;
   }
 
-  std::string Update_Inventory(Items::Inventory &inventory, const Items::Max_Slots &maxSlots) {
+  std::string Update_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots) {
     std::cout << "inventory updated" << std::endl;
     std::string inventoryStr;
 
     for (int j = 0; j < (int)Items::BagType::SIZE; ++j) {
       std::string bagStr;
-      uint8_t numItems = 0;
 
       for (int i = 0; i < maxSlots[j]; ++i) {
-        bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(inventory[j][i], 3);
-        numItems++;
+        bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(backpack.inventory[j][i], 3);
       }
 
-      inventoryStr += Utils::Prepend_Zero_By_Digits(numItems, 2) + bagStr;
-      std::cout << "bag updated " << j << ": " <<  Utils::Prepend_Zero_By_Digits(numItems, 2) + bagStr << std::endl;
+      inventoryStr += Utils::Prepend_Zero_By_Digits(backpack.bags[j], 3) + bagStr;
+      std::cout << "bag updated " << j << ": " <<  Utils::Prepend_Zero_By_Digits(backpack.bags[j], 3) + bagStr << std::endl;
     }
     return inventoryStr;
   }
