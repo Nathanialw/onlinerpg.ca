@@ -232,19 +232,19 @@ namespace Units {
 
       //starting bags
       pack.maxSlots[0] = 4;
-      pack.bags[0] = 34;
+      pack.bags[0] = 37;
 
       pack.maxSlots[1] = 4;
-      pack.bags[1] = 34;
+      pack.bags[1] = 37;
 
       pack.maxSlots[2] = 2;
-      pack.bags[2] = 32;
+      pack.bags[2] = 75;
 
       pack.maxSlots[3] = 2;
       pack.bags[3] = 32;
 
-      pack.maxSlots[4] = 3;
-      pack.bags[4] = 33;
+      pack.maxSlots[4] = 4;
+      pack.bags[4] = 104;
 
     }
 };
