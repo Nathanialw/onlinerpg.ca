@@ -80,6 +80,16 @@ namespace Equipment {
     }
   }
 
+  uint8_t Equip_Bag(Items::Pack &pack, int itemID, uint8_t invSlot, uint8_t bag, uint8_t bagSlot) {
+    auto temp = pack.bags[bagSlot];
+    pack.bags[bagSlot] = itemID;
+    uint8_t tempMaxSlots = pack.maxSlots[bagSlot];
+    pack.maxSlots[bagSlot] = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
+    pack.inventory[bag][invSlot] = temp;
+
+    return tempMaxSlots;
+  }
+
   void Use_Item(Items::Pack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
     int itemID = pack.inventory[bag][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
@@ -97,34 +107,26 @@ namespace Equipment {
     if (slotStr == "bag") {
       //equip the bag
       uint8_t tempMaxSlots;
-      if (pack.bags[0] == 0) {
-        pack.bags[0] = itemID;
-        tempMaxSlots = pack.maxSlots[0];
-        pack.maxSlots[0] = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
-
+      uint8_t bagSlot = 0;
+      if (pack.bags[bagSlot] == 0) {
+        Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
-      else if (pack.bags[1] == 0) {
-        pack.bags[1] = itemID;
-        tempMaxSlots = pack.maxSlots[1];
-        pack.maxSlots[1] = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
-
+      else if (pack.bags[bagSlot + 1] == 0) {
+        bagSlot++;
+        Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
       else {
-        auto temp = pack.bags[0];
-        pack.bags[0] = itemID;
-        tempMaxSlots = pack.maxSlots[0];
-        pack.maxSlots[0] = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
-        pack.inventory[bag][invSlot] = temp;
+        Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
 
-      if (tempMaxSlots < pack.maxSlots[bag]) {
+      if (tempMaxSlots < pack.maxSlots[bagSlot]) {
         //drop the items if the bag is overfilled
-        auto itemIDdrop = pack.inventory[bag][invSlot];
-        for (int i = pack.maxSlots[bag]; i < tempMaxSlots; ++i) {
+        auto itemIDdrop = pack.inventory[bagSlot][invSlot];
+        for (int i = pack.maxSlots[bagSlot]; i < tempMaxSlots; ++i) {
             for (unsigned char &groundItem : groundItems) {
               if (groundItem == 0) {
                 groundItem = itemIDdrop;
-                pack.inventory[bag][invSlot] = 0;
+                pack.inventory[bagSlot][invSlot] = 0;
               }
             }
         }
@@ -147,3 +149,18 @@ namespace Equipment {
     return equipmentStr;
   }
 };
+processed_icons64x64/Bag_01_ver.png
+processed_icons64x64/Bag_02_ver.png
+processed_icons64x64/Bag_03_ver.png
+processed_icons64x64/Bag_04_ver.png
+processed_icons64x64/Bag_05_ver.png
+processed_icons64x64/Bag_06_ver.png
+processed_icons64x64/Bag_07_ver.png
+processed_icons64x64/Bag_08_ver.png
+processed_icons64x64/Bag_09_ver.png
+processed_icons64x64/Bag_10_ver.png
+processed_icons64x64/Bag_11_ver.png
+processed_icons64x64/Bag_34_ver.png
+processed_icons64x64/Bag_35_ver.png
+processed_icons64x64/Bag_36_ver.png
+processed_icons64x64/Bag_37_ver.png
