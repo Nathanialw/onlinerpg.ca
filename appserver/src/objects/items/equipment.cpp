@@ -109,14 +109,14 @@ namespace Equipment {
       uint8_t tempMaxSlots;
       uint8_t bagSlot = 0;
       if (pack.bags[bagSlot] == 0) {
-        Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
+          tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
       else if (pack.bags[bagSlot + 1] == 0) {
         bagSlot++;
-        Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
+        tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
       else {
-        Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
+        tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
 
       if (tempMaxSlots < pack.maxSlots[bagSlot]) {
@@ -149,18 +149,3 @@ namespace Equipment {
     return equipmentStr;
   }
 };
-processed_icons64x64/Bag_01_ver.png
-processed_icons64x64/Bag_02_ver.png
-processed_icons64x64/Bag_03_ver.png
-processed_icons64x64/Bag_04_ver.png
-processed_icons64x64/Bag_05_ver.png
-processed_icons64x64/Bag_06_ver.png
-processed_icons64x64/Bag_07_ver.png
-processed_icons64x64/Bag_08_ver.png
-processed_icons64x64/Bag_09_ver.png
-processed_icons64x64/Bag_10_ver.png
-processed_icons64x64/Bag_11_ver.png
-processed_icons64x64/Bag_34_ver.png
-processed_icons64x64/Bag_35_ver.png
-processed_icons64x64/Bag_36_ver.png
-processed_icons64x64/Bag_37_ver.png
