@@ -123,10 +123,12 @@ namespace Equipment {
         //drop the items if the bag is overfilled
         for (int i = pack.maxSlots[bagSlot]; i < tempMaxSlots; ++i) {
           auto itemIDdrop = pack.inventory[bagSlot][i];
-          for (unsigned char &groundItem : groundItems) {
+          for (uint8_t &groundItem : groundItems) {
             if (groundItem == 0) {
               groundItem = itemIDdrop;
+              std::cout << "item dropped: " << itemIDdrop << " now on the ground: " << groundItem << std::endl;
               pack.inventory[bagSlot][i] = 0;
+              break;
             }
           }
           std::cout << "items dropped: " << itemIDdrop << std::endl;
