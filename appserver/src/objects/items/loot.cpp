@@ -25,12 +25,12 @@ namespace Loot {
     for (auto item : items) {
       if (item == 0)
         break;
-      itemsStr += Utils::Prepend_Zero_3Digit(item);
+      itemsStr += Utils::Prepend_Zero_By_Digits(item, 3);
       size++;
     }
     if (size == 0)
       return "0";
-    itemsStr = std::to_string(size) + itemsStr;
+    itemsStr = Utils::Prepend_Zero_By_Digits(size, 2) + itemsStr;
     std::cout << "items found and prepended with number of: " << itemsStr << std::endl;
     return itemsStr;
   }
