@@ -217,7 +217,7 @@ namespace Units {
 //    Items::Max_Slots maxSlots{}; //items
 //    Items::Inventory inventory{}; //items
 
-    Items::Pack pack{};
+    Items::Backpack pack{};
 
     int copper = 0;
     int silver = 0;

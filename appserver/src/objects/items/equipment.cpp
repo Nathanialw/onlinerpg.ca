@@ -80,7 +80,7 @@ namespace Equipment {
     }
   }
 
-  uint8_t Equip_Bag(Items::Pack &pack, int itemID, uint8_t invSlot, uint8_t bag, uint8_t bagSlot) {
+  uint8_t Equip_Bag(Items::Backpack &pack, int itemID, uint8_t invSlot, uint8_t bag, uint8_t bagSlot) {
     auto temp = pack.bags[bagSlot];
     pack.bags[bagSlot] = itemID;
     uint8_t tempMaxSlots = pack.maxSlots[bagSlot];
@@ -90,7 +90,7 @@ namespace Equipment {
     return tempMaxSlots;
   }
 
-  void Use_Item(Items::Pack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
+  void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
     int itemID = pack.inventory[bag][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
 
@@ -119,7 +119,7 @@ namespace Equipment {
       //check how many slots the bag has
       auto newBagSlots = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
       int numItemsInInventory = 0;
-      for (const auto &bagItem : pack.inventory[bag]) {
+      for (const auto &bagItem : pack.inventory[bagSlot]) {
         if (bagItem != 0) {
             numItemsInInventory++;
         }
@@ -128,7 +128,7 @@ namespace Equipment {
       int numItemsToDrop = newBagSlots - numItemsInInventory;
 
       if (numItemsToDrop > 0) {
-        std::cout << "bag has more occupied slots than the new bag has total slots" << std::endl;
+        std::cout << "old bag has more occupied slots than the new bag has total slots" << std::endl;
 
         // check how much space the ground cell has
         int occupiedGroundSpace = 0;
@@ -140,6 +140,7 @@ namespace Equipment {
         }
         int groundSpace = groundItems.size() - occupiedGroundSpace;
 
+        std::cout << "numItemsToDrop: " << numItemsToDrop << " groundSpace: " << groundSpace << std::endl;
         if (numItemsToDrop < groundSpace)
             std::cout << "plenty of space, equipping the bag" << std::endl;
         else {

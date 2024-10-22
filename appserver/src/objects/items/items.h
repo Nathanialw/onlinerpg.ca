@@ -44,7 +44,7 @@ namespace Items {
   typedef std::array<uint8_t, (int)Items::BagType::SIZE> Max_Slots;
   typedef std::array<std::array<int, 14>, (int)Items::BagType::SIZE> Inventory; //items
 
-  struct Pack {
+  struct Backpack {
       Inventory inventory;
       Bags bags;
       Max_Slots maxSlots;
