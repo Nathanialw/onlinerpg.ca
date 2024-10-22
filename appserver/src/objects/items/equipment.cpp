@@ -125,7 +125,7 @@ namespace Equipment {
         }
       }
 
-      int numItemsToDrop = newBagSlots - numItemsInInventory;
+      int numItemsToDrop = numItemsInInventory - newBagSlots;
 
       if (numItemsToDrop > 0) {
         std::cout << "old bag has more occupied slots than the new bag has total slots" << std::endl;
