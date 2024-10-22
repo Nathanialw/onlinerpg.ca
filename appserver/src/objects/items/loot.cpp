@@ -28,8 +28,7 @@ namespace Loot {
       itemsStr += Utils::Prepend_Zero_By_Digits(item, 3);
       size++;
     }
-    if (size == 0)
-      return "0";
+
     itemsStr = Utils::Prepend_Zero_By_Digits(size, 2) + itemsStr;
     std::cout << "items found and prepended with number of: " << itemsStr << std::endl;
     return itemsStr;
