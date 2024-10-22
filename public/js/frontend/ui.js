@@ -80,7 +80,7 @@ export function Parse_Game_Update(data) {
         let item = Get_Icon_Path(bagID);
         let iconPath = "assets/graphics/icons/"
         bags[i] = iconPath + item.icon;
-        let numItems = icon.slots; 
+        let numItems = item.slots; 
         startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
         inventory[i] = bag
     }
