@@ -38,13 +38,13 @@ export async function Draw_Loot(items) {
             continue
         }
         // draw loot background and border
-        let background = await Draw_Loot_Background(i, 2.5); //background
+        let background = await Draw_Loot_Background(items[i].path, i, 2.5); //background
         let icon = await Draw_Loot_Icons(items[i].path, i, 2.5);   
         let text = await Draw_Loot_Text(items[i].name, i, 2.5) //text
         let border = await Draw_Loot_Icons(itemFramePath, i, 2.5) //border
 
         //draw loot name
-        Set_Send_On_Loot_Click_Listener(icon, '0', i, items[i].itemID, Draw_Loot_Icons);  //0 means loot panel
+        Set_Send_On_Loot_Click_Listener(background, '0', i, items[i].itemID, Draw_Loot_Background);  //0 means loot panel
         // Set_Send_On_Loot_Click_Listener(item.text, '0', i, items[i].itemID, Draw_Loot_Icons);  //0 means loot panel
     }
 }

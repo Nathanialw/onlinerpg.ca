@@ -345,7 +345,7 @@ export async function Draw_Loot_Icons(iconPath, num, w) {
     return loot[num];
 }
 
-export async function Draw_Loot_Background(num, w) {
+export async function Draw_Loot_Background(iconPath, num, w) {
     let x = (Get_Right_Panel_Origin_x() + 0.5) * cellSize
     let y = (Get_Right_Panel_Origin_y() + 1.5) * cellSize
     
