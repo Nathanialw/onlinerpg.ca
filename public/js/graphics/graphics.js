@@ -383,6 +383,8 @@ export let minimapCellSize = 12;
 export function Set_Font_Size(size) {
     cellSize = size;
     minimapCellSize = size / 2;
+    defaultStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center' }
+    hoverStyle = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : gold, align : 'center' }
 }
 
 

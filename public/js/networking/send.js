@@ -58,7 +58,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, inv) {
 
     });
 
-    //DEKTOP ONLY
+    //DESKTOP ONLY
     item.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
@@ -112,7 +112,7 @@ export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID,
 
     });
 
-    //DEKTOP ONLY
+    //DESKTOP ONLY
     item.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
@@ -167,7 +167,7 @@ export function Set_Send_On_Loot_Click_Listener_Loot(item, panel, i, itemID, inv
 
     });
 
-    //DEKTOP ONLY
+    //DESKTOP ONLY
     item.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
