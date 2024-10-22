@@ -78,6 +78,9 @@ export function Parse_Game_Update(data) {
         let bagID = data.substring(startBag, startBag + 3);
         //get from DB
         let item = Get_Icon_Path(bagID);
+        if (item === undefined) {
+            continue;
+        }
         let iconPath = "assets/graphics/icons/"
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
