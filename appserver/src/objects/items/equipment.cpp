@@ -140,9 +140,9 @@ namespace Equipment {
         }
         int groundSpace = groundItems.size() - occupiedGroundSpace;
 
-        if (numItemsToDrop < groundSpace) {
+        if (numItemsToDrop < groundSpace)
             std::cout << "plenty of space, equipping the bag" << std::endl;
-        } else {
+        else {
             std::cout << "not enough space on the ground to equip the bag" << std::endl;
             return;
         }
