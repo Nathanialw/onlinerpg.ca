@@ -50,15 +50,21 @@ const itemBorders =[
     'public/assets/graphics/ui/inventory/item_quality_8.png',
 ]
 
-export async function Draw_Inventory(items) {
+export async function Draw_Inventory(bags, items) {
     for (let i = 0; i < inventory.length; i++) {
         Clear_Sprite_Array(inventory[i]);
     }    Clear_Sprite_Array(bags);
     const numBags = 5;
     for (let i = 0; i < numBags; i++) {
         //draw bag icon
-        let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2)
-        let border = await Draw_Bag_Icons(itemFramePath, i, 2) //border
+        if (bags[i] === undefined || bags[i] === "none") {
+            let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2)
+            let border = await Draw_Bag_Icons(itemFramePath, i, 2) //border
+        }
+        else {
+            let bag = await Draw_Bag_Icons(bags[i], i, 2)
+            let border = await Draw_Bag_Icons(itemFramePath, i, 2) //border
+        }
     }
 
     for (let j = 0; j < items.length; j++) {

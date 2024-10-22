@@ -26,6 +26,7 @@ let serverMap;
 // let loot = [];
 // let numInventory;
 let inventory = [];
+let bags = [];
 let equipment = []; //list of item {slot, itemID, path string)
 
 function Parse(numItems, start, data, Query, size, items) {
@@ -69,9 +70,17 @@ export function Parse_Game_Update(data) {
     Open_Loot_Panel(direction);
     
     let startBag = endLoot;
+    bags.length = 0;
     for (let i = 0; i < 5; i++) {
         let bag = [];
-        startBag = Parse(data.substring(startBag, startBag + 2), (startBag + 2), data, Query_Inventory, 5, bag);
+        //save to draw the bag icons
+        let bagID = data.substring(startBag, startBag + 3);
+        //get from DB
+        let item = Get_Icon_Path(bagID);
+        let iconPath = "assets/graphics/icons/"
+        bags[i] = iconPath + item.icon;
+        let numItems = icon.slots; 
+        startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
         inventory[i] = bag
     }
     
@@ -118,7 +127,7 @@ export function Update_Screen() {
     Update_Log(species, damage, isDead);  
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
-    Draw_Inventory(inventory);
+    Draw_Inventory(bags, inventory);
     Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
 }
 
