@@ -20,11 +20,11 @@ export function Query_Loot(numItems, data, start) {
         let item = Get_Icon_Path(itemID);
         let icon = item.icon
         if (icon === undefined || icon === "none") {
-            drops.push({index: i, itemID: itemID, path: icon}); 
+            drops.push({index: i, itemID: itemID, path: icon, name: item.name}); 
         }
         else {
             let path = iconPath + icon;
-            drops.push({index: i, itemID: itemID, path: path}); 
+            drops.push({index: i, itemID: itemID, path: path, name: item.name}); 
         }
     }
     return drops;
