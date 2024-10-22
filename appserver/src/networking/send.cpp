@@ -88,6 +88,8 @@ namespace Send {
         else if (mod == "a") { //equip offhand
           std::cout << "alt clicked: " << mod << std::endl;
           Equipment::Equip_Second_Item(game.Get_Player().pack.inventory, game.Get_Player().equipment, stoi(index), stoi(bag));
+          Backpack::Equip_Bag(game.Get_Player().pack, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(index), stoi(bag), Items::BagType::Items1);
+
         }
         else if (mod == "s") { //
           std::cout << "shift clicked, thusfar unused" << std::endl;
@@ -109,7 +111,6 @@ namespace Send {
         }
         else if (mod == "a") { //equip second bag
           std::cout << "alt clicked: " << mod << std::endl;
-          Backpack::Equip_Bag(game.Get_Player().pack, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(index), stoi(bag), Items::BagType::Items1);
         }
         else if (mod == "s") { //
           std::cout << "shift clicked, thusfar unused" << std::endl;

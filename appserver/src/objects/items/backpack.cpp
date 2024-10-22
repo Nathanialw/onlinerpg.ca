@@ -19,6 +19,7 @@ namespace Backpack {
   }
 
   void Unequip_Bag(Items::Backpack &pack, uint8_t bagSlot) {
+    std::cout << "unequipping bag" << std::endl;
     auto temp = pack.bags[bagSlot];
     pack.bags[bagSlot] = 0;
 
@@ -26,10 +27,12 @@ namespace Backpack {
       for (int i = 0; i < pack.maxSlots[j]; ++i) {
         if (pack.inventory[j][i] == 0) {
           pack.inventory[j][i] = temp;
+          std::cout << "bag unequipped at slot: " << bagSlot << std::endl;
           break;
         }
       }
     }
+    std::cout << "no space in inventory to unequip bag" << std::endl;
   }
 
   bool Check_Space_Item_Drop(Items::Backpack &pack, Items::Ground &groundItems, uint8_t bagSlot, Items::ItemID itemID) {
