@@ -51,7 +51,7 @@ namespace Items {
   };
 
 
-  typedef std::array<uint8_t , 12> Ground;
+  typedef std::array<uint8_t , 14> Ground;
   typedef std::array<int, (int)Items::ItemSlot::SIZE> Equipped;
 }
 

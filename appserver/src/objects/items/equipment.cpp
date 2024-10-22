@@ -105,20 +105,51 @@ namespace Equipment {
     }
 
     if (slotStr == "bag") {
-      //equip the bag
       uint8_t tempMaxSlots;
       uint8_t bagSlot = 0;
+
+      //determine which bag to equip
       if (pack.bags[bagSlot] == 0) {
-          tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
+        bagSlot = 0;
       }
       else if (pack.bags[bagSlot + 1] == 0) {
         bagSlot++;
-        tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
-      }
-      else {
-        tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
 
+      //check how many slots the bag has
+      auto newBagSlots = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
+      int numItemsInInventory = 0;
+      for (const auto &bagItem : pack.inventory[bag]) {
+        if (bagItem != 0) {
+            numItemsInInventory++;
+        }
+      }
+
+      int numItemsToDrop = newBagSlots - numItemsInInventory;
+
+      if (numItemsToDrop > 0) {
+        std::cout << "bag has more occupied slots than the new bag has total slots" << std::endl;
+
+        // check how much space the ground cell has
+        int occupiedGroundSpace = 0;
+        for (const auto &groundItem : groundItems) {
+            if (groundItem == 0) {
+              break;
+            }
+            occupiedGroundSpace++;
+        }
+        int groundSpace = groundItems.size() - occupiedGroundSpace;
+
+        if (numItemsToDrop < groundSpace) {
+            std::cout << "plenty of space, equipping the bag" << std::endl;
+        } else {
+            std::cout << "not enough space on the ground to equip the bag" << std::endl;
+            return;
+        }
+      }
+      tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
+
+      //throw away items if the bag is overfilled
       if (pack.maxSlots[bagSlot] < tempMaxSlots) {
         //drop the items if the bag is overfilled
         for (int i = pack.maxSlots[bagSlot]; i < tempMaxSlots; ++i) {
@@ -134,6 +165,9 @@ namespace Equipment {
           std::cout << "items dropped: " << itemIDdrop << std::endl;
         }
       }
+
+      //equip the bag
+
       return;
     }
 
