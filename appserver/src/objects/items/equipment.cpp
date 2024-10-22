@@ -119,18 +119,18 @@ namespace Equipment {
         tempMaxSlots = Equip_Bag(pack, itemID, invSlot, bag, bagSlot);
       }
 
-      if (tempMaxSlots < pack.maxSlots[bagSlot]) {
+      if (pack.maxSlots[bagSlot] < tempMaxSlots) {
         //drop the items if the bag is overfilled
-        auto itemIDdrop = pack.inventory[bagSlot][invSlot];
         for (int i = pack.maxSlots[bagSlot]; i < tempMaxSlots; ++i) {
-            for (unsigned char &groundItem : groundItems) {
-              if (groundItem == 0) {
-                groundItem = itemIDdrop;
-                pack.inventory[bagSlot][invSlot] = 0;
-              }
+          auto itemIDdrop = pack.inventory[bagSlot][i];
+          for (unsigned char &groundItem : groundItems) {
+            if (groundItem == 0) {
+              groundItem = itemIDdrop;
+              pack.inventory[bagSlot][i] = 0;
             }
+          }
+          std::cout << "items dropped: " << itemIDdrop << std::endl;
         }
-        std::cout << "items dropped: " << itemIDdrop << std::endl;
       }
       return;
     }
