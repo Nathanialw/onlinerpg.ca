@@ -10,7 +10,7 @@
 
 namespace Loot {
 
-  void Generate_Loot(Items::ground &items) {
+  void Generate_Loot(Items::Ground &items) {
     uint8_t numItems = Utils::Random(1, 4);
     for (int i = 0; i < numItems; ++i) {
       uint8_t itemID = Utils::Random(1 , DB::Get_Num_Items());
@@ -19,7 +19,7 @@ namespace Loot {
     }
   }
 
-  std::string Query_Loot(Items::ground &items) {
+  std::string Query_Loot(Items::Ground &items) {
     std::string itemsStr;
     int size = 0;
     for (auto item : items) {
@@ -35,7 +35,7 @@ namespace Loot {
     return itemsStr;
   }
 
-  std::string Pick_Up_Item(Items::ground &loot, Items::bags &inventory, const Items::bagSlots &maxSlots, uint8_t index) {
+  std::string Pick_Up_Item(Items::Ground &loot, Items::Inventory &inventory, const Items::Max_Slots &maxSlots, uint8_t index) {
     int itemID = loot[index];
     int inventoryIndex = 999;
 

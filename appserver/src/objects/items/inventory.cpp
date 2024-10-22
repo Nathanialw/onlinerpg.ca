@@ -12,7 +12,7 @@
 namespace Inventory {
 
 
-  void Drop_Item(Items::bags &inventory, Items::ground &groundItems, uint8_t bag, uint8_t index) {
+  void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index) {
     auto itemID = inventory[bag][index];
     for (unsigned char & groundItem : groundItems) {
       if (groundItem == 0) {
@@ -24,7 +24,7 @@ namespace Inventory {
     std::cout << "item dropped: " << itemID << std::endl;
   }
 
-  std::string Update_Inventory(Items::bags &inventory, const Items::bagSlots &maxSlots) {
+  std::string Update_Inventory(Items::Inventory &inventory, const Items::Max_Slots &maxSlots) {
     std::cout << "inventory updated" << std::endl;
     std::string inventoryStr;
 
@@ -43,7 +43,7 @@ namespace Inventory {
     return inventoryStr;
   }
 
-  std::string Get_Inventory(Items::bags &inventory) {
+  std::string Get_Inventory(Items::Inventory &inventory) {
     auto items = inventory[(int)Items::BagType::Items0];
     std::string itemsStr = Utils::Prepend_Zero_By_Digits(items.size(), 2);
 

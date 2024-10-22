@@ -34,7 +34,7 @@ namespace Send {
     if (!game.objects[level][location].units.empty()) {
       std::string action = "d    10";
       // append inventory
-      action.append(Inventory::Update_Inventory(game.Get_Player().inventory, game.Get_Player().maxSlots));
+      action.append(Inventory::Update_Inventory(game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots));
       // append equipment
       action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
       print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
@@ -50,7 +50,7 @@ namespace Send {
     //  send stats
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
     // append inventory
-    action.append(Inventory::Update_Inventory(game.Get_Player().inventory, game.Get_Player().maxSlots));
+    action.append(Inventory::Update_Inventory(game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots));
     // append equipment
     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
     // send map
@@ -76,32 +76,29 @@ namespace Send {
 
       if (type == "0") {
         std::cout << "Looting item at index: " << index << std::endl;
-        Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().inventory, game.Get_Player().maxSlots, stoi(index));
+        Loot::Pick_Up_Item(game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index));
       }
       else if (type == "1") {
         std::cout << "interacting with inventory at index: " << index << std::endl;
         if (mod == "c") { //throw away
           std::cout << "control clicked: " << mod << std::endl;
-          Inventory::Drop_Item(game.Get_Player().inventory, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(bag), stoi(index));
+          Inventory::Drop_Item(game.Get_Player().pack.inventory, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(bag), stoi(index));
         }
         else if (mod == "a") { //equip offhand
           std::cout << "alt clicked: " << mod << std::endl;
-          Equipment::Equip_Second_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index), stoi(bag));
+          Equipment::Equip_Second_Item(game.Get_Player().pack.inventory, game.Get_Player().equipment, stoi(index), stoi(bag));
         }
         else if (mod == "s") { //
           std::cout << "shift clicked, thusfar unused" << std::endl;
         }
         else { //equip standard / use item
           std::cout << "unmodded clicked: " << mod << std::endl;
-          auto item = Equipment::Use_Item(game.Get_Player().inventory, game.Get_Player().equipment, stoi(index), stoi(bag));
-          if (!item.empty()) {
-            std::cout << "item not equippable, use item: " << item << std::endl;
-          }
+          Equipment::Use_Item(game.Get_Player().pack, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().equipment, stoi(index), stoi(bag));
         }
       }
       else if (type == "2") {
         std::cout << "interacting with equipment at index: " << index << std::endl;
-        Equipment::Unequip_Item(game.Get_Player().inventory, game.Get_Player().equipment, index, game.Get_Player().maxSlots);
+        Equipment::Unequip_Item(game.Get_Player().pack.inventory, game.Get_Player().equipment, index, game.Get_Player().pack.maxSlots);
       }
 
       std::string skip = "1 ";

@@ -36,8 +36,7 @@ namespace Game {
     //units
 //    Units::Objects objects;
     std::array<std::unordered_map<Component::Position, Units::Objects>, 26> objects;
-    //up to 4 items per tile
-    std::array<std::unordered_map<Component::Position, std::unordered_map<Component::Position, Items::ground>>, 26> items{};
+    std::array<std::unordered_map<Component::Position, std::unordered_map<Component::Position, Items::Ground>>, 26> items{};
 
     //current turn
 //    int time = 0;

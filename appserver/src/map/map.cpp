@@ -102,7 +102,7 @@ namespace Map {
   }
 
   //only needs to check the first item
-  bool Check_For_Item(Items::ground &items) {
+  bool Check_For_Item(Items::Ground &items) {
     if (items[0] != 0)
       return true;
     return false;

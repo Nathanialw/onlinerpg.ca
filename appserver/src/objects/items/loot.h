@@ -13,7 +13,7 @@
 
 namespace Loot {
 
-  void Generate_Loot(Items::ground &items);
-  std::string Query_Loot(Items::ground &items);
-  std::string Pick_Up_Item(Items::ground &loot, Items::bags &inventory, const Items::bagSlots &maxSlots, uint8_t index);
+  void Generate_Loot(Items::Ground &items);
+  std::string Query_Loot(Items::Ground &items);
+  std::string Pick_Up_Item(Items::Ground &loot, Items::Inventory &inventory, const Items::Max_Slots &maxSlots, uint8_t index);
 }

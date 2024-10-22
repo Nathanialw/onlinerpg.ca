@@ -209,12 +209,15 @@ namespace Units {
 
     int level;
     Component::Position location{};
-    Items::equipped equipment{};
+    Items::Equipped equipment{};
 
     //items are just an ID that is in the db
     //db contains the damage, AC, icon path, description, etc
-    Items::bagSlots maxSlots{}; //items
-    Items::bags inventory{}; //items
+//    Items::Bags bags{}; //items
+//    Items::Max_Slots maxSlots{}; //items
+//    Items::Inventory inventory{}; //items
+
+    Items::Pack pack{};
 
     int copper = 0;
     int silver = 0;
@@ -227,11 +230,11 @@ namespace Units {
       level = iLevel;
       location = sLocation;
 
-      maxSlots[0] = 4;
-      maxSlots[1] = 4;
-      maxSlots[2] = 2;
-      maxSlots[3] = 2;
-      maxSlots[4] = 3;
+      pack.maxSlots[0] = 4;
+      pack.maxSlots[1] = 4;
+      pack.maxSlots[2] = 2;
+      pack.maxSlots[3] = 2;
+      pack.maxSlots[4] = 3;
 
     }
 };
