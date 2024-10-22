@@ -17,3 +17,61 @@ namespace Inventory {
 };
 
 #endif // BROWSERRPG_INVENTORY_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+processed_icons64x64/Resources and crafts_25_ver.png
+processed_icons64x64/Resources and crafts_26_ver.png
+processed_icons64x64/Resources and crafts_27_ver.png
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

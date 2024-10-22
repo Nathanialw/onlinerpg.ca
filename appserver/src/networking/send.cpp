@@ -102,6 +102,18 @@ namespace Send {
       }
       else if (type == "3") {
         std::cout << "interacting with bags at index: " << index << std::endl;
+        if (mod == "c") { //unequip bag
+          std::cout << "control clicked: " << mod << std::endl;
+        }
+        else if (mod == "a") { //equip second bag
+          std::cout << "alt clicked: " << mod << std::endl;
+        }
+        else if (mod == "s") { //
+          std::cout << "shift clicked, thusfar unused" << std::endl;
+        }
+        else { //equip standard / use item
+          std::cout << "unmodded clicked: " << mod << std::endl;
+        }
       }
 
 
