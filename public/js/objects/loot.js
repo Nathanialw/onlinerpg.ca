@@ -38,7 +38,7 @@ export async function Draw_Loot(items) {
             continue
         }
         // draw loot background and border
-        let background = await Draw_Loot_Background(items[i].path, i, 2.5); //background
+        let background = await Draw_Loot_Background(itemFramePath, i, 2.5); //background
         let icon = await Draw_Loot_Icons(items[i].path, i, 2.5);   
         let text = await Draw_Loot_Text(items[i].name, i, 2.5) //text
         let border = await Draw_Loot_Icons(itemFramePath, i, 2.5) //border

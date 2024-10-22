@@ -345,11 +345,11 @@ export async function Draw_Loot_Icons(iconPath, num, w) {
     return loot[num];
 }
 
-export async function Draw_Loot_Background(iconPath, num, w) {
+export async function Draw_Loot_Background(path, num, w) {
     let x = (Get_Right_Panel_Origin_x() + 0.5) * cellSize
     let y = (Get_Right_Panel_Origin_y() + 1.5) * cellSize
     
-    let highlightBackground = await Load_Icon(itemFramePath);    
+    let highlightBackground = await Load_Icon(path);    
     let highlight = new PIXI.Sprite(highlightBackground);  
     Draw_Sprite(x + (1 * cellSize), y + (2.5 * cellSize) + (w * num) * cellSize, (rightPanelWidth - 3) * cellSize, w * cellSize, highlight)
     return highlight;
