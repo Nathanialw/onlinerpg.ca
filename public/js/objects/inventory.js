@@ -1,7 +1,7 @@
 'use strict'
 import { Clear_Sprite_Array, Draw_Inventory_Icons, Draw_Bag_Icons, inventory, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
-import { Set_Send_On_Loot_Click_Listener_inv } from '../networking/send.js';
+import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
 //when I move on to a new tile
 //check if there is loot
@@ -53,17 +53,24 @@ const itemBorders =[
 export async function Draw_Inventory(bags, items) {
     for (let i = 0; i < inventory.length; i++) {
         Clear_Sprite_Array(inventory[i]);
-    }    Clear_Sprite_Array(bags);
+    }    
+    // Clear_Sprite_Array(bags);
+
     const numBags = 5;
     for (let i = 0; i < numBags; i++) {
         //draw bag icon
-        if (bags[i] === undefined || bags[i] === "none") {
+        if (bags[i].path === undefined || bags[i].path === "none") {
             let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2)
             let border = await Draw_Bag_Icons(itemFramePath, i, 2) //border
         }
         else {
-            let bag = await Draw_Bag_Icons(bags[i], i, 2)
+            console.log(bags[i])                    
+            let bag = await Draw_Bag_Icons(bags[i].path, i, 2)
             let border = await Draw_Bag_Icons(itemFramePath, i, 2) //border
+            // Set_Send_On_Loot_Click_Listener_inv(bag, '1', num, j, items[j][i].itemID, Draw_Bag_Icons);   //1 means inventory panel
+            // let bagID
+            Set_Send_On_Loot_Click_Listener(bag, '3', i, bags[i].itemID, Draw_Bag_Icons, 2);   //1 means inventory panel
+            
         }
     }
 

@@ -75,7 +75,7 @@ export async function Draw_Equipment(items) {
             else {
                 let border = await Draw_Equipment_Icons(ammobg, i, 2.5) //border
             }
-            Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID, Draw_Equipment_Icons);   //1 means inventory panel
+            Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID, Draw_Equipment_Icons, 2.5);   //1 means inventory panel
         }
     }
 }

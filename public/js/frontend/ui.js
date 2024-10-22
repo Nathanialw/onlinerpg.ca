@@ -79,7 +79,7 @@ export function Parse_Game_Update(data) {
         //get from DB
         let item = Get_Icon_Path(bagID);
         let iconPath = "assets/graphics/icons/"
-        bags[i] = iconPath + item.icon;
+        bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
         startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
         inventory[i] = bag
