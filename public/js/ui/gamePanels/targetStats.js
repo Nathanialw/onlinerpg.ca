@@ -70,7 +70,7 @@ export function Target_Stats() {
     //display rect 
     Clear_Target();
 
-    console.log("displaying target stats2")
+    console.log("displaying target stats2", targetStats)
     let x = Get_Right_Panel_Origin_x() + 1.8;
     targetStatsDisplay.length = 0;
     let y = Get_Right_Panel_Origin_y() + 1.4
