@@ -29,8 +29,10 @@ namespace Species {
     auto unit = Units::Get_Unit_At_Position(game.objects[game.Get_Player().level][game.Get_Player().location].units, game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, mapPositionX, mapPositionY);
 
     //unit ID for the DB
+    std::cout << "unitID  int8: " << unit.unitID << std::endl;
     auto unitID = Utils::Prepend_Zero_By_Digits(unit.unitID, 3);
-      //name uID from "names" table, save in unit class
+    std::cout << "unitID str: " << unitID << std::endl;
+        //name uID from "names" table, save in unit class
       //vision from DB
       //speed from DB
       //alignment from DB
@@ -44,7 +46,10 @@ namespace Species {
       //damage random generate + items
       //AC random generate + items
 
+    std::cout << "unit name int8: " << unit.name << std::endl;
     auto name = Utils::Prepend_Zero_By_Digits(unit.name, 3);
+    std::cout << "unit name str: " << name << std::endl;
+
     auto age = Utils::Prepend_Zero_By_Digits(unit.age, 3);
     std::string gender = std::to_string((int)unit.def.gender);
 //    std::string alignment = std::to_string((int)unit.def.alignment);
