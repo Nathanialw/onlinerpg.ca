@@ -63,16 +63,6 @@ document.getElementById('connectButton').addEventListener('click', async (event)
 
         newGameButton.addEventListener('click', startNewGame)
 
-        const gameMenuKeyDown = (event) => {
-            if (event.key === 'Enter') {
-                newGameButton.click();
-            }
-            else if (event.key === 'Escape') {
-                exitButton.click();
-            }
-        };    
-        
-        document.addEventListener('keydown', gameMenuKeyDown);
 
      
 
@@ -108,10 +98,18 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             exitButton.removeEventListener('click', exitGame);
             Send_Web_Socket_Message("7");
         };
-
-
-
         exitButton.addEventListener('click', exitGame)
+
+
+        const gameMenuKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                newGameButton.click();
+            }
+            else if (event.key === 'Escape') {
+                exitButton.click();
+            }
+        }; 
+        document.addEventListener('keydown', gameMenuKeyDown);
     
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
