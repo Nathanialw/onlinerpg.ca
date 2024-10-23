@@ -38,9 +38,9 @@ export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(21, 23));
         
     //query DB using targetStats.unitID
-    const stats = await Get_Unit_Stats(targetStats.unitID)
     const name = await Get_Unit_Name(nameID)
     targetStats.name = name.name;
+    const stats = await Get_Unit_Stats(targetStats.unitID)
     targetStats.species = stats.name;
     targetStats.speed = stats.speed;
     targetStats.vision = stats.vision;
@@ -49,14 +49,12 @@ export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.alignment = stats.alignment;
     
     Set_Game_Panel_Index(0);
-    console.log("refreshing screen")
     Update_Screen();
-    console.log("done")
 }
 
 function Display_Line(value, i, x, y) {
     targetStatsDisplay[i] = Create_Text_Line(value, minimapCellSize, i, x, y);
-    i++;
+    i += 1.1;
     return i;
 }
 
@@ -73,25 +71,26 @@ export function Target_Stats() {
     let y = Get_Right_Panel_Origin_y() + 1.4
     Load_Target_Image(x - 1, y + 3, targetStats.pic)        
     
-    x = Get_Right_Panel_Origin_x() + 18.3;
-    y = Get_Right_Panel_Origin_y() + 6; 
+    x = Get_Right_Panel_Origin_x() + 15;
+    y = Get_Right_Panel_Origin_y() + 5; 
 
     let line = 0;
-    line = Display_Line("Name: " + targetStats.name + targetStats.gender, line, x, y);
-    line = Display_Line("Species: " + targetStats.species, line, x, y);
-    line = Display_Line("Age: " + targetStats.age, line, x, y);
+    line = Display_Line("     Name: " + targetStats.name + targetStats.gender, line, x, y);
+    line = Display_Line("  Species: " + targetStats.species, line, x, y);
+    line = Display_Line("      Age: " + targetStats.age, line, x, y);
     line = Display_Line("Alignment: " + targetStats.alignment, line, x, y);
-    line = Display_Line("Health: " + targetStats.health, line, x, y);
-    line = Display_Line("Attack: " + targetStats.attack, line, x, y);
-    line = Display_Line("AC: " + targetStats.AC, line, x, y);
-    line = Display_Line("Speed: " + targetStats.speed, line, x, y);
-    line = Display_Line("Vision: " + targetStats.vision, line, x, y);
+    line = Display_Line("", line, x, y);
+    line = Display_Line("   Health: " + targetStats.health, line, x, y);
+    line = Display_Line("   Attack: " + targetStats.attack, line, x, y);
+    line = Display_Line("       AC: " + targetStats.AC, line, x, y);
+    line = Display_Line("    Speed: " + targetStats.speed, line, x, y);
+    line = Display_Line("   Vision: " + targetStats.vision, line, x, y);
     line = Display_Line("", line, x, y);
     let lineWidth = 24;
     // let lines = Math.ceil(targetStats.bio.length/lineWidth);
     let currentPos = 0;
     x = Get_Right_Panel_Origin_x() + 1.3;
-    y = Get_Right_Panel_Origin_y() + 13.4; 
+    y = Get_Right_Panel_Origin_y() + 12.4; 
 
     // for (let i = 0; i < lines; i++) {
     while (currentPos < targetStats.bio.length) {

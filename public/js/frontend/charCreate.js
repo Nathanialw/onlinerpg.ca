@@ -33,6 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateHeroClass()
+    async () => {
+        await createWebSocket();
+        console.log("WebSocket connection established");
+    }
 })
 
 function Buttons(Option) {
@@ -198,7 +202,6 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
         loadingText.textContent = `Connecting...`;
         loadingText.style.display = 'block'; // Show error message
         try {
-            await createWebSocket();
             Set_Canvas();
             Load_Scripts();
             Send();
@@ -209,7 +212,8 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
     }    
 });
 
-export function OnReconnect() {
+export async function OnReconnect() {
+    await createWebSocket();
     Set_Canvas();
     Load_Scripts();
     Remove_Elements();
