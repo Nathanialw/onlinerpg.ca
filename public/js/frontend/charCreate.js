@@ -83,9 +83,9 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         //close connection
         // add New Game button
         const exitButton = document.createElement('button');
-        newGameButton.id = 'exitGame';
-        newGameButton.classList.add('btn', 'btn-center');
-        newGameButton.textContent = 'Exit';        
+        exitButton.id = 'exitGame';
+        exitButton.classList.add('btn', 'btn-center');
+        exitButton.textContent = 'Exit';        
 
         //append as adjecent sibling of newGameButton
         menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
