@@ -4,10 +4,10 @@ import { character_Create } from './newGame.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
 
 document.getElementById('connectButton').addEventListener('click', async (event) => {
-    Init_Title().then(() => {
-        console.log("Title music loaded");
-        Music_Play("title");
-    });
+    // Init_Title().then(() => {
+    //     console.log("Title music loaded");
+    //     Music_Play("title");
+    // });
 
     const connectError = document.getElementById('nameError');
     const connectText = document.getElementById('connect-text');
@@ -19,6 +19,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
     connectText.style.display = 'block'; // Show error message
     try {
         await createWebSocket();
+   
         
         const connectButton = document.querySelector('#connectButton');
         document.removeEventListener('keydown', connectKeyDown);
@@ -63,6 +64,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         newGameButton.addEventListener('click', startNewGame)
         document.addEventListener('keydown', gameMenuKeyDown);
 
+     
 
         // //add resume button 
         // if (1) { send a message to the server to check if there is a saved game
@@ -97,6 +99,15 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             Send_Web_Socket_Message("7");
         };
 
+        const gameMenuKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                newGameButton.click();
+            }
+            else if (event.key === 'Escape') {
+                exitButton.click();
+            }
+        };    
+
         exitButton.addEventListener('click', exitGame)
     
     } catch (error) {
@@ -104,15 +115,6 @@ document.getElementById('connectButton').addEventListener('click', async (event)
     }
     
 });
-
-const gameMenuKeyDown = (event) => {
-    if (event.key === 'Enter') {
-        newGameButton.click();
-    }
-    else if (event.key === 'Escape') {
-        exitButton.click();
-    }
-};    
 
 const connectKeyDown = (event) => {
     if (event.key === 'Enter') {
