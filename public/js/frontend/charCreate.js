@@ -197,9 +197,33 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         try {
             await createWebSocket();
             const connectButton = document.querySelector('.connectButton');
+            //remove connect button
             if (connectButton) {
                 connectButton.remove();
             }
+            // add New Game button
+            const newGameButton = document.createElement('button');
+            newGameButton.id = 'newGame';
+            newGameButton.classList.add('btn', 'btn-center');
+            newGameButton.textContent = 'New Game';
+            document.querySelector('.connectButton').appendChild(newGameButton);
+            connectError.style.display = 'none'; // Hide error
+            //add event listener to new game button
+            document.getElementById('newGame').addEventListener('click', async (event) => {
+                console.log("New Game button clicked")
+            })
+
+            //add resume button 
+            const resumeButton = document.createElement('button');
+            resumeButton.id = 'resume';
+            resumeButton.classList.add('btn', 'btn-center');
+            resumeButton.textContent = 'Resume';
+            document.querySelector('.connectButton').appendChild(resumeButton);
+            connectError.style.display = 'none'; // Hide error
+            //add event listener to resume button
+            document.getElementById('resume').addEventListener('click', async (event) => {
+                console.log("Resume button clicked")
+            })
         
         } catch (error) {
             console.error("Failed to establish WebSocket connection:", error);
