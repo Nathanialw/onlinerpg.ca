@@ -43,7 +43,7 @@ export async function Get_Target_Stats_From_Server(statsString) {
     console.log(targetStats.speed)
     targetStats.vision = stats.vision;
     console.log(targetStats.vision)
-    targetStats.pic = stats.image;
+    targetStats.pic = "assets/imgs/goblin/male/" + stats.image;
     console.log(targetStats.pic)    
     targetStats.bio = stats.description;
     console.log(targetStats.bio)
@@ -70,7 +70,7 @@ export function Target_Stats() {
     //display rect 
     Clear_Target();
 
-
+    console.log("displaying target stats2")
     let x = Get_Right_Panel_Origin_x() + 1.8;
     targetStatsDisplay.length = 0;
     let y = Get_Right_Panel_Origin_y() + 1.4
@@ -80,6 +80,7 @@ export function Target_Stats() {
     y = Get_Right_Panel_Origin_y() + 6; 
 
     let line = 0;
+    console.log("displaying target stats3")
     line = Display_Line("Name: " + targetStats.name, line, x, y);
     line = Display_Line("Age: " + targetStats.age, line, x, y);
     line = Display_Line("Gender: " + targetStats.gender, line, x, y);
@@ -93,11 +94,12 @@ export function Target_Stats() {
     let lineWidth = 24;
     // let lines = Math.ceil(targetStats.bio.length/lineWidth);
     let currentPos = 0;
-
+    console.log("displaying target stats4")
     x = Get_Right_Panel_Origin_x() + 1.3;
     y = Get_Right_Panel_Origin_y() + 13.4; 
 
     // for (let i = 0; i < lines; i++) {
+    console.log("displaying target stats5")
     while (currentPos < targetStats.bio.length) {
         //itertate backwards to find the last space in the line
         let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
