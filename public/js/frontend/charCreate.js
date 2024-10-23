@@ -30,7 +30,12 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         newGameButton.id = 'newGame';
         newGameButton.classList.add('btn', 'btn-center');
         newGameButton.textContent = 'New Game';        
-        document.querySelector('.menuButtons').appendChild(newGameButton);
+        //append as first child
+        if (menuButtons) {
+            menuButtons.insertBefore(newGameButton, menuButtons.firstChild);
+        } else {
+            console.error("Element with class 'menuButtons' not found.");
+        }        
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
