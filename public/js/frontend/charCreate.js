@@ -3,8 +3,9 @@ import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
 
 document.getElementById('connectButton').addEventListener('click', async (event) => {
-    Init_Title();
-    Music_Play("title");
+    Init_Title().then(() => {
+        Music_Play("title");
+    });
 
     const connectError = document.getElementById('nameError');
     const connectText = document.getElementById('connect-text');

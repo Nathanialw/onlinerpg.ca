@@ -285,8 +285,8 @@ export function character_Create() {
     input.id = 'name';
     input.name = 'name';
     input.required = true;
-    input.minLength = 3;
-    input.maxLength = 20;
+    input.minLength = minNameLength;
+    input.maxLength = maxNameLength;
     input.autocomplete = 'off';
     form.appendChild(input);
     nameInputSection.appendChild(form);
