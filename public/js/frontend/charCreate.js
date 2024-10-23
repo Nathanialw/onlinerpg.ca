@@ -185,7 +185,7 @@ function Set_Canvas() {
     }
 }
 
-document.getElementById('connectButton').addEventListener('click', async (event) => {
+document.getElementById('connect').addEventListener('click', async (event) => {
     const nameInput = document.getElementById('name');
     const connectError = document.getElementById('nameError');
     const connectText = document.getElementById('connect-text');
