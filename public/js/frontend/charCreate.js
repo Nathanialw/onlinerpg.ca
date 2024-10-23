@@ -1,4 +1,4 @@
-import { createWebSocket, socket } from '/js/networking/socket.js';
+import { createWebSocket, Send_Web_Socket_Message } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 
@@ -35,6 +35,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateHeroClass()
     
     await createWebSocket();
+    Send_Web_Socket_Message("9")
+    //ask if a game is already in progress
+    //if it is ask if they want to resume
+    //add resume button if it is
     console.log("WebSocket connection established");
 })
 
@@ -212,7 +216,6 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
 });
 
 export async function OnReconnect() {
-    await createWebSocket();
     Set_Canvas();
     Load_Scripts();
     Remove_Elements();

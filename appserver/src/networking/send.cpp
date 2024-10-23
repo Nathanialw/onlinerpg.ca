@@ -94,6 +94,10 @@ namespace Send {
       return 1;
     }
 
+    else if (msg[0] == '8') { // create resume button
+      return 2;
+    }
+
     else {
       //
     }

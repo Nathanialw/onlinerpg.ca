@@ -151,6 +151,10 @@ namespace Network {
       Close_Game(Get_SessionID(hdl));
       print_server.close(hdl, websocketpp::close::status::normal, "Game Closed");
     }
+    else if (gg == 2) {
+      
+      print_server.close(hdl, websocketpp::close::status::normal, "Game in progress");
+    }
 
     //when a player moves, send the new position to all the clients except the one that sent it right away
 
