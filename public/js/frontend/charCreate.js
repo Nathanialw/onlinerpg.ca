@@ -18,7 +18,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         await createWebSocket();
         
         const connectButton = document.querySelector('#connectButton');
-        document.removeEventListener('keydown', () => {});
+        document.removeEventListener('keydown', connectKeyDown);
         // remove connect button
         if (connectButton) {
             connectButton.remove();
@@ -39,7 +39,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
                 description.remove();
             }        
             
-            document.removeEventListener('keydown', () => {});
+            document.removeEventListener('keydown', gameMenuKeyDown);
             const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
@@ -48,11 +48,14 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             console.log("New Game button clicked")
         })
 
-        document.addEventListener("keydown", (event) => {
+        const gameMenuKeyDown = (event) => {
             if (event.key === 'Enter') {
-                document.getElementById('newGame').click();
+                newGameButton.click();
             }
-        })
+        };
+    
+        document.addEventListener('keydown', gameMenuKeyDown);
+        
 
         // //add resume button 
         // if (1) { send a message to the server to check if there is a saved game
@@ -76,8 +79,9 @@ document.getElementById('connectButton').addEventListener('click', async (event)
     
 });
 
-document.addEventListener("keydown", (event) => {
+const connectKeyDown = (event) => {
     if (event.key === 'Enter') {
-        document.getElementById('connectButton').click();
+        document.querySelector('#connectButton').click();
     }
-})
+};
+document.addEventListener('keydown', connectKeyDown);

@@ -323,48 +323,48 @@ export function character_Create() {
 
 
     // document.getElementById('startGame')
-    startButtonSection.addEventListener('click', async (event) => {
-    const nameInput = document.getElementById('name');
-    const nameError = document.getElementById('nameError');
-    const loadingText = document.getElementById('loading-text');
-    
-    if (nameInput.value.length < minNameLength || nameInput.value.length > maxNameLength) {
-        event.preventDefault(); // Prevent form submission
-        nameInput.classList.add('error'); // Add error class to input
-        nameError.style.display = 'block'; // Show error message
-        if (nameInput.value.length < minNameLength) {
-            nameError.textContent = `Name must be at least ${minNameLength} characters long.`;
-        } else {
-            nameError.textContent = `Name must be no more than ${maxNameLength} characters long.`;
-        }
+    const validateName = (event) => {
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('nameError');
+        const loadingText = document.getElementById('loading-text');
         
-    } else {
-        loadingText.classList.add('loading-text'); // Add error class to input
-        loadingText.style.color = 'white';
-        loadingText.textContent = `Connecting...`;
-        loadingText.style.display = 'block'; // Show error message
-        try {
-            Set_Canvas();
-            Load_Scripts();
-            Send();
-            Remove_Elements();
-            //remove event listeners
-            document.getElementById('Human').removeEventListener('click', () => {});
-            document.getElementById('Elf').removeEventListener('click', () => {});
-            document.removeEventListener('keydown', () => {});
-        } catch (error) {
-            console.error("Failed to load game world:", error);
-        }  
-    }    
+        if (nameInput.value.length < minNameLength || nameInput.value.length > maxNameLength) {
+            event.preventDefault(); // Prevent form submission
+            nameInput.classList.add('error'); // Add error class to input
+            nameError.style.display = 'block'; // Show error message
+            if (nameInput.value.length < minNameLength) {
+                nameError.textContent = `Name must be at least ${minNameLength} characters long.`;
+            } else {
+                nameError.textContent = `Name must be no more than ${maxNameLength} characters long.`;
+            }
+            
+        } else {
+            loadingText.classList.add('loading-text'); // Add error class to input
+            loadingText.style.color = 'white';
+            loadingText.textContent = `Connecting...`;
+            loadingText.style.display = 'block'; // Show error message
+            try {
+                Set_Canvas();
+                Load_Scripts();
+                Send();
+                Remove_Elements();
+                //remove event listeners
+                document.removeEventListener('keydown', handleKeyDown);
+                document.removeEventListener('click', validateName);
+            } catch (error) {
+                console.error("Failed to load game world:", error);
+            }  
+        }    
+    }
 
-
-    });
-
-    document.addEventListener("keydown", (event) => {
+    const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            document.getElementById('startGame').click();
+            startButtonSection.click();
         }
-    })
+    };
+
+    startButtonSection.addEventListener('click', validateName);
+    document.addEventListener('keydown', handleKeyDown);
     
     Init_Char_Select()
 };
