@@ -178,9 +178,9 @@ export async function Create_Canvas() {
     app.renderer.resize(gameCanvas.clientWidth, gameCanvas.clientHeight);
 
     // Add custom cursor styles
-    defaultIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor.png\'),auto';
-    hoverIcon = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor_outline_blue.png\'),auto';
-    hoverEnemy = 'url(\'https://onlinerpg.ca/assets/graphics/mouse/cursor_outline_red.png\'),auto';
+    defaultIcon = 'url(\'https://www.onlinerpg.ca/assets/graphics/mouse/cursor.png\'),auto';
+    hoverIcon = 'url(\'https://www.onlinerpg.ca/assets/graphics/mouse/cursor_outline_blue.png\'),auto';
+    hoverEnemy = 'url(\'https://www.onlinerpg.ca/assets/graphics/mouse/cursor_outline_red.png\'),auto';
     app.renderer.events.cursorStyles.default = defaultIcon;
     app.renderer.events.cursorStyles.hover = hoverIcon;
     app.renderer.events.cursorStyles.crosshair = hoverEnemy;
