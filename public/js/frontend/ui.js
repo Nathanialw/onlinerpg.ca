@@ -79,6 +79,7 @@ export function Parse_Game_Update(data) {
         //get from DB
         let item = Get_Icon_Path(bagID);
         if (item === undefined) {
+            console.log(bagID, "uID is undefined in the db")
             continue;
         }
         let iconPath = "assets/graphics/icons/"
