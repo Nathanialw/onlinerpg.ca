@@ -78,14 +78,16 @@ export async function createWebSocket() {
             console.log("WebSocket connection closed, attempting to reconnect...");
             clearInterval(pingInterval); // Clear the ping interval
 
+            const connectText = document.getElementById('connect-text');
             if (reconnectAttempts < maxReconnectAttempts) {
-                connectText.textContent = connectText.textContent + '.'
+                if (connectText) {
+                    connectText.textContent = connectText.textContent + '.'
+                }
                 reconnectAttempts++;
                 setTimeout(() => {
                     createWebSocket();
                 }, reconnectInterval);
-            } else {
-                const connectText = document.getElementById('connect-text');
+            } else {                
                 if (connectText) {
                     connectText.style.color = 'red';
                     connectText.style.display = 'block'; // Show error message
