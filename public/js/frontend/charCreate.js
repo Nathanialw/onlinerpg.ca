@@ -30,7 +30,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
-            const description = document.querySelector('.wrapper');
+            const description = document.querySelector('.splashContent');
             if (description) {
                 description.remove();
             }        

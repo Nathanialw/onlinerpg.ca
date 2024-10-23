@@ -173,6 +173,11 @@ export function ReSend() {
 
 
 function Remove_Elements() {
+    const description = document.querySelector('.wrapper');
+    if (description) {
+        description.remove();
+    }
+
     const options = document.querySelector('.options-container');
     if (options) {
         options.remove();
