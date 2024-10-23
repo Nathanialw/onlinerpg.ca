@@ -84,10 +84,9 @@ export function Target_Stats() {
     y = Get_Right_Panel_Origin_y() + 6; 
 
     let line = 0;
-    line = Display_Line("Name: " + targetStats.name, line, x, y);
+    line = Display_Line("Name: " + targetStats.name + ' ' + targetStats.gender, line, x, y);
     line = Display_Line("Species: " + targetStats.species, line, x, y);
     line = Display_Line("Age: " + targetStats.age, line, x, y);
-    line = Display_Line("Gender: " + targetStats.gender, line, x, y);
     line = Display_Line("Alignment: " + targetStats.alignment, line, x, y);
     line = Display_Line("Health: " + targetStats.health, line, x, y);
     line = Display_Line("Attack: " + targetStats.attack, line, x, y);
