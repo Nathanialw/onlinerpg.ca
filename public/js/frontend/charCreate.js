@@ -2,7 +2,7 @@ import { createWebSocket } from '/js/networking/socket.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
 
-document.getElementById('connect').addEventListener('click', async (event) => {
+document.getElementById('connectButton').addEventListener('click', async (event) => {
     Init_Title();
     Music_Play("title");
 
@@ -16,22 +16,19 @@ document.getElementById('connect').addEventListener('click', async (event) => {
     connectText.style.display = 'block'; // Show error message
     try {
         await createWebSocket();
-        const connectButton = document.querySelector('#connect');
+        const connectButton = document.querySelector('#connectButton');
         // remove connect button
         if (connectButton) {
             connectButton.remove();
             connectText.style.display = 'none'; // Show error message
         }
-        // add New Game button
-        const newGameButtonSecion = document.createElement('section');
-        newGameButtonSecion.classList.add('button', 'main-btn');
-        document.querySelector('.connectButton').appendChild(newGameButtonSecion);
         
+        // add New Game button
         const newGameButton = document.createElement('button');
         newGameButton.id = 'newGame';
         newGameButton.classList.add('btn', 'btn-center');
         newGameButton.textContent = 'New Game';        
-        newGameButtonSecion.appendChild(newGameButton);
+        document.querySelector('.menuButtons').appendChild(newGameButton);
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
