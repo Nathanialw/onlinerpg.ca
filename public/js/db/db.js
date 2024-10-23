@@ -139,5 +139,5 @@ export async function Get_Unit_Stats(uID) {
     stmt.free();
     
     // Log the entire result object to see what it contains
-    return result;
+    return result[0];
 }
