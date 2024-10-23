@@ -79,6 +79,7 @@ export async function createWebSocket() {
             clearInterval(pingInterval); // Clear the ping interval
 
             if (reconnectAttempts < maxReconnectAttempts) {
+                connectText.textContent = connectText.textContent + '.'
                 reconnectAttempts++;
                 setTimeout(() => {
                     createWebSocket();
