@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateHeroClass()
     
     await createWebSocket();
-    Send_Web_Socket_Message("9")
+    // Send_Web_Socket_Message("9")
     //ask if a game is already in progress
     //if it is ask if they want to resume
     //add resume button if it is
