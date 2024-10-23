@@ -1,4 +1,4 @@
-import { createWebSocket, Send_Web_Socket_Message } from '/js/networking/socket.js';
+import { createWebSocket, socket, Send_Web_Socket_Message } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 
