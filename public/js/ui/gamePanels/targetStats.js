@@ -1,6 +1,6 @@
 'use strict'
 
-import { Get_Item_Stats } from "../../db/db.js"
+import { Get_Unit_Stats } from "../../db/db.js"
 import { Update_Screen } from "../../frontend/ui.js"
 //get string from server
 import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, minimapCellSize, Clear_Target} from "../../graphics/graphics.js"
@@ -36,7 +36,7 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(20, 22));
         
     //query DB using targetStats.unitID
-    Get_Item_Stats(targetStats.unitID).then((data) => {
+    Get_Unit_Stats(targetStats.unitID).then((data) => {
         targetStats.species = data.name;
         targetStats.speed = data.speed;
         targetStats.vision = data.vision;
