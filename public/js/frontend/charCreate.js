@@ -23,7 +23,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
             connectText.style.display = 'none'; // Show error message
         }
         // add New Game button
-        const newGameButtonSecion = document.createElement('newGameButton');
+        const newGameButtonSecion = document.createElement('section');
         newGameButtonSecion.classList.add('button', 'main-btn');
         document.querySelector('.connectButton').appendChild(newGameButtonSecion);
         
