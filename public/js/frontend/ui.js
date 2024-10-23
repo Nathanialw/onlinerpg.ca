@@ -115,24 +115,30 @@ export function Update_Screen_Phone() {
 }
 
 export function Update_Screen() {
+    console.log("removing children")
     app.stage.removeChildren();
 
     //equal 3 when loot is stepped on, only trigger when initially stepping on loot
 
     
-
+    console.log("drawing ui")
     Draw_UI(gamePanelIndex);
+    console.log("drawing vision")
     Draw_Vision_Background(visionWidth);
+    console.log("making map")
     Make_Map(serverMap, visionWidth);
     // Draw_Map(visionWidth, direction);
-    
+    console.log("draw main menu")
     Draw_Main_Menu();
+    console.log("draw game menu")
     Draw_Game_Menu();
-
+    console.log("update log")
     Update_Log(species, damage, isDead);  
+    console.log("render game panel")
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
-
+    console.log("draw inventory")
     Draw_Inventory(bags, inventory);
+    console.log("draw equipment")
     Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
 }
 
