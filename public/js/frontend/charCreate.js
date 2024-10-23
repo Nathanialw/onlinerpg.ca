@@ -17,10 +17,10 @@ document.getElementById('connect').addEventListener('click', async (event) => {
     try {
         await createWebSocket();
         const connectButton = document.querySelector('.connectButton');
-        //remove connect button
-        // if (connectButton) {
-        //     connectButton.remove();
-        // }
+        // remove connect button
+        if (connectButton) {
+            connectButton.remove();
+        }
         // add New Game button
         const newGameButton = document.createElement('button');
         newGameButton.id = 'newGame';
