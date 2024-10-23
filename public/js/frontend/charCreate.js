@@ -197,7 +197,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         try {
             await createWebSocket();
             const connectButton = document.querySelector('.connectButton');
-            if (description) {
+            if (connectButton) {
                 connectButton.remove();
             }
         
