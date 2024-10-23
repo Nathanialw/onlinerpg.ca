@@ -43,6 +43,29 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             console.error("Element with class 'menuButtons' not found.");
         }        
 
+        // //add resume button 
+        // if (1) { send a message to the server to check if there is a saved game
+        //     const resumeButton = document.createElement('button');
+        //     resumeButton.id = 'resume';
+        //     resumeButton.classList.add('btn', 'btn-center');
+        //     resumeButton.textContent = 'Resume';
+        //     newGameButton.appendChild(resumeButton);
+
+        //     //add event listener to resume button
+        //     document.getElementById('resume').addEventListener('click', async (event) => {
+        //     //send message to server to resume game
+        //     console.log("Resume button clicked")
+        // }
+
+        //close connection
+        const exitButton = document.createElement('button');
+        exitButton.id = 'exitGame';
+        exitButton.classList.add('btn', 'btn-center');
+        exitButton.textContent = 'Exit';        
+
+        //append as adjecent sibling of newGameButton
+        menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
+
         //add event listener to new game button
         const startNewGame = async (event) => {
             const description = document.querySelector('.splashContent');
@@ -60,35 +83,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             character_Create();                
             console.log("New Game button clicked")
         };
-
         newGameButton.addEventListener('click', startNewGame)
-
-
-     
-
-        // //add resume button 
-        // if (1) { send a message to the server to check if there is a saved game
-        //     const resumeButton = document.createElement('button');
-        //     resumeButton.id = 'resume';
-        //     resumeButton.classList.add('btn', 'btn-center');
-        //     resumeButton.textContent = 'Resume';
-        //     newGameButton.appendChild(resumeButton);
-
-        //     //add event listener to resume button
-        //     document.getElementById('resume').addEventListener('click', async (event) => {
-        //     //send message to server to resume game
-        //     console.log("Resume button clicked")
-        // }
-
-        //close connection
-        // add New Game button
-        const exitButton = document.createElement('button');
-        exitButton.id = 'exitGame';
-        exitButton.classList.add('btn', 'btn-center');
-        exitButton.textContent = 'Exit';        
-
-        //append as adjecent sibling of newGameButton
-        menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
 
         const exitGame = (event) => {
             console.log("Disconnecting from server and exiting game");
@@ -99,7 +94,6 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             Send_Web_Socket_Message("7");
         };
         exitButton.addEventListener('click', exitGame)
-
 
         const gameMenuKeyDown = (event) => {
             if (event.key === 'Enter') {
