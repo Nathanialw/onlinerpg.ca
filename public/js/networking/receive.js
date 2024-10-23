@@ -57,6 +57,7 @@ function Update_(data) {
 
 function Resume_Game() {
     console.log("Resuming game");  
+    Send_Web_Socket_Message("9")
 }
 
 async function Create_Resume_Btn(data) {
