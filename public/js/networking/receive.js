@@ -59,17 +59,15 @@ function Resume_Game() {
     console.log("Resuming game");  
 }
 
-
-
 async function Create_Resume_Btn(data) {
     //close connection
     const newGameButton = document.getElementById('newGame')
     const menuButtons = document.querySelector('.menuButtons');
 
     const resumeButton = document.createElement('button');
-    resumeButton.id = 'exitGame';
+    resumeButton.id = 'resumeGame';
     resumeButton.classList.add('btn', 'btn-center');
-    resumeButton.textContent = 'Exit';        
+    resumeButton.textContent = 'Continue';        
 
     //append as adjecent sibling of newGameButton
     menuButtons.insertBefore(resumeButton, newGameButton.nextSibling);
