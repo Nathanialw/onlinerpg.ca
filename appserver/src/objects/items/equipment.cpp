@@ -68,21 +68,20 @@ namespace Equipment {
   void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag) {
     auto itemID = pack.inventory[bag][index];
     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
-    auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
+    if (slotStr == "bag") {
+      Backpack::Equip_Bag(pack, groundItems, index, bag, Items::BagType::Items1);
+      return;
+    }
 
+    auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
     if (slotNum == (int)Items::ItemSlot::mainHand || slotNum == (int)Items::ItemSlot::offHand)
       Swap_Item(pack.inventory, equipment, (int)Items::ItemSlot::offHand, index, bag);
     else if (slotNum == (int)Items::ItemSlot::ring0 || slotNum == (int)Items::ItemSlot::ring1)
       Swap_Item(pack.inventory, equipment, (int)Items::ItemSlot::ring0, index, bag);
     else if (slotNum == (int)Items::ItemSlot::trinket0 || slotNum == (int)Items::ItemSlot::trinket1)
       Swap_Item(pack.inventory, equipment, (int)Items::ItemSlot::trinket0, index, bag);
-    else
-      Backpack::Equip_Bag(pack, groundItems, index, bag, Items::BagType::Items0);
-
   }
-
-
-
+  
   void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
     Items::ItemID itemID = pack.inventory[bag][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
