@@ -363,8 +363,9 @@ export function character_Create() {
     }    
 
 
+    });
+    
     Init()
-});
 };
 
 
