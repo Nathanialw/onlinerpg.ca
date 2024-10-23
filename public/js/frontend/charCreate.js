@@ -41,8 +41,8 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         } else {
             console.error("Element with class 'menuButtons' not found.");
         }        
-
         Resume();
+
 
         //close connection
         const exitButton = document.createElement('button');
@@ -51,7 +51,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         exitButton.textContent = 'Exit';        
 
         //append as adjecent sibling of newGameButton
-        menuButtons.insertBefore(exitButton, resumeButton.nextSibling);
+        menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
 
 
 
