@@ -87,14 +87,17 @@ namespace Send {
     }
 
     else if (msg[0] == '6') { // restart game
+      std::cout << "restart game" << std::endl;
       return 0;
     }
 
     else if (msg[0] == '7') { // close game
+      std::cout << "close game" << std::endl;
       return 1;
     }
 
     else if (msg[0] == '8') { // create resume button
+      std::cout << "resume button" << std::endl;
       return 2;
     }
 
