@@ -103,7 +103,7 @@ export function Target_Stats() {
         let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
         
         for (let j = bioLine.length; j > 0; j--) {
-            if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === "," || bioLine[j] === "") {
+            if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === "," || bioLine[j] === "" || targetStats.bio.length < lineWidth) {
                 line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
                 currentPos = currentPos + j + 1;
                 console.log("currentPos:", currentPos, "targetStats.bio.length:", targetStats.bio.length)
