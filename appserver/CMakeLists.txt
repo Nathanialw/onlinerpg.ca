@@ -56,6 +56,8 @@ set(SOURCES
     src/objects/items/items.cpp
     src/objects/items/inventory.cpp
     src/objects/items/equipment.cpp
+    src/objects/items/backpack.cpp
+    src/objects/items/update_items.cpp
 
     src/objects/actions/attack.cpp
     src/objects/actions/death.cpp
@@ -65,8 +67,6 @@ set(SOURCES
     src/objects/collision/collision.cpp
 
     src/procgen/procgen.cpp
-        src/objects/items/backpack.cpp
-        src/objects/items/backpack.h
 )
 
 add_executable(BrowserRPG ${SOURCES})

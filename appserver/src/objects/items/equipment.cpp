@@ -84,7 +84,7 @@ namespace Equipment {
 
 
   void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
-    int itemID = pack.inventory[bag][invSlot];
+    Items::ItemID itemID = pack.inventory[bag][invSlot];
     std::cout << "itemID: " << itemID << std::endl;
 
     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
