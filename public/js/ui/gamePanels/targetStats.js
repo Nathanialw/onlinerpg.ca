@@ -7,6 +7,8 @@ import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Lo
 import { Strip_Leading_Zeroes } from "../../utils/utils.js"
 import { Set_Game_Panel_Index } from "../menus/gameMenu.js"
 
+gender = ["male", "female"]
+
 let targetStatsDisplay = []
 export let targetStats = {
     target: false,
@@ -30,7 +32,14 @@ export async function Get_Target_Stats_From_Server(statsString) {
     const nameID = Strip_Leading_Zeroes(statsString.substring(3, 7));
 
     targetStats.age = Strip_Leading_Zeroes(statsString.substring(7, 10));
-    targetStats.gender = Strip_Leading_Zeroes(statsString.substring(10, 11));
+    let gender = Strip_Leading_Zeroes(statsString.substring(10, 11));
+    if (gender === "0") {
+        targetStats.gender = '♂';
+    }
+    else {
+        targetStats.gender = '♀';
+    }
+
     targetStats.health = Strip_Leading_Zeroes(statsString.substring(11, 14)) + "/" + Strip_Leading_Zeroes(statsString.substring(14, 17));
     targetStats.attack = Strip_Leading_Zeroes(statsString.substring(17, 19)) + "-" + Strip_Leading_Zeroes(statsString.substring(19, 21));
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(21, 23));
