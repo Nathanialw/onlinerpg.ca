@@ -96,7 +96,9 @@ namespace Network {
       Start_Game(session_id, hdl);
     }
     else {
-      std::cout << "Game Instance already exists for session id: " << session_id << std::endl;
+      Close_Game(session_id);
+      Start_Game(session_id, hdl);
+      std::cout << "Game Instance already exists for session id: " << session_id << "Closing and starting a new one" << std::endl;
     }
 
     std::cout << "number of connections: " << client_connections.size() << std::endl;
