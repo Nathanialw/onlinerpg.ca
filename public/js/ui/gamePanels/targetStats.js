@@ -1,6 +1,6 @@
 'use strict'
 
-import { Get_Unit_Stats } from "../../db/db.js"
+import { Get_Unit_Stats, Get_Unit_Name } from "../../db/db.js"
 import { Update_Screen } from "../../frontend/ui.js"
 //get string from server
 import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, minimapCellSize, Clear_Target} from "../../graphics/graphics.js"
@@ -27,28 +27,24 @@ export let targetStats = {
 export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.target = true;
     targetStats.unitID = Strip_Leading_Zeroes(statsString.substring(0, 3));
-    targetStats.name = Strip_Leading_Zeroes(statsString.substring(3, 6));
+    const nameID = Strip_Leading_Zeroes(statsString.substring(3, 7));
 
-    targetStats.age = Strip_Leading_Zeroes(statsString.substring(6, 9));
-    targetStats.gender = Strip_Leading_Zeroes(statsString.substring(9, 10));
-    targetStats.health = Strip_Leading_Zeroes(statsString.substring(10, 13)) + "/" + Strip_Leading_Zeroes(statsString.substring(13, 16));
-    targetStats.attack = Strip_Leading_Zeroes(statsString.substring(16, 18)) + "-" + Strip_Leading_Zeroes(statsString.substring(18, 20));
-    targetStats.AC = Strip_Leading_Zeroes(statsString.substring(20, 22));
+    targetStats.age = Strip_Leading_Zeroes(statsString.substring(7, 10));
+    targetStats.gender = Strip_Leading_Zeroes(statsString.substring(10, 11));
+    targetStats.health = Strip_Leading_Zeroes(statsString.substring(11, 14)) + "/" + Strip_Leading_Zeroes(statsString.substring(14, 17));
+    targetStats.attack = Strip_Leading_Zeroes(statsString.substring(17, 19)) + "-" + Strip_Leading_Zeroes(statsString.substring(19, 21));
+    targetStats.AC = Strip_Leading_Zeroes(statsString.substring(21, 23));
         
     //query DB using targetStats.unitID
     const stats = await Get_Unit_Stats(targetStats.unitID)
+    const name = await Get_Unit_Name(nameID)
+    targetStats.name = name.name;
     targetStats.species = stats.name;
-    console.log(targetStats.species)
     targetStats.speed = stats.speed;
-    console.log(targetStats.speed)
     targetStats.vision = stats.vision;
-    console.log(targetStats.vision)
-    targetStats.pic = "assets/imgs/goblin/male/" + stats.image;
-    console.log(targetStats.pic)    
+    targetStats.pic = "assets/graphics/imgs/" + stats.image;
     targetStats.bio = stats.description;
-    console.log(targetStats.bio)
     targetStats.alignment = stats.alignment;
-    console.log(targetStats.alignment)
     
     Set_Game_Panel_Index(0);
     console.log("refreshing screen")
@@ -82,6 +78,7 @@ export function Target_Stats() {
     let line = 0;
     console.log("displaying target stats3")
     line = Display_Line("Name: " + targetStats.name, line, x, y);
+    line = Display_Line("Species: " + targetStats.species, line, x, y);
     line = Display_Line("Age: " + targetStats.age, line, x, y);
     line = Display_Line("Gender: " + targetStats.gender, line, x, y);
     line = Display_Line("Alignment: " + targetStats.alignment, line, x, y);
@@ -100,22 +97,26 @@ export function Target_Stats() {
 
     // for (let i = 0; i < lines; i++) {
     console.log("displaying target stats5")
-    // while (currentPos < targetStats.bio.length) {
-    //     //itertate backwards to find the last space in the line
-    //     if (targetStats.bio.length < lineWidth) {
-    //         lineWidth = targetStats.bio.length
-    //     }
-    //     let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
-    //     for (let j = bioLine.length; j > 0; j--) {
-    //         if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === ",") {
-    //             line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
-    //             currentPos = currentPos + j + 1;
-    //             break;
-    //         }
-    //         console.log(currentPos, targetStats.bio.length)
-    //         console.log(j, bioLine)
-    //     }
-    // }
+    while (currentPos < targetStats.bio.length) {
+        //itertate backwards to find the last space in the line
+        // if (targetStats.bio.length < lineWidth) {
+            // lineWidth = targetStats.bio.length
+        // }
+
+        //get the lin to print
+        let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
+        
+        for (let j = bioLine.length; j > 0; j--) {
+            if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === ",") {
+                line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
+                currentPos = currentPos + j + 1;
+                console.log("currentPos:", currentPos, "targetStats.bio.length:", targetStats.bio.length)
+                break;
+            }
+            console.log(currentPos, targetStats.bio.length)
+            console.log(j, bioLine)
+        }
+    }
 
 
     //traits

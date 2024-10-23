@@ -47,7 +47,7 @@ namespace Species {
       //AC random generate + items
 
     std::cout << "unit name int16: " << unit.name << std::endl;
-    auto name = Utils::Prepend_Zero_By_Digits(unit.name, 3);
+    auto name = Utils::Prepend_Zero_By_Digits(unit.name, 4);
     std::cout << "unit name str: " << name << std::endl;
 
     auto age = Utils::Prepend_Zero_By_Digits(unit.age, 3);

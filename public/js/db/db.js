@@ -137,7 +137,32 @@ export async function Get_Unit_Stats(uID) {
         result.push(stmt.getAsObject());
     }
     stmt.free();
-    console.log("result", result)
+    // Log the entire result object to see what it contains
+    return result[0];
+}
+
+export async function Get_Unit_Name(uID) {
+    if (uID === 0) {
+        //draw nothing in the slot
+        // let path = "assets/graphics/icons/PVG/Book1.png"
+        let path = "none"
+        return path
+    }
+
+    if (!db) {
+        console.error("Database is not initialized.");
+        return;
+    }
+
+    const sql = `SELECT * FROM names WHERE uID = ?`;
+    const stmt = db.prepare(sql);
+    stmt.bind([uID]);
+    
+    const result = [];
+    while (stmt.step()) {
+        result.push(stmt.getAsObject());
+    }
+    stmt.free();
     // Log the entire result object to see what it contains
     return result[0];
 }
