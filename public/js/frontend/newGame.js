@@ -292,6 +292,9 @@ export function character_Create() {
     nameInputSection.appendChild(form);
     content.appendChild(nameInputSection);
 
+    //  Cursor starts in name input
+    input.focus();
+
     // Create start button section
     const startButtonSection = document.createElement('section');
     startButtonSection.classList.add('startButton', 'button');
