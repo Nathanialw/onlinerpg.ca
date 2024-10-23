@@ -24,7 +24,7 @@ export let targetStats = {
     bio: "??",
 }
 
-export function Get_Target_Stats_From_Server(statsString) {
+export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.target = true;
     targetStats.unitID = Strip_Leading_Zeroes(statsString.substring(0, 3));
     targetStats.name = Strip_Leading_Zeroes(statsString.substring(3, 6));
@@ -36,19 +36,16 @@ export function Get_Target_Stats_From_Server(statsString) {
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(20, 22));
         
     //query DB using targetStats.unitID
-    Get_Unit_Stats(targetStats.unitID).then((data) => {
-        targetStats.species = data.name;
-        targetStats.speed = data.speed;
-        targetStats.vision = data.vision;
-        targetStats.pic = data.image;
-        targetStats.bio = data.description;
-        targetStats.alignment = data.alignment;
-        Set_Game_Panel_Index(0);
-        Update_Screen();
-    }).catch((error) => {
-        console.error("Error fetching item stats:", error);
-    });
-
+    const stats = await Get_Unit_Stats(targetStats.unitID)
+    
+    targetStats.species = stats.name;
+    targetStats.speed = stats.speed;
+    targetStats.vision = stats.vision;
+    targetStats.pic = stats.image;
+    targetStats.bio = stats.description;
+    targetStats.alignment = stats.alignment;
+    Set_Game_Panel_Index(0);
+    Update_Screen();
 }
 
 function Display_Line(value, i, x, y) {
