@@ -12,9 +12,12 @@ export function Restart(data) {
 
 //quit to main page
 export function Quit(data) {
-    //go back to start page
     Send_Web_Socket_Message("7")
+    //go back to start page
     window.location.href = "https://www.onlineRPG.ca";
     //set proper html
 }
 
+export function Resume(data) {
+    Send_Web_Socket_Message("8")
+}

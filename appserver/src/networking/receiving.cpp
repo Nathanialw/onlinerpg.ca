@@ -152,8 +152,18 @@ namespace Network {
       print_server.close(hdl, websocketpp::close::status::normal, "Game Closed");
     }
     else if (gg == 2) {
+      //check if game exists based on session id
+      auto session_id = Get_SessionID(hdl);
+      if (game_instances.find(session_id) != game_instances.end()) {
+        std::string response = "8 ";
+        print_server.send(hdl, response, websocketpp::frame::opcode::text);
+      }
+      else {
+        std::cout << "Game does not exist for session id: " << session_id << std::endl;
+      }
+      //if it does, send a message to the client to create a resume button
 
-//      print_server.close(hdl, websocketpp::close::status::normal, "Game in progress");
+      //      print_server.close(hdl, websocketpp::close::status::normal, "Game in progress");
     }
 
     //when a player moves, send the new position to all the clients except the one that sent it right away

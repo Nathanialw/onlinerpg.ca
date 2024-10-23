@@ -2,7 +2,7 @@ import { createWebSocket } from '/js/networking/socket.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
-import { Quit } from '../game/game.js';
+import { Quit, Resume } from '../game/game.js';
 
 document.getElementById('connectButton').addEventListener('click', async (event) => {
     Init_Title()
@@ -19,7 +19,6 @@ document.getElementById('connectButton').addEventListener('click', async (event)
     connectText.style.display = 'block'; // Show error message
     try {
         await createWebSocket();
-   
         
         const connectButton = document.querySelector('#connectButton');
         document.removeEventListener('keydown', connectKeyDown);
@@ -43,19 +42,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             console.error("Element with class 'menuButtons' not found.");
         }        
 
-        // //add resume button 
-        // if (1) { send a message to the server to check if there is a saved game
-        //     const resumeButton = document.createElement('button');
-        //     resumeButton.id = 'resume';
-        //     resumeButton.classList.add('btn', 'btn-center');
-        //     resumeButton.textContent = 'Resume';
-        //     newGameButton.appendChild(resumeButton);
-
-        //     //add event listener to resume button
-        //     document.getElementById('resume').addEventListener('click', async (event) => {
-        //     //send message to server to resume game
-        //     console.log("Resume button clicked")
-        // }
+        Resume();
 
         //close connection
         const exitButton = document.createElement('button');
@@ -64,7 +51,11 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         exitButton.textContent = 'Exit';        
 
         //append as adjecent sibling of newGameButton
-        menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
+        menuButtons.insertBefore(exitButton, resumeButton.nextSibling);
+
+
+
+
 
         //add event listener to new game button
         const startNewGame = async (event) => {

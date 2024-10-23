@@ -56,6 +56,27 @@ function Update_(data) {
 }
 
 
+async function Resume(data) {
+    //close connection
+    const newGameButton = document.getElementById('newGame').remove();
+
+    const resumeButton = document.createElement('button');
+    resumeButton.id = 'exitGame';
+    resumeButton.classList.add('btn', 'btn-center');
+    resumeButton.textContent = 'Exit';        
+
+    //append as adjecent sibling of newGameButton
+    menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
+
+    const resumeGame = (event) => {
+        console.log("Resuming game");  
+    };
+    resumeButton.addEventListener('click', resumeGame)
+
+
+}
+
+
 
 
 export let Update = {
@@ -67,6 +88,7 @@ export let Update = {
     5: Get_Target_Stats_From_Server,
     // 6: Restart,
     // 7: Quit,
+    8: Resume,
 }
 
 //periodically check if the websocket has reconnected
