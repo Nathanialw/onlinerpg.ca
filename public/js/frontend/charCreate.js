@@ -18,15 +18,15 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         await createWebSocket();
         const connectButton = document.querySelector('.connectButton');
         //remove connect button
-        if (connectButton) {
-            connectButton.remove();
-        }
+        // if (connectButton) {
+        //     connectButton.remove();
+        // }
         // add New Game button
         const newGameButton = document.createElement('button');
         newGameButton.id = 'newGame';
         newGameButton.classList.add('btn', 'btn-center');
         newGameButton.textContent = 'New Game';
-        document.querySelector('.chracterCreate').appendChild(newGameButton);
+        connectButton.appendChild(newGameButton);
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
@@ -39,7 +39,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         resumeButton.id = 'resume';
         resumeButton.classList.add('btn', 'btn-center');
         resumeButton.textContent = 'Resume';
-        document.querySelector('.newGame').appendChild(resumeButton);
+        newGameButton.appendChild(resumeButton);
 
         //add event listener to resume button
         document.getElementById('resume').addEventListener('click', async (event) => {
