@@ -24,7 +24,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         }
         // add New Game button
         const newGameButtonSecion = document.createElement('newGameButton');
-        newGameButton.classList.add('button main-btn');
+        newGameButtonSecion.classList.add('button main-btn');
         document.querySelector('.connectButton').appendChild(newGameButtonSecion);
         
         const newGameButton = document.createElement('button');
