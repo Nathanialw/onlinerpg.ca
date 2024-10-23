@@ -22,11 +22,14 @@ document.getElementById('connect').addEventListener('click', async (event) => {
             connectText.style.display = 'none'; // Show error message
         }
         // add New Game button
+        const newGameButtonSecion = document.createElement('newGameButton button main-btn');
+        document.querySelector('.connectButton').appendChild(newGameButtonSecion);
+        
         const newGameButton = document.createElement('button');
         newGameButton.id = 'newGame';
-        newGameButton.classList.add('btn', 'btn-center', 'main-btn');
+        newGameButton.classList.add('btn', 'btn-center');
         newGameButton.textContent = 'New Game';        
-        document.querySelector('.connectButton').appendChild(newGameButton);
+        newGameButtonSecion.appendChild(newGameButton);
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
