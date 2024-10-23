@@ -73,11 +73,8 @@ async function Create_Resume_Btn(data) {
 
     //append as adjecent sibling of newGameButton
     menuButtons.insertBefore(resumeButton, newGameButton.nextSibling);
-
-    const resumeGame = (event) => {
-        Resume_Game();
-    };
-    resumeButton.addEventListener('click', resumeGame)
+    
+    resumeButton.addEventListener('click', Resume_Game)
 }
 
 
