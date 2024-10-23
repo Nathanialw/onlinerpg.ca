@@ -99,10 +99,10 @@ namespace Spawn {
 
 //      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
       std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)Units::Species::ORC]}, {"type", Units::gender[(int)gender]}};
-      auto names = DB::Get_List("name", "names", whereEquals);
-      uint16_t nameID = Utils::Random(0, (int)names.size() - 1);
+      auto names = DB::Get_List("uID", "names", whereEquals);
+      uint16_t index = Utils::Random(0, (int)names.size() - 1);
 
-      Add_Unit(objects, level, location, x, y, nameID, gender, species, unitClass, alignment);
+      Add_Unit(objects, level, location, x, y, stoi(names[index]), gender, species, unitClass, alignment);
       return true;
     }
   }

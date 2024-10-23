@@ -77,7 +77,7 @@ export function Target_Stats() {
     y = Get_Right_Panel_Origin_y() + 6; 
 
     let line = 0;
-    line = Display_Line("Name: " + targetStats.name + ' ' + targetStats.gender, line, x, y);
+    line = Display_Line("Name: " + targetStats.name + targetStats.gender, line, x, y);
     line = Display_Line("Species: " + targetStats.species, line, x, y);
     line = Display_Line("Age: " + targetStats.age, line, x, y);
     line = Display_Line("Alignment: " + targetStats.alignment, line, x, y);
@@ -102,12 +102,10 @@ export function Target_Stats() {
 
         //get the lin to print
         let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
-        
         for (let j = bioLine.length; j > 0; j--) {
             if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === "," || bioLine[j] === "" || targetStats.bio.length < lineWidth) {
                 line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
                 currentPos = currentPos + j + 1;
-                console.log("currentPos:", currentPos, "targetStats.bio.length:", targetStats.bio.length)
                 break;
             }
         }
