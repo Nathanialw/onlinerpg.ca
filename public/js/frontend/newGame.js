@@ -50,7 +50,7 @@ import { Init_Title, Music_Play } from '../sound/sound.js';
     <div id="loading-text" class="loading-message" style="color: white; display: none;">Loading...</div>
 </section> */}
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function Init() {
     Init_Title();
     Music_Play("title");
 
@@ -359,7 +359,7 @@ export function character_Create() {
     }    
 
 
-    
+    Init()
 });
 };
 
