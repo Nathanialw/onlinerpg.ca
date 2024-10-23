@@ -155,11 +155,18 @@ namespace Network {
       //check if game exists based on session id
       auto session_id = Get_SessionID(hdl);
       if (game_instances.find(session_id) != game_instances.end()) {
-        std::string response = "8 ";
-        print_server.send(hdl, response, websocketpp::frame::opcode::text);
+        // get the game
+        auto game = game_instances[session_id];
+        if (game.Exists()) {
+          std::string response = "8 ";
+          std::cout << "Game exists for session id: " << session_id << std::endl;
+          print_server.send(hdl, response, websocketpp::frame::opcode::text);
+        } else {
+          std::cout << "Game Exists, but bugged " << session_id << std::endl;
+        }
       }
       else {
-        std::cout << "Game does not exist for session id: " << session_id << std::endl;
+        std::cout << "Game Instance does not exist for session id: " << session_id << std::endl;
       }
       //if it does, send a message to the client to create a resume button
 

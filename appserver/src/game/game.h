@@ -70,6 +70,10 @@ namespace Game {
           return objects[level][location].units[0];
     }
 
+    bool Exists() {
+        return !objects[level][location].units.empty();
+    }
+
     Chunk::Map_Chunk &Get_Map(int currentLevel, Component::Position currentLocation) {
       return map[currentLevel][currentLocation];
     }
