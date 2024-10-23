@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     updateHeroClass()
     
-    await createWebSocket();
+    // await createWebSocket();
+
     // Send_Web_Socket_Message("9")
     //ask if a game is already in progress
     //if it is ask if they want to resume
@@ -184,6 +185,31 @@ function Set_Canvas() {
     }
 }
 
+document.getElementById('connectButton').addEventListener('click', async (event) => {
+    const nameInput = document.getElementById('name');
+    const connectError = document.getElementById('nameError');
+    const connectText = document.getElementById('connect-text');
+    
+    if (connect.value.length < minNameLength || connect.value.length > maxNameLength) {
+        connectText.classList.add('connect-text'); // Add error class to input
+        connectText.style.color = 'white';
+        connectText.textContent = `Connecting...`;
+        connectText.style.display = 'block'; // Show error message
+        try {
+            await createWebSocket();
+            const connectButton = document.querySelector('.connectButton');
+            if (description) {
+                connectButton.remove();
+            }
+        
+        } catch (error) {
+            console.error("Failed to establish WebSocket connection:", error);
+            connectError.textContent = `Failed to establish connection.`;
+        }
+    }    
+});
+
+
 document.getElementById('startGame').addEventListener('click', async (event) => {
     const nameInput = document.getElementById('name');
     const nameError = document.getElementById('nameError');
@@ -210,7 +236,7 @@ document.getElementById('startGame').addEventListener('click', async (event) => 
             Send();
             Remove_Elements();
         } catch (error) {
-            console.error("Failed to establish WebSocket connection:", error);
+            console.error("Failed to load game world:", error);
         }  
     }    
 });

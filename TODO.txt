@@ -66,7 +66,6 @@ short term:
 -crate unit locations to place on map ie. ogre mound with ogre around itw
 
 -draw the ui game panels 
--reorganize the inventory panel - put the loot panel on the game panels side
 -get traits from server as IDs and fetch the IDs from the db to get the trait names and descriptions
 -add a action bar
 -add a spellbook

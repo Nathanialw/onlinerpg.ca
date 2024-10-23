@@ -46,6 +46,7 @@
         //mystic+neutral= wizard -> archmage -> sorcerer
         //mystic+evil= warlock -> necromancer -> lich 
  -->
+
 <section class="canvasContainer">
     <div id="gameCanvas"></div>
 </section>
@@ -93,8 +94,16 @@
     <button id="startGame" class='btn btn-center'>Start Game</button>
     <br> 
     <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
-    <div id="loading-text" class="loading-message" style="color: white; display: none;">Connecting...</div>
+    <div id="loading-text" class="loading-message" style="color: white; display: none;">Loading...</div>
 </section>
+
+<section class='connectButton'>
+    <button id="connect" class='btn btn-center'>Connect</button>
+    <br> 
+    <div id="nameError" class="error-message" style="color: red; display: none;">Failed to connect.</div>
+    <div id="connect-text" class="connect-message" style="color: white; display: none;">Connecting...</div>
+</section>
+
 
 <script src="/js/frontend/charCreate.js" type="module"></script>
 <script src="/js/networking/socket.js" type="module"></script>
