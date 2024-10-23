@@ -5,7 +5,7 @@ import { Init_Title, Music_Play } from '../sound/sound.js';
 const minNameLength = 2;
 const maxNameLength = 20;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     Init_Title();
     Music_Play("title");
 
@@ -33,10 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateHeroClass()
-    async () => {
-        await createWebSocket();
-        console.log("WebSocket connection established");
-    }
+    
+    await createWebSocket();
+    console.log("WebSocket connection established");
 })
 
 function Buttons(Option) {
