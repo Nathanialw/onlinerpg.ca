@@ -34,31 +34,15 @@ namespace Update_Items {
       std::cout << "interacting with inventory at index: " << index << std::endl;
       if (mod == "c") { // throw away
         std::cout << "control clicked: " << mod << std::endl;
-        Inventory::Drop_Item(
-            game.Get_Player().pack.inventory,
-            game.items[game.Get_Player().level][game.Get_Player().location]
-                      [game.Get_Player().position],
-            stoi(bag), stoi(index));
+        Inventory::Drop_Item(game.Get_Player().pack.inventory, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], stoi(bag), stoi(index));
       } else if (mod == "a") { // equip offhand
         std::cout << "alt clicked: " << mod << std::endl;
-        Equipment::Equip_Second_Item(game.Get_Player().pack.inventory,
-                                     game.Get_Player().equipment, stoi(index),
-                                     stoi(bag));
-        Backpack::Equip_Bag(
-            game.Get_Player().pack,
-            game.items[game.Get_Player().level][game.Get_Player().location]
-                      [game.Get_Player().position],
-            stoi(index), stoi(bag), Items::BagType::Items1);
-
+        Equipment::Equip_Second_Item(game.Get_Player().pack, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().equipment, stoi(index), stoi(bag));
       } else if (mod == "s") { //
         std::cout << "shift clicked, thusfar unused" << std::endl;
       } else { // equip standard / use item
         std::cout << "unmodded clicked: " << mod << std::endl;
-        Equipment::Use_Item(
-            game.Get_Player().pack,
-            game.items[game.Get_Player().level][game.Get_Player().location]
-                      [game.Get_Player().position],
-            game.Get_Player().equipment, stoi(index), stoi(bag));
+        Equipment::Use_Item(game.Get_Player().pack, game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position], game.Get_Player().equipment, stoi(index), stoi(bag));
       }
     } else if (type == "2") {
       std::cout << "interacting with equipment at index: " << index << std::endl;
