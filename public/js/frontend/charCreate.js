@@ -31,6 +31,10 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
+            const newGameButton = document.createElement('button');
+            if (newGameButton) {
+                newGameButton.remove();
+            }
             character_Create();                
             console.log("New Game button clicked")
         })

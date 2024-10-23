@@ -316,12 +316,16 @@ export function character_Create() {
     nameError.id = 'nameError';
     nameError.classList.add('error-message');
     nameError.textContent = 'Name must be at least 3 characters long.';
+    nameError.style.color = 'red';
+    nameError.style.display = 'none';
     startButtonSection.appendChild(nameError);
 
     const loadingText = document.createElement('div');
     loadingText.id = 'loading-text';
     loadingText.classList.add('loading-message');
     loadingText.textContent = 'Loading...';
+    loadingText.style.color = 'white';
+    loadingText.style.display = 'none';
     startButtonSection.appendChild(loadingText);
 
     content.appendChild(startButtonSection);
