@@ -84,10 +84,10 @@ export async function createWebSocket() {
                     createWebSocket();
                 }, reconnectInterval);
             } else {
-                const loadingText = document.getElementById('loading-text');
-                if (loadingText) {
-                    loadingText.style.color = 'red';
-                    loadingText.textContent = `Failed to establish connection.`;
+                const connectText = document.getElementById('connect-text');
+                if (connectText) {
+                    connectText.style.display = 'block'; // Show error message
+                    connectText.textContent = `Failed to establish connection.`;
                 }
                 reconnectAttempts = 0;
                 console.error(`Failed to reconnect after ${maxReconnectAttempts} attempts.`);                
@@ -97,11 +97,8 @@ export async function createWebSocket() {
 
         websocket.onerror = (error) => {
             console.error("WebSocket error:", error);
-            if (i > 2) {
-                websocket.close();
-                reject(error);
-            }
-            i++;
+            websocket.close();
+            reject(error);
         };
     });
 }

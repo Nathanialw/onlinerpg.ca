@@ -65,8 +65,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
     
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
-        connectError.style.display = 'block'; // Show error message
-        connectError.textContent = `Failed to establish connection.`;
     }
+    
 });
 
