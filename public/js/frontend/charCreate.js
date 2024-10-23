@@ -98,22 +98,21 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         };
 
         exitButton.addEventListener('click', exitGame)
-
-        const gameMenuKeyDown = (event) => {
-            if (event.key === 'Enter') {
-                newGameButton.click();
-            }
-            else if (event.key === 'Escape') {
-                exitButton.click();
-            }
-        };    
-
     
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
     }
     
 });
+
+const gameMenuKeyDown = (event) => {
+    if (event.key === 'Enter') {
+        newGameButton.click();
+    }
+    else if (event.key === 'Escape') {
+        exitButton.click();
+    }
+};    
 
 const connectKeyDown = (event) => {
     if (event.key === 'Enter') {
