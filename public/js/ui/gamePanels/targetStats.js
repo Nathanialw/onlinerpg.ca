@@ -37,15 +37,23 @@ export async function Get_Target_Stats_From_Server(statsString) {
         
     //query DB using targetStats.unitID
     const stats = await Get_Unit_Stats(targetStats.unitID)
-    
     targetStats.species = stats.name;
+    console.log(targetStats.species)
     targetStats.speed = stats.speed;
+    console.log(targetStats.speed)
     targetStats.vision = stats.vision;
+    console.log(targetStats.vision)
     targetStats.pic = stats.image;
+    console.log(targetStats.pic)    
     targetStats.bio = stats.description;
+    console.log(targetStats.bio)
     targetStats.alignment = stats.alignment;
+    console.log(targetStats.alignment)
+    
     Set_Game_Panel_Index(0);
+    console.log("refreshing screen")
     Update_Screen();
+    console.log("done")
 }
 
 function Display_Line(value, i, x, y) {
