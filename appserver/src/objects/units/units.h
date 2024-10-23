@@ -80,7 +80,7 @@ namespace Units {
     SIZE
   };
 
-  static std::string species[(int)Species::SIZE] = {
+  static std::string species[(uint8_t)Species::SIZE] = {
       "alpaca",
       "basilisk",
       "centaur",
@@ -145,7 +145,7 @@ namespace Units {
     SIZE,
   };
 
-  static std::string gender[(int)Gender::SIZE] = {
+  static std::string gender[(uint8_t)Gender::SIZE] = {
       "male",
       "female"
   };
@@ -165,12 +165,12 @@ namespace Units {
   };
 
   struct Stats {
-    int srength = 10; // damage melee and ranged
-    int intelligence = 10; // magic
-    int dexterity = 10; // dual wielding
-    int constitution = 10; // health
-    int authority = 10; // leadership
-    int charisma = 10; // social interactions
+    uint8_t srength = 10; // damage melee and ranged
+    uint8_t intelligence = 10; // magic
+    uint8_t dexterity = 10; // dual wielding
+    uint8_t constitution = 10; // health
+    uint8_t authority = 10; // leadership
+    uint8_t charisma = 10; // social interactions
   };
 
   struct Def {
@@ -184,49 +184,51 @@ namespace Units {
 
   struct Unit {
     Stats stats;
-    std::string portrait = "001";
 
+    uint16_t name{};
+    uint16_t firstName{};
+    uint16_t surname{};
+    uint16_t titlePrefix{};
+    uint16_t titleSuffix{};
     //unit data to send
     Component::Position position{};
-    std::string name = "Default";
-    std::string firstName;
-    std::string surname;
-    std::string titlePrefix;
-    std::string titleSuffix;
 
-    int age = 0;
-    Def def;
-
-    int vision = 0;
-    int speed = 0;
-    int maxSpeed = 0;
-    int minDamage = 0;
-    int maxDamage = 0;
-    int AC = 0;
-    int health = 0;
-    int healthMax = 0;
-//    bool dead = false;
-
-    int level;
     Component::Position location{};
     Items::Equipped equipment{};
+    Items::Backpack pack{};
+    std::array<uint8_t, 8> spells{};
 
-    //items are just an ID that is in the db
-    //db contains the damage, AC, icon path, description, etc
+
+    uint16_t health = 0;
+    uint16_t healthMax = 0;
+    uint16_t copper = 0;
+    uint16_t silver = 0;
+    uint16_t gold = 0;
+
+    Def def;
+    uint8_t unitID = 0;
+    uint8_t age = 0;
+
+    uint8_t vision = 0;
+    uint8_t speed = 0;
+    uint8_t maxSpeed = 0;
+    uint8_t minDamage = 0;
+    uint8_t maxDamage = 0;
+    uint8_t AC = 0;
+    //    bool dead = false;
+    uint8_t level;
+
+
+
+  //items are just an ID that is in the db
+  //db contains the damage, AC, icon path, description, etc
 //    Items::Bags bags{}; //items
 //    Items::Max_Slots maxSlots{}; //items
-//    Items::Inventory inventory{}; //items
 
-    Items::Backpack pack{};
 
-    int copper = 0;
-    int silver = 0;
-    int gold = 0;
-
-    std::array<int, 8> spells{};
 
     //constructor
-    Unit(int iLevel, Component::Position sLocation) {
+    Unit(uint8_t iLevel, Component::Position sLocation) {
       level = iLevel;
       location = sLocation;
 

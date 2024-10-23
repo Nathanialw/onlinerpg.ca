@@ -1,8 +1,10 @@
 'use strict'
 
+import { Get_Item_Stats } from "../../db/db.js"
 import { Update_Screen } from "../../frontend/ui.js"
 //get string from server
 import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, minimapCellSize, Clear_Target} from "../../graphics/graphics.js"
+import { Strip_Leading_Zeroes } from "../../utils/utils.js"
 import { Set_Game_Panel_Index } from "../menus/gameMenu.js"
 
 let targetStatsDisplay = []
@@ -23,40 +25,30 @@ export let targetStats = {
 }
 
 export function Get_Target_Stats_From_Server(statsString) {
-    let stats = "";
     targetStats.target = true;
-    for (let i = 0; i < statsString.length; i++) {
-        if (statsString[i] === "_") {
-            targetStats.name = statsString.substring(0, i);
-            targetStats.name = targetStats.name.charAt(0).toUpperCase() + targetStats.name.slice(1);
-            stats = statsString.substring(i + 1);
-            break;
-        }
-    }
+    targetStats.unitID = Strip_Leading_Zeroes(statsString.substring(0, 3));
+    targetStats.name = Strip_Leading_Zeroes(statsString.substring(3, 6));
 
-    targetStats.age = stats.substring(0, 3);
-    targetStats.gender = stats.substring(3, 4);
-    targetStats.alignment = stats.substring(4, 5);
-    // targetStats.species = stats.substring(4, 5);
-    // pic = stats.substring(2, 3);
+    targetStats.age = Strip_Leading_Zeroes(statsString.substring(6, 9));
+    targetStats.gender = Strip_Leading_Zeroes(statsString.substring(9, 10));
+    targetStats.health = Strip_Leading_Zeroes(statsString.substring(10, 13)) + "/" + Strip_Leading_Zeroes(statsString.substring(13, 16));
+    targetStats.attack = Strip_Leading_Zeroes(statsString.substring(16, 18)) + "-" + Strip_Leading_Zeroes(statsString.substring(18, 20));
+    targetStats.AC = Strip_Leading_Zeroes(statsString.substring(20, 22));
+        
+    //query DB using targetStats.unitID
+    Get_Item_Stats(targetStats.unitID).then((data) => {
+        targetStats.species = data.name;
+        targetStats.speed = data.speed;
+        targetStats.vision = data.vision;
+        targetStats.pic = data.image;
+        targetStats.bio = data.description;
+        targetStats.alignment = data.alignment;
+        Set_Game_Panel_Index(0);
+        Update_Screen();
+    }).catch((error) => {
+        console.error("Error fetching item stats:", error);
+    });
 
-    for (let i = 5; i < stats.length - 5; i++) {
-        if (stats[i] === "_") {
-            targetStats.pic = "assets/graphics/imgs/goblin/male/" + stats.substring(5, i) + ".jpg";
-            stats = stats.substring(i + 1);
-            break;
-        }
-    }
-
-    targetStats.health = stats.substring(0, 3) + "/" + stats.substring(3, 6);
-    targetStats.attack = stats.substring(6, 8) + "-" + stats.substring(8, 10);
-    targetStats.AC = stats.substring(10, 12);
-    targetStats.speed = stats.substring(12, 13);
-    targetStats.vision = stats.substring(13, 15);
-    targetStats.bio = stats.substring(15);
-    
-    Set_Game_Panel_Index(0);
-    Update_Screen();
 }
 
 function Display_Line(value, i, x, y) {

@@ -35,6 +35,8 @@ namespace Game {
 
     //units
 //    Units::Objects objects;
+    uint16_t player_id = 0;
+    std::vector<std::string> player_names;
     std::array<std::unordered_map<Component::Position, Units::Objects>, 26> objects;
     std::array<std::unordered_map<Component::Position, std::unordered_map<Component::Position, Items::Ground>>, 26> items{};
 
@@ -52,7 +54,7 @@ namespace Game {
 
 
     //map
-    int level = 0;
+    uint8_t level = 0;
     Component::Position location = {0, 0};
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 

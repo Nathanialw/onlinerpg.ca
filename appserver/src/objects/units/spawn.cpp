@@ -28,31 +28,31 @@ namespace Spawn {
     return unitChars[(int)species];
   }
 
-  void Add_Unit(Units::Objects &objects, int level, Component::Position location, int x, int y, const std::string &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
+  void Add_Unit(Units::Objects &objects, int level, Component::Position location, uint8_t x, uint8_t y, const uint8_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
     Units::Unit unit(level, location);
 
     //defined by where it is spawned
     unit.def.species = species;
-    unit.def.alignment = alignment;
     unit.position.x = x;
     unit.position.y = y;
 
     //randomize, weighted
-    unit.def.gender = gender;
+    unit.def.gender = gender; //unless it is a gendered species
     unit.def.unitClass = unitClass;
 
     //query db for all of this
+    unit.def.alignment = alignment;
     unit.name = name;
     unit.age = 16;
 
     unit.speed = 1;
-    unit.maxSpeed = 1;
+    unit.maxSpeed = unit.speed;
     unit.minDamage = 0;
     unit.maxDamage = 10;
     unit.vision = 6;
     unit.AC = 10;
     unit.health = 30;
-    unit.healthMax = 30;
+    unit.healthMax = unit.health;
 
     auto &units = objects.units;
     auto &unitsPositions = objects.unitPositions;
@@ -98,10 +98,9 @@ namespace Spawn {
 
       std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
       auto names = DB::Get_List("name", "names", whereEquals);
-      auto index = Utils::Random(0, (int)names.size() - 1);
-      auto name = names[index];
+      auto nameID = Utils::Random(0, (int)names.size() - 1);
 
-      Add_Unit(objects, level, location, x, y, name, gender, species, unitClass, alignment);
+      Add_Unit(objects, level, location, x, y, nameID, gender, species, unitClass, alignment);
       return true;
     }
   }

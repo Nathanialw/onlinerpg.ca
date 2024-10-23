@@ -80,7 +80,7 @@ namespace Send {
       Update(hdl, response, print_server, game);
     }
 
-    else if (msg[0] == '5') { // query map object
+    else if (msg[0] == '5') { // send unit stats
       response.append(msg.substr(1, 4));
       response = "5" + Species::Get_Unit_Data_As_string(game, response);
       print_server.send(hdl, response, websocketpp::frame::opcode::text);

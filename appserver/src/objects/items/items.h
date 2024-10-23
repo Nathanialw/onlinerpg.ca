@@ -42,9 +42,9 @@ namespace Items {
 
   typedef uint16_t ItemID;
 
-  typedef std::array<Items::ItemID, (int)Items::BagType::SIZE> Bags;
-  typedef std::array<uint8_t, (int)Items::BagType::SIZE> Max_Slots;
-  typedef std::array<std::array<Items::ItemID, 14>, (int)Items::BagType::SIZE> Inventory;
+  typedef std::array<Items::ItemID, (uint8_t)Items::BagType::SIZE> Bags;
+  typedef std::array<uint8_t, (uint8_t)Items::BagType::SIZE> Max_Slots;
+  typedef std::array<std::array<Items::ItemID, 14>, (uint8_t)Items::BagType::SIZE> Inventory;
 
   struct Backpack {
       Inventory inventory;
@@ -54,7 +54,7 @@ namespace Items {
 
 
   typedef std::array<Items::ItemID , 14> Ground;
-  typedef std::array<Items::ItemID, (int)Items::ItemSlot::SIZE> Equipped;
+  typedef std::array<Items::ItemID, (uint8_t)Items::ItemSlot::SIZE> Equipped;
 }
 
 #endif // BROWSERRPG_ITEMS_H

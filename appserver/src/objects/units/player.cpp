@@ -28,11 +28,12 @@ namespace Player {
     auto health = Utils::Prepend_Zero_3Digit(game.Get_Player().health) + Utils::Prepend_Zero_3Digit(game.Get_Player().healthMax);
     auto speed = std::to_string(game.Get_Player().speed) + std::to_string(game.Get_Player().maxSpeed);
     auto damage = Utils::Prepend_Zero(game.Get_Player().minDamage) + Utils::Prepend_Zero(game.Get_Player().maxDamage);
-    auto variableStats = game.Get_Player().portrait + Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
+    auto variableStats = "001" + Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
+//    auto variableStats = Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
 
     //    2 + 3 + 3 + 3 + 1 + 1 + 2 + 2
 
-    std::string stats = "1111" + game.Get_Player().name + variableStats + std::to_string((int)game.Get_Player().def.gender) + std::to_string((int)game.Get_Player().def.species) + std::to_string((int)game.Get_Player().def.unitClass) + std::to_string((int)game.Get_Player().def.alignment);
+    std::string stats = "1111" + game.player_names[game.Get_Player().name] + variableStats + std::to_string((int)game.Get_Player().def.gender) + std::to_string((int)game.Get_Player().def.species) + std::to_string((int)game.Get_Player().def.unitClass) + std::to_string((int)game.Get_Player().def.alignment);
     std::cout << "3" + stats << " Char stats sent!" << std::endl;
     return "3" + stats;
   }
@@ -56,13 +57,15 @@ namespace Player {
     std::string alignmentStr = characterCreate.substr(length - 1, 1);
     std::cout << "Alignment: " << alignmentStr << std::endl;
 
-
     auto gender = (Units::Gender)std::stoi(genderStr);
     auto species = (Units::Species)std::stoi(speciesStr);
     auto unitClass = (Units::Class)std::stoi(classStr);
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
 
-    Spawn::Add_Unit(game.objects[level][location], level, location, x, y, name, gender, species, unitClass, alignment);
+    Spawn::Add_Unit(game.objects[level][location], level, location, x, y, game.player_id, gender, species, unitClass, alignment);
+
+    game.player_names.push_back(name);
+    game.player_id++;
     std::cout << "size: " << game.objects[level][location].units.size() << std::endl;
     game.objects[level][location].units.at(0).health = 999;
     game.objects[level][location].units.at(0).healthMax = 999;
