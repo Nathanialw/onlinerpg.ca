@@ -20,6 +20,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         // remove connect button
         if (connectButton) {
             connectButton.remove();
+            connectText.style.display = 'none'; // Show error message
         }
         // add New Game button
         const newGameButton = document.createElement('button');
