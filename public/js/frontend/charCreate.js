@@ -16,7 +16,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
     connectText.style.display = 'block'; // Show error message
     try {
         await createWebSocket();
-        const connectButton = document.querySelector('.connectButton');
+        const connectButton = document.querySelector('#connect');
         // remove connect button
         if (connectButton) {
             connectButton.remove();
@@ -26,7 +26,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         newGameButton.id = 'newGame';
         newGameButton.classList.add('btn', 'btn-center');
         newGameButton.textContent = 'New Game';        
-        document.querySelector('#chracterCreate').appendChild(newGameButton);
+        document.querySelector('.connectButton').appendChild(newGameButton);
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
@@ -34,18 +34,19 @@ document.getElementById('connect').addEventListener('click', async (event) => {
             console.log("New Game button clicked")
         })
 
-        //add resume button 
-        const resumeButton = document.createElement('button');
-        resumeButton.id = 'resume';
-        resumeButton.classList.add('btn', 'btn-center');
-        resumeButton.textContent = 'Resume';
-        newGameButton.appendChild(resumeButton);
+        // //add resume button 
+        // if (1) { send a message to the server to check if there is a saved game
+        //     const resumeButton = document.createElement('button');
+        //     resumeButton.id = 'resume';
+        //     resumeButton.classList.add('btn', 'btn-center');
+        //     resumeButton.textContent = 'Resume';
+        //     newGameButton.appendChild(resumeButton);
 
-        //add event listener to resume button
-        document.getElementById('resume').addEventListener('click', async (event) => {
-            //send message to server to resume game
-            console.log("Resume button clicked")
-        })
+        //     //add event listener to resume button
+        //     document.getElementById('resume').addEventListener('click', async (event) => {
+        //     //send message to server to resume game
+        //     console.log("Resume button clicked")
+        // }
     
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
