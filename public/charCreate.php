@@ -53,8 +53,8 @@
 
 <section id="chracterCreate"></section>
 
-<section class='connectButton button'>
-    <button id="connect" class='btn btn-center main-btn'>Connect</button>
+<section class='connectButton button main-btn'>
+    <button id="connect" class='btn btn-center'>Connect</button>
     <br> 
     <div id="nameError" class="error-message" style="color: red; display: none;">Failed to connect.</div>
     <div id="connect-text" class="connect-message" style="color: white; display: none;">Connecting...</div>
