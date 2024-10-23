@@ -60,12 +60,6 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             console.log("New Game button clicked")
         };
 
-        const gameMenuKeyDown = (event) => {
-            if (event.key === 'Enter') {
-                newGameButton.click();
-            }
-        };    
-
         newGameButton.addEventListener('click', startNewGame)
         document.addEventListener('keydown', gameMenuKeyDown);
 
@@ -97,10 +91,22 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         const exitGame = (event) => {
             console.log("Disconnecting from server and exiting game");
             //send message to server to disconnect
+            document.removeEventListener('keydown', gameMenuKeyDown);
+            newGameButton.removeEventListener('click', startNewGame);
+            exitButton.removeEventListener('click', exitGame);
             Send_Web_Socket_Message("7");
         };
 
         exitButton.addEventListener('click', exitGame)
+
+        const gameMenuKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                newGameButton.click();
+            }
+            else if (event.key === 'Escape') {
+                exitButton.click();
+            }
+        };    
 
     
     } catch (error) {
