@@ -6,6 +6,7 @@
 #include "websocketpp/config/asio_no_tls.hpp"
 #include "websocketpp/server.hpp"
 
+#include "send.h"
 #include "map.h"
 #include "pathing.h"
 #include "spawn.h"
@@ -70,8 +71,8 @@ namespace Send {
       Update(hdl, skip, print_server, game);
     }
 
-    else if (msg[0] == '3') { // send map
-      Init(hdl, msg, print_server, game);
+    else if (msg[0] == '3') { // Initials player
+      return 4;
     }
 
     else if (msg[0] == '4') { // Reconnect

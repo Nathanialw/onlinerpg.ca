@@ -95,11 +95,11 @@ namespace Network {
     if (game_instances.find(session_id) == game_instances.end()) {
       Start_Game(session_id, hdl);
     }
-    else {
-      Close_Game(session_id);
-      Start_Game(session_id, hdl);
-      std::cout << "Game Instance already exists for session id: " << session_id << "Closing and starting a new one" << std::endl;
-    }
+//    else {
+//      Close_Game(session_id);
+//      Start_Game(session_id, hdl);
+//      std::cout << "Game Instance already exists for session id: " << session_id << "Closing and starting a new one" << std::endl;
+//    }
 
     std::cout << "number of connections: " << client_connections.size() << std::endl;
     std::cout << "number of reverse connections: " << reverse_client_connections.size() << std::endl;
@@ -187,6 +187,12 @@ namespace Network {
     else if (gg == 3) {
       std::cout << "Resuming game" << std::endl;
       Resume_Game(Get_SessionID(hdl), hdl);
+    }
+    else if (gg == 4) {
+      std::cout << "No action taken" << std::endl;
+      Close_Game(Get_SessionID(hdl));
+      Start_Game(Get_SessionID(hdl), hdl);
+      Send::Init(hdl, msg->get_payload(), print_server, game_instances[Get_SessionID(hdl)]);
     }
 
     //when a player moves, send the new position to all the clients except the one that sent it right away

@@ -13,6 +13,6 @@
 
 namespace Send {
 
-//  void Init(const websocketpp::connection_hdl& hdl, const std::basic_string<char>& msg, websocketpp::server<websocketpp::config::asio>& print_server);
+  void Init(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game);
   int On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game);
 }
