@@ -1,6 +1,5 @@
-import { createWebSocket, socket, Send_Web_Socket_Message } from '/js/networking/socket.js';
+import { socket } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
-import { Init_Title, Music_Play } from '../sound/sound.js';
 
 // add html to newGame.html
 
@@ -51,8 +50,7 @@ import { Init_Title, Music_Play } from '../sound/sound.js';
 </section> */}
 
 async function Init() {
-    Init_Title();
-    Music_Play("title");
+
 
     Buttons(races);
     Buttons(genders);

@@ -1,7 +1,7 @@
-import { createWebSocket, socket, Send_Web_Socket_Message } from '/js/networking/socket.js';
-import { classes } from '/js/frontend/classes.js';
+import { createWebSocket } from '/js/networking/socket.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
+import { Init_Title, Music_Play } from '../sound/sound.js';
 
 
 
@@ -31,6 +31,8 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
+            Init_Title();
+            Music_Play("title");
             const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
