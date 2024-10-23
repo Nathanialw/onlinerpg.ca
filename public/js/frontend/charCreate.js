@@ -9,6 +9,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
     const connectError = document.getElementById('nameError');
     const connectText = document.getElementById('connect-text');
     
+    connectError.style.display = 'none'; // Hide error message
     connectText.classList.add('connect-text'); // Add error class to input
     connectText.style.color = 'white';
     connectText.textContent = `Connecting...`;
@@ -64,6 +65,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
     
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
+        connectError.style.display = 'block'; // Show error message
         connectError.textContent = `Failed to establish connection.`;
     }
 });
