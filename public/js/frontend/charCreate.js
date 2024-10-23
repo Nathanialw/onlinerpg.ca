@@ -2,10 +2,10 @@ import { createWebSocket } from '/js/networking/socket.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
 
-
-
-
 document.getElementById('connect').addEventListener('click', async (event) => {
+    Init_Title();
+    Music_Play("title");
+
     const connectError = document.getElementById('nameError');
     const connectText = document.getElementById('connect-text');
     
@@ -30,8 +30,6 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
-            Init_Title();
-            Music_Play("title");
             const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
@@ -53,14 +51,12 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         //     //send message to server to resume game
         //     console.log("Resume button clicked")
         // }
+
+        //close connection
     
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
         connectError.textContent = `Failed to establish connection.`;
     }
 });
-
-
-
-// let species = ["human", "elf"];
 

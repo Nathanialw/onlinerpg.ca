@@ -49,9 +49,7 @@ import { classes } from '/js/frontend/classes.js';
     <div id="loading-text" class="loading-message" style="color: white; display: none;">Loading...</div>
 </section> */}
 
-async function Init() {
-
-
+async function Init_Char_Select() {
     Buttons(races);
     Buttons(genders);
     Buttons(unitClasses);
@@ -76,13 +74,6 @@ async function Init() {
     });
 
     updateHeroClass()
-    
-    // await createWebSocket();
-
-    // Send_Web_Socket_Message("9")
-    //ask if a game is already in progress
-    //if it is ask if they want to resume
-    //add resume button if it is
 }
 
 const minNameLength = 2;
@@ -328,6 +319,8 @@ export function character_Create() {
 
     content.appendChild(startButtonSection);
 
+    //create an exit button
+
 
     // document.getElementById('startGame')
     startButtonSection.addEventListener('click', async (event) => {
@@ -363,10 +356,8 @@ export function character_Create() {
 
     });
     
-    Init()
+    Init_Char_Select()
 };
-
-
 
 export async function OnReconnect() {
     Set_Canvas();
