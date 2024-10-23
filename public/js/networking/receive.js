@@ -58,7 +58,8 @@ function Update_(data) {
 
 async function Resume(data) {
     //close connection
-    const newGameButton = document.getElementById('newGame').remove();
+    const newGameButton = document.getElementById('newGame').remove()
+    const menuButtons = document.querySelector('.menuButtons');
 
     const resumeButton = document.createElement('button');
     resumeButton.id = 'exitGame';
@@ -66,7 +67,7 @@ async function Resume(data) {
     resumeButton.textContent = 'Exit';        
 
     //append as adjecent sibling of newGameButton
-    menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
+    menuButtons.insertBefore(resumeButton, newGameButton.nextSibling);
 
     const resumeGame = (event) => {
         console.log("Resuming game");  
