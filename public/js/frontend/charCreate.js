@@ -26,7 +26,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         newGameButton.id = 'newGame';
         newGameButton.classList.add('btn', 'btn-center');
         newGameButton.textContent = 'New Game';
-        document.querySelector('.connectButton').appendChild(newGameButton);
+        document.querySelector('.chracterCreate').appendChild(newGameButton);
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
@@ -39,7 +39,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         resumeButton.id = 'resume';
         resumeButton.classList.add('btn', 'btn-center');
         resumeButton.textContent = 'Resume';
-        document.querySelector('.connectButton').appendChild(resumeButton);
+        document.querySelector('.newGame').appendChild(resumeButton);
 
         //add event listener to resume button
         document.getElementById('resume').addEventListener('click', async (event) => {
