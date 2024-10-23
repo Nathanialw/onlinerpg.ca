@@ -30,6 +30,10 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
+            const description = document.querySelector('.wrapper');
+            if (description) {
+                description.remove();
+            }        
             const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
