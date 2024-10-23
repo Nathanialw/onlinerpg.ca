@@ -109,6 +109,8 @@ export function Target_Stats() {
                 currentPos = currentPos + j + 1;
                 break;
             }
+            console.log(currentPos, targetStats.bio.length)
+            console.log(j, bioLine)
         }
     }
 
