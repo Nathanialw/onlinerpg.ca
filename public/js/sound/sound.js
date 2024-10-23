@@ -21,11 +21,7 @@ export async function Init () {
 }
 
 export async function Init_Title() {
-    return new Promise((resolve) => {
-        title = CreateSound('../../assets/music/title/Battle_-_Temple_Tussle.ogg');
-        console.log("Init_Title completed");
-        resolve();
-    })
+    title = CreateSound('../../assets/music/title/Battle_-_Temple_Tussle.ogg');
 }
 
 export function SoundPlay(keyName) {

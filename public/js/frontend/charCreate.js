@@ -5,10 +5,9 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 import { Quit } from '../game/game.js';
 
 document.getElementById('connectButton').addEventListener('click', async (event) => {
-    // Init_Title().then(() => {
-    //     console.log("Title music loaded");
-    //     Music_Play("title");
-    // });
+    await Init_Title()
+    Music_Play("title");
+    
 
     const connectError = document.getElementById('nameError');
     const connectText = document.getElementById('connect-text');
