@@ -7,53 +7,50 @@ import { character_Create } from './newGame.js';
 
 
 document.getElementById('connect').addEventListener('click', async (event) => {
-    const nameInput = document.getElementById('name');
     const connectError = document.getElementById('nameError');
     const connectText = document.getElementById('connect-text');
     
-    if (connect.value.length < minNameLength || connect.value.length > maxNameLength) {
-        connectText.classList.add('connect-text'); // Add error class to input
-        connectText.style.color = 'white';
-        connectText.textContent = `Connecting...`;
-        connectText.style.display = 'block'; // Show error message
-        try {
-            await createWebSocket();
-            const connectButton = document.querySelector('.connectButton');
-            //remove connect button
-            if (connectButton) {
-                connectButton.remove();
-            }
-            // add New Game button
-            const newGameButton = document.createElement('button');
-            newGameButton.id = 'newGame';
-            newGameButton.classList.add('btn', 'btn-center');
-            newGameButton.textContent = 'New Game';
-            document.querySelector('.connectButton').appendChild(newGameButton);
-            
-            //add event listener to new game button
-            document.getElementById('newGame').addEventListener('click', async (event) => {
-                character_Create();                
-                console.log("New Game button clicked")
-            })
-
-            //add resume button 
-            const resumeButton = document.createElement('button');
-            resumeButton.id = 'resume';
-            resumeButton.classList.add('btn', 'btn-center');
-            resumeButton.textContent = 'Resume';
-            document.querySelector('.connectButton').appendChild(resumeButton);
-
-            //add event listener to resume button
-            document.getElementById('resume').addEventListener('click', async (event) => {
-                //send message to server to resume game
-                console.log("Resume button clicked")
-            })
-        
-        } catch (error) {
-            console.error("Failed to establish WebSocket connection:", error);
-            connectError.textContent = `Failed to establish connection.`;
+    connectText.classList.add('connect-text'); // Add error class to input
+    connectText.style.color = 'white';
+    connectText.textContent = `Connecting...`;
+    connectText.style.display = 'block'; // Show error message
+    try {
+        await createWebSocket();
+        const connectButton = document.querySelector('.connectButton');
+        //remove connect button
+        if (connectButton) {
+            connectButton.remove();
         }
-    }    
+        // add New Game button
+        const newGameButton = document.createElement('button');
+        newGameButton.id = 'newGame';
+        newGameButton.classList.add('btn', 'btn-center');
+        newGameButton.textContent = 'New Game';
+        document.querySelector('.connectButton').appendChild(newGameButton);
+        
+        //add event listener to new game button
+        document.getElementById('newGame').addEventListener('click', async (event) => {
+            character_Create();                
+            console.log("New Game button clicked")
+        })
+
+        //add resume button 
+        const resumeButton = document.createElement('button');
+        resumeButton.id = 'resume';
+        resumeButton.classList.add('btn', 'btn-center');
+        resumeButton.textContent = 'Resume';
+        document.querySelector('.connectButton').appendChild(resumeButton);
+
+        //add event listener to resume button
+        document.getElementById('resume').addEventListener('click', async (event) => {
+            //send message to server to resume game
+            console.log("Resume button clicked")
+        })
+    
+    } catch (error) {
+        console.error("Failed to establish WebSocket connection:", error);
+        connectError.textContent = `Failed to establish connection.`;
+    }
 });
 
 
