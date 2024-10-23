@@ -51,6 +51,8 @@
     <div id="gameCanvas"></div>
 </section>
 
+<section id="chracterCreate"></section>
+
 <section class='connectButton button'>
     <button id="connect" class='btn btn-center'>Connect</button>
     <br> 

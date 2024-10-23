@@ -1,6 +1,7 @@
 import { createWebSocket, socket, Send_Web_Socket_Message } from '/js/networking/socket.js';
 import { classes } from '/js/frontend/classes.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
+import { character_Create } from './newGame.js';
 
 const minNameLength = 2;
 const maxNameLength = 20;
@@ -207,9 +208,10 @@ document.getElementById('connect').addEventListener('click', async (event) => {
             newGameButton.classList.add('btn', 'btn-center');
             newGameButton.textContent = 'New Game';
             document.querySelector('.connectButton').appendChild(newGameButton);
-            connectError.style.display = 'none'; // Hide error
+            
             //add event listener to new game button
             document.getElementById('newGame').addEventListener('click', async (event) => {
+                character_Create();                
                 console.log("New Game button clicked")
             })
 
@@ -219,9 +221,10 @@ document.getElementById('connect').addEventListener('click', async (event) => {
             resumeButton.classList.add('btn', 'btn-center');
             resumeButton.textContent = 'Resume';
             document.querySelector('.connectButton').appendChild(resumeButton);
-            connectError.style.display = 'none'; // Hide error
+
             //add event listener to resume button
             document.getElementById('resume').addEventListener('click', async (event) => {
+                //send message to server to resume game
                 console.log("Resume button clicked")
             })
         

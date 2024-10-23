@@ -47,3 +47,94 @@
     <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
     <div id="loading-text" class="loading-message" style="color: white; display: none;">Loading...</div>
 </section> */}
+
+export function character_Create() {
+    const content = document.getElementById('chracterCreate');
+
+    // Create options container
+    const optionsContainer = document.createElement('section');
+    optionsContainer.classList.add('options-container');
+
+    const optionsArticle = document.createElement('article');
+    optionsArticle.classList.add('options');
+    optionsContainer.appendChild(optionsArticle);
+
+    // Create options lists
+    const races = ['Human', 'Elf'];
+    const genders = ['Male', 'Female'];
+    const classes = ['Fighter', 'Mystic'];
+    const alignments = ['Good', 'Neutral', 'Evil'];
+
+    const createOptionList = (options) => {
+        const ul = document.createElement('ul');
+        options.forEach(option => {
+            const li = document.createElement('li');
+            li.classList.add('option');
+            const button = document.createElement('button');
+            button.id = option;
+            button.classList.add('btn', 'btn-block');
+            button.textContent = option;
+            li.appendChild(button);
+            ul.appendChild(li);
+        });
+        return ul;
+    };
+
+    optionsArticle.appendChild(createOptionList(races));
+    optionsArticle.appendChild(createOptionList(genders));
+    optionsArticle.appendChild(createOptionList(classes));
+    optionsArticle.appendChild(createOptionList(alignments));
+
+    content.appendChild(optionsContainer);
+
+    // Create hero wrapper
+    const heroWrapper = document.createElement('section');
+    heroWrapper.classList.add('hero-wrapper');
+    const heroClass = document.createElement('h1');
+    heroClass.id = 'hero-class';
+    heroClass.classList.add('hero-class');
+    heroWrapper.appendChild(heroClass);
+    content.appendChild(heroWrapper);
+
+    // Create name input section
+    const nameInputSection = document.createElement('section');
+    nameInputSection.classList.add('nameInput');
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.id = 'myForm';
+    const input = document.createElement('input');
+    input.classList.add('form-input', 'form-row');
+    input.type = 'text';
+    input.id = 'name';
+    input.name = 'name';
+    input.required = true;
+    input.minLength = 3;
+    input.maxLength = 20;
+    input.autocomplete = 'off';
+    form.appendChild(input);
+    nameInputSection.appendChild(form);
+    content.appendChild(nameInputSection);
+
+    // Create start button section
+    const startButtonSection = document.createElement('section');
+    startButtonSection.classList.add('startButton', 'button');
+    const startButton = document.createElement('button');
+    startButton.id = 'startGame';
+    startButton.classList.add('btn', 'btn-center');
+    startButton.textContent = 'Start Game';
+    startButtonSection.appendChild(startButton);
+
+    const nameError = document.createElement('div');
+    nameError.id = 'nameError';
+    nameError.classList.add('error-message');
+    nameError.textContent = 'Name must be at least 3 characters long.';
+    startButtonSection.appendChild(nameError);
+
+    const loadingText = document.createElement('div');
+    loadingText.id = 'loading-text';
+    loadingText.classList.add('loading-message');
+    loadingText.textContent = 'Loading...';
+    startButtonSection.appendChild(loadingText);
+
+    content.appendChild(startButtonSection);
+});
