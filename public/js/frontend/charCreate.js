@@ -114,7 +114,7 @@ function Send() {
 
     if (conn.isConnected) {
         conn.websocket.send("3" + name + gender + race + unitClass + alignment);       
-        console.log("char create Data sent to server")
+        console.log("char create Data sent to server:", "3" + name + gender + race + unitClass + alignment)
     }
     else {
         console.log("Error: Server is not connected")
