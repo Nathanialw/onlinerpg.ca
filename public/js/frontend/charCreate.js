@@ -25,8 +25,8 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         const newGameButton = document.createElement('button');
         newGameButton.id = 'newGame';
         newGameButton.classList.add('btn', 'btn-center');
-        newGameButton.textContent = 'New Game';
-        connectButton.appendChild(newGameButton);
+        newGameButton.textContent = 'New Game';        
+        document.querySelector('#chracterCreate').appendChild(newGameButton);
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
