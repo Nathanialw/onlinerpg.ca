@@ -100,22 +100,22 @@ export function Target_Stats() {
 
     // for (let i = 0; i < lines; i++) {
     console.log("displaying target stats5")
-    while (currentPos < targetStats.bio.length) {
-        //itertate backwards to find the last space in the line
-        if (targetStats.bio.length < lineWidth) {
-            lineWidth = targetStats.bio.length
-        }
-        let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
-        for (let j = bioLine.length; j > 0; j--) {
-            if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === ",") {
-                line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
-                currentPos = currentPos + j + 1;
-                break;
-            }
-            console.log(currentPos, targetStats.bio.length)
-            console.log(j, bioLine)
-        }
-    }
+    // while (currentPos < targetStats.bio.length) {
+    //     //itertate backwards to find the last space in the line
+    //     if (targetStats.bio.length < lineWidth) {
+    //         lineWidth = targetStats.bio.length
+    //     }
+    //     let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
+    //     for (let j = bioLine.length; j > 0; j--) {
+    //         if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === ",") {
+    //             line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
+    //             currentPos = currentPos + j + 1;
+    //             break;
+    //         }
+    //         console.log(currentPos, targetStats.bio.length)
+    //         console.log(j, bioLine)
+    //     }
+    // }
 
 
     //traits
