@@ -137,4 +137,4 @@ export function character_Create() {
     startButtonSection.appendChild(loadingText);
 
     content.appendChild(startButtonSection);
-});
+};
