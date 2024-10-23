@@ -1,6 +1,7 @@
 import { createWebSocket } from '/js/networking/socket.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
+import { Send_Web_Socket_Message } from '../networking/socket.js';
 
 document.getElementById('connectButton').addEventListener('click', async (event) => {
     Init_Title().then(() => {
@@ -42,29 +43,32 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         }        
 
         //add event listener to new game button
-        document.getElementById('newGame').addEventListener('click', async (event) => {
+        const startNewGame = async (event) => {
             const description = document.querySelector('.splashContent');
             if (description) {
                 description.remove();
             }        
             
             document.removeEventListener('keydown', gameMenuKeyDown);
+            newGameButton.removeEventListener('click', startNewGame);
+            exitButton.removeEventListener('click', exitGame);
             const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
             }
             character_Create();                
             console.log("New Game button clicked")
-        })
+        };
 
         const gameMenuKeyDown = (event) => {
             if (event.key === 'Enter') {
                 newGameButton.click();
             }
-        };
-    
+        };    
+
+        newGameButton.addEventListener('click', startNewGame)
         document.addEventListener('keydown', gameMenuKeyDown);
-        
+
 
         // //add resume button 
         // if (1) { send a message to the server to check if there is a saved game
@@ -81,6 +85,23 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         // }
 
         //close connection
+        // add New Game button
+        const exitButton = document.createElement('button');
+        newGameButton.id = 'exitGame';
+        newGameButton.classList.add('btn', 'btn-center');
+        newGameButton.textContent = 'Exit';        
+
+        //append as adjecent sibling of newGameButton
+        menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
+
+        const exitGame = (event) => {
+            console.log("Disconnecting from server and exiting game");
+            //send message to server to disconnect
+            Send_Web_Socket_Message("7");
+        };
+
+        exitButton.addEventListener('click', exitGame)
+
     
     } catch (error) {
         console.error("Failed to establish WebSocket connection:", error);
