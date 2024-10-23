@@ -2,6 +2,7 @@ import { createWebSocket } from '/js/networking/socket.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
 import { Send_Web_Socket_Message } from '../networking/socket.js';
+import { Quit } from '../game/game.js';
 
 document.getElementById('connectButton').addEventListener('click', async (event) => {
     // Init_Title().then(() => {
@@ -91,7 +92,7 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             document.removeEventListener('keydown', gameMenuKeyDown);
             // newGameButton.removeEventListener('click', startNewGame);
             // exitButton.removeEventListener('click', exitGame);
-            Send_Web_Socket_Message("7");
+            Quit();
         };
         exitButton.addEventListener('click', exitGame)
 
