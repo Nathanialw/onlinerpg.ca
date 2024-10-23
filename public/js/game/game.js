@@ -1,6 +1,6 @@
 'use strict'
 import {Send_Web_Socket_Message} from "../networking/socket.js"
-import {ReSend} from "../frontend/charCreate.js"
+import {ReSend} from "../frontend/newGame.js"
 
 
 //restart with all the same input stats
