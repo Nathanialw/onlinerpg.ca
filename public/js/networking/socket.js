@@ -39,6 +39,8 @@ export async function createWebSocket() {
         websocket.onerror = null;
     }
 
+    let i = 0;
+
     return new Promise((resolve, reject) => {
         websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
 
@@ -95,8 +97,11 @@ export async function createWebSocket() {
 
         websocket.onerror = (error) => {
             console.error("WebSocket error:", error);
-            websocket.close();
-            reject(error);
+            if (i > 2) {
+                websocket.close();
+                reject(error);
+            }
+            i++;
         };
     });
 }
