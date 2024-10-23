@@ -137,4 +137,37 @@ export function character_Create() {
     startButtonSection.appendChild(loadingText);
 
     content.appendChild(startButtonSection);
+
+
+    // document.getElementById('startGame')
+    startButtonSection.addEventListener('click', async (event) => {
+    const nameInput = document.getElementById('name');
+    const nameError = document.getElementById('nameError');
+    const loadingText = document.getElementById('loading-text');
+    
+    if (nameInput.value.length < minNameLength || nameInput.value.length > maxNameLength) {
+        event.preventDefault(); // Prevent form submission
+        nameInput.classList.add('error'); // Add error class to input
+        nameError.style.display = 'block'; // Show error message
+        if (nameInput.value.length < minNameLength) {
+            nameError.textContent = `Name must be at least ${minNameLength} characters long.`;
+        } else {
+            nameError.textContent = `Name must be no more than ${maxNameLength} characters long.`;
+        }
+        
+    } else {
+        loadingText.classList.add('loading-text'); // Add error class to input
+        loadingText.style.color = 'white';
+        loadingText.textContent = `Connecting...`;
+        loadingText.style.display = 'block'; // Show error message
+        try {
+            Set_Canvas();
+            Load_Scripts();
+            Send();
+            Remove_Elements();
+        } catch (error) {
+            console.error("Failed to load game world:", error);
+        }  
+    }    
+});
 };
