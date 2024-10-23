@@ -46,7 +46,7 @@ namespace Species {
       //damage random generate + items
       //AC random generate + items
 
-    std::cout << "unit name int8: " << unit.name << std::endl;
+    std::cout << "unit name int16: " << unit.name << std::endl;
     auto name = Utils::Prepend_Zero_By_Digits(unit.name, 3);
     std::cout << "unit name str: " << name << std::endl;
 

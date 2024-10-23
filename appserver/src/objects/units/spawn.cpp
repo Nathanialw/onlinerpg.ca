@@ -28,11 +28,12 @@ namespace Spawn {
     return unitChars[(int)species];
   }
 
-  void Add_Unit(Units::Objects &objects, int level, Component::Position location, uint8_t x, uint8_t y, const uint8_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
+  void Add_Unit(Units::Objects &objects, int level, Component::Position location, uint8_t x, uint8_t y, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
     Units::Unit unit(level, location);
 
     //defined by where it is spawned
     unit.def.species = species;
+    unit.unitID = (uint8_t)species + 1;
     unit.position.x = x;
     unit.position.y = y;
 
@@ -98,7 +99,7 @@ namespace Spawn {
 
       std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
       auto names = DB::Get_List("name", "names", whereEquals);
-      auto nameID = Utils::Random(0, (int)names.size() - 1);
+      uint16_t nameID = Utils::Random(0, (int)names.size() - 1);
 
       Add_Unit(objects, level, location, x, y, nameID, gender, species, unitClass, alignment);
       return true;
