@@ -31,7 +31,7 @@ document.getElementById('connect').addEventListener('click', async (event) => {
         
         //add event listener to new game button
         document.getElementById('newGame').addEventListener('click', async (event) => {
-            const newGameButton = document.createElement('button');
+            const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
             }
