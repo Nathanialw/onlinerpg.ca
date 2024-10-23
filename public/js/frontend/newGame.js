@@ -348,6 +348,10 @@ export function character_Create() {
             Load_Scripts();
             Send();
             Remove_Elements();
+            //remove event listeners
+            document.getElementById('Human').removeEventListener('click', () => {});
+            document.getElementById('Elf').removeEventListener('click', () => {});
+            document.removeEventListener('keydown', () => {});
         } catch (error) {
             console.error("Failed to load game world:", error);
         }  
@@ -355,6 +359,12 @@ export function character_Create() {
 
 
     });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === 'Enter') {
+            document.getElementById('startGame').click();
+        }
+    })
     
     Init_Char_Select()
 };
