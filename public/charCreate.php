@@ -90,14 +90,14 @@
     </form>
 </section>
 
-<section class='startButton'>
+<section class='startButton button'>
     <button id="startGame" class='btn btn-center'>Start Game</button>
     <br> 
     <div id="nameError" class="error-message" style="color: red; display: none;">Name must be at least 3 characters long.</div>
     <div id="loading-text" class="loading-message" style="color: white; display: none;">Loading...</div>
 </section>
 
-<section class='connectButton'>
+<section class='connectButton button'>
     <button id="connect" class='btn btn-center'>Connect</button>
     <br> 
     <div id="nameError" class="error-message" style="color: red; display: none;">Failed to connect.</div>

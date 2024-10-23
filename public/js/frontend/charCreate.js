@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     //ask if a game is already in progress
     //if it is ask if they want to resume
     //add resume button if it is
-    console.log("WebSocket connection established");
 })
 
 function Buttons(Option) {

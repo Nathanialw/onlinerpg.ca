@@ -7,7 +7,7 @@ body {
     font-family: 'Press Start 2P', sans-serif;
 }
 
-.startButton {
+.button {
     display:flex; 
     flex-direction: column;
     align-items: center;
