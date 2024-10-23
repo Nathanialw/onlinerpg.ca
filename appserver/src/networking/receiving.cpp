@@ -82,8 +82,12 @@ namespace Network {
       return;
     }
 
-    if (!Resume_Game(session_id, hdl)) {
+    //if the game does not exist, create a new game
+    if (game_instances.find(session_id) == game_instances.end()) {
       Start_Game(session_id, hdl);
+    }
+    else {
+      std::cout << "Game Instance already exists for session id: " << session_id << std::endl;
     }
 
     std::cout << "number of connections: " << client_connections.size() << std::endl;
@@ -168,9 +172,10 @@ namespace Network {
       else {
         std::cout << "Game Instance does not exist for session id: " << session_id << std::endl;
       }
-      //if it does, send a message to the client to create a resume button
-
-      //      print_server.close(hdl, websocketpp::close::status::normal, "Game in progress");
+    }
+    else if (gg == 3) {
+      std::cout << "Resuming game" << std::endl;
+      Resume_Game(Get_SessionID(hdl), hdl);
     }
 
     //when a player moves, send the new position to all the clients except the one that sent it right away

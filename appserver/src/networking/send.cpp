@@ -101,6 +101,11 @@ namespace Send {
       return 2;
     }
 
+    else if (msg[0] == '9') { // resume game
+      std::cout << "resume game" << std::endl;
+      return 3;
+    }
+
     else {
       //
     }
