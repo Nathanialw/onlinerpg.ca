@@ -74,8 +74,8 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             }        
             
             document.removeEventListener('keydown', gameMenuKeyDown);
-            newGameButton.removeEventListener('click', startNewGame);
-            exitButton.removeEventListener('click', exitGame);
+            // newGameButton.removeEventListener('click', startNewGame);
+            // exitButton.removeEventListener('click', exitGame);
             const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
@@ -89,8 +89,8 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             console.log("Disconnecting from server and exiting game");
             //send message to server to disconnect
             document.removeEventListener('keydown', gameMenuKeyDown);
-            newGameButton.removeEventListener('click', startNewGame);
-            exitButton.removeEventListener('click', exitGame);
+            // newGameButton.removeEventListener('click', startNewGame);
+            // exitButton.removeEventListener('click', exitGame);
             Send_Web_Socket_Message("7");
         };
         exitButton.addEventListener('click', exitGame)
