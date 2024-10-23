@@ -6,21 +6,21 @@ var forest;
 var cave;
 var playing;
 
-async function CreateSound(path) {
-    var sound =  await new Howl ({
+function CreateSound(path) {
+    var sound = new Howl ({
         src: [path],
         html5: true
     });
     return sound;
 }
 
-export async function Init () {
+export function Init () {
     swoosh = CreateSound('../../assets/sounds/swish_2.wav');
     cave = CreateSound('../..//assets/music/cave/Dungeon_-_Catacomb_Crawler.ogg');
     forest = CreateSound('../../assets/music/forest/Dungeon_-_Thorn_Maze.ogg');
 }
 
-export async function Init_Title() {
+export function Init_Title() {
     title = CreateSound('../../assets/music/title/Battle_-_Temple_Tussle.ogg');
 }
 
