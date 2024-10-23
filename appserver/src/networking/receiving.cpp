@@ -69,7 +69,16 @@ namespace Network {
     game_instances.erase(session_id);
     reverse_client_connections.erase(client_connections[session_id]);
     client_connections.erase(session_id);
+    std::cout << "Game Closed" << std::endl;
   }
+
+  void Exit_Game(const std::string& session_id) {
+//    game_instances.erase(session_id);
+//    reverse_client_connections.erase(client_connections[session_id]);
+//    client_connections.erase(session_id);
+    std::cout << "Exiting game" << std::endl;
+  }
+
 
   void Init_Connection(const websocketpp::connection_hdl& hdl) {
     std::cout << "New connection opened: " << hdl.lock().get() << std::endl;
@@ -152,8 +161,8 @@ namespace Network {
       Start_Game(session_id, hdl);
     }
     else if (gg == 1) {
-      Close_Game(Get_SessionID(hdl));
-      print_server.close(hdl, websocketpp::close::status::normal, "Game Closed");
+      Exit_Game(Get_SessionID(hdl));
+      print_server.close(hdl, websocketpp::close::status::normal, "Game Exited");
     }
     else if (gg == 2) {
       //check if game exists based on session id
