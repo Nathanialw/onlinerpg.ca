@@ -16,13 +16,15 @@ document.getElementById('connectButton').addEventListener('click', async (event)
     connectText.style.display = 'block'; // Show error message
     try {
         await createWebSocket();
+        
         const connectButton = document.querySelector('#connectButton');
+        document.removeEventListener('keydown', () => {});
         // remove connect button
         if (connectButton) {
             connectButton.remove();
             connectText.style.display = 'none'; // Show error message
         }
-        
+
         // add New Game button
         const newGameButton = document.createElement('button');
         newGameButton.id = 'newGame';
@@ -36,12 +38,20 @@ document.getElementById('connectButton').addEventListener('click', async (event)
             if (description) {
                 description.remove();
             }        
+            
+            document.removeEventListener('keydown', () => {});
             const newGameButton = document.querySelector('#newGame');
             if (newGameButton) {
                 newGameButton.remove();
             }
             character_Create();                
             console.log("New Game button clicked")
+        })
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === 'Enter') {
+                document.getElementById('newGame').click();
+            }
         })
 
         // //add resume button 
@@ -66,3 +76,8 @@ document.getElementById('connectButton').addEventListener('click', async (event)
     
 });
 
+document.addEventListener("keydown", (event) => {
+    if (event.key === 'Enter') {
+        document.getElementById('connectButton').click();
+    }
+})
