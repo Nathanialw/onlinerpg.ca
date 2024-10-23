@@ -41,7 +41,8 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         } else {
             console.error("Element with class 'menuButtons' not found.");
         }        
-
+        
+        Resume();
 
         //close connection
         const exitButton = document.createElement('button');
@@ -52,7 +53,6 @@ document.getElementById('connectButton').addEventListener('click', async (event)
         //append as adjecent sibling of newGameButton
         menuButtons.insertBefore(exitButton, newGameButton.nextSibling);
 
-        Resume();
 
         //add event listener to new game button
         const startNewGame = async (event) => {

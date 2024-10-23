@@ -63,7 +63,7 @@ function Resume_Game() {
 
 async function Create_Resume_Btn(data) {
     //close connection
-    const newGameButton = document.getElementById('newGame').remove()
+    const newGameButton = document.getElementById('newGame')
     const menuButtons = document.querySelector('.menuButtons');
 
     const resumeButton = document.createElement('button');
