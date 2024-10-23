@@ -86,6 +86,7 @@ export async function createWebSocket() {
             } else {
                 const connectText = document.getElementById('connect-text');
                 if (connectText) {
+                    connectText.style.color = 'red';
                     connectText.style.display = 'block'; // Show error message
                     connectText.textContent = `Failed to establish connection.`;
                 }
