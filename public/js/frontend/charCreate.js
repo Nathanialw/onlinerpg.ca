@@ -4,6 +4,7 @@ import { character_Create } from './newGame.js';
 
 document.getElementById('connectButton').addEventListener('click', async (event) => {
     Init_Title().then(() => {
+        console.log("Title music loaded");
         Music_Play("title");
     });
 
