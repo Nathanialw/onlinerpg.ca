@@ -137,7 +137,8 @@ export async function Get_Unit_Stats(uID) {
         result.push(stmt.getAsObject());
     }
     stmt.free();
-    
+    console.log(result);
+    console.log(result[0]);
     // Log the entire result object to see what it contains
     return result[0];
 }
