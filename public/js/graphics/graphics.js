@@ -94,7 +94,7 @@ async function Init_Graphics() {
     tabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     invTabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory.png')
-    playerImg = await Load_Texture('assets/graphics/imgs/human/male/001.jpg')
+    playerImg = await Load_Texture(defaultPath)
     target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
