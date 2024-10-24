@@ -30,6 +30,6 @@ namespace Chunk {
     std::vector<Room> rooms;
   };
 
-  void Create_Chunk(int level, Component::Position location, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects);
+  void Create_Chunk(int8_t level, Component::Position location, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects);
   void Add_Rooms(char defaultChunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms);
 }

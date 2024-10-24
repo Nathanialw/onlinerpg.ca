@@ -55,7 +55,7 @@ namespace Game {
     std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //map
-    uint8_t level = 0;
+    int8_t level = 0;
     Component::Position location = {0, 0};
 
     //seed

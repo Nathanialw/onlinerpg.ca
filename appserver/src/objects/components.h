@@ -12,7 +12,7 @@
 
 namespace Component {
   typedef int8_t PosInt;
-  static const int mapWidth = 99;
+  static const uint8_t mapWidth = 99;
 
   struct Position {
     PosInt x;

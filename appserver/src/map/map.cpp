@@ -201,7 +201,7 @@ namespace Map {
     return tile;
   }
 
-  void Add_Map_Chunk(Game::Instance &game, int level, Component::Position location) {
+  void Add_Map_Chunk(Game::Instance &game, int8_t level, Component::Position location) {
     std::cout << "Add map chunk" << std::endl;
     std::cout << "location position to add: " << location.x << ", " << location.y << std::endl;
 
