@@ -33,7 +33,7 @@ export async function Get_Target_Stats_From_Server(statsString) {
     const nameID = Strip_Leading_Zeroes(statsString.substring(3, 7));
 
     targetStats.age = Strip_Leading_Zeroes(statsString.substring(7, 10));
-    genderIndex = Strip_Leading_Zeroes(statsString.substring(10, 11))
+    const genderIndex = Strip_Leading_Zeroes(statsString.substring(10, 11))
     targetStats.gender = gender[genderIndex];
     targetStats.health = Strip_Leading_Zeroes(statsString.substring(11, 14)) + "/" + Strip_Leading_Zeroes(statsString.substring(14, 17));
     targetStats.attack = Strip_Leading_Zeroes(statsString.substring(17, 19)) + "-" + Strip_Leading_Zeroes(statsString.substring(19, 21));
