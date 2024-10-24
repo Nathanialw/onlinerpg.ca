@@ -89,3 +89,17 @@ namespace Game {
   Instance Init(const std::string& session_id);
   void Run();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
