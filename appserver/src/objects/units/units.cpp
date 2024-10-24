@@ -11,7 +11,7 @@
 
 namespace Units {
 
-  void Remove_Unit(std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<int> &emptyUnitSlots, Component::Position position) {
+  void Remove_Unit(std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<uint8_t> &emptyUnitSlots, Component::Position position) {
     int index = unitPositions[position];
     //can't dp this because it will invalidate map indexes
     //    units.erase(units.begin() + index);
@@ -21,7 +21,7 @@ namespace Units {
     unitPositions.erase(position);
   }
 
-  void Add_Unit(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<int> &emptyUnitSlots, Units::Unit &unit, Component::Position &position) {
+  void Add_Unit(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<uint8_t> &emptyUnitSlots, Units::Unit &unit, Component::Position &position) {
     if (!emptyUnitSlots.empty()) {
       int index = emptyUnitSlots[emptyUnitSlots.size() - 1];
       emptyUnitSlots.pop_back();

@@ -264,13 +264,13 @@ namespace Units {
     std::vector<Unit> units;
     std::unordered_map<Component::Position, uint8_t> unitPositions;
 //    std::unordered_map<Map_Position, int> unitPositionss;
-    std::vector<int> emptyUnitSlots;
-    std::string unitsString;
+    std::vector<uint8_t> emptyUnitSlots;
+//    std::string unitsString;
   };
 
   int Get_Unit_Index(std::unordered_map<Component::Position, uint8_t> &unitPositions, Component::Position position);
   void Update_Unit_Position(std::unordered_map<Component::Position, uint8_t> &unitPositions, const Component::Position &position, const Component::Position &newPosition);
-  void Remove_Unit(std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<int> &emptyUnitSlots, Component::Position position);
+  void Remove_Unit(std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<uint8_t> &emptyUnitSlots, Component::Position position);
 //  Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, Component::Position &newPosition);
   Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, uint8_t> &unitPositions, Component::Position &position);
 

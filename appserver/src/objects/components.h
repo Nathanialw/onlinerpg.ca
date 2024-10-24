@@ -11,18 +11,19 @@
 #endif // BROWSERRPG_COMPONENTS_H
 
 namespace Component {
+  typedef int8_t PosInt;
   static const int mapWidth = 99;
 
   struct Position {
-    int8_t x;
-    int8_t y;
+    PosInt x;
+    PosInt y;
 
     bool operator==(const Position &other) const {
       return x == other.x && y == other.y;
     }
 
     Position Add(const Position &other) const {
-      return {static_cast<int8_t>(x + other.x), static_cast<int8_t>(y + other.y)};
+      return {static_cast<PosInt>(x + other.x), static_cast<PosInt>(y + other.y)};
     }
   };
 
@@ -32,8 +33,8 @@ namespace Component {
     float fGlobalGoal{};
     float fLocalGoal{};
     // position
-    int x{};
-    int y{};
+    PosInt x{};
+    PosInt y{};
     std::vector<sNode *> vecNeighbours;
     sNode *parent{};
   };

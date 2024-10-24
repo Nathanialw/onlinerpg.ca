@@ -87,8 +87,8 @@ namespace Pathing {
 //    (nodeEnd->bObstacle) ? numCellsToCheck = 1 : numCellsToCheck = 10000;
     numCellsToCheck = 10000;
 
-    for (int x = 0; x < Component::mapWidth; x++)
-      for (int y = 0; y < Component::mapWidth; y++) {
+    for (Component::PosInt x = 0; x < Component::mapWidth; x++)
+      for (Component::PosInt y = 0; y < Component::mapWidth; y++) {
         nodes[y * Component::mapWidth + x].bVisited = false;
         nodes[y * Component::mapWidth + x].fGlobalGoal = INFINITY;
         nodes[y * Component::mapWidth + x].fLocalGoal = INFINITY;
@@ -252,6 +252,6 @@ namespace Pathing {
     int cell = 1;
     std::cout << path.size() << std::endl;
     std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
-    return {(path[path.size() - cell].x - position.x), (path[path.size() - cell].y - position.y)};
+    return {static_cast<Component::PosInt>((path[path.size() - cell].x - position.x)), static_cast<Component::PosInt>((path[path.size() - cell].y - position.y))};
   }
 }

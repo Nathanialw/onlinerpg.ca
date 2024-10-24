@@ -39,7 +39,7 @@ namespace Player {
   }
 
   void Spawn(Game::Instance &game, int level, Component::Position location, int x, int y, const std::basic_string<char> &characterCreate) {
-    game.objects[level][location].unitsString += "2";
+//    game.objects[level][location].unitsString += "2";
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
     // I need to send the char and the offset in the map g0317
@@ -73,7 +73,7 @@ namespace Player {
     std::string xStr = Utils::Prepend_Zero(x);
     std::string yStr = Utils::Prepend_Zero(y);
 
-    game.objects[level][location].unitsString += (std::to_string(Spawn::Get_Unit_Char(species)) + xStr + yStr);
+//    game.objects[level][location].unitsString += (std::to_string(Spawn::Get_Unit_Char(species)) + xStr + yStr);
   }
 
 }

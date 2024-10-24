@@ -74,7 +74,7 @@ namespace Game {
         return !objects[level][location].units.empty();
     }
 
-    Chunk::Map_Chunk &Get_Map(int currentLevel, Component::Position currentLocation) {
+    Chunk::Map_Chunk &Get_Map(uint8_t currentLevel, Component::Position currentLocation) {
       return map[currentLevel][currentLocation];
     }
 
