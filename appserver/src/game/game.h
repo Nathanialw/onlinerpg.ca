@@ -52,11 +52,11 @@ namespace Game {
     //get hungry = 1/day
     //rest = 5min, unless interrupted
 
+    std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //map
     uint8_t level = 0;
     Component::Position location = {0, 0};
-    std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
 
     //seed
     Proc_Gen::Seed seed;

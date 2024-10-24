@@ -45,12 +45,12 @@ namespace Chunk {
 
   void Add_Large_Rooms(char defaultChunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms) {
     Proc_Gen::Seed seed;
-    for (int x = 1; x < (Component::mapWidth - 20); x+=21) {
-      for (int y = 1; y < Component::mapWidth - 20; y+=21) {
+    for (uint8_t x = 1; x < (Component::mapWidth - 20); x+=21) {
+      for (uint8_t y = 1; y < Component::mapWidth - 20; y+=21) {
         seed.seed = Proc_Gen::Create_Initial_Seed(x, y);
-        int w = Proc_Gen::Random_Int(9, 19, seed);
+        uint8_t w = Proc_Gen::Random_Int(9, 19, seed);
         seed.seed = Proc_Gen::Create_Initial_Seed(y, x);
-        int h = Proc_Gen::Random_Int(9, 19, seed);
+        uint8_t h = Proc_Gen::Random_Int(9, 19, seed);
         Add_Room(defaultChunk, x, y, w, h);
         rooms.push_back({x, y, w, h});
       }

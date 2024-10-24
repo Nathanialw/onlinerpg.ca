@@ -28,10 +28,10 @@ namespace Component {
   };
 
   struct sNode {
-    bool bObstacle = false;
-    bool bVisited = false;
     float fGlobalGoal{};
     float fLocalGoal{};
+    bool bObstacle = false;
+    bool bVisited = false;
     // position
     PosInt x{};
     PosInt y{};
@@ -43,7 +43,7 @@ namespace Component {
 namespace std {
   template <> struct hash<Component::Position> {
       std::size_t operator()(const Component::Position &pos) const {
-        return std::hash<int>()(pos.x) ^ (std::hash<int>()(pos.y) << 1);
+        return std::hash<Component::PosInt>()(pos.x) ^ (std::hash<Component::PosInt>()(pos.y) << 1);
       }
   };
 }
