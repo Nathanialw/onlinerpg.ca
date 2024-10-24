@@ -48,7 +48,7 @@ namespace Utils {
       return a + b;
   }
 
-  uint8_t Add(uint8_t a, uint8_t b) {
+  uint8_t Add(const uint8_t &a, const uint8_t &b) {
       return a + b;
   }
 

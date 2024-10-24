@@ -26,28 +26,28 @@ namespace Attack {
     return location;
   }
 
-  int Check_Target(Units::Objects &targets, int px, int py, int x, int y) {
+  int Check_Target(Units::Objects &targets, Component::Position &position, Component::Position &moveTo) {
     //if at the edge of the map
     int targetIndex;
 
-    if (px+x < 0) {
-      Component::Position newPos = {Component::mapWidth-1, Utils::Add(py, y)};
-      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
+    if (position.x+moveTo.x < 0) {
+      Component::Position newPos = {Component::mapWidth-1, Utils::Add(position.y, moveTo.y)};
+      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos);
     }
-    else if (px+x >= Component::mapWidth) {
-      Component::Position newPos = {0, Utils::Add(py, y)};
-      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
+    else if (position.x+moveTo.x >= Component::mapWidth) {
+      Component::Position newPos = {0, Utils::Add(position.y, moveTo.y)};
+      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos);
     }
-    else if (py+y < 0) {
-      Component::Position newPos = {Utils::Add(px, x), Component::mapWidth-1};
-      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
+    else if (position.y+moveTo.y < 0) {
+      Component::Position newPos = {Utils::Add(position.x, moveTo.x), Component::mapWidth-1};
+      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos);
     }
-    else if (py+y >= Component::mapWidth) {
-      Component::Position newPos = {Utils::Add(px, x), 0};
-      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos.x, newPos.y);
+    else if (position.y+moveTo.y >= Component::mapWidth) {
+      Component::Position newPos = {Utils::Add(position.x, moveTo.x), 0};
+      targetIndex = Units::Get_Unit_Index(targets.unitPositions, newPos);
     }
     else {
-      targetIndex = Units::Get_Unit_Index(targets.unitPositions, Utils::Add(px, x), Utils::Add(py, y));
+      targetIndex = Units::Get_Unit_Index(targets.unitPositions, position.Add(moveTo));
     }
     return targetIndex;
   }
@@ -58,8 +58,8 @@ namespace Attack {
   //then grab the index of the attacker
   //then grab the index of the target
     //which may be in a different chunk
-  Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int px, int py, int x, int y) {
-    auto targetIndex = Check_Target(targets, px, py, x, y);
+  Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], Component::Position &position, Component::Position &moveTo) {
+    auto targetIndex = Check_Target(targets, position, moveTo);
 
     if (targetIndex == -1) {
       std::cout << "no target found" << std::endl;
@@ -72,12 +72,12 @@ namespace Attack {
     std::cout << Spawn::Get_Unit_Char(attacker.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << attacker.maxDamage << " damage" << std::endl;
     if (target.health <= 0) {
         std::cout << "target dead" << std::endl;
-        Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, Utils::Add(px, x), Utils::Add(py, y));
+        Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, position.Add(moveTo));
         //need the grab the chunk the target is in
         //if items drop
           //send the uIDs of the items to the client when he moves over them
         //else
-        chunk[py+y][px+x] = ',';
+        chunk[position.y + moveTo.y][position.x + moveTo.x] = ',';
         return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.maxDamage, true};
     }
     return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.maxDamage, false};

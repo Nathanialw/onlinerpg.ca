@@ -22,11 +22,12 @@
 
 namespace Species {
   std::string Get_Unit_Data_As_string(Game::Instance &game, const std::string &msg) {
-    int mapPositionX = game.Get_Player().position.x - game.Get_Player().vision + std::stoi(msg.substr(0, 2));
-    int mapPositionY = game.Get_Player().position.y - game.Get_Player().vision + std::stoi(msg.substr(2, 2));
+    int8_t mapPositionX = game.Get_Player().position.x - game.Get_Player().vision + std::stoi(msg.substr(0, 2));
+    int8_t mapPositionY = game.Get_Player().position.y - game.Get_Player().vision + std::stoi(msg.substr(2, 2));
+    Component::Position position = {mapPositionX, mapPositionY};
 
     //will need to use mouse coords to determine level/location, but for now you can only get from the same map chunk/level as the player
-    auto unit = Units::Get_Unit_At_Position(game.objects[game.Get_Player().level][game.Get_Player().location].units, game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, mapPositionX, mapPositionY);
+    auto unit = Units::Get_Unit_At_Position(game.objects[game.Get_Player().level][game.Get_Player().location].units, game.objects[game.Get_Player().level][game.Get_Player().location].unitPositions, position);
 
     //unit ID for the DB
     std::cout << "unitID  int8: " << unit.unitID << std::endl;

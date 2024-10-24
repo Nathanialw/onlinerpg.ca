@@ -22,7 +22,7 @@ namespace Spawn {
 //  Placement Random_Placement();
 //  void Add_Unit(int x, int y, const std::string &name, Units::
 
-  void Add_Unit(Units::Objects &objects, int level, Component::Position location, uint8_t x, uint8_t y, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment);
-      char Get_Unit_Char(Units::Species species);
+  void Add_Unit(Units::Objects &objects, int level, Component::Position location, int8_t x, int8_t y, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment);
+  char Get_Unit_Char(Units::Species species);
   void Init(int level, Component::Position location, char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Units::Objects &objects);
 }

@@ -19,7 +19,7 @@ namespace Map {
   std::string SendMapSegment(Game::Instance &game, const std::string& direction, int state = 1);
   std::string Get_Adjacent_Tile(Game::Instance &game, int level, Component::Position location, int x, int y);
   std::string Get_Map(char chunk[Component::mapWidth][Component::mapWidth]);
-  void Update(Game::Instance &game, int level, Component::Position location, int px, int py, int x, int y, const char &tile) ;
+  void Update(Game::Instance &game, int level, Component::Position location, Component::Position &position,  Component::Position &move, const char &tile) ;
   void Update(Game::Instance &game, int level, Component::Position formerPosition, Component::Position newPosition, Component::Position formerLocation, Component::Position newLocation, const char &tile);
   void Set_Tile(char chunk[Component::mapWidth][Component::mapWidth], int x, int y, const char &tile);
   void Reset_Tile(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int x, int y);

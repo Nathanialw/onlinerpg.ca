@@ -11,64 +11,52 @@
 
 namespace Units {
 
-  void Remove_Unit(std::unordered_map<Component::Position, int> &unitPositions, std::vector<int> &emptyUnitSlots, int x, int y) {
-    Component::Position pos = {x, y};
-    int index = unitPositions[pos];
+  void Remove_Unit(std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<int> &emptyUnitSlots, Component::Position position) {
+    int index = unitPositions[position];
     //can't dp this because it will invalidate map indexes
     //    units.erase(units.begin() + index);
     //instead, save the index to a vector of empty slots
     if (index != 0) //ensure the 0 index is always open for the player
       emptyUnitSlots.push_back(index);
-    unitPositions.erase(pos);
+    unitPositions.erase(position);
   }
 
-  void Add_Unit(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, std::vector<int> &emptyUnitSlots, Units::Unit &unit, int x, int y) {
+  void Add_Unit(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, uint8_t> &unitPositions, std::vector<int> &emptyUnitSlots, Units::Unit &unit, Component::Position &position) {
     if (!emptyUnitSlots.empty()) {
       int index = emptyUnitSlots[emptyUnitSlots.size() - 1];
       emptyUnitSlots.pop_back();
       units[index] = unit;
-      Component::Position pos = {x, y};
-      unitPositions.emplace(pos, index);
+      unitPositions.emplace(position, index);
     }
     else {
       units.push_back(unit);
-      Component::Position pos = {x, y};
-      unitPositions.emplace(pos, units.size() - 1);
+      unitPositions.emplace(position, units.size() - 1);
     }
   }
 
-  Units::Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, int> &unitPositions, int x, int y) {
-    if (Get_Unit_Index(unitPositions, x, y) == -1) {
-      std::cout << "unit not found at: " << x << " " << y << std::endl;
+  Units::Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, uint8_t> &unitPositions, Component::Position &position) {
+    if (Get_Unit_Index(unitPositions, position) == -1) {
+      std::cout << "unit not found at: " << position.x << " " << position.y << std::endl;
       return units[0];
     }
-    return units[Units::Get_Unit_Index(unitPositions, x, y)];
+    return units[Units::Get_Unit_Index(unitPositions, position)];
   }
 
-  int Get_Unit_Index(std::unordered_map<Component::Position, int> &unitPositions, int x, int y) {
-    Component::Position pos = {x, y};
-    if (unitPositions.count(pos) == 1) {
-      std::cout << "unit found at: " << x << " " << y << std::endl;
-      return unitPositions[pos];
+  int Get_Unit_Index(std::unordered_map<Component::Position, uint8_t> &unitPositions, Component::Position position) {
+    if (unitPositions.count(position) == 1) {
+      std::cout << "unit found at: " << position.x << " " << position.y << std::endl;
+      return unitPositions[position];
     }
     return -1;
   }
 
-  void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const int &x, const int &y, const int &newX, const int &newY) {
-    std::cout << "updating unit position from: " << x << " " << y << " to: " << newX << " " << newY << std::endl;
-    Component::Position pos = {x, y};
-    int index = unitPositions[pos];
-    Component::Position newPos = {newX, newY};
-    unitPositions.erase(pos);
-    unitPositions.emplace(newPos, index);
+  void Update_Unit_Position(std::unordered_map<Component::Position, uint8_t> &unitPositions, const Component::Position &position, const Component::Position &newPosition) {
+    std::cout << "updating unit position from: " << position.x << " " << position.y << " to: " << newPosition.x << " " << newPosition.y << std::endl;
+    int index = unitPositions[position];
+    unitPositions.erase(position);
+    unitPositions.emplace(newPosition, index);
   }
 
-  void Update_Unit_Position(std::unordered_map<Component::Position, int> &unitPositions, const Component::Position &pos, const Component::Position &newPos) {
-    std::cout << "updating unit position from: " << pos.x << " " << pos.y << " to: " << newPos.x << " " << newPos.y << std::endl;
-    int index = unitPositions[pos];
-    unitPositions.erase(pos);
-    unitPositions.emplace(newPos, index);
-  }
 
   void Update_UnitsString(std::string &unitsString, int x, int y) {
     std::cout << "updating units string" << std::endl;

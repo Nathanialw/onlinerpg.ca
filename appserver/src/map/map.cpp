@@ -109,13 +109,13 @@ namespace Map {
   }
 
   //does not take into account traversing map chunks
-  void Update(Game::Instance &game, int level, Component::Position location, int px, int py, int x, int y, const char &tile) {
+  void Update(Game::Instance &game, int level, Component::Position location, Component::Position &position, Component::Position &move, const char &tile) {
     //check item at location
-    if (Check_For_Item(game.items[level][location][{px, py}]))
-      game.map[level][location].chunk[py][px] = ',';
+    if (Check_For_Item(game.items[level][location][{position.x, position.y}]))
+      game.map[level][location].chunk[position.y][position.x] = ',';
     else
-      Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, px, py);
-    Set_Tile(game.map[level][location].chunk, px + x, py + y, tile);
+      Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, position.x, position.y);
+    Set_Tile(game.map[level][location].chunk, position.x + move.x, position.y + move.y, tile);
   }
 
   void Update(Game::Instance &game, int level, Component::Position formerPosition, Component::Position newPosition, Component::Position formerLocation, Component::Position newLocation, const char &tile) {
@@ -133,8 +133,8 @@ namespace Map {
     mapSegment += game.map[game.Get_Player().level][location].chunk[cell.y][cell.x];
   }
 
-  void Handle_Boundary(Game::Instance &game, int i, int j, std::string &mapSegment) {
-    Component::Position chunk = { (i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0,  (j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0 };
+  void Handle_Boundary(Game::Instance &game, int8_t i, int8_t j, std::string &mapSegment) {
+    Component::Position chunk = { static_cast<int8_t>((i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0),  static_cast<int8_t>((j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0) };
     if (chunk.x == 0 && chunk.y == 0) {
       mapSegment += game.map[game.Get_Player().level][game.Get_Player().location].chunk[j][i];
       return;
