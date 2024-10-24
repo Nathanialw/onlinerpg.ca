@@ -51,6 +51,7 @@ export let defaultStyle;
 export let hoverStyle;
     
 export const itemFramePath = 'assets/graphics/ui/equipment/slot_frame.png';
+const defaultPath = 'assets/graphics/imgs/A_imgs/1.png'
 
 let equipSlotsDefault = {
     ammo: null,
@@ -381,7 +382,11 @@ export async function Load_Target_Image(x, y, path) {
     y += 1;
     x *= cellSize;
     y *= cellSize;
-    const texture = await PIXI.Assets.load(path);
+    let texture = await PIXI.Assets.load(path);
+    if (!texture) {
+        texture = await PIXI.Assets.load(defaultPath);
+        return;
+    }
     targetImg = new PIXI.Sprite(texture);
     let w = 11 * cellSize;
     let h = 11 * cellSize;

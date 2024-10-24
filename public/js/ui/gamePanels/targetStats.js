@@ -8,6 +8,7 @@ import { Strip_Leading_Zeroes } from "../../utils/utils.js"
 import { Set_Game_Panel_Index } from "../menus/gameMenu.js"
 
 const gender = ["♂", "♀"]
+const sex = ["m", "f"]
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -32,7 +33,8 @@ export async function Get_Target_Stats_From_Server(statsString) {
     const nameID = Strip_Leading_Zeroes(statsString.substring(3, 7));
 
     targetStats.age = Strip_Leading_Zeroes(statsString.substring(7, 10));
-    targetStats.gender = gender[Strip_Leading_Zeroes(statsString.substring(10, 11))];
+    genderIndex = Strip_Leading_Zeroes(statsString.substring(10, 11))
+    targetStats.gender = gender[];
     targetStats.health = Strip_Leading_Zeroes(statsString.substring(11, 14)) + "/" + Strip_Leading_Zeroes(statsString.substring(14, 17));
     targetStats.attack = Strip_Leading_Zeroes(statsString.substring(17, 19)) + "-" + Strip_Leading_Zeroes(statsString.substring(19, 21));
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(21, 23));
@@ -44,7 +46,7 @@ export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.species = stats.name;
     targetStats.speed = stats.speed;
     targetStats.vision = stats.vision;
-    targetStats.pic = "assets/graphics/imgs/" + stats.image;
+    targetStats.pic = "assets/graphics/imgs/" + targetStats.species + "/" + sex[genderIndex] + "/1.png";
     targetStats.bio = stats.description;
     targetStats.alignment = stats.alignment;
     
