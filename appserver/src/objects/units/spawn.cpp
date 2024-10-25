@@ -102,7 +102,7 @@ namespace Spawn {
       auto alignment = (Units::Alignment)Utils::Random(0, (int)Units::Alignment::SIZE - 1);
 
       //count the number of images in the assets folder and return a random number
-      uint8_t picNum = Files::Get_Random_Pic("assets/graphics/imgs/" + Units::species[(int)species] + "/" + Units::gender[(int)gender][0] + "/");
+      uint8_t picNum = Files::Get_Random_Pic("../public/assets/graphics/imgs/" + Units::species[(int)species] + "/" + Units::gender[(int)gender][0] + "/");
       std::cout << "picNum: " << picNum << std::endl;
 
       //  assets/graphics/imgs/Warg/f
