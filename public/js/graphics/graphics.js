@@ -51,7 +51,7 @@ export let defaultStyle;
 export let hoverStyle;
     
 export const itemFramePath = 'assets/graphics/ui/equipment/slot_frame.png';
-const defaultPath = 'assets/graphics/imgs/A_imgs/1.png'
+const defaultPath = 'assets/graphics/portraits/Human/m/1.png'
 
 let equipSlotsDefault = {
     ammo: null,
