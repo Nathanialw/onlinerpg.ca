@@ -42,9 +42,27 @@ namespace Items {
 
   typedef uint16_t ItemID;
 
+
+
   typedef std::array<Items::ItemID, (uint8_t)Items::BagType::SIZE> Bags;
   typedef std::array<uint8_t, (uint8_t)Items::BagType::SIZE> Max_Slots;
   typedef std::array<std::array<Items::ItemID, 14>, (uint8_t)Items::BagType::SIZE> Inventory;
+
+  struct Item {
+    Items::ItemID uID;
+
+    //it needs to know which modifiers it has
+    std::array<uint8_t, 5> modifiers; //keys to the static modifiers in the db
+
+    //which icon it has
+    uint8_t icon; //name of the icon png in the directory referenced in the db
+
+    uint8_t rarity; //0-5
+    uint8_t durability; //0-100
+
+
+    //requirements
+  };
 
   struct Backpack {
       Inventory inventory;
@@ -58,3 +76,86 @@ namespace Items {
 }
 
 #endif // BROWSERRPG_ITEMS_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
