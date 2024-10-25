@@ -105,9 +105,6 @@ namespace Spawn {
       uint8_t picNum = Files::Get_Random_Pic("../public/assets/graphics/imgs/" + Units::species[(int)species] + "/" + Units::gender[(int)gender][0] + "/");
       std::cout << "picNum: " << picNum << std::endl;
 
-      //  assets/graphics/imgs/Warg/f
-      //  assets/graphics/imgs/Warg/f/1.png
-
 //      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
       std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)Units::Species::ORC]}, {"type", Units::gender[(int)gender]}};
       auto names = DB::Get_List("uID", "names", whereEquals);
