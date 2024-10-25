@@ -382,10 +382,12 @@ export async function Load_Target_Image(x, y, path) {
     y += 1;
     x *= cellSize;
     y *= cellSize;
-    let texture = await PIXI.Assets.load(path);
-    if (!texture) {
+    let texture;
+    try {
+        texture = await PIXI.Assets.load(path);    
+    } catch (error) {
         texture = await PIXI.Assets.load(defaultPath);
-    }
+    }  
     targetImg = new PIXI.Sprite(texture);
     let w = 11 * cellSize;
     let h = 11 * cellSize;
