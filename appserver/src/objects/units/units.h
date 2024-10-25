@@ -21,7 +21,7 @@
 namespace Units {
 
   enum class Species {
-    ALPACA,
+    ALP,
     BASILISK,
     CENTAUR,
     DWARF,
@@ -58,13 +58,13 @@ namespace Units {
     HARPY,
     IMP,
     JINN,
-    KRAKEN,
+    KRAMPUS,
     LICH,
     MADUSA,
     NAGA,
     OGRE,
     POLTERGEIST,
-    QAFFIR,
+    QUINOTAUR,
     ROC,
     SATYR,
     TROLL,
@@ -81,7 +81,7 @@ namespace Units {
   };
 
   static std::string species[(uint8_t)Species::SIZE] = {
-      "alpaca",
+      "alp",
       "basilisk",
       "centaur",
       "dwarf",
@@ -117,13 +117,13 @@ namespace Units {
       "harpy",
       "imp",
       "jinn",
-      "kraken",
+      "krampus",
       "lich",
       "madusa",
       "naga",
       "ogre",
       "poltergeist",
-      "qaffir",
+      "Quinotaur",
       "roc",
       "satyr",
       "troll",

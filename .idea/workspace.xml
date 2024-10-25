@@ -5,106 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71b97d7e-a9ca-4767-b8a1-9c2148645819" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/appserver/db/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/db/data.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appserver/src/objects/items/items.h" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/items/items.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/1920px-Pair_of_Greaves_(Lower_Leg_Defenses)_MET_DP-13125-029.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/3091857893_cc131df8b6_b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/3091858085_6ca042e18f_b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/3091859311_35e8a1b8d4_b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/3092697362_1361fe98aa_b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/3327581642_f5d9b20327_b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/4299141783_b4721bd5e5_b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/5685042509_a87322e7bf_b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/653cbf9d-139e-4109-8471-28023637c46d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/871237324_067e04d1ea_c.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/8932.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/8933.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Antivenom-Pot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Armour_with_chain_mail_(29849299852).jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Axe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Chain_mail_coat,_Sudanese.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Chainmail_hauberk_detail_G_PO_2749_Invalides_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Charm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Coat_of_mail_with_horn_plates,_Philippines_(Moro_people),_1800s_-_Higgins_Armory_Museum_-_DSC05569.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Cotte_de_mailles.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Demi-armure_MG_0793.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Elements_of_a_Light-Cavalry_Armor_MET_DP-12881-004.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/HJRK_A_7_-_Gauntlets_of_Maximilian_I,_c._1514.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Half_Armor_MET_DP279060.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Half_Armor_MET_DP279061.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Health-Pot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Helmet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Italian - Mail - Walters 51575 - Hauberk - Wikipedia.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Jousting_Armor_MET_168826.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Kolczuga_Jana_Kazimierza.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Kusari_katabira_11.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Layer-55.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Left_Arm_Defense_(Vambrace)_MET_DP-12882-028.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Mail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Mail_shirt,_apparently_European_-_Glenbow_Museum_-_DSC00708.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Mana-Pot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Pearl-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Pearl.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Quest.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Savoyard_armour_edit.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Shirt_of_Mail_MET_DP359868.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Shirt_of_Mail_and_Plate_MET_DP147285.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Shirt_of_Mail_and_Plate_of_Al-Ashraf_Sayf_ad-Din_Qaitbay_(ca._1416-18–1496),_18th_Burji_Mamluk_Sultan_of_Egypt_MET_DP-1604-059.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Shirt_of_Mail_and_Plate_of_Al-Ashraf_Sayf_ad-Din_Qaitbay_(ca._1416-18–1496),_18th_Burji_Mamluk_Sultan_of_Egypt_MET_DP-891-001.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Skills.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Sword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/Xixia_Chainmail_Armor_(41985701161).jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/a-knight-with-a-helmet-and-a-sword.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/battle_worn_tribal_armour_2_by_peacefulmynd_d41c5fc-fullview.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/battle_worn_tribal_armour_by_peacefulmynd_d41c5cn-fullview.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/breastplate-14e13f-1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEwL21ldDYzMzUzOC1pbWFnZS5qcGc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEyL2FpYzEwNjE4OC1pbWFnZS5qcGc.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEyL2FpYzExNjIyOS1pbWFnZS5qcGc.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/cuirass-c15b40-1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/d8ixs40-95819b26-bd6d-4edf-bca4-4358ae5396ba.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/d974ckq-e11551e2-bf9b-4b75-a94b-026d26a38be8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/example.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/half_chestplate.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/images (1).jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/images (2).jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/images (3).jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/images.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/item_bow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/item_sword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/knight-armor-ritterruestung-old-preview.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/lossy-page1-652px-Kyller_-_Livrustkammaren_-_30083.tif.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/mail-shirt-a5af57-1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/main_attack.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/north-italy-brescia-16th-century-half-suit-of-armor-for-the-field-19161816-af9d9b-1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/pair-of-gauntlets-belonging-to-the-armor-of-duke-friedrich-ulrich-of-brunswick-ef1aa4-1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/pet_attack.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/pet_follow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/pet_move.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/pet_stalk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/pet_tare.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/pexels-photo-350784.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/portions-of-an-armor-for-vincenzo-luigi-di-capua-d-1627-ff807a-1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/portrait_pet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/ranger.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/rogue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/special_ability_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/special_ability_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/special_ability_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/spell_dark_seeker.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/spell_fireball.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/suit-of-armour-medieval-king-arthur-2ab7a6-1024.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/szyszak.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/warlock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/warrior.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/graphics/icons/women_s_leather_armor__blue_jay_by_savagepunkstudio_d7fe2qw-fullview.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_data/.~lock.armours.ods#" beforeDir="false" afterPath="$PROJECT_DIR$/temp_data/.~lock.armours.ods#" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp_data/armours.ods" beforeDir="false" afterPath="$PROJECT_DIR$/temp_data/armours.ods" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/release/BrowserRPG" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/release/BrowserRPG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/objects/units/spawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/units/spawn.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/objects/units/units.h" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/units/units.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Basilisk/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Byakhee/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Chimera/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Dragon/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Ebon/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Ebon/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Ebon/m/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Ebon/m/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Fox/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Goblin/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Goblin/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Goblin/f/16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Goblin/f/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Goblin/m/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Goblin/m/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Human/m/001.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Iguana/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Jackal/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Lich/f/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Minotaur/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Minotaur/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Minotaur/f/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Nymph/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Pixie/f/11-eb7557ed-db92-43ab-a209-d9abd204dc5e.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Poltergeist/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Poltergeist/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Poltergeist/f/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Poltergeist/f/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Poltergeist/m/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Poltergeist/m/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Qat/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Rat/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Treant/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Treant/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Troll/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Troll/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Troll/f/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Unicorn/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Valkyrie/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Vampire/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Vampire/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Vampire/m/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Vampire/m/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Warg/m/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Witch/f/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Witch/f/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/graphics/imgs/Zombie/m/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/graphics/imgs/Zombie/m/1.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -119,16 +71,76 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.b.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.monster.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "/mnt/BED0BFC1D0BF7DE9/Workspace/onlinerpg.ca/potential_assets/icons/photo/asas/main.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.project",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="Browser-Roguelike" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.10" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/potential_assets/icons/photo/asas/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Browser-Roguelike" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/potential_assets/icons/photo/asas/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -145,11 +157,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729834817246</updated>
-      <workItem from="1729834818916" duration="7131000" />
+      <workItem from="1729834818916" duration="20903000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/b_py$main.coverage" NAME="main Coverage Results" MODIFIED="1729856271137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
+    <SUITE FILE_PATH="coverage/b_py$b.coverage" NAME="main Coverage Results" MODIFIED="1729859974601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
+    <SUITE FILE_PATH="coverage/b_py$monster.coverage" NAME="monster Coverage Results" MODIFIED="1729856264561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
   </component>
 </project>

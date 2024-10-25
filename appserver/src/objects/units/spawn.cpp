@@ -93,7 +93,10 @@ namespace Spawn {
       group += Utils::Prepend_Zero(y);
 
       auto species = (Units::Species)Utils::Random(0, (int)Units::Species::SIZE - 1);
-      auto gender = (Units::Gender)Utils::Random(0, (int)Units::Gender::SIZE - 1);
+      //check db if the species is gendered
+      auto gendered = DB::Query("isGendered", "units", "name", Units::species[(int)species]);
+      Units::Gender gender;
+      (gendered == "1") ? gender = (Units::Gender)Utils::Random(0, (int)Units::Gender::SIZE - 1) : gender = Units::Gender::FEMALE;
       auto unitClass = (Units::Class)Utils::Random(0, (int)Units::Class::SIZE - 1);
       auto alignment = (Units::Alignment)Utils::Random(0, (int)Units::Alignment::SIZE - 1);
 
