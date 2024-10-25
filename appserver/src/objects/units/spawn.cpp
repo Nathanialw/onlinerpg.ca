@@ -8,6 +8,7 @@
 #include "procgen.h"
 #include "chunk.h"
 #include "db.h"
+#include "files.h"
 
 namespace Spawn {
 
@@ -28,7 +29,7 @@ namespace Spawn {
     return unitChars[(int)species];
   }
 
-  void Add_Unit(Units::Objects &objects, int level, Component::Position location, int8_t x, int8_t y, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment) {
+  void Add_Unit(Units::Objects &objects, int level, Component::Position location, int8_t x, int8_t y, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment, uint8_t picNum) {
     Units::Unit unit(level, location);
 
     //defined by where it is spawned
@@ -100,12 +101,16 @@ namespace Spawn {
       auto unitClass = (Units::Class)Utils::Random(0, (int)Units::Class::SIZE - 1);
       auto alignment = (Units::Alignment)Utils::Random(0, (int)Units::Alignment::SIZE - 1);
 
+      //count the number of images in the assets folder and return a random number
+      uint8_t picNum = Files::Get_Random_Pic("assets/graphics/imgs/" + Units::species[(int)species] + "/" + Units::gender[(int)gender][0]);
+      std::cout << "picNum: " << picNum << std::endl;
+
 //      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
       std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)Units::Species::ORC]}, {"type", Units::gender[(int)gender]}};
       auto names = DB::Get_List("uID", "names", whereEquals);
       uint16_t index = Utils::Random(0, (int)names.size() - 1);
 
-      Add_Unit(objects, level, location, x, y, stoi(names[index]), gender, species, unitClass, alignment);
+      Add_Unit(objects, level, location, x, y, stoi(names[index]), gender, species, unitClass, alignment, picNum);
       return true;
     }
   }

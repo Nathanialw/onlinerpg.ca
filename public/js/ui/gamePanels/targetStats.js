@@ -38,7 +38,8 @@ export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.health = Strip_Leading_Zeroes(statsString.substring(11, 14)) + "/" + Strip_Leading_Zeroes(statsString.substring(14, 17));
     targetStats.attack = Strip_Leading_Zeroes(statsString.substring(17, 19)) + "-" + Strip_Leading_Zeroes(statsString.substring(19, 21));
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(21, 23));
-        
+    const picNum = Strip_Leading_Zeroes(statsString.substring(23, 25));    
+
     //query DB using targetStats.unitID
     const name = await Get_Unit_Name(nameID)
     targetStats.name = name.name;
@@ -46,7 +47,7 @@ export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.species = stats.name;
     targetStats.speed = stats.speed;
     targetStats.vision = stats.vision;
-    targetStats.pic = "assets/graphics/imgs/" + targetStats.species + "/" + sex[genderIndex] + "/1.png";
+    targetStats.pic = "assets/graphics/imgs/" + targetStats.species + "/" + sex[genderIndex] + "/" + picNum + ".png";
     targetStats.bio = stats.description;
     targetStats.alignment = stats.alignment;
     

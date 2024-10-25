@@ -81,58 +81,58 @@ namespace Units {
   };
 
   static std::string species[(uint8_t)Species::SIZE] = {
-      "alp",
-      "basilisk",
-      "centaur",
-      "dwarf",
-      "elf",
-      "fox",
-      "goblin",
-      "human",
-      "iguana",
-      "jackal",
-      "kobold",
-      "lamia",
-      "minotaur",
-      "nymph",
-      "orc",
-      "pixie",
-      "qat",
-      "rat",
-      "skeleton",
-      "treant",
-      "unicorn",
-      "valkyrie",
-      "warg",
-      "xana",
-      "yale",
-      "zombie",
-      "angel",
-      "byakhee",
-      "chimera",
-      "dragon",
-      "ebon",
-      "fairy",
-      "golem",
-      "harpy",
-      "imp",
-      "jinn",
-      "krampus",
-      "lich",
-      "madusa",
-      "naga",
-      "ogre",
-      "poltergeist",
+      "Alp",
+      "Basilisk",
+      "Centaur",
+      "Dwarf",
+      "Elf",
+      "Fox",
+      "Goblin",
+      "Human",
+      "Iguana",
+      "Jackal",
+      "Kobold",
+      "Lamia",
+      "Minotaur",
+      "Nymph",
+      "Orc",
+      "Pixie",
+      "Qat",
+      "Rat",
+      "Skeleton",
+      "Treant",
+      "Unicorn",
+      "Valkyrie",
+      "Warg",
+      "Xana",
+      "Yale",
+      "Zombie",
+      "Angel",
+      "Byakhee",
+      "Chimera",
+      "Dragon",
+      "Ebon",
+      "Fairy",
+      "Golem",
+      "Harpy",
+      "Imp",
+      "Jinn",
+      "Krampus",
+      "Lich",
+      "Madusa",
+      "Naga",
+      "Ogre",
+      "Poltergeist",
       "Quinotaur",
-      "roc",
-      "satyr",
-      "troll",
-      "urias",
-      "vampire",
-      "witch",
-      "xanthus",
-      "yeti",
-      "ziburinis"
+      "Roc",
+      "Satyr",
+      "Troll",
+      "Urias",
+      "Vampire",
+      "Witch",
+      "Xanthus",
+      "Yeti",
+      "Ziburinis"
   };
 
   enum class Race {
@@ -190,6 +190,7 @@ namespace Units {
     uint16_t surname{};
     uint16_t titlePrefix{};
     uint16_t titleSuffix{};
+
     //unit data to send
     Component::Position position{};
 
@@ -198,6 +199,7 @@ namespace Units {
     Items::Backpack pack{};
     std::array<uint8_t, 8> spells{};
 
+    Def def;
 
     uint16_t health = 0;
     uint16_t healthMax = 0;
@@ -205,7 +207,6 @@ namespace Units {
     uint16_t silver = 0;
     uint16_t gold = 0;
 
-    Def def;
     uint8_t unitID = 0;
     uint8_t age = 0;
 
@@ -218,6 +219,7 @@ namespace Units {
     //    bool dead = false;
     uint8_t level;
 
+    uint8_t picNum = 1;
 
 
   //items are just an ID that is in the db

@@ -61,8 +61,9 @@ namespace Player {
     auto species = (Units::Species)std::stoi(speciesStr);
     auto unitClass = (Units::Class)std::stoi(classStr);
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
+    auto picNum = 0;
 
-    Spawn::Add_Unit(game.objects[level][location], level, location, x, y, game.player_id, gender, species, unitClass, alignment);
+    Spawn::Add_Unit(game.objects[level][location], level, location, x, y, game.player_id, gender, species, unitClass, alignment, picNum);
 
     game.player_names.push_back(name);
     game.player_id++;

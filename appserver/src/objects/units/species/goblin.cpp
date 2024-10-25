@@ -59,10 +59,11 @@ namespace Species {
     auto health = Utils::Prepend_Zero_3Digit(unit.health) + Utils::Prepend_Zero_3Digit(unit.healthMax);
     auto damage = Utils::Prepend_Zero(unit.minDamage) + Utils::Prepend_Zero(unit.maxDamage);
     auto AC = Utils::Prepend_Zero(unit.AC);
+    auto pic = Utils::Prepend_Zero_By_Digits(unit.picNum, 2);
 //    auto speed = std::to_string(unit.speed);
 //    auto vision = Utils::Prepend_Zero(unit.vision);
 //    std::string bio = "Swamp goblins inhabit the murky, mist-shrouded wetlands of the Shadowlands, where they thrive in the damp, oxygen-poor environment. These peculiar creatures have adapted to their surroundings, developing scaly, moss-covered skin that blends seamlessly with the surrounding vegetation. Their eyes glow like lanterns in the dark, emitting a faint, eerie light that allows them to navigate the treacherous, waterlogged terrain with ease. Their limbs are long and spindly, ending in webbed fingers and toes that enable them to propel themselves through the murky waters with surprising agility.";
 //    return name + "_" + age + gender + alignment + pic + "_" + health + damage + AC + speed + vision + bio;
-    return unitID + name + age + gender + health + damage + AC;
+    return unitID + name + age + gender + health + damage + AC + pic;
   }
 }
