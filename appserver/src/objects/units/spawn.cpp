@@ -103,7 +103,6 @@ namespace Spawn {
 
       //count the number of images in the assets folder and return a random number
       uint8_t picNum = Files::Get_Random_Pic("../public/assets/graphics/imgs/" + Units::species[(int)species] + "/" + Units::gender[(int)gender][0] + "/");
-      std::cout << "picNum: " << picNum << std::endl;
 
 //      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
       std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)Units::Species::ORC]}, {"type", Units::gender[(int)gender]}};
