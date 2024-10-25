@@ -298,7 +298,7 @@ namespace Map {
 
     std::cout << "Number of chunks: " <<  game.map[game.Get_Player().level].size() << std::endl;
     for (auto &chunk : game.map[game.Get_Player().level]) {
-      std::cout << "Chunk: " << chunk.first.x << ", " << chunk.first.y << std::endl;
+      std::cout << "Chunk: " << (int)chunk.first.x << ", " << (int)chunk.first.y << std::endl;
     }
   }
 
