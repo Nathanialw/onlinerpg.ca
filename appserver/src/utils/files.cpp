@@ -21,8 +21,10 @@ namespace Files {
 
     for (const auto &entry : fs::directory_iterator(assets_folder)) {
       if (entry.is_regular_file() && entry.path().extension() == ".png") { // Assuming images are .png files
-        std::cout << "Found image: " << entry.path() << std::endl;
-        image_files.push_back(entry.path());
+        std::cout << "Found image: " << entry.path().filename() << std::endl;
+        //get just the file name
+
+        image_files.push_back(entry.path().filename());
       }
     }
 
@@ -35,7 +37,11 @@ namespace Files {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, image_files.size() - 1);
 
-    return static_cast<uint8_t>(dis(gen));
+    auto path = image_files[dis(gen)];
+    std::cout << "Random image: " << path << std::endl;
+    auto picNum = stoi(path.stem().string());
+    std::cout << "Random picNum: " << picNum << std::endl;
+    return static_cast<uint8_t>(picNum);
   }
 
 

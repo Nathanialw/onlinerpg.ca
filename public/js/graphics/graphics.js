@@ -386,6 +386,7 @@ export async function Load_Target_Image(x, y, path) {
     try {
         texture = await PIXI.Assets.load(path);    
     } catch (error) {
+        console.error("Load_Target_Image() image not found for path: ", path)
         texture = await PIXI.Assets.load(defaultPath);
     }  
     targetImg = new PIXI.Sprite(texture);
