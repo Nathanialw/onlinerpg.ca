@@ -219,7 +219,9 @@ namespace Map {
     Component::Position adjacentLocation(location.x + 1, location.y);
     if (game.levels[level].map.count(adjacentLocation) > 0) {
         std::cout << "connecting right chunk" << std::endl;
-        Pathing::Connect_Chunks(game.Get_Map(level, location).pathing, game.levels[level].map[adjacentLocation].pathing, 1, 0);
+        std::cout << "chunk: " << location.As_String() << std::endl;
+        std::cout << "toConnect: " << adjacentLocation.As_String() << std::endl;
+        Pathing::Connect_Chunks(game.Get_Map(level, location).pathing, game.Get_Map(level, adjacentLocation).pathing, 1, 0);
     }
     //        if (game.map[level].count({location.x, location.y--}) > 0) {
     //          std::cout << "connecting top chunk" << std::endl;
