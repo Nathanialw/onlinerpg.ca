@@ -30,8 +30,9 @@ namespace Spawn {
   }
 
   void Add_Unit(Units::Objects &objects, int level, Component::Position location, Component::Position position, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment, uint8_t picNum) {
+    std::cout << "unit name: " << name << std::endl;
     Units::Unit unit(level, location);
-
+    std::cout << "unit level: " << unit.position.level << std::endl;
     //defined by where it is spawned
     unit.def.species = species;
     unit.stats.unitID = (uint8_t)species + 1;
