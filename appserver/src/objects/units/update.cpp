@@ -34,8 +34,6 @@ namespace Update {
     std::cout << "initial player position: " << position.As_String() << std::endl;
     std::cout << "initial player location: " << location.As_String() << std::endl;
 
-    bool newChunk = false;
-
     //if at edge of map
     if (position.x + move.x < 0 || position.x + move.x >= Component::mapWidth || position.y + move.y < 0 || position.y + move.y >= Component::mapWidth) {
 //      std::cout << "new position: " << position.x + move.x << ", " << position.y + move.y << std::endl;
