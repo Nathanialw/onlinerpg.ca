@@ -12,5 +12,5 @@ namespace Attack {
 
   Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], Component::Position &position, Component::Position &moveTo);
   Component::Position Check_Target_Location(const Units::Unit &unit, const Component::Position &moveTo);
-  bool Check_For_Target(const Component::Position &position, const Component::Position &target);
+  bool Check_For_Target(const Component::Position &position, const Component::Position &target, uint8_t visionRange);
 }

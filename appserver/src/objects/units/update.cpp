@@ -96,7 +96,7 @@ namespace Update {
           //if player in same map chunk
           if (location == unit.location) {
             //if player is in vision
-            if (Attack::Check_For_Target(unit.position, position)) {
+            if (Attack::Check_For_Target(unit.position, position, chunk.second.units[i].stats.vision)) {
               std::cout << "player in vision, moving towards!" << std::endl;
               // cache position
               Component::Position former = unit.position;

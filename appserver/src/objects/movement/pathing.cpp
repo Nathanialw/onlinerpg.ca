@@ -79,6 +79,10 @@ namespace Pathing {
   }
 
   bool Solve_AStar(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
+    ///need location AND position
+    ///needs to be able to search off the map  into the location of the target + the 2 adjecent chunks
+
+
     // Reset Navigation Graph - default all node states
     Component::sNode *nodeStart = &nodes[(position.y * Component::mapWidth) + position.x];
     Component::sNode *nodeEnd = &nodes[(target.y * Component::mapWidth) + target.x];
@@ -205,7 +209,6 @@ namespace Pathing {
       for (int i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
           std::cout << "i: " << i << std::endl;
           std::cout << "i - (Component::mapWidth - 1): " << i - (Component::mapWidth - 1) << std::endl;
-          std::cout << "total mapSize: " << Component::mapWidth * Component::mapWidth << std::endl;
 
           chunk[i].vecNeighbours.push_back(&toConnect[i - (Component::mapWidth - 1)]);
           toConnect[i - (Component::mapWidth - 1)].vecNeighbours.push_back(&chunk[i]);
@@ -241,7 +244,7 @@ namespace Pathing {
     std::vector<Component::Position> path = {};
     Solve_AStar(nodes, position, targetPosition, path);
     for (auto & i : path)
-        std::cout << "path: " << i.x << " " << i.y << std::endl;
+        std::cout << "path: " << i.As_String() << std::endl;
 
     if (path.empty()) {
         std::cout << "No path found" << std::endl;
@@ -255,7 +258,7 @@ namespace Pathing {
 
     int cell = 1;
     std::cout << path.size() << std::endl;
-    std::cout << "moving toward target, position: " << position.x << " " << position.y << " " << "next cell: " << path[path.size() - cell].x << " " << path[path.size() - cell].y << std::endl;
+    std::cout << "moving toward target, position: " << position.As_String() << " next cell: " << path[path.size() - cell].As_String() << std::endl;
     return {static_cast<Component::PosInt>((path[path.size() - cell].x - position.x)), static_cast<Component::PosInt>((path[path.size() - cell].y - position.y))};
   }
 }

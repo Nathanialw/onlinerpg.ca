@@ -84,8 +84,17 @@ namespace Attack {
     return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.stats.maxDamage, false};
   }
 
-  bool Check_For_Target(const Component::Position &position, const Component::Position &target) {
-    if (abs(position.x - target.x) < 6 && abs(position.y - target.y) < 6)
+  bool Check_For_Target(const Component::Position &position, const Component::Position &target, uint8_t visionRange) {
+    //if visionrange.x < position
+    //      check the chunk to the right
+    //if visionrange.y < position
+    //      check the chunk to the below
+//    if visionrange.x > position
+//          check the chunk to the left
+//    if visionrange.y > position
+//          check the chunk to the above
+
+    if (abs(position.x - target.x) < visionRange && abs(position.y - target.y) < visionRange)
         return true;
     return false;
   }

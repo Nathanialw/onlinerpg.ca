@@ -42,6 +42,9 @@ namespace Component {
     float fLocalGoal{};
     bool bObstacle = false;
     bool bVisited = false;
+
+    // location
+
     // position
     PosInt x{};
     PosInt y{};
