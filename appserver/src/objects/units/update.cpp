@@ -62,13 +62,13 @@ namespace Update {
       }
       game.Set_Player_New_Chunk(positionCache);
       Units::Remove_Unit(game.Get_Objects(positionCache).unitPositions, game.Get_Objects(positionCache).emptyUnitSlots, formerPos);
-      game.Get_Objects_At_Player_Location().unitPositions.emplace(position, 0);
+      game.Get_Objects().unitPositions.emplace(position, 0);
       Map::Update(game, level, formerPos, position, positionCache.location, location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
     }
     else {
 //      Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
       Map::Update(game, level, location, position, move, Spawn::Get_Unit_Char(species));
-      Units::Update_Unit_Position(game.Get_Objects_At_Player_Location().unitPositions, position, position.Add(move));
+      Units::Update_Unit_Position(game.Get_Objects().unitPositions, position, position.Add(move));
       std::cout << "(direct call  ) moving from: " << game.Get_Player().position.position.As_String() << " by: " << move.As_String() << std::endl;
       std::cout << "(indirect call) moving from: " << position.As_String() << " by: " << move.As_String() << std::endl;
       position = position.Add(move);
@@ -158,7 +158,7 @@ namespace Update {
     auto &position = game.Get_Player().position.position;
     auto &level = game.Get_Player().position.level;
 
-    std::cout << "num entities on update: " << game.Get_Objects_At_Player_Location().units.size() << std::endl;
+    std::cout << "num entities on update: " << game.Get_Objects().units.size() << std::endl;
     std::cout << "successfully grabbed player from units[]" << std::endl;
 
 //    //skip 1 turn
@@ -186,9 +186,8 @@ namespace Update {
     }
 
     // if the nearby cell is an enemy, attack
-    auto attackerIndex = Units::Get_Unit_Index(
-        game.Get_Objects_At_Player_Location().unitPositions, position);
-    auto &attacker = game.Get_Objects_At_Player_Location().units[attackerIndex];
+    auto attackerIndex = Units::Get_Unit_Index(game.Get_Objects().unitPositions, position);
+    auto &attacker = game.Get_Objects().units[attackerIndex];
 
     auto targetLocation = Attack::Check_Target_Location(attacker, move);
     auto &targetList = game.objects[level][targetLocation];

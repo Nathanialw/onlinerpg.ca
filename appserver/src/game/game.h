@@ -69,7 +69,8 @@ namespace Game {
       return objects[level][location].units[0];
     }
 
-    Units::Objects &Get_Objects_At_Player_Location() {
+    //defaults to at player position
+    Units::Objects &Get_Objects() {
       auto position = objects[level][location].units[0].position;
       return objects[position.level][position.location];
     }

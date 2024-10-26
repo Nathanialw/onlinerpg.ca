@@ -167,8 +167,8 @@ namespace Map {
     mapSegment += direction;
     std::string mapString;
 
-    std::cout << "x: " << position.x << " y: " << position.y << std::endl;
-    std::cout << "vision: " << stats.vision << std::endl;
+    std::cout << position.As_String() << std::endl;
+    std::cout << "vision: " << (int)stats.vision << std::endl;
 
     for (auto j = position.y - stats.vision; j <= position.y + stats.vision; j++) {
         for (auto i = position.x - stats.vision; i <= position.x + stats.vision; i++) {
@@ -206,7 +206,7 @@ namespace Map {
 
   void Add_Map_Chunk(Game::Instance &game, int8_t level, Component::Position location) {
     std::cout << "Add map chunk" << std::endl;
-    std::cout << "location position to add: " << location.x << ", " << location.y << std::endl;
+    std::cout << "location position to add: " << location.As_String() << std::endl;
 
     std::cout << "Checking if location exists in map..." << std::endl;
     if (game.map[level].count(location) == 0) {
