@@ -65,9 +65,11 @@ namespace Player {
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
     auto picNum = 0;
 
+    std::cout << "Spawn player" << std::endl;
     Spawn::Add_Unit(game.Get_Objects(), level, location, position, game.player_id, gender, species, unitClass, alignment, picNum);
-
+    std::cout << "Player spawned" << std::endl;
     game.player_names.push_back(name);
+    std::cout << "name: " << game.player_names[game.player_id] << std::endl;
     game.player_id++;
     std::cout << "size: " << game.Get_Objects().units.size() << std::endl;
     game.Get_Player().stats.health = 999;
