@@ -206,6 +206,32 @@ namespace Map {
     return tile;
   }
 
+  void Connect_Chunk_Pathing(Game::Instance &game, int8_t level, Component::Position location) {
+
+    //Connect Pathing
+    //check which adjacent chunks exist
+    //if they exist, add them to the pathing map
+
+    if (game.levels[level].map.count({location.x--, location.y}) > 0) {
+      std::cout << "connecting left chunk" << std::endl;
+      Pathing::Connect_Chunks(game.Get_Map(level, location).pathing, game.levels[level].map[{location.x--, location.y}].pathing, -1, 0);
+    }
+    if (game.levels[level].map.count({location.x--, location.y}) > 0) {
+        std::cout << "connecting right chunk" << std::endl;
+        Pathing::Connect_Chunks(game.Get_Map(level, location).pathing, game.levels[level].map[{location.x++, location.y}].pathing, 1, 0);
+    }
+    //        if (game.map[level].count({location.x, location.y--}) > 0) {
+    //          std::cout << "connecting top chunk" << std::endl;
+    //          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y--}].pathing, -1, 0);
+    //        }
+    //        if (game.map[level].count({location.x, location.y++}) > 0) {
+    //          std::cout << "connecting bottom chunk" << std::endl;
+    //          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y++}].pathing, 0, 1);
+    //        }
+
+    //Connect_Chunks(pathing, chunk);
+  }
+
   void Add_Map_Chunk(Game::Instance &game, int8_t level, Component::Position location) {
     std::cout << "Add map chunk" << std::endl;
     std::cout << "location position to add: " << location.As_String() << std::endl;
@@ -227,28 +253,7 @@ namespace Map {
                           seed, game.Get_Objects(level, location));
       std::cout << "chunk created" << std::endl;
 
-      //Connect Pathing
-        //check which adjacent chunks exist
-        //if they exist, add them to the pathing map
-
-//        if (game.levels[level].map.count({location.x--, location.y}) > 0) {
-//          std::cout << "connecting left chunk" << std::endl;
-//          Pathing::Connect_Chunks(game.Get_Map(level, location).pathing, game.levels[level].map[{location.x--, location.y}].pathing, -1, 0);
-//        }
-        if (game.levels[level].map.count({location.x++, location.y}) > 0) {
-          std::cout << "connecting right chunk" << std::endl;
-          Pathing::Connect_Chunks(game.Get_Map(level, location).pathing, game.levels[level].map[{location.x++, location.y}].pathing, 1, 0);
-        }
-//        if (game.map[level].count({location.x, location.y--}) > 0) {
-//          std::cout << "connecting top chunk" << std::endl;
-//          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y--}].pathing, -1, 0);
-//        }
-//        if (game.map[level].count({location.x, location.y++}) > 0) {
-//          std::cout << "connecting bottom chunk" << std::endl;
-//          Pathing::Connect_Chunks(game.map[level][location].pathing, game.map[level][{location.x, location.y++}].pathing, 0, 1);
-//        }
-
-        //Connect_Chunks(pathing, chunk);
+      Connect_Chunk_Pathing(game, level, location);
     }
     else {
       std::cout << "chunk already exists" << std::endl;
