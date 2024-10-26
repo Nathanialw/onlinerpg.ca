@@ -82,8 +82,8 @@ namespace Update {
     auto &location = game.Get_Player().position.location;
 
 
-    for (auto &gameLevel : game.objects) {
-      auto &chunks = gameLevel;
+    for (auto &gameLevel : game.levels) {
+      auto &chunks = gameLevel.objects;
       for (auto &chunk : chunks) {
         for (int i = 1; i < chunk.second.units.size(); ++i) {
           auto &unit = chunk.second.units[i].position;
@@ -101,20 +101,20 @@ namespace Update {
               // cache position
               Component::Position former = unit.position;
               // calculate next cell
-              Component::Position moveTo = Pathing::Move_To(game.map[unit.level][unit.location].pathing, unit.position, position);
+              Component::Position moveTo = Pathing::Move_To(game.Get_Map(unit.level, unit.location).pathing, unit.position, position);
               std::cout << "unit moves from: " << former.As_String() << std::endl;
               std::cout << "unit moves by: " << moveTo.As_String() << std::endl;
               // check next cell and move/attack
               if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.Add(moveTo)).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
 
-                int attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position);
-                auto &attacker = game.objects[unit.level][unit.location].units[attackerIndex];
+                int attackerIndex = Units::Get_Unit_Index(game.Get_Objects(unit.level, unit.location).unitPositions, unit.position);
+                auto &attacker = game.Get_Objects(unit.level, unit.location).units[attackerIndex];
 
                 auto targetLocation = Attack::Check_Target_Location(attacker, moveTo);
-                auto &targetList = game.objects[level][targetLocation];
-                auto defaultChunk = game.map[level][targetLocation].defaultChunk;
-                auto targetChunk = game.map[level][targetLocation].chunk;
+                auto &targetList = game.Get_Objects(level, targetLocation);
+                auto defaultChunk = game.Get_Map(level, targetLocation).defaultChunk;
+                auto targetChunk = game.Get_Map(level, targetLocation).chunk;
 
                 auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, unit.position, moveTo);
                 continue;
@@ -123,9 +123,9 @@ namespace Update {
               unit.position = unit.position.Add(moveTo);
 
               Map::Update(game, unit.level, unit.location, former, moveTo, Spawn::Get_Unit_Char(chunk.second.units[i].def.species));
-              auto map = Map::Get_Map(game.map[unit.level][unit.location].chunk);
-              Pathing::Update(game.map[unit.level][unit.location].pathing, map);
-              Units::Update_Unit_Position(game.objects[unit.level][unit.location].unitPositions, former, unit.position);
+              auto map = Map::Get_Map(game.Get_Map(unit.level, unit.location).chunk);
+              Pathing::Update(game.Get_Map(unit.level, unit.location).pathing, map);
+              Units::Update_Unit_Position(game.Get_Objects(unit.level, unit.location).unitPositions, former, unit.position);
             }
             else {
               std::cout << "player not in vision" << std::endl;
@@ -138,7 +138,7 @@ namespace Update {
     //when updating the map, check if there is an item on the cell BEFORE resetting to default
 
 
-    auto mapString = Map::Get_Map(game.map[level][location].chunk);
+    auto mapString = Map::Get_Map(game.Get_Map(level, location).chunk);
 
     std::cout << "Drawing map start: "<< std::endl;
     for (int i = 0; i < Component::mapWidth; i++) {
@@ -149,7 +149,7 @@ namespace Update {
 
   std::string Update_Player(Game::Instance &game, const char *direction) {
     auto move = updatePosition[*direction];
-    std::string items = Loot::Query_Loot(game.Get_Items_At_player_Position());
+    std::string items = Loot::Query_Loot(game.Get_Items());
     auto &location = game.Get_Player().position.location;
     auto &position = game.Get_Player().position.position;
     auto &level = game.Get_Player().position.level;
@@ -186,9 +186,9 @@ namespace Update {
     auto &attacker = game.Get_Objects().units[attackerIndex];
 
     auto targetLocation = Attack::Check_Target_Location(attacker, move);
-    auto &targetList = game.objects[level][targetLocation];
-    auto &defaultChunk = game.map[level][targetLocation].defaultChunk;
-    auto &targetChunk = game.map[level][targetLocation].chunk;
+    auto &targetList = game.Get_Objects(level, targetLocation);
+    auto &defaultChunk = game.Get_Map(level, targetLocation).defaultChunk;
+    auto &targetChunk = game.Get_Map(level, targetLocation).chunk;
 
     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, position, move);
     if (melee.damageDone > 0 && !melee.isDead) {
@@ -203,11 +203,11 @@ namespace Update {
 
     //generate items
     if (melee.isDead) {
-      Loot::Generate_Loot(game.Get_Items_At_player_Position());
+      Loot::Generate_Loot(game.Get_Items());
     }
 
 //    query for items
-    items = Loot::Query_Loot(game.Get_Items_At_player_Position());
+    items = Loot::Query_Loot(game.Get_Items());
 
     if (melee.isDead) {
       std::cout << "goblin dead" << std::endl;
@@ -218,7 +218,7 @@ namespace Update {
 
   std::string Update_Units(Game::Instance &game, const char *direction) {
     if (*direction == ' ') {
-      std::string items = Loot::Query_Loot(game.Get_Items_At_player_Position());
+      std::string items = Loot::Query_Loot(game.Get_Items());
       return "     1" + items;
     }
 

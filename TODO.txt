@@ -43,7 +43,6 @@ gamey
 short term:
 -enemies to follow between map chunks with pathing
 -login and db to save game state
--remove bracers
 -spells 
   -1 for species
   //-1 for subspecies
@@ -60,8 +59,6 @@ short term:
   -rest = 10 mins and heals one health | unless you get attacked
 -scroll bar on the combat log
 -fog of war/vision blocking by terrain
--get unit data from the local database instead of sending it
--create the buttons for the UI
 -right click on map will move to that location, server will send the move updates one at a time
 -crate unit locations to place on map ie. ogre mound with ogre around itw
 

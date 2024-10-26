@@ -26,20 +26,20 @@ namespace Update_Items {
     if (type == "0") {
       std::cout << "Looting item at index: " << index << std::endl;
       Loot::Pick_Up_Item(
-          game.items[game.Get_Player().position.level][game.Get_Player().position.location][game.Get_Player().position.position], game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index));
+          game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index));
     } else if (type == "1") {
       std::cout << "interacting with inventory at index: " << index << std::endl;
       if (mod == "c") { // throw away
         std::cout << "control clicked: " << mod << std::endl;
-        Inventory::Drop_Item(game.Get_Player().pack.inventory, game.items[game.Get_Player().position.level][game.Get_Player().position.location][game.Get_Player().position.position], stoi(bag), stoi(index));
+        Inventory::Drop_Item(game.Get_Player().pack.inventory, game.Get_Items(), stoi(bag), stoi(index));
       } else if (mod == "a") { // equip offhand
         std::cout << "alt clicked: " << mod << std::endl;
-        Equipment::Equip_Second_Item(game.Get_Player().pack, game.items[game.Get_Player().position.level][game.Get_Player().position.location][game.Get_Player().position.position], game.Get_Player().equipment, stoi(index), stoi(bag));
+        Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag));
       } else if (mod == "s") { //
         std::cout << "shift clicked, thusfar unused" << std::endl;
       } else { // equip standard / use item
         std::cout << "unmodded clicked: " << mod << std::endl;
-        Equipment::Use_Item(game.Get_Player().pack, game.items[game.Get_Player().position.level][game.Get_Player().position.location][game.Get_Player().position.position], game.Get_Player().equipment, stoi(index), stoi(bag));
+        Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag));
       }
     } else if (type == "2") {
       std::cout << "interacting with equipment at index: " << index << std::endl;

@@ -27,7 +27,7 @@ namespace Species {
     Component::Position position = {mapPositionX, mapPositionY};
 
     //will need to use mouse coords to determine level/location, but for now you can only get from the same map chunk/level as the player
-    auto unit = Units::Get_Unit_At_Position(game.objects[game.Get_Player().position.level][game.Get_Player().position.location].units, game.objects[game.Get_Player().position.level][game.Get_Player().position.location].unitPositions, position);
+    auto unit = Units::Get_Unit_At_Position(game.Get_Objects().units, game.Get_Objects().unitPositions, position);
 
     //unit ID for the DB
     std::cout << "unitID  int8: " << unit.stats.unitID << std::endl;

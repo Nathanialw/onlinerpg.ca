@@ -65,14 +65,14 @@ namespace Player {
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
     auto picNum = 0;
 
-    Spawn::Add_Unit(game.objects[level][location], level, location, position, game.player_id, gender, species, unitClass, alignment, picNum);
+    Spawn::Add_Unit(game.Get_Objects(), level, location, position, game.player_id, gender, species, unitClass, alignment, picNum);
 
     game.player_names.push_back(name);
     game.player_id++;
-    std::cout << "size: " << game.objects[level][location].units.size() << std::endl;
-    game.objects[level][location].units.at(0).stats.health = 999;
-    game.objects[level][location].units.at(0).stats.healthMax = 999;
-    std::cout << "health: " << game.objects[level][location].units.at(0).stats.health << std::endl;
+    std::cout << "size: " << game.Get_Objects().units.size() << std::endl;
+    game.Get_Player().stats.health = 999;
+    game.Get_Player().stats.healthMax = 999;
+    std::cout << "health: " << game.Get_Player().stats.health << std::endl;
     std::string xStr = Utils::Prepend_Zero(position.x);
     std::string yStr = Utils::Prepend_Zero(position.y);
 

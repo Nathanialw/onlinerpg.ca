@@ -24,13 +24,13 @@ namespace Send {
     Component::Position location(0,0);
     Component::Position startPos(6,6);
 
-    std::string map = Map::Init(game.map[level][location].defaultChunk, game.map[level][location].chunk, game.map[level][location].rooms, game.seed);
-    Pathing::Init(game.map[level][location].pathing, map);
+    std::string map = Map::Init(game.Get_Map(level, location).defaultChunk, game.Get_Map(level, location).chunk, game.Get_Map(level, location).rooms, game.seed);
+    Pathing::Init(game.Get_Map(level, location).pathing, map);
     Player::Spawn(game, level, location, startPos, msg);
-    Spawn::Init(level, location, game.map[level][location].chunk, game.map[level][location].rooms, game.objects[level][location]); // msg->get_payload()
+    Spawn::Init(level, location, game.Get_Map(level, location).chunk, game.Get_Map(level, location).rooms, game.Get_Objects(level, location)); // msg->get_payload()
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 
-    if (!game.objects[level][location].units.empty()) {
+    if (!game.Get_Objects(level, location).units.empty()) {
       std::string action = "d    10";
       // append inventory
       action.append(Inventory::Update_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));

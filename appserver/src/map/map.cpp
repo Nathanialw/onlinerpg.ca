@@ -111,32 +111,30 @@ namespace Map {
   //does not take into account traversing map chunks
   void Update(Game::Instance &game, int level, Component::Position location, Component::Position &position, Component::Position &move, const char &tile) {
     //check item at location
-    if (Check_For_Item(game.items[level][location][{position.x, position.y}]))
-      game.map[level][location].chunk[position.y][position.x] = ',';
+    if (Check_For_Item(game.Get_Items(location, position)))
+      game.Get_Map(location).chunk[position.y][position.x] = ',';
     else
-      Reset_Tile(game.map[level][location].defaultChunk, game.map[level][location].chunk, position.x, position.y);
-    Set_Tile(game.map[level][location].chunk, position.x + move.x, position.y + move.y, tile);
+      Reset_Tile(game.Get_Map(location).defaultChunk, game.Get_Map(location).chunk, position.x, position.y);
+    Set_Tile(game.Get_Map(location).chunk, position.x + move.x, position.y + move.y, tile);
   }
 
   void Update(Game::Instance &game, int level, Component::Position formerPosition, Component::Position newPosition, Component::Position formerLocation, Component::Position newLocation, const char &tile) {
-    if (Check_For_Item(game.items[level][formerLocation][{formerPosition.x, formerPosition.y}]))
-      game.map[level][formerLocation].chunk[formerPosition.y][formerPosition.x] = ',';
+    if (Check_For_Item(game.Get_Items(formerLocation, formerPosition)))
+      game.Get_Map(formerLocation).chunk[formerPosition.y][formerPosition.x] = ',';
     else
-      Reset_Tile(game.map[level][formerLocation].defaultChunk, game.map[level][formerLocation].chunk, formerPosition.x, formerPosition.y);
-    Set_Tile(game.map[level][newLocation].chunk, newPosition.x, newPosition.y, tile);
+      Reset_Tile(game.Get_Map(formerLocation).defaultChunk, game.Get_Map(formerLocation).chunk, formerPosition.x, formerPosition.y);
+    Set_Tile(game.Get_Map(newLocation).chunk, newPosition.x, newPosition.y, tile);
   }
 
   void Add_Map_Segment(Game::Instance &game, Component::Position cell, Component::Position offset, std::string &mapSegment) {
     auto location = game.Get_Player().position.location;
-    location.x += offset.x;
-    location.y += offset.y;
-    mapSegment += game.map[game.Get_Player().position.level][location].chunk[cell.y][cell.x];
+    mapSegment += game.Get_Map(location.Add(offset)).chunk[cell.y][cell.x];
   }
 
   void Handle_Boundary(Game::Instance &game, int8_t i, int8_t j, std::string &mapSegment) {
     Component::Position chunk = { static_cast<int8_t>((i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0),  static_cast<int8_t>((j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0) };
     if (chunk.x == 0 && chunk.y == 0) {
-      mapSegment += game.map[game.Get_Player().position.level][game.Get_Player().position.location].chunk[j][i];
+      mapSegment += game.Get_Map().chunk[j][i];
       return;
     }
 
@@ -200,7 +198,7 @@ namespace Map {
     if (newPosition.x < 0 || newPosition.x >= Component::mapWidth || newPosition.y < 0 || newPosition.y >= Component::mapWidth)
         tile = " ";
     else
-        tile = game.map[level][location].chunk[newPosition.y][newPosition.x];
+        tile = game.Get_Map(level, location).chunk[newPosition.y][newPosition.x];
     return tile;
   }
 
@@ -209,7 +207,7 @@ namespace Map {
     std::cout << "location position to add: " << location.As_String() << std::endl;
 
     std::cout << "Checking if location exists in map..." << std::endl;
-    if (game.map[level].count(location) == 0) {
+    if (game.levels[level].map.count(location) == 0) {
       std::cout << "Not found adding chunk..." << std::endl;
       // if player position is close to the edge of the chunk, create a new chunk add a new chunk
       std::cout << "Creating chunk" << std::endl;
@@ -218,11 +216,11 @@ namespace Map {
 
       Chunk::Create_Chunk(level,
                           location,
-                          game.map[level][location].defaultChunk,
-                          game.map[level][location].chunk,
-                          game.map[level][location].rooms,
-                          game.map[level][location].pathing,
-                          seed, game.objects[level][location]);
+                          game.Get_Map(level, location).defaultChunk,
+                          game.Get_Map(level, location).chunk,
+                          game.Get_Map(level, location).rooms,
+                          game.Get_Map(level, location).pathing,
+                          seed, game.Get_Objects(level, location));
       std::cout << "chunk created" << std::endl;
 
       //Connect Pathing
@@ -299,8 +297,8 @@ namespace Map {
       Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
 
-    std::cout << "Number of chunks: " <<  game.map[game.Get_Player().position.level].size() << std::endl;
-    for (auto &chunk : game.map[game.Get_Player().position.level]) {
+    std::cout << "Number of chunks: " <<  game.levels[game.Get_Player().position.level].map.size() << std::endl;
+    for (auto &chunk : game.levels[game.Get_Player().position.level].map) {
       std::cout << "Chunk: " << (int)chunk.first.x << ", " << (int)chunk.first.y << std::endl;
     }
   }

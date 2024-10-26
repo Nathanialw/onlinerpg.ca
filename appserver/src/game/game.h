@@ -22,6 +22,11 @@
 namespace Game {
 
 
+  struct Level {
+    std::unordered_map<Component::Position, Units::Objects> objects;
+    std::unordered_map<Component::Position, std::unordered_map<Component::Position, Items::Ground>> items{};
+    std::unordered_map<Component::Position, Chunk::Map_Chunk> map;
+  };
 
   //all of these need to be saved into a database
   struct Instance {
@@ -32,12 +37,8 @@ namespace Game {
     std::string session_id;
     //    int duration = 0;
 
-    //units
-    //    Units::Objects objects;
-    uint16_t player_id = 0;
-    std::vector<std::string> player_names;
-    std::array<std::unordered_map<Component::Position, Units::Objects>, 26> objects;
-    std::array<std::unordered_map<Component::Position, std::unordered_map<Component::Position, Items::Ground>>, 26> items{};
+    std::vector<Level> levels;
+
 
     //current turn
     //    int time = 0;
@@ -49,11 +50,13 @@ namespace Game {
     //sleep = 8 hours = 480 turns
     //active time = 960 turns/day
     //get hungry = 1/day
+
     //rest = 5min, unless interrupted
 
-    std::array<std::unordered_map<Component::Position, Chunk::Map_Chunk>, 26> map;
+    //player
+    uint16_t player_id = 0;
+    std::vector<std::string> player_names;
 
-    //map
     int8_t level = 0;
     Component::Position location = {0, 0};
 
@@ -64,7 +67,12 @@ namespace Game {
     //defaults to at player position
     Units::Objects &Get_Objects();
     Units::Objects &Get_Objects(Units::Position position) ;
-    Items::Ground &Get_Items_At_player_Position();
+    Units::Objects &Get_Objects(uint8_t mapLevel, Component::Position location) ;
+    Items::Ground &Get_Items();
+    Items::Ground &Get_Items(Units::Position position);
+    Items::Ground &Get_Items(Component::Position location, Component::Position position);
+    Chunk::Map_Chunk &Get_Map();
+    Chunk::Map_Chunk &Get_Map(Component::Position maplocation);
 
     void Set_Player_New_Chunk(Units::Position position);
     bool Exists();
