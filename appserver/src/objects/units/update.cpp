@@ -163,7 +163,7 @@ namespace Update {
     auto move = updatePosition[*direction];
     std::string items = Loot::Query_Loot(game.Get_Items_At_player_Position());
     auto &location = game.Get_Player().position.location;
-    auto &position = game.Get_Player().position.location;
+    auto &position = game.Get_Player().position.position;
     auto &level = game.Get_Player().position.level;
 
     std::cout << "num entities on update: " << game.Get_Objects_At_Player_Location().units.size() << std::endl;
