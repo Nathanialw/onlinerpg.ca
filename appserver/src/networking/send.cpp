@@ -23,13 +23,17 @@ namespace Send {
     int level = 0;
     Component::Position location(0,0);
     Component::Position startPos(6,6);
-
+    std::cout << "Init game" << std::endl;
     std::string map = Map::Init(game.Get_Map(level, location).defaultChunk, game.Get_Map(level, location).chunk, game.Get_Map(level, location).rooms, game.seed);
     Pathing::Init(game.Get_Map(level, location).pathing, map);
+    std::cout << "Map created" << std::endl;
     Player::Spawn(game, level, location, startPos, msg);
+    std::cout << "Player spawned" << std::endl;
     Spawn::Init(level, location, game.Get_Map(level, location).chunk, game.Get_Map(level, location).rooms, game.Get_Objects(level, location)); // msg->get_payload()
+    std::cout << "Objects spawned" << std::endl;
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
-
+    std::cout << "Player stats sent" << std::endl;
+    
     if (!game.Get_Objects(level, location).units.empty()) {
       std::string action = "d    10";
       // append inventory
