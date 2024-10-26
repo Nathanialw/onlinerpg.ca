@@ -51,7 +51,7 @@ namespace Spawn {
     unit.stats.maxSpeed = unit.stats.speed;
     unit.stats.minDamage = 0;
     unit.stats.maxDamage = 10;
-    unit.stats.vision = 6;
+    unit.stats.vision = 12;
     unit.stats.AC = 10;
     unit.stats.health = 30;
     unit.stats.healthMax = unit.stats.health;
