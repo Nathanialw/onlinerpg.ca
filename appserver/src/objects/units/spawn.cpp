@@ -36,16 +36,16 @@ namespace Spawn {
     unit.def.species = species;
     unit.stats.unitID = (uint8_t)species + 1;
     unit.position.position = position;
-
+    std::cout << "unit position: " << unit.position.position.As_String() << std::endl;
     //randomize, weighted
     unit.def.gender = gender; //unless it is a gendered species
     unit.def.unitClass = unitClass;
-
+    std::cout << "unit class: " << (int)unit.def.unitClass << std::endl;
     //query db for all of this
     unit.def.alignment = alignment;
     unit.name.firstName = name;
     unit.stats.age = 16;
-
+    std::cout << "unit name: " << unit.name.firstName << std::endl;
     unit.stats.speed = 1;
     unit.stats.maxSpeed = unit.stats.speed;
     unit.stats.minDamage = 0;
@@ -54,18 +54,21 @@ namespace Spawn {
     unit.stats.AC = 10;
     unit.stats.health = 30;
     unit.stats.healthMax = unit.stats.health;
-
+    std::cout << "unit health: " << unit.stats.health << std::endl;
     auto &units = objects.units;
     auto &unitsPositions = objects.unitPositions;
-
+    std::cout << "unit size: " << units.size() << std::endl;
     auto &emptyUnitSlots = objects.emptyUnitSlots;
     if (emptyUnitSlots.empty()) {
+      std::cout << "empty unit slots: " << emptyUnitSlots.size() << std::endl;
       units.emplace_back(unit);
     } else {
+      std::cout << "empty unit slots: " << emptyUnitSlots.size() << std::endl;
       units.at(emptyUnitSlots.back()) = unit;
+      std::cout << "empty unit slot: " << emptyUnitSlots.back() << std::endl;
       emptyUnitSlots.pop_back();
     }
-
+    std::cout << "unit size: " << units.size() << std::endl;
     unitsPositions.emplace(position, units.size() - 1);
   }
 
