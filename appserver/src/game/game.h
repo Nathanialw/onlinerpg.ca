@@ -26,6 +26,14 @@ namespace Game {
     std::unordered_map<Component::Position, Units::Objects> objects;
     std::unordered_map<Component::Position, std::unordered_map<Component::Position, Items::Ground>> items{};
     std::unordered_map<Component::Position, Chunk::Map_Chunk> map;
+
+    Level() {
+      std::cout << "Creating level" << std::endl;
+      objects.emplace(Component::Position(0, 0), Units::Objects());
+      items.emplace(Component::Position(0, 0), std::unordered_map<Component::Position, Items::Ground>());
+      map.emplace(Component::Position(0, 0), Chunk::Map_Chunk());
+      std::cout << "Level created" << std::endl;
+    };
   };
 
   //all of these need to be saved into a database

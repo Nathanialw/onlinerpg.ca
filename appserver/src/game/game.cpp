@@ -69,6 +69,7 @@ namespace Game {
 //    seed.seed = Proc_Gen::Create_Initial_Seed(Get_Player().name[0], Get_Player().name[3]);
     DB::Init();
     session_id = sessionID;
+    levels.push_back(Level());
   }
 
 
