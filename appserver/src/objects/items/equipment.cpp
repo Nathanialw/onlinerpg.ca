@@ -16,7 +16,7 @@ namespace Equipment {
   void Swap_Item(Items::Inventory &inventory, Items::Equipped &equipment, const int equipSlot, const int invSlot, uint8_t bag) {
     auto swapItemID = equipment[equipSlot];
     equipment[equipSlot] = inventory[bag][invSlot];
-    std::cout << "equipment slot now contains itemID: " << equipment[equipSlot] << std::endl;
+    std::cout << "equipment slot now contains itemID: " << equipment[equipSlot].uID << std::endl;
     inventory[bag][invSlot] = swapItemID;
   }
 
@@ -28,9 +28,9 @@ namespace Equipment {
 
       for (int bag = 0; bag < (int)Items::BagType::Scrolls; ++bag) {
         for (int i = 0; i < maxSlots[bag]; ++i) {
-          if (inventory[bag][i] == 0) {
+          if (inventory[bag][i].Empty()) {
             inventory[bag][i] = swapItemID;
-            equipment[stoi(slotNum)] = 0;
+            equipment[stoi(slotNum)].Set_Empty();
             return;
           }
         }
@@ -39,9 +39,9 @@ namespace Equipment {
   }
 
   int Dual_Equip(Items::Equipped &equipment, int slot0, int slot1) {
-      if (equipment[slot0] == 0)
+      if (equipment[slot0].Empty())
         return slot0;
-      else if (equipment[slot1] == 0)
+      else if (equipment[slot1].Empty())
         return slot1;
       else
         return slot0;
@@ -66,8 +66,8 @@ namespace Equipment {
   }
 
   void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag) {
-    auto itemID = pack.inventory[bag][index];
-    auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
+    auto item = pack.inventory[bag][index];
+    auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(item.uID)); //retrieve equipSlot using itemID from the db
     if (slotStr == "bag") {
       Backpack::Equip_Bag(pack, groundItems, index, bag, Items::BagType::Items1);
       return;
@@ -91,10 +91,10 @@ namespace Equipment {
   }
 
   void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
-    Items::ItemID itemID = pack.inventory[bag][invSlot];
-    std::cout << "itemID: " << itemID << std::endl;
+    auto item = pack.inventory[bag][invSlot];
+    std::cout << "itemID: " << item.uID << std::endl;
 
-    auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(itemID)); //retrieve equipSlot using itemID from the db
+    auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(item.uID)); //retrieve equipSlot using itemID from the db
     std::cout << "equip slot: " << slotStr << std::endl;
 
     if (slotStr == "notEquippable") {
@@ -130,8 +130,7 @@ namespace Equipment {
   std::string Get_Equipment(Items::Equipped &equipment) {
     std::string equipmentStr = Utils::Prepend_Zero_By_Digits(equipment.size(), 2);
     for (int i = 0; i < equipment.size(); ++i) {
-      auto equipSlot = equipment[i];
-      equipmentStr += Utils::Prepend_Zero_By_Digits(i , 2) + Utils::Prepend_Zero_By_Digits(equipSlot, 3);
+      equipmentStr += Utils::Prepend_Zero_By_Digits(i , 2) + Utils::Prepend_Zero_By_Digits(equipment[i].uID, 3);
     }
     //first 2 chars is equip size
     //each 5 of the next chars is equip slot and itemID

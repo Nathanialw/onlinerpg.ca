@@ -13,15 +13,15 @@ namespace Inventory {
 
 
   void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index) {
-    auto itemID = inventory[bag][index];
+    auto item = inventory[bag][index];
     for (auto & groundItem : groundItems) {
-      if (groundItem == 0) {
-        groundItem = itemID;
-        inventory[bag][index] = 0;
+      if (groundItem.Empty()) {
+        groundItem = item;
+        inventory[bag][index].Set_Empty();
         return;
       }
     }
-    std::cout << "item dropped: " << itemID << std::endl;
+    std::cout << "item dropped: " << item.uID << std::endl;
   }
 
   std::string Update_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots) {
@@ -32,11 +32,11 @@ namespace Inventory {
       std::string bagStr;
 
       for (int i = 0; i < maxSlots[j]; ++i) {
-        bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(backpack.inventory[j][i], 3);
+        bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(backpack.inventory[j][i].uID, 3);
       }
 
-      inventoryStr += Utils::Prepend_Zero_By_Digits(backpack.bags[j], 3) + bagStr;
-      std::cout << "bag updated " << j << ": " <<  Utils::Prepend_Zero_By_Digits(backpack.bags[j], 3) + bagStr << std::endl;
+      inventoryStr += Utils::Prepend_Zero_By_Digits(backpack.bags[j].uID, 3) + bagStr;
+      std::cout << "bag updated " << j << ": " <<  Utils::Prepend_Zero_By_Digits(backpack.bags[j].uID, 3) + bagStr << std::endl;
     }
     return inventoryStr;
   }
@@ -46,7 +46,7 @@ namespace Inventory {
     std::string itemsStr = Utils::Prepend_Zero_By_Digits(items.size(), 2);
 
     for (int i = 0; i < items.size(); ++i) {
-      itemsStr +=  Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(items[i], 3);
+      itemsStr +=  Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(items[i].uID, 3);
     }
 
     std::cout << "inventories sent: " << itemsStr << std::endl;

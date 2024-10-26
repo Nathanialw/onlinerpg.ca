@@ -244,19 +244,19 @@ namespace Units {
 
       //starting bags
       pack.maxSlots[0] = 4;
-      pack.bags[0] = 37;
+      pack.bags[0].uID = 37;
 
       pack.maxSlots[1] = 4;
-      pack.bags[1] = 37;
+      pack.bags[1].uID = 37;
 
       pack.maxSlots[2] = 2;
-      pack.bags[2] = 75;
+      pack.bags[2].uID = 75;
 
       pack.maxSlots[3] = 2;
-      pack.bags[3] = 32;
+      pack.bags[3].uID = 32;
 
       pack.maxSlots[4] = 4;
-      pack.bags[4] = 104;
+      pack.bags[4].uID = 104;
 
 
 

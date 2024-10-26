@@ -42,27 +42,54 @@ namespace Items {
 
   typedef uint16_t ItemID;
 
-
-
-  typedef std::array<Items::ItemID, (uint8_t)Items::BagType::SIZE> Bags;
-  typedef std::array<uint8_t, (uint8_t)Items::BagType::SIZE> Max_Slots;
-  typedef std::array<std::array<Items::ItemID, 14>, (uint8_t)Items::BagType::SIZE> Inventory;
-
   struct Item {
-    Items::ItemID uID;
+    ItemID uID = 0;
 
     //it needs to know which modifiers it has
-    std::array<uint8_t, 5> modifiers; //keys to the static modifiers in the db
+    std::array<uint8_t, 7> modifiers{}; //keys to the static modifiers in the db
 
     //which icon it has
-    uint8_t icon; //name of the icon png in the directory referenced in the db
+    uint8_t icon{}; //0-255 name of the icon png in the directory referenced in the db
 
-    uint8_t rarity; //0-5
-    uint8_t durability; //0-100
-
+    uint8_t rarity{}; //0-5
+    uint8_t durability{}; //0-100
 
     //requirements
+
+    Item() {
+      //figure out what level of item to create
+      //get the power level of the item
+      //get a random uID from the db
+      //roll for modifers
+      //roll for rarity
+
+      //set the icon
+      //set the durability
+      durability = 100; //probably will be random later
+    }
+
+    bool Empty() const {
+      if (uID == 0)
+        return true;
+      return false;
+    }
+
+    void Set_Empty() {
+      uID = 0;
+      icon = 0; //0-255 name of the icon png in the directory referenced in the db
+      rarity = 0; //0-5
+      durability = 0; //0-100
+      for (auto &modifier : modifiers) {
+        modifier = 0;
+      }
+    }
   };
+
+  typedef std::array<Item, (uint8_t)BagType::SIZE> Bags;
+  typedef std::array<uint8_t, (uint8_t)BagType::SIZE> Max_Slots;
+  typedef std::array<std::array<Item, 14>, (uint8_t)BagType::SIZE> Inventory;
+
+
 
   struct Backpack {
     Inventory inventory{};
@@ -74,9 +101,8 @@ namespace Items {
     uint16_t gold = 0;
   };
 
-
-  typedef std::array<Items::ItemID , 14> Ground;
-  typedef std::array<Items::ItemID, (uint8_t)Items::ItemSlot::SIZE> Equipped;
+  typedef std::array<Item, 14> Ground;
+  typedef std::array<Item, (uint8_t)ItemSlot::SIZE> Equipped;
 }
 
 #endif // BROWSERRPG_ITEMS_H

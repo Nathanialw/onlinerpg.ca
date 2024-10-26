@@ -32,7 +32,7 @@ set(SOURCES
     src/game/game.cpp
 
     src/utils/utils.cpp
-        src/utils/files.cpp
+    src/utils/files.cpp
 
     src/networking/receiving.cpp
     src/networking/send.cpp
@@ -62,12 +62,13 @@ set(SOURCES
 
     src/objects/actions/attack.cpp
     src/objects/actions/death.cpp
-
     src/objects/components.cpp
-
     src/objects/collision/collision.cpp
 
+    src/abilities/debuffs/Disease.cpp
+
     src/procgen/procgen.cpp
+    src/objects/items/modifiers.cpp
 )
 
 add_executable(BrowserRPG ${SOURCES})

@@ -15,10 +15,10 @@ namespace Loot {
     for (auto &item : items) {
       if (numItems == 0)
         break;
-      if (item == 0) {
+      if (item.Empty()) {
         Items::ItemID itemID = Utils::Random(1 , DB::Get_Num_Items());
         std::cout << "item dropped: " << itemID << std::endl;
-        item = itemID;
+        item.uID = itemID;
         numItems--;
       }
     }
@@ -28,9 +28,9 @@ namespace Loot {
     std::string itemsStr;
     int size = 0;
     for (auto item : items) {
-      if (item == 0)
+      if (item.Empty())
         break;
-      itemsStr += Utils::Prepend_Zero_By_Digits(item, 3);
+      itemsStr += Utils::Prepend_Zero_By_Digits(item.uID, 3);
       size++;
     }
 
@@ -40,11 +40,11 @@ namespace Loot {
   }
 
   std::string Pick_Up_Item(Items::Ground &loot, Items::Inventory &inventory, const Items::Max_Slots &maxSlots, uint8_t index) {
-    int itemID = loot[index];
+    auto item = loot[index];
     int inventoryIndex = 999;
 
-    std::cout << "picked up item: " << itemID << std::endl;
-    auto type = DB::Query("type", "items", "uID", std::to_string(itemID));
+    std::cout << "picked up item: " << item.uID << std::endl;
+    auto type = DB::Query("type", "items", "uID", std::to_string(item.uID));
     std::cout << "item type: " << type << std::endl;
     auto bagIndex = stoi(DB::Query("slotNum", "equipSlots", "type", type));
     std::cout << "bag index: " << bagIndex << std::endl;
@@ -56,9 +56,9 @@ namespace Loot {
 
     //search for first empty slot in inventory
     for (int i = 0; i < maxSlots[bagIndex]; ++i) {
-      if (inventory[bagIndex][i] == 0) {
+      if (inventory[bagIndex][i].Empty()) {
         inventoryIndex = i;
-        std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
+        std::cout << "picked up item: " << item.uID << " inserted at index: " << inventoryIndex << std::endl;
         break;
       }
     }
@@ -66,9 +66,9 @@ namespace Loot {
     if (bagIndex == 0 && 999 == inventoryIndex) {
       bagIndex++;
       for (int i = 0; i < maxSlots[bagIndex]; ++i) {
-        if (inventory[bagIndex][i] == 0) {
+        if (inventory[bagIndex][i].Empty()) {
           inventoryIndex = i;
-          std::cout << "picked up item: " << itemID << " inserted at index: " << inventoryIndex << std::endl;
+          std::cout << "picked up item: " << item.uID << " inserted at index: " << inventoryIndex << std::endl;
           break;
         }
       }
@@ -80,15 +80,15 @@ namespace Loot {
     }
 
     // add item to inventory array
-    inventory[bagIndex][inventoryIndex] = itemID;
+    inventory[bagIndex][inventoryIndex] = item;
     //remove from loot array and resize
     for (int i = index; i < loot.size() - 1; ++i) {
       loot[i] = loot[i + 1];
     }
-    loot[loot.size() - 1] = 0; // Set the last element to 0
+    loot[loot.size() - 1].Empty(); // Set the last element to 0
 
     // return the index of the inventory slot to update and the index of the item in the db
-    std::string inventoryStr = Utils::Prepend_Zero_By_Digits(inventoryIndex, 2) + Utils::Prepend_Zero_By_Digits(itemID, 3);
+    std::string inventoryStr = Utils::Prepend_Zero_By_Digits(inventoryIndex, 2) + Utils::Prepend_Zero_By_Digits(item.uID, 3);
     return inventoryStr;
   }
 }
