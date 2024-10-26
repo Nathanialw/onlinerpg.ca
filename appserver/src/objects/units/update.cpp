@@ -39,41 +39,35 @@ namespace Update {
     //if at edge of map
     if (position.x + move.x < 0 || position.x + move.x >= Component::mapWidth || position.y + move.y < 0 || position.y + move.y >= Component::mapWidth) {
 //      std::cout << "new position: " << position.x + move.x << ", " << position.y + move.y << std::endl;
+      auto positionCache = game.Get_Player().position;
 
       if (position.x + move.x < 0) {
         std::cout << "player position x less than 0 moving to left chunk" << std::endl;
         location.x--;
         position.x = Component::mapWidth - 1;
         game.location.x--;
-        newChunk = true;
       } else if (position.x + move.x >= Component::mapWidth) {
         std::cout << "player position x greater than map width moving to right chunk" << std::endl;
         location.x++;
         position.x = 0;
         game.location.x++;
-        newChunk = true;
       } else if (position.y + move.y < 0) {
         std::cout << "player position y less than 0 moving to top chunk" << std::endl;
         location.y--;
         position.y = Component::mapWidth - 1;
         game.location.y--;
-        newChunk = true;
       } else if (position.y + move.y >= Component::mapWidth) {
         std::cout << "player position y greater than map width moving to bottom chunk" << std::endl;
         location.y++;
         position.y = 0;
         game.location.y++;
-        newChunk = true;
       }
-      if (newChunk) {
-        game.Get_Objects_At_Player_Location().units[0] = game.Get_Objects_At_Player_Location().units[0];
-        Units::Remove_Unit(game.Get_Objects_At_Player_Location().unitPositions, game.Get_Objects_At_Player_Location().emptyUnitSlots, formerPos);
-        game.Get_Objects_At_Player_Location().unitPositions.emplace(position, 0);
-        Map::Update(game, level, formerPos, position, location, location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
-      }
+      game.Set_Player_New_Chunk(positionCache);
+      Units::Remove_Unit(game.Get_Objects(positionCache).unitPositions, game.Get_Objects(positionCache).emptyUnitSlots, formerPos);
+      game.Get_Objects_At_Player_Location().unitPositions.emplace(position, 0);
+      Map::Update(game, level, formerPos, position, positionCache.location, location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
     }
-
-    if (!newChunk) {
+    else {
 //      Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
       Map::Update(game, level, location, position, move, Spawn::Get_Unit_Char(species));
       Units::Update_Unit_Position(game.Get_Objects_At_Player_Location().unitPositions, position, position.Add(move));

@@ -74,9 +74,17 @@ namespace Game {
       return objects[position.level][position.location];
     }
 
+    Units::Objects &Get_Objects(Units::Position position) {
+      return objects[position.level][position.location];
+    }
+
     Items::Ground &Get_Items_At_player_Position() {
       auto position = objects[level][location].units[0].position;
       return items[position.level][position.location][position.position];
+    }
+
+    void Set_Player_New_Chunk(Units::Position position) {
+      objects[level][location].units[0] = objects[position.level][position.location].units[0];
     }
 
     bool Exists() {
