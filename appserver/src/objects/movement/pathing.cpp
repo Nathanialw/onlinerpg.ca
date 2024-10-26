@@ -189,18 +189,18 @@ namespace Pathing {
 
   void Connect_Chunks(Component::sNode chunk[Component::mapWidth * Component::mapWidth], Component::sNode toConnect[Component::mapWidth * Component::mapWidth], int x, int y) {
     //mutually connect the chunks
-    if (x == -1) {
-      //connect left
-      for (int i = 0; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
-        std::cout << "i: " << i << std::endl;
-        std::cout << "i + Component::mapWidth - 1: " << i + Component::mapWidth - 1 << std::endl;
-        std::cout << "total mapSize: " << Component::mapWidth * Component::mapWidth << std::endl;
-          chunk[i].vecNeighbours.push_back(&toConnect[i + Component::mapWidth - 1]);
-          toConnect[i + Component::mapWidth - 1].vecNeighbours.push_back(&chunk[i]);
-      }
-      std::cout << "connected left" << std::endl;
-    }
-    else if (x == 1) {
+//    if (x == -1) {
+//      //connect left
+//      for (int i = 0; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
+//        std::cout << "i: " << i << std::endl;
+//        std::cout << "i + Component::mapWidth - 1: " << i + Component::mapWidth - 1 << std::endl;
+//        std::cout << "total mapSize: " << Component::mapWidth * Component::mapWidth << std::endl;
+//          chunk[i].vecNeighbours.push_back(&toConnect[i + Component::mapWidth - 1]);
+//          toConnect[i + Component::mapWidth - 1].vecNeighbours.push_back(&chunk[i]);
+//      }
+//      std::cout << "connected left" << std::endl;
+//    }
+    if (x == 1) {
       //connect right
       for (int i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
           chunk[i].vecNeighbours.push_back(&toConnect[i - (Component::mapWidth - 1)]);
