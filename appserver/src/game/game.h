@@ -12,7 +12,6 @@
 #include "pathing.h"
 #include "procgen.h"
 #include "chunk.h"
-#include "loot.h"
 
 #ifndef BROWSERRPG_GAME_H
 #define BROWSERRPG_GAME_H
@@ -40,6 +39,7 @@ namespace Game {
     //session
     std::string session_id;
     //    int duration = 0;
+    //all of these need to be saved into a database
 
     std::vector<Level> levels;
 
@@ -68,7 +68,7 @@ namespace Game {
     //seed
     Proc_Gen::Seed seed;
     Units::Unit &Get_Player();
-    //defaults to at player position
+
     Units::Objects &Get_Objects();
     Units::Objects &Get_Objects(Units::Position position) ;
     Units::Objects &Get_Objects(uint8_t mapLevel, Component::Position location) ;
@@ -76,11 +76,11 @@ namespace Game {
     Items::Ground &Get_Items(Units::Position position);
     Items::Ground &Get_Items(Component::Position location, Component::Position position);
     Chunk::Map_Chunk &Get_Map();
-    Chunk::Map_Chunk &Get_Map(Component::Position maplocation);
+    Chunk::Map_Chunk &Get_Map(Component::Position mapLocation);
+    Chunk::Map_Chunk &Get_Map(uint8_t currentLevel, Component::Position currentLocation);
 
     void Set_Player_New_Chunk(Units::Position position);
     bool Exists();
-    Chunk::Map_Chunk &Get_Map(uint8_t currentLevel, Component::Position currentLocation);
   };
 
 }
