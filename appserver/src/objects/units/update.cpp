@@ -66,8 +66,7 @@ namespace Update {
     else {
       Map::Update(game, level, location, position, move, Spawn::Get_Unit_Char(species));
       Units::Update_Unit_Position(game.Get_Objects().unitPositions, position, position.Add(move));
-      std::cout << "(direct call  ) moving from: " << game.Get_Player().position.position.As_String() << " by: " << move.As_String() << std::endl;
-      std::cout << "(indirect call) moving from: " << position.As_String() << " by: " << move.As_String() << std::endl;
+      std::cout << "moving from: " << position.As_String() << " by: " << move.As_String() << std::endl;
       position = position.Add(move);
     }
 

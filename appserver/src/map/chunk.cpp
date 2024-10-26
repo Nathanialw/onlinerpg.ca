@@ -11,7 +11,7 @@ namespace Chunk {
   //3x3 rooms = quarters
   //9x9 rooms = barracks
   //9x15 rooms = halls
-  void Add_Room(char defaultChunk[Component::mapWidth][Component::mapWidth], int x, int y, int w, int h, bool columns = false) {
+  void Add_Room(Chunk defaultChunk, int x, int y, int w, int h, bool columns = false) {
     std::cout << "Adding room at: " << x << ", " << y << std::endl;
     for (int k = 0; k < w; k++) {
       for (int l = 0; l < h; l++) {
@@ -22,7 +22,7 @@ namespace Chunk {
     }
   }
 
-  void Add_Small_Rooms(char defaultChunk[Component::mapWidth][Component::mapWidth]) {
+  void Add_Small_Rooms(Chunk defaultChunk) {
     Proc_Gen::Seed seed;
     for (int x = 1; x < Component::mapWidth - 7; x += 7) {
       for (int y = 1; y < Component::mapWidth - 7; y += 7) {
@@ -43,7 +43,7 @@ namespace Chunk {
   //    return largeRooms;
   //  }
 
-  void Add_Large_Rooms(char defaultChunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms) {
+  void Add_Large_Rooms(Chunk defaultChunk, std::vector<Room> &rooms) {
     Proc_Gen::Seed seed;
     for (uint8_t x = 1; x < (Component::mapWidth - 20); x+=21) {
       for (uint8_t y = 1; y < Component::mapWidth - 20; y+=21) {
@@ -57,20 +57,20 @@ namespace Chunk {
     }
   }
 
-  void Add_Rooms(char defaultChunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms) {
+  void Add_Rooms(Chunk defaultChunk, std::vector<Room> &rooms) {
     std::cout << "Adding rooms" << std::endl;
     Add_Small_Rooms(defaultChunk);
     Add_Large_Rooms(defaultChunk, rooms);
   }
 
 
-  void Create_Chunk(int8_t level, Component::Position location, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects) {
+  void Create_Chunk(Map_Chunk &mapChunk, int8_t level, Component::Position location, std::vector<Room> &rooms, Proc_Gen::Seed &seed, Units::Objects &objects) {
     // chunk position
     // seed based on that position
 
-    std::string map = Map::Init(defaultChunk, chunk, rooms, seed);
-    Pathing::Init(pathing, map);
-    Spawn::Init(level, location, chunk, rooms, objects); // msg->get_payload()
+    std::string map = Map::Init(mapChunk.defaultChunk, mapChunk.chunk, rooms, seed);
+    Pathing::Init(mapChunk.pathing, map);
+    Spawn::Init(level, location, mapChunk.chunk, rooms, objects); // msg->get_payload()
   }
 
 

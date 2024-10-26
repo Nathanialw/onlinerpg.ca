@@ -59,7 +59,7 @@ namespace Attack {
   //then grab the index of the attacker
   //then grab the index of the target
     //which may be in a different chunk
-  Damage Melee(Units::Unit &attacker, Units::Objects &targets, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], Component::Position &position, Component::Position &moveTo) {
+  Damage Melee(Units::Unit &attacker, Units::Objects &targets, Chunk::Chunk defaultChunk, Chunk::Chunk chunk, Component::Position &position, Component::Position &moveTo) {
     auto targetIndex = Check_Target(targets, position, moveTo);
 
     if (targetIndex == -1) {

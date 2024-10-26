@@ -16,7 +16,7 @@ namespace Pathing {
 
 
   // clear previous location, set new location
-  void Update(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString) {
+  void Update(Map nodes, const std::string &mapString) {
     for (int y = 0; y < Component::mapWidth; y++) {
       for (int x = 0; x < Component::mapWidth; x++) {
           if (mapString[y * Component::mapWidth + x] == '.') {
@@ -29,7 +29,7 @@ namespace Pathing {
       }
   }
 
-  void Draw_Collision_Map(Component::sNode nodes[Component::mapWidth * Component::mapWidth]) {
+  void Draw_Collision_Map(Map nodes) {
     std::cout << "Drawing collision map: "<< std::endl;
     for (int y = 0; y < Component::mapWidth; y++) {
       for (int x = 0; x < Component::mapWidth; x++) {
@@ -44,7 +44,7 @@ namespace Pathing {
     }
   }
 
-  bool Init(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const std::string &mapString) {
+  bool Init(Map nodes, const std::string &mapString) {
     for (int y = 0; y < Component::mapWidth; y++) {
       for (int x = 0; x < Component::mapWidth; x++) {
         nodes[y * Component::mapWidth + x].x = x;
@@ -78,7 +78,7 @@ namespace Pathing {
     return true;
   }
 
-  bool Solve_AStar(Component::sNode nodes[Component::mapWidth * Component::mapWidth], const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
+  bool Solve_AStar(Map nodes, const Component::Position &position, const Component::Position &target, std::vector<Component::Position> &path) {
     ///need location AND position
     ///needs to be able to search off the map  into the location of the target + the 2 adjecent chunks
 
@@ -191,7 +191,7 @@ namespace Pathing {
     return true;
   }
 
-  void Connect_Chunks(Component::sNode chunk[Component::mapWidth * Component::mapWidth], Component::sNode toConnect[Component::mapWidth * Component::mapWidth], int x, int y) {
+  void Connect_Chunks(Pathing::Map chunk, Pathing::Map toConnect, int x, int y) {
     //mutually connect the chunks
 //    if (x == -1) {
 //      //connect left
@@ -239,22 +239,14 @@ namespace Pathing {
 //    }
   }
 
-  Component::Position Move_To(Component::sNode nodes[Component::mapWidth * Component::mapWidth], Component::Position &position, const Component::Position &targetPosition) {
-    //auto pathing = zone.emplace_or_replace<Component::Pathing>(entity_ID);
+  Component::Position Move_To(Map nodes, Component::Position &position, const Component::Position &targetPosition) {
     std::vector<Component::Position> path = {};
     Solve_AStar(nodes, position, targetPosition, path);
-    for (auto & i : path)
-        std::cout << "path: " << i.As_String() << std::endl;
 
     if (path.empty()) {
-        std::cout << "No path found" << std::endl;
-        return {0, 0};
+      std::cout << "No path found" << std::endl;
+      return {0, 0};
     }
-
-//    if (path.size() == 1) {
-//      std::cout << "target is adjacent, position: " << position.x << " " << position.y << " " << "target: " << targetPosition.x << " " << targetPosition.y << std::endl;
-//      return {targetPosition.x - position.x, targetPosition.y - position.y};
-//    }
 
     int cell = 1;
     std::cout << path.size() << std::endl;

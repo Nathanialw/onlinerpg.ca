@@ -12,8 +12,11 @@
 #include "components.h"
 #include "units.h"
 #include "procgen.h"
+#include "pathing.h"
 
 namespace Chunk {
+
+  typedef char Chunk[Component::mapWidth][Component::mapWidth] ;
 
   struct Room {
     uint8_t x;
@@ -23,13 +26,13 @@ namespace Chunk {
   };
 
   struct Map_Chunk {
-    char chunk[Component::mapWidth][Component::mapWidth];
-    char defaultChunk[Component::mapWidth][Component::mapWidth];
-    Component::sNode pathing[Component::mapWidth * Component::mapWidth];
+    Chunk chunk;
+    Chunk defaultChunk;
+    Pathing::Map pathing;
 
     std::vector<Room> rooms;
   };
 
-  void Create_Chunk(int8_t level, Component::Position location, char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms, Component::sNode pathing[Component::mapWidth * Component::mapWidth], Proc_Gen::Seed &seed, Units::Objects &objects);
-  void Add_Rooms(char defaultChunk[Component::mapWidth][Component::mapWidth], std::vector<Room> &rooms);
+  void Create_Chunk(Map_Chunk &mapChunk, int8_t level, Component::Position location, std::vector<Room> &rooms, Proc_Gen::Seed &seed, Units::Objects &objects);
+  void Add_Rooms(Chunk defaultChunk, std::vector<Room> &rooms);
 }

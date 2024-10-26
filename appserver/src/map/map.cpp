@@ -11,7 +11,7 @@
 
 namespace Map {
 
-  std::string Get_Map(char chunk[Component::mapWidth][Component::mapWidth]) {
+  std::string Get_Map(Chunk::Chunk chunk) {
     std::string map;
     for (auto j = 0; j < Component::mapWidth; j++) {
       for (auto i = 0; i < Component::mapWidth; i++) {
@@ -24,7 +24,7 @@ namespace Map {
     return map;
   }
 
-  void Remove_Perimeter(char chunk[Component::mapWidth][Component::mapWidth]) {
+  void Remove_Perimeter(Chunk::Chunk chunk) {
     std::string map;
     for (int j = 0; j < Component::mapWidth; j++) {
       for (int i = 0; i < Component::mapWidth; i++) {
@@ -34,7 +34,7 @@ namespace Map {
     }
   }
 
-  void Set_Game_Map(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth]) {
+  void Set_Game_Map(Chunk::Chunk defaultChunk, Chunk::Chunk chunk) {
     std::cout << "Setting open map" << std::endl;
     for (int x = 0; x < Component::mapWidth; x++) {
       for (int y = 0; y < Component::mapWidth; y++) {
@@ -58,7 +58,7 @@ namespace Map {
 //    }
   }
 
-  void Create_Labyrinth(char defaultChunk[Component::mapWidth][Component::mapWidth], Proc_Gen::Seed &seed) {
+  void Create_Labyrinth(Chunk::Chunk defaultChunk, Proc_Gen::Seed &seed) {
     std::cout << "Creating labyrinth" << std::endl;
     Labyrinth::Generate_Map(seed);
     std::string labyrinthStr;
@@ -83,7 +83,7 @@ namespace Map {
     }
   }
 
-  std::string Init(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Proc_Gen::Seed &seed) {
+  std::string Init(Chunk::Chunk defaultChunk, Chunk::Chunk chunk, std::vector<Chunk::Room> &rooms, Proc_Gen::Seed &seed) {
 //    Create_Open_Map();
     std::cout << "Creating map" << std::endl;
     Create_Labyrinth(defaultChunk, seed);
@@ -97,11 +97,11 @@ namespace Map {
     return Get_Map(chunk);
   }
 
-  void Reset_Tile(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], int x, int y) {
+  void Reset_Tile(Chunk::Chunk defaultChunk, Chunk::Chunk chunk, int x, int y) {
     chunk[y][x] = defaultChunk[y][x];
   }
 
-  void Set_Tile(char chunk[Component::mapWidth][Component::mapWidth], int x, int y, const char &tile) {
+  void Set_Tile(Chunk::Chunk chunk, int x, int y, const char &tile) {
     chunk[y][x] = tile;
   }
 
@@ -183,15 +183,6 @@ namespace Map {
     //print map
     auto sentMap = mapSegment.substr(mapSegment.size() - (game.Get_Player().stats.vision * 2 + 1) * (game.Get_Player().stats.vision * 2 + 1));
     Print_Map(game, sentMap);
-    //append items
-//    std::string items;
-//    for (int j = game.Get_Player().position.y - game.Get_Player().vision; j <= game.Get_Player().position.y + game.Get_Player().vision; j++) {
-//      for (int i = game.Get_Player().position.x - game.Get_Player().vision; i <= game.Get_Player().position.x + game.Get_Player().vision; i++) {
-//          Handle_Boundary(game, i, j, items);
-//      }
-//    }
-
-//    game.items[game.Get_Player().level][game.Get_Player().location][game.Get_Player().position];
 
     std::cout << "map sent!" << std::endl;
     return mapSegment;
@@ -247,12 +238,10 @@ namespace Map {
       Proc_Gen::Seed seed;
       seed.seed = Proc_Gen::Create_Initial_Seed(location.x, location.y);
 
-      Chunk::Create_Chunk(level,
+      Chunk::Create_Chunk(game.levels[level].map[location],
+                          level,
                           location,
-                          game.Get_Map(level, location).defaultChunk,
-                          game.Get_Map(level, location).chunk,
                           game.Get_Map(level, location).rooms,
-                          game.Get_Map(level, location).pathing,
                           seed, game.Get_Objects(level, location));
       std::cout << "chunk created" << std::endl;
 
