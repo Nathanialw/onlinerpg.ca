@@ -6,9 +6,9 @@
 namespace Movement {
 
   void Move(Game::Instance &game, int x, int y) {
-    std::cout << "moving from: " << game.Get_Player().position.x << " " << game.Get_Player().position.y << " by: " << x << " " << y << std::endl;
-    game.Get_Player().position.x += x;
-    game.Get_Player().position.y += y;
+    std::cout << "moving from: " << game.Get_Player().position.position.x << " " << game.Get_Player().position.position.y << " by: " << x << " " << y << std::endl;
+    game.Get_Player().position.position.x += x;
+    game.Get_Player().position.position.y += y;
   }
 
   void asd(const Component::Position &position, const Component::Position &target) {

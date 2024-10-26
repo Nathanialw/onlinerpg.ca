@@ -65,9 +65,13 @@ namespace Items {
   };
 
   struct Backpack {
-      Inventory inventory;
-      Bags bags;
-      Max_Slots maxSlots;
+    Inventory inventory{};
+    Bags bags{};
+    Max_Slots maxSlots{};
+
+    uint16_t copper = 0;
+    uint16_t silver = 0;
+    uint16_t gold = 0;
   };
 
 

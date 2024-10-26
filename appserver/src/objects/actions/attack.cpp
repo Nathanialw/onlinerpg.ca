@@ -10,17 +10,18 @@
 namespace Attack {
 
   Component::Position Check_Target_Location(const Units::Unit &unit, const Component::Position &moveTo) {
-    auto location = unit.location;
-    if (unit.position.x + moveTo.x < 0) {
+    auto location = unit.position.location;
+    auto target = unit.position.position.Add(moveTo);
+    if (target.x < 0) {
       location.x--;
     }
-    else if (unit.position.x + moveTo.x >= Component::mapWidth) {
+    else if (target.x >= Component::mapWidth) {
       location.x++;
     }
-    else if (unit.position.y + moveTo.y < 0) {
+    else if (target.y < 0) {
       location.y--;
     }
-    else if (unit.position.y + moveTo.y >= Component::mapWidth) {
+    else if (target.y >= Component::mapWidth) {
       location.y++;
     }
     return location;
@@ -68,9 +69,9 @@ namespace Attack {
     std::cout << "attacking: " << targetIndex << std::endl;
     auto &target = targets.units[targetIndex];
 
-    target.health -= attacker.maxDamage;
-    std::cout << Spawn::Get_Unit_Char(attacker.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << attacker.maxDamage << " damage" << std::endl;
-    if (target.health <= 0) {
+    target.stats.health -= attacker.stats.maxDamage;
+    std::cout << Spawn::Get_Unit_Char(attacker.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << attacker.stats.maxDamage << " damage" << std::endl;
+    if (target.stats.health <= 0) {
         std::cout << "target dead" << std::endl;
         Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, position.Add(moveTo));
         //need the grab the chunk the target is in
@@ -78,9 +79,9 @@ namespace Attack {
           //send the uIDs of the items to the client when he moves over them
         //else
         chunk[position.y + moveTo.y][position.x + moveTo.x] = ',';
-        return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.maxDamage, true};
+        return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.stats.maxDamage, true};
     }
-    return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.maxDamage, false};
+    return {Utils::Prepend_Zero_By_Digits((int)target.def.species, 2), attacker.stats.maxDamage, false};
   }
 
   bool Check_For_Target(const Component::Position &position, const Component::Position &target) {

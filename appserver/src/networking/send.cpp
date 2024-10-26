@@ -21,13 +21,12 @@ namespace Send {
 
   void Init(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
     int level = 0;
-    Component::Position location = {0, 0};
-    int x = 6;
-    int y = 6;
+    Component::Position location(0,0);
+    Component::Position startPos(6,6);
 
     std::string map = Map::Init(game.map[level][location].defaultChunk, game.map[level][location].chunk, game.map[level][location].rooms, game.seed);
     Pathing::Init(game.map[level][location].pathing, map);
-    Player::Spawn(game, level, location, x, y, msg);
+    Player::Spawn(game, level, location, startPos, msg);
     Spawn::Init(level, location, game.map[level][location].chunk, game.map[level][location].rooms, game.objects[level][location]); // msg->get_payload()
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 

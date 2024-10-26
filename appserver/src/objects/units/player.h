@@ -13,5 +13,5 @@
 namespace Player {
 
   std::string Get_Stats(Game::Instance &game);
-  void Spawn(Game::Instance &game, int level, Component::Position location, int x, int y, const std::basic_string<char> &characterCreate);
+  void Spawn(Game::Instance &game, int level, Component::Position location, Component::Position position, const std::basic_string<char> &characterCreate);
 }

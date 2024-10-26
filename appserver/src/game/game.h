@@ -66,8 +66,17 @@ namespace Game {
       if (objects[level][location].units.empty()) {
         std::cout << "Get_Player() no player found..." << std::endl;
       }
-//      std::cout << "level: " << level << " " << "game object location: " << location.x << ", " << location.y <<std::endl;
-          return objects[level][location].units[0];
+      return objects[level][location].units[0];
+    }
+
+    Units::Objects &Get_Objects_At_Player_Location() {
+      auto position = objects[level][location].units[0].position;
+      return objects[position.level][position.location];
+    }
+
+    Items::Ground &Get_Items_At_player_Position() {
+      auto position = objects[level][location].units[0].position;
+      return items[position.level][position.location][position.position];
     }
 
     bool Exists() {

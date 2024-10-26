@@ -23,22 +23,24 @@ namespace Player {
 
     //prepend with 0000 to tell which stats are being sent
     //name + gender + species + class + alignment
+    auto stats = game.Get_Player().stats;
+    auto name = game.Get_Player().name.firstName;
+    auto def = game.Get_Player().def;
 
-
-    auto health = Utils::Prepend_Zero_3Digit(game.Get_Player().health) + Utils::Prepend_Zero_3Digit(game.Get_Player().healthMax);
-    auto speed = std::to_string(game.Get_Player().speed) + std::to_string(game.Get_Player().maxSpeed);
-    auto damage = Utils::Prepend_Zero(game.Get_Player().minDamage) + Utils::Prepend_Zero(game.Get_Player().maxDamage);
-    auto variableStats = "001" + Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
+    auto health = Utils::Prepend_Zero_3Digit(stats.health) + Utils::Prepend_Zero_3Digit(stats.healthMax);
+    auto speed = std::to_string(stats.speed) + std::to_string(stats.maxSpeed);
+    auto damage = Utils::Prepend_Zero(stats.minDamage) + Utils::Prepend_Zero(stats.maxDamage);
+    auto variableStats = "001" + Utils::Prepend_Zero(stats.AC) + Utils::Prepend_Zero_3Digit(stats.age) + health + speed + damage;
 //    auto variableStats = Utils::Prepend_Zero(game.Get_Player().AC) + Utils::Prepend_Zero_3Digit(game.Get_Player().age) + health + speed + damage;
 
     //    2 + 3 + 3 + 3 + 1 + 1 + 2 + 2
 
-    std::string stats = "1111" + game.player_names[game.Get_Player().name] + variableStats + std::to_string((int)game.Get_Player().def.gender) + std::to_string((int)game.Get_Player().def.species) + std::to_string((int)game.Get_Player().def.unitClass) + std::to_string((int)game.Get_Player().def.alignment);
-    std::cout << "3" + stats << " Char stats sent!" << std::endl;
-    return "3" + stats;
+    std::string statsStr = "1111" + game.player_names[name] + variableStats + std::to_string((int)def.gender) + std::to_string((int)def.species) + std::to_string((int)def.unitClass) + std::to_string((int)def.alignment);
+    std::cout << "3" + statsStr << " Char stats sent!" << std::endl;
+    return "3" + statsStr;
   }
 
-  void Spawn(Game::Instance &game, int level, Component::Position location, int x, int y, const std::basic_string<char> &characterCreate) {
+  void Spawn(Game::Instance &game, int level, Component::Position location, Component::Position position, const std::basic_string<char> &characterCreate) {
 //    game.objects[level][location].unitsString += "2";
     // loop through the map x times and lok for 2x2 squares
     // set entities to be in the center of the square
@@ -63,16 +65,16 @@ namespace Player {
     auto alignment = (Units::Alignment)std::stoi(alignmentStr);
     auto picNum = 0;
 
-    Spawn::Add_Unit(game.objects[level][location], level, location, x, y, game.player_id, gender, species, unitClass, alignment, picNum);
+    Spawn::Add_Unit(game.objects[level][location], level, location, position, game.player_id, gender, species, unitClass, alignment, picNum);
 
     game.player_names.push_back(name);
     game.player_id++;
     std::cout << "size: " << game.objects[level][location].units.size() << std::endl;
-    game.objects[level][location].units.at(0).health = 999;
-    game.objects[level][location].units.at(0).healthMax = 999;
-    std::cout << "health: " << game.objects[level][location].units.at(0).health << std::endl;
-    std::string xStr = Utils::Prepend_Zero(x);
-    std::string yStr = Utils::Prepend_Zero(y);
+    game.objects[level][location].units.at(0).stats.health = 999;
+    game.objects[level][location].units.at(0).stats.healthMax = 999;
+    std::cout << "health: " << game.objects[level][location].units.at(0).stats.health << std::endl;
+    std::string xStr = Utils::Prepend_Zero(position.x);
+    std::string yStr = Utils::Prepend_Zero(position.y);
 
 //    game.objects[level][location].unitsString += (std::to_string(Spawn::Get_Unit_Char(species)) + xStr + yStr);
   }

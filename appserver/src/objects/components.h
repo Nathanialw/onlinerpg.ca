@@ -18,6 +18,11 @@ namespace Component {
     PosInt x;
     PosInt y;
 
+    Position(PosInt X = 0, PosInt Y = 0) {
+        x = X;
+        y = Y;
+    };
+
     bool operator==(const Position &other) const {
       return x == other.x && y == other.y;
     }

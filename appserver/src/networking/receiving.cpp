@@ -43,11 +43,11 @@ namespace Network {
   bool Resume_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
-      std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name << std::endl;
+      std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name.firstName << std::endl;
       client_connections.erase(session_id);
       std::cout << "removed ol hdl " << std::endl;
       reverse_client_connections[hdl] = &game_instances[session_id];
-      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name << std::endl;
+      std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name.firstName << std::endl;
       client_connections[session_id] = hdl;
 
       std:: string response = "41 ";

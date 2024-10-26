@@ -164,7 +164,7 @@ namespace Units {
     SIZE,
   };
 
-  struct Stats {
+  struct Base_Stats {
     uint8_t srength = 10; // damage melee and ranged
     uint8_t intelligence = 10; // magic
     uint8_t dexterity = 10; // dual wielding
@@ -180,46 +180,54 @@ namespace Units {
     Alignment alignment = Alignment::NEUTRAL;
   };
 
+  struct Name {
+    uint16_t firstName;
+    uint16_t surname;
+    uint16_t titlePrefix;
+    uint16_t titleSuffix;
+  };
 
-
-  struct Unit {
-    Stats stats;
-
-    uint16_t name{};
-    uint16_t firstName{};
-    uint16_t surname{};
-    uint16_t titlePrefix{};
-    uint16_t titleSuffix{};
-
-    //unit data to send
-    Component::Position position{};
-
-    Component::Position location{};
-    Items::Equipped equipment{};
-    Items::Backpack pack{};
-    std::array<uint8_t, 8> spells{};
-
-    Def def;
-
+  struct Stats {
     uint16_t health = 0;
     uint16_t healthMax = 0;
-    uint16_t copper = 0;
-    uint16_t silver = 0;
-    uint16_t gold = 0;
 
+    uint8_t minDamage = 0;
+    uint8_t maxDamage = 0;
     uint8_t unitID = 0;
+    uint8_t picNum = 1;
+
     uint8_t age = 0;
 
     uint8_t vision = 0;
     uint8_t speed = 0;
     uint8_t maxSpeed = 0;
-    uint8_t minDamage = 0;
-    uint8_t maxDamage = 0;
     uint8_t AC = 0;
-    //    bool dead = false;
-    uint8_t level;
 
-    uint8_t picNum = 1;
+    uint8_t onHit = 0;
+  };
+
+  struct Position {
+    //unit data to send
+    Component::Position position{};
+    Component::Position location{};
+    int8_t level{};
+  };
+
+  struct Unit {
+    Items::Equipped equipment{};
+    Items::Backpack pack{};
+    Def def;
+
+    Name name;
+    Position position;
+
+    Base_Stats baseStats;
+    Stats stats;
+
+    //    bool dead = false;
+
+
+    //every unit can have one of these for unarmed combat
 
 
   //items are just an ID that is in the db
@@ -231,8 +239,8 @@ namespace Units {
 
     //constructor
     Unit(uint8_t iLevel, Component::Position sLocation) {
-      level = iLevel;
-      location = sLocation;
+      position.level = iLevel;
+      position.location = sLocation;
 
       //starting bags
       pack.maxSlots[0] = 4;

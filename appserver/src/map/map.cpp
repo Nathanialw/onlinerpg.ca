@@ -127,16 +127,16 @@ namespace Map {
   }
 
   void Add_Map_Segment(Game::Instance &game, Component::Position cell, Component::Position offset, std::string &mapSegment) {
-    auto location = game.Get_Player().location;
+    auto location = game.Get_Player().position.location;
     location.x += offset.x;
     location.y += offset.y;
-    mapSegment += game.map[game.Get_Player().level][location].chunk[cell.y][cell.x];
+    mapSegment += game.map[game.Get_Player().position.level][location].chunk[cell.y][cell.x];
   }
 
   void Handle_Boundary(Game::Instance &game, int8_t i, int8_t j, std::string &mapSegment) {
     Component::Position chunk = { static_cast<int8_t>((i < 0) ? -1 : (i >= Component::mapWidth) ? 1 : 0),  static_cast<int8_t>((j < 0) ? -1 : (j >= Component::mapWidth) ? 1 : 0) };
     if (chunk.x == 0 && chunk.y == 0) {
-      mapSegment += game.map[game.Get_Player().level][game.Get_Player().location].chunk[j][i];
+      mapSegment += game.map[game.Get_Player().position.level][game.Get_Player().position.location].chunk[j][i];
       return;
     }
 
@@ -151,24 +151,27 @@ namespace Map {
   }
 
   void Print_Map(Game::Instance &game, const std::string &sentMap) {
-    for (int i = 0; i < game.Get_Player().vision * 2 + 1; i++) {
-      std::cout << sentMap.substr(i * (game.Get_Player().vision * 2 + 1), game.Get_Player().vision * 2 + 1) << std::endl;
+    auto vision = game.Get_Player().stats.vision;
+    for (int i = 0; i < vision * 2 + 1; i++) {
+      std::cout << sentMap.substr(i * (vision * 2 + 1), vision * 2 + 1) << std::endl;
     }
   }
 
   // state 1 = initial map, 2 = update map
   std::string SendMapSegment(Game::Instance &game, const std::string& direction, int state) {
+    auto position = game.Get_Player().position.position;
+    auto stats = game.Get_Player().stats;
     std::string mapSegment = std::to_string(state);
 
-    mapSegment += std::to_string((game.Get_Player().vision * 2) + 1);
+    mapSegment += std::to_string((stats.vision * 2) + 1);
     mapSegment += direction;
     std::string mapString;
 
-    std::cout << "x: " << game.Get_Player().position.x << " y: " << game.Get_Player().position.y << std::endl;
-    std::cout << "vision: " << game.Get_Player().vision << std::endl;
+    std::cout << "x: " << position.x << " y: " << position.y << std::endl;
+    std::cout << "vision: " << stats.vision << std::endl;
 
-    for (int j = game.Get_Player().position.y - game.Get_Player().vision; j <= game.Get_Player().position.y + game.Get_Player().vision; j++) {
-        for (int i = game.Get_Player().position.x - game.Get_Player().vision; i <= game.Get_Player().position.x + game.Get_Player().vision; i++) {
+    for (auto j = position.y - stats.vision; j <= position.y + stats.vision; j++) {
+        for (auto i = position.x - stats.vision; i <= position.x + stats.vision; i++) {
           Handle_Boundary(game, i, j, mapSegment);
       }
     }
@@ -176,7 +179,7 @@ namespace Map {
     std::cout << "mapSegment end: " << mapSegment << std::endl;
 
     //print map
-    auto sentMap = mapSegment.substr(mapSegment.size() - (game.Get_Player().vision * 2 + 1) * (game.Get_Player().vision * 2 + 1));
+    auto sentMap = mapSegment.substr(mapSegment.size() - (game.Get_Player().stats.vision * 2 + 1) * (game.Get_Player().stats.vision * 2 + 1));
     Print_Map(game, sentMap);
     //append items
 //    std::string items;
@@ -251,53 +254,53 @@ namespace Map {
   }
 
   void Check_Map_Chunk(Game::Instance &game) {
-    if (game.Get_Player().position.x < game.Get_Player().vision && game.Get_Player().position.y < game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.x < game.Get_Player().stats.vision && game.Get_Player().position.position.y < game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.x--;
       location.y--;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
-    if (game.Get_Player().position.x >= Component::mapWidth - game.Get_Player().vision && game.Get_Player().position.y >= Component::mapWidth - game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.x >= Component::mapWidth - game.Get_Player().stats.vision && game.Get_Player().position.position.y >= Component::mapWidth - game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.x++;
       location.y++;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
-    if (game.Get_Player().position.x < game.Get_Player().vision && game.Get_Player().position.y >= Component::mapWidth - game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.x < game.Get_Player().stats.vision && game.Get_Player().position.position.y >= Component::mapWidth - game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.x--;
       location.y++;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
-    if (game.Get_Player().position.x >= Component::mapWidth - game.Get_Player().vision && game.Get_Player().position.y < game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.x >= Component::mapWidth - game.Get_Player().stats.vision && game.Get_Player().position.position.y < game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.x++;
       location.y--;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
-    if (game.Get_Player().position.x < game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.x < game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.x--;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
-    if (game.Get_Player().position.x >= Component::mapWidth - game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.x >= Component::mapWidth - game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.x++;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
-    if (game.Get_Player().position.y < game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.y < game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.y--;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
-    if (game.Get_Player().position.y >= Component::mapWidth - game.Get_Player().vision) {
-      Component::Position location = game.Get_Player().location;
+    if (game.Get_Player().position.position.y >= Component::mapWidth - game.Get_Player().stats.vision) {
+      Component::Position location = game.Get_Player().position.location;
       location.y++;
-      Add_Map_Chunk(game, game.Get_Player().level, location);
+      Add_Map_Chunk(game, game.Get_Player().position.level, location);
     }
 
-    std::cout << "Number of chunks: " <<  game.map[game.Get_Player().level].size() << std::endl;
-    for (auto &chunk : game.map[game.Get_Player().level]) {
+    std::cout << "Number of chunks: " <<  game.map[game.Get_Player().position.level].size() << std::endl;
+    for (auto &chunk : game.map[game.Get_Player().position.level]) {
       std::cout << "Chunk: " << (int)chunk.first.x << ", " << (int)chunk.first.y << std::endl;
     }
   }

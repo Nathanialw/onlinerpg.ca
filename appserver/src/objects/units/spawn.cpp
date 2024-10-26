@@ -29,14 +29,13 @@ namespace Spawn {
     return unitChars[(int)species];
   }
 
-  void Add_Unit(Units::Objects &objects, int level, Component::Position location, int8_t x, int8_t y, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment, uint8_t picNum) {
+  void Add_Unit(Units::Objects &objects, int level, Component::Position location, Component::Position position, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment, uint8_t picNum) {
     Units::Unit unit(level, location);
 
     //defined by where it is spawned
     unit.def.species = species;
-    unit.unitID = (uint8_t)species + 1;
-    unit.position.x = x;
-    unit.position.y = y;
+    unit.stats.unitID = (uint8_t)species + 1;
+    unit.position.position = position;
 
     //randomize, weighted
     unit.def.gender = gender; //unless it is a gendered species
@@ -44,17 +43,17 @@ namespace Spawn {
 
     //query db for all of this
     unit.def.alignment = alignment;
-    unit.name = name;
-    unit.age = 16;
+    unit.name.firstName = name;
+    unit.stats.age = 16;
 
-    unit.speed = 1;
-    unit.maxSpeed = unit.speed;
-    unit.minDamage = 0;
-    unit.maxDamage = 10;
-    unit.vision = 6;
-    unit.AC = 10;
-    unit.health = 30;
-    unit.healthMax = unit.health;
+    unit.stats.speed = 1;
+    unit.stats.maxSpeed = unit.stats.speed;
+    unit.stats.minDamage = 0;
+    unit.stats.maxDamage = 10;
+    unit.stats.vision = 6;
+    unit.stats.AC = 10;
+    unit.stats.health = 30;
+    unit.stats.healthMax = unit.stats.health;
 
     auto &units = objects.units;
     auto &unitsPositions = objects.unitPositions;
@@ -67,13 +66,12 @@ namespace Spawn {
       emptyUnitSlots.pop_back();
     }
 
-    Component::Position pos = {x, y};
-    unitsPositions.emplace(pos, units.size() - 1);
+    unitsPositions.emplace(position, units.size() - 1);
   }
 
-  std::vector<Placement> Spawn_Unit(std::vector<Chunk::Room> &rooms) {
-    std::vector<Placement> placements;
-    Placement placement{};
+  std::vector<Component::Position> Spawn_Unit(std::vector<Chunk::Room> &rooms) {
+    std::vector<Component::Position> placements;
+    Component::Position placement{};
     Proc_Gen::Seed seed;
 
     for (const auto &room : rooms) {
@@ -85,13 +83,13 @@ namespace Spawn {
     return placements;
   }
 
-  bool Add_Object(Units::Objects &objects, int level, Component::Position location, std::string &group, int x, int y) {
-    if (x > Component::mapWidth - 1 || y > Component::mapWidth - 1 || x < 1 || y < 1) {
+  bool Add_Object(Units::Objects &objects, int level, Component::Position location, std::string &group, Component::Position position) {
+    if (position.x > Component::mapWidth - 1 || position.y > Component::mapWidth - 1 || position.x < 1 || position.y < 1) {
       group.clear();
       return false;
     } else {
-      group += Utils::Prepend_Zero(x);
-      group += Utils::Prepend_Zero(y);
+      group += Utils::Prepend_Zero(position.x);
+      group += Utils::Prepend_Zero(position.y);
 
       auto species = (Units::Species)Utils::Random(0, (int)Units::Species::SIZE - 1);
       //check db if the species is gendered
@@ -109,7 +107,7 @@ namespace Spawn {
       auto names = DB::Get_List("uID", "names", whereEquals);
       uint16_t index = Utils::Random(0, (int)names.size() - 1);
 
-      Add_Unit(objects, level, location, x, y, stoi(names[index]), gender, species, unitClass, alignment, picNum);
+      Add_Unit(objects, level, location, position, stoi(names[index]), gender, species, unitClass, alignment, picNum);
       return true;
     }
   }
@@ -123,7 +121,8 @@ namespace Spawn {
     }
     for (int i = 0; i < numEntities; ++i) {
       group += entityType;
-      if (!Add_Object(objects, level, location, group, x + i, y + i)) {
+      Component::Position position(x + i , y + i);
+      if (!Add_Object(objects, level, location, group, position)) {
         tries--;
         goto reRoll;
       }
@@ -155,8 +154,8 @@ namespace Spawn {
     Place_Entities_On_Map(rooms, level, location, objects);
 
     for (auto &unit : objects.units) {
-      if (unit.health > 0) {
-        Map::Set_Tile(chunk, unit.position.x, unit.position.y, unitChars[(int)unit.def.species]);
+      if (unit.stats.health > 0) {
+        Map::Set_Tile(chunk, unit.position.position.x, unit.position.position.y, unitChars[(int)unit.def.species]);
       }
     }
     std::cout << "units inited" << std::endl;
