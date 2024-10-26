@@ -117,7 +117,7 @@ namespace Update {
               std::cout << "unit moves from: " << former.As_String() << std::endl;
               std::cout << "unit moves by: " << moveTo.As_String() << std::endl;
               // check next cell and move/attack
-              if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
+              if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.Add(moveTo)).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
 
                 int attackerIndex = Units::Get_Unit_Index(game.objects[unit.level][unit.location].unitPositions, unit.position);
@@ -177,7 +177,7 @@ namespace Update {
 //    }
 
     // collision
-    if (Collision::Wall_Collision(game, level, location, position.x, position.y, move.x, move.y)) {
+    if (Collision::Wall_Collision(game, level, location, position.Add(move))) {
       std::cout << "wall collision" << std::endl;
       std::string c = "c";
       return c + " " + "   " + "1" + items;

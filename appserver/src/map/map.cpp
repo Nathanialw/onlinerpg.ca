@@ -195,12 +195,12 @@ namespace Map {
     return mapSegment;
   }
 
-  std::string Get_Adjacent_Tile(Game::Instance &game, int level, Component::Position location, int x, int y) {
+  std::string Get_Adjacent_Tile(Game::Instance &game, int level, Component::Position location, Component::Position newPosition) {
     std::string tile;
-    if (x < 0 || x >= Component::mapWidth || y < 0 || y >= Component::mapWidth)
+    if (newPosition.x < 0 || newPosition.x >= Component::mapWidth || newPosition.y < 0 || newPosition.y >= Component::mapWidth)
         tile = " ";
     else
-        tile = game.map[level][location].chunk[y][x];
+        tile = game.map[level][location].chunk[newPosition.y][newPosition.x];
     return tile;
   }
 
