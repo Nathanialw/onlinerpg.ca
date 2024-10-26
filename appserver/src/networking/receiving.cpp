@@ -60,7 +60,7 @@ namespace Network {
   void Start_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
     client_connections[session_id] = hdl;
     std::cout << "New connection opened with session ID: " << session_id << std::endl;
-    game_instances.at(session_id) = Game::Instance(session_id);
+    game_instances.emplace(session_id, Game::Instance(session_id));
     reverse_client_connections[hdl] = &game_instances.at(session_id);
     std::cout << "mapped sessionID from hdl: " << reverse_client_connections[hdl]->session_id << std::endl;
   }
