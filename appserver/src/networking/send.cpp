@@ -33,7 +33,7 @@ namespace Send {
     std::cout << "Objects spawned" << std::endl;
     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
     std::cout << "Player stats sent" << std::endl;
-    
+
     if (!game.Get_Objects(level, location).units.empty()) {
       std::string action = "d    10";
       // append inventory

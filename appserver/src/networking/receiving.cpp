@@ -171,7 +171,9 @@ namespace Network {
       auto session_id = Get_SessionID(hdl);
       if (game_instances.find(session_id) != game_instances.end()) {
         // get the game
+        std::cout << "Game Instance exists for session id: " << session_id << std::endl;
         auto game = game_instances.at(session_id);
+        std::cout << "Game Instance exists for session id: " << session_id << std::endl;
         if (game.Exists()) {
           std::string response = "8 ";
           std::cout << "Game exists for session id: " << session_id << std::endl;
