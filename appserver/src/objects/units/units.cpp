@@ -36,7 +36,7 @@ namespace Units {
 
   Units::Unit& Get_Unit_At_Position(std::vector<Units::Unit> &units, std::unordered_map<Component::Position, uint8_t> &unitPositions, Component::Position &position) {
     if (Get_Unit_Index(unitPositions, position) == -1) {
-      std::cout << "unit not found at: " << position.x << " " << position.y << std::endl;
+      std::cout << "unit not found at: " << position.As_String() << std::endl;
       return units[0];
     }
     return units[Units::Get_Unit_Index(unitPositions, position)];
@@ -44,14 +44,14 @@ namespace Units {
 
   int Get_Unit_Index(std::unordered_map<Component::Position, uint8_t> &unitPositions, Component::Position position) {
     if (unitPositions.count(position) == 1) {
-      std::cout << "unit found at: " << position.x << " " << position.y << std::endl;
+      std::cout << "unit found at: " << position.As_String() << std::endl;
       return unitPositions[position];
     }
     return -1;
   }
 
   void Update_Unit_Position(std::unordered_map<Component::Position, uint8_t> &unitPositions, const Component::Position &position, const Component::Position &newPosition) {
-    std::cout << "updating unit position from: " << position.x << " " << position.y << " to: " << newPosition.x << " " << newPosition.y << std::endl;
+    std::cout << "updating unit position from: " << position.As_String() << " to: " << newPosition.As_String() << std::endl;
     int index = unitPositions[position];
     unitPositions.erase(position);
     unitPositions.emplace(newPosition, index);

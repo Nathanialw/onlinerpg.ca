@@ -32,6 +32,7 @@ set(SOURCES
     src/game/game.cpp
 
     src/utils/utils.cpp
+        src/utils/files.cpp
 
     src/networking/receiving.cpp
     src/networking/send.cpp
@@ -67,8 +68,6 @@ set(SOURCES
     src/objects/collision/collision.cpp
 
     src/procgen/procgen.cpp
-    src/utils/files.cpp
-
 )
 
 add_executable(BrowserRPG ${SOURCES})

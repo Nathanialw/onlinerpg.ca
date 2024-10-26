@@ -69,7 +69,6 @@ namespace Update {
         game.Get_Objects_At_Player_Location().units[0] = game.Get_Objects_At_Player_Location().units[0];
         Units::Remove_Unit(game.Get_Objects_At_Player_Location().unitPositions, game.Get_Objects_At_Player_Location().emptyUnitSlots, formerPos);
         game.Get_Objects_At_Player_Location().unitPositions.emplace(position, 0);
-        //update map
         Map::Update(game, level, formerPos, position, location, location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
       }
     }
@@ -77,10 +76,10 @@ namespace Update {
     if (!newChunk) {
 //      Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
       Map::Update(game, level, location, position, move, Spawn::Get_Unit_Char(species));
-      Units::Update_Unit_Position(          game.Get_Objects_At_Player_Location().unitPositions, position, position.Add(move));
+      Units::Update_Unit_Position(game.Get_Objects_At_Player_Location().unitPositions, position, position.Add(move));
       std::cout << "(direct call  ) moving from: " << game.Get_Player().position.position.As_String() << " by: " << move.As_String() << std::endl;
       std::cout << "(indirect call) moving from: " << position.As_String() << " by: " << move.As_String() << std::endl;
-      position.Add(move);
+      position = position.Add(move);
     }
 
 //    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);
@@ -115,8 +114,8 @@ namespace Update {
               Component::Position former = unit.position;
               // calculate next cell
               Component::Position moveTo = Pathing::Move_To(game.map[unit.level][unit.location].pathing, unit.position, position);
-              std::cout << "unit moves from: " << former.x << ", " << former.y << std::endl;
-              std::cout << "unit moves by: " << moveTo.x << ", " << moveTo.y << std::endl;
+              std::cout << "unit moves from: " << former.As_String() << std::endl;
+              std::cout << "unit moves by: " << moveTo.As_String() << std::endl;
               // check next cell and move/attack
               if (Map::Get_Adjacent_Tile(game, unit.level, unit.location, former.x + moveTo.x, former.y + moveTo.y).at(0) == Spawn::Get_Unit_Char(game.Get_Player().def.species)) {
                 std::cout << "unit attacks player" << std::endl;
@@ -133,8 +132,7 @@ namespace Update {
                 continue;
               }
 
-              unit.position.x = Utils::Add(unit.position.x, moveTo.x);
-              unit.position.y = Utils::Add(unit.position.y, moveTo.y);
+              unit.position = unit.position.Add(moveTo);
 
               Map::Update(game, unit.level, unit.location, former, moveTo, Spawn::Get_Unit_Char(chunk.second.units[i].def.species));
               auto map = Map::Get_Map(game.map[unit.level][unit.location].chunk);

@@ -32,7 +32,7 @@ namespace Component {
       return {static_cast<PosInt>(x + other.x), static_cast<PosInt>(y + other.y)};
     }
 
-    std::string As_String() {
+    std::string As_String() const {
       return " x: " + std::to_string(x) + " y: " + std::to_string(y);
     }
   };
