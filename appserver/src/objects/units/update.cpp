@@ -78,8 +78,8 @@ namespace Update {
 //      Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
       Map::Update(game, level, location, position, move, Spawn::Get_Unit_Char(species));
       Units::Update_Unit_Position(          game.Get_Objects_At_Player_Location().unitPositions, position, position.Add(move));
-      std::cout << "(direct call  ) moving from: " << (int)game.Get_Player().position.position.x << " " << (int)game.Get_Player().position.position.y << " by: " << move.x << " " << move.y << std::endl;
-      std::cout << "(indirect call) moving from: " << (int)position.x << " " << (int)position.y << " by: " << move.x << " " << move.y << std::endl;
+      std::cout << "(direct call  ) moving from: " << game.Get_Player().position.position.As_String() << " by: " << move.As_String() << std::endl;
+      std::cout << "(indirect call) moving from: " << position.As_String() << " by: " << move.As_String() << std::endl;
       position.Add(move);
     }
 

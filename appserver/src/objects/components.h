@@ -4,6 +4,7 @@
 //
 #include <cstdint>
 #include <functional>
+#include <iostream>
 
 #ifndef BROWSERRPG_COMPONENTS_H
 #define BROWSERRPG_COMPONENTS_H
@@ -29,6 +30,10 @@ namespace Component {
 
     Position Add(const Position &other) const {
       return {static_cast<PosInt>(x + other.x), static_cast<PosInt>(y + other.y)};
+    }
+
+    std::string As_String() {
+      return " x: " + std::to_string(x) + " y: " + std::to_string(y);
     }
   };
 
