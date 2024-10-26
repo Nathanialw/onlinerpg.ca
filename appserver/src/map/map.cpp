@@ -85,9 +85,13 @@ namespace Map {
 
   std::string Init(char defaultChunk[Component::mapWidth][Component::mapWidth], char chunk[Component::mapWidth][Component::mapWidth], std::vector<Chunk::Room> &rooms, Proc_Gen::Seed &seed) {
 //    Create_Open_Map();
+    std::cout << "Creating map" << std::endl;
     Create_Labyrinth(defaultChunk, seed);
+    std::cout << "labyrinth created" << std::endl;
     Remove_Perimeter(defaultChunk);
+    std::cout << "perimeter removed" << std::endl;
     Chunk::Add_Rooms(defaultChunk, rooms);
+    std::cout << "rooms added" << std::endl;
     Set_Game_Map(defaultChunk, chunk);
     std::cout << "map inited" << std::endl;
     return Get_Map(chunk);
