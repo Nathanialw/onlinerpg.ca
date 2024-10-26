@@ -27,7 +27,6 @@ namespace Update {
 //  void Update_Player_Position(Game::Instance &game, int &px, int &py, int &x, int &y, Units::Species &species) {
   void Update_Player_Position(Game::Instance &game, Component::Position &move, Units::Species &species) {
     auto &position = game.Get_Player().position.position;
-    auto formerPos = game.Get_Player().position.position;
     auto &location = game.Get_Player().position.location;
     auto &level = game.Get_Player().position.level;
 
@@ -36,8 +35,7 @@ namespace Update {
 
     //if at edge of map
     if (position.x + move.x < 0 || position.x + move.x >= Component::mapWidth || position.y + move.y < 0 || position.y + move.y >= Component::mapWidth) {
-//      std::cout << "new position: " << position.x + move.x << ", " << position.y + move.y << std::endl;
-      auto positionCache = game.Get_Player().position;
+      auto cache = game.Get_Player().position;
 
       if (position.x + move.x < 0) {
         std::cout << "player position x less than 0 moving to left chunk" << std::endl;
@@ -60,13 +58,12 @@ namespace Update {
         position.y = 0;
         game.location.y++;
       }
-      game.Set_Player_New_Chunk(positionCache);
-      Units::Remove_Unit(game.Get_Objects(positionCache).unitPositions, game.Get_Objects(positionCache).emptyUnitSlots, formerPos);
+      game.Set_Player_New_Chunk(cache);
+      Units::Remove_Unit(game.Get_Objects(cache).unitPositions, game.Get_Objects(cache).emptyUnitSlots, cache.position);
       game.Get_Objects().unitPositions.emplace(position, 0);
-      Map::Update(game, level, formerPos, position, positionCache.location, location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
+      Map::Update(game, level, cache.position, position, cache.location, location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
     }
     else {
-//      Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
       Map::Update(game, level, location, position, move, Spawn::Get_Unit_Char(species));
       Units::Update_Unit_Position(game.Get_Objects().unitPositions, position, position.Add(move));
       std::cout << "(direct call  ) moving from: " << game.Get_Player().position.position.As_String() << " by: " << move.As_String() << std::endl;
@@ -74,7 +71,6 @@ namespace Update {
       position = position.Add(move);
     }
 
-//    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);
     std::cout << "new player position: " << position.As_String() << std::endl;
     std::cout << "new player location: " << location.As_String() << std::endl;
     std::cout << "-------------------" << std::endl;

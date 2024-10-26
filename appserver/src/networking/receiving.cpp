@@ -43,10 +43,10 @@ namespace Network {
   bool Resume_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
     auto it = client_connections.find(session_id);
     if (it != client_connections.end()) {
-      std::cout << "reconnecting player from session id: " << game_instances[session_id].Get_Player().name.firstName << std::endl;
+      std::cout << "reconnecting player from session id: " << game_instances.at(session_id).Get_Player().name.firstName << std::endl;
       client_connections.erase(session_id);
       std::cout << "removed ol hdl " << std::endl;
-      reverse_client_connections[hdl] = &game_instances[session_id];
+      reverse_client_connections[hdl] = &game_instances.at(session_id);
       std::cout << "successfully reconnected player: " << reverse_client_connections[hdl]->Get_Player().name.firstName << std::endl;
       client_connections[session_id] = hdl;
 
@@ -60,8 +60,8 @@ namespace Network {
   void Start_Game(const std::string& session_id, const websocketpp::connection_hdl& hdl) {
     client_connections[session_id] = hdl;
     std::cout << "New connection opened with session ID: " << session_id << std::endl;
-    game_instances[session_id] = Game::Init(session_id);
-    reverse_client_connections[hdl] = &game_instances[session_id];
+    game_instances.at(session_id) = Game::Instance(session_id);
+    reverse_client_connections[hdl] = &game_instances.at(session_id);
     std::cout << "mapped sessionID from hdl: " << reverse_client_connections[hdl]->session_id << std::endl;
   }
 
@@ -171,7 +171,7 @@ namespace Network {
       auto session_id = Get_SessionID(hdl);
       if (game_instances.find(session_id) != game_instances.end()) {
         // get the game
-        auto game = game_instances[session_id];
+        auto game = game_instances.at(session_id);
         if (game.Exists()) {
           std::string response = "8 ";
           std::cout << "Game exists for session id: " << session_id << std::endl;
@@ -192,7 +192,7 @@ namespace Network {
       std::cout << "No action taken" << std::endl;
       Close_Game(Get_SessionID(hdl));
       Start_Game(Get_SessionID(hdl), hdl);
-      Send::Init(hdl, msg->get_payload(), print_server, game_instances[Get_SessionID(hdl)]);
+      Send::Init(hdl, msg->get_payload(), print_server, game_instances.at(Get_SessionID(hdl)));
     }
 
     //when a player moves, send the new position to all the clients except the one that sent it right away
