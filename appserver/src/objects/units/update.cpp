@@ -66,10 +66,8 @@ namespace Update {
         newChunk = true;
       }
       if (newChunk) {
-        game.Get_Objects_At_Player_Location().units[0] =
-            game.Get_Objects_At_Player_Location().units[0];
-        Units::Remove_Unit(game.Get_Objects_At_Player_Location().unitPositions,
-                           game.Get_Objects_At_Player_Location().emptyUnitSlots, formerPos);
+        game.Get_Objects_At_Player_Location().units[0] = game.Get_Objects_At_Player_Location().units[0];
+        Units::Remove_Unit(game.Get_Objects_At_Player_Location().unitPositions, game.Get_Objects_At_Player_Location().emptyUnitSlots, formerPos);
         game.Get_Objects_At_Player_Location().unitPositions.emplace(position, 0);
         //update map
         Map::Update(game, level, formerPos, position, location, location, Spawn::Get_Unit_Char(game.Get_Player().def.species));
@@ -79,9 +77,10 @@ namespace Update {
     if (!newChunk) {
 //      Map::Update(game, game.Get_Player().level, game.Get_Player().location, px, py, x, y, Spawn::Get_Unit_Char(species));
       Map::Update(game, level, location, position, move, Spawn::Get_Unit_Char(species));
-      Units::Update_Unit_Position(
-          game.Get_Objects_At_Player_Location().unitPositions, position, position.Add(move));
-      Movement::Move(game, move.x, move.y);
+      Units::Update_Unit_Position(          game.Get_Objects_At_Player_Location().unitPositions, position, position.Add(move));
+      std::cout << "(direct call  ) moving from: " << (int)game.Get_Player().position.position.x << " " << (int)game.Get_Player().position.position.y << " by: " << move.x << " " << move.y << std::endl;
+      std::cout << "(indirect call) moving from: " << (int)position.x << " " << (int)position.y << " by: " << move.x << " " << move.y << std::endl;
+      position.Add(move);
     }
 
 //    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);

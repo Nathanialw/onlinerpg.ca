@@ -4,6 +4,5 @@
 
 namespace Movement {
 
-  void Move(Game::Instance &game, int x, int y);
 
 }
