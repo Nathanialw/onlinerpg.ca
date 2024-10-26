@@ -18,6 +18,10 @@ namespace Game {
 
   //defaults to at player position
   Units::Objects &Instance::Get_Objects() {
+    if (levels[level].objects[location].units.empty()) {
+      std::cout << "Get_Objects() no player found using game set values..." << std::endl;
+      return levels[level].objects[location];
+    }
     auto position = levels[level].objects[location].units[0].position;
     return levels[position.level].objects[position.location];
   }
