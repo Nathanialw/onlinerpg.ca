@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="71b97d7e-a9ca-4767-b8a1-9c2148645819" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appserver/db/data.db" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/db/data.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/release/BrowserRPG" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/release/BrowserRPG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/objects/items/items.h" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/items/items.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +120,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729834817246</updated>
-      <workItem from="1729834818916" duration="24246000" />
+      <workItem from="1729834818916" duration="34671000" />
     </task>
     <servers />
   </component>
@@ -128,7 +129,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/b_py$main.coverage" NAME="main Coverage Results" MODIFIED="1729856271137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
-    <SUITE FILE_PATH="coverage/b_py$b.coverage" NAME="main Coverage Results" MODIFIED="1729891742720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
+    <SUITE FILE_PATH="coverage/b_py$b.coverage" NAME="main Coverage Results" MODIFIED="1729984085869" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
     <SUITE FILE_PATH="coverage/b_py$monster.coverage" NAME="monster Coverage Results" MODIFIED="1729856264561" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/potential_assets/icons/photo/asas" />
   </component>
 </project>

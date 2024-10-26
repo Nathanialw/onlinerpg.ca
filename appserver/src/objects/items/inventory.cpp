@@ -28,10 +28,32 @@ namespace Inventory {
     std::cout << "inventory updated" << std::endl;
     std::string inventoryStr;
 
+    //each itme needs
+    //  the uID of the icon,  3
+    //  the rarity,           1
+    //  the durability,       3
+    //  the modifiers         num +  3*num
+
+
+
     for (int j = 0; j < (int)Items::BagType::SIZE; ++j) {
       std::string bagStr;
 
       for (int i = 0; i < maxSlots[j]; ++i) {
+        auto uID = backpack.inventory[j][i].uID;
+        auto rarity = backpack.inventory[j][i].rarity;
+        auto durability = backpack.inventory[j][i].durability;
+        auto num = 0;
+        std::string modStr;
+        for (auto modifier : backpack.inventory[j][i].modifiers) {
+          if (modifier.Empty())
+            break;
+          num++;
+          modStr += Utils::Prepend_Zero_By_Digits(modifier.uID, 3);
+        }
+        std::string newBagStr = Utils::Prepend_Zero_By_Digits(uID, 3) + Utils::Prepend_Zero_By_Digits(rarity, 1) + Utils::Prepend_Zero_By_Digits(durability, 3) +  Utils::Prepend_Zero_By_Digits(num, 1) + modStr;
+        std::cout << "item updated string: " << newBagStr << std::endl;
+
         bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(backpack.inventory[j][i].uID, 3);
       }
 
