@@ -84,8 +84,8 @@ namespace Update {
     }
 
 //    Units::Update_UnitsString(game.objects[player.level][player.location].unitsString, x, y);
-    std::cout << "new player position: " << position.x << " " << position.y << std::endl;
-    std::cout << "new player location: " << location.x << " " << location.y << std::endl;
+    std::cout << "new player position: " << position.As_String() << std::endl;
+    std::cout << "new player location: " << location.As_String() << std::endl;
     std::cout << "-------------------" << std::endl;
   }
 
