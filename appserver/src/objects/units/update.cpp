@@ -31,8 +31,8 @@ namespace Update {
     auto &location = game.Get_Player().position.location;
     auto &level = game.Get_Player().position.level;
 
-    std::cout << "initial player position: " << position.x << " " << position.y << std::endl;
-    std::cout << "initial player location: " << location.x << " " << location.y << std::endl;
+    std::cout << "initial player position: " << position.As_String() << std::endl;
+    std::cout << "initial player location: " << location.As_String() << std::endl;
 
     bool newChunk = false;
 
