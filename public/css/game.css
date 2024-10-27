@@ -5,7 +5,9 @@
 
 body {
     font-family: 'Press Start 2P', sans-serif;
+    line-height: 0;
 }
+
 
 .button {
     display:flex; 
