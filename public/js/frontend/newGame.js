@@ -228,6 +228,7 @@ function Load_Scripts() {
     loadScript('/js/db/db.js', 'module');  
 }
 
+//prevents scrolling
 function Set_Canvas() {
     const canvas = document.querySelector('.canvasContainer');
     if (canvas) {
