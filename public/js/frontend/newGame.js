@@ -208,6 +208,11 @@ function Remove_Elements() {
         footer.remove();
     }
 
+    const characterCreate = document.querySelector('.characterCreate');
+    if (characterCreate) {
+        characterCreate.remove();
+    }
+
     const menu = document.querySelector('.menuButtons');
     if (menu) {
         menu.remove();
