@@ -3,7 +3,7 @@ import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Backgr
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Query_Loot } from '../objects/loot.js';
-import { Draw_Inventory, Query_Inventory } from '../objects/inventory.js';
+import { Draw_Inventory, inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
@@ -11,6 +11,7 @@ import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
 import { loot, Open_Loot_Panel } from '../ui/gamePanels/loot.js';
 import { Get_Icon_Path } from '../db/db.js';
+import { Parse_Inventory } from '../parse/inventory.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
@@ -26,7 +27,6 @@ let serverMap;
 // let numItems;
 // let loot = [];
 // let numInventory;
-let inventory = [];
 let bags = [];
 let equipment = []; //list of item {slot, itemID, path string)
 
@@ -75,49 +75,29 @@ export function Parse_Game_Update(data) {
     
     const endLoot = Parse(data.substring(start, end), end, data, Query_Loot, 3, loot);
     Open_Loot_Panel(direction);
-    
-    let startBag = endLoot;
-    bags.length = 0;
-    for (let i = 0; i < 5; i++) {
-        let bag = [];
-        //save to draw the bag icons
-        let bagID = data.substring(startBag, startBag + 3);
-        //get from DB
-        let item = Get_Icon_Path(bagID);
-        if (item === undefined) {
-            console.log(bagID, "uID is undefined in the db")
-            continue;
-        }
-        //save icon path
-        let iconPath = "assets/graphics/icons/"
-        
-        // //save rarity border path
-        // let rarityID = data.substring(startBag + 3, startBag + 4);
-        // //query db for rarity path
-        // let rarityPath;                                                  //1
-        // //save durability value
-        // let durabilityValue = data.substring(startBag + 4, startBag + 7);
-        // //sav modifier uIDs to look up in the db
-        // let numMods = data.substring(startBag + 7, startBag + 8);
-        // let modifiers = [numMods]                       
-        // let strPosBegin = startBag + 8;
-        // let strPosEnd = startBag + 11;
-        // for (let j = 0; j < item.modifiers.length; j++) {
-        //     let modID = data.substring(strPosBegin, strPosEnd)
-        //     strPosBegin += 3;
-        //     strPosEnd += 3;
-        //     modifiers.push(item.modifiers[j]);                             //3 * j
-        // }
-        // startBag = strPosBegin;
-        // bags[i] = {path: iconPath + item.icon, itemID: bagID, rarity: rarityPath, durability: durabilityValue, modifierStringsArray: modifiers};
+    let startNext = Parse_Inventory(data.substring(endLoot));
+    // let startBag = endLoot;
+    // bags.length = 0;
+    // for (let i = 0; i < 5; i++) {
+    //     let bag = [];
+    //     //save to draw the bag icons
+    //     let bagID = data.substring(startBag, startBag + 3);
+    //     //get from DB
+    //     let item = Get_Icon_Path(bagID);
+    //     if (item === undefined) {
+    //         console.log(bagID, "uID is undefined in the db")
+    //         continue;
+    //     }
+    //     //save icon path
+    //     let iconPath = "assets/graphics/icons/"
 
-        bags[i] = {path: iconPath + item.icon, itemID: bagID};
-        let numItems = item.slots; 
-        startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
-        inventory[i] = bag
-    }
+    //     bags[i] = {path: iconPath + item.icon, itemID: bagID};
+    //     let numItems = item.slots; 
+    //     startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
+    //     inventory[i] = bag
+    // }
     
-    const endInventory = startBag;
+    const endInventory = startNext;
     const endEquipment = Parse(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
     
     serverMap = data.substring(endEquipment);

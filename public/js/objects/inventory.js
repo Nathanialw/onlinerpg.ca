@@ -1,5 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Inventory_Icons, Draw_Bag_Icons, inventory, itemFramePath } from '../graphics/graphics.js';
+import { Clear_Sprite_Array, Draw_Inventory_Icons, Draw_Bag_Icons, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -10,6 +10,24 @@ import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } 
 //display the icon in the loot box
 
 let iconPath = "assets/graphics/icons/"
+
+//defines an item, used for Inventory, Equipment and Loot
+export let item = {
+    iconPath: 0,
+    durability: 0,
+    rarity: 0,
+    modStringsUIDArray: [],
+    modStrings: [] //add teh mods that are like to display as consolidated values ie. if there are 2 + fire damage mods, add them together and save the string here to display
+}
+
+//stores all the inventory items and bags
+export let inventory = [ 
+    { uID: 0, iconPath: '', items: [] },
+    { uID: 0, iconPath: '', items: [] },
+    { uID: 0, iconPath: '', items: [] },
+    { uID: 0, iconPath: '', items: [] },
+    { uID: 0, iconPath: '', items: [] }
+]
     
 export function Query_Inventory(numItems, data, start) {
     let inv = []
@@ -39,7 +57,7 @@ const copperIcon = 'assets/graphics/ui/inventory/coin_copper.png'
 const silverIcon = 'assets/graphics/ui/inventory/coin_silver.png'
 const goldIcon = 'assets/graphics/ui/inventory/coin_gold.png'
 
-const itemBorders =[
+const itemBorders = [
     'public/assets/graphics/ui/inventory/item_quality_1.png',
     'public/assets/graphics/ui/inventory/item_quality_2.png', 
     'public/assets/graphics/ui/inventory/item_quality_3.png',
