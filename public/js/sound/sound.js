@@ -1,10 +1,15 @@
 'use strict'
 
-var swoosh;
-var title;
-var forest;
-var cave;
-var playing;
+Music = {
+    title: null,
+    forest: null,
+    cave: null,
+    playing: null
+}
+
+Sounds = {
+    swoosh: null
+}
 
 function CreateSound(path) {
     var sound = new Howl ({
@@ -14,52 +19,60 @@ function CreateSound(path) {
     return sound;
 }
 
-export function Init () {
-    swoosh = CreateSound('../../assets/sounds/swish_2.wav');
-    cave = CreateSound('../..//assets/music/cave/Dungeon_-_Catacomb_Crawler.ogg');
-    forest = CreateSound('../../assets/music/forest/Dungeon_-_Thorn_Maze.ogg');
+function Load_Sound(sound, path) {
+    if (sound == null) {
+        sound = CreateSound(path);
+    }
 }
 
+export function Init () {
+    Load_Sound(Sounds.swoosh, '../../assets/sounds/swish_2.wav');
+    Load_Sound(Music.cave, '../..//assets/music/cave/Dungeon_-_Catacomb_Crawler.ogg');
+    Load_Sound(Music.forest, '../../assets/music/forest/Dungeon_-_Thorn_Maze.ogg');
+}
+
+
+//preload landing page sounds
 export function Init_Title() {
-    title = CreateSound('../../assets/music/title/Battle_-_Temple_Tussle.ogg');
+    Load_Sound(Music.title, '../../assets/music/title/Battle_-_Temple_Tussle.ogg');
 }
 
 export function SoundPlay(keyName) {
-    if (swoosh) {
-        swoosh.play();
+    if (Sounds.swoosh) {
+        Sounds.swoosh.play();
     }
     return true;
 }
 
 export function Music_Play(zone) {
-    if (playing) {
-        playing.stop();
+    if (Music.playing) {
+        Music.playing.stop();
     }
 
     if (zone === "forest") {
-        playing = forest;
+        Music.playing = forest;
     } else if (zone === "cave") {
-        playing = cave;
+        Music.playing = cave;
     } else if (zone === "title") {
-        playing = title;
+        Music.playing = title;
     }
 
-    if (playing) {
-        playing.loop(true);
-        playing.play();
+    if (Music.playing) {
+        Music.playing.loop(true);
+        Music.playing.play();
     }
 }
 
 export function SoundAttack() {
-    if (swoosh) {
-        swoosh.play();
+    if (Sounds.swoosh) {
+        Sounds.swoosh.play();
     }
 }
 
 export function StopAllSounds() {
-    if (swoosh) swoosh.stop();
-    if (title) title.stop();
-    if (forest) forest.stop();
-    if (cave) cave.stop();
-    if (playing) playing.stop();
+    if (Sounds.swoosh) swoosh.stop();
+    if (Music.title) title.stop();
+    if (Music.forest) forest.stop();
+    if (Music.cave) cave.stop();
+    if (Music.playing) playing.stop();
 }
