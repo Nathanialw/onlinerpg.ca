@@ -72,7 +72,9 @@ export function Parse_Game_Update(data) {
     // let currentHealth = data.substring(6,8);
     start = end;
     end += 2;
-    
+   
+    let startNext;
+
     const endLoot = Parse(data.substring(start, end), end, data, Query_Loot, 3, loot);
     Open_Loot_Panel(direction);
     // let startNext = Parse_Inventory(data.substring(endLoot));

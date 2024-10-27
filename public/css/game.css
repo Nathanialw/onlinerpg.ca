@@ -66,7 +66,7 @@ p.splashContent {
     .options-container {
         /* display: flex; */
         margin: 0 auto;
-        width: 400px;   
+        width: 390px;   
     } 
  
     /* options */    
@@ -183,7 +183,7 @@ p.splashContent {
     }
 
     .canvasContainer {
-        width: 808px;
+        width: 712px;
     }
 }
 
@@ -226,7 +226,7 @@ p.splashContent {
     }
 
     .canvasContainer {
-        width: 1616px;
+        width: 1920px;
     }
 }
 
@@ -257,7 +257,7 @@ p.splashContent {
     }
 
     .canvasContainer {
-        width: 2424px;
+        width: 2560px;
     }
 }
 
@@ -286,7 +286,7 @@ p.splashContent {
     }
 
     .canvasContainer {
-        width: 2828px;
+        width: 3240px;
     }
 }
 
@@ -316,6 +316,6 @@ p.splashContent {
     }
 
     .canvasContainer {
-        width: 3232px;
+        width: 3840px;
     }
 }
