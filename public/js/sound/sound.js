@@ -50,11 +50,11 @@ export function Music_Play(zone) {
     }
 
     if (zone === "forest") {
-        Music.playing = forest;
+        Music.playing = Music.forest;
     } else if (zone === "cave") {
-        Music.playing = cave;
+        Music.playing = Music.cave;
     } else if (zone === "title") {
-        Music.playing = title;
+        Music.playing = Music.title;
     }
 
     if (Music.playing) {
