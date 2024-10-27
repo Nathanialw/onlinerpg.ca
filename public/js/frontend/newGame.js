@@ -208,7 +208,7 @@ function Remove_Elements() {
         footer.remove();
     }
 
-    const characterCreate = document.querySelector('.characterCreate');
+    const characterCreate = document.querySelector('#characterCreate');
     if (characterCreate) {
         characterCreate.remove();
     }
