@@ -208,7 +208,7 @@ function Remove_Elements() {
         footer.remove();
     }
 
-    const menu = document.querySelector('menuButtons');
+    const menu = document.querySelector('.menuButtons');
     if (menu) {
         menu.remove();
     }
