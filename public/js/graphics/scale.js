@@ -4,15 +4,15 @@ import { Set_Font_Size } from './graphics.js';
 import { Update_Screen, Update_Screen_Phone } from '../frontend/ui.js';
 
 const mediaQueries = [
-    { query: window.matchMedia('(min-width: 1px) and (max-width: 390px)'), size: 12 }, //originally 8, added +2 to all of them to try to fit screen
-    { query: window.matchMedia('(min-width: 391px) and (max-width: 711px)'), size: 12 },
-    { query: window.matchMedia('(min-width: 712px) and (max-width: 1279px)'), size: 12 },
-    { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), size: 16 },
-    { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), size: 20 },
+    { query: window.matchMedia('(min-width: 1px) and (max-width: 390px)'), size: 11 }, //originally 8, added +2 to all of them to try to fit screen
+    { query: window.matchMedia('(min-width: 391px) and (max-width: 711px)'), size: 11 },
+    { query: window.matchMedia('(min-width: 712px) and (max-width: 1279px)'), size: 11 },
+    { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), size: 15 },
+    { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), size: 19 },
     // { query: window.matchMedia('(min-width: 2560px) and (max-width: 3839px)'), size: 24 },
-    { query: window.matchMedia('(min-width: 2560px) and (max-width: 3239px)'), size: 28 },
-    { query: window.matchMedia('(min-width: 3240px) and (max-width: 3839px)'), size: 32 },
-    { query: window.matchMedia('(min-width: 3840px)'), size: 34 }
+    { query: window.matchMedia('(min-width: 2560px) and (max-width: 3239px)'), size: 37 },
+    { query: window.matchMedia('(min-width: 3240px) and (max-width: 3839px)'), size: 31 },
+    { query: window.matchMedia('(min-width: 3840px)'), size: 33 }
 ];
 
 function handleMediaQueryChange() {
