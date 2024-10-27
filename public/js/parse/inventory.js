@@ -38,7 +38,7 @@ function Parse_Item(numItems, start, data, Query, size, items) {
 
 
 //takes in a  string of data and returns a structure of the data
-function Parse_Inventory(dataStr) {
+export function Parse_Inventory(dataStr) {
     let start = 0;
 
     bags.length = 0;
