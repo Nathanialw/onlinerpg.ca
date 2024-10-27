@@ -10,7 +10,7 @@ const mediaQueries = [
     { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), size: 12.6 },
     { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), size: 19 },
     // { query: window.matchMedia('(min-width: 2560px) and (max-width: 3839px)'), size: 24 },
-    { query: window.matchMedia('(min-width: 2560px) and (max-width: 3239px)'), size: 25 },
+    { query: window.matchMedia('(min-width: 2560px) and (max-width: 3239px)'), size: 25.3 },
     { query: window.matchMedia('(min-width: 3240px) and (max-width: 3839px)'), size: 31 },
     { query: window.matchMedia('(min-width: 3840px)'), size: 33 }
 ];
