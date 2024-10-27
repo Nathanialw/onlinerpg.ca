@@ -198,7 +198,7 @@ function Remove_Elements() {
         btnSection.remove();
     }
 
-    const header = document.querySelector('footer');
+    const header = document.querySelector('header');
     if (header) {
         header.remove();
     }
