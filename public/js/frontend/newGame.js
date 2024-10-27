@@ -231,7 +231,7 @@ function Load_Scripts() {
 function Set_Canvas() {
     const canvas = document.querySelector('.canvasContainer');
     if (canvas) {
-        canvas.style.height = 'calc(100vh)';
+        canvas.style.height = '100vh';
     }
 }
 
