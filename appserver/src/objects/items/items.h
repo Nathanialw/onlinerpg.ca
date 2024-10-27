@@ -80,14 +80,22 @@ namespace Items {
       //roll for modifers based on rarity
 
       //set the icon
+      uID = 0; //0-255 name of the icon png in the directory referenced in the db
       //set the durability
       durability = 100; //probably will be random later
+      //set the rarity
+      rarity = 0; //0-5
+      //set the modifiers
+      for (auto &modifier : modifiers) {
+        modifier.Set_Empty();
+      }
     }
 
     bool Empty() const {
-      if (uID == 0)
-        return true;
-      return false;
+      return !uID;
+//      if (uID == 0)
+//        return true;
+//      return false;
     }
 
     void Set_Empty() {

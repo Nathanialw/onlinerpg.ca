@@ -283,6 +283,7 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
 
     let equipmentIcon = await Load_Icon(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
+    console.log("inon size: ", squareSize)
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
     return equipment[num]
 }

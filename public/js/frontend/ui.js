@@ -47,6 +47,11 @@ function Parse(numItems, start, data, Query, size, items) {
 // isDead = data.substring(6,7);
 
 export function Parse_Game_Update(data) {
+
+    //call individual parse functions
+    //each function returns the remaining string to be parsed
+
+
     let start = 0;
     let end = 2;
     visionWidth = parseInt(data.substring(start, end), 10);
@@ -82,7 +87,29 @@ export function Parse_Game_Update(data) {
             console.log(bagID, "uID is undefined in the db")
             continue;
         }
+        //save icon path
         let iconPath = "assets/graphics/icons/"
+        
+        // //save rarity border path
+        // let rarityID = data.substring(startBag + 3, startBag + 4);
+        // //query db for rarity path
+        // let rarityPath;                                                  //1
+        // //save durability value
+        // let durabilityValue = data.substring(startBag + 4, startBag + 7);
+        // //sav modifier uIDs to look up in the db
+        // let numMods = data.substring(startBag + 7, startBag + 8);
+        // let modifiers = [numMods]                       
+        // let strPosBegin = startBag + 8;
+        // let strPosEnd = startBag + 11;
+        // for (let j = 0; j < item.modifiers.length; j++) {
+        //     let modID = data.substring(strPosBegin, strPosEnd)
+        //     strPosBegin += 3;
+        //     strPosEnd += 3;
+        //     modifiers.push(item.modifiers[j]);                             //3 * j
+        // }
+        // startBag = strPosBegin;
+        // bags[i] = {path: iconPath + item.icon, itemID: bagID, rarity: rarityPath, durability: durabilityValue, modifierStringsArray: modifiers};
+
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
         startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
