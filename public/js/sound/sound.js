@@ -1,13 +1,13 @@
 'use strict'
 
-Music = {
+let Music = {
     title: null,
     forest: null,
     cave: null,
     playing: null
 }
 
-Sounds = {
+let Sounds = {
     swoosh: null
 }
 
