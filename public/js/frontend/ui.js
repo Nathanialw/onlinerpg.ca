@@ -50,6 +50,7 @@ export function Parse_Game_Update(data) {
 
     //call individual parse functions
     //each function returns the remaining string to be parsed
+    //pass the remaining string to the next function
 
 
     let start = 0;
