@@ -20,8 +20,10 @@ export let item = {
     modStrings: [] //add teh mods that are like to display as consolidated values ie. if there are 2 + fire damage mods, add them together and save the string here to display
 }
 
+export let inventory = []
+
 //stores all the inventory items and bags
-export let inventory = [ 
+export let inventorys = [ 
     { uID: 0, iconPath: '', items: [] },
     { uID: 0, iconPath: '', items: [] },
     { uID: 0, iconPath: '', items: [] },

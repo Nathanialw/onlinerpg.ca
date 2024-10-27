@@ -75,31 +75,32 @@ export function Parse_Game_Update(data) {
     
     const endLoot = Parse(data.substring(start, end), end, data, Query_Loot, 3, loot);
     Open_Loot_Panel(direction);
-    let startNext = Parse_Inventory(data.substring(endLoot));
-    // let startBag = endLoot;
-    // bags.length = 0;
-    // for (let i = 0; i < 5; i++) {
-    //     let bag = [];
-    //     //save to draw the bag icons
-    //     let bagID = data.substring(startBag, startBag + 3);
-    //     //get from DB
-    //     let item = Get_Icon_Path(bagID);
-    //     if (item === undefined) {
-    //         console.log(bagID, "uID is undefined in the db")
-    //         continue;
-    //     }
-    //     //save icon path
-    //     let iconPath = "assets/graphics/icons/"
+    // let startNext = Parse_Inventory(data.substring(endLoot));
 
-    //     bags[i] = {path: iconPath + item.icon, itemID: bagID};
-    //     let numItems = item.slots; 
-    //     startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
-    //     inventory[i] = bag
-    // }
+    let startBag = endLoot;
+    bags.length = 0;
+    for (let i = 0; i < 5; i++) {
+        let bag = [];
+        //save to draw the bag icons
+        let bagID = data.substring(startBag, startBag + 3);
+        //get from DB
+        let item = Get_Icon_Path(bagID);
+        if (item === undefined) {
+            console.log(bagID, "uID is undefined in the db")
+            continue;
+        }
+        //save icon path
+        let iconPath = "assets/graphics/icons/"
+
+        bags[i] = {path: iconPath + item.icon, itemID: bagID};
+        let numItems = item.slots; 
+        startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
+        inventory[i] = bag
+    }
     
-    const endInventory = startNext;
-    const endEquipment = Parse(data.substring(endInventory, endInventory + 2), (endInventory + 2), data, Query_Equipment, 5, equipment);
+    startNext = startBag;
     
+    const endEquipment = Parse(data.substring(startNext, startNext + 2), (startNext + 2), data, Query_Equipment, 5, equipment);
     serverMap = data.substring(endEquipment);
 
     // serverMap = data.substring(8);
