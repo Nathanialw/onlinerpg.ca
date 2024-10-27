@@ -7,7 +7,7 @@ const mediaQueries = [
     { query: window.matchMedia('(min-width: 1px) and (max-width: 390px)'), size: 11 }, //originally 8, added +2 to all of them to try to fit screen
     { query: window.matchMedia('(min-width: 391px) and (max-width: 711px)'), size: 11 },
     { query: window.matchMedia('(min-width: 712px) and (max-width: 1279px)'), size: 11 },
-    { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), size: 13 },
+    { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), size: 12.5 },
     { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), size: 19 },
     // { query: window.matchMedia('(min-width: 2560px) and (max-width: 3839px)'), size: 24 },
     { query: window.matchMedia('(min-width: 2560px) and (max-width: 3239px)'), size: 37 },
