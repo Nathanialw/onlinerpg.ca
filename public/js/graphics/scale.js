@@ -8,7 +8,7 @@ const mediaQueries = [
     { query: window.matchMedia('(min-width: 391px) and (max-width: 711px)'), size: 11 },
     { query: window.matchMedia('(min-width: 712px) and (max-width: 1279px)'), size: 11 },
     { query: window.matchMedia('(min-width: 1280px) and (max-width: 1919px)'), size: 12.6 },
-    { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), size: 19 },
+    { query: window.matchMedia('(min-width: 1920px) and (max-width: 2559px)'), size: 18.9 },
     // { query: window.matchMedia('(min-width: 2560px) and (max-width: 3839px)'), size: 24 },
     { query: window.matchMedia('(min-width: 2560px) and (max-width: 3239px)'), size: 25.3 },
     { query: window.matchMedia('(min-width: 3240px) and (max-width: 3839px)'), size: 32 },
