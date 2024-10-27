@@ -24,16 +24,8 @@ namespace Inventory {
 	     item.Print();
      }
 
-     std::string Update_Inventory(const Items::Backpack &backpack,
-                                  const Items::Max_Slots &maxSlots) {
-	     std::cout << "inventory updated" << std::endl;
+     std::string Update_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots) {
 	     std::string inventoryStr;
-
-	     // each itme needs
-	     //   the uID of the icon,  3
-	     //   the rarity,           1
-	     //   the durability,       3
-	     //   the modifiers         num +  3*num
 
 	     for (int j = 0; j < (int) Items::BagType::SIZE; ++j) {
 		     std::string bagStr;
@@ -45,7 +37,7 @@ namespace Inventory {
 		     }
 
 		     inventoryStr += Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3) + bagStr;
-		     std::cout << "bag updated " << j << ": " << Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3) + bagStr << std::endl;
+		     std::cout << "bag updated " << j << ": " << backpack.Sendable_BagID(j) + bagStr << std::endl;
 		     std::cout << "_item updated string: " << newBagStr << std::endl;
 	     }
 	     return inventoryStr;

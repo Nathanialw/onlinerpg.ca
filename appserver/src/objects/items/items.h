@@ -11,6 +11,8 @@
 #include "string"
 #include "utils.h"
 
+
+
 namespace Items {
      enum class BagType {
 	Items0,
@@ -59,15 +61,14 @@ namespace Items {
      };
 
      struct Item {
-	private:
-	uint8_t durability{}; // 0-100
-	ItemID uID;           // is this not jsut the icon basically?
+          private:
+          static const uint8_t numModifiers = 8;
 
-	// it needs to know which modifiers it has
-	std::array<Mod, 8> modifiers{}; // keys to the static modifiers in the db
 
-	// which icon it has
-	uint8_t rarity{}; // 0-5
+	ItemID uID;                                                                                   // is this not jsut the icon basically?
+          uint8_t durability{};                                                                // 0-100
+	std::array<Mod, numModifiers> modifiers{};        // keys to the static modifiers in the db
+	uint8_t rarity{};                                                                         // 0-5
 
 	// requirements
 	public:
@@ -76,7 +77,6 @@ namespace Items {
 		// get a random uID from the db of that level
 		// roll for rarity
 		// roll for modifers based on rarity
-
 		// set the icon
 		uID = 0; // 0-255 name of the icon png in the directory referenced in the db
 		// set the durability
@@ -107,7 +107,7 @@ namespace Items {
 		std::cout << std::endl;
 	}
 
-	void Set(uint8_t _uID = 0, uint8_t _rarity = 0, uint8_t _durability = 100, std::array<Mod, 8> _modifier = {}) {
+	void Set(uint8_t _uID = 0, uint8_t _rarity = 0, uint8_t _durability = 100, std::array<Mod, numModifiers> _modifier = {}) {
 		uID = _uID;
 		rarity = _rarity;
 		durability = _durability;
@@ -169,6 +169,11 @@ namespace Items {
 	uint16_t copper = 0;
 	uint16_t silver = 0;
 	uint16_t gold = 0;
+
+	//get bag uID at index as a string
+	[[nodiscard]] std::string Sendable_BagID(uint8_t index) const  {
+		return Utils::Prepend_Zero_By_Digits(bags[index].Get_uID(),  3);
+	}
      };
 
      typedef std::array<Item, 14> Ground;

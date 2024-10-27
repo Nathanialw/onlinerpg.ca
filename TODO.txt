@@ -41,6 +41,8 @@ gamey
 
 
 short term:
+-64px icons at 1080p
+-new inventory parsing
 -enemies to follow between map chunks with pathing
 -login and db to save game state
 -spells 
