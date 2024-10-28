@@ -43,12 +43,14 @@ export function Query_Inventory(numItems, data, start, inv) {
         let item = Get_Icon_Path(itemID);
         let icon = item.icon
         if (icon === undefined || icon === "none") {
-            inv[i] = 9; 
+            // console.log("icon is undefined", icon)
+            inv.push({index: i, itemID: itemID, path: icon}); 
         }
         else {
+            // console.log("icon is defined", icon)
             let path = iconPath + icon;
-            inv[i] = 4;  
-        }   
+            inv.push({index: i, itemID: itemID, path: path}); 
+        }     
     }
 }
 
@@ -80,8 +82,10 @@ export function Parse_Inventory(data, startBag) {
 
         inventory[i] = [];
         Query_Inventory(numItems, data, (startBag + 3), inventory[i]);
-        console.log("inventory: ", inventory)
-        
+        for (let j = 0; j < inventory[i].length; j++) {
+            console.log("inventory[i][j]: ", inventory[i].index, inventory[i].itemID, inventory[i].path)
+        }
+
         startBag = (startBag + 3) + (numItems * 5);
     }
     return startBag;
