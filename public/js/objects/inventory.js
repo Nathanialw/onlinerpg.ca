@@ -20,7 +20,7 @@ export let item = {
     modStrings: [] //add teh mods that are like to display as consolidated values ie. if there are 2 + fire damage mods, add them together and save the string here to display
 }
 
-export let inventory = []
+export let inventory = [[]]
 export let bags = [];
 
 
@@ -83,7 +83,10 @@ export function Parse_Inventory(data, startBag) {
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
 
-        inventory[i] = Query_Inventory(numItems, data, (startBag + 3));
+        let gg = Query_Inventory(numItems, data, (startBag + 3));
+        console.log("gg: ", gg)
+
+        inventory[i] = gg
         console.log("inventory[i]: ", inventory[i])
         startBag = (startBag + 3) + (numItems * 5);
         // console.log("bag: ", bag)
