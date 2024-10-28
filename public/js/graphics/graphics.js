@@ -411,7 +411,7 @@ export function Set_Font_Size(size) {
 const sidePanelWidth = 30;
 export const viewportWidth = 41;
 export const viewportHeight = 41;
-export const topPanelHeight = 10;
+export const topPanelHeight = 0;
 
 const topPanelWidth = viewportWidth;
 
@@ -721,7 +721,7 @@ export function Draw_UI_Phone() {
 
 export function Draw_UI(index) {
     //top    
-    Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, black)
+    // Draw_Panel(leftPanelWidth * cellSize, 0, topPanelWidth * cellSize, topPanelHeight * cellSize, black)
     
     //menu background
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
