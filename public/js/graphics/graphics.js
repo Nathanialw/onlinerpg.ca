@@ -756,11 +756,12 @@ export function Draw_UI(index) {
 
 let jj;
 function Draw_Stats() {
-    // Create_Object(characterInfo.Potrait, x, y);
-    Draw_Sprite((leftPanelWidth + 1) * cellSize, 1 * cellSize, 8 * cellSize, 8 * cellSize, playerImg);
+    Draw_Sprite((leftPanelWidth) * cellSize, 0, 8 * cellSize, 8 * cellSize, playerImg);
     
-    let x = leftPanelWidth + 10;
-    let y = 1;
+    let x = 10;
+    let y = 4;
+
+    //general stats
     
     jj = Create_Object(characterInfo.Name + characterInfo.Gender, x, y);
     y += 1;
@@ -769,13 +770,20 @@ function Draw_Stats() {
     Create_Object(characterInfo.HeroClass, x, y);
     y += 1;
     Create_Object("AC: " + characterInfo.AC, x, y);
-
-
-    x = leftPanelWidth + 20;
-    y = 2;
-    Create_Object("Damage: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
     y += 1;
-    Create_Object("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, x, y);
+    Create_Object("Damage: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
+    // combat stats
+    
+    x = leftPanelWidth + 10;
+    y = 0;
+    
     y += 1;
     Create_Object("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+    //draw health bar
+    y += 1;
+    Create_Object("Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+    //draw mana bar
+    y += 1;
+    Create_Object("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, x, y);
+    //draw one square for each move remaining
 }
