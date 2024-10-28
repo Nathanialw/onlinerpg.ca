@@ -118,7 +118,7 @@ export async function Draw_Inventory() {
     for (let i = 0; i < numBags; i++) {
         if (bags[i].path === undefined || bags[i].path === "none") {
             let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2.5)
-            let border = await Draw_Bag_Icons(itemFramePath, i, 22.5) //border
+            let border = await Draw_Bag_Icons(itemFramePath, i, 2.5) //border
         }
         else {
             let bag = await Draw_Bag_Icons(bags[i].path, i, 2.5)
