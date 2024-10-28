@@ -20,7 +20,7 @@ export let item = {
     modStrings: [] //add teh mods that are like to display as consolidated values ie. if there are 2 + fire damage mods, add them together and save the string here to display
 }
 
-export let inventory = [[]]
+export let inventory = []
 export let bags = [];
 
 
@@ -65,23 +65,6 @@ function removeEventListenersFromArray(array) {
 
 }
 
-function Parse_Item(numItems, start, data, Query, size, items) {
-    removeEventListenersFromArray(items);
-    items.length = 0; // Clear the array without reassigning it
-    if (numItems > 0) {
-        const queryResult = Query(numItems, data, start);
-        console.log("Query result:", queryResult);
-        console.log("Type of queryResult:", typeof queryResult);
-        console.log("Is queryResult an array:", Array.isArray(queryResult));
-
-        // Use a loop to push each item individually
-        for (let i = 0; i < queryResult.length; i++) {
-            items.push(queryResult[i]);
-        }
-    }
-    return start + (numItems * size); 
-}
-
 export function Parse_Inventory(data, startBag) {
     bags.length = 0;
     for (let i = 0; i < 5; i++) {
@@ -98,7 +81,9 @@ export function Parse_Inventory(data, startBag) {
 
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
-        startBag = Parse_Item(numItems, (startBag + 3), data, Query_Inventory, 5, inventory[i]);
+
+        inventory[i] = Query_Inventory(numItems, data, (startBag + 3));
+        startBag = (startBag + 3) + (numItems * 5);
         // console.log("bag: ", bag)
         // console.log("inventory: ", inventory)
         // console.log("inventory[i]: ", inventory[i])
