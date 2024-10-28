@@ -78,7 +78,7 @@ export function Parse_Inventory(dataStr) {
         let numItems = item.slots; 
 
         let items = []; //items in the bag
-        start = Parse(numItems, (start + 3), data, Query_Inventory, 5, items);
+        start = Parse_Item(numItems, (start + 3), data, Query_Inventory, 5, items);
         inventory[i].items = items
 
         return remainingStr;
