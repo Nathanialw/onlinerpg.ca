@@ -42,11 +42,15 @@ export function Query_Inventory(numItems, data, start, inv) {
 
         let item = Get_Icon_Path(itemID);
         let icon = item.icon
-        if (icon !== undefined || icon !== "none") {
-            let path = iconPath + icon;
+        if (icon === undefined || icon === "none") {
+            // console.log("icon is undefined", icon)
+            inv.push({index: i, itemID: itemID, path: icon}); 
         }
-        inv[i] = {index: i, itemID: itemID, path: path}; 
-        console.log("inv[i]: ", inv[i].index, inv[i].itemID, inv[i].path)
+        else {
+            // console.log("icon is defined", icon)
+            let path = iconPath + icon;
+            inv.push({index: i, itemID: itemID, path: path}); 
+        }     
     }
 }
 
@@ -78,9 +82,6 @@ export function Parse_Inventory(data, startBag) {
 
         inventory[i] = [];
         Query_Inventory(numItems, data, (startBag + 3), inventory[i]);
-        for (let j = 0; j < inventory[i].length; j++) {
-            console.log("inventory[i][j]: ", inventory[i].index, inventory[i].itemID, inventory[i].path)
-        }
 
         startBag = (startBag + 3) + (numItems * 5);
     }
@@ -107,7 +108,7 @@ const itemBorders = [
 
 export async function Draw_Inventory() {
     for (let i = 0; i < inventory.length; i++) {
-        Clear_Sprite_Array(inventory[i]);
+        // Clear_Sprite_Array(inventory[i]);
     }    
     // Clear_Sprite_Array(bags);
 
