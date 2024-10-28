@@ -380,7 +380,7 @@ export function Draw_Texture(x, y, sprite) {
 }
 export async function Load_Target_Image(x, y, path) {
     x += 1;
-    y += 1;
+    y += 4.5;
     x *= cellSize;
     y *= cellSize;
     let texture;
@@ -391,8 +391,8 @@ export async function Load_Target_Image(x, y, path) {
         texture = await PIXI.Assets.load(defaultPath);
     }  
     targetImg = new PIXI.Sprite(texture);
-    let w = 11 * cellSize;
-    let h = 11 * cellSize;
+    let w = 12.5 * cellSize;
+    let h = 12.5 * cellSize;
     Draw_Sprite(x, y, w, h, targetImg);
 }
 
@@ -622,7 +622,7 @@ export function Create_Combat_Log_Line(char, indexHeight) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
     let object = new PIXI.Text({text: char, style: style});
     object.x = (Get_Right_Panel_Origin_x() + 1) * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = ((Get_Right_Panel_Origin_y() + leftPanelHeight + 1) * cellSize) + (indexHeight * minimapCellSize) - (10 * minimapCellSize);  // Assuming each cell is 24 pixels tall
+    object.y = ((Get_Right_Panel_Origin_y() + leftPanelHeight + 0.5) * cellSize) + (indexHeight * minimapCellSize) - (10 * minimapCellSize);  // Assuming each cell is 24 pixels tall
     app.stage.addChild(object);
     return object;
 }
