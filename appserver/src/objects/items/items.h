@@ -19,7 +19,6 @@ namespace Items {
 	Items1,
 	Scrolls,
 	Potions,
-	Keys,
 	SIZE,
      };
 
@@ -34,8 +33,6 @@ namespace Items {
 	boots,
 	ring0,
 	ring1,
-	trinket0,
-	trinket1,
 	mainHand,
 	offHand,
 	twoHanded,
@@ -159,7 +156,7 @@ namespace Items {
 
      typedef std::array<Item, (uint8_t) BagType::SIZE> Bags;
      typedef std::array<uint8_t, (uint8_t) BagType::SIZE> Max_Slots;
-     typedef std::array<std::array<Item, 14>, (uint8_t) BagType::SIZE> Inventory;
+     typedef std::array<std::array<Item, 12>, (uint8_t) BagType::SIZE> Inventory;
 
      struct Backpack {
 	Inventory inventory;

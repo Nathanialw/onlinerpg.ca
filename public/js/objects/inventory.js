@@ -112,7 +112,9 @@ export async function Draw_Inventory() {
     }    
     // Clear_Sprite_Array(bags);
 
+    const iconSize = 3.5;
     const numBags = 5;
+    
     for (let i = 0; i < numBags; i++) {
         if (bags[i].path === undefined || bags[i].path === "none") {
             let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2)
@@ -125,8 +127,7 @@ export async function Draw_Inventory() {
         }
     }
     
-    const iconSize = 3.5;
-    for (let j = 0; j < inventory.length; j++) {
+    for (let j = 0; j < numBags; j++) {
         let num = 0;
         for (let i = 0; i < inventory[j].length; i++) {
             if (inventory[j][i].path === undefined || inventory[j][i].path === "none") {

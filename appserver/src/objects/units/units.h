@@ -191,6 +191,8 @@ namespace Units {
 	}
 
 	explicit Base_Stats(Def def) {
+		//query db for all of this based on def
+		//then add random modifiers
 		srength = 0;
 		intelligence = 0;
 		dexterity = 0;
@@ -276,9 +278,6 @@ namespace Units {
 
 		pack.maxSlots[3] = 2;
 		pack.bags[3].Set(32);
-
-		pack.maxSlots[4] = 4;
-		pack.bags[4].Set(104);
 	}
      };
 

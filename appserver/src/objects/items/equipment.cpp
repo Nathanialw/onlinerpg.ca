@@ -57,8 +57,6 @@ namespace Equipment {
 		     slotNum = Dual_Equip(equipment, (int) Items::ItemSlot::mainHand, (int) Items::ItemSlot::offHand);
 	     else if (slotNum == (int) Items::ItemSlot::ring0)
 		     slotNum = Dual_Equip(equipment, (int) Items::ItemSlot::ring0, (int) Items::ItemSlot::ring1);
-	     else if (slotNum == (int) Items::ItemSlot::trinket0)
-		     slotNum = Dual_Equip(equipment, (int) Items::ItemSlot::trinket0, (int) Items::ItemSlot::trinket1);
 
 	     std::cout << "equip slot num: " << slotNum << std::endl;
 
@@ -79,9 +77,6 @@ namespace Equipment {
 		     return;
 	     } else if (slotNum == (int) Items::ItemSlot::ring0 || slotNum == (int) Items::ItemSlot::ring1) {
 		     Swap_Item(pack.inventory, equipment, (int) Items::ItemSlot::ring1, index, bag);
-		     return;
-	     } else if (slotNum == (int) Items::ItemSlot::trinket0 || slotNum == (int) Items::ItemSlot::trinket1) {
-		     Swap_Item(pack.inventory, equipment, (int) Items::ItemSlot::trinket1, index, bag);
 		     return;
 	     }
 
@@ -114,11 +109,6 @@ namespace Equipment {
 
 	     if (slotStr == "belt") {
 		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Potions);
-		     return;
-	     }
-
-	     if (slotStr == "keyring") {
-		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Keys);
 		     return;
 	     }
 

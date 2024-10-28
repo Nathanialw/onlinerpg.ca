@@ -213,7 +213,7 @@ export async function Draw_Menu_Icons(menu, num, xOff, text) {
     let spaceBetween = 2.2;    
     let x = xOff * cellSize + ((num * 5) + spaceBetween) * cellSize;
     let y = 0.5 * cellSize;
-    let h = 1.5 * cellSize;
+    let h = 1.1 * cellSize;
     let w = 4.5 * cellSize;
 
     // Remove_Event_Listeners(mainMenuSprites[num]);    
@@ -310,10 +310,10 @@ export async function Draw_Bag_Icons(iconPath, num, w) {
 }
 
 export async function Draw_Inventory_Icons(iconPath, num, j, w) {    
-    let spaceBetweenY = .1;
     let spaceBetweenX = .1;
-    let x = (0.1 + (w * j * 2.26)) * cellSize;
-    let y = ((topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
+    let spaceBetweenY = .3;
+    let x = (0 + (w * j * 2.)) * cellSize;
+    let y = ((topPanelHeight / 2) + (leftPanelHeight * 1/2) - 4) * cellSize;
 
 
     //when it goes to the next column 
@@ -730,9 +730,9 @@ export function Draw_UI(index) {
     //menu background
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
     //eqipment
-    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2) - 2) * cellSize, equipmentUI);
+    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2) - 1) * cellSize, equipmentUI);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 1/2) - 2) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 4)) * cellSize, inventoryUI);
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 1/2) - 2) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 4) + 2) * cellSize, inventoryUI);
 
 
     //tab background
