@@ -42,15 +42,11 @@ export function Query_Inventory(numItems, data, start, inv) {
 
         let item = Get_Icon_Path(itemID);
         let icon = item.icon
-        if (icon === undefined || icon === "none") {
-            // console.log("icon is undefined", icon)
-            inv.push({index: i, itemID: itemID, path: icon}); 
-        }
-        else {
-            // console.log("icon is defined", icon)
+        if (icon !== undefined || icon !== "none") {
             let path = iconPath + icon;
-            inv.push({index: i, itemID: itemID, path: path}); 
-        }     
+        }
+        inv[i] = {index: i, itemID: itemID, path: path}; 
+        console.log("inv[i]: ", inv[i].index, inv[i].itemID, inv[i].path)
     }
 }
 
