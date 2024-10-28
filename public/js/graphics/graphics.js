@@ -730,9 +730,9 @@ export function Draw_UI(index) {
     //menu background
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
     //eqipment
-    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2)) * cellSize, equipmentUI);
+    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2) - 2) * cellSize, equipmentUI);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 1/2)) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 4)) * cellSize, inventoryUI);
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 1/2) - 2) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 4)) * cellSize, inventoryUI);
 
 
     //tab background
