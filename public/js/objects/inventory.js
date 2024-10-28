@@ -54,6 +54,16 @@ export function Query_Inventory(numItems, data, start) {
     return inv;
 }
 
+function Parse_Item(numItems, start, data, Query, size, items) {
+    removeEventListenersFromArray(items);
+    items.length = 0; // Clear the array without reassigning it
+    if (numItems > 0) {
+        items.push(...Query(numItems, data, start));
+    }    
+    
+    return start + (numItems * size); 
+}
+
 export function Parse_Inventory(data, startBag) {
     bags.length = 0;
     for (let i = 0; i < 5; i++) {
@@ -71,7 +81,7 @@ export function Parse_Inventory(data, startBag) {
 
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
-        startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
+        startBag = Parse_Item(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
         inventory[i] = bag
     }
     return startBag;
