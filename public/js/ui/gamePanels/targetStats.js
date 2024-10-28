@@ -69,10 +69,10 @@ export function Target_Stats() {
     //display rect 
     Clear_Target();
 
-    let x = Get_Right_Panel_Origin_x() + 1.8;
+    let x = Get_Right_Panel_Origin_x();
     targetStatsDisplay.length = 0;
-    let y = Get_Right_Panel_Origin_y() + 1.4
-    Load_Target_Image(x - 1, y + 3, targetStats.pic)        
+    let y = Get_Right_Panel_Origin_y()
+    Load_Target_Image(x, y , targetStats.pic)        
     
     x = Get_Right_Panel_Origin_x() + 15;
     y = Get_Right_Panel_Origin_y() + 4.5; 
