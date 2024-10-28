@@ -776,30 +776,31 @@ function Draw_Stats() {
 
     let line = 0;
     //general stats
-    line = Display_Line("Name: " + characterInfo.Name, line, x, y)
-    line = Display_Line("Age: " + characterInfo.Age, line, x, y);
-    line = Display_Line(characterInfo.HeroClass, line, x, y);
-    line = Display_Line("AC: " + characterInfo.AC, line, x, y);
-    line = Display_Line("Damage: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Ice Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Fir Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Psn Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Shw Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Hly Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Phy Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("      Name: " + characterInfo.Name, line, x, y)
+    line = Display_Line("       Age: " + characterInfo.Age, line, x, y);
+    line = Display_Line("     Class: " + characterInfo.HeroClass, line, x, y);
+    line = Display_Line("        AC: " + characterInfo.AC, line, x, y);
+    line = Display_Line("    Damage: " + characterInfo.MinDamage + "-" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("", line, x, y);
+    line = Display_Line("Ice Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Fir Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Psn Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Shw Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Hly Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Phy Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
 
     // combat stats
     
     x = leftPanelWidth + 10;
-    y = 0;    
+    y = 1;    
 
     //draw health bar
     line = 0;
     line = Display_Line("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
-    line = Display_Line("Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
+    line = Display_Line("  Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw mana bar
     y += 1;
-    line = Display_Line("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, line, x, y);
+    line = Display_Line(" Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, line, x, y);
     //draw one square for each move remaining
 
     //buffs

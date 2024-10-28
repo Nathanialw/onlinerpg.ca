@@ -106,16 +106,17 @@ export function UpdatePlayerInfo(characterCreate) {
     //potrait
     characterInfo.Name = characterCreate.substring(4, length - 24);
     characterInfo.Name = characterInfo.Name.charAt(0).toUpperCase() + characterInfo.Name.slice(1);
-
     characterInfo.Potrait = characterCreate.substring(length-24, length-21);
-    characterInfo.AC = characterCreate.substring(length-21, length-19);
-    characterInfo.Age = characterCreate.substring(length-19, length-16);
-    characterInfo.Health = characterCreate.substring(length-16, length-13);
-    characterInfo.MaxHealth = characterCreate.substring(length-13, length-10);
-    characterInfo.Speed = characterCreate.substring(length-10, length-9);
-    characterInfo.MaxSpeed = characterCreate.substring(length-9, length-8);
-    characterInfo.MinDamage = characterCreate.substring(length-8, length-6);
-    characterInfo.MaxDamage = characterCreate.substring(length-6, length-4);
+    
+    characterInfo.AC = Strip_Leading_Zeroes(characterCreate.substring(length-21, length-19));
+    characterInfo.Age = Strip_Leading_Zeroes(characterCreate.substring(length-19, length-16));
+    characterInfo.Health = Strip_Leading_Zeroes(characterCreate.substring(length-16, length-13));
+    characterInfo.MaxHealth = Strip_Leading_Zeroes(characterCreate.substring(length-13, length-10));
+    characterInfo.Speed = Strip_Leading_Zeroes(characterCreate.substring(length-10, length-9));
+    characterInfo.MaxSpeed = Strip_Leading_Zeroes(characterCreate.substring(length-9, length-8));
+    characterInfo.MinDamage = Strip_Leading_Zeroes(characterCreate.substring(length-8, length-6));
+    characterInfo.MaxDamage = Strip_Leading_Zeroes(characterCreate.substring(length-6, length-4));
+    
     let genderIndex = characterCreate.charAt(length-4);
     let gender = Gender[parseInt(genderIndex)]
     if (gender === "Male") {
