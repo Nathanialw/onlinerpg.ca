@@ -114,7 +114,7 @@ const itemBorders = [
     'public/assets/graphics/ui/inventory/item_quality_8.png',
 ]
 
-export async function Draw_Inventory(bags, items) {
+export async function Draw_Inventory() {
     for (let i = 0; i < inventory.length; i++) {
         Clear_Sprite_Array(inventory[i]);
     }    
@@ -133,19 +133,19 @@ export async function Draw_Inventory(bags, items) {
         }
     }
 
-    for (let j = 0; j < items.length; j++) {
+    for (let j = 0; j < inventory.length; j++) {
         let num = 0;
-        for (let i = 0; i < items[j].length; i++) {
-            if (items[j][i].path === undefined || items[j][i].path === "none") {
+        for (let i = 0; i < inventory[j].length; i++) {
+            if (inventory[j][i].path === undefined || inventory[j][i].path === "none") {
                 let item = await Draw_Inventory_Icons(defaultInventoryIcon, num, j, 2.5)            
                 let border = await Draw_Inventory_Icons(itemFramePath, num, j, 2.5) //border
             }
             //clear event listene from index i
             else {
-                let item = await Draw_Inventory_Icons(items[j][i].path, num, j, 2.5)            
+                let item = await Draw_Inventory_Icons(inventory[j][i].path, num, j, 2.5)            
                 //check the rarity of the item
                 let border = await Draw_Inventory_Icons(itemFramePath, num, j, 2.5) //border
-                Set_Send_On_Loot_Click_Listener_inv(item, '1', num, j, items[j][i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
+                Set_Send_On_Loot_Click_Listener_inv(item, '1', num, j, inventory[j][i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
             }
             num++
         }
