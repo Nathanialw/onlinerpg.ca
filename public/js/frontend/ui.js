@@ -3,7 +3,7 @@ import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Backgr
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Query_Loot } from '../objects/loot.js';
-import { Draw_Inventory, Parse_Inventory, inventory } from '../objects/inventory.js';
+import { Draw_Inventory, Parse_Inventory, inventory, bags } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
