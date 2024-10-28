@@ -11,7 +11,7 @@ import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
 import { loot, Open_Loot_Panel } from '../ui/gamePanels/loot.js';
 import { Get_Icon_Path } from '../db/db.js';
-import { Parse_Inventory } from '../parse/inventory.js';
+// import { Parse_Inventory } from '../parse/inventory.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
 // import {Set_Enemies, Set_Player, Set_Objects} from '../objects/objects.js';
