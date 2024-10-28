@@ -52,7 +52,7 @@ let chain = 'assets/graphics/ui/equipment/chain_link.png'
 let ammobg = 'assets/graphics/ui/equipment/slot_frame_ammo.png'
 
 export async function Draw_Equipment(items) {
-    Clear_Sprite_Array(equipment);
+    // Clear_Sprite_Array(equipment);
 
     for (let i = 0; i < items.length; i++) {
         if (items[i].path === undefined || items[i].path === "none") {

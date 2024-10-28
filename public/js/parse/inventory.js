@@ -46,7 +46,7 @@ export function Parse_Inventory(dataStr) {
     let start = 0;
 
     bags.length = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
         //save to draw the bag icons
         let uID = data.substring(start, start + 3);
         //get from DB

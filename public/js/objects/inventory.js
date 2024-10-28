@@ -22,6 +22,8 @@ export let item = {
 
 let inventory = []
 let bags = [];
+const numBags = 4;
+const iconSize = 3.5;
 
 
 //stores all the inventory items and bags
@@ -65,7 +67,7 @@ function removeEventListenersFromArray(array) {
 
 export function Parse_Inventory(data, startBag) {
     bags.length = 0;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < numBags; i++) {
         //save to draw the bag icons
         let bagID = data.substring(startBag, startBag + 3);
         //get from DB
@@ -112,8 +114,6 @@ export async function Draw_Inventory() {
     }    
     // Clear_Sprite_Array(bags);
 
-    const iconSize = 3.5;
-    const numBags = 5;
     
     for (let i = 0; i < numBags; i++) {
         if (bags[i].path === undefined || bags[i].path === "none") {

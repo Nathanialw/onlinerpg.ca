@@ -253,7 +253,7 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
 
     const fromleftCol2 = 25.4 * cellSize;
 
-    const fromTopBottom = 18.8 * cellSize;
+    const fromTopBottom =  15.3 * cellSize;
     const fromleftBottom = 7.6 * cellSize;
     
     const squareSize = 3.5 * cellSize;
@@ -263,17 +263,17 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
 
     let rowPosition = y;
     let columnPosition = x;
-    if (num < 6) {
+    if (num < 5) {
         rowPosition = y + fromTop + ((squareSize + spaceBetween) * num);
         columnPosition = x + fromleftCol1;
     }
-    else if (num < 12) {
-        let ind = num - 6;
+    else if (num < 10) {
+        let ind = num - 5;
         rowPosition = y + fromTop + ((squareSize + spaceBetween) * ind);
         columnPosition = x + fromleftCol2;
     }
     else {
-        let ind = num - 12;
+        let ind = num - 10;
         rowPosition = y + fromTopBottom;
         columnPosition = x + fromleftBottom + ((squareSize + spaceBetween) * ind);
     }
