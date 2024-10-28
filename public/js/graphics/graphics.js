@@ -411,7 +411,7 @@ export function Set_Font_Size(size) {
 const sidePanelWidth = 30;
 export const viewportWidth = 41;
 export const viewportHeight = 41;
-export const topPanelHeight = 10;
+export const topPanelHeight = 9;
 
 export function  Set_Cell_Size(resolution) {
     console.log("resolution: ", resolution);
