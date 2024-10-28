@@ -86,7 +86,7 @@ export function Parse_Inventory(data, startBag) {
         let gg = Query_Inventory(numItems, data, (startBag + 3));
         console.log("gg: ", gg)
 
-        inventory[i] = gg
+        inventory[i].push(...gg)
         console.log("inventory[i]: ", inventory[i])
         startBag = (startBag + 3) + (numItems * 5);
         // console.log("bag: ", bag)
