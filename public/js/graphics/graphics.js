@@ -413,6 +413,10 @@ export const viewportWidth = 41;
 export const viewportHeight = 41;
 export const topPanelHeight = 0;
 
+export function  Set_Cell_Size(resolution) {
+    return resolution / (viewportWidth + sidePanelWidth + sidePanelWidth) 
+}
+
 const topPanelWidth = viewportWidth;
 
 export const rightPanelWidth = sidePanelWidth;
