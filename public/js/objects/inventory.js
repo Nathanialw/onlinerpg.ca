@@ -53,6 +53,7 @@ export function Query_Inventory(numItems, data, start) {
             inv.push({index: i, itemID: itemID, path: path}); 
         }     
     }
+    console.log("inv: ", inv)
     return inv;
 }
 
@@ -83,6 +84,7 @@ export function Parse_Inventory(data, startBag) {
         let numItems = item.slots; 
 
         inventory[i] = Query_Inventory(numItems, data, (startBag + 3));
+        console.log("inventory[i]: ", inventory[i])
         startBag = (startBag + 3) + (numItems * 5);
         // console.log("bag: ", bag)
         // console.log("inventory: ", inventory)
