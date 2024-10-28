@@ -69,10 +69,13 @@ function Parse_Item(numItems, start, data, Query, size, items) {
     removeEventListenersFromArray(items);
     items.length = 0; // Clear the array without reassigning it
     if (numItems > 0) {
-        items.push(...Query(numItems, data, start));
-    }    
-    console.log("items", items)            
-    console.log("bag", Query_Inventory(numItems, data, start)) 
+        const queryResult = Query(numItems, data, start);
+        console.log("Query result:", queryResult);
+        console.log("Type of queryResult:", typeof queryResult);
+        console.log("Is queryResult an array:", Array.isArray(queryResult));
+
+        items.push(...queryResult);
+        console.log("Items after push:", items);
     return start + (numItems * size); 
 }
 
