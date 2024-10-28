@@ -4,8 +4,9 @@ import { characterInfo } from '../units/unitdef.js';
 export const app = new PIXI.Application();
 
 const fonts ={
-    mapChar: "'Press Start 2P'",
-    text: "'Arial'",
+    // mapChar: "'Press Start 2P'",
+    mapChar: "'Roboto Mono'",
+    text: "'Roboto Mono'",
 }
 
 export const grey50 = 0xf8fafc;
