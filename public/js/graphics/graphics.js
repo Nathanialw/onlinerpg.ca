@@ -246,21 +246,21 @@ async function Load_Icon(path) {
 }
 
 export async function Draw_Equipment_Icons(iconPath, num, w) {    
-    const spaceBetween = .75 * cellSize;
-    const fromTop = 2 * cellSize;
+    const spaceBetween = .1 * cellSize;
+    const fromTop = .8 * cellSize;
 
-    const fromleftCol1 = 3.5 * cellSize;
+    const fromleftCol1 = 1 * cellSize;
 
-    const fromleftCol2 = 24 * cellSize;
+    const fromleftCol2 = 25.4 * cellSize;
 
-    const fromTopBottom = 21 * cellSize;
-    const fromleftBottom = 9 * cellSize;
+    const fromTopBottom = 18.8 * cellSize;
+    const fromleftBottom = 7.6 * cellSize;
     
-    const squareSize = w * cellSize;
+    const squareSize = 3.5 * cellSize;
 
     const x = 0;
     const y = (topPanelHeight / 4) * cellSize;
-
+    
     let rowPosition = y;
     let columnPosition = x;
     if (num < 6) {
@@ -411,7 +411,7 @@ export function Set_Font_Size(size) {
 const sidePanelWidth = 30;
 export const viewportWidth = 41;
 export const viewportHeight = 41;
-export const topPanelHeight = 8;
+export const topPanelHeight = ;
 
 export function  Set_Cell_Size(resolution) {
     console.log("resolution: ", resolution);

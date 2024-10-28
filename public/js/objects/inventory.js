@@ -21,6 +21,8 @@ export let item = {
 }
 
 export let inventory = []
+export let bags = [];
+
 
 //stores all the inventory items and bags
 export let inventorys = [ 
@@ -50,6 +52,29 @@ export function Query_Inventory(numItems, data, start) {
         }     
     }
     return inv;
+}
+
+export function Parse_Inventory(data, startBag) {
+    bags.length = 0;
+    for (let i = 0; i < 5; i++) {
+        let bag = [];
+        //save to draw the bag icons
+        let bagID = data.substring(startBag, startBag + 3);
+        //get from DB
+        let item = Get_Icon_Path(bagID);
+        if (item === undefined) {
+            console.log(bagID, "uID is undefined in the db")
+            continue;
+        }
+        //save icon path
+        let iconPath = "assets/graphics/icons/"
+
+        bags[i] = {path: iconPath + item.icon, itemID: bagID};
+        let numItems = item.slots; 
+        startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
+        inventory[i] = bag
+    }
+    return startBag;
 }
 
 const defaultInventoryIcon = 'assets/graphics/ui/inventory/slot_empty.png'

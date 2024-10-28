@@ -3,7 +3,7 @@ import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Backgr
 import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Query_Loot } from '../objects/loot.js';
-import { Draw_Inventory, Query_Inventory, inventory } from '../objects/inventory.js';
+import { Draw_Inventory, Parse_Inventory, inventory } from '../objects/inventory.js';
 import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
@@ -27,7 +27,6 @@ let serverMap;
 // let numItems;
 // let loot = [];
 // let numInventory;
-let bags = [];
 let equipment = []; //list of item {slot, itemID, path string)
 
 function Parse(numItems, start, data, Query, size, items) {
@@ -80,27 +79,9 @@ export function Parse_Game_Update(data) {
     // let startNext = Parse_Inventory(data.substring(endLoot));
 
     let startBag = endLoot;
-    bags.length = 0;
-    for (let i = 0; i < 5; i++) {
-        let bag = [];
-        //save to draw the bag icons
-        let bagID = data.substring(startBag, startBag + 3);
-        //get from DB
-        let item = Get_Icon_Path(bagID);
-        if (item === undefined) {
-            console.log(bagID, "uID is undefined in the db")
-            continue;
-        }
-        //save icon path
-        let iconPath = "assets/graphics/icons/"
 
-        bags[i] = {path: iconPath + item.icon, itemID: bagID};
-        let numItems = item.slots; 
-        startBag = Parse(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
-        inventory[i] = bag
-    }
     
-    startNext = startBag;
+    startNext = Parse_Inventory(data, startBag);
     
     const endEquipment = Parse(data.substring(startNext, startNext + 2), (startNext + 2), data, Query_Equipment, 5, equipment);
     serverMap = data.substring(endEquipment);
