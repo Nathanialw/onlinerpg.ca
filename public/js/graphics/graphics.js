@@ -4,8 +4,8 @@ import { characterInfo } from '../units/unitdef.js';
 export const app = new PIXI.Application();
 
 const fonts ={
-    // mapChar: "'Press Start 2P'",
-    MapChar: "'Roboto Mono'",
+    MapChar: "'Press Start 2P'",
+    // MapChar: "'Roboto Mono'",
     Text0: "'Roboto Mono'",
     Text1: "'Faustina'",
     Text2: "'Aniron'",
