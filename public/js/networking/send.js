@@ -95,7 +95,7 @@ export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID,
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
-        highlight = await inv(hover, i, bag, 2.5) //border
+        highlight = await inv(hover, i, bag, 3.5) //border
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 

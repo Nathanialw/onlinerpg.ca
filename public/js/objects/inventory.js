@@ -117,13 +117,13 @@ export async function Draw_Inventory() {
     
     for (let i = 0; i < numBags; i++) {
         if (bags[i].path === undefined || bags[i].path === "none") {
-            let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2)
-            let border = await Draw_Bag_Icons(itemFramePath, i, 2) //border
+            let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2.5)
+            let border = await Draw_Bag_Icons(itemFramePath, i, 22.5) //border
         }
         else {
-            let bag = await Draw_Bag_Icons(bags[i].path, i, 2)
-            let border = await Draw_Bag_Icons(itemFramePath, i, 2) //border
-            Set_Send_On_Loot_Click_Listener(bag, '3', i, bags[i].itemID, Draw_Bag_Icons, 2);   //1 means inventory panel
+            let bag = await Draw_Bag_Icons(bags[i].path, i, 2.5)
+            let border = await Draw_Bag_Icons(itemFramePath, i, 2.5) //border
+            Set_Send_On_Loot_Click_Listener(bag, '3', i, bags[i].itemID, Draw_Bag_Icons, 2.5);   //1 means inventory panel
         }
     }
     

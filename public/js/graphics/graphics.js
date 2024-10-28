@@ -290,12 +290,12 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
 
 export async function Draw_Bag_Icons(iconPath, num, w) {    
     let spaceBetweenY = .1;
-    let spaceBetweenX = 3.65;
-    let x = 1.7 * cellSize;
-    let y = (-4.5 + (topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
+    let spaceBetweenX = 4.5;
+    let x = 2.3 * cellSize;
+    let y = (-9.5 + (topPanelHeight / 2) + (leftPanelHeight * 1/2)) * cellSize;
     
     let row = 1;
-    let column = num % 5;
+    let column = num % 4;
     
     let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + 1 * cellSize);
     let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + 1 * cellSize);
@@ -730,9 +730,9 @@ export function Draw_UI(index) {
     //menu background
     Draw_Sprite(0, 0, leftPanelWidth * cellSize, (topPanelHeight / 4) * cellSize, menu);
     //eqipment
-    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2) - 1) * cellSize, equipmentUI);
+    Draw_Sprite(0, (topPanelHeight / 4) * cellSize, leftPanelWidth * cellSize, ((leftPanelHeight * 1/2) - 4) * cellSize, equipmentUI);
     //inventory
-    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 1/2) - 2) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 4) + 2) * cellSize, inventoryUI);
+    Draw_Sprite(0, ((topPanelHeight / 4) + (leftPanelHeight * 1/2) - 5) * cellSize, (leftPanelWidth) * cellSize, ((leftPanelHeight * 1/2) - (topPanelHeight / 4) + 5) * cellSize, inventoryUI);
 
 
     //tab background
