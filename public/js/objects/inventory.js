@@ -91,7 +91,10 @@ export function Parse_Inventory(data, startBag) {
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
         startBag = Parse_Item(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
+        console.log("bag: ", bag)
+        console.log("inventory: ", inventory)
         inventory[i] = bag
+        console.log("inventory[i]: ", inventory[i])
     }
     return startBag;
 }
