@@ -6,9 +6,9 @@ export const app = new PIXI.Application();
 const fonts ={
     // mapChar: "'Press Start 2P'",
     MapChar: "'Roboto Mono'",
-    Text2: "'Roboto Mono'",
+    Text0: "'Roboto Mono'",
     Text1: "'Faustina'",
-    Text0: "'Aniron'",
+    Text2: "'Aniron'",
 }
 
 export const grey50 = 0xf8fafc;

@@ -73,27 +73,37 @@ export function Target_Stats() {
     targetStatsDisplay.length = 0;
     let y = Get_Right_Panel_Origin_y()
     Load_Target_Image(x, y , targetStats.pic)        
-    
-    x = Get_Right_Panel_Origin_x() + 15;
-    y = Get_Right_Panel_Origin_y() + 4.5; 
-
     let line = 0;
-    line = Display_Line("     Name: " + targetStats.name + targetStats.gender, line, x, y);
-    line = Display_Line("  Species: " + targetStats.species, line, x, y);
-    line = Display_Line("      Age: " + targetStats.age, line, x, y);
+
+    x = Get_Right_Panel_Origin_x() + 19;
+    y = Get_Right_Panel_Origin_y() + 3.5; 
+    line = Display_Line(targetStats.species, line, x, y);
+
+    
+    x = Get_Right_Panel_Origin_x() + 14;
+    y = Get_Right_Panel_Origin_y() + 4; 
+
+    line = Display_Line("Name: " + targetStats.name + targetStats.gender, line, x, y);
+    line = Display_Line("Age: " + targetStats.age, line, x, y);
     line = Display_Line("Alignment: " + targetStats.alignment, line, x, y);
+    line = Display_Line("Vision: " + targetStats.vision, line, x, y);
+    line = Display_Line("Health: " + targetStats.health, line, x, y);
+    // display health bar
+    
+    x = Get_Right_Panel_Origin_x() + 21;
+    y = Get_Right_Panel_Origin_y() + 5; 
+    line = 0;
     line = Display_Line("", line, x, y);
-    line = Display_Line("   Health: " + targetStats.health, line, x, y);
     line = Display_Line("   Attack: " + targetStats.attack, line, x, y);
     line = Display_Line("       AC: " + targetStats.AC, line, x, y);
     line = Display_Line("    Speed: " + targetStats.speed, line, x, y);
-    line = Display_Line("   Vision: " + targetStats.vision, line, x, y);
     line = Display_Line("", line, x, y);
-    let lineWidth = 22;
+    
+    let lineWidth = 36.5;
     // let lines = Math.ceil(targetStats.bio.length/lineWidth);
     let currentPos = 0;
-    x = Get_Right_Panel_Origin_x() + 1.3;
-    y = Get_Right_Panel_Origin_y() + 10.5; 
+    x = Get_Right_Panel_Origin_x() + 14;
+    y = Get_Right_Panel_Origin_y() + 6.5;
 
     // for (let i = 0; i < lines; i++) {
     while (currentPos < targetStats.bio.length) {
@@ -115,10 +125,12 @@ export function Target_Stats() {
 
 
     //traits
-    x = Get_Right_Panel_Origin_x() + 14;
-    y = Get_Right_Panel_Origin_y() + 12;
+    x = Get_Right_Panel_Origin_x() + 1.5;
+    y = Get_Right_Panel_Origin_y() + 17.25; 
+
     line = 0
     line = Display_Line("Traits: ", line, x, y);
+
 
     //get traits from server as IDs and fetch the IDs from the db to get the trait names and descriptions
 
