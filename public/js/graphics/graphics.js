@@ -758,7 +758,7 @@ export function Draw_UI(index) {
 }
 
 function Display_Line(value, i, x, y) {
-    Create_Text_Line(value, minimapCellSize+8, i, x, y);
+    Create_Text_Line(value, (minimapCellSize*2), i, x, y);
     i += 1.1;
     return i;
 }
@@ -769,7 +769,7 @@ function Draw_Stats() {
     Draw_Sprite((leftPanelWidth) * cellSize, 0, 8 * cellSize, 8 * cellSize, playerImg);
     
     let x = 10.5;
-    let y = 4;
+    let y = 3;
 
     let line = 0;
     //general stats
