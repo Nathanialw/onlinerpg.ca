@@ -33,8 +33,7 @@ export let inventorys = [
     { uID: 0, iconPath: '', items: [] }
 ]
     
-export function Query_Inventory(numItems, data, start) {
-    let inv = []
+export function Query_Inventory(numItems, data, start, inv) {
     for (let i = 0; i < numItems; i++) {
         //isert teh path
         let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
@@ -53,8 +52,6 @@ export function Query_Inventory(numItems, data, start) {
             inv.push({index: i, itemID: itemID, path: path}); 
         }     
     }
-    console.log("inv: ", inv)
-    return inv;
 }
 
 function removeEventListenersFromArray(array) {
@@ -83,17 +80,11 @@ export function Parse_Inventory(data, startBag) {
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
 
-        let gg = Query_Inventory(numItems, data, (startBag + 3));
-        console.log("gg: ", gg)
-        
         inventory[i] = [];
-        inventory[i] = gg
-
+        Query_Inventory(numItems, data, (startBag + 3), inventory[i]);
         console.log("inventory[i]: ", inventory[i])
+
         startBag = (startBag + 3) + (numItems * 5);
-        // console.log("bag: ", bag)
-        // console.log("inventory: ", inventory)
-        // console.log("inventory[i]: ", inventory[i])
     }
     return startBag;
 }
