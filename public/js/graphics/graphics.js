@@ -283,7 +283,6 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
 
     let equipmentIcon = await Load_Icon(iconPath);
     equipment[num] = new PIXI.Sprite(equipmentIcon);
-    console.log("icon size: ", squareSize)
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
     return equipment[num]
 }
@@ -627,6 +626,14 @@ export function Create_Combat_Log_Line(char, indexHeight) {
     return object;
 }
 
+export function Create_Player_Gen_Stats(char, x, y) {
+    let object = createTextWithBackground(char, {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}, grey700);
+    object.x = x * minimapCellSize+1;  // Assuming each cell is 24 pixels tall
+    object.y = y * minimapCellSize+1;  // Assuming each cell is 24 pixels tall
+    app.stage.addChild(object);
+    return object;
+}
+
 export function Clear_Target() { 
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize, ((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (20 * minimapCellSize), gamePanels[0]);
     // Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize,((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (10 * minimapCellSize), target);
@@ -763,27 +770,57 @@ function Draw_Stats() {
 
     //general stats
     
-    jj = Create_Object(characterInfo.Name + characterInfo.Gender, x, y);
+    jj = Create_Player_Gen_Stats(characterInfo.Name + characterInfo.Gender, x, y);
     y += 1;
-    Create_Object("Age: " + characterInfo.Age, x, y);
+    Create_Player_Gen_Stats("Age: " + characterInfo.Age, x, y);
     y += 1;
-    Create_Object(characterInfo.HeroClass, x, y);
+    Create_Player_Gen_Stats(characterInfo.HeroClass, x, y);
     y += 1;
-    Create_Object("AC: " + characterInfo.AC, x, y);
+    Create_Player_Gen_Stats("AC: " + characterInfo.AC, x, y);
     y += 1;
-    Create_Object("Damage: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
+    Create_Player_Gen_Stats("Damage: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("Ice Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("Fir Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("Psn Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("Shw Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("Hly Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("Phy Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+
     // combat stats
     
     x = leftPanelWidth + 10;
     y = 0;
     
     y += 1;
-    Create_Object("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
-    //draw health bar
+    Create_Player_Gen_Stats("Health: " + characterInfo.Health + "% & -" + characterInfo.MaxHealth, x, y);
     y += 1;
-    Create_Object("Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "% & -" + characterInfo.MaxHealth, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+        y += 1;y += 1;
+        Create_Player_Gen_Stats("ice Resist: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
+    y += 1;
+    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+
+    //draw health bar
+    
+    Create_Player_Gen_Stats("Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
     //draw mana bar
     y += 1;
-    Create_Object("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, x, y);
+    Create_Player_Gen_Stats("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, x, y);
     //draw one square for each move remaining
+
+    //buffs
+
+    // debuff
 }
