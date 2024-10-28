@@ -44,11 +44,11 @@ export function Query_Inventory(numItems, data, start) {
         let item = Get_Icon_Path(itemID);
         let icon = item.icon
         if (icon === undefined || icon === "none") {
-            console.log("icon is undefined", icon)
+            // console.log("icon is undefined", icon)
             inv.push({index: i, itemID: itemID, path: icon}); 
         }
         else {
-            console.log("icon is defined", icon)
+            // console.log("icon is defined", icon)
             let path = iconPath + icon;
             inv.push({index: i, itemID: itemID, path: path}); 
         }     
@@ -74,9 +74,10 @@ function Parse_Item(numItems, start, data, Query, size, items) {
         console.log("Type of queryResult:", typeof queryResult);
         console.log("Is queryResult an array:", Array.isArray(queryResult));
 
-        items.push(...queryResult);
-        console.log("Items after push:", items);
-    }
+        // Use a loop to push each item individually
+        for (let i = 0; i < queryResult.length; i++) {
+            items.push(queryResult[i]);
+        }
     return start + (numItems * size); 
 }
 
@@ -98,10 +99,10 @@ export function Parse_Inventory(data, startBag) {
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
         startBag = Parse_Item(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
-        console.log("bag: ", bag)
-        console.log("inventory: ", inventory)
+        // console.log("bag: ", bag)
+        // console.log("inventory: ", inventory)
         inventory[i] = bag
-        console.log("inventory[i]: ", inventory[i])
+        // console.log("inventory[i]: ", inventory[i])
     }
     return startBag;
 }
