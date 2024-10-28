@@ -75,7 +75,7 @@ export function Target_Stats() {
     Load_Target_Image(x - 1, y + 3, targetStats.pic)        
     
     x = Get_Right_Panel_Origin_x() + 15;
-    y = Get_Right_Panel_Origin_y() + 5; 
+    y = Get_Right_Panel_Origin_y() + 4.5; 
 
     let line = 0;
     line = Display_Line("     Name: " + targetStats.name + targetStats.gender, line, x, y);
@@ -89,11 +89,11 @@ export function Target_Stats() {
     line = Display_Line("    Speed: " + targetStats.speed, line, x, y);
     line = Display_Line("   Vision: " + targetStats.vision, line, x, y);
     line = Display_Line("", line, x, y);
-    let lineWidth = 24;
+    let lineWidth = 22;
     // let lines = Math.ceil(targetStats.bio.length/lineWidth);
     let currentPos = 0;
     x = Get_Right_Panel_Origin_x() + 1.3;
-    y = Get_Right_Panel_Origin_y() + 12.4; 
+    y = Get_Right_Panel_Origin_y() + 10.5; 
 
     // for (let i = 0; i < lines; i++) {
     while (currentPos < targetStats.bio.length) {
@@ -115,8 +115,8 @@ export function Target_Stats() {
 
 
     //traits
-    x = Get_Right_Panel_Origin_x() + 14.3;
-    y = Get_Right_Panel_Origin_y() + 13;
+    x = Get_Right_Panel_Origin_x() + 14;
+    y = Get_Right_Panel_Origin_y() + 12;
     line = 0
     line = Display_Line("Traits: ", line, x, y);
 
