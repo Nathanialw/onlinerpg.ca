@@ -3,6 +3,11 @@ import { characterInfo } from '../units/unitdef.js';
 
 export const app = new PIXI.Application();
 
+fonts ={
+    mapChar: "'Press Start 2P'",
+    text: "'Arial'",
+    
+}
 
 export const grey50 = 0xf8fafc;
 export const grey100 = 0xf1f5f9;
@@ -617,6 +622,16 @@ color.set('ô', brown);
 color.set('♀', white); 
 color.set('♂', white); 
 
+
+export function Create_Map_Line(char, indexHeight, visionWidth) {
+    let style = {fontFamily : fonts.mapChar, fontSize: cellSize, fill : grey50, align : 'center'}
+    let object = new PIXI.Text({text: char, style: style});
+    object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
+    object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
+    app.stage.addChild(object);
+    return object;
+}
+
 export function Create_Combat_Log_Line(char, indexHeight) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: minimapCellSize, fill : grey50, align : 'center'}
     let object = new PIXI.Text({text: char, style: style});
@@ -640,7 +655,7 @@ export function Clear_Target() {
 }
 
 export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
-    const style = {fontFamily : "'Press Start 2P'", fontSize: fontSize, fill : grey50, align : 'center'};
+    const style = {fontFamily : fonts.text, fontSize: fontSize, fill : grey50, align : 'center'};
     let object = new PIXI.Text({text: char, style: style});
     object.x = x * cellSize;  // Assuming each cell is 24 pixels tall
     object.y = (y * cellSize) + (indexHeight * fontSize);  // Assuming each cell is 24 pixels tall
@@ -648,14 +663,6 @@ export function Create_Text_Line(char, fontSize, indexHeight, x, y) {
     return object;
 }
 
-export function Create_Map_Line(char, indexHeight, visionWidth) {
-    let style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : grey50, align : 'center'}
-    let object = new PIXI.Text({text: char, style: style});
-    object.x = (Get_ViewPort_Origin_x() + Set_Map_Within_Viewport(visionWidth)) * cellSize;  // Assuming each cell is 24 pixels tall
-    object.y = (Get_ViewPort_Origin_y() + Set_Map_Within_Viewport(visionWidth) + indexHeight) * cellSize;  // Assuming each cell is 24 pixels tall
-    app.stage.addChild(object);
-    return object;
-}
 
 export function Create_Object_Sprite(char, x, y, visionWidth) {
     const style = {fontFamily : "'Press Start 2P'", fontSize: cellSize, fill : color.get(char), align : 'center'}
