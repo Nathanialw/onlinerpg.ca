@@ -2,7 +2,11 @@
 
 //parses the inventory data string and saves it to the inventory object
 
-import {item, inventory} from "../objects/inventory.js";
+// import {item, inventory} from "../objects/inventory.js";
+
+let inventory = [];
+let bags = [];
+let item = []   
 
 export function Query_Inventory(numItems, data, start) {
     let inv = []
