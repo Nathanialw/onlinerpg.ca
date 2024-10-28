@@ -85,7 +85,6 @@ function Parse_Item(numItems, start, data, Query, size, items) {
 export function Parse_Inventory(data, startBag) {
     bags.length = 0;
     for (let i = 0; i < 5; i++) {
-        let bag = [];
         //save to draw the bag icons
         let bagID = data.substring(startBag, startBag + 3);
         //get from DB
@@ -99,10 +98,9 @@ export function Parse_Inventory(data, startBag) {
 
         bags[i] = {path: iconPath + item.icon, itemID: bagID};
         let numItems = item.slots; 
-        startBag = Parse_Item(numItems, (startBag + 3), data, Query_Inventory, 5, bag);
+        startBag = Parse_Item(numItems, (startBag + 3), data, Query_Inventory, 5, inventory[i]);
         // console.log("bag: ", bag)
         // console.log("inventory: ", inventory)
-        inventory[i] = bag
         // console.log("inventory[i]: ", inventory[i])
     }
     return startBag;
