@@ -760,6 +760,12 @@ export function Draw_UI(index) {
 
 }
 
+function Display_Line(value, i, x, y) {
+    targetStatsDisplay[i] = Create_Text_Line(value, minimapCellSize+1, i, x, y);
+    i += 1.1;
+    return i;
+}
+
 
 let jj;
 function Draw_Stats() {
@@ -768,56 +774,32 @@ function Draw_Stats() {
     let x = 10;
     let y = 4;
 
+    let line = 0;
     //general stats
-    
-    jj = Create_Player_Gen_Stats(characterInfo.Name + characterInfo.Gender, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Age: " + characterInfo.Age, x, y);
-    y += 1;
-    Create_Player_Gen_Stats(characterInfo.HeroClass, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("AC: " + characterInfo.AC, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Damage: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Ice Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Fir Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Psn Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Shw Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Hly Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("Phy Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, x, y);
+    Display_Line("Name: " + characterInfo.Name, line, x, y)
+    Display_Line("Age: " + characterInfo.Age, line, x, y);
+    Display_Line(characterInfo.HeroClass, line, x, y);
+    Display_Line("AC: " + characterInfo.AC, line, x, y);
+    Display_Line("Damage: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    Display_Line("Ice Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    Display_Line("Fir Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    Display_Line("Psn Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    Display_Line("Shw Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    Display_Line("Hly Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    Display_Line("Phy Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
 
     // combat stats
     
     x = leftPanelWidth + 10;
-    y = 0;
-    
-    y += 1;
-    Create_Player_Gen_Stats("Health: " + characterInfo.Health + "% & -" + characterInfo.MaxHealth, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "% & -" + characterInfo.MaxHealth, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
-        y += 1;y += 1;
-        Create_Player_Gen_Stats("ice Resist: " + characterInfo.MinDamage + "/" + characterInfo.MaxDamage, x, y);
-    y += 1;
-    Create_Player_Gen_Stats("ice Resist: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+    y = 0;    
 
     //draw health bar
-    
-    Create_Player_Gen_Stats("Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, x, y);
+    line = 0;
+    Display_Line("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
+    Display_Line("Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw mana bar
     y += 1;
-    Create_Player_Gen_Stats("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, x, y);
+    Display_Line("Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, line, x, y);
     //draw one square for each move remaining
 
     //buffs
