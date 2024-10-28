@@ -782,12 +782,12 @@ function Draw_Stats() {
     line = Display_Line("        AC: " + characterInfo.AC, line, x, y);
     line = Display_Line("    Damage: " + characterInfo.MinDamage + "-" + characterInfo.MaxDamage, line, x, y);
     line = Display_Line("", line, x, y);
-    line = Display_Line("Ice Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Fir Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Psn Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Shw Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Hly Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Phy Resist: " + Strip_Leading_Zeroes(characterInfo.MinDamage) + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Ice Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Fir Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Psn Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Shw Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Hly Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("Phy Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
 
     // combat stats
     
