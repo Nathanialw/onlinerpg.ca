@@ -56,7 +56,7 @@ export async function Get_Target_Stats_From_Server(statsString) {
 }
 
 function Display_Line(value, i, x, y) {
-    targetStatsDisplay[i] = Create_Text_Line(value, minimapCellSize, i, x, y);
+    targetStatsDisplay[i] = Create_Text_Line(value, minimapCellSize+1, i, x, y);
     i += 1.1;
     return i;
 }
