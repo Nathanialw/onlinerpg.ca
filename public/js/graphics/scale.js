@@ -20,6 +20,7 @@ const mediaQueries = [
 function handleMediaQueryChange() {
     // Loop through the media queries in descending order and log the matched size
     for (let { query, size } of mediaQueries) {
+        console.log("cellsize: ", size)
         if (query.matches) {
             Set_Font_Size(size);
             Update_Screen()
