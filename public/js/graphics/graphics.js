@@ -761,7 +761,7 @@ export function Draw_UI(index) {
 }
 
 function Display_Line(value, i, x, y) {
-    Create_Text_Line(value, minimapCellSize+1, i, x, y);
+    Create_Text_Line(value, minimapCellSize+2, i, x, y);
     i += 1.1;
     return i;
 }
@@ -771,12 +771,12 @@ let jj;
 function Draw_Stats() {
     Draw_Sprite((leftPanelWidth) * cellSize, 0, 8 * cellSize, 8 * cellSize, playerImg);
     
-    let x = 10;
+    let x = 9;
     let y = 4;
 
     let line = 0;
     //general stats
-    line = Display_Line("      Name: " + characterInfo.Name, line, x, y)
+    line = Display_Line("      Name: " + characterInfo.Name + characterInfo.Gender, line, x, y)
     line = Display_Line("       Age: " + characterInfo.Age, line, x, y);
     line = Display_Line("     Class: " + characterInfo.HeroClass, line, x, y);
     line = Display_Line("        AC: " + characterInfo.AC, line, x, y);
@@ -794,12 +794,11 @@ function Draw_Stats() {
     x = leftPanelWidth + 10;
     y = 1;    
 
-    //draw health bar
     line = 0;
     line = Display_Line("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
+    //draw health bar
     line = Display_Line("  Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw mana bar
-    y += 1;
     line = Display_Line(" Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, line, x, y);
     //draw one square for each move remaining
 
