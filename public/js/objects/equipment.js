@@ -43,8 +43,6 @@ const defaultEquipmentIcons = [
     'assets/graphics/ui/equipment/empty_boots.png',
     'assets/graphics/ui/equipment/empty_ring.png',
     'assets/graphics/ui/equipment/empty_ring.png',    
-    'assets/graphics/ui/equipment/empty_trinket.png',
-    'assets/graphics/ui/equipment/empty_trinket.png',
     'assets/graphics/ui/equipment/empty_hand.png',
     'assets/graphics/ui/equipment/empty_hand.png',
     'assets/graphics/ui/equipment/empty_ranged.png',
