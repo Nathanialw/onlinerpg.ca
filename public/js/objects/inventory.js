@@ -76,6 +76,7 @@ function Parse_Item(numItems, start, data, Query, size, items) {
 
         items.push(...queryResult);
         console.log("Items after push:", items);
+    }
     return start + (numItems * size); 
 }
 
