@@ -417,7 +417,7 @@ export function  Set_Cell_Size(resolution) {
     console.log("resolution: ", resolution);
     console.log("viewportWidth: ", viewportWidth);
     console.log("sidePanelWidth: ", sidePanelWidth);
-    
+    console.log("cellsize: ",  resolution / (viewportWidth + sidePanelWidth + sidePanelWidth) );
     return resolution / (viewportWidth + sidePanelWidth + sidePanelWidth) 
 }
 
