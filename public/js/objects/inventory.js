@@ -54,6 +54,15 @@ export function Query_Inventory(numItems, data, start) {
     return inv;
 }
 
+function removeEventListenersFromArray(array) {
+    array.forEach(item => {
+        if (item && item.removeAllListeners) {
+            item.removeAllListeners();
+        }
+    });
+
+}
+
 function Parse_Item(numItems, start, data, Query, size, items) {
     removeEventListenersFromArray(items);
     items.length = 0; // Clear the array without reassigning it
