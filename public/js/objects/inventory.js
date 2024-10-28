@@ -78,6 +78,7 @@ function Parse_Item(numItems, start, data, Query, size, items) {
         for (let i = 0; i < queryResult.length; i++) {
             items.push(queryResult[i]);
         }
+    }
     return start + (numItems * size); 
 }
 
