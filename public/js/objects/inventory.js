@@ -96,7 +96,7 @@ export async function Draw_Inventory() {
         else {
             inventory[i].Texture = await Draw_Bag_Icons(inventory[i].IconPath, i, bagIconSize)
             inventory[i].Border = await Draw_Bag_Icons(itemFramePath, i, bagIconSize) //border
-            Set_Send_On_Loot_Click_Listener(nventory[i].Texture, '3', i, inventory[i].BagID, Draw_Bag_Icons, bagIconSize);   //1 means inventory panel
+            Set_Send_On_Loot_Click_Listener(inventory[i].Texture, '3', i, inventory[i].BagID, Draw_Bag_Icons, bagIconSize);   //1 means inventory panel
         }
     }
     

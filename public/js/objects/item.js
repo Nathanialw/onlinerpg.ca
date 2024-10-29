@@ -8,7 +8,7 @@ export let item = {
     Durability: "",
     Modifiers: [],
     ModString: [],
-    IconPath: ""
+    IconPath: "none"
 };
 
 let modType = [
