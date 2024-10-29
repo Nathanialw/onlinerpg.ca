@@ -48,7 +48,7 @@ function Parse(numItems, start, data, Query, size, items) {
 function Parse_Player_Update(dataStr) {
     [visionWidth, dataStr] = [parseInt(dataStr.substring(0, 2), 10), dataStr.substring(2)];
     [direction, dataStr]   = [dataStr.substring(0, 1), dataStr.substring(1)];
-    [species, dataStr]     = Species[[parseInt(dataStr.substring(0, 2), 10)], dataStr.substring(2)];
+    [species, dataStr]     = [Species[parseInt(dataStr.substring(0, 2), 10)], dataStr.substring(2)];
     [damage, dataStr]      = [dataStr.substring(0, 2), dataStr.substring(2)];
     [isDead, dataStr]      = [parseInt(dataStr.substring(0, 1), 10), dataStr.substring(1)];
     return dataStr
