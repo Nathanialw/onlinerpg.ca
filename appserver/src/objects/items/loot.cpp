@@ -49,7 +49,7 @@ namespace Loot {
 	     //if bag is full, put it in the items bag
 	     //if items bag is full, return "inventory full"
 
-	     //search for first empty slot in inventory
+	     //search first bag for first empty slot in inventory
 	     for (int i = 0; i < maxSlots[bagIndex]; ++i) {
 		     if (inventory[bagIndex][i].Empty()) {
 			     inventoryIndex = i;
@@ -57,6 +57,7 @@ namespace Loot {
 		     }
 	     }
 
+	     //search second bag for first empty slot in inventory
 	     if (bagIndex == 0 && 999 == inventoryIndex) {
 		     bagIndex++;
 		     for (int i = 0; i < maxSlots[bagIndex]; ++i) {
@@ -73,6 +74,7 @@ namespace Loot {
 
 	     // add item to inventory array
 	     inventory[bagIndex][inventoryIndex] = item;
+	     std::cout << (int)item.Get_uID() << " added to inventory at slot: " << inventoryIndex << std::endl;
 	     //remove from loot array and resize
 	     for (int i = index; i < loot.size() - 1; ++i) {
 		     loot[i] = loot[i + 1];
