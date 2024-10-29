@@ -1,6 +1,6 @@
 'use strict'
 //parses the inventory data string and saves it to the inventory object
-
+import { inventory } from "../objects/inventory";
 
 
 //should I save the strings in a data structure or just get the data from the db when I need to desplay it?

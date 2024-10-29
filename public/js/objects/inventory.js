@@ -13,10 +13,8 @@ import { item } from "./item.js";
 
 let iconPath = "assets/graphics/icons/";
 
-let bags = [];
 const numBags = 4;
 const maxItems = 12;
-const iconSize = 3.5;
 
 function Create_Bag() {
     return {
@@ -85,6 +83,7 @@ const itemBorders = [
 ]
 
 const bagIconSize = 2.5;
+const iconSize = 3.5;
 
 export async function Draw_Inventory() {   
     for (let i = 0; i < numBags; i++) {
