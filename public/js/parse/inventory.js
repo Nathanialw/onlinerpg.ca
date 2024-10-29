@@ -1,6 +1,6 @@
 'use strict'
 
-import { Parse_Item } from "./item.js";
+import { Parse_Item } from "./items.js";
 
 //parses the inventory data string and saves it to the inventory object
 
