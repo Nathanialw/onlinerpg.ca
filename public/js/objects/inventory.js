@@ -35,8 +35,8 @@ for (let i = 0; i < numBags; i++) {
 function Set_Icon(uID) {
     let item = Get_Icon_Path(uID);
     if (item === undefined) {
-        console.log(bagID, "uID is undefined in the db")
-        return icon;
+        console.log(uID, "uID is undefined in the db")
+        return item;
     }
     if (item.icon === undefined || item.icon === "none") {
         return icon; 
@@ -50,18 +50,15 @@ export function Update_Inventory(dataStr) {
     //update the entire inventory vs just the ones sent
     inventory.forEach(bag => {
         bag.IconPath = Set_Icon(bag.BagID);    
-        
-        if (bag.items) {
-            bag.items.forEach(item => {
-                item.iconPath = Set_Icon(item.ItemID);    
-                item.Modifiers.forEach(mod => {
-                    //get the values
-                    //get the text
-                    // let modPath = Get_Icon_Path(mod);    
-                }
-                ///combine the like mods store the string
-            )});
-        }
+        bag.Items.forEach(item => {
+            item.IconPath = Set_Icon(item.ItemID);    
+            item.Modifiers.forEach(mod => {
+                //get the values
+                //get the text
+                // let modPath = Get_Icon_Path(mod);    
+            }
+            ///combine the like mods store the string
+        )});
     });
     return dataStr;
 }
@@ -111,7 +108,7 @@ export async function Draw_Inventory() {
             else {
                 inventory[j].Items[i].Texture = await Draw_Inventory_Icons(inventory[j].Items[i].IconPath, num, j, iconSize)            
                 inventory[j].Items[i].Border = await Draw_Inventory_Icons(itemBorders[inventory[j].Items[i].Rarity], num, j, iconSize) //border
-                Set_Send_On_Loot_Click_Listener_inv(inventory[j].Items[i].Texture, '1', num, j, inventory[j][i].ItemID, Draw_Inventory_Icons);   //1 means inventory panel
+                Set_Send_On_Loot_Click_Listener_inv(inventory[j].Items[i].Texture, '1', num, j, inventory[j].Items[i].ItemID, Draw_Inventory_Icons);   //1 means inventory panel
             }
             num++
         }

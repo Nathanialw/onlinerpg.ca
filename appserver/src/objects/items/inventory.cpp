@@ -11,13 +11,14 @@
 
 namespace Inventory {
 
-     void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems,
-                    uint8_t bag, uint8_t index) {
+     void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index) {
 	     auto item = inventory[bag][index];
 	     for (auto &groundItem: groundItems) {
 		     if (groundItem.Empty()) {
 			     groundItem.Set(item);
 			     inventory[bag][index].Set_Empty();
+			     inventory[bag][index].Print();
+//			     updateInventory .push_back({bag, index});
 			     return;
 		     }
 	     }
@@ -31,11 +32,11 @@ namespace Inventory {
 	     for (int j = 0; j < (int) Items::BagType::SIZE; ++j) {
 		     std::string bagStr;
 		     std::string newBagStr;
-		     uint8_t  numItems = 0;
+		     uint8_t numItems = 0;
 
 		     for (int i = 0; i < maxSlots[j]; ++i) {
-			     if (backpack.inventory[j][i].Empty())
-				     continue;
+//			     if (backpack.inventory[j][i].Empty() && numItems == 0)
+//				     continue;
 			     bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(backpack.inventory[j][i].Get_uID(), 3);
 
 			     auto slot = Utils::Prepend_Zero_By_Digits(i, 2);
@@ -46,12 +47,30 @@ namespace Inventory {
 
 		     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems, 2);
-		     inventoryStr +=  numItemsStr  + bagID + newBagStr;
+		     inventoryStr += numItemsStr + bagID + newBagStr;
 
 //		     inventoryStr += Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3) + bagStr;
 		     std::cout << "bag updated " << j << ": " << backpack.Sendable_BagID(j) + bagStr << std::endl;
 		     std::cout << "_item updated string: " << newBagStr << std::endl;
 	     }
+	     return inventoryStr;
+     }
+
+
+     //only send update when an inventory change function is called
+     std::string Update_Inventory_Slot(const Items::Backpack &backpack,  const uint8_t &bagSlot, const uint8_t &invSlot) {
+	     std::string inventoryStr;
+	     std::string newBagStr;
+
+	     auto slot = Utils::Prepend_Zero_By_Digits(invSlot, 2);
+	     auto item = backpack.inventory[bagSlot][invSlot].As_Sendable_String();
+	     newBagStr += slot + item;
+
+	     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[bagSlot].Get_uID(), 3);
+	     inventoryStr += bagID + newBagStr;
+
+	     std::cout << "_item updated string: " << newBagStr << std::endl;
+
 	     return inventoryStr;
      }
 

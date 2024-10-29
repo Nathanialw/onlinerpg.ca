@@ -60,6 +60,12 @@ namespace Game {
     //player
     uint16_t player_id = 0;
     std::vector<std::string> player_names;
+    struct {
+      uint8_t  bag;
+      uint8_t  index;
+    } updateItem = {0, 0};
+//    bool invUpdate[(uint8_t)Items::BagType::SIZE][12] = {};
+
 
     int8_t level = 0;
     Component::Position location = {0, 0};

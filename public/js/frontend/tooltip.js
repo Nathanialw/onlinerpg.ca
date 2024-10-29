@@ -24,7 +24,6 @@ export async function Draw_Tooltip(x, y, itemID) {
     else {
         properties.push(itemStats.equipSlot + " ");               
     }
-    console.log(properties)
     if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
         properties.push("Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);
     }
