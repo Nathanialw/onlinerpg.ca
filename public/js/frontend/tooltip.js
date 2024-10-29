@@ -18,11 +18,13 @@ export async function Draw_Tooltip(x, y, itemID) {
     const itemStats = itemStatsArray[0];
 
     properties.push(itemStats.name.charAt(0).toUpperCase() + itemStats.name.slice(1));
-    if (itemStats.equipSlot !== "notEquippable") {
-        properties.push("");
+    if (itemStats.equipSlot === "notEquippable") {
         properties.push("");
     }
-    
+    else {
+        properties.push(" "+ itemStats.equipSlot + " ");               
+    }
+    console.log(properties)
     if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
         properties.push(" Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);
     }
@@ -30,11 +32,10 @@ export async function Draw_Tooltip(x, y, itemID) {
         properties.push(" Armour: " + itemStats.AC);
     }
     // properties.push("Speed: 1.5");
-    properties.push("");
     if (itemStats.description !== null) {
         properties.push(itemStats.description);
-        properties.push("");
     }
+    properties.push("");
 
     //keep track of the longest line
     let maxLengthLine = 10;
@@ -47,10 +48,6 @@ export async function Draw_Tooltip(x, y, itemID) {
     }
     maxLengthLine += 2;
 
-    //set equipslot of the right side of the tooltip
-    if (itemStats.equipSlot !== "notEquippable") {
-        properties[3] = " "+ itemStats.equipSlot + " ";                
-    }
 
     //keep track of the number of lines
     let numLines = properties.length;
@@ -63,8 +60,8 @@ export async function Draw_Tooltip(x, y, itemID) {
 
     for (let i = 0; i < numLines; i++) {
         properties[i] = Create_Text_Line(" " + properties[i] + " ", cellSize, i, x / cellSize, y / cellSize);
-        if (i === 3) {
-            Set_From_Right(properties[3], frameWidth)            
+        if (i === 1) {
+            Set_From_Right(properties[1], frameWidth)            
         }
     }
 }
