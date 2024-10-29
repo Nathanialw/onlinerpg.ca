@@ -23,7 +23,6 @@ export async function Draw_Tooltip(x, y, itemID) {
         properties.push("");
         properties.push("");
     }
-    properties.push("");
     
     if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
         properties.push(" Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);

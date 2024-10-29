@@ -13,6 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" href="assets/graphics/icons/PVG/Book18.png" type="image/png">
 
         
         <link rel="icon"       href="/assets/icons/css/all.css" title="icons"/>
