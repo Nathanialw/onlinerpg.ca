@@ -66,9 +66,7 @@ export function Parse_Game_Update(data) {
     data = data.substring(startBag);
     
     data = Update_Inventory(data);
-    data = Update_Equipment(data);
-    
-    serverMap = data;
+    serverMap = Update_Equipment(data);
 
     Update_Screen();
 }

@@ -32,7 +32,7 @@ function Set_Icon(uID) {
 
 
 export function Update_Equipment(dataStr) {
-    Parse_Equipment(dataStr, equipment)
+    dataStr = Parse_Equipment(dataStr, equipment)
     equipment.forEach(item => {
         item.IconPath = Set_Icon(item.ItemID);
         item.Modifiers.forEach(mod => {
