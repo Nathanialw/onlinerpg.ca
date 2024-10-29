@@ -61,7 +61,7 @@ namespace Items {
 	static const uint8_t numModifiers = 8;
 
 
-	ItemID uID;                                                                                   // is this not jsut the icon basically?
+	ItemID uID{};                                                                                   // is this not jsut the icon basically?
 	uint8_t durability{};                                                                // 0-100
 	std::array<Mod, numModifiers> modifiers{};        // keys to the static modifiers in the db
 	uint8_t rarity{};                                                                         // 0-5
@@ -79,7 +79,25 @@ namespace Items {
 		durability = 100; // probably will be random later
 		// set the rarity
 //		rarity =  Utils::Random(0, 7);
-		rarity =   4;
+		rarity = 0;
+		// set the modifiers
+		for (auto &modifier: modifiers) {
+			modifier.Set_Empty();
+		}
+	}
+
+	void Generate(ItemID uID) {
+		// passin the power level of item to create
+		// get a random uID from the db of that level
+		// roll for rarity
+		// roll for modifers based on rarity
+		// set the icon
+		uID = uID; // 0-255 name of the icon png in the directory referenced in the db
+		// set the durability
+		durability = 100; // probably will be random later
+		// set the rarity
+//		rarity =  Utils::Random(0, 7);
+		rarity = 4;
 		// set the modifiers
 		for (auto &modifier: modifiers) {
 			modifier.Set_Empty();

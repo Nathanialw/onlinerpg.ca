@@ -17,7 +17,7 @@ namespace Loot {
 			     break;
 		     if (item.Empty()) {
 			     Items::ItemID itemID = Utils::Random(1, DB::Get_Num_Items());
-			     item.Set(itemID);
+			     item.Generate(itemID);
 			     numItems--;
 		     }
 	     }
