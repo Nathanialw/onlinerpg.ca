@@ -5,7 +5,7 @@ export let Gender = ["Male", "Female"];
 export let UnitClass = ["Fighter", "Mystic"];
 export let Alignment = ["Good", "Neutral", "Evil"];
 export let Species = [
-    "Alpaca",
+    "Alp",
     "Basilisk",
     "Centaur",
     "Dwarf",
@@ -47,7 +47,7 @@ export let Species = [
     "Naga",
     "Ogre",
     "Poltergeist",
-    "Qaffir",
+    "Quinotaur",
     "Roc",
     "Satyr",
     "Troll",
