@@ -121,8 +121,8 @@ namespace Items {
 		std::cout << std::endl;
 	}
 
-	void Set(uint8_t _uID = 0, uint8_t _rarity = 0, uint8_t _durability = 100, std::array<Mod, numModifiers> _modifier = {}) {
-		uID = _uID;
+          void Set(const ItemID _uID = 0, const uint8_t &_rarity = 0, const uint8_t &_durability = 100, const std::array<Mod, numModifiers> &_modifier = {}) {
+	          uID = _uID;
 		rarity = _rarity;
 		durability = _durability;
 		modifiers = _modifier;
