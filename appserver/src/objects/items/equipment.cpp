@@ -118,10 +118,8 @@ namespace Equipment {
      std::string Get_Equipment(Items::Equipped &equipment) {
 	     std::string equipmentStr = Utils::Prepend_Zero_By_Digits(equipment.size(), 2);
 	     for (int i = 0; i < equipment.size(); ++i) {
-		     equipmentStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(equipment[i].Get_uID(), 3);
+		     equipmentStr += Utils::Prepend_Zero_By_Digits(i, 2) + equipment[i].As_Sendable_String();
 	     }
-	     //first 2 chars is equip size
-	     //each 5 of the next chars is equip slot and itemID
 	     return equipmentStr;
      }
 };

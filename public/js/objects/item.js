@@ -2,14 +2,14 @@
 
 //defines an item, used for Inventory, Equipment and Loot
 export let item = {
+    ItemID: "0",
+    IconPath: "none",
     Texture: null,
     Border: null,
-    ItemID: "0",
     Rarity: 0,
     Durability: "",
     Modifiers: [],
     ModStrings: [],
-    IconPath: "none"
 };
 
 

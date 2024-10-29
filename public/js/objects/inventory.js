@@ -1,5 +1,5 @@
 'use strict'
-import { Draw_Inventory_Icons, Draw_Bag_Icons, itemFramePath } from '../graphics/graphics.js';
+import { Draw_Inventory_Icons, Draw_Bag_Icons, itemFramePath, itemBorders } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 import { Parse_Inventory } from '../parse/inventory.js';
@@ -11,7 +11,6 @@ import { item } from "./item.js";
 //read from db
 //display the icon in the loot box
 
-let iconPath = "assets/graphics/icons/";
 
 const numBags = 4;
 const maxItems = 12;
@@ -27,7 +26,7 @@ function Create_Bag() {
 }
 
 
-export let inventory = [];
+let inventory = [];
 for (let i = 0; i < numBags; i++) {
     inventory.push(Create_Bag());
 }
@@ -41,6 +40,7 @@ function Set_Icon(uID) {
     if (item.icon === undefined || item.icon === "none") {
         return item.icon; 
     }
+    let iconPath = "assets/graphics/icons/";
     return iconPath + item.icon;    
 }
 
@@ -69,17 +69,6 @@ const defaultBagIcon = 'assets/graphics/ui/inventory/bags_empty_background.png'
 const copperIcon = 'assets/graphics/ui/inventory/coin_copper.png'
 const silverIcon = 'assets/graphics/ui/inventory/coin_silver.png'
 const goldIcon = 'assets/graphics/ui/inventory/coin_gold.png'
-
-const itemBorders = [
-    'assets/graphics/ui/inventory/item_quality_1.png',
-    'assets/graphics/ui/inventory/item_quality_2.png', 
-    'assets/graphics/ui/inventory/item_quality_3.png',
-    'assets/graphics/ui/inventory/item_quality_4.png', 
-    'assets/graphics/ui/inventory/item_quality_5.png', 
-    'assets/graphics/ui/inventory/item_quality_6.png', 
-    'assets/graphics/ui/inventory/item_quality_7.png', 
-    'assets/graphics/ui/inventory/item_quality_8.png',
-]
 
 const bagIconSize = 2.5;
 const iconSize = 3.5;

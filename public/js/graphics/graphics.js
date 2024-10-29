@@ -57,6 +57,18 @@ export let gameMenuText = []
 export let defaultStyle;
 export let hoverStyle;
     
+export const itemBorders = [
+    'assets/graphics/ui/inventory/item_quality_1.png',
+    'assets/graphics/ui/inventory/item_quality_2.png', 
+    'assets/graphics/ui/inventory/item_quality_3.png',
+    'assets/graphics/ui/inventory/item_quality_4.png', 
+    'assets/graphics/ui/inventory/item_quality_5.png', 
+    'assets/graphics/ui/inventory/item_quality_6.png', 
+    'assets/graphics/ui/inventory/item_quality_7.png', 
+    'assets/graphics/ui/inventory/item_quality_8.png',
+]
+
+
 export const itemFramePath = 'assets/graphics/ui/equipment/slot_frame.png';
 const defaultPath = 'assets/graphics/portraits/Human/m/1.png'
 

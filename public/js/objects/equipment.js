@@ -1,7 +1,9 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Equipment_Icons, equipment, itemFramePath } from '../graphics/graphics.js';
+import { Draw_Equipment_Icons, itemFramePath, itemBorders } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
+import { item } from "./item.js";
+import { Parse_Equipment } from '../parse/equipment.js';
 
 //when I move on to a new tile
 //check if there is loot
@@ -11,25 +13,34 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
 let iconPath = "assets/graphics/icons/"
 
-export function Query_Equipment(numItems, data, start) {
-    let equipped = []
-    for (let i = 0; i < numItems; i++) {
-        //isert teh path
-        let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
-        let equipmentIndex = parseInt(str.substring(0, 2));
-        let itemID = parseInt(str.substring(2, 5));
-        let item = Get_Icon_Path(itemID);
 
-        let icon = item.icon
-        if (icon === undefined || icon === "none") {
-            equipped.push({index: i, itemID: itemID, path: icon}); 
-        }
-        else {
-            let path = iconPath + icon;
-            equipped.push({index: i, itemID: itemID, path: path}); 
-        }
+const equipSlots = 14;
+let equipment = Array(equipSlots).fill().map(() => ({ ...item }))
+
+function Set_Icon(uID) {
+    let item = Get_Icon_Path(uID);
+    if (item === undefined) {
+        console.log(uID, "uID is undefined in the db")
+        return item;
     }
-    return equipped;
+    if (item.icon === undefined || item.icon === "none") {
+        return item.icon; 
+    }
+    let iconPath = "assets/graphics/icons/";
+    return iconPath + item.icon;    
+}
+
+
+export function Update_Equipment(numItems, data, start) {
+    Parse_Equipment()
+    equipment.forEach(item => {
+        item.IconPath = Set_Icon(item.ItemID);
+        item.Modifiers.forEach(mod => {
+            //get the values
+            //get the text
+        })
+    })
+    
 }
 
 const defaultEquipmentIcons = [
@@ -48,32 +59,20 @@ const defaultEquipmentIcons = [
     'assets/graphics/ui/equipment/empty_ranged.png',
     'assets/graphics/ui/equipment/ammo_slot.png',
 ]
+
 let chain = 'assets/graphics/ui/equipment/chain_link.png'
 let ammobg = 'assets/graphics/ui/equipment/slot_frame_ammo.png'
 
-export async function Draw_Equipment(items) {
-    // Clear_Sprite_Array(equipment);
-
-    for (let i = 0; i < items.length; i++) {
-        if (items[i].path === undefined || items[i].path === "none") {
-            let item = await Draw_Equipment_Icons(defaultEquipmentIcons[i], i, 2.5)        
-            if (i === 15) {
-                let border = await Draw_Equipment_Icons(itemFramePath, i, 2.5) //border
-            }
-            else {
-                let border = await Draw_Equipment_Icons(ammobg, i, 2.5) //border
-            }
+export async function Draw_Equipment() {
+    for (let i = 0; i < equipment.length; i++) {
+        if (equipment[i].IconPath === undefined || equipment[i].IconPath === "none") {
+            equipment[i].Texture = await Draw_Equipment_Icons(defaultEquipmentIcons[i], i, 2.5)        
+            equipment[i].Border = await Draw_Equipment_Icons(itemFramePath, i, 2.5) //border
         }
         else {
-            let item = await Draw_Equipment_Icons(items[i].path, i, 2.5)        
-            //check the rarity of the item
-            if (i === 15) {
-                let border = await Draw_Equipment_Icons(itemFramePath, i, 2.5) //border
-            }
-            else {
-                let border = await Draw_Equipment_Icons(ammobg, i, 2.5) //border
-            }
-            Set_Send_On_Loot_Click_Listener(item, '2', i, items[i].itemID, Draw_Equipment_Icons, 2.5);   //1 means inventory panel
+            equipment[i].Texture = await Draw_Equipment_Icons(equipment[i].IconPath, i, 2.5)        
+            equipment[i].Border = await Draw_Equipment_Icons(itemBorders[equipment[i].Rarity], i, 2.5) //border
+            Set_Send_On_Loot_Click_Listener(equipment[i].Texture, '2', i, equipment[i].ItemID, Draw_Equipment_Icons, 2.5);   //1 means inventory panel
         }
     }
 }

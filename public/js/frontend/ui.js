@@ -4,7 +4,7 @@ import { Make_Map} from '../map/map.js';
 import { characterInfo, Species} from '../units/unitdef.js';
 import { Query_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Update_Inventory } from '../objects/inventory.js';
-import { Query_Equipment, Draw_Equipment } from '../objects/equipment.js';
+import { Draw_Equipment, Update_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
@@ -24,10 +24,6 @@ let species;
 let damage;
 let isDead;
 let serverMap;
-// let numItems;
-// let loot = [];
-// let numInventory;
-let equipment = []; //list of item {slot, itemID, path string)
 
 function Parse(numItems, start, data, Query, size, items) {
     removeEventListenersFromArray(items);
@@ -70,9 +66,9 @@ export function Parse_Game_Update(data) {
     data = data.substring(startBag);
     
     data = Update_Inventory(data);
+    data = Update_Equipment(data);
     
-    const endEquipment = Parse(data.substring(0, 2), 2, data, Query_Equipment, 5, equipment);
-    serverMap = data.substring(endEquipment);
+    serverMap = data;
 
     Update_Screen();
 }
@@ -94,7 +90,7 @@ export function Update_Screen() {
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
     Draw_Inventory();
-    Draw_Equipment(equipment); //pass the list of the strings of the path to the icons
+    Draw_Equipment(); //pass the list of the strings of the path to the icons
 }
 
 // Function to remove event listeners from an array of objects
