@@ -17,8 +17,7 @@ export async function Draw_Tooltip(x, y, itemID) {
     const itemStatsArray = await Get_Item_Stats(itemID);
     const itemStats = itemStatsArray[0];
 
-    properties.push("");
-    properties.push(" " + itemStats.name.charAt(0).toUpperCase() + itemStats.name.slice(1));
+    properties.push(itemStats.name.charAt(0).toUpperCase() + itemStats.name.slice(1));
     if (itemStats.equipSlot !== "notEquippable") {
         properties.push("");
         properties.push("");
