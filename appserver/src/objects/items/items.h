@@ -109,7 +109,7 @@ namespace Items {
 
 	[[nodiscard]] bool Empty() const { return !uID; }
 
-	[[nodiscard]] uint8_t Get_uID() const { return uID; }
+	[[nodiscard]] ItemID Get_uID() const { return uID; }
 
 	void Print() {
 		std::cout << "Item: " << uID << " Rarity: " << rarity << " Durability: " << durability;
