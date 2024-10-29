@@ -47,7 +47,7 @@ function Display_Damage(species, damage, isDead) {
         return
     }
     let text = "You have done " + damage + " damage to a " + species; 
-    if (isDead === "0") {
+    if (isDead === 0) {
         text += " and killed it!";
     }
     SoundAttack(); //play attack sound based on weapon equipped
