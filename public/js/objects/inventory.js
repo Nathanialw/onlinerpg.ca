@@ -52,8 +52,8 @@ export function Update_Inventory(dataStr) {
         bag.IconPath = Set_Icon(bag.BagID);    
         let bagSize = Get_Icon_Path(bag.BagID).slots
         for (let i = 0; i < bagSize; ++i) {            
-            item.IconPath = Set_Icon(item.ItemID);    
-            item.Modifiers.forEach(mod => {
+            bag.Items[i].IconPath = Set_Icon(bag.Items[i].ItemID);    
+            bag.Items[i].Modifiers.forEach(mod => {
                 //get the values
                 //get the text
                 // let modPath = Get_Icon_Path(mod);    
@@ -100,7 +100,8 @@ export async function Draw_Inventory() {
     
     for (let j = 0; j < numBags; j++) {
         let num = 0;
-        for (let i = 0; i < inventory[j].Items.length; i++) {
+                let bagSize = Get_Icon_Path(inventory[j].BagID).slots
+        for (let i = 0; i < bagSize; i++) {
             if (inventory[j].Items[i].IconPath === undefined || inventory[j].Items[i].IconPath === "none") {
                 inventory[j].Items[i].Texture = await Draw_Inventory_Icons(defaultInventoryIcon, num, j, iconSize)            
                 inventory[j].Items[i].Border = await Draw_Inventory_Icons(itemFramePath, num, j, iconSize) //border
