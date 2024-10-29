@@ -11,7 +11,7 @@ export let item = {
     IconPath: ""
 };
 
-modTyp = [
+let modType = [
     "damage",
     "armor",
     "health",
