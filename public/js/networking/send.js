@@ -33,7 +33,7 @@ export function Remove_Highlight() {
     }
 }
 
-export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, inv, iconSize) {
+export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, Draw_Icon, iconSize) {
     //send the index of the item in the loot array
     Set_Cursor_Hover(item, 'neutral');
 
@@ -41,7 +41,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, inv, ico
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
-        highlight = await inv(hover, i, iconSize) //border
+        highlight = await Draw_Icon(hover, i, iconSize) //border
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 
@@ -87,7 +87,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, inv, ico
     });
 }
 
-export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID, inv) {
+export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID, Draw_Icon) {
     //send the index of the item in the loot array
     Set_Cursor_Hover(item, 'neutral');
 
@@ -95,7 +95,7 @@ export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID,
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
-        highlight = await inv(hover, i, bag, 3.5) //border
+        highlight = await Draw_Icon(hover, i, bag, 3.5) //border
         await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
     });
 

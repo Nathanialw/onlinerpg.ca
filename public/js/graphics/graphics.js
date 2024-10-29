@@ -633,11 +633,6 @@ export function Create_Object_Sprite(char, x, y, visionWidth) {
     return object;
 }
 
-
-
-
-
-
 export function Create_Combat_Log_Line(char, indexHeight) {
     const style = {fontFamily : fonts.Text0, fontSize: minimapCellSize, fill : grey50, align : 'center'}
     let object = new PIXI.Text({text: char, style: style});

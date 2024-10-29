@@ -1,7 +1,9 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Inventory_Icons, Draw_Bag_Icons, itemFramePath } from '../graphics/graphics.js';
+import { Draw_Inventory_Icons, Draw_Bag_Icons, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
+import { Parse_Inventory } from '../parse/inventory.js';
+import { item } from "./item.js";
 
 //when I move on to a new tile
 //check if there is loot
@@ -9,85 +11,59 @@ import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } 
 //read from db
 //display the icon in the loot box
 
-let iconPath = "assets/graphics/icons/"
+let iconPath = "assets/graphics/icons/";
 
-//defines an item, used for Inventory, Equipment and Loot
-export let item = {
-    iconPath: 0,
-    durability: 0,
-    rarity: 0,
-    modStringsUIDArray: [],
-    modStrings: [] //add teh mods that are like to display as consolidated values ie. if there are 2 + fire damage mods, add them together and save the string here to display
-}
-
-let inventory = []
 let bags = [];
 const numBags = 4;
+const maxItems = 12;
 const iconSize = 3.5;
 
-
-//stores all the inventory items and bags
-export let inventorys = [ 
-    { uID: 0, iconPath: '', items: [] },
-    { uID: 0, iconPath: '', items: [] },
-    { uID: 0, iconPath: '', items: [] },
-    { uID: 0, iconPath: '', items: [] },
-    { uID: 0, iconPath: '', items: [] }
-]
-    
-export function Query_Inventory(numItems, data, start, inv) {
-    for (let i = 0; i < numItems; i++) {
-        //isert teh path
-        let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
-        let invIndex = parseInt(str.substring(0, 2));
-        let itemID = parseInt(str.substring(2, 5));
-
-        let item = Get_Icon_Path(itemID);
-        let icon = item.icon
-        if (icon === undefined || icon === "none") {
-            // console.log("icon is undefined", icon)
-            inv.push({index: i, itemID: itemID, path: icon}); 
-        }
-        else {
-            // console.log("icon is defined", icon)
-            let path = iconPath + icon;
-            inv.push({index: i, itemID: itemID, path: path}); 
-        }     
-    }
+function Create_Bag() {
+    return {
+        BagID: "",
+        Texture: null,
+        IconPath: "",
+        Border: null,
+        Items: Array(maxItems).fill().map(() => ({ ...item }))
+    };
 }
 
-function removeEventListenersFromArray(array) {
-    array.forEach(item => {
-        if (item && item.removeAllListeners) {
-            item.removeAllListeners();
-        }
+
+export let inventory = [];
+for (let i = 0; i < numBags; i++) {
+    inventory.push(Create_Bag());
+}
+
+function Set_Icon(uID) {
+    let item = Get_Icon_Path(uID);
+    if (item === undefined) {
+        console.log(bagID, "uID is undefined in the db")
+        return icon;
+    }
+    if (item.icon === undefined || item.icon === "none") {
+        return icon; 
+    }
+    return iconPath + item.icon;    
+}
+
+export function Update_Inventory(dataStr) {
+    dataStr = Parse_Inventory(dataStr, inventory);
+
+    //update the entire inventory vs just the ones sent
+    inventory.forEach(bag => {
+        bag.IconPath = Set_Icon(bag.BagID);    
+        
+        bag.items.forEach(item => {
+            item.iconPath = Set_Icon(item.ItemID);    
+            item.Modifiers.forEach(mod => {
+                //get the values
+                //get the text
+                // let modPath = Get_Icon_Path(mod);    
+            }
+            ///combine the like mods store the string
+        )});
     });
-
-}
-
-export function Parse_Inventory(data, startBag) {
-    bags.length = 0;
-    for (let i = 0; i < numBags; i++) {
-        //save to draw the bag icons
-        let bagID = data.substring(startBag, startBag + 3);
-        //get from DB
-        let item = Get_Icon_Path(bagID);
-        if (item === undefined) {
-            console.log(bagID, "uID is undefined in the db")
-            continue;
-        }
-        //save icon path
-        let iconPath = "assets/graphics/icons/"
-
-        bags[i] = {path: iconPath + item.icon, itemID: bagID};
-        let numItems = item.slots; 
-
-        inventory[i] = [];
-        Query_Inventory(numItems, data, (startBag + 3), inventory[i]);
-
-        startBag = (startBag + 3) + (numItems * 5);
-    }
-    return startBag;
+    return dataStr;
 }
 
 const defaultInventoryIcon = 'assets/graphics/ui/inventory/slot_empty.png'
@@ -98,48 +74,43 @@ const silverIcon = 'assets/graphics/ui/inventory/coin_silver.png'
 const goldIcon = 'assets/graphics/ui/inventory/coin_gold.png'
 
 const itemBorders = [
-    'public/assets/graphics/ui/inventory/item_quality_1.png',
-    'public/assets/graphics/ui/inventory/item_quality_2.png', 
-    'public/assets/graphics/ui/inventory/item_quality_3.png',
-    'public/assets/graphics/ui/inventory/item_quality_4.png', 
-    'public/assets/graphics/ui/inventory/item_quality_5.png', 
-    'public/assets/graphics/ui/inventory/item_quality_6.png', 
-    'public/assets/graphics/ui/inventory/item_quality_7.png', 
-    'public/assets/graphics/ui/inventory/item_quality_8.png',
+    'assets/graphics/ui/inventory/item_quality_1.png',
+    'assets/graphics/ui/inventory/item_quality_2.png', 
+    'assets/graphics/ui/inventory/item_quality_3.png',
+    'assets/graphics/ui/inventory/item_quality_4.png', 
+    'assets/graphics/ui/inventory/item_quality_5.png', 
+    'assets/graphics/ui/inventory/item_quality_6.png', 
+    'assets/graphics/ui/inventory/item_quality_7.png', 
+    'assets/graphics/ui/inventory/item_quality_8.png',
 ]
 
-export async function Draw_Inventory() {
-    for (let i = 0; i < inventory.length; i++) {
-        // Clear_Sprite_Array(inventory[i]);
-    }    
-    // Clear_Sprite_Array(bags);
+const bagIconSize = 2.5;
 
-    
+export async function Draw_Inventory() {   
     for (let i = 0; i < numBags; i++) {
-        if (bags[i].path === undefined || bags[i].path === "none") {
-            let bag = await Draw_Bag_Icons(defaultBagIcon, i, 2.5)
-            let border = await Draw_Bag_Icons(itemFramePath, i, 2.5) //border
+        if (inventory[i].IconPath === undefined || inventory[i].IconPath === "none") {
+            inventory[i].Texture = await Draw_Bag_Icons(defaultBagIcon, i, bagIconSize)
+            inventory[i].Border = await Draw_Bag_Icons(itemFramePath, i, bagIconSize) //border
         }
         else {
-            let bag = await Draw_Bag_Icons(bags[i].path, i, 2.5)
-            let border = await Draw_Bag_Icons(itemFramePath, i, 2.5) //border
-            Set_Send_On_Loot_Click_Listener(bag, '3', i, bags[i].itemID, Draw_Bag_Icons, 2.5);   //1 means inventory panel
+            inventory[i].Texture = await Draw_Bag_Icons(inventory[i].IconPath, i, bagIconSize)
+            inventory[i].Border = await Draw_Bag_Icons(itemFramePath, i, bagIconSize) //border
+            Set_Send_On_Loot_Click_Listener(nventory[i].Texture, '3', i, inventory[i].BagID, Draw_Bag_Icons, bagIconSize);   //1 means inventory panel
         }
     }
     
     for (let j = 0; j < numBags; j++) {
         let num = 0;
         for (let i = 0; i < inventory[j].length; i++) {
-            if (inventory[j][i].path === undefined || inventory[j][i].path === "none") {
-                let item = await Draw_Inventory_Icons(defaultInventoryIcon, num, j, iconSize)            
-                let border = await Draw_Inventory_Icons(itemFramePath, num, j, iconSize) //border
+            if (inventory[j][i].IconPath === undefined || inventory[j][i].IconPath === "none") {
+                inventory[j][i].Texture = await Draw_Inventory_Icons(defaultInventoryIcon, num, j, iconSize)            
+                inventory[j][i].Border = await Draw_Inventory_Icons(itemFramePath, num, j, iconSize) //border
             }
             //clear event listene from index i
             else {
-                let item = await Draw_Inventory_Icons(inventory[j][i].path, num, j, iconSize)            
-                //check the rarity of the item
-                let border = await Draw_Inventory_Icons(itemFramePath, num, j, iconSize) //border
-                Set_Send_On_Loot_Click_Listener_inv(item, '1', num, j, inventory[j][i].itemID, Draw_Inventory_Icons);   //1 means inventory panel
+                inventory[j][i].Texture = await Draw_Inventory_Icons(inventory[j][i].IconPath, num, j, iconSize)            
+                inventory[j][i].Border = await Draw_Inventory_Icons(itemBorders[inventory[j][i].Rarity], num, j, iconSize) //border
+                Set_Send_On_Loot_Click_Listener_inv(inventory[j][i].Texture, '1', num, j, inventory[j][i].ItemID, Draw_Inventory_Icons);   //1 means inventory panel
             }
             num++
         }

@@ -2,6 +2,7 @@
   "name": "typescript",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "test.js",
   "scripts": {
     "build": "webpack"

@@ -57,7 +57,7 @@ namespace Items {
 	bool operator==(const Mod &rhs) const { return uID == rhs.uID; }
      };
 
-     struct Item {
+     class Item {
           private:
           static const uint8_t numModifiers = 8;
 

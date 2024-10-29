@@ -1,95 +1,62 @@
 'use strict'
-
 //parses the inventory data string and saves it to the inventory object
 
-// import {item, inventory} from "../objects/inventory.js";
 
-let inventory = [];
-let bags = [];
-let item = []   
 
-export function Query_Inventory(numItems, data, start) {
-    let inv = []
-    for (let i = 0; i < numItems; i++) {
-        //isert teh path
-        let str = data.substring(start + (i * 5), start + ((i + 1) * 5), 10);        
-        let invIndex = parseInt(str.substring(0, 2));
-        let itemID = parseInt(str.substring(2, 5));
+//should I save the strings in a data structure or just get the data from the db when I need to desplay it?
 
-        let item = Get_Icon_Path(itemID);
-        let icon = item.icon
-        if (icon === undefined || icon === "none") {
-            inv.push({index: i, itemID: itemID, path: icon}); 
-        }
-        else {
-            let path = iconPath + icon;
-            inv.push({index: i, itemID: itemID, path: path}); 
-        }     
+// how to use:
+    //query the num NAME ICONPATH BAGSLOTS DESCRIPTIO with bagID
+    //query the num ICONPATH with rarityID
+    //query the num NAME ICONPATH DESCRIPTION EQUIPSLOT ETC with itemID
+    //query the num NAME EFFECTS with modifierID
+        //add like modifiers together before displaying
+
+
+function Get_Item(dataStr, item) {
+    item.ItemID = parseInt(dataStr.substring(0, 3));
+    dataStr = dataStr.substring(3);
+
+    //save rarity border path
+    item.Rarity = parseInt(dataStr.substring(0, 1));
+    dataStr = dataStr.substring(1);
+    //save durability value
+    item.Durability = parseInt(dataStr.substring(0, 3));
+    dataStr = dataStr.substring(3);
+    //sav modifier uIDs to look up in the db
+    const numMods = parseInt(dataStr.substring(0, 1));
+    dataStr = dataStr.substring(1);
+
+    for (let j = 0; j < numMods; j++) {
+        item.Modifiers.push(parseInt(dataStr.substring(0, 3)));
+        dataStr = dataStr.substring(3)
     }
-    return inv;
+
+    return dataStr;
 }
-
-
-function Parse_Item(numItems, start, data, Query, size, items) {
-    removeEventListenersFromArray(items);
-    items.length = 0; // Clear the array without reassigning it
-    if (numItems > 0) {
-        items.push(...Query(numItems, data, start));
-    }    
-    
-    return start + (numItems * size); 
-}
-
 
 //takes in a  string of data and returns a structure of the data
-export function Parse_Inventory(dataStr) {
-    let start = 0;
-
-    bags.length = 0;
-    for (let i = 0; i < 4; i++) {
-        //save to draw the bag icons
-        let uID = data.substring(start, start + 3);
-        //get from DB
-        let item = Get_Icon_Path(uID);
-        if (item === undefined) {
-            console.log(uID, "uID is undefined in the db")
-            continue;
+export function Parse_Inventory(dataStr, inventory) {
+    const numBags = 4;
+    
+    for (let i = 0; i < numBags; i++) {
+        const numItems = parseInt(dataStr.substring(0, 2))
+        dataStr = dataStr.substring(2);
+        if (numItems == 0) {
+            continue
         }
-        //save icon path
-        let iconPath = "assets/graphics/icons/" + item.icon;
-        
-        // //save rarity border path
-        // let rarityID = data.substring(startBag + 3, startBag + 4);
-        // //query db for rarity path
-        // let rarityPath;                                                  //1
-        // //save durability value
-        // let durabilityValue = data.substring(startBag + 4, startBag + 7);
-        // //sav modifier uIDs to look up in the db
-        // let numMods = data.substring(startBag + 7, startBag + 8);
-        // let modifiers = [numMods]                       
-        // let strPosBegin = startBag + 8;
-        // let strPosEnd = startBag + 11;
-        // for (let j = 0; j < item.modifiers.length; j++) {
-        //     let modID = data.substring(strPosBegin, strPosEnd)
-        //     strPosBegin += 3;
-        //     strPosEnd += 3;
-        //     modifiers.push(item.modifiers[j]);                             //3 * j
-        // }
-        // startBag = strPosBegin;
-        // bags[i] = {path: iconPath + item.icon, itemID: bagID, rarity: rarityPath, durability: durabilityValue, modifierStringsArray: modifiers};
 
-        inventory[i] = {uID: uID, iconPath: iconPath};
-        let numItems = item.slots; 
+        inventory[i].BagID = dataStr.substring(0, 3)
+        dataStr = dataStr.substring(3);
 
-        let items = []; //items in the bag
-        start = Parse_Item(numItems, (start + 3), data, Query_Inventory, 5, items);
-        inventory[i].items = items
+        for (let k = 0; k < numItems; k++) {
 
-        return remainingStr;
+            const invIndex = parseInt(dataStr.substring(0, 2))
+            dataStr = dataStr.substring(2);
+            dataStr = Get_Item(dataStr, inventory[i].Items[invIndex]);
+        }
     }
-
-
-
-
-    return remainingStr;
+    return dataStr
 }
+
+// console.log(Parse_Inventory("00020010000111001001010022100300200300402001000011100100101002210030020030040200100001110010010100221003002003004", inventory))
