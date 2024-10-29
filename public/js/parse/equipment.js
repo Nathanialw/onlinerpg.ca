@@ -3,7 +3,7 @@ import { Parse_Item } from "./items.js";
 
 
 
-export function Parse_Equipment(dataStr) {
+export function Parse_Equipment(dataStr, equipment) {
     const numItems = parseInt(dataStr.substring(0, 2));
     dataStr = dataStr.substring(2)
 
