@@ -22,14 +22,14 @@ export async function Draw_Tooltip(x, y, itemID) {
         properties.push("");
     }
     else {
-        properties.push(" "+ itemStats.equipSlot + " ");               
+        properties.push(itemStats.equipSlot + " ");               
     }
     console.log(properties)
     if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
-        properties.push(" Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);
+        properties.push("Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);
     }
     if (itemStats.AC !== null) {
-        properties.push(" Armour: " + itemStats.AC);
+        properties.push("Armour: " + itemStats.AC);
     }
     // properties.push("Speed: 1.5");
     if (itemStats.description !== null) {
@@ -58,10 +58,12 @@ export async function Draw_Tooltip(x, y, itemID) {
     
     Draw_Sprite(x, y,frameWidth, frameHeight, tooltip);
 
+    x =  x / (cellSize * .995);
+    y =  y / (cellSize * .97);
     for (let i = 0; i < numLines; i++) {
-        properties[i] = Create_Text_Line(" " + properties[i] + " ", cellSize, i, x / cellSize, y / cellSize);
+        properties[i] = Create_Text_Line(properties[i], cellSize, i, x, y);
         if (i === 1) {
-            Set_From_Right(properties[1], frameWidth)            
+            Set_From_Right(properties[1], (frameWidth * .95))            
         }
     }
 }
