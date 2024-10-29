@@ -2,7 +2,6 @@
 import { Draw_Equipment_Icons, itemFramePath, itemBorders } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
-import { item } from "./item.js";
 import { Parse_Equipment } from '../parse/equipment.js';
 
 //when I move on to a new tile
