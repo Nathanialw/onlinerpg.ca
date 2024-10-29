@@ -55,11 +55,10 @@ export async function Draw_Tooltip(x, y, itemID) {
     tooltip = new PIXI.Sprite(tooltipTexture);
     const frameWidth = maxLengthLine * cellSize;
     const frameHeight = numLines * cellSize;
-    
-    Draw_Sprite(x, y,frameWidth, frameHeight, tooltip);
 
-    x =  x / (cellSize * .995);
-    y =  y / (cellSize * .97);
+    Draw_Sprite(x, y, frameWidth, frameHeight, tooltip);
+    x =  x / cellSize;
+    y =  y / cellSize;
     for (let i = 0; i < numLines; i++) {
         properties[i] = Create_Text_Line(properties[i], cellSize, i, x, y);
         if (i === 1) {
