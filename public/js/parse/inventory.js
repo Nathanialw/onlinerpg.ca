@@ -1,7 +1,5 @@
 'use strict'
 //parses the inventory data string and saves it to the inventory object
-import { inventory } from "../objects/inventory";
-
 
 //should I save the strings in a data structure or just get the data from the db when I need to desplay it?
 
@@ -42,12 +40,13 @@ export function Parse_Inventory(dataStr, inventory) {
     for (let i = 0; i < numBags; i++) {
         const numItems = parseInt(dataStr.substring(0, 2))
         dataStr = dataStr.substring(2);
-        if (numItems == 0) {
-            continue
-        }
-
+        
         inventory[i].BagID = dataStr.substring(0, 3)
         dataStr = dataStr.substring(3);
+        
+        if (numItems == 0) {            
+            continue
+        }
 
         for (let k = 0; k < numItems; k++) {
 
