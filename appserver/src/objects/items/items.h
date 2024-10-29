@@ -86,18 +86,17 @@ namespace Items {
 		}
 	}
 
-	void Generate(ItemID uID) {
+	void Generate(ItemID _uID) {
 		// passin the power level of item to create
 		// get a random uID from the db of that level
 		// roll for rarity
 		// roll for modifers based on rarity
 		// set the icon
-		uID = uID; // 0-255 name of the icon png in the directory referenced in the db
+		uID = _uID; // 0-255 name of the icon png in the directory referenced in the db
 		// set the durability
 		durability = 100; // probably will be random later
 		// set the rarity
-//		rarity =  Utils::Random(0, 7);
-		rarity = 4;
+		rarity =  Utils::Random(0, 7);
 		// set the modifiers
 		for (auto &modifier: modifiers) {
 			modifier.Set_Empty();
