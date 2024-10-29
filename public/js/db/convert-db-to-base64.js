@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs';
 
 // Path to your SQLite database file
 const dbFilePath = '../../../appserver/db/data.db';
@@ -12,4 +12,4 @@ const base64Database = dbFileBuffer.toString('base64');
 // Log the base64 string (you can copy this string to your JavaScript code)
 console.log(base64Database);
 
-//run with:        node convert-db-to-base64.js
+//run with:        node --experimental-modules convert-db-to-base64.mjs
