@@ -12,7 +12,7 @@
 
 namespace Spawn {
 
-     const std::string  pathToSpeciesImgs = "../public/assets/graphics/imgs/";
+     const std::string pathToSpeciesImgs = "../public/assets/graphics/imgs/";
 
      char unitChars[(int) Units::Species::SIZE] = {'a', 'b', 'c',
                                                    'd', 'e', 'f', 'g',

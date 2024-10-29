@@ -162,18 +162,18 @@ namespace Map {
      // state 1 = initial map, 2 = update map
      std::string SendMapSegment(Game::Instance &game, const std::string &direction, int state) {
 	     auto position = game.Get_Player().position.position;
-	     auto stats = game.Get_Player().stats;
+	     auto vision = game.Get_Player().stats.vision;
 	     std::string mapSegment = std::to_string(state);
 
-	     mapSegment += std::to_string((stats.vision * 2) + 1);
+	     mapSegment += std::to_string((vision * 2) + 1);
 	     mapSegment += direction;
 	     std::string mapString;
 
 	     std::cout << position.As_String() << std::endl;
-	     std::cout << "vision: " << (int) stats.vision << std::endl;
+	     std::cout << "vision: " << (int) vision << std::endl;
 
-	     for (auto j = position.y - stats.vision; j <= position.y + stats.vision; j++) {
-		     for (auto i = position.x - stats.vision; i <= position.x + stats.vision; i++) {
+	     for (auto j = position.y - vision; j <= position.y + vision; j++) {
+		     for (auto i = position.x - vision; i <= position.x + vision; i++) {
 			     Handle_Boundary(game, i, j, mapSegment);
 		     }
 	     }
@@ -181,7 +181,7 @@ namespace Map {
 	     std::cout << "mapSegment end: " << mapSegment << std::endl;
 
 	     //print map
-	     auto sentMap = mapSegment.substr(mapSegment.size() - (game.Get_Player().stats.vision * 2 + 1) * (game.Get_Player().stats.vision * 2 + 1));
+	     auto sentMap = mapSegment.substr(mapSegment.size() - (vision * 2 + 1) * (vision * 2 + 1));
 	     Print_Map(game, sentMap);
 
 	     std::cout << "map sent!" << std::endl;

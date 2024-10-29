@@ -1,7 +1,7 @@
 'use strict'
 
 import { Set_Font_Size, Set_Cell_Size } from './graphics.js';
-import { Update_Screen, Update_Screen_Phone } from '../frontend/ui.js';
+import { Update_Screen } from '../frontend/ui.js';
 
 const mediaQueries = [
     { query: window.matchMedia('(min-width: 1px) and (max-width: 390px)'), size: Set_Cell_Size(390) }, //originally 8, added +2 to all of them to try to fit screen

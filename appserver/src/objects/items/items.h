@@ -12,7 +12,6 @@
 #include "utils.h"
 
 
-
 namespace Items {
      enum class BagType {
 	Items0,
@@ -58,12 +57,12 @@ namespace Items {
      };
 
      class Item {
-          private:
-          static const uint8_t numModifiers = 8;
+	private:
+	static const uint8_t numModifiers = 8;
 
 
 	ItemID uID;                                                                                   // is this not jsut the icon basically?
-          uint8_t durability{};                                                                // 0-100
+	uint8_t durability{};                                                                // 0-100
 	std::array<Mod, numModifiers> modifiers{};        // keys to the static modifiers in the db
 	uint8_t rarity{};                                                                         // 0-5
 
@@ -168,8 +167,8 @@ namespace Items {
 	uint16_t gold = 0;
 
 	//get bag uID at index as a string
-	[[nodiscard]] std::string Sendable_BagID(uint8_t index) const  {
-		return Utils::Prepend_Zero_By_Digits(bags[index].Get_uID(),  3);
+	[[nodiscard]] std::string Sendable_BagID(uint8_t index) const {
+		return Utils::Prepend_Zero_By_Digits(bags[index].Get_uID(), 3);
 	}
      };
 

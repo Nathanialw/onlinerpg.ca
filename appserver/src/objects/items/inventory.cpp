@@ -8,6 +8,7 @@
 #include "items.h"
 #include "string"
 #include "utils.h"
+#include <vector>
 
 namespace Inventory {
 
@@ -47,7 +48,7 @@ namespace Inventory {
 
 		     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems, 2);
-		     inventoryStr += numItemsStr + bagID + newBagStr;
+		     inventoryStr += numItemsStr += bagID + newBagStr;
 
 //		     inventoryStr += Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3) + bagStr;
 		     std::cout << "bag updated " << j << ": " << backpack.Sendable_BagID(j) + bagStr << std::endl;
@@ -58,18 +59,23 @@ namespace Inventory {
 
 
      //only send update when an inventory change function is called
-     std::string Update_Inventory_Slot(const Items::Backpack &backpack,  const uint8_t &bagSlot, const uint8_t &invSlot) {
+     std::string Update_Inventory_Slot(const Items::Backpack &backpack,  std::vector<std::pair<uint8_t, uint8_t>> updateItems) {
 	     std::string inventoryStr;
-	     std::string newBagStr;
+	     uint8_t  numItems = updateItems.size();
 
-	     auto slot = Utils::Prepend_Zero_By_Digits(invSlot, 2);
-	     auto item = backpack.inventory[bagSlot][invSlot].As_Sendable_String();
-	     newBagStr += slot + item;
+	     for (const auto &update : updateItems) {
+		     std::string newBagStr;
 
-	     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[bagSlot].Get_uID(), 3);
-	     inventoryStr += bagID + newBagStr;
+		     auto slot = Utils::Prepend_Zero_By_Digits(update.second, 2);
+		     auto item = backpack.inventory[update.first][update.second].As_Sendable_String();
+		     newBagStr += slot + item;
 
-	     std::cout << "_item updated string: " << newBagStr << std::endl;
+		     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[update.first].Get_uID(), 3);
+		     inventoryStr += bagID + newBagStr;
+
+		     std::cout << "_item updated string: " << newBagStr << std::endl;
+		     updateItems.pop_back();
+	     }
 
 	     return inventoryStr;
      }

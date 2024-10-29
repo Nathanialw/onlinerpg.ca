@@ -12,15 +12,12 @@
 
 
 function Get_Item(dataStr, item) {
-    item.ItemID = parseInt(dataStr.substring(0, 3));
-    dataStr = dataStr.substring(3);
-
+    [item.ItemID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
     //save rarity border path
-    item.Rarity = parseInt(dataStr.substring(0, 1));
-    dataStr = dataStr.substring(1);
+    [item.Rarity, dataStr] = [parseInt(dataStr.substring(0, 1)), dataStr.substring(1)];
     //save durability value
-    item.Durability = parseInt(dataStr.substring(0, 3));
-    dataStr = dataStr.substring(3);
+    [item.Durability, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
+    
     //sav modifier uIDs to look up in the db
     const numMods = parseInt(dataStr.substring(0, 1));
     dataStr = dataStr.substring(1);
@@ -41,15 +38,17 @@ export function Parse_Inventory(dataStr, inventory) {
         const numItems = parseInt(dataStr.substring(0, 2))
         dataStr = dataStr.substring(2);
         
-        inventory[i].BagID = dataStr.substring(0, 3)
-        dataStr = dataStr.substring(3);
+        if (numItems == 0 && inventory[i].BagID) {            
+            continue
+        }
+
+        [inventory[i].BagID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
         
         if (numItems == 0) {            
             continue
         }
 
         for (let k = 0; k < numItems; k++) {
-
             const invIndex = parseInt(dataStr.substring(0, 2))
             dataStr = dataStr.substring(2);
             dataStr = Get_Item(dataStr, inventory[i].Items[invIndex]);

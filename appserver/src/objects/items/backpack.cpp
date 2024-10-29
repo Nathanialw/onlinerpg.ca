@@ -82,7 +82,7 @@ namespace Backpack {
 			     auto itemDrop = pack.inventory[bagSlot][i];
 			     if (!itemDrop.Empty()) {
 				     for (auto j = cacheIndex; j < groundItems.size(); ++j) {
-					     if ( groundItems[j].Empty()) {
+					     if (groundItems[j].Empty()) {
 						     groundItems[j] = itemDrop;
 						     pack.inventory[bagSlot][i].Set_Empty();
 						     cacheIndex++;

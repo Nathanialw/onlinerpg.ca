@@ -46,8 +46,26 @@ namespace Send {
 	     std::cout << "Ready!" << std::endl;
      }
 
-
      void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
+	     //  update units
+	     auto action = Update::Update_Units(game, &msg[1]);
+	     //  send stats
+	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+	     //empty inventory
+
+	     // append changes from the previous frame only
+	     //TODO: update inventory partially
+//	     Inventory::Update_Inventory_Slot(game.Get_Player().pack, game.updateItems);
+	     // append inventory
+	     action.append(Inventory::Update_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
+//	      append equipment
+	     //TODO: update equipment partially
+	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
+	     // send map
+	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
+     }
+
+     void Full_Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
 	     //  update units
 	     auto action = Update::Update_Units(game, &msg[1]);
 	     //  send stats
@@ -61,21 +79,21 @@ namespace Send {
      }
 
      int On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
-	     // keep websocket alive
 	     std::string response;
 
+	     //TODO: function pointer hashmap
 	     if (msg[0] == '1') { // Update
 		     Update(hdl, msg, print_server, game);
 	     } else if (msg[0] == '2') {  // loot item
 		     Update_Items::Update(msg, game);
 		     std::string skip = "1 ";
 		     Update(hdl, skip, print_server, game);
-	     } else if (msg[0] == '3') { // Initials player
+	     } else if (msg[0] == '3') { // Initializes player
 		     return 4;
 	     } else if (msg[0] == '4') { // Reconnect
 		     print_server.send(hdl, msg, websocketpp::frame::opcode::text);
 		     response.append(msg.substr(1));
-		     Update(hdl, response, print_server, game);
+		     Full_Update(hdl, response, print_server, game);
 	     } else if (msg[0] == '5') { // send unit stats
 		     response.append(msg.substr(1, 4));
 		     response = "5" + Species::Get_Unit_Data_As_string(game, response);
@@ -96,8 +114,6 @@ namespace Send {
 		     //
 	     }
 
-	     //[0] message type [1-2] ID (uint16_t stored as 2 chars) [3] message;
-	     // ie: 1a2w;
 	     if (!msg.empty()) {
 	     }
 	     return -1;

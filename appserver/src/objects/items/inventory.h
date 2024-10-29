@@ -9,10 +9,13 @@
 #include "items.h"
 #include "string"
 #include "array"
+#include "vector"
 
 namespace Inventory {
 
      std::string Update_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots);
+
+     std::string Update_Inventory_Slot(const Items::Backpack &backpack, std::vector<std::pair<uint8_t, uint8_t>> updateItems);
 
      void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index);
 };

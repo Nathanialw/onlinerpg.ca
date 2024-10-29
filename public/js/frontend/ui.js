@@ -45,75 +45,42 @@ function Parse(numItems, start, data, Query, size, items) {
 // damage = data.substring(4,6);
 // isDead = data.substring(6,7);
 
-export function Parse_Game_Update(data) {
+function Parse_Player_Update(dataStr) {
+    [visionWidth, dataStr] = [parseInt(dataStr.substring(0, 2), 10), dataStr.substring(2)];
+    [direction, dataStr]   = [parseInt(dataStr.substring(0, 1), 10), dataStr.substring(1)];
+    [species, dataStr]     = [parseInt(dataStr.substring(0, 2), 10), dataStr.substring(2)];
+    [damage, dataStr]      = [parseInt(dataStr.substring(0, 2), 10), dataStr.substring(2)];
+    [isDead, dataStr]      = [parseInt(dataStr.substring(0, 1), 10), dataStr.substring(1)];
+    return dataStr
+}
 
+export function Parse_Game_Update_Full(data) {
+
+}
+
+export function Parse_Game_Update(data) {
     //call individual parse functions
     //each function returns the remaining string to be parsed
     //pass the remaining string to the next function
 
+    data = Parse_Player_Update(data);
 
-    let start = 0;
-    let end = 2;
-    visionWidth = parseInt(data.substring(start, end), 10);
-    start = end;
-    end++;
-    direction = data.substring(start, end);
-    start = end;
-    end += 2;
-    species = Species[parseInt(data.substring(start, end), 10)];
-    start = end;
-    end += 2;
-    damage = data.substring(start, end);
-    start = end;
-    end++;
-    isDead = data.substring(start, end);
-    // let damageTaken = data.substring(4,6);
-    // let currentHealth = data.substring(6,8);
-    start = end;
-    end += 2;
-   
-    let startNext;
-
-    const endLoot = Parse(data.substring(start, end), end, data, Query_Loot, 3, loot);
+    const startBag = Parse(data.substring(0, 2), 2, data, Query_Loot, 3, loot);
     Open_Loot_Panel(direction);
-    // let startNext = Parse_Inventory(data.substring(endLoot));
-
-    let startBag = endLoot;
-    
     data = data.substring(startBag);
+    
     data = Update_Inventory(data);
-    startNext = 0;
-
-    const endEquipment = Parse(data.substring(startNext, startNext + 2), (startNext + 2), data, Query_Equipment, 5, equipment);
+    
+    const endEquipment = Parse(data.substring(0, 2), 2, data, Query_Equipment, 5, equipment);
     serverMap = data.substring(endEquipment);
 
-    // serverMap = data.substring(8);
     Update_Screen();
-}
-
-
-export function Update_Screen_Phone() {
-    app.stage.removeChildren();
-    
-    Draw_UI_Phone(characterInfo);
-    Draw_Vision_Background_Phone(visionWidth);
-    Make_Map(serverMap, visionWidth);
-    // Draw_Map_Phone(visionWidth, direction);
-    
-    // Display_Damage_Taken(species, damageTaken);
-    // Display_Damage(species, damage, isDead)
-    // Render_Log();
-    // Render_Target_Stats();
-
 }
 
 export function Update_Screen() {
     app.stage.removeChildren();
 
     //equal 3 when loot is stepped on, only trigger when initially stepping on loot
-
-    
-    
 
     Draw_UI(gamePanelIndex);
     Draw_Vision_Background(visionWidth);
