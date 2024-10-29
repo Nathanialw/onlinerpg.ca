@@ -68,7 +68,7 @@ namespace Items {
 
 	// requirements
 	public:
-	explicit Item(uint8_t powerLevel = 0) {
+	explicit Item() {
 		// passin the power level of item to create
 		// get a random uID from the db of that level
 		// roll for rarity
@@ -153,8 +153,8 @@ namespace Items {
 		auto num = 0;
 		std::string modsStr;
 
-		for (auto &mod: modifiers) {
-			if (Empty())
+		for (const auto &mod: modifiers) {
+			if (mod.Empty())
 				break;
 			modsStr += Utils::Prepend_Zero_By_Digits(mod.uID, 3);
 			num++;

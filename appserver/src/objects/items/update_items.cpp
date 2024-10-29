@@ -25,8 +25,7 @@ namespace Update_Items {
 
 	     if (type == "0") {
 		     std::cout << "Looting item at index: " << index << std::endl;
-		     Loot::Pick_Up_Item(
-			game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index));
+		     Loot::Pick_Up_Item(game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index));
 	     } else if (type == "1") {
 		     std::cout << "interacting with inventory at index: " << index << std::endl;
 		     if (mod == "c") { // throw away
