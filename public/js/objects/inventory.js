@@ -39,7 +39,7 @@ function Set_Icon(uID) {
         return item;
     }
     if (item.icon === undefined || item.icon === "none") {
-        return icon; 
+        return item.icon; 
     }
     return iconPath + item.icon;    
 }
@@ -50,7 +50,8 @@ export function Update_Inventory(dataStr) {
     //update the entire inventory vs just the ones sent
     inventory.forEach(bag => {
         bag.IconPath = Set_Icon(bag.BagID);    
-        bag.Items.forEach(item => {
+        let bagSize = Get_Icon_Path(bag.BagID).slots
+        for (let i = 0; i < bagSize; ++i) {            
             item.IconPath = Set_Icon(item.ItemID);    
             item.Modifiers.forEach(mod => {
                 //get the values
@@ -58,7 +59,7 @@ export function Update_Inventory(dataStr) {
                 // let modPath = Get_Icon_Path(mod);    
             }
             ///combine the like mods store the string
-        )});
+        )};
     });
     return dataStr;
 }
