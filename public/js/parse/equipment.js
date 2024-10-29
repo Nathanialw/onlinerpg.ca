@@ -9,6 +9,7 @@ export function Parse_Equipment(dataStr, equipment) {
 
     for (let i = 0; i < numItems; i++) {
         let index = parseInt(dataStr.substring(0, 2));
+        dataStr = dataStr.substring(2)
         dataStr = Parse_Item(dataStr, equipment[index]);
     }
     return dataStr;
