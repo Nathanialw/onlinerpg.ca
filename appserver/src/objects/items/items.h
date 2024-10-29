@@ -78,7 +78,8 @@ namespace Items {
 		// set the durability
 		durability = 100; // probably will be random later
 		// set the rarity
-		rarity =  Utils::Random(0, 7);
+//		rarity =  Utils::Random(0, 7);
+		rarity =   4;
 		// set the modifiers
 		for (auto &modifier: modifiers) {
 			modifier.Set_Empty();
