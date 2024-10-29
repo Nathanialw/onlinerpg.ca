@@ -20,7 +20,7 @@ function Create_Bag() {
     return {
         BagID: "",
         Texture: null,
-        IconPath: "",
+        IconPath: "none",
         Border: null,
         Items: Array(maxItems).fill().map(() => ({ ...item }))
     };
@@ -56,7 +56,6 @@ export function Update_Inventory(dataStr) {
             bag.Items[i].Modifiers.forEach(mod => {
                 //get the values
                 //get the text
-                // let modPath = Get_Icon_Path(mod);    
             }
             ///combine the like mods store the string
         )};

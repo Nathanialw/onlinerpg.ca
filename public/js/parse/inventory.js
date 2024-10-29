@@ -1,4 +1,7 @@
 'use strict'
+
+import { Parse_Item } from "./item.js";
+
 //parses the inventory data string and saves it to the inventory object
 
 //should I save the strings in a data structure or just get the data from the db when I need to desplay it?
@@ -10,27 +13,8 @@
     //query the num NAME EFFECTS with modifierID
         //add like modifiers together before displaying
 
-
-function Get_Item(dataStr, item) {
-    [item.ItemID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
-    //save rarity border path
-    [item.Rarity, dataStr] = [parseInt(dataStr.substring(0, 1)), dataStr.substring(1)];
-    //save durability value
-    [item.Durability, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
-    
-    //sav modifier uIDs to look up in the db
-    const numMods = parseInt(dataStr.substring(0, 1));
-    dataStr = dataStr.substring(1);
-
-    for (let j = 0; j < numMods; j++) {
-        item.Modifiers.push(parseInt(dataStr.substring(0, 3)));
-        dataStr = dataStr.substring(3)
-    }
-
-    return dataStr;
-}
-
 //takes in a  string of data and returns a structure of the data
+
 export function Parse_Inventory(dataStr, inventory) {
     const numBags = 4;
     
@@ -51,7 +35,7 @@ export function Parse_Inventory(dataStr, inventory) {
         for (let k = 0; k < numItems; k++) {
             const invIndex = parseInt(dataStr.substring(0, 2))
             dataStr = dataStr.substring(2);
-            dataStr = Get_Item(dataStr, inventory[i].Items[invIndex]);
+            dataStr = Parse_Item(dataStr, inventory[i].Items[invIndex]);
         }
     }
     return dataStr
