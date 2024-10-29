@@ -40,7 +40,7 @@ export function Update_Equipment(dataStr) {
             //get the text
         })
     })
-    
+    return dataStr;
 }
 
 const defaultEquipmentIcons = [
