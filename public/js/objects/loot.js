@@ -18,12 +18,16 @@ const groundSlots = 14;
 
 
 
-let loot = Array(groundSlots).fill().map(() => ({ ... item}));
+// Array(groundSlots).fill().map(() => ({ Texture: null, Name: null }))
+// let loot = Array(groundSlots).fill().map(() => ({ ... item}));
+let loot = {
+    NumItems: 0,
+    Items: [], //Array(groundSlots).fill().map(() => ({ ... item}))
+}
 let lootBox = Array(groundSlots).fill().map(() => ({ Texture: null, Name: null }));
-let numItems;
 
 export function Open_Loot_Panel(direction) {
-    if (loot.length > 0 && (direction == 'a' || direction == 'd' || direction == 'w' || direction == 's')) {
+    if (loot.NumItems > 0 && (direction == 'a' || direction == 'd' || direction == 'w' || direction == 's')) {
         Set_Game_Panel_Index(3);
     }
 }
@@ -47,9 +51,9 @@ export function Update_Loot(dataStr, direction) {
     //clear the loot array
     // loot = []
     // loot = Array(groundSlots).fill().map(() => ({ ... item}));
-    
-    dataStr = Parse_Loot(dataStr, loot, numItems)
-    loot.forEach(item => {
+    loot.NumItems = 0;
+    dataStr = Parse_Loot(dataStr, loot)
+    loot.Items.forEach(item => {
         item.IconPath = Set_Icon(item.ItemID);
         item.Modifiers.forEach(mod => {
             //get the values
@@ -64,19 +68,19 @@ export function Update_Loot(dataStr, direction) {
 
 export async function Draw_Loot() {
 
-    for (let i = 0; i < numItems; i++) {
-        if (loot[i].IconPath === undefined || loot[i].IconPath === "none") {
+    for (let i = 0; i < loot.NumItems; i++) {
+        if (loot.Items[i].IconPath === undefined || loot.Items[i].IconPath === "none") {
             break
         }
         // draw loot background and border
         lootBox[i].Texture = await Draw_Loot_Background(itemFramePath, i, 2.5); //background
-        loot[i].Texture = await Draw_Loot_Icons(loot[i].IconPath, i, 2.5);   
-        let name = await Get_Item_Stats(loot[i].ItemID)[0].name
+        loot.Items[i].Items.Texture = await Draw_Loot_Icons(loot.Items[i].IconPath, i, 2.5);   
+        let name = await Get_Item_Stats(loot.Items[i].ItemID)[0].name
         // const name = name.charAt(0).toUpperCase() + name.slice(1);
         lootBox[i].Name = await Draw_Loot_Text(name, i, 2.5) //text
-        loot[i].Border = await Draw_Loot_Icons(itemBorders[equipment[i].Rarity], i, 2.5) //border
+        loot.Items[i].Border = await Draw_Loot_Icons(itemBorders[equipment[i].Rarity], i, 2.5) //border
 
         //draw loot name
-        Set_Send_On_Loot_Click_Listener(background, '0', i, loot[i].ItemID, Draw_Loot_Background, 2.5);  //0 means loot panel
+        Set_Send_On_Loot_Click_Listener(background, '0', i, loot.Items[i].ItemID, Draw_Loot_Background, 2.5);  //0 means loot panel
     }
 }
