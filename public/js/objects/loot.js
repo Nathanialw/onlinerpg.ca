@@ -41,9 +41,10 @@ function Set_Icon(uID) {
 }
 
 export function Update_Loot(dataStr, direction) {
+    console.log("Parsing loot")
     //clear the loot array
-    loot = []
-    loot = Array(groundSlots).fill().map(() => ({ ... item}));
+    // loot = []
+    // loot = Array(groundSlots).fill().map(() => ({ ... item}));
     
     dataStr = Parse_Loot(dataStr, loot)
     loot.forEach(item => {
