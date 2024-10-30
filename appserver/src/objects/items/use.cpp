@@ -3,6 +3,9 @@
 //
 #include "unordered_map"
 #include "types.h"
+#include "db.h"
+#include "vector"
+#include "procgen.h"
 
 namespace Use {
 
@@ -14,9 +17,17 @@ namespace Use {
      }
 
      void Init() {
-	     for (int i = 0; i < itemEffects.size(); i++) {
-		     itemEffects[i] = i;
-	     }
+	     std::vector<std::pair<std::string, std::string>> whereEquals;
+	     whereEquals = {{"type", "potion"}};
+	     auto PotionIDs = DB::Get_List("uID", "Items", whereEquals);
+	     auto effects = DB::Get_List("uID", "itemEffects", whereEquals);
+
+	     std::cout << "PotionIDs: " << PotionIDs.size() << std::endl;
+	     std::cout << "effects: " << effects.size() << std::endl;
+
+//	     for (int i = 0; i < itemEffects.size(); i++) {
+//		     itemEffects[i] = i;
+//	     }
      }
 
      void Activate(ItemEffectUID effectID) {

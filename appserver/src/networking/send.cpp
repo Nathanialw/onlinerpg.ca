@@ -22,6 +22,7 @@
 namespace Send {
 
      void Init(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
+	     Use::Init();
 	     int level = 0;
 	     Component::Position location(0, 0);
 	     Component::Position startPos(6, 6);
