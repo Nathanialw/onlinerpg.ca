@@ -14,7 +14,7 @@
 
 namespace Update_Items {
 
-     ItemEffectUID Update(const std::string &msg, Game::Instance &game) {
+     std::pair<ItemID, ItemEffectUID> Update(const std::string &msg, Game::Instance &game) {
 	     //      response = "2";
 	     std::cout << "message: " << msg << std::endl;
 	     auto type = msg.substr(1, 1);
@@ -33,12 +33,12 @@ namespace Update_Items {
 			     Inventory::Drop_Item(game.Get_Player().pack.inventory, game.Get_Items(), stoi(bag), stoi(index), game.updateInventory);
 		     } else if (mod == "a") { // equip offhand
 			     std::cout << "alt clicked: " << mod << std::endl;
-			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
+			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag, game.knownUsables);
 		     } else if (mod == "s") { //
 			     std::cout << "shift clicked, thusfar unused" << std::endl;
 		     } else { // equip standard / use item
 			     std::cout << "unmodded clicked: " << mod << std::endl;
-			     return Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
+			     return Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag, game.knownUsables);
 		     }
 	     } else if (type == "2") {
 		     std::cout << "interacting with equipment at index: " << index << std::endl;
@@ -56,7 +56,7 @@ namespace Update_Items {
 			     std::cout << "unmodded clicked: " << mod << std::endl;
 		     }
 	     }
-	     return 0;
+	     return {0, 0};
      }
 
 }

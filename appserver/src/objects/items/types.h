@@ -11,7 +11,6 @@
 #include "items.h"
 
 
-
 typedef uint16_t ItemID;
 typedef uint16_t ItemEffectUID;
 

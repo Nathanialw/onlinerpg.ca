@@ -9,7 +9,7 @@
 #include "string"
 
 namespace Update_Items {
-     ItemEffectUID Update(const std::string &msg, Game::Instance &game);
+     std::pair<ItemID, ItemEffectUID> Update(const std::string &msg, Game::Instance &game);
 
 }
 

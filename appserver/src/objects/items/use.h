@@ -14,5 +14,5 @@ namespace Use {
 
      void Init();
 
-     void Update_Known_Usable_Effects(Unit::Unit &unit, std::unordered_map<ItemID, ItemEffectUID> &knownUsables, const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server,  const ItemEffectUID &itemEffect) ;
+     void Update_Known_Usable_Effects(Unit::Unit &unit, const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server,  const std::pair<ItemID, ItemEffectUID> &itemEffect) ;
 }

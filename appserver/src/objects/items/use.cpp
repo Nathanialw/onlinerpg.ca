@@ -37,7 +37,6 @@ namespace Use {
 		     std::cout << "Not usable." << int(effectID) << std::endl;
 		     return "";
 	     }
-	     std::cout << "Using Item!" << (int) effectID << std::endl;
 
 	     std::cout << "unit: " << unit.stats.health << std::endl;
 	     unit.stats.health += Utils::Random(20, 40);
@@ -50,20 +49,12 @@ namespace Use {
      };
 
 
-     void Update_Known_Usable_Effects(Unit::Unit &unit, std::unordered_map<ItemID, ItemEffectUID> &knownUsables, const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server,  const ItemEffectUID &itemEffect) {
-	     auto effectStr =  Activate(unit, itemEffect);
+     void Update_Known_Usable_Effects(Unit::Unit &unit, const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server,  const std::pair<ItemID, ItemEffectUID> &itemEffect) {
+	     auto effectStr =  Activate(unit, itemEffect.second);
 
 	     if (!effectStr .empty()) {
-		     auto bag = stoi(msg.substr(3, 1));
-		     auto index = stoi(msg.substr(4));
-
-		     ItemID ItemID = unit.pack.inventory[bag][index].Get_uID();
-		     std::cout << "adding effect: for item: " << ItemID << " effect: " << itemEffect << std::endl;
-		     knownUsables[ItemID] = itemEffect;
-		     std::cout << "new index value: " << knownUsables[ItemID] << std::endl;
-
 		     std::string updateItemEffects = "9";
-		     updateItemEffects += Utils::Prepend_Zero_By_Digits(ItemID, 3) + effectStr;
+		     updateItemEffects += Utils::Prepend_Zero_By_Digits(itemEffect.first, 3) + effectStr;
 		     print_server.send(hdl, updateItemEffects, websocketpp::frame::opcode::text);
 	     }
      }

@@ -180,11 +180,14 @@ namespace Items {
 		return itemStr;
 	}
 
-	ItemEffectUID Use() {
+          std::pair<ItemID, ItemEffectUID> Use(std::unordered_map<ItemID, ItemEffectUID> &knownUsables) {
 		auto effect = Get_Item_Effect(uID);
+		std::cout << "adding effect: for item: " << uID << " effect: " << effect << std::endl;
+		knownUsables[uID] = effect;
+		std::cout << "new index value: " << knownUsables[uID] << std::endl;
 		this->Set_Empty();
 		std::cout << "effect: " << (int) effect << std::endl;
-		return effect;
+		return {uID, effect};
 	}
 
 
