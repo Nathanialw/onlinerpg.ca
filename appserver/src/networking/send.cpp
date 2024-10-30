@@ -39,9 +39,7 @@ namespace Send {
 	     if (!game.Get_Objects(level, location).units.empty()) {
 		     std::string action = "d    10";
 		     // append loot
-
 		     action.append(Loot::Query_Loot(game.Get_Items()));
-
 		     // append bags
 		     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 		     // append inventory
@@ -59,6 +57,8 @@ namespace Send {
 	     auto action = Update::Update_Units(game, &msg[1]);
 	     //  send stats
 	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+	     // append loot
+	     action.append(Loot::Query_Loot(game.Get_Items()));
 	     // append inventory
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags, game.updateBag));
 	     // append inventory
@@ -74,6 +74,8 @@ namespace Send {
 	     auto action = Update::Update_Units(game, &msg[1]);
 	     //  send stats
 	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+	     // append loot
+	     action.append(Loot::Query_Loot(game.Get_Items()));
 	     // append bags
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 	     // append inventory
