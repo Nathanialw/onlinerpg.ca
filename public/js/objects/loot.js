@@ -1,5 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, itemFramePath } from '../graphics/graphics.js';
+import { itemBorders, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -11,38 +11,51 @@ import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
 let iconPath = "assets/graphics/icons/"
 
-export function Query_Loot(numItems, data, start) {
-    let drops = []
-    for (let i = 0; i < numItems; i++) {
-        //isert teh path
-        let itemID = parseInt(data.substring(start + (i * 3), start + ((i + 1) * 3), 10));
+const groundSlots = 14;
+let loot = Array(groundSlots).fill().map(() => ({ ...item }))
+let lootBox = Array(groundSlots).fill().map(() => ({Texture: null, Name: null}))
 
-        let item = Get_Icon_Path(itemID);
-        let icon = item.icon
-        if (icon === undefined || icon === "none") {
-            drops.push({index: i, itemID: itemID, path: icon, name: item.name}); 
-        }
-        else {
-            let path = iconPath + icon;
-            drops.push({index: i, itemID: itemID, path: path, name: item.name}); 
-        }
+function Set_Icon(uID) {
+    let item = Get_Icon_Path(uID);
+    if (item === undefined) {
+        console.log(uID, "uID is undefined in the db")
+        return item;
     }
-    return drops;
+    if (item.icon === undefined || item.icon === "none") {
+        return item.icon; 
+    }
+    let iconPath = "assets/graphics/icons/";
+    return iconPath + item.icon;    
 }
 
-export async function Draw_Loot(items) {
+export function Update_Loot(dataStr) {
+    dataStr = Parse_Loot(dataStr, loot)
+    loot.forEach(item => {
+        item.IconPath = Set_Icon(item.ItemID);
+        item.Modifiers.forEach(mod => {
+            //get the values
+            //get the text
+        })
+    })
+    Open_Loot_Panel(direction);
 
-    for (let i = 0; i < items.length; i++) {
-        if (items[i].path === undefined || items[i].path === "none") {
-            continue
+    return dataStr;
+}
+
+export async function Draw_Loot() {
+
+    for (let i = 0; i < loot.length; i++) {
+        if (items[i].path === undefined || loot[i].path === "none") {
+            break
         }
         // draw loot background and border
-        let background = await Draw_Loot_Background(itemFramePath, i, 2.5); //background
-        let icon = await Draw_Loot_Icons(items[i].path, i, 2.5);   
-        let text = await Draw_Loot_Text(items[i].name, i, 2.5) //text
-        let border = await Draw_Loot_Icons(itemFramePath, i, 2.5) //border
+        lootBox[i].Texture = await Draw_Loot_Background(itemFramePath, i, 2.5); //background
+        loot[i].Texture = await Draw_Loot_Icons(loot[i].IconPath, i, 2.5);   
+        const name = (await Get_Item_Stats(itemID)[0].name.charAt(0).toUpperCase() + itemStats.name.slice(1));
+        lootBox[i].Name = await Draw_Loot_Text(name, i, 2.5) //text
+        loot[i].Border = await Draw_Loot_Icons(itemBorders[equipment[i].Rarity], i, 2.5) //border
 
         //draw loot name
-        Set_Send_On_Loot_Click_Listener(background, '0', i, items[i].itemID, Draw_Loot_Background, 2.5);  //0 means loot panel
+        Set_Send_On_Loot_Click_Listener(background, '0', i, loot[i].ItemID, Draw_Loot_Background, 2.5);  //0 means loot panel
     }
 }

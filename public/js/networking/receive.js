@@ -1,7 +1,6 @@
 'use strict'
 
-import { Populate_Map } from '../map/map.js';
-import { Parse_Game_Update } from '../frontend/ui.js';
+import { Game_Update } from '../frontend/ui.js';
 import { UpdatePlayerInfo } from '../units/unitdef.js';
 import { Get_Target_Stats_From_Server } from '../ui/gamePanels/targetStats.js';
 import { OnReconnect } from '../frontend/newGame.js';
@@ -79,7 +78,7 @@ async function Create_Resume_Btn(data) {
 
 export let Update = {
     0: Message,
-    1: Parse_Game_Update,
+    1: Game_Update,
     2: Update_Inventory,
     3: UpdatePlayerInfo,
     4: Reconnect,

@@ -2,14 +2,9 @@
 import { Draw_Loot } from '../../objects/loot.js';
 import { Set_Game_Panel_Index } from '../menus/gameMenu.js';
 
-export let loot = [];
-
-// export function Get_Loot() {
-//     loot = Query_Loot();
-// }
 
 export function Loot() {    
-    Draw_Loot(loot);    
+    Draw_Loot();    
 }
 
 

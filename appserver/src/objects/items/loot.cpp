@@ -29,7 +29,7 @@ namespace Loot {
 	     for (auto item: items) {
 		     if (item.Empty())
 			     break;
-		     itemsStr += Utils::Prepend_Zero_By_Digits(item.Get_uID(), 3);
+		     itemsStr += item.As_Sendable_String();
 		     size++;
 	     }
 

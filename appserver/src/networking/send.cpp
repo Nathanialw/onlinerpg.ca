@@ -17,6 +17,7 @@
 #include "equipment.h"
 #include "update_items.h"
 #include "backpack.h"
+#include "loot.h"
 
 namespace Send {
 
@@ -37,6 +38,10 @@ namespace Send {
 
 	     if (!game.Get_Objects(level, location).units.empty()) {
 		     std::string action = "d    10";
+		     // append loot
+
+		     action.append(Loot::Query_Loot(game.Get_Items()));
+
 		     // append bags
 		     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 		     // append inventory

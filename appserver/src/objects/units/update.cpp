@@ -7,7 +7,6 @@
 #include "map.h"
 #include "collision.h"
 #include "attack.h"
-#include "movement.h"
 #include "utils.h"
 #include "pathing.h"
 #include "spawn.h"
@@ -146,7 +145,6 @@ namespace Update {
 
      std::string Update_Player(Game::Instance &game, const char *direction) {
 	     auto move = updatePosition[*direction];
-	     std::string items = Loot::Query_Loot(game.Get_Items());
 	     auto &location = game.Get_Player().position.location;
 	     auto &position = game.Get_Player().position.position;
 	     auto &level = game.Get_Player().position.level;
@@ -165,7 +163,7 @@ namespace Update {
 	     if (Collision::Wall_Collision(game, level, location, position.Add(move))) {
 		     std::cout << "wall collision" << std::endl;
 		     std::string c = "c";
-		     return c + " " + "   " + "1" + items;
+		     return c + " " + "   " + "1" ;
 	     }
 
 	     //rest
@@ -175,7 +173,7 @@ namespace Update {
 		     if (game.Get_Player().stats.health < game.Get_Player().stats.healthMax) {
 			     game.Get_Player().stats.health += 5;
 		     }
-		     return r + " " + "   " + "1" + items;
+		     return r + " " + "   " + "1" ;
 	     }
 
 	     // if the nearby cell is an enemy, attack
@@ -190,7 +188,7 @@ namespace Update {
 	     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, position, move);
 	     if (melee.damageDone > 0 && !melee.isDead) {
 		     std::cout << "attack goblin" << std::endl;
-		     return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1" + items;
+		     return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1" ;
 	     }
 
 	     // if the unit survives, return, else move to the cell
@@ -204,19 +202,17 @@ namespace Update {
 	     }
 
 //    query for items
-	     items = Loot::Query_Loot(game.Get_Items());
 
 	     if (melee.isDead) {
 		     std::cout << "goblin dead" << std::endl;
-		     return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0" + items;
+		     return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0" ;
 	     }
-	     return m + " " + "   " + "1" + items;
+	     return m + " " + "   " + "1" ;
      }
 
      std::string Update_Units(Game::Instance &game, const char *direction) {
 	     if (*direction == ' ') {
-		     std::string items = Loot::Query_Loot(game.Get_Items());
-		     return "     1" + items;
+		     return "     1";
 	     }
 
 	     auto action = Update_Player(game, direction);

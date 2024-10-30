@@ -1,16 +1,16 @@
 'use strict'
-import { app, Draw_UI, Draw_UI_Phone, Draw_Vision_Background, Draw_Vision_Background_Phone} from '../graphics/graphics.js';
+import { app, Draw_UI, Draw_Vision_Background } from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
-import { characterInfo, Species} from '../units/unitdef.js';
-import { Query_Loot } from '../objects/loot.js';
+import { Species} from '../units/unitdef.js';
+import { Update_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Update_Inventory } from '../objects/inventory.js';
 import { Draw_Equipment, Update_Equipment } from '../objects/equipment.js';
 import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
-import { loot, Open_Loot_Panel } from '../ui/gamePanels/loot.js';
-import { Get_Icon_Path } from '../db/db.js';
+import { Open_Loot_Panel } from '../ui/gamePanels/loot.js';
+
 // import { Parse_Inventory } from '../parse/inventory.js';
 
 // import {Create_Map_Line, Create_MiniMap_Line, Draw_UI, Draw_Vision_Background} from '../graphics/graphics.js';
@@ -24,16 +24,6 @@ let species;
 let damage;
 let isDead;
 let serverMap;
-
-function Parse(numItems, start, data, Query, size, items) {
-    removeEventListenersFromArray(items);
-    items.length = 0; // Clear the array without reassigning it
-    if (numItems > 0) {
-        items.push(...Query(numItems, data, start));
-    }    
-    
-    return start + (numItems * size); 
-}
 
 // visionWidth = parseInt(data.substring(0, 2), 10);
 // direction = data.substring(2,3);
@@ -50,27 +40,16 @@ function Parse_Player_Update(dataStr) {
     return dataStr
 }
 
-export function Parse_Game_Update_Full(data) {
-
-}
-
-export function Parse_Game_Update(dataStr) {
+function Parse_Recieved(dataStr) {
     //call individual parse functions
     //each function returns the remaining string to be parsed
     //pass the remaining string to the next function
 
     dataStr = Parse_Player_Update(dataStr);
-    console.log(dataStr)
-
-    const startBag = Parse(dataStr.substring(0, 2), 2, dataStr, Query_Loot, 3, loot);
+    dataStr = Update_Loot(dataStr);
     Open_Loot_Panel(direction);
-    dataStr = dataStr.substring(startBag);
-    
-    console.log(dataStr)
     dataStr = Update_Inventory(dataStr);
     serverMap = Update_Equipment(dataStr);
-
-    Update_Screen();
 }
 
 export function Update_Screen() {
@@ -91,6 +70,11 @@ export function Update_Screen() {
 
     Draw_Inventory();
     Draw_Equipment(); //pass the list of the strings of the path to the icons
+}
+
+export function Game_Update(dataStr) {
+    Parse_Recieved(dataStr);
+    Update_Screen();
 }
 
 // Function to remove event listeners from an array of objects
