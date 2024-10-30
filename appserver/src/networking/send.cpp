@@ -37,7 +37,7 @@ namespace Send {
 	     std::cout << "Player stats sent" << std::endl;
 
 	     if (!game.Get_Objects(level, location).units.empty()) {
-		     std::string action = "d    10";
+		     std::string action = "d    1";
 		     // append loot
 		     action.append(Loot::Query_Loot(game.Get_Items()));
 		     // append bags
