@@ -42,6 +42,7 @@ function Set_Icon(uID) {
 
 export function Update_Loot(dataStr, direction) {
     console.log("Parsing loot")
+    console.log("dataStr: ", dataStr)
     //clear the loot array
     // loot = []
     // loot = Array(groundSlots).fill().map(() => ({ ... item}));
