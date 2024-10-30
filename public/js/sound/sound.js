@@ -11,17 +11,17 @@ let Sounds = {
     swoosh: null
 }
 
-function CreateSound(path) {
-    var sound = new Howl ({
+async function CreateSound(path) {
+    var sound = await new Howl ({
         src: [path],
         html5: true
     });
     return sound;
 }
 
-function Load_Sound(sound, path) {
+async function Load_Sound(sound, path) {
     if (sound == null) {
-        sound = CreateSound(path);
+        sound = await CreateSound(path);
     }
 }
 
@@ -33,8 +33,8 @@ export function Init () {
 
 
 //preload landing page sounds
-export function Init_Title() {
-    Load_Sound(Music.title, '../../assets/music/title/Battle_-_Temple_Tussle.ogg');
+export async function Init_Title() {
+    await Load_Sound(Music.title, '../../assets/music/title/Battle_-_Temple_Tussle.ogg');
 }
 
 export function SoundPlay(keyName) {
