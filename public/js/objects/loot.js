@@ -14,8 +14,19 @@ import { Parse_Loot } from '../parse/loot.js';
 let iconPath = "assets/graphics/icons/"
 
 const groundSlots = 14;
-let loot = Array(groundSlots).fill().map(() => ({ ...item }))
-let lootBox = Array(groundSlots).fill().map(() => ({Texture: null, Name: null}))
+
+function initializeLootItem(index) {
+    return { ...item, index };
+}
+
+let loot = Array(groundSlots).fill().map((_, index) => initializeLootItem(index));
+let lootBox = Array(groundSlots).fill().map(() => ({ Texture: null, Name: null }));
+
+export function Open_Loot_Panel(direction) {
+    if (loot.length > 0 && (direction == 'a' || direction == 'd' || direction == 'w' || direction == 's')) {
+        Set_Game_Panel_Index(3);
+    }
+}
 
 function Set_Icon(uID) {
     let item = Get_Icon_Path(uID);
@@ -31,6 +42,10 @@ function Set_Icon(uID) {
 }
 
 export function Update_Loot(dataStr) {
+    //clear the loot array
+    loot = []
+    loot = Array(groundSlots).fill().map((_, index) => initializeLootItem(index));
+    
     dataStr = Parse_Loot(dataStr, loot)
     loot.forEach(item => {
         item.IconPath = Set_Icon(item.ItemID);
@@ -40,19 +55,22 @@ export function Update_Loot(dataStr) {
         })
     })
 
+    Open_Loot_Panel(direction);
+
     return dataStr;
 }
 
 export async function Draw_Loot() {
 
     for (let i = 0; i < loot.length; i++) {
-        if (items[i].path === undefined || loot[i].path === "none") {
+        if (loot[i].path === undefined || loot[i].path === "none") {
             break
         }
         // draw loot background and border
         lootBox[i].Texture = await Draw_Loot_Background(itemFramePath, i, 2.5); //background
         loot[i].Texture = await Draw_Loot_Icons(loot[i].IconPath, i, 2.5);   
-        const name = (await Get_Item_Stats(itemID)[0].name.charAt(0).toUpperCase() + itemStats.name.slice(1));
+        let name = await Get_Item_Stats(loot[i].ItemID)[0].name
+        // const name = name.charAt(0).toUpperCase() + name.slice(1);
         lootBox[i].Name = await Draw_Loot_Text(name, i, 2.5) //text
         loot[i].Border = await Draw_Loot_Icons(itemBorders[equipment[i].Rarity], i, 2.5) //border
 

@@ -9,7 +9,6 @@ import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
-import { Open_Loot_Panel } from '../ui/gamePanels/loot.js';
 
 // import { Parse_Inventory } from '../parse/inventory.js';
 
@@ -47,7 +46,6 @@ function Parse_Recieved(dataStr) {
 
     dataStr = Parse_Player_Update(dataStr);
     dataStr = Update_Loot(dataStr);
-    Open_Loot_Panel(direction);
     dataStr = Update_Inventory(dataStr);
     serverMap = Update_Equipment(dataStr);
 }
