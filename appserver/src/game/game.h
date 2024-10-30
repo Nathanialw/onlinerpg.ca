@@ -59,6 +59,7 @@ namespace Game {
 	//player
 	uint16_t player_id = 0;
 	std::vector<std::string> player_names;
+          std::unordered_map<ItemID, ItemEffectUID> knownUsables;
 
 	std::vector<std::pair<uint8_t, uint8_t>> updateInventory{};
 	int8_t updateEquipment  = -1;

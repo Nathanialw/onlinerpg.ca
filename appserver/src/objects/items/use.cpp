@@ -1,6 +1,8 @@
 //
 // Created by desktop on 10/30/24.
 //
+#include "websocketpp/config/asio_no_tls.hpp"
+#include "websocketpp/server.hpp"
 #include "unordered_map"
 #include "types.h"
 #include "db.h"
@@ -46,4 +48,24 @@ namespace Use {
 
 	     return Utils::Prepend_Zero_By_Digits(effectID, 3);
      };
+
+
+     void Update_Known_Usable_Effects(Unit::Unit &unit, std::unordered_map<ItemID, ItemEffectUID> &knownUsables, const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server,  const ItemEffectUID &itemEffect) {
+	     auto effectStr =  Activate(unit, itemEffect);
+
+	     auto bag = stoi(msg.substr(3, 1));
+	     auto index = stoi(msg.substr(4));
+	     ItemID ItemID = unit.pack.inventory[bag][index].Get_uID();
+
+	     if (!effectStr .empty()) {
+		     std::cout << "adding effect: for item: " << ItemID << " effect: " << itemEffect << std::endl;
+		     knownUsables[ItemID] = itemEffect;
+		     std::cout << "new index value: " << knownUsables[ItemID] << std::endl;
+
+		     std::string updateItemEffects = "9";
+		     updateItemEffects += Utils::Prepend_Zero_By_Digits(ItemID, 3) + effectStr;
+		     print_server.send(hdl, updateItemEffects, websocketpp::frame::opcode::text);
+	     }
+     }
 }
+

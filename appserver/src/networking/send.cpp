@@ -95,12 +95,8 @@ namespace Send {
 	     if (msg[0] == '1') { // Update
 		     Update(hdl, msg, print_server, game);
 	     } else if (msg[0] == '2') {  // loot item
-		     auto itemEffect = Use::Activate(game.Get_Player(), Update_Items::Update(msg, game));
-		     if (!itemEffect.empty()) {
-			     std::string updateItemEffects = "9";
-			     updateItemEffects += Utils::Prepend_Zero_By_Digits(game.Get_Player().pack.inventory[stoi(msg.substr(3, 1))][stoi(msg.substr(4))].Get_uID(), 3) + itemEffect;
-			     print_server.send(hdl, updateItemEffects, websocketpp::frame::opcode::text);
-		     }
+		     auto itemEffect = Update_Items::Update(msg, game);
+		     Use::Update_Known_Usable_Effects(game.Get_Player(), game.knownUsables, hdl, msg, print_server, itemEffect);
 		     std::string skip = "1 ";
 		     Update(hdl, skip, print_server, game);
 	     } else if (msg[0] == '3') { // New Game
