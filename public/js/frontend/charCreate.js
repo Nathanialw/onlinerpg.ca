@@ -5,8 +5,8 @@ import { Send_Web_Socket_Message } from '../networking/socket.js';
 import { Quit, Resume } from '../game/game.js';
 
 
+await Init_Title();    
 document.getElementById('connectButton').addEventListener('click', async (event) => {
-    await Init_Title()    
     Music_Play("title");
     
 

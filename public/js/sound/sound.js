@@ -14,7 +14,8 @@ let Sounds = {
 async function CreateSound(path) {
     var sound = await new Howl ({
         src: [path],
-        html5: true
+        html5: true,
+        autoplay: true
     });
     return sound;
 }
