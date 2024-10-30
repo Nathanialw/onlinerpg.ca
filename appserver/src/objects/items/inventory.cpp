@@ -60,7 +60,8 @@ namespace Inventory {
 
 	     //  numBags           bag          numItems          slot       bagID          item
 	     //         "0"                    "0"                   "00"               "00"         "000"           "0x"
-
+	     if (updateItems.empty())
+		     return "";
 
 	     std::string bagStr[(int) Items::BagType::SIZE];
 	     uint8_t numItems[(int) Items::BagType::SIZE];
