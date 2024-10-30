@@ -37,12 +37,13 @@ namespace Inventory {
 		     for (int i = 0; i < maxSlots[j]; ++i) {
 
 			     auto slot = Utils::Prepend_Zero_By_Digits(i, 2);
+			     std::cout << "slot: "  << slot << std::endl;
 			     auto item = backpack.inventory[j][i].As_Sendable_String();
 			     bagStr += slot + item;
-			     std::cout << "item : "  << slot + item << std::endl;
+			     std::cout << "item : "  << slot  << "   "  << item  << std::endl;
 		               numItems++;
 		     }
-		     std::cout << "item s: " << bagStr << std::endl;
+		     std::cout << "items: " << bagStr << std::endl;
 
 		     auto bagIndexStr = Utils::Prepend_Zero_By_Digits(j, 1);
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems, 2);
