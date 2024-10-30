@@ -28,31 +28,29 @@ namespace Inventory {
 
      //only send update when an inventory change function is called
      std::string Get_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots) {
-	     std::string inventoryStr;
+	     std::string inventoryStr = Utils::Prepend_Zero_By_Digits((int)Items::BagType::SIZE, 1);
 
 	     for (int j = 0; j < (int) Items::BagType::SIZE; ++j) {
 		     std::string bagStr;
-		     std::string newBagStr;
 		     uint8_t numItems = 0;
 
 		     for (int i = 0; i < maxSlots[j]; ++i) {
 //			     if (backpack.inventory[j][i].Empty() && numItems == 0)
 //				     continue;
-			     bagStr += Utils::Prepend_Zero_By_Digits(i, 2) + Utils::Prepend_Zero_By_Digits(backpack.inventory[j][i].Get_uID(), 3);
-
 			     auto slot = Utils::Prepend_Zero_By_Digits(i, 2);
 			     auto item = backpack.inventory[j][i].As_Sendable_String();
-			     newBagStr += slot + item;
+			     bagStr += slot + item;
 			     numItems++;
 		     }
 
-		     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
-		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems, 2);
-		     inventoryStr += numItemsStr += bagID + newBagStr;
+		     auto bagIndexStr = Utils::Prepend_Zero_By_Digits(j, 1);
 
-//		     inventoryStr += Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3) + bagStr;
-		     std::cout << "bag updated " << j << ": " << backpack.Sendable_BagID(j) + bagStr << std::endl;
-		     std::cout << "_item updated string: " << newBagStr << std::endl;
+		     auto bagIDStr = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
+		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems, 2);
+		     inventoryStr += bagIndexStr += numItemsStr += bagIDStr += bagStr;
+
+		     std::cout << "bag updated " << j << ": " << backpack.Sendable_BagID(j) + bagIDStr << std::endl;
+		     std::cout << "_item updated string: " << bagStr << std::endl;
 	     }
 	     return inventoryStr;
      }
@@ -65,11 +63,11 @@ namespace Inventory {
 	     //         "0"                    "0"                   "00"               "00"         "000"           "0x"
 
 
-	     std::string bagStr [(int)Items::BagType::SIZE];
-	     uint8_t numItems [(int)Items::BagType::SIZE];
+	     std::string bagStr[(int) Items::BagType::SIZE];
+	     uint8_t numItems[(int) Items::BagType::SIZE];
 
 
-	     for (const auto &update : updateItems) {
+	     for (const auto &update: updateItems) {
 		     std::string newBagStr;
 
 		     auto slot = Utils::Prepend_Zero_By_Digits(update.second, 2);
@@ -84,19 +82,20 @@ namespace Inventory {
 
 	     uint8_t numBags = 0;
 	     for (const auto s: numItems) {
-		if (s > 0)
-			numBags++;
+		     if (s > 0)
+			     numBags++;
 	     }
 	     std::string inventoryStr = Utils::Prepend_Zero_By_Digits(numBags, 1);
 
 	     for (int j = 0; j < (int) Items::BagType::SIZE; ++j) {
 		     if (numItems[j] == 0)
 			     continue;
-		     auto bagIndex = Utils::Prepend_Zero_By_Digits(j, 1);
-		     inventoryStr +=  bagIndex;
+		     auto bagIndexStr = Utils::Prepend_Zero_By_Digits(j, 1);
+		     inventoryStr += bagIndexStr;
 
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems[j], 2);
-		     inventoryStr += numItemsStr + bagStr[j];
+		     auto bagIDStr = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
+		     inventoryStr += numItemsStr += bagIDStr += bagStr[j];
 	     }
 
 	     updateItems.clear();
