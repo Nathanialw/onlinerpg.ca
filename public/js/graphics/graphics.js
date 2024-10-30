@@ -294,7 +294,7 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
     }
 
     let equipmentIcon = await Load_Icon(iconPath);
-    icon = new PIXI.Sprite(equipmentIcon);
+    let icon = new PIXI.Sprite(equipmentIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, icon);
     return icon
 }
@@ -313,7 +313,7 @@ export async function Draw_Bag_Icons(iconPath, num, w) {
     let squareSize = w * cellSize;
 
     let bagIcon = await Load_Icon(iconPath);
-    icon = new PIXI.Sprite(bagIcon);
+    let icon = new PIXI.Sprite(bagIcon);
     Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, icon);
     return icon
 }
