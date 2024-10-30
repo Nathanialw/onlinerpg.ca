@@ -3,6 +3,7 @@ import { itemBorders, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, ite
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 import { item } from "./item.js";
+import { Parse_Loot } from '../parse/loot.js';
 
 //when I move on to a new tile
 //check if there is loot
