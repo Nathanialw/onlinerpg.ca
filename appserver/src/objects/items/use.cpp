@@ -25,14 +25,14 @@ namespace Use {
 	     std::cout << "PotionIDs: " << PotionIDs.size() << std::endl;
 	     std::cout << "effects: " << effects.size() << std::endl;
 
-//	     for (int i = 0; i < itemEffects.size(); i++) {
-//		     itemEffects[i] = i;
-//	     }
+	     for (int i = 0; i < PotionIDs.size(); i++) {
+		     itemEffects[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
+	     }
      }
 
      void Activate(ItemEffectUID effectID) {
 	     if (effectID == 0) {
-		     std::cout << "Not usable." << std::endl;
+		     std::cout << "Not usable." << int(effectID) << std::endl;
 		     return;
 	     }
 	     std::cout << "Using Item!" << (int)effectID << std::endl;

@@ -59,6 +59,8 @@ set(SOURCES
         src/objects/items/equipment.cpp
         src/objects/items/backpack.cpp
         src/objects/items/update_items.cpp
+        src/objects/items/modifiers.cpp
+        src/objects/items/use.cpp
 
         src/objects/actions/attack.cpp
         src/objects/actions/death.cpp
@@ -68,8 +70,6 @@ set(SOURCES
         src/abilities/debuffs/Disease.cpp
 
         src/procgen/procgen.cpp
-        src/objects/items/modifiers.cpp
-        src/objects/items/use.cpp
 )
 
 add_executable(BrowserRPG ${SOURCES})
