@@ -45,7 +45,7 @@ function Parse_Recieved(dataStr) {
     //pass the remaining string to the next function
 
     dataStr = Parse_Player_Update(dataStr);
-    dataStr = Update_Loot(dataStr);
+    dataStr = Update_Loot(dataStr, direction);
     dataStr = Update_Inventory(dataStr);
     serverMap = Update_Equipment(dataStr);
 }

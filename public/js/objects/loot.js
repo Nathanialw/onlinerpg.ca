@@ -41,7 +41,7 @@ function Set_Icon(uID) {
     return iconPath + item.icon;    
 }
 
-export function Update_Loot(dataStr) {
+export function Update_Loot(dataStr, direction) {
     //clear the loot array
     loot = []
     loot = Array(groundSlots).fill().map((_, index) => initializeLootItem(index));
