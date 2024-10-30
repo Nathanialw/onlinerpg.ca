@@ -1,6 +1,6 @@
 'use strict'
 import { itemBorders, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, itemFramePath } from '../graphics/graphics.js';
-import { Get_Icon_Path } from '../db/db.js';
+import { Get_Icon_Path, Get_Item_Stats } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 import { item } from "./item.js";
 import { Parse_Loot } from '../parse/loot.js';
@@ -20,6 +20,7 @@ const groundSlots = 14;
 
 let loot = Array(groundSlots).fill().map(() => ({ ... item}));
 let lootBox = Array(groundSlots).fill().map(() => ({ Texture: null, Name: null }));
+let numItems;
 
 export function Open_Loot_Panel(direction) {
     if (loot.length > 0 && (direction == 'a' || direction == 'd' || direction == 'w' || direction == 's')) {
@@ -47,7 +48,7 @@ export function Update_Loot(dataStr, direction) {
     // loot = []
     // loot = Array(groundSlots).fill().map(() => ({ ... item}));
     
-    dataStr = Parse_Loot(dataStr, loot)
+    dataStr = Parse_Loot(dataStr, loot, numItems)
     loot.forEach(item => {
         item.IconPath = Set_Icon(item.ItemID);
         item.Modifiers.forEach(mod => {
@@ -63,8 +64,8 @@ export function Update_Loot(dataStr, direction) {
 
 export async function Draw_Loot() {
 
-    for (let i = 0; i < loot.length; i++) {
-        if (loot[i].path === undefined || loot[i].path === "none") {
+    for (let i = 0; i < numItems; i++) {
+        if (loot[i].IconPath === undefined || loot[i].IconPath === "none") {
             break
         }
         // draw loot background and border
