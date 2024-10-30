@@ -13,24 +13,29 @@
 
 namespace Equipment {
 
-     void Swap_Item(Items::Inventory &inventory, Items::Equipped &equipment, const int equipSlot, const int invSlot, uint8_t bag) {
+     void Swap_Item(Items::Inventory &inventory, Items::Equipped &equipment, const int8_t equipSlot, const int invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
 	     auto swapItemID = equipment[equipSlot];
 	     equipment[equipSlot] = inventory[bag][invSlot];
 	     std::cout << "equipment slot now contains itemID: " << equipment[equipSlot].Get_uID() << std::endl;
 	     inventory[bag][invSlot] = swapItemID;
+	     updateItems.emplace_back(bag, invSlot);
+	     updateEquipment = equipSlot;
      }
 
      //set equipment slot index to itemID
      //clear inventory slot index
-     void Unequip_Item(Items::Inventory &inventory, Items::Equipped &equipment, const std::string &slotNum, const Items::Max_Slots &maxSlots) {
+     void Unequip_Item(Items::Inventory &inventory, Items::Equipped &equipment, const std::string &slotNum, const Items::Max_Slots &maxSlots, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
 	     //swap equipment slot itemID with inventory itemID
-	     auto swapItemID = equipment[stoi(slotNum)];
+	     auto slot = stoi(slotNum);
+	     auto swapItemID = equipment[slot];
 
 	     for (int bag = 0; bag < (int) Items::BagType::Scrolls; ++bag) {
 		     for (int i = 0; i < maxSlots[bag]; ++i) {
 			     if (inventory[bag][i].Empty()) {
 				     inventory[bag][i] = swapItemID;
-				     equipment[stoi(slotNum)].Set_Empty();
+				     equipment[slot].Set_Empty();
+				     updateItems.emplace_back(bag, i);
+				     updateEquipment = (int8_t)slot;
 				     return;
 			     }
 		     }
@@ -47,8 +52,8 @@ namespace Equipment {
 		     return slot0;
      }
 
-     void Equip_Item(Items::Inventory &inventory, Items::Equipped &equipment, uint8_t index, const std::string &equipSlot, uint8_t bag) {
-	     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", equipSlot)); //retrieve slotNum using slotName from the db
+     void Equip_Item(Items::Inventory &inventory, Items::Equipped &equipment, uint8_t index, const std::string &equipSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
+	     int8_t slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", equipSlot)); //retrieve slotNum using slotName from the db
 
 	     std::cout << "equip slot num: " << slotNum << std::endl;
 
@@ -60,10 +65,10 @@ namespace Equipment {
 
 	     std::cout << "equip slot num: " << slotNum << std::endl;
 
-	     Swap_Item(inventory, equipment, slotNum, index, bag);
+	     Swap_Item(inventory, equipment, slotNum, index, bag, updateItems, updateEquipment);
      }
 
-     void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag) {
+     void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
 	     auto item = pack.inventory[bag][index];
 	     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(item.Get_uID())); //retrieve equipSlot using itemID from the db
 	     if (slotStr == "bag") {
@@ -73,17 +78,17 @@ namespace Equipment {
 
 	     auto slotNum = stoi(DB::Query("slotNum", "equipSlots", "slotName", slotStr)); //retrieve slotNum using slotName from the db
 	     if (slotNum == (int) Items::ItemSlot::mainHand || slotNum == (int) Items::ItemSlot::offHand) {
-		     Swap_Item(pack.inventory, equipment, (int) Items::ItemSlot::offHand, index, bag);
+		     Swap_Item(pack.inventory, equipment, (int) Items::ItemSlot::offHand, index, bag, updateItems, updateEquipment);
 		     return;
 	     } else if (slotNum == (int) Items::ItemSlot::ring0 || slotNum == (int) Items::ItemSlot::ring1) {
-		     Swap_Item(pack.inventory, equipment, (int) Items::ItemSlot::ring1, index, bag);
+		     Swap_Item(pack.inventory, equipment, (int) Items::ItemSlot::ring1, index, bag, updateItems, updateEquipment);
 		     return;
 	     }
 
-	     Use_Item(pack, groundItems, equipment, index, bag); //equip the item normally
+	     Use_Item(pack, groundItems, equipment, index, bag, updateItems, updateEquipment); //equip the item normally
      }
 
-     void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag) {
+     void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
 	     auto item = pack.inventory[bag][invSlot];
 	     std::cout << "itemID: " << item.Get_uID() << std::endl;
 
@@ -112,7 +117,7 @@ namespace Equipment {
 		     return;
 	     }
 
-	     Equip_Item(pack.inventory, equipment, invSlot, slotStr, bag);
+	     Equip_Item(pack.inventory, equipment, invSlot, slotStr, bag, updateItems, updateEquipment);
      }
 
      std::string Get_Equipment(Items::Equipped &equipment) {

@@ -12,14 +12,14 @@
 
 namespace Inventory {
 
-     void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index) {
+     void Drop_Item(Items::Inventory &inventory, Items::Ground &groundItems, uint8_t bag, uint8_t index, std::vector<std::pair<uint8_t, uint8_t>> &updateInventory) {
 	     auto item = inventory[bag][index];
 	     for (auto &groundItem: groundItems) {
 		     if (groundItem.Empty()) {
 			     groundItem.Set(item);
 			     inventory[bag][index].Set_Empty();
 			     inventory[bag][index].Print();
-//			     updateInventory .push_back({bag, index});
+			     updateInventory .emplace_back(bag, index);
 			     return;
 		     }
 	     }

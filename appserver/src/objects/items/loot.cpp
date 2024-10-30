@@ -37,7 +37,7 @@ namespace Loot {
 	     return itemsStr;
      }
 
-     std::string Pick_Up_Item(Items::Ground &loot, Items::Inventory &inventory, const Items::Max_Slots &maxSlots, uint8_t index) {
+     std::string Pick_Up_Item(Items::Ground &loot, Items::Inventory &inventory, const Items::Max_Slots &maxSlots, uint8_t index, std::vector<std::pair<uint8_t, uint8_t>> &updateItems) {
 	     auto item = loot[index];
 	     int inventoryIndex = 999;
 
@@ -72,8 +72,11 @@ namespace Loot {
 		     return " ";
 	     }
 
+
 	     // add item to inventory array
 	     inventory[bagIndex][inventoryIndex] = item;
+	     // add the inventory slot to the update array
+	     updateItems.emplace_back(bagIndex, inventoryIndex);
 	     std::cout << (int)item.Get_uID() << " added to inventory at slot: " << inventoryIndex << std::endl;
 	     //remove from loot array and resize
 	     for (int i = index; i < loot.size() - 1; ++i) {

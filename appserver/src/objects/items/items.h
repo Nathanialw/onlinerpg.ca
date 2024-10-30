@@ -191,7 +191,7 @@ namespace Items {
      };
 
      typedef std::array<Item, 14> Ground;
-     typedef std::array<Item, (uint8_t) ItemSlot::SIZE> Equipped;
+     typedef std::array<Item, (int8_t) ItemSlot::SIZE> Equipped;
 } // namespace Items
 
 #endif // BROWSERRPG_ITEMS_H

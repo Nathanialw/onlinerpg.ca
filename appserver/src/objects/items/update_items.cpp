@@ -25,24 +25,24 @@ namespace Update_Items {
 
 	     if (type == "0") {
 		     std::cout << "Looting item at index: " << index << std::endl;
-		     Loot::Pick_Up_Item(game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index));
+		     Loot::Pick_Up_Item(game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index), game.updateInventory);
 	     } else if (type == "1") {
 		     std::cout << "interacting with inventory at index: " << index << std::endl;
 		     if (mod == "c") { // throw away
 			     std::cout << "control clicked: " << mod << std::endl;
-			     Inventory::Drop_Item(game.Get_Player().pack.inventory, game.Get_Items(), stoi(bag), stoi(index));
+			     Inventory::Drop_Item(game.Get_Player().pack.inventory, game.Get_Items(), stoi(bag), stoi(index), game.updateInventory);
 		     } else if (mod == "a") { // equip offhand
 			     std::cout << "alt clicked: " << mod << std::endl;
-			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag));
+			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag),  game.updateInventory, game.updateEquipment);
 		     } else if (mod == "s") { //
 			     std::cout << "shift clicked, thusfar unused" << std::endl;
 		     } else { // equip standard / use item
 			     std::cout << "unmodded clicked: " << mod << std::endl;
-			     Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag));
+			     Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment);
 		     }
 	     } else if (type == "2") {
 		     std::cout << "interacting with equipment at index: " << index << std::endl;
-		     Equipment::Unequip_Item(game.Get_Player().pack.inventory, game.Get_Player().equipment, index, game.Get_Player().pack.maxSlots);
+		     Equipment::Unequip_Item(game.Get_Player().pack.inventory, game.Get_Player().equipment, index, game.Get_Player().pack.maxSlots, game.updateInventory, game.updateEquipment);
 	     } else if (type == "3") {
 		     std::cout << "interacting with bags at index: " << index << std::endl;
 		     if (mod == "c") { // unequip bag

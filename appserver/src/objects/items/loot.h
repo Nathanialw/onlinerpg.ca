@@ -10,10 +10,11 @@
 #include "array"
 #include "string"
 #include "items.h"
+#include "vector"
 
 namespace Loot {
 
   void Generate_Loot(Items::Ground &items);
   std::string Query_Loot(Items::Ground &items);
-  std::string Pick_Up_Item(Items::Ground &loot, Items::Inventory &inventory, const Items::Max_Slots &maxSlots, uint8_t index);
+  std::string Pick_Up_Item(Items::Ground &loot, Items::Inventory &inventory, const Items::Max_Slots &maxSlots, uint8_t index, std::vector<std::pair<uint8_t, uint8_t>> &updateItems);
 }
