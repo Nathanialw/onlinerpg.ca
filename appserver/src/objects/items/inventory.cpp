@@ -80,6 +80,7 @@ namespace Inventory {
 		     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[update.first].Get_uID(), 3);
 		     bagStr[update.first] += bagID + newBagStr;
 
+		     std::cout << "bag: " << bagStr[update.first] << std::endl;
 		     numItems[update.first]++;
 	     }
 
@@ -98,7 +99,8 @@ namespace Inventory {
 
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems[j], 2);
 		     auto bagIDStr = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
-		     inventoryStr += numItemsStr += bagIDStr += bagStr[j];
+		     std::cout << "bag: " << numItemsStr + bagIDStr + bagStr[j] << std::endl;
+		     inventoryStr += numItemsStr + bagIDStr + bagStr[j];
 	     }
 
 	     updateItems.clear();
