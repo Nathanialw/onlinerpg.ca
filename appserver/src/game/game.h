@@ -62,6 +62,7 @@ namespace Game {
 
 	std::vector<std::pair<uint8_t, uint8_t>> updateInventory{};
 	int8_t updateEquipment  = -1;
+	int8_t updateBag  = -1;
 
 	int8_t level = 0;
 	Component::Position location = {0, 0};

@@ -47,10 +47,9 @@ namespace Inventory {
 
 		     auto bagIndexStr = Utils::Prepend_Zero_By_Digits(j, 1);
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems, 2);
-		     auto bagIDStr = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
 
-		     inventoryStr += (bagIndexStr + numItemsStr + bagIDStr + bagStr);
-		     std::cout << "bag: "  <<  bagIndexStr + numItemsStr + bagIDStr + bagStr << std::endl;
+		     inventoryStr += (bagIndexStr + numItemsStr +  bagStr);
+		     std::cout << "bag: "  <<  bagIndexStr + numItemsStr +  bagStr << std::endl;
 	     }
 	     std::cout << "inventory full update sent: " << inventoryStr << std::endl;
 	     return inventoryStr;
@@ -94,9 +93,8 @@ namespace Inventory {
 		     inventoryStr += bagIndexStr;
 
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems[j], 2);
-		     auto bagIDStr = Utils::Prepend_Zero_By_Digits(backpack.bags[j].Get_uID(), 3);
-		     std::cout << "bag: " << numItemsStr + bagIDStr + bagStr[j] << std::endl;
-		     inventoryStr += numItemsStr + bagIDStr + bagStr[j];
+		     std::cout << "bag: " << numItemsStr + bagStr[j] << std::endl;
+		     inventoryStr += numItemsStr + bagStr[j];
 	     }
 
 	     updateItems.clear();

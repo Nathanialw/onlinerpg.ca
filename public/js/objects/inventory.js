@@ -2,7 +2,7 @@
 import { Draw_Inventory_Icons, Draw_Bag_Icons, itemFramePath, itemBorders } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
-import { Parse_Inventory } from '../parse/inventory.js';
+import { Parse_Inventory, Parse_Bags } from '../parse/inventory.js';
 import { item } from "./item.js";
 
 //when I move on to a new tile
@@ -45,6 +45,7 @@ function Set_Icon(uID) {
 }
 
 export function Update_Inventory(dataStr) {
+    dataStr = Parse_Bags(dataStr, inventory);
     dataStr = Parse_Inventory(dataStr, inventory);
 
     //update the entire inventory vs just the ones sent

@@ -85,7 +85,6 @@ namespace Loot {
 	     }
 	     loot[loot.size() - 1].Set_Empty(); // Set the last element to 0
 
-	     //TODO: use this to send the update of the single slot
 	     // return the index of the inventory slot to update and the index of the item in the db
 	     std::string inventoryStr = Utils::Prepend_Zero_By_Digits(inventoryIndex, 2) + Utils::Prepend_Zero_By_Digits(item.Get_uID(), 3);
 	     return inventoryStr;

@@ -1,6 +1,6 @@
 'use strict'
 
-import { Parse_Item } from "./items.js";
+import { Parse_Item, Parse_Bags } from "./items.js";
 
 //parses the inventory data string and saves it to the inventory object
 
@@ -15,6 +15,23 @@ import { Parse_Item } from "./items.js";
 
 //takes in a  string of data and returns a structure of the data
 
+export function Parse_Bags(dataStr, inventory) {
+    console.log(dataStr)
+
+    const numBags = parseInt(dataStr.substring(0, 1))
+    dataStr = dataStr.substring(1);
+
+    for (let i = 0; i < numBags; i++) {
+        const bagIndex = parseInt(dataStr.substring(0, 1))
+        dataStr = dataStr.substring(1);
+
+        [inventory[bagIndex].BagID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
+    }
+    
+    console.log(dataStr)
+    return dataStr
+}
+
 export function Parse_Inventory(dataStr, inventory) {
     console.log(dataStr)
     
@@ -27,12 +44,6 @@ export function Parse_Inventory(dataStr, inventory) {
 
         const numItems = parseInt(dataStr.substring(0, 2))
         dataStr = dataStr.substring(2);
-        
-        if (numItems == 0 && inventory[bagIndex].BagID) {            
-            continue
-        }
-
-        [inventory[bagIndex].BagID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
         
         if (numItems == 0) {            
             continue

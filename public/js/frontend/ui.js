@@ -67,6 +67,7 @@ export function Parse_Game_Update(dataStr) {
     dataStr = dataStr.substring(startBag);
     
     console.log(dataStr)
+    dataStr = Parse_Bags(dataStr);
     dataStr = Update_Inventory(dataStr);
     serverMap = Update_Equipment(dataStr);
 

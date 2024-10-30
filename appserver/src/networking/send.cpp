@@ -16,6 +16,7 @@
 #include "player.h"
 #include "equipment.h"
 #include "update_items.h"
+#include "backpack.h"
 
 namespace Send {
 
@@ -36,6 +37,8 @@ namespace Send {
 
 	     if (!game.Get_Objects(level, location).units.empty()) {
 		     std::string action = "d    10";
+		     // append bags
+		     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 		     // append inventory
 		     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
 		     // append equipment
@@ -51,15 +54,11 @@ namespace Send {
 	     auto action = Update::Update_Units(game, &msg[1]);
 	     //  send stats
 	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
-	     //empty inventory
-
-	     // append changes from the previous frame only
-	     //TODO: update inventory partially
-//	     Inventory::Update_Inventory_Slot(game.Get_Player().pack, game.updateItems);
+	     // append inventory
+	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags, game.updateBag));
 	     // append inventory
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.updateInventory));
 //	      append equipment
-	     //TODO: update equipment partially
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment, game.updateEquipment));
 	     // send map
 	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);

@@ -96,7 +96,7 @@ namespace Backpack {
 	     }
      }
 
-     void Equip_Bag(Items::Backpack &pack, Items::Ground &groundItems, uint8_t invSlot, uint8_t bag, Items::BagType bagSlot) {
+     void Equip_Bag(Items::Backpack &pack, Items::Ground &groundItems, uint8_t invSlot, uint8_t bag, Items::BagType bagSlot, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateBag) {
 	     auto item = pack.inventory[bag][invSlot];
 
 	     if (bagSlot == Items::BagType::Items0) {
@@ -107,11 +107,32 @@ namespace Backpack {
 			     bagSlot = Items::BagType::Items1;
 		     }
 	     }
-	     auto iBagSlot = (int) bagSlot;
+	     int8_t iBagSlot = (int8_t) bagSlot;
 
 	     if (!Check_Space_Item_Drop(pack, groundItems, iBagSlot, item.Get_uID()))
 		     return;
 	     auto tempMaxSlots = Equip_Bag(pack, item, invSlot, bag, iBagSlot);
 	     Drop_Items(pack, groundItems, iBagSlot, tempMaxSlots);
+
+	     updateBag = iBagSlot;
+	     updateItems.emplace_back(bag, invSlot);
+     }
+
+     std::string Get_Bags(Items::Bags &bags) {
+	     std::string bagStr = Utils::Prepend_Zero_By_Digits(bags.size(), 1);
+	     for (int i = 0; i < bags.size(); ++i) {
+		     bagStr += Utils::Prepend_Zero_By_Digits(i, 1) + Utils::Prepend_Zero_By_Digits(bags[i].Get_uID(), 3);
+	     }
+	     return bagStr;
+     }
+
+     std::string Get_Bags(Items::Bags &bags, int8_t &slot) {
+	     if (slot != -1) {
+		     std::string bagStr = "1";
+		     bagStr += Utils::Prepend_Zero_By_Digits(slot, 1) + Utils::Prepend_Zero_By_Digits(bags[slot].Get_uID(), 3);
+		     slot = -1;
+		     return bagStr;
+	     } else
+		     return "0";
      }
 }

@@ -68,11 +68,11 @@ namespace Equipment {
 	     Swap_Item(inventory, equipment, slotNum, index, bag, updateItems, updateEquipment);
      }
 
-     void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
+     void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag) {
 	     auto item = pack.inventory[bag][index];
 	     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(item.Get_uID())); //retrieve equipSlot using itemID from the db
 	     if (slotStr == "bag") {
-		     Backpack::Equip_Bag(pack, groundItems, index, bag, Items::BagType::Items1);
+		     Backpack::Equip_Bag(pack, groundItems, index, bag, Items::BagType::Items1, updateItems, updateBag);
 		     return;
 	     }
 
@@ -85,10 +85,10 @@ namespace Equipment {
 		     return;
 	     }
 
-	     Use_Item(pack, groundItems, equipment, index, bag, updateItems, updateEquipment); //equip the item normally
+	     Use_Item(pack, groundItems, equipment, index, bag, updateItems, updateEquipment, updateBag); //equip the item normally
      }
 
-     void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
+     void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag) {
 	     auto item = pack.inventory[bag][invSlot];
 	     std::cout << "itemID: " << item.Get_uID() << std::endl;
 
@@ -97,23 +97,24 @@ namespace Equipment {
 
 	     if (slotStr == "notEquippable") {
 		     // query the effect of the item and apply it
-//      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
+		//      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
 		     std::cout << "item not equippable" << std::endl;
 		     return;
 	     }
 
+	     //if any of these send the client an update for the bags as well as the inv slot
 	     if (slotStr == "bag") {
-		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Items0);
+		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Items0, updateItems, updateBag);
 		     return;
 	     }
 
 	     if (slotStr == "tome") {
-		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Scrolls);
+		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Scrolls, updateItems, updateBag);
 		     return;
 	     }
 
 	     if (slotStr == "belt") {
-		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Potions);
+		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Potions, updateItems, updateBag);
 		     return;
 	     }
 
