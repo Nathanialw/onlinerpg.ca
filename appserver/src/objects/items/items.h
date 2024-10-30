@@ -16,6 +16,7 @@
 namespace Items {
 
      std::unordered_map<ItemID, ItemEffectUID> &Get_Item_Effect_Array();
+
      ItemEffectUID Get_Item_Effect(ItemID itemID);
 
 
@@ -180,12 +181,12 @@ namespace Items {
 		return itemStr;
 	}
 
-          std::pair<ItemID, ItemEffectUID> Use(std::unordered_map<ItemID, ItemEffectUID> &knownUsables) {
+	std::pair<ItemID, ItemEffectUID> Use(std::unordered_map<ItemID, ItemEffectUID> &knownUsables) {
 		auto effect = Get_Item_Effect(uID);
 		std::cout << "adding effect: for item: " << uID << " effect: " << effect << std::endl;
 		knownUsables[uID] = effect;
 		std::cout << "new index value: " << knownUsables[uID] << std::endl;
-	          std::pair<ItemID, ItemEffectUID> effectPair = {uID, effect};
+		std::pair<ItemID, ItemEffectUID> effectPair = {uID, effect};
 		this->Set_Empty();
 		return effectPair;
 	}

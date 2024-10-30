@@ -3,19 +3,17 @@
 //
 #include "websocketpp/config/asio_no_tls.hpp"
 #include "websocketpp/server.hpp"
-#include "unordered_map"
 #include "types.h"
 #include "db.h"
 #include "vector"
 #include "procgen.h"
-//#include "items.h"
 #include "unit.h"
+#include <algorithm>
+#include <random>
 
 namespace Use {
 
-     //TODO: on game start load the item db effects into this array and randomly assign them to scrolls and potions
-
-
+     //TODO: on game start load the item db effects into this array and randomly assign them to SCROLLS as well
      void Init() {
 	     std::vector<std::pair<std::string, std::string>> whereEquals;
 	     whereEquals = {{"type", "potion"}};
@@ -25,12 +23,16 @@ namespace Use {
 	     std::cout << "PotionIDs: " << PotionIDs.size() << std::endl;
 	     std::cout << "effects: " << effects.size() << std::endl;
 
+	     std::random_device rd;
+	     std::mt19937 g(rd());
+	     std::shuffle(effects.begin(), effects.end(), g);
+
+	     auto &effectsArray = Items::Get_Item_Effect_Array();
 	     for (int i = 0; i < PotionIDs.size(); i++) {
-		     auto &effectsArray = Items::Get_Item_Effect_Array();
 		     effectsArray[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
+		     //randomize the unordered_map
 	     }
      }
-
 
      std::string Activate(Unit::Unit &unit, ItemEffectUID effectID) {
 	     if (effectID == 0) {
@@ -48,11 +50,11 @@ namespace Use {
 	     return Utils::Prepend_Zero_By_Digits(effectID, 3);
      };
 
+//TODO: when creating a new game send a message to the client to clear the knownUsables map
+     void Update_Known_Usable_Effects(Unit::Unit &unit, const websocketpp::connection_hdl &hdl, websocketpp::server<websocketpp::config::asio> &print_server, const std::pair<ItemID, ItemEffectUID> &itemEffect) {
+	     auto effectStr = Activate(unit, itemEffect.second);
 
-     void Update_Known_Usable_Effects(Unit::Unit &unit, const websocketpp::connection_hdl &hdl, websocketpp::server<websocketpp::config::asio> &print_server,  const std::pair<ItemID, ItemEffectUID> &itemEffect) {
-	     auto effectStr =  Activate(unit, itemEffect.second);
-
-	     if (!effectStr .empty()) {
+	     if (!effectStr.empty()) {
 		     std::string updateItemEffects = "9";
 		     updateItemEffects += Utils::Prepend_Zero_By_Digits(itemEffect.first, 3) + effectStr;
 		     print_server.send(hdl, updateItemEffects, websocketpp::frame::opcode::text);
