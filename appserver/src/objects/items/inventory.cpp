@@ -49,15 +49,14 @@ namespace Inventory {
 		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems, 2);
 		     inventoryStr += bagIndexStr += numItemsStr += bagIDStr += bagStr;
 
-		     std::cout << "bag updated " << j << ": " << backpack.Sendable_BagID(j) + bagIDStr << std::endl;
-		     std::cout << "_item updated string: " << bagStr << std::endl;
 	     }
+	     std::cout << "inventory full update sent: " << inventoryStr << std::endl;
 	     return inventoryStr;
      }
 
 
      //only send update when an inventory change function is called
-     std::string Get_Inventory(const Items::Backpack &backpack, std::vector<std::pair<uint8_t, uint8_t>> updateItems) {
+     std::string Get_Inventory(const Items::Backpack &backpack,  std::vector<std::pair<uint8_t, uint8_t>> &updateItems) {
 
 	     //  numBags           bag          numItems          slot       bagID          item
 	     //         "0"                    "0"                   "00"               "00"         "000"           "0x"
