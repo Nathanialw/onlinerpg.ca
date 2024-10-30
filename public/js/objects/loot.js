@@ -53,13 +53,13 @@ export function Update_Loot(dataStr, direction) {
     // loot = Array(groundSlots).fill().map(() => ({ ... item}));
     loot.NumItems = 0;
     dataStr = Parse_Loot(dataStr, loot)
-    loot.Items.forEach(item => {
-        item.IconPath = Set_Icon(item.ItemID);
-        item.Modifiers.forEach(mod => {
+    for (let i = 0; i < loot.NumItems; ++i) {            
+        loot.Items[i].IconPath = Set_Icon(loot.Items[i].ItemID);
+        loot.Items[i].Modifiers.forEach(mod => {
             //get the values
             //get the text
         })
-    })
+    }
 
     Open_Loot_Panel(direction);
 
@@ -74,13 +74,13 @@ export async function Draw_Loot() {
         }
         // draw loot background and border
         lootBox[i].Texture = await Draw_Loot_Background(itemFramePath, i, 2.5); //background
-        loot.Items[i].Items.Texture = await Draw_Loot_Icons(loot.Items[i].IconPath, i, 2.5);   
+        loot.Items[i].Texture = await Draw_Loot_Icons(loot.Items[i].IconPath, i, 2.5);   
         let name = await Get_Item_Stats(loot.Items[i].ItemID)[0].name
         // const name = name.charAt(0).toUpperCase() + name.slice(1);
         lootBox[i].Name = await Draw_Loot_Text(name, i, 2.5) //text
-        loot.Items[i].Border = await Draw_Loot_Icons(itemBorders[equipment[i].Rarity], i, 2.5) //border
+        loot.Items[i].Border = await Draw_Loot_Icons(itemBorders[loot.Items[i].Rarity], i, 2.5) //border
 
         //draw loot name
-        Set_Send_On_Loot_Click_Listener(background, '0', i, loot.Items[i].ItemID, Draw_Loot_Background, 2.5);  //0 means loot panel
+        Set_Send_On_Loot_Click_Listener(lootBox[i].Texture, '0', i, loot.Items[i].ItemID, Draw_Loot_Background, 2.5);  //0 means loot panel
     }
 }
