@@ -24,7 +24,13 @@ namespace Use {
 	     std::cout << "effects: " << effects.size() << std::endl;
 
 	     for (int i = 0; i < PotionIDs.size(); i++) {
-		     Items::itemEffects[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
+		     auto &effectsArray = Items::Get_Item_Effect_Array();
+		     effectsArray[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
+	     }
+
+	     auto &aa = Items::Get_Item_Effect_Array();
+	     for (auto &item : aa) {
+		     std::cout << "item: " << &item << std::endl;
 	     }
      }
 
