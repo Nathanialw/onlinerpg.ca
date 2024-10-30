@@ -3,3 +3,10 @@
 //
 
 #include "items.h"
+
+namespace  Items {
+
+     ItemEffectUID Get_Item_Effect(ItemID itemID) {
+	     return itemEffects[itemID];
+     }
+}

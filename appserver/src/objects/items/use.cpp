@@ -6,15 +6,13 @@
 #include "db.h"
 #include "vector"
 #include "procgen.h"
+//#include "items.h"
+#include "unit.h"
 
 namespace Use {
 
      //TODO: on game start load the item db effects into this array and randomly assign them to scrolls and potions
-     static std::unordered_map<ItemID, ItemEffectUID> itemEffects = {};
 
-     ItemEffectUID Get_Item_Effect(ItemID itemID) {
-	     return itemEffects[itemID];
-     }
 
      void Init() {
 	     std::vector<std::pair<std::string, std::string>> whereEquals;
@@ -26,15 +24,26 @@ namespace Use {
 	     std::cout << "effects: " << effects.size() << std::endl;
 
 	     for (int i = 0; i < PotionIDs.size(); i++) {
-		     itemEffects[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
+		     Items::itemEffects[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
 	     }
      }
 
-     void Activate(ItemEffectUID effectID) {
+
+
+
+     void Activate(Unit::Unit &unit, ItemEffectUID effectID) {
 	     if (effectID == 0) {
 		     std::cout << "Not usable." << int(effectID) << std::endl;
 		     return;
 	     }
 	     std::cout << "Using Item!" << (int)effectID << std::endl;
+
+	     std::cout<< "unit: " << unit.stats.health << std::endl;
+	     unit.stats.health += Utils::Random(20, 40);
+	     std::cout<< "unit: " << unit.stats.health << std::endl;
+	     //TODO: add item effects
+	     //it needs to have an effect on the unit that uses it
+	     //units are defined by                       units game.levels.objects.unitPosition[location][position]
+
      };
 }

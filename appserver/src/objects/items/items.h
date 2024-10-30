@@ -12,9 +12,13 @@
 #include "utils.h"
 #include "unordered_map"
 #include "types.h"
-#include "use.h"
 
 namespace Items {
+
+     static std::unordered_map<ItemID, ItemEffectUID> itemEffects = {};
+
+     ItemEffectUID Get_Item_Effect(ItemID itemID);
+
 
      enum class BagType {
 	Items0,
@@ -178,9 +182,9 @@ namespace Items {
 	}
 
 	ItemEffectUID Use() {
-		auto effect = Use::Get_Item_Effect(uID);
+		auto effect = Get_Item_Effect(uID);
 		this->Set_Empty();
-		std::cout << "effect: " << effect << std::endl;
+		std::cout << "effect: " << (int) effect << std::endl;
 		return effect;
 	}
 

@@ -6,7 +6,7 @@
 
 namespace Game {
 
-     Units::Unit &Instance::Get_Player() {
+     Unit::Unit &Instance::Get_Player() {
 	     if (levels[level].objects[location].units.empty()) {
 		     std::cout << "Get_Player() no player found..." << std::endl;
 	     }
@@ -23,7 +23,7 @@ namespace Game {
 	     return levels[position.level].objects[position.location];
      }
 
-     Units::Objects &Instance::Get_Objects(Units::Position position) {
+     Units::Objects &Instance::Get_Objects(Unit::Position position) {
 	     return levels[position.level].objects[position.location];
      }
 
@@ -40,7 +40,7 @@ namespace Game {
 	     return levels[position.level].items[position.location][position.position];
      }
 
-     Items::Ground &Instance::Get_Items(Units::Position position) {
+     Items::Ground &Instance::Get_Items(Unit::Position position) {
 	     return levels[position.level].items[position.location][position.position];
      }
 
@@ -49,7 +49,7 @@ namespace Game {
      }
 
      //defaults to at player position
-     void Instance::Set_Player_New_Chunk(Units::Position position) {
+     void Instance::Set_Player_New_Chunk(Unit::Position position) {
 	     if (levels[level].objects[location].units.empty()) {
 		     std::cout << "Set_Player_New_Chunk() no player found..." << std::endl;
 	     }

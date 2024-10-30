@@ -24,7 +24,7 @@ namespace Update {
      };
 
 //  void Update_Player_Position(Game::Instance &game, int &px, int &py, int &x, int &y, Units::Species &species) {
-     void Update_Player_Position(Game::Instance &game, Component::Position &move, Units::Species &species) {
+     void Update_Player_Position(Game::Instance &game, Component::Position &move, Unit::Species &species) {
 	     auto &position = game.Get_Player().position.position;
 	     auto &location = game.Get_Player().position.location;
 	     auto &level = game.Get_Player().position.level;

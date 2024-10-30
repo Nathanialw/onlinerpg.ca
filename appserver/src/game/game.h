@@ -72,17 +72,17 @@ namespace Game {
 	//seed
 	Proc_Gen::Seed seed;
 
-	Units::Unit &Get_Player();
+	Unit::Unit &Get_Player();
 
 	Units::Objects &Get_Objects();
 
-	Units::Objects &Get_Objects(Units::Position position);
+	Units::Objects &Get_Objects(Unit::Position position);
 
 	Units::Objects &Get_Objects(uint8_t mapLevel, Component::Position location);
 
 	Items::Ground &Get_Items();
 
-	Items::Ground &Get_Items(Units::Position position);
+	Items::Ground &Get_Items(Unit::Position position);
 
 	Items::Ground &Get_Items(Component::Position location, Component::Position position);
 
@@ -92,7 +92,7 @@ namespace Game {
 
 	Chunk::Map_Chunk &Get_Map(uint8_t currentLevel, Component::Position currentLocation);
 
-	void Set_Player_New_Chunk(Units::Position position);
+	void Set_Player_New_Chunk(Unit::Position position);
 
 	bool Exists();
      };

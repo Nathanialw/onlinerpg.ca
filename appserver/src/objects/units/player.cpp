@@ -85,10 +85,10 @@ namespace Player {
 	     std::string alignmentStr = characterCreate.substr(length - 1, 1);
 	     std::cout << "Alignment: " << alignmentStr << std::endl;
 
-	     auto gender = (Units::Gender) std::stoi(genderStr);
-	     auto species = (Units::Species) std::stoi(speciesStr);
-	     auto unitClass = (Units::Class) std::stoi(classStr);
-	     auto alignment = (Units::Alignment) std::stoi(alignmentStr);
+	     auto gender = (Unit::Gender) std::stoi(genderStr);
+	     auto species = (Unit::Species) std::stoi(speciesStr);
+	     auto unitClass = (Unit::Class) std::stoi(classStr);
+	     auto alignment = (Unit::Alignment) std::stoi(alignmentStr);
 	     auto picNum = 0;
 
 	     std::cout << "Spawn player" << std::endl;

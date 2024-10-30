@@ -14,7 +14,5 @@ namespace Use {
 
      void Init();
 
-     ItemEffectUID Get_Item_Effect(ItemID itemID);
-
-     void Activate(ItemEffectUID effectID);
+     void Activate(Unit::Unit &unit, ItemEffectUID effectID);
 }

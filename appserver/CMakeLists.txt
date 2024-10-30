@@ -23,6 +23,9 @@ include_directories(src/objects/items)
 include_directories(src/objects/movement/pathing)
 include_directories(src/objects/units/class)
 include_directories(src/objects/units/species)
+include_directories(src/objects/units/classes)
+
+
 
 set(SOURCES
         libs/sqlite3/sqlite3.c
@@ -70,6 +73,7 @@ set(SOURCES
         src/abilities/debuffs/Disease.cpp
 
         src/procgen/procgen.cpp
+        src/objects/units/classes/unit.cpp
 )
 
 add_executable(BrowserRPG ${SOURCES})

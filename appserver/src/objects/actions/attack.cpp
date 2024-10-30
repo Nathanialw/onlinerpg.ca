@@ -9,7 +9,7 @@
 
 namespace Attack {
 
-  Component::Position Check_Target_Location(const Units::Unit &unit, const Component::Position &moveTo) {
+  Component::Position Check_Target_Location(const Unit::Unit &unit, const Component::Position &moveTo) {
     auto location = unit.position.location;
     auto target = unit.position.position.Add(moveTo);
     if (target.x < 0) {
@@ -59,7 +59,7 @@ namespace Attack {
   //then grab the index of the attacker
   //then grab the index of the target
     //which may be in a different chunk
-  Damage Melee(Units::Unit &attacker, Units::Objects &targets, Chunk::Chunk defaultChunk, Chunk::Chunk chunk, Component::Position &position, Component::Position &moveTo) {
+  Damage Melee(Unit::Unit &attacker, Units::Objects &targets, Chunk::Chunk defaultChunk, Chunk::Chunk chunk, Component::Position &position, Component::Position &moveTo) {
     auto targetIndex = Check_Target(targets, position, moveTo);
 
     if (targetIndex == -1) {

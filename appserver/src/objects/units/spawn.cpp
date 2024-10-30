@@ -14,7 +14,7 @@ namespace Spawn {
 
      const std::string pathToSpeciesImgs = "../public/assets/graphics/imgs/";
 
-     char unitChars[(int) Units::Species::SIZE] = {'a', 'b', 'c',
+     char unitChars[(int) Unit::Species::SIZE] = {'a', 'b', 'c',
                                                    'd', 'e', 'f', 'g',
                                                    'h', 'i', 'j', 'k',
                                                    'l', 'm', 'n', 'o',
@@ -27,12 +27,12 @@ namespace Spawn {
                                                    'Q', 'R', 'S', 'T', 'U',
                                                    'V', 'W', 'X', 'Y', 'Z'};
 
-     char Get_Unit_Char(Units::Species species) {
+     char Get_Unit_Char(Unit::Species species) {
 	     return unitChars[(int) species];
      }
 
-     void Add_Unit(Units::Objects &objects, int level, Component::Position location, Component::Position position, const uint16_t &name, Units::Gender gender, Units::Species species, Units::Class unitClass, Units::Alignment alignment, uint8_t picNum) {
-	     Units::Unit unit(level, location);
+     void Add_Unit(Units::Objects &objects, int level, Component::Position location, Component::Position position, const uint16_t &name, Unit::Gender gender, Unit::Species species, Unit::Class unitClass, Unit::Alignment alignment, uint8_t picNum) {
+	     Unit::Unit unit(level, location);
 
 	     //defined by where it is spawned
 	     unit.def.species = species;
@@ -92,19 +92,19 @@ namespace Spawn {
 		     group += Utils::Prepend_Zero(position.x);
 		     group += Utils::Prepend_Zero(position.y);
 
-		     auto species = (Units::Species) Utils::Random(0, (int) Units::Species::SIZE - 1);
+		     auto species = (Unit::Species) Utils::Random(0, (int) Unit::Species::SIZE - 1);
 		     //check db if the species is gendered
 		     auto gendered = DB::Query("isGendered", "units", "name", Units::species[(int) species]);
-		     Units::Gender gender;
-		     (gendered == "1") ? gender = (Units::Gender) Utils::Random(0, (int) Units::Gender::SIZE - 1) : gender = Units::Gender::FEMALE;
-		     auto unitClass = (Units::Class) Utils::Random(0, (int) Units::Class::SIZE - 1);
-		     auto alignment = (Units::Alignment) Utils::Random(0, (int) Units::Alignment::SIZE - 1);
+		     Unit::Gender gender;
+		     (gendered == "1") ? gender = (Unit::Gender) Utils::Random(0, (int) Unit::Gender::SIZE - 1) : gender = Unit::Gender::FEMALE;
+		     auto unitClass = (Unit::Class) Utils::Random(0, (int) Unit::Class::SIZE - 1);
+		     auto alignment = (Unit::Alignment) Utils::Random(0, (int) Unit::Alignment::SIZE - 1);
 
 		     //count the number of images in the assets folder and return a random number
 		     uint8_t picNum = Files::Get_Random_Pic(pathToSpeciesImgs + Units::species[(int) species] + "/" + Units::gender[(int) gender][0] + "/");
 
 		     //      std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int)species]}, {"type", Units::gender[(int)gender]}};
-		     std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int) Units::Species::ORC]},
+		     std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int) Unit::Species::ORC]},
 		                                                                     {"type", Units::gender[(int) gender]}};
 		     auto names = DB::Get_List("uID", "names", whereEquals);
 		     uint16_t index = Utils::Random(0, (int) names.size() - 1);
@@ -138,7 +138,7 @@ namespace Spawn {
 
 	     for (const auto &placement: placements) {
 		     int numMonsters = Utils::Random(0, 3);
-		     auto unitData = Random_Entities(objects, level, location, unitChars[(int) Units::Species::GOBLIN], numMonsters, placement.x, placement.y);
+		     auto unitData = Random_Entities(objects, level, location, unitChars[(int) Unit::Species::GOBLIN], numMonsters, placement.x, placement.y);
 //      objects.unitsString += unitData;
 		     std::cout << "units added: " << unitData << std::endl;
 	     }
@@ -150,7 +150,7 @@ namespace Spawn {
      void Init(int level, Component::Position location, Chunk::Chunk chunk, std::vector<Chunk::Room> &rooms, Units::Objects &objects) {
 
 	     if (objects.units.empty()) { //To save the 0 index for the player
-		     Units::Unit playerPlaceholder(level, location);
+		     Unit::Unit playerPlaceholder(level, location);
 		     objects.units.emplace_back(playerPlaceholder);
 	     }
 	     Place_Entities_On_Map(rooms, level, location, objects);
