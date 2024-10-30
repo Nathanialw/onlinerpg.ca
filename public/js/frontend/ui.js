@@ -54,19 +54,21 @@ export function Parse_Game_Update_Full(data) {
 
 }
 
-export function Parse_Game_Update(data) {
+export function Parse_Game_Update(dataStr) {
     //call individual parse functions
     //each function returns the remaining string to be parsed
     //pass the remaining string to the next function
 
-    data = Parse_Player_Update(data);
+    dataStr = Parse_Player_Update(dataStr);
+    console.log(dataStr)
 
-    const startBag = Parse(data.substring(0, 2), 2, data, Query_Loot, 3, loot);
+    const startBag = Parse(dataStr.substring(0, 2), 2, dataStr, Query_Loot, 3, loot);
     Open_Loot_Panel(direction);
-    data = data.substring(startBag);
+    dataStr = dataStr.substring(startBag);
     
-    data = Update_Inventory(data);
-    serverMap = Update_Equipment(data);
+    console.log(dataStr)
+    dataStr = Update_Inventory(dataStr);
+    serverMap = Update_Equipment(dataStr);
 
     Update_Screen();
 }
