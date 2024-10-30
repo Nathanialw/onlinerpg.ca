@@ -27,7 +27,7 @@ namespace Inventory {
      }
 
      //only send update when an inventory change function is called
-     std::string Update_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots) {
+     std::string Get_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots) {
 	     std::string inventoryStr;
 
 	     for (int j = 0; j < (int) Items::BagType::SIZE; ++j) {
@@ -59,9 +59,15 @@ namespace Inventory {
 
 
      //only send update when an inventory change function is called
-     std::string Update_Inventory_Slot(const Items::Backpack &backpack,  std::vector<std::pair<uint8_t, uint8_t>> updateItems) {
-	     std::string inventoryStr;
-	     uint8_t  numItems = updateItems.size();
+     std::string Get_Inventory(const Items::Backpack &backpack, std::vector<std::pair<uint8_t, uint8_t>> updateItems) {
+
+	     //  numBags           bag          numItems          slot       bagID          item
+	     //         "0"                    "0"                   "00"               "00"         "000"           "0x"
+
+
+	     std::string bagStr [(int)Items::BagType::SIZE];
+	     uint8_t numItems [(int)Items::BagType::SIZE];
+
 
 	     for (const auto &update : updateItems) {
 		     std::string newBagStr;
@@ -71,12 +77,29 @@ namespace Inventory {
 		     newBagStr += slot + item;
 
 		     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[update.first].Get_uID(), 3);
-		     inventoryStr += bagID + newBagStr;
+		     bagStr[update.first] += bagID + newBagStr;
 
-		     std::cout << "_item updated string: " << newBagStr << std::endl;
-		     updateItems.pop_back();
+		     numItems[update.first]++;
 	     }
 
+	     uint8_t numBags = 0;
+	     for (const auto s: numItems) {
+		if (s > 0)
+			numBags++;
+	     }
+	     std::string inventoryStr = Utils::Prepend_Zero_By_Digits(numBags, 1);
+
+	     for (int j = 0; j < (int) Items::BagType::SIZE; ++j) {
+		     if (numItems[j] == 0)
+			     continue;
+		     auto bagIndex = Utils::Prepend_Zero_By_Digits(j, 1);
+		     inventoryStr +=  bagIndex;
+
+		     auto numItemsStr = Utils::Prepend_Zero_By_Digits(numItems[j], 2);
+		     inventoryStr += numItemsStr + bagStr[j];
+	     }
+
+	     updateItems.clear();
 	     return inventoryStr;
      }
 

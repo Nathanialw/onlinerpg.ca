@@ -59,8 +59,9 @@ namespace Game {
 	//player
 	uint16_t player_id = 0;
 	std::vector<std::string> player_names;
-	std::vector<std::pair<uint8_t, uint8_t>> updateItems;
 
+	std::vector<std::pair<uint8_t, uint8_t>> updateInventory;
+	int8_t updateEquipment  = -1;
 
 	int8_t level = 0;
 	Component::Position location = {0, 0};

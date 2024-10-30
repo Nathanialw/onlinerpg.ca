@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="71b97d7e-a9ca-4767-b8a1-9c2148645819" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appserver/release/BrowserRPG" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/release/BrowserRPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appserver/src/objects/items/items.h" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/items/items.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/game/game.h" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/game/game.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/networking/send.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/networking/send.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/objects/items/equipment.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/items/equipment.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/objects/items/equipment.h" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/items/equipment.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/src/objects/items/inventory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/src/objects/items/inventory.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +123,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729834817246</updated>
-      <workItem from="1729834818916" duration="34671000" />
+      <workItem from="1729834818916" duration="35477000" />
     </task>
     <servers />
   </component>

@@ -16,17 +16,21 @@ import { Parse_Item } from "./items.js";
 //takes in a  string of data and returns a structure of the data
 
 export function Parse_Inventory(dataStr, inventory) {
-    const numBags = 4;
-    
+    const numBags = parseInt(dataStr.substring(0, 1))
+    dataStr = dataStr.substring(1);
+
     for (let i = 0; i < numBags; i++) {
+        const bagIndex = parseInt(dataStr.substring(0, 1))
+        dataStr = dataStr.substring(1);
+
         const numItems = parseInt(dataStr.substring(0, 2))
         dataStr = dataStr.substring(2);
         
-        if (numItems == 0 && inventory[i].BagID) {            
+        if (numItems == 0 && inventory[bagIndex].BagID) {            
             continue
         }
 
-        [inventory[i].BagID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
+        [inventory[bagIndex].BagID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
         
         if (numItems == 0) {            
             continue
@@ -35,7 +39,7 @@ export function Parse_Inventory(dataStr, inventory) {
         for (let k = 0; k < numItems; k++) {
             const invIndex = parseInt(dataStr.substring(0, 2))
             dataStr = dataStr.substring(2);
-            dataStr = Parse_Item(dataStr, inventory[i].Items[invIndex]);
+            dataStr = Parse_Item(dataStr, inventory[bagIndex].Items[invIndex]);
         }
     }
     return dataStr

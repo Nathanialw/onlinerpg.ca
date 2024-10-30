@@ -122,4 +122,15 @@ namespace Equipment {
 	     }
 	     return equipmentStr;
      }
+
+     std::string Get_Equipment(Items::Equipped &equipment, int8_t &slot) {
+	     if (slot != -1) {
+		     std::string equipmentStr = "01";
+		     equipmentStr += Utils::Prepend_Zero_By_Digits(slot, 2) + equipment[slot].As_Sendable_String();
+		     slot = -1;
+		     return equipmentStr;
+	     }
+	     else
+		     return "00";
+     }
 };

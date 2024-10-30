@@ -37,7 +37,7 @@ namespace Send {
 	     if (!game.Get_Objects(level, location).units.empty()) {
 		     std::string action = "d    10";
 		     // append inventory
-		     action.append(Inventory::Update_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
+		     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
 		     // append equipment
 		     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
 		     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
@@ -57,10 +57,10 @@ namespace Send {
 	     //TODO: update inventory partially
 //	     Inventory::Update_Inventory_Slot(game.Get_Player().pack, game.updateItems);
 	     // append inventory
-	     action.append(Inventory::Update_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
+	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.updateInventory));
 //	      append equipment
 	     //TODO: update equipment partially
-	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
+	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment, game.updateEquipment));
 	     // send map
 	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
      }
@@ -71,7 +71,7 @@ namespace Send {
 	     //  send stats
 	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 	     // append inventory
-	     action.append(Inventory::Update_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
+	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
 	     // append equipment
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
 	     // send map
@@ -88,7 +88,7 @@ namespace Send {
 		     Update_Items::Update(msg, game);
 		     std::string skip = "1 ";
 		     Update(hdl, skip, print_server, game);
-	     } else if (msg[0] == '3') { // Initializes player
+	     } else if (msg[0] == '3') { // New Game
 		     return 4;
 	     } else if (msg[0] == '4') { // Reconnect
 		     print_server.send(hdl, msg, websocketpp::frame::opcode::text);
