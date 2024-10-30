@@ -99,6 +99,7 @@ namespace Inventory {
 	     }
 
 	     updateItems.clear();
+	     std::cout << "inventory update sent: " << inventoryStr << std::endl;
 	     return inventoryStr;
      }
 
