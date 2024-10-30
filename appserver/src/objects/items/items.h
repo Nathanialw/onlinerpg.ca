@@ -185,9 +185,9 @@ namespace Items {
 		std::cout << "adding effect: for item: " << uID << " effect: " << effect << std::endl;
 		knownUsables[uID] = effect;
 		std::cout << "new index value: " << knownUsables[uID] << std::endl;
+	          std::pair<ItemID, ItemEffectUID> effectPair = {uID, effect};
 		this->Set_Empty();
-		std::cout << "effect: " << (int) effect << std::endl;
-		return {uID, effect};
+		return effectPair;
 	}
 
 
