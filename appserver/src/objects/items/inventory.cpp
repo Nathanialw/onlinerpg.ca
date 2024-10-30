@@ -65,6 +65,7 @@ namespace Inventory {
 	     std::string bagStr[(int) Items::BagType::SIZE];
 	     uint8_t numItems[(int) Items::BagType::SIZE];
 
+	     std::cout << "num items to update: "  <<  updateItems.size() << std::endl;
 
 	     for (const auto &update: updateItems) {
 		     std::string newBagStr;
@@ -77,6 +78,10 @@ namespace Inventory {
 		     bagStr[update.first] += bagID + newBagStr;
 
 		     numItems[update.first]++;
+	     }
+
+	     for (const auto s: bagStr) {
+		     std::cout << "bag: "  <<  s << std::endl;
 	     }
 
 	     uint8_t numBags = 0;
