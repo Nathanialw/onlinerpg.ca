@@ -96,7 +96,7 @@ namespace Items {
 		// set the durability
 		durability = 100; // probably will be random later
 		// set the rarity
-		rarity =  Utils::Random(0, 7);
+		rarity = Utils::Random(0, 7);
 		// set the modifiers
 		for (auto &modifier: modifiers) {
 			modifier.Set_Empty();
@@ -121,8 +121,18 @@ namespace Items {
 		std::cout << std::endl;
 	}
 
-          void Set(const ItemID &_uID = 0, const uint8_t &_rarity = 0, const uint8_t &_durability = 100, const std::array<Mod, numModifiers> &_modifier = {}) {
-	          uID = _uID;
+          std::string As_String(int a = 0) {
+	          std::string ss =  "Item: "  +  std::to_string(uID) + " Rarity: " + std::to_string(rarity) + " Durability: "+ std::to_string(durability);
+	          for (const auto &mod: modifiers) {
+		          if (mod.Empty())
+			          break;
+		          ss +=  ", Modifier: " + std::to_string(mod.uID);
+	          }
+	          return ss;
+          }
+
+	void Set(const ItemID &_uID = 0, const uint8_t &_rarity = 0, const uint8_t &_durability = 100, const std::array<Mod, numModifiers> &_modifier = {}) {
+		uID = _uID;
 		rarity = _rarity;
 		durability = _durability;
 		modifiers = _modifier;

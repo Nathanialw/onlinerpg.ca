@@ -77,7 +77,7 @@ namespace Loot {
 	     inventory[bagIndex][inventoryIndex] = item;
 	     // add the inventory slot to the update array
 	     updateItems.emplace_back(bagIndex, inventoryIndex);
-	     std::cout << (int)item.Get_uID() << " added to inventory at slot: " << inventoryIndex << std::endl;
+	     std::cout << item.As_String() << " added to inventory at slot: " << inventoryIndex << std::endl;
 	     //remove from loot array and resize
 	     for (int i = index; i < loot.size() - 1; ++i) {
 		     loot[i] = loot[i + 1];

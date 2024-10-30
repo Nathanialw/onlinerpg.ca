@@ -60,6 +60,7 @@ export function Parse_Game_Update(dataStr) {
     //pass the remaining string to the next function
 
     dataStr = Parse_Player_Update(dataStr);
+    console.log(dataStr)
 
     const startBag = Parse(dataStr.substring(0, 2), 2, dataStr, Query_Loot, 3, loot);
     Open_Loot_Panel(direction);

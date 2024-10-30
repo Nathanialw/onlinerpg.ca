@@ -35,7 +35,7 @@ namespace Equipment {
 				     inventory[bag][i] = swapItemID;
 				     equipment[slot].Set_Empty();
 				     updateItems.emplace_back(bag, i);
-				     updateEquipment = (int8_t)slot;
+				     updateEquipment = (int8_t) slot;
 				     return;
 			     }
 		     }
@@ -134,8 +134,7 @@ namespace Equipment {
 		     equipmentStr += Utils::Prepend_Zero_By_Digits(slot, 2) + equipment[slot].As_Sendable_String();
 		     slot = -1;
 		     return equipmentStr;
-	     }
-	     else
+	     } else
 		     return "00";
      }
 };
