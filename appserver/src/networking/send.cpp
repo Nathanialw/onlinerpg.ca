@@ -69,6 +69,8 @@ namespace Send {
 	     auto action = Update::Update_Units(game, &msg[1]);
 	     //  send stats
 	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+	     // append bags
+	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 	     // append inventory
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
 	     // append equipment

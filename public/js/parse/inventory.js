@@ -16,6 +16,7 @@ import { Parse_Item } from "./items.js";
 //takes in a  string of data and returns a structure of the data
 
 export function Parse_Bags(dataStr, inventory) {
+    console.log("Parse_Bags")
     console.log(dataStr)
 
     const numBags = parseInt(dataStr.substring(0, 1))
@@ -33,6 +34,7 @@ export function Parse_Bags(dataStr, inventory) {
 }
 
 export function Parse_Inventory(dataStr, inventory) {
+    console.log("Parse_Inventory")
     console.log(dataStr)
     
     const numBags = parseInt(dataStr.substring(0, 1))
