@@ -4,6 +4,7 @@ import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 import { item } from "./item.js";
 import { Parse_Loot } from '../parse/loot.js';
+import { Set_Game_Panel_Index } from '../menus/gameMenu.js';
 
 //when I move on to a new tile
 //check if there is loot
