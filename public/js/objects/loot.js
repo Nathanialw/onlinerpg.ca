@@ -16,11 +16,9 @@ let iconPath = "assets/graphics/icons/"
 
 const groundSlots = 14;
 
-function initializeLootItem(index) {
-    return { ...item, index };
-}
 
-let loot = Array(groundSlots).fill().map((_, index) => initializeLootItem(index));
+
+let loot = Array(groundSlots).fill().map(() => ({ ... item}));
 let lootBox = Array(groundSlots).fill().map(() => ({ Texture: null, Name: null }));
 
 export function Open_Loot_Panel(direction) {
@@ -44,8 +42,8 @@ function Set_Icon(uID) {
 
 export function Update_Loot(dataStr, direction) {
     //clear the loot array
-    loot = []
-    loot = Array(groundSlots).fill().map((_, index) => initializeLootItem(index));
+    // loot = []
+    // loot = Array(groundSlots).fill().map((_, index) => initializeLootItem(index));
     
     dataStr = Parse_Loot(dataStr, loot)
     loot.forEach(item => {
