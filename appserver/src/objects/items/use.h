@@ -14,5 +14,5 @@ namespace Use {
 
      void Init();
 
-     void Activate(Unit::Unit &unit, ItemEffectUID effectID);
+     std::string Activate(Unit::Unit &unit, ItemEffectUID effectID);
 }

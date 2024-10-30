@@ -27,29 +27,23 @@ namespace Use {
 		     auto &effectsArray = Items::Get_Item_Effect_Array();
 		     effectsArray[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
 	     }
-
-	     auto &aa = Items::Get_Item_Effect_Array();
-	     for (auto &item : aa) {
-		     std::cout << "item: " << &item << std::endl;
-	     }
      }
 
 
-
-
-     void Activate(Unit::Unit &unit, ItemEffectUID effectID) {
+     std::string Activate(Unit::Unit &unit, ItemEffectUID effectID) {
 	     if (effectID == 0) {
 		     std::cout << "Not usable." << int(effectID) << std::endl;
-		     return;
+		     return "";
 	     }
-	     std::cout << "Using Item!" << (int)effectID << std::endl;
+	     std::cout << "Using Item!" << (int) effectID << std::endl;
 
-	     std::cout<< "unit: " << unit.stats.health << std::endl;
+	     std::cout << "unit: " << unit.stats.health << std::endl;
 	     unit.stats.health += Utils::Random(20, 40);
-	     std::cout<< "unit: " << unit.stats.health << std::endl;
+	     std::cout << "unit: " << unit.stats.health << std::endl;
 	     //TODO: add item effects
 	     //it needs to have an effect on the unit that uses it
 	     //units are defined by                       units game.levels.objects.unitPosition[location][position]
 
+	     return Utils::Prepend_Zero_By_Digits(effectID, 3);
      };
 }

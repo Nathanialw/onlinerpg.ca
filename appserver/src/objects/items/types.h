@@ -13,5 +13,5 @@
 
 
 typedef uint16_t ItemID;
-typedef uint8_t ItemEffectUID;
+typedef uint16_t ItemEffectUID;
 

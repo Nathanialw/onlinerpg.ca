@@ -5,6 +5,7 @@ import { UpdatePlayerInfo } from '../units/unitdef.js';
 import { Get_Target_Stats_From_Server } from '../ui/gamePanels/targetStats.js';
 import { OnReconnect } from '../frontend/newGame.js';
 import { Send_Web_Socket_Message } from './socket.js';
+import { Save_Item_Effect } from '../db/itemEffects.js';
 
 function Message(data) {
     console.log(data)
@@ -86,6 +87,7 @@ export let Update = {
     // 6: Restart,
     // 7: Quit,
     8: Create_Resume_Btn,
+    9: Save_Item_Effect,
 }
 
 //periodically check if the websocket has reconnected
