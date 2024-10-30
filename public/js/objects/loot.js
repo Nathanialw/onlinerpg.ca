@@ -76,7 +76,7 @@ export async function Draw_Loot() {
         loot.Items[i].Texture = await Draw_Loot_Icons(loot.Items[i].IconPath, i, 2.5);   
         let stats = await Get_Item_Stats(loot.Items[i].ItemID)
         // const name = name.charAt(0).toUpperCase() + name.slice(1);
-        lootBox[i].Name = await Draw_Loot_Text(stats.name.name.charAt(0).toUpperCase() + a[0].name.slice(1), i, 2.5) //text
+        lootBox[i].Name = await Draw_Loot_Text(stats[0].name.charAt(0).toUpperCase() + stats[0].name.slice(1), i, 2.5) //text
         loot.Items[i].Border = await Draw_Loot_Icons(itemBorders[loot.Items[i].Rarity], i, 2.5) //border
 
         //draw loot name
