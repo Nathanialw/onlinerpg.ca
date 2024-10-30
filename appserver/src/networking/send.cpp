@@ -96,7 +96,7 @@ namespace Send {
 		     Update(hdl, msg, print_server, game);
 	     } else if (msg[0] == '2') {  // loot item
 		     auto itemEffect = Update_Items::Update(msg, game);
-		     Use::Update_Known_Usable_Effects(game.Get_Player(),hdl, msg, print_server, itemEffect);
+		     Use::Update_Known_Usable_Effects(game.Get_Player(),hdl, print_server, itemEffect);
 		     std::string skip = "1 ";
 		     Update(hdl, skip, print_server, game);
 	     } else if (msg[0] == '3') { // New Game

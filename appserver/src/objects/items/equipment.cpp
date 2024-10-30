@@ -95,12 +95,14 @@ namespace Equipment {
 	     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(item.Get_uID())); //retrieve equipSlot using itemID from the db
 	     std::cout << "equip slot: " << slotStr << std::endl;
 
-	     if (slotStr == "notEquippable") {
+	     if (slotStr == "consumable") {
 		     std::pair<ItemID, ItemEffectUID> itemEffect = pack.inventory[bag][invSlot].Use(knownUsables);
 		     updateItems.emplace_back(bag, invSlot);
-		     // query the effect of the item and apply it
-//		      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
 		     return itemEffect;
+	     }
+
+	     if (slotStr == "notEquippable") {
+		     return {0,0};
 	     }
 
 	     //if any of these send the client an update for the bags as well as the inv slot

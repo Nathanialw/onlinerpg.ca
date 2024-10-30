@@ -49,7 +49,7 @@ namespace Use {
      };
 
 
-     void Update_Known_Usable_Effects(Unit::Unit &unit, const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server,  const std::pair<ItemID, ItemEffectUID> &itemEffect) {
+     void Update_Known_Usable_Effects(Unit::Unit &unit, const websocketpp::connection_hdl &hdl, websocketpp::server<websocketpp::config::asio> &print_server,  const std::pair<ItemID, ItemEffectUID> &itemEffect) {
 	     auto effectStr =  Activate(unit, itemEffect.second);
 
 	     if (!effectStr .empty()) {
