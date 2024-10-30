@@ -71,14 +71,10 @@ namespace Inventory {
 	     uint8_t numItems[(int) Items::BagType::SIZE]{};
 
 	     for (const auto &update: updateItems) {
-		     std::string newBagStr;
-
 		     auto slot = Utils::Prepend_Zero_By_Digits(update.second, 2);
 		     auto item = backpack.inventory[update.first][update.second].As_Sendable_String();
-		     newBagStr += slot + item;
 
-		     auto bagID = Utils::Prepend_Zero_By_Digits(backpack.bags[update.first].Get_uID(), 3);
-		     bagStr[update.first] += bagID + newBagStr;
+		     bagStr[update.first] +=  slot + item;
 
 		     std::cout << "bag: " << bagStr[update.first] << std::endl;
 		     numItems[update.first]++;
