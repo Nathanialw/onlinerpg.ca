@@ -96,8 +96,9 @@ namespace Equipment {
 	     std::cout << "equip slot: " << slotStr << std::endl;
 
 	     if (slotStr == "notEquippable") {
+		     auto effectID = pack.inventory[bag][invSlot].Use();
 		     // query the effect of the item and apply it
-		//      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
+//		      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
 		     std::cout << "item not equippable" << std::endl;
 		     return;
 	     }

@@ -10,9 +10,12 @@
 #include "iostream"
 #include "string"
 #include "utils.h"
-
+#include "unordered_map"
+#include "types.h"
+#include "use.h"
 
 namespace Items {
+
      enum class BagType {
 	Items0,
 	Items1,
@@ -38,8 +41,6 @@ namespace Items {
 	ammo,
 	SIZE,
      };
-
-     typedef uint16_t ItemID;
 
      class Mod {
 	public:
@@ -86,6 +87,7 @@ namespace Items {
 		}
 	}
 
+	//TODO: add a constructor that takes the level and the species of the unit and generates the item based on that
 	void Generate(ItemID _uID) {
 		// passin the power level of item to create
 		// get a random uID from the db of that level
@@ -121,15 +123,15 @@ namespace Items {
 		std::cout << std::endl;
 	}
 
-          std::string As_String(int a = 0) {
-	          std::string ss =  "Item: "  +  std::to_string(uID) + " Rarity: " + std::to_string(rarity) + " Durability: "+ std::to_string(durability);
-	          for (const auto &mod: modifiers) {
-		          if (mod.Empty())
-			          break;
-		          ss +=  ", Modifier: " + std::to_string(mod.uID);
-	          }
-	          return ss;
-          }
+	std::string As_String(int a = 0) {
+		std::string ss = "Item: " + std::to_string(uID) + " Rarity: " + std::to_string(rarity) + " Durability: " + std::to_string(durability);
+		for (const auto &mod: modifiers) {
+			if (mod.Empty())
+				break;
+			ss += ", Modifier: " + std::to_string(mod.uID);
+		}
+		return ss;
+	}
 
 	void Set(const ItemID &_uID = 0, const uint8_t &_rarity = 0, const uint8_t &_durability = 100, const std::array<Mod, numModifiers> &_modifier = {}) {
 		uID = _uID;
@@ -175,6 +177,14 @@ namespace Items {
 		return itemStr;
 	}
 
+	ItemEffectUID Use() {
+		auto effect = Use::Get_Item_Effect(uID);
+		this->Set_Empty();
+		std::cout << "effect: " << effect << std::endl;
+		return effect;
+	}
+
+
 	bool operator==(const Item &rhs) const {
 		return uID == rhs.uID && modifiers == rhs.modifiers &&
 		       rarity == rhs.rarity && durability == rhs.durability;
@@ -202,6 +212,7 @@ namespace Items {
 
      typedef std::array<Item, 14> Ground;
      typedef std::array<Item, (int8_t) ItemSlot::SIZE> Equipped;
+
 } // namespace Items
 
 #endif // BROWSERRPG_ITEMS_H

@@ -5,6 +5,7 @@
 #include "items.h"
 #include "db.h"
 #include <iostream>
+#include "types.h"
 
 namespace Backpack {
 
@@ -35,7 +36,7 @@ namespace Backpack {
 	     std::cout << "no space in inventory to unequip bag" << std::endl;
      }
 
-     bool Check_Space_Item_Drop(Items::Backpack &pack, Items::Ground &groundItems, uint8_t bagSlot, Items::ItemID itemID) {
+     bool Check_Space_Item_Drop(Items::Backpack &pack, Items::Ground &groundItems, uint8_t bagSlot, ItemID itemID) {
 	     //check how many slots the bag has
 	     auto newBagSlots = stoi(DB::Query("slots", "Items", "uID", std::to_string(itemID)));
 	     int numItemsInInventory = 0;

@@ -7,6 +7,7 @@
 #include "utils.h"
 #include "items.h"
 #include "db.h"
+#include "types.h"
 
 namespace Loot {
 
@@ -16,7 +17,7 @@ namespace Loot {
 		     if (numItems == 0)
 			     break;
 		     if (item.Empty()) {
-			     Items::ItemID itemID = Utils::Random(1, DB::Get_Num_Items());
+			     ItemID itemID = Utils::Random(1, DB::Get_Num_Items());
 			     item.Generate(itemID);
 			     numItems--;
 		     }

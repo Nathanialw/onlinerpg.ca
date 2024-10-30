@@ -25,50 +25,51 @@ include_directories(src/objects/units/class)
 include_directories(src/objects/units/species)
 
 set(SOURCES
-    libs/sqlite3/sqlite3.c
+        libs/sqlite3/sqlite3.c
 
-    src/db/db.cpp
-    src/server/main.cpp
-    src/game/game.cpp
+        src/db/db.cpp
+        src/server/main.cpp
+        src/game/game.cpp
 
-    src/utils/utils.cpp
-    src/utils/files.cpp
+        src/utils/utils.cpp
+        src/utils/files.cpp
 
-    src/networking/receiving.cpp
-    src/networking/send.cpp
+        src/networking/receiving.cpp
+        src/networking/send.cpp
 
-    src/camera/camera.cpp
+        src/camera/camera.cpp
 
-    src/map/map.cpp
-    src/map/labyrinth.cpp
-    src/map/chunk.cpp
+        src/map/map.cpp
+        src/map/labyrinth.cpp
+        src/map/chunk.cpp
 
-    src/objects/movement/movement.cpp
-    src/objects/movement/pathing.cpp
+        src/objects/movement/movement.cpp
+        src/objects/movement/pathing.cpp
 
-    src/objects/units/class/warrior.cpp
-    src/objects/units/player.cpp
-    src/objects/units/units.cpp
-    src/objects/units/update.cpp
-    src/objects/units/species/goblin.cpp
-    src/objects/units/spawn.cpp
+        src/objects/units/class/warrior.cpp
+        src/objects/units/player.cpp
+        src/objects/units/units.cpp
+        src/objects/units/update.cpp
+        src/objects/units/species/goblin.cpp
+        src/objects/units/spawn.cpp
 
-    src/objects/items/loot.cpp
-    src/objects/items/items.cpp
-    src/objects/items/inventory.cpp
-    src/objects/items/equipment.cpp
-    src/objects/items/backpack.cpp
-    src/objects/items/update_items.cpp
+        src/objects/items/loot.cpp
+        src/objects/items/items.cpp
+        src/objects/items/inventory.cpp
+        src/objects/items/equipment.cpp
+        src/objects/items/backpack.cpp
+        src/objects/items/update_items.cpp
 
-    src/objects/actions/attack.cpp
-    src/objects/actions/death.cpp
-    src/objects/components.cpp
-    src/objects/collision/collision.cpp
+        src/objects/actions/attack.cpp
+        src/objects/actions/death.cpp
+        src/objects/components.cpp
+        src/objects/collision/collision.cpp
 
-    src/abilities/debuffs/Disease.cpp
+        src/abilities/debuffs/Disease.cpp
 
-    src/procgen/procgen.cpp
-    src/objects/items/modifiers.cpp
+        src/procgen/procgen.cpp
+        src/objects/items/modifiers.cpp
+        src/objects/items/use.cpp
 )
 
 add_executable(BrowserRPG ${SOURCES})
