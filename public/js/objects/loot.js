@@ -1,5 +1,5 @@
 'use strict'
-import { Clear_Sprite_Array, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, loot, itemFramePath } from '../graphics/graphics.js';
+import { Clear_Sprite_Array, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 
@@ -31,7 +31,6 @@ export function Query_Loot(numItems, data, start) {
 }
 
 export async function Draw_Loot(items) {
-    Clear_Sprite_Array(loot);
 
     for (let i = 0; i < items.length; i++) {
         if (items[i].path === undefined || items[i].path === "none") {

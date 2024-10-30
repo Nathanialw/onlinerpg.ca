@@ -46,10 +46,6 @@ let target;
 let gamePanels = [];
 let targetImg;
 let playerImg;
-export let loot = [];
-export let inventory = [];
-export let bags = [];
-export let equipment = []
 export let mainMenuSprites = []
 export let mainMenuText = []
 export let gameMenuSprites = []
@@ -297,13 +293,10 @@ export async function Draw_Equipment_Icons(iconPath, num, w) {
         columnPosition = x + fromleftBottom + ((squareSize + spaceBetween) * ind);
     }
 
-    // check if equipment[num] has an event listener, remove if it does
-    Remove_Event_Listeners(equipment[num]);
-
     let equipmentIcon = await Load_Icon(iconPath);
-    equipment[num] = new PIXI.Sprite(equipmentIcon);
-    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, equipment[num]);
-    return equipment[num]
+    icon = new PIXI.Sprite(equipmentIcon);
+    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, icon);
+    return icon
 }
 
 export async function Draw_Bag_Icons(iconPath, num, w) {    
@@ -319,12 +312,10 @@ export async function Draw_Bag_Icons(iconPath, num, w) {
     let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + 1 * cellSize);
     let squareSize = w * cellSize;
 
-    Remove_Event_Listeners(bags[num]);
-    
     let bagIcon = await Load_Icon(iconPath);
-    bags[num] = new PIXI.Sprite(bagIcon);
-    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, bags[num]);
-    return bags[num]
+    icon = new PIXI.Sprite(bagIcon);
+    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, icon);
+    return icon
 }
 
 export async function Draw_Inventory_Icons(iconPath, num, j, w) {    
@@ -343,26 +334,22 @@ export async function Draw_Inventory_Icons(iconPath, num, j, w) {
     let rowPosition = y + (row * ((w + spaceBetweenY) * cellSize) + 1 * cellSize);
     let columnPosition = x + (column * ((w + spaceBetweenX) * cellSize) + 1 * cellSize);
     let squareSize = w * cellSize;
-
-    Remove_Event_Listeners(inventory[num]);
     
     let inventoryIcon = await Load_Icon(iconPath);
-    inventory[num] = new PIXI.Sprite(inventoryIcon);
-    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, inventory[num]);
-    return inventory[num]
+    let icon = new PIXI.Sprite(inventoryIcon);
+    Draw_Sprite(columnPosition, rowPosition, squareSize, squareSize, icon);
+    return icon
 }
 
 export async function Draw_Loot_Icons(iconPath, num, w) {    
     let x = (Get_Right_Panel_Origin_x() + 0.5) * cellSize
     let y = (Get_Right_Panel_Origin_y() + 1.5) * cellSize
-
-    Remove_Event_Listeners(loot[num]);
     
     let lootIcon = await Load_Icon(iconPath);    
-    loot[num] = new PIXI.Sprite(lootIcon);        
-    Draw_Sprite(x + (1 * cellSize), y + (2.5 * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, loot[num]);        
+    let icon = new PIXI.Sprite(lootIcon);        
+    Draw_Sprite(x + (1 * cellSize), y + (2.5 * cellSize) + (w * num) * cellSize, w * cellSize, w * cellSize, icon);        
     
-    return loot[num];
+    return icon;
 }
 
 export async function Draw_Loot_Background(path, num, w) {
