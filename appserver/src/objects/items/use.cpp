@@ -53,11 +53,11 @@ namespace Use {
      void Update_Known_Usable_Effects(Unit::Unit &unit, std::unordered_map<ItemID, ItemEffectUID> &knownUsables, const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server,  const ItemEffectUID &itemEffect) {
 	     auto effectStr =  Activate(unit, itemEffect);
 
-	     auto bag = stoi(msg.substr(3, 1));
-	     auto index = stoi(msg.substr(4));
-	     ItemID ItemID = unit.pack.inventory[bag][index].Get_uID();
-
 	     if (!effectStr .empty()) {
+		     auto bag = stoi(msg.substr(3, 1));
+		     auto index = stoi(msg.substr(4));
+
+		     ItemID ItemID = unit.pack.inventory[bag][index].Get_uID();
 		     std::cout << "adding effect: for item: " << ItemID << " effect: " << itemEffect << std::endl;
 		     knownUsables[ItemID] = itemEffect;
 		     std::cout << "new index value: " << knownUsables[ItemID] << std::endl;
