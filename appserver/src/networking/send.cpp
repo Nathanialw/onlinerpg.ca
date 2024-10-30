@@ -93,7 +93,7 @@ namespace Send {
 	     if (msg[0] == '1') { // Update
 		     Update(hdl, msg, print_server, game);
 	     } else if (msg[0] == '2') {  // loot item
-		     Update_Items::Update(msg, game);
+		     Use::Activate(Update_Items::Update(msg, game));
 		     std::string skip = "1 ";
 		     Update(hdl, skip, print_server, game);
 	     } else if (msg[0] == '3') { // New Game

@@ -14,7 +14,7 @@
 
 namespace Update_Items {
 
-     void Update(const std::string &msg, Game::Instance &game) {
+     ItemEffectUID Update(const std::string &msg, Game::Instance &game) {
 	     //      response = "2";
 	     std::cout << "message: " << msg << std::endl;
 	     auto type = msg.substr(1, 1);
@@ -38,7 +38,7 @@ namespace Update_Items {
 			     std::cout << "shift clicked, thusfar unused" << std::endl;
 		     } else { // equip standard / use item
 			     std::cout << "unmodded clicked: " << mod << std::endl;
-			     Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
+			     return Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
 		     }
 	     } else if (type == "2") {
 		     std::cout << "interacting with equipment at index: " << index << std::endl;
@@ -56,6 +56,7 @@ namespace Update_Items {
 			     std::cout << "unmodded clicked: " << mod << std::endl;
 		     }
 	     }
+	     return 0;
      }
 
 }

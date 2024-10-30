@@ -19,4 +19,11 @@ namespace Use {
 	     }
      }
 
+     void Activate(ItemEffectUID effectID) {
+	     if (effectID == 0) {
+		     std::cout << "Not usable." << std::endl;
+		     return;
+	     }
+	     std::cout << "Using Item!" << (int)effectID << std::endl;
+     };
 }

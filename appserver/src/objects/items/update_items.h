@@ -4,11 +4,12 @@
 
 #ifndef BROWSERRPG_UPDATE_ITEMS_H
 #define BROWSERRPG_UPDATE_ITEMS_H
+
 #include "game.h"
 #include "string"
 
 namespace Update_Items {
-  void Update(const std::string &msg, Game::Instance &game);
+     ItemEffectUID Update(const std::string &msg, Game::Instance &game);
 
 }
 

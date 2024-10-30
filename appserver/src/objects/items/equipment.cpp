@@ -88,7 +88,7 @@ namespace Equipment {
 	     Use_Item(pack, groundItems, equipment, index, bag, updateItems, updateEquipment, updateBag); //equip the item normally
      }
 
-     void Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag) {
+     ItemEffectUID Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag) {
 	     auto item = pack.inventory[bag][invSlot];
 	     std::cout << "itemID: " << item.Get_uID() << std::endl;
 
@@ -100,27 +100,27 @@ namespace Equipment {
 		     updateItems.emplace_back(bag, invSlot);
 		     // query the effect of the item and apply it
 //		      auto slotNum = DB::Query("slotNum", "equipSlots", "slotName", slot); //retrieve slotNum using slotName from the db
-		     std::cout << "item not equippable" << std::endl;
-		     return;
+		     return effectID;
 	     }
 
 	     //if any of these send the client an update for the bags as well as the inv slot
 	     if (slotStr == "bag") {
 		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Items0, updateItems, updateBag);
-		     return;
+		     return 0;
 	     }
 
 	     if (slotStr == "tome") {
 		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Scrolls, updateItems, updateBag);
-		     return;
+		     return 0;
 	     }
 
 	     if (slotStr == "belt") {
 		     Backpack::Equip_Bag(pack, groundItems, invSlot, bag, Items::BagType::Potions, updateItems, updateBag);
-		     return;
+		     return 0;
 	     }
 
 	     Equip_Item(pack.inventory, equipment, invSlot, slotStr, bag, updateItems, updateEquipment);
+	     return 0;
      }
 
      std::string Get_Equipment(Items::Equipped &equipment) {
