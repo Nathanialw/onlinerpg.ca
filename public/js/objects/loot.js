@@ -51,7 +51,6 @@ export function Update_Loot(dataStr, direction) {
     //clear the loot array
     // loot = []
     // loot = Array(groundSlots).fill().map(() => ({ ... item}));
-    loot.NumItems = 0;
     dataStr = Parse_Loot(dataStr, loot)
     for (let i = 0; i < loot.NumItems; ++i) {            
         loot.Items[i].IconPath = Set_Icon(loot.Items[i].ItemID);
