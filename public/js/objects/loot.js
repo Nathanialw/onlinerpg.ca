@@ -22,7 +22,7 @@ const groundSlots = 14;
 // let loot = Array(groundSlots).fill().map(() => ({ ... item}));
 let loot = {
     NumItems: 0,
-    Items: [], //Array(groundSlots).fill().map(() => ({ ... item}))
+    Items: Array(groundSlots).fill().map(() => ({ ... item}))
 }
 let lootBox = Array(groundSlots).fill().map(() => ({ Texture: null, Name: null }));
 
