@@ -8,7 +8,7 @@ namespace Items {
 
      static std::unordered_map<ItemID, ItemEffectUID> itemEffects = {};
 
-     std::unordered_map<ItemID, ItemEffectUID> &Get_Item_Effect_Array(ItemID itemID) {
+     std::unordered_map<ItemID, ItemEffectUID> &Get_Item_Effect_Array() {
 	     return itemEffects;
      }
 
