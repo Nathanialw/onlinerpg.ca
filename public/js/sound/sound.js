@@ -11,18 +11,13 @@ let Sounds = {
     swoosh: null
 }
 
-async function CreateSound(path) {
-    var sound = await new Howl ({
-        src: [path],
-        html5: true,
-        autoplay: true
-    });
-    return sound;
-}
-
 async function Load_Sound(sound, path) {
     if (sound == null) {
-        sound = await CreateSound(path);
+        sound = await new Howl ({
+            src: [path],
+            html5: true,
+            autoplay: true
+        });
     }
 }
 
