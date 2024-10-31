@@ -13,7 +13,7 @@
 
 namespace Component {
   typedef int8_t PosInt;
-  static const uint8_t mapWidth = 99;
+  static const PosInt mapWidth = 99;
 
   struct Position {
     PosInt x;
@@ -28,11 +28,11 @@ namespace Component {
       return x == other.x && y == other.y;
     }
 
-    Position Add(const Position &other) const {
+    [[nodiscard]] Position Add(const Position &other) const {
       return {static_cast<PosInt>(x + other.x), static_cast<PosInt>(y + other.y)};
     }
 
-    std::string As_String() const {
+    [[nodiscard]] std::string As_String() const {
       return " x: " + std::to_string(x) + " y: " + std::to_string(y);
     }
   };

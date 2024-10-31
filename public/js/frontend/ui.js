@@ -1,5 +1,5 @@
 'use strict'
-import { app, Draw_UI, Draw_Vision_Background } from '../graphics/graphics.js';
+import { app, Wait_For_Load, Draw_UI, Draw_Vision_Background } from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
 import { Species} from '../units/unitdef.js';
 import { Update_Loot } from '../objects/loot.js';
@@ -70,8 +70,9 @@ export function Update_Screen() {
     Draw_Equipment(); //pass the list of the strings of the path to the icons
 }
 
-export function Game_Update(dataStr) {
+export async function Game_Update(dataStr) {
     Parse_Recieved(dataStr);
+    await Wait_For_Load();
     Update_Screen();
 }
 

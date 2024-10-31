@@ -16,15 +16,14 @@ async function Load_Sound(sound, path) {
         sound = await new Howl ({
             src: [path],
             html5: true,
-            autoplay: true
         });
     }
 }
 
-export function Init () {
-    Load_Sound(Sounds.swoosh, '../../assets/sounds/swish_2.wav');
-    Load_Sound(Music.cave, '../..//assets/music/cave/Dungeon_-_Catacomb_Crawler.ogg');
-    Load_Sound(Music.forest, '../../assets/music/forest/Dungeon_-_Thorn_Maze.ogg');
+export async function Init () {
+    await Load_Sound(Sounds.swoosh, '../../assets/sounds/swish_2.wav');
+    await Load_Sound(Music.cave, '../..//assets/music/cave/Dungeon_-_Catacomb_Crawler.ogg');
+    await Load_Sound(Music.forest, '../../assets/music/forest/Dungeon_-_Thorn_Maze.ogg');
 }
 
 

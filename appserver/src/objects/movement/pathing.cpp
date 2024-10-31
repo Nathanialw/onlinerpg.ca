@@ -17,8 +17,8 @@ namespace Pathing {
 
   // clear previous location, set new location
   void Update(Map nodes, const std::string &mapString) {
-    for (int y = 0; y < Component::mapWidth; y++) {
-      for (int x = 0; x < Component::mapWidth; x++) {
+    for (size_t y = 0; y < Component::mapWidth; y++) {
+      for (size_t x = 0; x < Component::mapWidth; x++) {
           if (mapString[y * Component::mapWidth + x] == '.') {
             nodes[y * Component::mapWidth + x].bObstacle = false;
           }
@@ -31,8 +31,8 @@ namespace Pathing {
 
   void Draw_Collision_Map(Map nodes) {
     std::cout << "Drawing collision map: "<< std::endl;
-    for (int y = 0; y < Component::mapWidth; y++) {
-      for (int x = 0; x < Component::mapWidth; x++) {
+    for (size_t y = 0; y < Component::mapWidth; y++) {
+      for (size_t x = 0; x < Component::mapWidth; x++) {
         if (nodes[y * Component::mapWidth + x].bObstacle) {
           std::cout << "#";
         }
@@ -45,8 +45,8 @@ namespace Pathing {
   }
 
   bool Init(Map nodes, const std::string &mapString) {
-    for (int y = 0; y < Component::mapWidth; y++) {
-      for (int x = 0; x < Component::mapWidth; x++) {
+    for (size_t y = 0; y < Component::mapWidth; y++) {
+      for (size_t x = 0; x < Component::mapWidth; x++) {
         nodes[y * Component::mapWidth + x].x = x;
         nodes[y * Component::mapWidth + x].y = y;
         nodes[y * Component::mapWidth + x].bObstacle = true;
@@ -56,8 +56,8 @@ namespace Pathing {
       }
     }
 
-    for (int y = 0; y < Component::mapWidth; y++)
-      for (int x = 0; x < Component::mapWidth; x++) {
+    for (size_t y = 0; y < Component::mapWidth; y++)
+      for (size_t x = 0; x < Component::mapWidth; x++) {
         if (y > 0)
           nodes[y * Component::mapWidth + x].vecNeighbours.push_back(&nodes[(y - 1) * Component::mapWidth + (x + 0)]);
         if (y < Component::mapWidth - 1)
@@ -206,7 +206,7 @@ namespace Pathing {
 //    }
     if (x == 1) {
       //connect right
-      for (int i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
+      for (size_t i = Component::mapWidth - 1; i < Component::mapWidth * Component::mapWidth; i += Component::mapWidth) {
           std::cout << "i: " << i << std::endl;
           std::cout << "i - (Component::mapWidth - 1): " << i - (Component::mapWidth - 1) << std::endl;
 

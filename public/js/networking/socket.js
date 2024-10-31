@@ -60,7 +60,7 @@ export async function createWebSocket() {
                 if (data.length === 0) {
                     return;
                 }
-
+                console.log("Received message type", type, "with data", data);
                 // Use a hash map to update
                 Update[type](data);
             };

@@ -51,10 +51,6 @@ function Update_Spellbook(data) {
 
 }
 
-function Update_(data) {
-
-}
-
 function Resume_Game() {
     console.log("Resuming game");  
     Send_Web_Socket_Message("9")
@@ -84,7 +80,7 @@ export let Update = {
     3: UpdatePlayerInfo,
     4: Reconnect,
     5: Get_Target_Stats_From_Server,
-    // 6: Restart,
+    // 6: Startup,
     // 7: Quit,
     8: Create_Resume_Btn,
     9: Save_Item_Effect,

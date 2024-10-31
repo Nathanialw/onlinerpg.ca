@@ -24,8 +24,8 @@ namespace Backpack {
 	     auto temp = pack.bags[bagSlot];
 	     pack.bags[bagSlot].Set_Empty();
 
-	     for (int j = 0; j < (int) Items::BagType::Scrolls; ++j) {
-		     for (int i = 0; i < pack.maxSlots[j]; ++i) {
+	     for (size_t j = 0; j < (size_t)Items::BagType::Scrolls; ++j) {
+		     for (size_t i = 0; i < pack.maxSlots[j]; ++i) {
 			     if (pack.inventory[j][i].Empty()) {
 				     pack.inventory[j][i] = temp;
 				     std::cout << "bag unequipped at slot: " << bagSlot << std::endl;
@@ -121,7 +121,7 @@ namespace Backpack {
 
      std::string Get_Bags(Items::Bags &bags) {
 	     std::string bagStr = Utils::Prepend_Zero_By_Digits(bags.size(), 1);
-	     for (int i = 0; i < bags.size(); ++i) {
+	     for (size_t i = 0; i < bags.size(); ++i) {
 		     bagStr += Utils::Prepend_Zero_By_Digits(i, 1) + Utils::Prepend_Zero_By_Digits(bags[i].Get_uID(), 3);
 	     }
 	     return bagStr;

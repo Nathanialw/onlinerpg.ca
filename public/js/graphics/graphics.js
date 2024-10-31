@@ -11,6 +11,8 @@ const fonts ={
     Text2: "'Aniron'",
 }
 
+let loaded = false;
+
 export const grey50 = 0xf8fafc;
 export const grey100 = 0xf1f5f9;
 export const grey200 = 0xe2e8f0;
@@ -97,6 +99,22 @@ let equipSlotsDefault = {
     slotBorder: null,
 }
 
+export function Wait_For_Load() {
+    return new Promise((resolve) => {
+        const pollingInterval = 100;
+
+        function checkCondition() {
+            if (loaded === true) {
+                resolve();
+            } else {
+                setTimeout(checkCondition, pollingInterval);
+            }
+        }
+
+        checkCondition();
+    });
+}
+
 async function Load_Texture(path) {
     const texture = await PIXI.Assets.load(path);
     return new PIXI.Sprite(texture);
@@ -179,6 +197,7 @@ async function Init_Graphics() {
     // equipSlotsDefault.arms = await Load_Texture('assets/graphics/ui/equipment/empty_arms.png');
     // equipSlotsDefault.face = await Load_Texture('assets/graphics/ui/equipment/empty_face.png');
     // equipSlotsDefault.food = await Load_Texture('assets/graphics/ui/equipment/empty_food.png');
+    loaded = true;
 }
 
 export async function Create_Canvas() {

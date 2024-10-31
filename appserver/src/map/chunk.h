@@ -19,10 +19,10 @@ namespace Chunk {
   typedef char Chunk[Component::mapWidth][Component::mapWidth] ;
 
   struct Room {
-    uint8_t x;
-    uint8_t y;
-    uint8_t w;
-    uint8_t h;
+    Component::PosInt  x;
+    Component::PosInt  y;
+    Component::PosInt  w;
+    Component::PosInt  h;
   };
 
   struct Map_Chunk {
