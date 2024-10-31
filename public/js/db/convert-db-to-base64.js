@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 // Path to your SQLite database file
-const dbFilePath = '../../../appserver/db/data.db';
+const dbFilePath = 'appserver/db/data.db';
 
 // Read the SQLite database file
 const dbFileBuffer = fs.readFileSync(dbFilePath);

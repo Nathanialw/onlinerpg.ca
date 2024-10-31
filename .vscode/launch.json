@@ -6,10 +6,12 @@
             "type": "node",
             "request": "launch",
             "program": "${workspaceFolder}/run.sh",
+            "preLaunchTask": "Update db.js with base64Database",
             "console": "integratedTerminal",
             "runtimeExecutable": "/bin/bash",
             "args": [],
-            "internalConsoleOptions": "neverOpen"
+            "internalConsoleOptions": "neverOpen",
+
         }
     ]
 }
