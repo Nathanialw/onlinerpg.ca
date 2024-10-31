@@ -31,6 +31,8 @@ namespace Use {
 //TODO: when creating a new game send a message to the client to clear the knownUsables map on the client side
      void Update_Known_Usable_Effects(std::unordered_map<ItemID, ItemEffectUID> &knownUsables, Unit::Unit &unit, const websocketpp::connection_hdl &hdl, websocketpp::server<websocketpp::config::asio> &print_server, const std::pair<ItemID, ItemEffectUID> &itemEffect) {
 	     //TODO: read in max value from the db
+	     if (itemEffect.second == 0)
+		     return;
 	     uint8_t value = 40;
 	     Use_Effects::Trigger_Effect(unit, itemEffect.second, value);
 	     knownUsables[itemEffect.first] = itemEffect.second;

@@ -1,7 +1,7 @@
 import { Init, Music_Play, StopAllSounds } from "../sound/sound.js";
 import { Create_Canvas} from '../graphics/graphics.js';
 import { Set_Scale_Queries } from "../graphics/scale.js";
-
+import { Init_Item_Effects } from "../db/itemEffects.js";
 
 
 //we want this it happen before the game starts
@@ -13,6 +13,8 @@ export async function Splash_Screen() {
     console.log("ui sprites loaded")
     Set_Scale_Queries();
     console.log("Splash Screen");
+    Init_Item_Effects()
+
 }
 Splash_Screen()
 

@@ -34,8 +34,7 @@ namespace Update_Items {
 	uint8_t bag = 0;
 	uint8_t index = 0;
      };
-
-
+     
      std::pair<ItemID, ItemEffectUID> Loot(Game::Instance &game, const Item &item) {
 	     std::cout << "Looting item at index: " << item.index << std::endl;
 	     Loot::Pick_Up_Item(game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, item.index, game.updateInventory);

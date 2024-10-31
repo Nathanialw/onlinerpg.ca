@@ -1,4 +1,5 @@
-import { Get_Item_Stats } from '../db/db.js';
+import { Get_Item_Stats, Get_By_UID_With_Zero } from '../db/db.js';
+import { Get_Item_Effect_UID } from '../db/itemEffects.js';
 import { app, cellSize, Create_Text_Line, Draw_Sprite, minimapCellSize } from '../graphics/graphics.js';
 
 let tooltip;
@@ -31,8 +32,14 @@ export async function Draw_Tooltip(x, y, itemID) {
         properties.push("Armour: " + itemStats.AC);
     }
     // properties.push("Speed: 1.5");
-    if (itemStats.description !== null) {
-        properties.push(itemStats.description);
+    if (itemStats.equipSlot == "consumable") {
+        const consumable = await Get_By_UID_With_Zero("description", "itemEffects", Get_Item_Effect_UID(itemID));
+        properties.push(consumable.description);
+    }
+    else {
+        if (itemStats.description !== null) {
+            properties.push(itemStats.description);
+        }
     }
     properties.push("");
 
