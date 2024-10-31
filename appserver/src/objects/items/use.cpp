@@ -19,7 +19,7 @@ namespace Use {
      //TODO: on game start load the item db effects into this array and randomly assign them to SCROLLS as well
      void Init() {
 	     auto PotionIDs = DB::Get_List("uID", "Items", {{"type", "potion"}, {"equipSlot", "consumable"}});
-	     auto effects = DB::Get_List("uID", "itemEffects", {{"type", "potion"}, {"equipSlot", "consumable"}});
+	     auto effects = DB::Get_List("uID", "itemEffects", {{"type", "potion"}});
 	     std::cout << "PotionIDs size: " << PotionIDs.size() << std::endl;
 	     std::cout << "effects size: " << effects.size() << std::endl;
 
