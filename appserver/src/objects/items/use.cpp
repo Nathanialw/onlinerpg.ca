@@ -28,7 +28,7 @@ namespace Use {
      }
 
 
-//TODO: when creating a new game send a message to the client to clear the knownUsables map
+//TODO: when creating a new game send a message to the client to clear the knownUsables map on the client side
      void Update_Known_Usable_Effects(std::unordered_map<ItemID, ItemEffectUID> &knownUsables, Unit::Unit &unit, const websocketpp::connection_hdl &hdl, websocketpp::server<websocketpp::config::asio> &print_server, const std::pair<ItemID, ItemEffectUID> &itemEffect) {
 	     Use_Effects::Trigger_Effect(unit, itemEffect.second);
 	     knownUsables[itemEffect.first] = itemEffect.second;

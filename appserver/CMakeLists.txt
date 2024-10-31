@@ -13,6 +13,7 @@ include_directories(src/networking)
 include_directories(src/map)
 include_directories(src/game)
 include_directories(src/procgen)
+include_directories(src/server)
 include_directories(src/utils)
 include_directories(src/objects)
 include_directories(src/objects/units)
@@ -31,8 +32,10 @@ include_directories(src/objects/items/use_effects)
 set(SOURCES
         libs/sqlite3/sqlite3.c
 
-        src/db/db.cpp
         src/server/main.cpp
+        src/server/server.cpp
+
+        src/db/db.cpp
         src/game/game.cpp
 
         src/utils/utils.cpp
@@ -76,7 +79,6 @@ set(SOURCES
         src/procgen/procgen.cpp
         src/objects/units/classes/unit.cpp
         src/objects/items/use_effects/use_effects.cpp
-        src/server/server.cpp
 )
 
 add_executable(BrowserRPG ${SOURCES})

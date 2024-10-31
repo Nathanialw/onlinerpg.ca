@@ -6,7 +6,7 @@
 
 namespace Use_Effects {
 
-     std::array<std::function<void(Unit::Unit &unit)>, 255> Item_Effect_Map;
+     std::array<std::function<void(Unit::Unit &unit)>, 256> Item_Effect_Map;
 
      void Trigger_Effect(Unit::Unit &unit, ItemEffectUID effectUid) {
 	     Item_Effect_Map[effectUid](unit);
@@ -281,5 +281,7 @@ namespace Use_Effects {
 	     Item_Effect_Map[252] = NOTHING;
 	     Item_Effect_Map[253] = NOTHING;
 	     Item_Effect_Map[254] = NOTHING;
+	     Item_Effect_Map[255] = NOTHING;
+
      }
 }
