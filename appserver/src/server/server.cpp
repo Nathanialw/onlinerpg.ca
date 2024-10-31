@@ -6,10 +6,23 @@
 
 namespace Server {
 
+     struct Codes {
+	char UPDATE = '1';
+	char LOOT = '0';
+	char NEWGAME = '0';
+	char RECONNECT = '0';
+	char STATS = '0';
+	char RESTARTGAME = '0';
+	char EXITGAME = '0';
+	char RESUMEBUTTON = '0';
+	char RESUMEGAME = '0';
+     };
+
      server print_server;
      Connections client_connections;
      Reverse_Connections reverse_client_connections;
      Games game_instances;
+     Codes codes;
 
      server &Print_Server() {
 	     return print_server;
@@ -27,8 +40,8 @@ namespace Server {
 	     return *reverse_client_connections[hd];
      };
 
-     void Send(const Connection &connection, std::string &message) {
-	     connection.print_server.send(connection.hdl, message, websocketpp::frame::opcode::text);
+     void Send(const websocketpp::connection_hdl &hdl, std::string &message) {
+	     print_server.send(hdl, message, websocketpp::frame::opcode::text);
      };
 
 
@@ -75,8 +88,6 @@ namespace Server {
 	     std::cout << "Session ID: " << session_id << std::endl;
 	     return session_id;
      }
-
-
 
 
      void Init_Connection(const websocketpp::connection_hdl &hdl) {

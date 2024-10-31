@@ -34,16 +34,26 @@ namespace Server {
      };
 
      server &Print_Server();
+
      Connections &Client_Connections();
+
      Games &Game_Instances();
+
      Game::Instance &Hdl(const websocketpp::connection_hdl &hd);
 
-     void Send(const Connection &connection, std::string &message);
+     void Send(const websocketpp::connection_hdl &hdl, std::string &message);
+
      void Init_Connection(const websocketpp::connection_hdl &hdl);
+
      std::string Get_SessionID(const websocketpp::connection_hdl &hdl);
+
+
      void Exit_Game(const std::string &session_id);
+
      void Close_Game(const std::string &session_id);
+
      void Start_Game(const std::string &session_id, const websocketpp::connection_hdl &hdl);
+
      std::string Resume_Game(const std::string &session_id, const websocketpp::connection_hdl &hdl);
 };
 

@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Shell Script",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/run.sh",
+            "console": "integratedTerminal",
+            "runtimeExecutable": "/bin/bash",
+            "args": [],
+            "internalConsoleOptions": "neverOpen"
+        }
+    ]
+}

@@ -33,13 +33,13 @@ namespace Network {
 
      bool On_ping(const websocketpp::connection_hdl &hdl, const std::string &payload) {
 	     std::string response = "pinging: ";
-	     Server::Print_Server().send(hdl, response, websocketpp::frame::opcode::text);
+	     Server::Send(hdl, response);
 	     return true;
      }
 
      void On_pong(const websocketpp::connection_hdl &hdl, const std::string &payload) {
 	     std::string response = "ping received: ";
-	     Server::Print_Server().send(hdl, response, websocketpp::frame::opcode::text);
+	     Server::Send(hdl, response);
      }
 
      void On_pong_timeout(const websocketpp::connection_hdl &hdl, const std::string &payload) {
@@ -55,20 +55,19 @@ namespace Network {
      }
 
      bool On_validate(const websocketpp::connection_hdl &hdl) {
-
 	     return true;
      }
 
      void On_Message(const websocketpp::connection_hdl &hdl, const Server::server::message_ptr &msg) {
-	     auto gg = Send::On_Message(hdl, msg->get_payload(), Server::Print_Server(), Server::Hdl(hdl));
+	     int8_t gg = Send::On_Message(hdl, msg->get_payload(), Server::Print_Server(), Server::Hdl(hdl));
 	     if (gg == 0) {
 		     Server::Close_Game(Server::Get_SessionID(hdl));
 		     auto session_id = Server::Get_SessionID(hdl);
 		     Server::Start_Game(session_id, hdl);
-	     } else if (gg == 1) {
+	     } else if (gg == 1) { //close game
 		     Server::Exit_Game(Server::Get_SessionID(hdl));
 		     Server::Print_Server().close(hdl, websocketpp::close::status::normal, "Game Exited");
-	     } else if (gg == 2) {
+	     } else if (gg == 2) { //create resume button
 		     //check if game exists based on session id
 		     auto session_id = Server::Get_SessionID(hdl);
 		     if (Server::Game_Instances().find(session_id) != Server::Game_Instances().end()) {
@@ -85,13 +84,13 @@ namespace Network {
 		     } else {
 			     std::cout << "Game Instance does not exist for session id: " << session_id << std::endl;
 		     }
-	     } else if (gg == 3) {
+	     } else if (gg == 3) { //resume game
 		     std::cout << "Resuming game" << std::endl;
 		     auto response = Server::Resume_Game(Server::Get_SessionID(hdl), hdl);
 		     if (!response.empty()) {
 			     Send::On_Message(hdl, response, Server::Print_Server(), Server::Hdl(hdl));
 		     }
-	     } else if (gg == 4) {
+	     } else if (gg == 4) { //New Game
 		     std::cout << "No action taken" << std::endl;
 		     Server::Close_Game(Server::Get_SessionID(hdl));
 		     Server::Start_Game(Server::Get_SessionID(hdl), hdl);

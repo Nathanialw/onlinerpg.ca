@@ -14,7 +14,7 @@ export function Restart(data) {
 export function Quit(data) {
     Send_Web_Socket_Message("7")
     //go back to start page
-    window.location.href = "https://www.onlineRPG.ca";
+    window.location.href = "/";
     //set proper html
 }
 

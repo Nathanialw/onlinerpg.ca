@@ -88,7 +88,7 @@ namespace Send {
 	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
      }
 
-     int On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
+     int8_t On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
 	     std::string response;
 
 	     //TODO: function pointer hashmap
@@ -104,6 +104,7 @@ namespace Send {
 	     } else if (msg[0] == '4') { // Reconnect
 		     print_server.send(hdl, msg, websocketpp::frame::opcode::text);
 		     response.append(msg.substr(1));
+		     std::string skip = "1 ";
 		     Full_Update(hdl, response, print_server, game);
 	     } else if (msg[0] == '5') { // send unit stats
 		     response.append(msg.substr(1, 4));

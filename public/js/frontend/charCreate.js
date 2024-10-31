@@ -1,7 +1,6 @@
 import { createWebSocket } from '/js/networking/socket.js';
 import { Init_Title, Music_Play } from '../sound/sound.js';
 import { character_Create } from './newGame.js';
-import { Send_Web_Socket_Message } from '../networking/socket.js';
 import { Quit, Resume } from '../game/game.js';
 
 
@@ -106,3 +105,14 @@ const connectKeyDown = (event) => {
     }
 };
 document.addEventListener('keydown', connectKeyDown);
+
+// Handle termination signals
+process.on('SIGINT', () => {
+    console.log('Received SIGINT. Exiting...');
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('Received SIGTERM. Exiting...');
+    process.exit(0);
+});

@@ -42,7 +42,8 @@ export async function createWebSocket() {
     let i = 0;
 
     return new Promise((resolve, reject) => {
-        websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
+        // websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
+        websocket = new WebSocket(`ws:localhost:9002/ws?session_id=${sessionId}`);
 
         websocket.onopen = () => {
             console.log("WebSocket connection opened");
