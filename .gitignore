@@ -3,7 +3,6 @@ package.json
 .gitignore
 /node_modules/*
 appserver/debug/*
-appserver/debug/
 appserver/cmake-build-debug/*
 appserver/cmake-build-release/*
 appserver/cmake-build-relwithdebinfo/*
