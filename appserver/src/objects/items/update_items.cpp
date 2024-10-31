@@ -33,12 +33,12 @@ namespace Update_Items {
 			     Inventory::Drop_Item(game.Get_Player().pack.inventory, game.Get_Items(), stoi(bag), stoi(index), game.updateInventory);
 		     } else if (mod == "a") { // equip offhand
 			     std::cout << "alt clicked: " << mod << std::endl;
-			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag, game.knownUsables);
+			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
 		     } else if (mod == "s") { //
 			     std::cout << "shift clicked, thusfar unused" << std::endl;
 		     } else { // equip standard / use item
 			     std::cout << "unmodded clicked: " << mod << std::endl;
-			     return Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag, game.knownUsables);
+			     return Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
 		     }
 	     } else if (type == "2") {
 		     std::cout << "interacting with equipment at index: " << index << std::endl;

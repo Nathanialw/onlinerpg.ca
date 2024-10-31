@@ -68,7 +68,7 @@ namespace Equipment {
 	     Swap_Item(inventory, equipment, slotNum, index, bag, updateItems, updateEquipment);
      }
 
-     void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag, std::unordered_map<ItemID, ItemEffectUID> &knownUsables) {
+     void Equip_Second_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t index, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag) {
 	     auto item = pack.inventory[bag][index];
 	     auto slotStr = DB::Query("equipSlot", "Items", "uID", std::to_string(item.Get_uID())); //retrieve equipSlot using itemID from the db
 	     if (slotStr == "bag") {
@@ -85,10 +85,10 @@ namespace Equipment {
 		     return;
 	     }
 
-	     Use_Item(pack, groundItems, equipment, index, bag, updateItems, updateEquipment, updateBag, knownUsables); //equip the item normally
+	     Use_Item(pack, groundItems, equipment, index, bag, updateItems, updateEquipment, updateBag); //equip the item normally
      }
 
-     std::pair<ItemID, ItemEffectUID> Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag, std::unordered_map<ItemID, ItemEffectUID> &knownUsables) {
+     std::pair<ItemID, ItemEffectUID> Use_Item(Items::Backpack &pack, Items::Ground &groundItems, Items::Equipped &equipment, uint8_t invSlot, uint8_t bag, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment, int8_t &updateBag) {
 	     auto item = pack.inventory[bag][invSlot];
 	     std::cout << "itemID: " << item.Get_uID() << std::endl;
 
@@ -96,7 +96,7 @@ namespace Equipment {
 	     std::cout << "equip slot: " << slotStr << std::endl;
 
 	     if (slotStr == "consumable") {
-		     std::pair<ItemID, ItemEffectUID> itemEffect = pack.inventory[bag][invSlot].Use(knownUsables);
+		     std::pair<ItemID, ItemEffectUID> itemEffect = pack.inventory[bag][invSlot].Use();
 		     updateItems.emplace_back(bag, invSlot);
 		     return itemEffect;
 	     }

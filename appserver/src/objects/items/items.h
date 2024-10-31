@@ -3,10 +3,9 @@
 // Created by desktop on 10/12/24.
 //
 
-#ifndef BROWSERRPG_ITEMS_H
-#define BROWSERRPG_ITEMS_H
 
 #include "array"
+#include "vector"
 #include "iostream"
 #include "string"
 #include "utils.h"
@@ -15,10 +14,8 @@
 
 namespace Items {
 
-     std::unordered_map<ItemID, ItemEffectUID> &Get_Item_Effect_Array();
-
+     void Init_Item_Effects_Array(std::vector<std::string> &PotionIDs, std::vector<std::string> &effects);
      ItemEffectUID Get_Item_Effect(ItemID itemID);
-
 
      enum class BagType {
 	Items0,
@@ -64,7 +61,6 @@ namespace Items {
      class Item {
 	private:
 	static const uint8_t numModifiers = 8;
-
 
 	ItemID uID{};                                                                                   // is this not jsut the icon basically?
 	uint8_t durability{};                                                                // 0-100
@@ -181,11 +177,8 @@ namespace Items {
 		return itemStr;
 	}
 
-	std::pair<ItemID, ItemEffectUID> Use(std::unordered_map<ItemID, ItemEffectUID> &knownUsables) {
+	std::pair<ItemID, ItemEffectUID> Use() {
 		auto effect = Get_Item_Effect(uID);
-		std::cout << "adding effect: for item: " << uID << " effect: " << effect << std::endl;
-		knownUsables[uID] = effect;
-		std::cout << "new index value: " << knownUsables[uID] << std::endl;
 		std::pair<ItemID, ItemEffectUID> effectPair = {uID, effect};
 		this->Set_Empty();
 		return effectPair;
@@ -222,4 +215,3 @@ namespace Items {
 
 } // namespace Items
 
-#endif // BROWSERRPG_ITEMS_H

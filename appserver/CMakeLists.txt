@@ -24,6 +24,7 @@ include_directories(src/objects/movement/pathing)
 include_directories(src/objects/units/class)
 include_directories(src/objects/units/species)
 include_directories(src/objects/units/classes)
+include_directories(src/objects/items/use_effects)
 
 
 
@@ -74,6 +75,8 @@ set(SOURCES
 
         src/procgen/procgen.cpp
         src/objects/units/classes/unit.cpp
+        src/objects/items/use_effects/use_effects.cpp
+        src/server/server.cpp
 )
 
 add_executable(BrowserRPG ${SOURCES})

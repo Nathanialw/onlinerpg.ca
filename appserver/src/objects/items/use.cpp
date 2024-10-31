@@ -8,57 +8,35 @@
 #include "vector"
 #include "procgen.h"
 #include "unit.h"
-#include <algorithm>
-#include <random>
+#include "use_effects.h"
 
 namespace Use {
 
+
+     //funciton pointer to the effect
+
+
      //TODO: on game start load the item db effects into this array and randomly assign them to SCROLLS as well
      void Init() {
-	     std::vector<std::pair<std::string, std::string>> whereEquals;
-	     whereEquals = {{"type", "potion"}};
-	     auto PotionIDs = DB::Get_List("uID", "Items", whereEquals);
-	     auto effects = DB::Get_List("uID", "itemEffects", whereEquals);
+	     auto PotionIDs = DB::Get_List("uID", "Items", {{"type", "potion"}});
+	     auto effects = DB::Get_List("uID", "itemEffects", {{"type", "potion"}});
+	     std::cout << "PotionIDs size: " << PotionIDs.size() << std::endl;
+	     std::cout << "effects size: " << effects.size() << std::endl;
 
-	     std::cout << "PotionIDs: " << PotionIDs.size() << std::endl;
-	     std::cout << "effects: " << effects.size() << std::endl;
-
-	     std::random_device rd;
-	     std::mt19937 g(rd());
-	     std::shuffle(effects.begin(), effects.end(), g);
-
-	     auto &effectsArray = Items::Get_Item_Effect_Array();
-	     for (int i = 0; i < PotionIDs.size(); i++) {
-		     effectsArray[std::stoi(PotionIDs[i])] = std::stoi(effects[i]);
-		     //randomize the unordered_map
-	     }
+	     Items::Init_Item_Effects_Array(PotionIDs, effects);
+	     Use_Effects::Init();
      }
 
-     std::string Activate(Unit::Unit &unit, ItemEffectUID effectID) {
-	     if (effectID == 0) {
-		     std::cout << "Not usable." << int(effectID) << std::endl;
-		     return "";
-	     }
-
-	     std::cout << "unit: " << unit.stats.health << std::endl;
-	     unit.stats.health += Utils::Random(20, 40);
-	     std::cout << "unit: " << unit.stats.health << std::endl;
-	     //TODO: add item effects
-	     //it needs to have an effect on the unit that uses it
-	     //units are defined by                       units game.levels.objects.unitPosition[location][position]
-
-	     return Utils::Prepend_Zero_By_Digits(effectID, 3);
-     };
 
 //TODO: when creating a new game send a message to the client to clear the knownUsables map
-     void Update_Known_Usable_Effects(Unit::Unit &unit, const websocketpp::connection_hdl &hdl, websocketpp::server<websocketpp::config::asio> &print_server, const std::pair<ItemID, ItemEffectUID> &itemEffect) {
-	     auto effectStr = Activate(unit, itemEffect.second);
+     void Update_Known_Usable_Effects(std::unordered_map<ItemID, ItemEffectUID> &knownUsables, Unit::Unit &unit, const websocketpp::connection_hdl &hdl, websocketpp::server<websocketpp::config::asio> &print_server, const std::pair<ItemID, ItemEffectUID> &itemEffect) {
+	     Use_Effects::Trigger_Effect(unit, itemEffect.second);
+	     knownUsables[itemEffect.first] = itemEffect.second;
+	     std::cout << "new index value: " << knownUsables[itemEffect.first] << std::endl;
 
-	     if (!effectStr.empty()) {
-		     std::string updateItemEffects = "9";
-		     updateItemEffects += Utils::Prepend_Zero_By_Digits(itemEffect.first, 3) + effectStr;
-		     print_server.send(hdl, updateItemEffects, websocketpp::frame::opcode::text);
-	     }
+	     std::string updateItemEffects = "9";
+	     updateItemEffects += Utils::Prepend_Zero_By_Digits(itemEffect.first, 3) + Utils::Prepend_Zero_By_Digits(itemEffect.second, 3);
+	     print_server.send(hdl, updateItemEffects, websocketpp::frame::opcode::text);
      }
 }
 
