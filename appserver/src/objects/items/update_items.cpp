@@ -23,6 +23,7 @@ namespace Update_Items {
      };
 
      std::unordered_map<std::string, Panel> panelMap = {
+	{"0", Panel::NONE},
 	{"a", Panel::ALT},
 	{"c", Panel::CTRL},
 	{"s", Panel::SHIFT}
@@ -103,8 +104,7 @@ namespace Update_Items {
 	     std::cout << "message: " << msg << std::endl;
 	     Item item;
 	     item.modKey = panelMap[msg.substr(2, 1)];
-	     if (msg.substr(3, 1) != " ")
-		     item.bag = stoi(msg.substr(3, 1));
+	     item.bag = stoi(msg.substr(3, 1));
 	     item.index = stoi(msg.substr(4));
 	     std::cout << "panel clicked: " << msg.substr(1, 1) << std::endl;
 

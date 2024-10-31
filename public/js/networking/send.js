@@ -59,6 +59,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, Draw_Ico
     });
 
     //DESKTOP ONLY
+    let bag = "9"
     item.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
@@ -66,19 +67,19 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, Draw_Ico
         //if ctrl clicked
         if (event.ctrlKey) {
             //drop sound
-            message = "2" + panel + "c " + i;
+            message = "2" + panel + "c" + bag + i;
         }
         //if shift clicked
         else if (event.shiftKey) {
-            message = "2" + panel + "s " + i;
+            message = "2" + panel + "s" + bag + i;
         }
         //if alt clicked
         else if (event.altKey) {
             //equip sound
-            message = "2" + panel + "a " + i;
+            message = "2" + panel + "a" + bag + i;
         }    
         else {
-            message = "2" + panel + "0 " + i;
+            message = "2" + panel + "0" + bag + i;
         }  
         
         //equip sound
@@ -168,6 +169,7 @@ export function Set_Send_On_Loot_Click_Listener_Loot(item, panel, i, itemID, inv
     });
 
     //DESKTOP ONLY
+    let bag = "9"
     item.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
@@ -175,20 +177,20 @@ export function Set_Send_On_Loot_Click_Listener_Loot(item, panel, i, itemID, inv
         //if ctrl clicked
         if (event.ctrlKey) {
             //drop sound
-            message = "2" + panel + "c " + i;
+            message = "2" + panel + "c" + bag + i;
         }
         //if shift clicked
         else if (event.shiftKey) {
-            message = "2" + panel + "s " + i;
+            message = "2" + panel + "s" + bag + i;
         }
         //if alt clicked
         else if (event.altKey) {
             //equip sound
-            message = "2" + panel + "a " + i;
+            message = "2" + panel + "a" + bag + i;
         }    
         else {
-            message = "2" + panel + "0 " + i;
-        }  
+            message = "2" + panel + "0" + bag + i;
+        }   
         
         //equip sound
         // console.log("message: ", message);
