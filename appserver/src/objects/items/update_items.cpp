@@ -11,52 +11,105 @@
 #include "loot.h"
 #include "string"
 #include <iostream>
+#include "array"
 
 namespace Update_Items {
 
-     std::pair<ItemID, ItemEffectUID> Update(const std::string &msg, Game::Instance &game) {
-	     //      response = "2";
-	     std::cout << "message: " << msg << std::endl;
-	     auto type = msg.substr(1, 1);
-	     auto mod = msg.substr(2, 1);
-	     auto bag = msg.substr(3, 1);
-	     auto index = msg.substr(4);
-	     std::cout << "panel clicked: " << type << std::endl;
+     enum Panel {
+	NONE,
+	ALT,
+	CTRL,
+	SHIFT,
+     };
 
-	     if (type == "0") {
-		     std::cout << "Looting item at index: " << index << std::endl;
-		     Loot::Pick_Up_Item(game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, stoi(index), game.updateInventory);
-	     } else if (type == "1") {
-		     std::cout << "interacting with inventory at index: " << index << std::endl;
-		     if (mod == "c") { // throw away
-			     std::cout << "control clicked: " << mod << std::endl;
-			     Inventory::Drop_Item(game.Get_Player().pack.inventory, game.Get_Items(), stoi(bag), stoi(index), game.updateInventory);
-		     } else if (mod == "a") { // equip offhand
-			     std::cout << "alt clicked: " << mod << std::endl;
-			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
-		     } else if (mod == "s") { //
-			     std::cout << "shift clicked, thusfar unused" << std::endl;
-		     } else { // equip standard / use item
-			     std::cout << "unmodded clicked: " << mod << std::endl;
-			     return Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, stoi(index), stoi(bag), game.updateInventory, game.updateEquipment, game.updateBag);
+     std::unordered_map<std::string, Panel> panelMap = {
+	{"a", Panel::ALT},
+	{"c", Panel::CTRL},
+	{"s", Panel::SHIFT}
+     };
+
+     struct Item {
+	Panel modKey = Panel::NONE;
+	uint8_t bag = 0;
+	uint8_t index = 0;
+     };
+
+
+     std::pair<ItemID, ItemEffectUID> Loot(Game::Instance &game, const Item &item) {
+	     std::cout << "Looting item at index: " << item.index << std::endl;
+	     Loot::Pick_Up_Item(game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, item.index, game.updateInventory);
+	     return {0, 0};
+     }
+
+     std::pair<ItemID, ItemEffectUID> Inventory(Game::Instance &game, const Item &item) {
+	     std::cout << "interacting with inventory at index: " << item.index << std::endl;
+	     switch (item.modKey) {
+		     case NONE: { // equip standard / use item
+			     std::cout << "unmodded clicked: " << item.modKey << std::endl;
+			     return Equipment::Use_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, item.index, item.bag, game.updateInventory, game.updateEquipment, game.updateBag);
 		     }
-	     } else if (type == "2") {
-		     std::cout << "interacting with equipment at index: " << index << std::endl;
-		     Equipment::Unequip_Item(game.Get_Player().pack.inventory, game.Get_Player().equipment, index, game.Get_Player().pack.maxSlots, game.updateInventory, game.updateEquipment);
-	     } else if (type == "3") {
-		     std::cout << "interacting with bags at index: " << index << std::endl;
-		     if (mod == "c") { // unequip bag
-			     std::cout << "control clicked: " << mod << std::endl;
-			     //          Backpack::Unequip_Bag(game.Get_Player().pack, stoi(index));
-		     } else if (mod == "a") { // equip second bag
-			     std::cout << "alt clicked: " << mod << std::endl;
-		     } else if (mod == "s") { //
+		     case CTRL: { // throw away
+			     std::cout << "control clicked: " << item.modKey << std::endl;
+			     Inventory::Drop_Item(game.Get_Player().pack.inventory, game.Get_Items(), item.bag, item.index, game.updateInventory);
+			     break;
+		     }
+		     case ALT: { // equip offhand
+			     std::cout << "alt clicked: " << item.modKey << std::endl;
+			     Equipment::Equip_Second_Item(game.Get_Player().pack, game.Get_Items(), game.Get_Player().equipment, item.index, item.bag, game.updateInventory, game.updateEquipment, game.updateBag);
+			     break;
+		     }
+		     case SHIFT: { //
 			     std::cout << "shift clicked, thusfar unused" << std::endl;
-		     } else { // equip standard / use item
-			     std::cout << "unmodded clicked: " << mod << std::endl;
+			     break;
 		     }
 	     }
 	     return {0, 0};
      }
 
+     std::pair<ItemID, ItemEffectUID> Equipment(Game::Instance &game, const Item &item) {
+	     std::cout << "interacting with equipment at index: " << item.index << std::endl;
+	     Equipment::Unequip_Item(game.Get_Player().pack.inventory, game.Get_Player().equipment, item.index, game.Get_Player().pack.maxSlots, game.updateInventory, game.updateEquipment);
+	     return {0, 0};
+     }
+
+     std::pair<ItemID, ItemEffectUID> Bags(Game::Instance &game, const Item &item) {
+	     std::cout << "interacting with bags at index: " << item.index << std::endl;
+	     switch (item.modKey) {
+		     case NONE: {  // equip standard / use item
+			     std::cout << "unmodded clicked: " << item.modKey << std::endl;
+		     }
+		     case CTRL: {  // unequip bag
+			     std::cout << "control clicked: " << item.modKey << std::endl;
+			     //          Backpack::Unequip_Bag(game.Get_Player().pack, stoi(index));
+		     }
+		     case ALT: {  // equip second bag
+			     std::cout << "alt clicked: " << item.modKey << std::endl;
+		     }
+		     case SHIFT: {  //
+			     std::cout << "shift clicked, thusfar unused" << std::endl;
+		     }
+	     }
+	     return {0, 0};
+     }
+
+     std::array<std::function<std::pair<ItemID, ItemEffectUID>(Game::Instance &game, const Item &item)>, 4> itemInteractions = {
+	Loot,
+	Inventory,
+	Equipment,
+	Bags
+     };
+
+     std::pair<ItemID, ItemEffectUID> Update(const std::string &msg, Game::Instance &game) {
+	     std::cout << "message: " << msg << std::endl;
+	     Item item;
+	     item.modKey = panelMap[msg.substr(2, 1)];
+	     if (msg.substr(3, 1) != " ")
+		     item.bag = stoi(msg.substr(3, 1));
+	     item.index = stoi(msg.substr(4));
+	     std::cout << "panel clicked: " << msg.substr(1, 1) << std::endl;
+
+	     uint8_t type = stoi(msg.substr(1, 1));
+
+	     return itemInteractions[type](game, item);
+     }
 }

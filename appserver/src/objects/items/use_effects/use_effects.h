@@ -11,10 +11,11 @@
 
 // Heal
 // Max Health
-// Intellect
-// Strength
 // Mana
 // Max Mana
+
+// Intellect
+// Strength
 // Speed
 
 // Physical Resist
@@ -40,10 +41,28 @@
 
 //NEGATIVES on self
 // Polymorph
+// Shrink
 // Silence
+// Disorient
+
 // Stun
 // Fear
+
 // Charm
+
+// Sleep
+// Slow
+// Freeze
+// Petrify
+
+// Blind
+// Confusion
+// Poison
+// Disease
+// Curse
+// Hex
+// Root
+// Disarm
 
 
 
@@ -51,7 +70,7 @@
 
 namespace  Use_Effects {
 
-     void Trigger_Effect(Unit::Unit &unit, ItemEffectUID effectUid);
+     void Trigger_Effect(Unit::Unit &unit, ItemEffectUID effectUid, uint8_t value);
      void Init();
 
 }

@@ -16,15 +16,9 @@ namespace Network {
 	     Server::Init_Connection(hdl);
      }
 
+     //TODO: fix the bug where the client is repeatedly reconnecting when idling on a different tab
      void On_close(const websocketpp::connection_hdl &hdl) {
-	     std::string session_id = Server::Get_SessionID(hdl);
-
-	     if (session_id.empty()) {
-		     Server::Print_Server().close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
-		     return;
-	     }
-//	     reverse_client_connections.erase(hdl);
-	     std::cout << "Connection Closed: " << hdl.lock().get() << std::endl;
+	     Server::Close_Connection(hdl);
      }
 
      void On_fail(const websocketpp::connection_hdl &hdl) {
@@ -59,44 +53,9 @@ namespace Network {
      }
 
      void On_Message(const websocketpp::connection_hdl &hdl, const Server::server::message_ptr &msg) {
-	     int8_t gg = Send::On_Message(hdl, msg->get_payload(), Server::Print_Server(), Server::Hdl(hdl));
-	     if (gg == 0) {
-		     Server::Close_Game(Server::Get_SessionID(hdl));
-		     auto session_id = Server::Get_SessionID(hdl);
-		     Server::Start_Game(session_id, hdl);
-	     } else if (gg == 1) { //close game
-		     Server::Exit_Game(Server::Get_SessionID(hdl));
-		     Server::Print_Server().close(hdl, websocketpp::close::status::normal, "Game Exited");
-	     } else if (gg == 2) { //create resume button
-		     //check if game exists based on session id
-		     auto session_id = Server::Get_SessionID(hdl);
-		     if (Server::Game_Instances().find(session_id) != Server::Game_Instances().end()) {
-			     // get the game
-			     std::cout << "Game Instance exists for session id: " << session_id << std::endl;
-			     auto game = Server::Game_Instances().at(session_id);
-			     if (game.Exists()) {
-				     std::string response = "8 ";
-				     std::cout << "Game exists for session id: " << session_id << std::endl;
-				     Server::Print_Server().send(hdl, response, websocketpp::frame::opcode::text);
-			     } else {
-				     std::cout << "Game Exists, but bugged " << session_id << std::endl;
-			     }
-		     } else {
-			     std::cout << "Game Instance does not exist for session id: " << session_id << std::endl;
-		     }
-	     } else if (gg == 3) { //resume game
-		     std::cout << "Resuming game" << std::endl;
-		     auto response = Server::Resume_Game(Server::Get_SessionID(hdl), hdl);
-		     if (!response.empty()) {
-			     Send::On_Message(hdl, response, Server::Print_Server(), Server::Hdl(hdl));
-		     }
-	     } else if (gg == 4) { //New Game
-		     std::cout << "No action taken" << std::endl;
-		     Server::Close_Game(Server::Get_SessionID(hdl));
-		     Server::Start_Game(Server::Get_SessionID(hdl), hdl);
-		     Send::Init(hdl, msg->get_payload(), Server::Print_Server(), Server::Game_Instances().at(Server::Get_SessionID(hdl)));
-
-	     }
+	     int8_t code = Send::On_Message(hdl, msg->get_payload(), Server::Print_Server(), Server::Hdl(hdl));
+	     if (Server::Enter_Game(hdl, code))
+	          Send::Init(hdl, msg->get_payload(), Server::Print_Server(), Server::Hdl(hdl));
 
 	     //when a player moves, send the new position to all the clients except the one that sent it right away
 

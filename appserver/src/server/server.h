@@ -45,16 +45,9 @@ namespace Server {
 
      void Init_Connection(const websocketpp::connection_hdl &hdl);
 
-     std::string Get_SessionID(const websocketpp::connection_hdl &hdl);
+     void Close_Connection(const websocketpp::connection_hdl &hdl);
 
-
-     void Exit_Game(const std::string &session_id);
-
-     void Close_Game(const std::string &session_id);
-
-     void Start_Game(const std::string &session_id, const websocketpp::connection_hdl &hdl);
-
-     std::string Resume_Game(const std::string &session_id, const websocketpp::connection_hdl &hdl);
+     bool Enter_Game(const websocketpp::connection_hdl &hdl, int8_t gg);
 };
 
 

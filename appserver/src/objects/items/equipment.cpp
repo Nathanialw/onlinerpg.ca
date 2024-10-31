@@ -24,9 +24,8 @@ namespace Equipment {
 
      //set equipment slot index to itemID
      //clear inventory slot index
-     void Unequip_Item(Items::Inventory &inventory, Items::Equipped &equipment, const std::string &slotNum, const Items::Max_Slots &maxSlots, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
+     void Unequip_Item(Items::Inventory &inventory, Items::Equipped &equipment, const uint8_t &slot, const Items::Max_Slots &maxSlots, std::vector<std::pair<uint8_t, uint8_t>> &updateItems, int8_t &updateEquipment) {
 	     //swap equipment slot itemID with inventory itemID
-	     auto slot = stoi(slotNum);
 	     auto swapItemID = equipment[slot];
 
 	     for (int bag = 0; bag < (int) Items::BagType::Scrolls; ++bag) {
