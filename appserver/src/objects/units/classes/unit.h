@@ -3,9 +3,6 @@
 // Created by desktop on 10/30/24.
 //
 
-#ifndef BROWSERRPG_UNIT_H
-#define BROWSERRPG_UNIT_H
-
 #include "string"
 #include "array"
 #include "items.h"
@@ -140,6 +137,9 @@ namespace Unit {
      struct Stats {
 	uint16_t health = 0;
 	uint16_t healthMax = 0;
+          uint16_t mana= 100;
+          uint16_t manaMax = 100;
+
 
 	uint8_t minDamage = 0;
 	uint8_t maxDamage = 0;
@@ -153,7 +153,8 @@ namespace Unit {
 	uint8_t maxSpeed = 0;
 	uint8_t AC = 0;
 
-	uint8_t onHit = 0;
+          //every unit can have one of these for unarmed combat
+          uint8_t onHit = 0;
      };
 
      struct Position {
@@ -175,19 +176,6 @@ namespace Unit {
 
 	Base_Stats baseStats;
 	Stats stats;
-
-	//    bool dead = false;
-
-
-	//every unit can have one of these for unarmed combat
-
-
-	//items are just an ID that is in the db
-	//db contains the damage, AC, icon path, description, etc
-//    Items::Bags bags{}; //items
-//    Items::Max_Slots maxSlots{}; //items
-
-
 
 	//constructor
 	Unit(int8_t iLevel, Component::Position sLocation) {
@@ -213,4 +201,3 @@ namespace Unit {
 }
 
 
-#endif //BROWSERRPG_UNIT_H

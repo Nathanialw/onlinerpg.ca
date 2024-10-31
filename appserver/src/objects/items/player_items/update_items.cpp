@@ -108,8 +108,8 @@ namespace Update_Items {
 	     item.index = stoi(msg.substr(4));
 	     std::cout << "panel clicked: " << msg.substr(1, 1) << std::endl;
 
-	     uint8_t type = stoi(msg.substr(1, 1));
+	     uint8_t panel = stoi(msg.substr(1, 1));
 
-	     return itemInteractions[type](game, item);
+	     return itemInteractions[panel](game, item);
      }
 }

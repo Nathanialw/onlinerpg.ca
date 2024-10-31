@@ -16,15 +16,16 @@ include_directories(src/procgen)
 include_directories(src/server)
 include_directories(src/utils)
 include_directories(src/objects)
-include_directories(src/objects/units)
 include_directories(src/objects/actions)
 include_directories(src/objects/collision)
 include_directories(src/objects/movement)
-include_directories(src/objects/items)
-include_directories(src/objects/movement/pathing)
+include_directories(src/objects/units)
 include_directories(src/objects/units/class)
 include_directories(src/objects/units/species)
 include_directories(src/objects/units/classes)
+include_directories(src/objects/items)
+include_directories(src/objects/movement/pathing)
+include_directories(src/objects/items/player_items)
 include_directories(src/objects/items/use_effects)
 
 
@@ -60,12 +61,12 @@ set(SOURCES
         src/objects/units/species/goblin.cpp
         src/objects/units/spawn.cpp
 
-        src/objects/items/loot.cpp
+        src/objects/items/player_items/loot.cpp
         src/objects/items/items.cpp
-        src/objects/items/inventory.cpp
-        src/objects/items/equipment.cpp
-        src/objects/items/backpack.cpp
-        src/objects/items/update_items.cpp
+        src/objects/items/player_items/inventory.cpp
+        src/objects/items/player_items/equipment.cpp
+        src/objects/items/player_items/backpack.cpp
+        src/objects/items/player_items/update_items.cpp
         src/objects/items/modifiers.cpp
         src/objects/items/use.cpp
 

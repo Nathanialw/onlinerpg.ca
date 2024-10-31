@@ -18,7 +18,7 @@ namespace Use_Effects {
      }
 
      void Heal(Unit::Unit &unit, uint8_t value) {
-	     std::cout << "unit: " << unit.stats.health << " value: " << (int)value << std::endl;
+	     std::cout << "unit: " << unit.stats.health << " max value: " << (int)value << std::endl;
 	     unit.stats.health += Utils::Random(0, value);
 	     std::cout << "unit: " << unit.stats.health << std::endl;
      }
