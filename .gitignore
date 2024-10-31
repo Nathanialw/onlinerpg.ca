@@ -2,9 +2,7 @@ package-lock.json
 package.json 
 .gitignore
 /node_modules/*
-debug/*
-debug/
-debug
+appserver/debug/*
 appserver/cmake-build-debug/*
 appserver/cmake-build-release/*
 appserver/cmake-build-relwithdebinfo/*
