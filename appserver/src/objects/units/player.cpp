@@ -26,22 +26,23 @@ namespace Player {
      }
 
      template<typename T>
-     void Cap_Stat(T &value1, int value2) {
-	     if ((value1 + value2) > 99) {
-		     value1 = 99;
+     void Cap_Stat(T &value1, int value2, int max) {
+	     if ((value1 + value2) > max) {
+		     value1 = max;
 		     return;
 	     }
 	     value1 += static_cast<T>(value2);
      }
 
      template<typename T>
-     void Cap_Stat(T &value1, T &value2) {
-	     if ((value1 + value2) > 99) {
-		     value1 = 99;
+     void Cap_Stat(T &value1, T &value2, int max) {
+	     if ((value1 + value2) > max) {
+		     value1 = max;
 		     return;
 	     }
 	     value1 += static_cast<T>(value2);
      }
+
 
 
      Unit::Stats Get_Stats_Gear(Items::Equipped &equipment) {
@@ -58,19 +59,19 @@ namespace Player {
 			     std::cout << "modType: " << modType << " amount: " << amount << std::endl;
 
 			     if (modType == "health") {
-				     Cap_Stat(itemStats.health, amount);
+				     Cap_Stat(itemStats.health, amount, 999);
 			     } else if (modType == "mana") {
-				     Cap_Stat(itemStats.mana, amount);
+				     Cap_Stat(itemStats.mana, amount, 999);
 			     } else if (modType == "speed") {
-				     Cap_Stat(itemStats.speed, amount);
+				     Cap_Stat(itemStats.speed, amount, 99);
 			     } else if (modType == "vision") {
-//				     Cap_Stat(itemStats.vision, amount);
+				     Cap_Stat(itemStats.vision, amount, 9);
 			     } else if (modType == "AC") {
-				     Cap_Stat(itemStats.AC, amount);
+				     Cap_Stat(itemStats.AC, amount, 99);
 			     } else if (modType == "minDamage") {
-				     Cap_Stat(itemStats.minDamage, amount);
+				     Cap_Stat(itemStats.minDamage, amount, 99);
 			     } else if (modType == "maxDamage") {
-				     Cap_Stat(itemStats.maxDamage, amount);
+				     Cap_Stat(itemStats.maxDamage, amount, 99);
 			     }
 		     }
 	     }
@@ -78,13 +79,13 @@ namespace Player {
      }
 
      void Apply_Stat_Bonuses(Unit::Stats &stats, Unit::Stats &itemStats) {
-	     Cap_Stat(stats.healthMax, itemStats.health);
-	     Cap_Stat(stats.manaMax, itemStats.mana);
-	     Cap_Stat(stats.AC, itemStats.AC);
-	     Cap_Stat(stats.maxSpeed, itemStats.maxSpeed);
-	     Cap_Stat(stats.vision, itemStats.vision);
-	     Cap_Stat(stats.minDamage, itemStats.minDamage);
-	     Cap_Stat(stats.maxDamage, itemStats.maxDamage);
+	     Cap_Stat(stats.healthMax, itemStats.health, 999);
+	     Cap_Stat(stats.manaMax, itemStats.mana, 999);
+	     Cap_Stat(stats.AC, itemStats.AC, 99);
+	     Cap_Stat(stats.maxSpeed, itemStats.maxSpeed, 99);
+	     Cap_Stat(stats.vision, itemStats.vision, 99);
+	     Cap_Stat(stats.minDamage, itemStats.minDamage, 99);
+	     Cap_Stat(stats.maxDamage, itemStats.maxDamage, 99);
      }
 
      void Update_Stats(Unit::Unit &player) {
@@ -133,7 +134,8 @@ namespace Player {
 	     auto health = Utils::Prepend_Zero_3Digit(stats.health) + Utils::Prepend_Zero_3Digit(stats.healthMax);
 	     auto speed = std::to_string(stats.speed) + std::to_string(stats.maxSpeed);
 	     auto damage = Utils::Prepend_Zero(stats.minDamage) + Utils::Prepend_Zero(stats.maxDamage);
-	     auto variableStats = "001" + Utils::Prepend_Zero(stats.AC) + Utils::Prepend_Zero_3Digit(stats.age) + health + speed + damage;
+	     auto pic = "001";
+	     auto variableStats = pic + Utils::Prepend_Zero(stats.AC) + Utils::Prepend_Zero_3Digit(stats.age) + health + speed + damage;
 
 	     std::string statsStr = "1111" + game.player_names[name] + variableStats + std::to_string((int) def.gender) + std::to_string((int) def.species) + std::to_string((int) def.unitClass) + std::to_string((int) def.alignment);
 	     std::cout << "3" + statsStr << " Char stats sent!" << std::endl;
