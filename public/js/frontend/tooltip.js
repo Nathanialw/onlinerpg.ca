@@ -47,6 +47,15 @@ export async function Draw_Tooltip(x, y, item) {
         //TODO: query db for max durability
         properties.push("Durability: " + (item.Durability/255 * itemStats.durability) + "/" + (itemStats.durability)); 
     }
+
+    if (item.Modifiers && item.Modifiers.length > 0) {
+        properties.push("");
+        for (let i = 0; i < item.Modifiers.length; i++) {
+            const mod = await Get_By_UID_With_Zero("description", "modifiers", item.Modifiers[i]);
+            properties.push(mod.description);
+        }
+    }
+
     // properties.push("Speed: 1.5");
     if (itemStats.equipSlot == "consumable") {
         const consumable = await Get_By_UID_With_Zero("description", "itemEffects", Get_Item_Effect_UID(item.ItemID));

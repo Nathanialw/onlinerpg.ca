@@ -9,6 +9,7 @@ export function Parse_Loot(dataStr, loot) {
 
     for (let i = 0; i < loot.NumItems; i++) {
         dataStr = Parse_Item(dataStr, loot.Items[i]);
+        console.log(loot.Items[i])
     }
     return dataStr;
 }

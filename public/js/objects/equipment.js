@@ -2,7 +2,7 @@
 import { Draw_Equipment_Icons, itemFramePath, itemBorders } from '../graphics/graphics.js';
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
-import { item } from "./item.js";
+import { deepCopyItem } from "./item.js";
 import { Parse_Equipment } from '../parse/equipment.js';
 
 //when I move on to a new tile
@@ -15,7 +15,7 @@ let iconPath = "assets/graphics/icons/"
 
 
 const equipSlots = 14;
-let equipment = Array(equipSlots).fill().map(() => ({ ...item }))
+let equipment = Array(equipSlots).fill().map(() => ( deepCopyItem() ))
 
 function Set_Icon(uID) {
     let item = Get_Icon_Path(uID);

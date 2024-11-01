@@ -2,7 +2,7 @@
 import { itemBorders, Draw_Loot_Icons, Draw_Loot_Text, Draw_Loot_Background, itemFramePath } from '../graphics/graphics.js';
 import { Get_Icon_Path, Get_Item_Stats } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener_Loot } from '../networking/send.js';
-import { item } from "./item.js";
+import { deepCopyItem } from "./item.js";
 import { Parse_Loot } from '../parse/loot.js';
 import { Set_Game_Panel_Index } from '../ui/menus/gameMenu.js';
 
@@ -23,7 +23,7 @@ const groundSlots = 14;
 let loot = {
     NumItems: 0,
     Panel: Array(groundSlots).fill().map(() => ({ Texture: null, Name: null })),
-    Items: Array(groundSlots).fill().map(() => ({ ... item}))
+    Items: Array(groundSlots).fill().map(() => (deepCopyItem() ))
 }
 
 export function Open_Loot_Panel(direction) {

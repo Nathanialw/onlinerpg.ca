@@ -68,8 +68,7 @@ namespace Update {
 		     position = position.Add(move);
 	     }
 
-	     std::cout << "new player position: " << position.As_String() << std::endl;
-	     std::cout << "new player location: " << location.As_String() << std::endl;
+	     std::cout << "new player position: " << position.As_String() << " "  << "new player location: " << location.As_String() << std::endl;
 	     std::cout << "-------------------" << std::endl;
      }
 

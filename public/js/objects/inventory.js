@@ -3,7 +3,7 @@ import { Draw_Inventory_Icons, Draw_Bag_Icons, itemFramePath, itemBorders } from
 import { Get_Icon_Path } from '../db/db.js';
 import { Set_Send_On_Loot_Click_Listener_inv, Set_Send_On_Loot_Click_Listener } from '../networking/send.js';
 import { Parse_Inventory, Parse_Bags } from '../parse/inventory.js';
-import { item } from "./item.js";
+import { deepCopyItem } from "./item.js";
 
 //when I move on to a new tile
 //check if there is loot
@@ -21,7 +21,7 @@ function Create_Bag() {
         Texture: null,
         IconPath: "none",
         Border: null,
-        Items: Array(maxItems).fill().map(() => ({ ...item }))
+        Items: Array(maxItems).fill().map(() => ( deepCopyItem() ))
     };
 }
 

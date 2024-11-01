@@ -1,7 +1,8 @@
 'use strict'
 
 //defines an item, used for Inventory, Equipment and Loot
-export let item = {
+
+let item = {
     ItemID: "0",
     IconPath: "none",
     Texture: null,
@@ -12,6 +13,18 @@ export let item = {
     ModStrings: [],
 };
 
+export function deepCopyItem() {
+    return {
+        ItemID: item.ItemID,
+        IconPath: item.IconPath,
+        Texture: item.Texture,
+        Border: item.Border,
+        Rarity: item.Rarity,
+        Durability: item.Durability,
+        Modifiers: [...item.Modifiers],
+        ModStrings: [...item.ModStrings],
+    };
+}
 
 let modType = [
     "damage",
