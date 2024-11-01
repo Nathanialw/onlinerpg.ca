@@ -96,7 +96,7 @@ namespace Server {
 		     Server::Print_Server().close(hdl, websocketpp::close::status::policy_violation, "Session ID is required.");
 		     return;
 	     }
-//	     reverse_client_connections.erase(hdl);
+	     reverse_client_connections.erase(hdl);
 	     std::cout << "Connection Closed: " << hdl.lock().get() << std::endl;
      }
 

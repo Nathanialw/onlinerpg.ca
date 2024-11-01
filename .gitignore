@@ -17,7 +17,8 @@ appserver/release/.cmake/*
 appserver/release/Testing/*
 appserver/release/CMakeFiles/*
 appserver/.idea
-
+.idea/*
+.vs/*
 
 webserver/.idea
 potential_assets/*
