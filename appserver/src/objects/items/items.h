@@ -65,19 +65,19 @@ namespace Items {
      };
 
      class Item {
-          private:
+	private:
 	static const uint8_t numModifiers = 8;
 
-          ItemID uID{};                                                                                   // is this not jsut the icon basically?
-          std::array<Mod, numModifiers> modifiers{};        // keys to the static modifiers in the db
+	ItemID uID{};                                                                                   // is this not jsut the icon basically?
+	std::array<Mod, numModifiers> modifiers{};        // keys to the static modifiers in the db
 	uint8_t rarity{};                                                                         // 0-5
 
 
-          uint8_t durability{}; // 0-100
+	uint8_t durability{}; // 0-100
 
 
-          public:
-          // requirements
+	public:
+	// requirements
 	explicit Item() {
 		// passin the power level of item to create
 		// get a random uID from the db of that level
@@ -96,23 +96,23 @@ namespace Items {
 		}
 	}
 
-          explicit Item(ItemID itemID) {
-	          // passin the power level of item to create
-	          // get a random uID from the db of that level
-	          // roll for rarity
-	          // roll for modifers based on rarity
-	          // set the icon
-	          uID = itemID; // 0-255 name of the icon png in the directory referenced in the db
-	          // set the durability
-	          durability = 255; // probably will be random later
-	          // set the rarity
+	explicit Item(ItemID itemID) {
+		// passin the power level of item to create
+		// get a random uID from the db of that level
+		// roll for rarity
+		// roll for modifers based on rarity
+		// set the icon
+		uID = itemID; // 0-255 name of the icon png in the directory referenced in the db
+		// set the durability
+		durability = 255; // probably will be random later
+		// set the rarity
 //		rarity =  Utils::Random(0, 7);
-	          rarity = 0;
+		rarity = 0;
 
-	          for (auto &modifier: modifiers) {
-		          modifier.Set_Empty();
-	          }
-          }
+		for (auto &modifier: modifiers) {
+			modifier.Set_Empty();
+		}
+	}
 
 	//TODO: add a constructor that takes the level and the species of the unit and generates the item based on that
 	void Generate(ItemID _uID) {
@@ -134,7 +134,7 @@ namespace Items {
 		for (auto i = 0; i < numMods; ++i) {
 			modifiers[i].uID = Utils::Random(1, 255);
 		}
-		for (int i = numMods; i < numModifiers ; ++i) {
+		for (int i = numMods; i < numModifiers; ++i) {
 			modifiers[i].Set_Empty();
 		}
 		std::cout << "numMods: " << numMods << std::endl;
@@ -191,8 +191,8 @@ namespace Items {
 		}
 	}
 
-          [[nodiscard]] std::array<Mod, numModifiers> Get_Modifiers() const {
-	          return modifiers;
+	[[nodiscard]] std::array<Mod, numModifiers> Get_Modifiers() const {
+		return modifiers;
 	}
 
 	[[nodiscard]] std::string As_Sendable_String() const {
@@ -225,10 +225,10 @@ namespace Items {
 
 
 	bool operator==(Item rhs) {
-		return    uID == rhs.uID &&
-				modifiers == rhs.modifiers &&
-				rarity == rhs.rarity &&
-				durability == rhs.durability;
+		return uID == rhs.uID &&
+		       modifiers == rhs.modifiers &&
+		       rarity == rhs.rarity &&
+		       durability == rhs.durability;
 	}
      };
 

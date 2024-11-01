@@ -1,6 +1,6 @@
 'use strict'
 
-import { Get_Unit_Stats, Get_Unit_Name } from "../../db/db.js"
+import { Get_Unit_Stats, Get_Unit_Name, Get_By_UID } from "../../db/db.js"
 import { Update_Screen } from "../../frontend/ui.js"
 //get string from server
 import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, minimapCellSize, Clear_Target} from "../../graphics/graphics.js"
@@ -9,6 +9,12 @@ import { Set_Game_Panel_Index } from "../menus/gameMenu.js"
 
 const gender = ["♂", "♀"]
 const sex = ["m", "f"]
+let lineWidthRight = 36.5;
+let lineWidthLeft = 6.5;
+
+function Set_From_Right(textSprite) {
+    textSprite.x = textSprite.x - textSprite.width;
+}
 
 let targetStatsDisplay = []
 export let targetStats = {
@@ -25,6 +31,7 @@ export let targetStats = {
     speed: "??",
     vision: "??",
     bio: "??",
+    traits: [],
 }
 
 export async function Get_Target_Stats_From_Server(statsString) {
@@ -39,6 +46,11 @@ export async function Get_Target_Stats_From_Server(statsString) {
     targetStats.attack = Strip_Leading_Zeroes(statsString.substring(17, 19)) + "-" + Strip_Leading_Zeroes(statsString.substring(19, 21));
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(21, 23));
     const picNum = Strip_Leading_Zeroes(statsString.substring(23, 25));    
+    const numTraits = parseInt(Strip_Leading_Zeroes(statsString.substring(25, 27)));    
+    targetStats.traits.length = 0;
+    for (let i = 0; i < numTraits; i++) {
+        targetStats.traits[i] = Strip_Leading_Zeroes(statsString.substring(27 + (i*3), 30 + (i*3)));
+    }
 
     //query DB using targetStats.unitID
     const name = await Get_Unit_Name(nameID)
@@ -55,13 +67,16 @@ export async function Get_Target_Stats_From_Server(statsString) {
     Update_Screen();
 }
 
-function Display_Line(value, i, x, y) {
+function Display_Line(value, i, x, y, right = false) {
     targetStatsDisplay[i] = Create_Text_Line(value, (minimapCellSize*2), i, x, y);
+    if (right) {
+        Set_From_Right(targetStatsDisplay[i])            
+    }
     i += 1.1;
     return i;
 }
 
-export function Target_Stats() {
+export async function Target_Stats() {
     if (!targetStats.target) {
         return
     }
@@ -99,8 +114,7 @@ export function Target_Stats() {
     line = Display_Line("    Speed: " + targetStats.speed, line, x, y);
     line = Display_Line("", line, x, y);
     
-    let lineWidth = 36.5;
-    // let lines = Math.ceil(targetStats.bio.length/lineWidth);
+    // let lines = Math.ceil(targetStats.bio.length/lineWidthRight);
     let currentPos = 0;
     x = Get_Right_Panel_Origin_x() + 14;
     y = Get_Right_Panel_Origin_y() + 6.5;
@@ -108,14 +122,14 @@ export function Target_Stats() {
     // for (let i = 0; i < lines; i++) {
     while (currentPos < targetStats.bio.length) {
         //itertate backwards to find the last space in the line
-        // if (targetStats.bio.length < lineWidth) {
-            // lineWidth = targetStats.bio.length
+        // if (targetStats.bio.length < lineWidthRight) {
+            // lineWidthRight = targetStats.bio.length
         // }
 
         //get the lin to print
-        let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidth);
+        let bioLine = targetStats.bio.substring(currentPos, currentPos + lineWidthRight);
         for (let j = bioLine.length; j > 0; j--) {
-            if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === "," || bioLine[j] === "" || targetStats.bio.length < lineWidth) {
+            if (bioLine[j] === " " || bioLine[j] === "-" || bioLine[j] === "." || bioLine[j] === "," || bioLine[j] === "" || targetStats.bio.length < lineWidthRight) {
                 line = Display_Line(targetStats.bio.substring(currentPos, currentPos + j + 1), line, x, y);
                 currentPos = currentPos + j + 1;
                 break;
@@ -130,6 +144,15 @@ export function Target_Stats() {
 
     line = 0
     line = Display_Line("Traits: ", line, x, y);
+
+    x = Get_Right_Panel_Origin_x() + 13;    
+    for (let i = 0; i < targetStats.traits.length; i++) {
+        const trait = await Get_By_UID("name", "traits", targetStats.traits[i]);
+        line = Display_Line(trait.name, line, x, y, true);
+
+        //add mouseover listener
+        // targetStatsDisplay[i].interactive = true;
+    }
 
 
     //get traits from server as IDs and fetch the IDs from the db to get the trait names and descriptions

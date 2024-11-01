@@ -44,7 +44,6 @@ export async function Draw_Tooltip(x, y, item) {
         properties.push("Armour: " + itemStats.AC);
     }
     if (item.Durability !== null && item.Durability !== undefined) {
-        //TODO: query db for max durability
         properties.push("Durability: " + (item.Durability/255 * itemStats.durability) + "/" + (itemStats.durability)); 
     }
 

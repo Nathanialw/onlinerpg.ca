@@ -5,8 +5,8 @@
 
 namespace Warrior {
 
-    Stats CreateWarrior() {
-        Stats stats;
-        return stats;
-    }
+     Stats CreateWarrior() {
+	     Stats stats;
+	     return stats;
+     }
 }

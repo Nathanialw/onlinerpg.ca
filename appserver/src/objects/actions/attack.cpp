@@ -62,8 +62,10 @@ namespace Attack {
 	     std::cout << "attacking: " << targetIndex << std::endl;
 	     auto &target = targets.units[targetIndex];
 
-	     if (target.stats.health > attacker.stats.maxDamage) {
-		     target.stats.health -= attacker.stats.maxDamage;
+	     auto damage = Utils::Random(attacker.stats.minDamage, attacker.stats.maxDamage);
+	     //TODO: //need to add the AC of the target to the damage calculation
+	     if (target.stats.health > damage) {
+		     target.stats.health -= damage;
 		     std::cout << Spawn::Get_Unit_Char(attacker.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << (int) attacker.stats.maxDamage << " damage, " << (int) target.stats.health << " health remaining" << std::endl;
 		     std::cout << "species: " << (int) target.def.species << std::endl;
 	     }

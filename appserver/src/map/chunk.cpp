@@ -11,10 +11,10 @@ namespace Chunk {
      //3x3 rooms = quarters
      //9x9 rooms = barracks
      //9x15 rooms = halls
-     void Add_Room(Chunk defaultChunk, Component::PosInt  x, Component::PosInt  y, Component::PosInt  w, Component::PosInt  h, bool columns = false) {
+     void Add_Room(Chunk defaultChunk, Component::PosInt x, Component::PosInt y, Component::PosInt w, Component::PosInt h, bool columns = false) {
 	     std::cout << "Adding room at: " << x << ", " << y << std::endl;
-	     for (Component::PosInt  k = 0; k < w; k++) {
-		     for (Component::PosInt  l = 0; l < h; l++) {
+	     for (Component::PosInt k = 0; k < w; k++) {
+		     for (Component::PosInt l = 0; l < h; l++) {
 			     auto j = x + l;
 			     auto i = y + k;
 			     defaultChunk[i][j] = '.';
@@ -24,8 +24,8 @@ namespace Chunk {
 
      void Add_Small_Rooms(Chunk defaultChunk) {
 	     Proc_Gen::Seed seed;
-	     for (Component::PosInt  x = 1; x < Component::mapWidth - 7; x += 7) {
-		     for (Component::PosInt  y = 1; y < Component::mapWidth - 7; y += 7) {
+	     for (Component::PosInt x = 1; x < Component::mapWidth - 7; x += 7) {
+		     for (Component::PosInt y = 1; y < Component::mapWidth - 7; y += 7) {
 			     seed.seed = Proc_Gen::Create_Initial_Seed(x, y);
 			     auto w = Proc_Gen::Random_Int(3, 6, seed);
 			     seed.seed = Proc_Gen::Create_Initial_Seed(y, x);
@@ -46,11 +46,11 @@ namespace Chunk {
      void Add_Large_Rooms(Chunk defaultChunk, std::vector<Room> &rooms) {
 	     Proc_Gen::Seed seed;
 	     for (Component::PosInt x = 1; x < (Component::mapWidth - 20); x += 21) {
-		     for (Component::PosInt  y = 1; y < Component::mapWidth - 20; y += 21) {
+		     for (Component::PosInt y = 1; y < Component::mapWidth - 20; y += 21) {
 			     seed.seed = Proc_Gen::Create_Initial_Seed(x, y);
-			     Component::PosInt  w = Proc_Gen::Random_Int(9, 19, seed);
+			     Component::PosInt w = Proc_Gen::Random_Int(9, 19, seed);
 			     seed.seed = Proc_Gen::Create_Initial_Seed(y, x);
-			     Component::PosInt  h = Proc_Gen::Random_Int(9, 19, seed);
+			     Component::PosInt h = Proc_Gen::Random_Int(9, 19, seed);
 			     Add_Room(defaultChunk, x, y, w, h);
 			     rooms.push_back({x, y, w, h});
 		     }

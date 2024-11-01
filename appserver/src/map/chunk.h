@@ -16,23 +16,24 @@
 
 namespace Chunk {
 
-  typedef char Chunk[Component::mapWidth][Component::mapWidth] ;
+     typedef char Chunk[Component::mapWidth][Component::mapWidth];
 
-  struct Room {
-    Component::PosInt  x;
-    Component::PosInt  y;
-    Component::PosInt  w;
-    Component::PosInt  h;
-  };
+     struct Room {
+	Component::PosInt x;
+	Component::PosInt y;
+	Component::PosInt w;
+	Component::PosInt h;
+     };
 
-  struct Map_Chunk {
-    Chunk chunk;
-    Chunk defaultChunk;
-    Pathing::Map pathing;
+     struct Map_Chunk {
+	Chunk chunk;
+	Chunk defaultChunk;
+	Pathing::Map pathing;
 
-    std::vector<Room> rooms;
-  };
+	std::vector<Room> rooms;
+     };
 
-  void Create_Chunk(Map_Chunk &mapChunk, int8_t level, Component::Position location, std::vector<Room> &rooms, Proc_Gen::Seed &seed, Units::Objects &objects);
-  void Add_Rooms(Chunk defaultChunk, std::vector<Room> &rooms);
+     void Create_Chunk(Map_Chunk &mapChunk, int8_t level, Component::Position location, std::vector<Room> &rooms, Proc_Gen::Seed &seed, Units::Objects &objects);
+
+     void Add_Rooms(Chunk defaultChunk, std::vector<Room> &rooms);
 }

@@ -199,13 +199,56 @@ namespace Unit {
 	int8_t level{};
      };
 
+     class Traits {
+	std::array<uint8_t, 17> traits{};
+
+	public:
+	Traits() {
+		for (auto &trait: traits) {
+			auto uID = Utils::Random(1, 255);
+			trait = uID;
+		}
+	}
+
+	void Set_Empty(uint8_t i) {
+		traits[i] = 0;
+		for (auto j = i; j < traits.size() - 1; ++j) {
+			traits[j] = traits[j + 1];
+		}
+	}
+
+	std::string As_Sendable_String() {
+		std::string str;
+		uint8_t numTraits = 0;
+		for (const auto &trait: traits) {
+			if (trait != 0) {
+				numTraits++;
+				str += Utils::Prepend_Zero_By_Digits(trait, 3);
+			}
+		}
+		return Utils::Prepend_Zero_By_Digits(numTraits, 2) + str;
+	}
+
+	[[nodiscard]] uint8_t Get(uint8_t i) const {
+		return traits[i];
+	}
+
+	void Set(uint8_t value) {
+		for (auto &trait: traits) {
+			if (trait == 0) {
+				trait = value;
+				return;
+			}
+		}
+	}
+     };
 
      class Unit {
 	public:
 	Items::Equipped equipment;
 	Items::Backpack pack;
 	Def def;
-
+	Traits traits;
 	Name name{};
 	Position position;
 

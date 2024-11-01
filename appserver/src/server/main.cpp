@@ -1,11 +1,8 @@
 #include "receiving.h"
-#include "map.h"
-#include "units.h"
 
-#include "iostream"
 int main() {
 
-  Network::Run();
+	Network::Run();
 
-  return 0;
+	return 0;
 }
