@@ -17,7 +17,7 @@ const maxItems = 12;
 
 function Create_Bag() {
     return {
-        BagID: "",
+        ItemID: "",
         Texture: null,
         IconPath: "none",
         Border: null,
@@ -50,8 +50,8 @@ export function Update_Inventory(dataStr) {
 
     //update the entire inventory vs just the ones sent
     inventory.forEach(bag => {
-        bag.IconPath = Set_Icon(bag.BagID);    
-        let bagSize = Get_Icon_Path(bag.BagID).slots
+        bag.IconPath = Set_Icon(bag.ItemID);    
+        let bagSize = Get_Icon_Path(bag.ItemID).slots
         for (let i = 0; i < bagSize; ++i) {            
             bag.Items[i].IconPath = Set_Icon(bag.Items[i].ItemID);    
             bag.Items[i].Modifiers.forEach(mod => {
@@ -83,13 +83,13 @@ export async function Draw_Inventory() {
         else {
             inventory[i].Texture = await Draw_Bag_Icons(inventory[i].IconPath, i, bagIconSize)
             inventory[i].Border = await Draw_Bag_Icons(itemFramePath, i, bagIconSize) //border
-            Set_Send_On_Loot_Click_Listener(inventory[i].Texture, '3', i, inventory[i].BagID, Draw_Bag_Icons, bagIconSize);   //1 means inventory panel
+            Set_Send_On_Loot_Click_Listener(inventory[i], '3', i, Draw_Bag_Icons, bagIconSize);   //1 means inventory panel
         }
     }
     
     for (let j = 0; j < numBags; j++) {
         let num = 0;
-                let bagSize = Get_Icon_Path(inventory[j].BagID).slots
+                let bagSize = Get_Icon_Path(inventory[j].ItemID).slots
         for (let i = 0; i < bagSize; i++) {
             if (inventory[j].Items[i].IconPath === undefined || inventory[j].Items[i].IconPath === "none") {
                 inventory[j].Items[i].Texture = await Draw_Inventory_Icons(defaultInventoryIcon, num, j, iconSize)            
@@ -99,7 +99,7 @@ export async function Draw_Inventory() {
             else {
                 inventory[j].Items[i].Texture = await Draw_Inventory_Icons(inventory[j].Items[i].IconPath, num, j, iconSize)            
                 inventory[j].Items[i].Border = await Draw_Inventory_Icons(itemBorders[inventory[j].Items[i].Rarity], num, j, iconSize) //border
-                Set_Send_On_Loot_Click_Listener_inv(inventory[j].Items[i].Texture, '1', num, j, inventory[j].Items[i].ItemID, Draw_Inventory_Icons);   //1 means inventory panel
+                Set_Send_On_Loot_Click_Listener_inv(inventory[j].Items[i], '1', num, j, Draw_Inventory_Icons, 3.5);   //1 means inventory panel
             }
             num++
         }

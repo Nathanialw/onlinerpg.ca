@@ -11,10 +11,12 @@
 #include "utils.h"
 #include "unordered_map"
 #include "types.h"
+#include "functional"
 
 namespace Items {
 
      void Init_Item_Effects_Array(std::vector<std::string> &PotionIDs, std::vector<std::string> &effects);
+
      ItemEffectUID Get_Item_Effect(ItemID itemID);
 
      enum class BagType {
@@ -59,16 +61,19 @@ namespace Items {
      };
 
      class Item {
-	private:
+          private:
 	static const uint8_t numModifiers = 8;
 
-	ItemID uID{};                                                                                   // is this not jsut the icon basically?
-	uint8_t durability{};                                                                // 0-100
-	std::array<Mod, numModifiers> modifiers{};        // keys to the static modifiers in the db
+          ItemID uID{};                                                                                   // is this not jsut the icon basically?
+          std::array<Mod, numModifiers> modifiers{};        // keys to the static modifiers in the db
 	uint8_t rarity{};                                                                         // 0-5
 
-	// requirements
-	public:
+
+          uint8_t durability{}; // 0-100
+
+
+          public:
+          // requirements
 	explicit Item() {
 		// passin the power level of item to create
 		// get a random uID from the db of that level
@@ -77,7 +82,7 @@ namespace Items {
 		// set the icon
 		uID = 0; // 0-255 name of the icon png in the directory referenced in the db
 		// set the durability
-		durability = 100; // probably will be random later
+		durability = 255; // probably will be random later
 		// set the rarity
 //		rarity =  Utils::Random(0, 7);
 		rarity = 0;
@@ -95,8 +100,9 @@ namespace Items {
 		// roll for modifers based on rarity
 		// set the icon
 		uID = _uID; // 0-255 name of the icon png in the directory referenced in the db
+
 		// set the durability
-		durability = 100; // probably will be random later
+		durability = 255; // probably will be random later
 		// set the rarity
 		rarity = Utils::Random(0, 7);
 		// set the modifiers
@@ -133,10 +139,10 @@ namespace Items {
 		return ss;
 	}
 
-	void Set(const ItemID &_uID = 0, const uint8_t &_rarity = 0, const uint8_t &_durability = 100, const std::array<Mod, numModifiers> &_modifier = {}) {
+	void Set(const ItemID &_uID = 0, const uint8_t &_rarity = 0, const uint8_t &_durability = 255, const std::array<Mod, numModifiers> &_modifier = {}) {
 		uID = _uID;
 		rarity = _rarity;
-		durability = _durability;
+		durability = 100;
 		modifiers = _modifier;
 	}
 
@@ -185,9 +191,11 @@ namespace Items {
 	}
 
 
-	bool operator==(const Item &rhs) const {
-		return uID == rhs.uID && modifiers == rhs.modifiers &&
-		       rarity == rhs.rarity && durability == rhs.durability;
+	bool operator==(Item rhs) {
+		return    uID == rhs.uID &&
+				modifiers == rhs.modifiers &&
+				rarity == rhs.rarity &&
+				durability == rhs.durability;
 	}
      };
 

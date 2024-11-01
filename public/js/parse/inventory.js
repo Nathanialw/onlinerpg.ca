@@ -7,7 +7,7 @@ import { Parse_Item } from "./items.js";
 //should I save the strings in a data structure or just get the data from the db when I need to desplay it?
 
 // how to use:
-    //query the num NAME ICONPATH BAGSLOTS DESCRIPTIO with bagID
+    //query the num NAME ICONPATH BAGSLOTS DESCRIPTIO with ItemID
     //query the num ICONPATH with rarityID
     //query the num NAME ICONPATH DESCRIPTION EQUIPSLOT ETC with itemID
     //query the num NAME EFFECTS with modifierID
@@ -24,7 +24,7 @@ export function Parse_Bags(dataStr, inventory) {
         const bagIndex = parseInt(dataStr.substring(0, 1))
         dataStr = dataStr.substring(1);
 
-        [inventory[bagIndex].BagID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
+        [inventory[bagIndex].ItemID, dataStr] = [parseInt(dataStr.substring(0, 3)), dataStr.substring(3)];
     }
     
     return dataStr

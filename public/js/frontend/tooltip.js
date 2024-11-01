@@ -9,31 +9,47 @@ function Set_From_Right(textSprite, frameWidth) {
     textSprite.x = textSprite.x + frameWidth - textSprite.width;
 }
 
-export async function Draw_Tooltip(x, y, itemID) {
+export async function Draw_Tooltip(x, y, item) {
     Remove_Tooltip();
+    console.log("asdaaa", item)
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
 
     //read in the properties from the db
-    const itemStatsArray = await Get_Item_Stats(itemID);
+    const itemStatsArray = await Get_Item_Stats(item.ItemID);
     const itemStats = itemStatsArray[0];
-
+ 
     properties.push(itemStats.name.charAt(0).toUpperCase() + itemStats.name.slice(1));
     if (itemStats.equipSlot === "notEquippable") {
         properties.push("");
     }
     else {
         properties.push(itemStats.equipSlot + " ");               
+    }    
+    
+    if (itemStats.material0) {
+        properties.push(itemStats.material0.charAt(0).toUpperCase() + itemStats.material.slice(1));
     }
+    if (itemStats.material1) {
+        properties.push(itemStats.material1.charAt(0).toUpperCase() + itemStats.material.slice(1));
+    }
+    if (itemStats.material2) {
+        properties.push(itemStats.material2.charAt(0).toUpperCase() + itemStats.material.slice(1));
+    }
+    
     if (itemStats.minDamage !== null && itemStats.maxDamage !== null) {
         properties.push("Damage: " + itemStats.minDamage + "-" + itemStats.maxDamage);
     }
     if (itemStats.AC !== null) {
         properties.push("Armour: " + itemStats.AC);
     }
+    if (item.Durability !== null) {
+        //TODO: query db for max durability
+        properties.push("Durability: " + (item.Durability/255 * 100) + "/" + ("100")); 
+    }
     // properties.push("Speed: 1.5");
     if (itemStats.equipSlot == "consumable") {
-        const consumable = await Get_By_UID_With_Zero("description", "itemEffects", Get_Item_Effect_UID(itemID));
+        const consumable = await Get_By_UID_With_Zero("description", "itemEffects", Get_Item_Effect_UID(item.ItemID));
         properties.push(consumable.description);
     }
     else {

@@ -9,6 +9,7 @@
 
 namespace Items {
 
+
      std::unordered_map<ItemID, ItemEffectUID> itemEffects = {};
 
      void Init_Item_Effects_Array(std::vector<std::string> &PotionIDs, std::vector<std::string> &effects) {

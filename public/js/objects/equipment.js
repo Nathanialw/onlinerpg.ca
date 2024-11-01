@@ -72,7 +72,7 @@ export async function Draw_Equipment() {
         else {
             equipment[i].Texture = await Draw_Equipment_Icons(equipment[i].IconPath, i, 2.5)        
             equipment[i].Border = await Draw_Equipment_Icons(itemBorders[equipment[i].Rarity], i, 2.5) //border
-            Set_Send_On_Loot_Click_Listener(equipment[i].Texture, '2', i, equipment[i].ItemID, Draw_Equipment_Icons, 2.5);   //1 means inventory panel
+            Set_Send_On_Loot_Click_Listener(equipment[i], '2', i, Draw_Equipment_Icons, 2.5);   //1 means inventory panel
         }
     }
 }

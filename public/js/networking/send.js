@@ -33,26 +33,26 @@ export function Remove_Highlight() {
     }
 }
 
-export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, Draw_Icon, iconSize) {
+export function Set_Send_On_Loot_Click_Listener(item, panel, i, Draw_Icon, iconSize) {
     //send the index of the item in the loot array
-    Set_Cursor_Hover(item, 'neutral');
+    Set_Cursor_Hover(item.Texture, 'neutral');
 
-    item.on('mouseover', async (event) => { 
+    item.Texture.on('mouseover', async (event) => { 
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
         highlight = await Draw_Icon(hover, i, iconSize) //border
-        await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
+        await Draw_Tooltip(mousePosition.x, mousePosition.y, item);
     });
 
-    item.on('mouseout', (event) => { 
+    item.Texture.on('mouseout', (event) => { 
         //toggle the tooltip as not drawable
         Remove_Highlight();
         Remove_Tooltip();
     }); 
 
     //
-    item.on('mousedown', (event) => { 
+    item.Texture.on('mousedown', (event) => { 
         // console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
 
@@ -60,7 +60,7 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, Draw_Ico
 
     //DESKTOP ONLY
     let bag = "9"
-    item.on('rightclick', (event) => { 
+    item.Texture.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
         let message;
@@ -88,33 +88,33 @@ export function Set_Send_On_Loot_Click_Listener(item, panel, i, itemID, Draw_Ico
     });
 }
 
-export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID, Draw_Icon) {
+export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, Draw_Icon) {
     //send the index of the item in the loot array
-    Set_Cursor_Hover(item, 'neutral');
+    Set_Cursor_Hover(item.Texture, 'neutral');
 
-    item.on('mouseover', async (event) => { 
+    item.Texture.on('mouseover', async (event) => { 
         const mousePosition = event.data.global;
 
         //toggle the tooltip as drawable / update the tooltip 
         highlight = await Draw_Icon(hover, i, bag, 3.5) //border
-        await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
+        await Draw_Tooltip(mousePosition.x, mousePosition.y, item);
     });
 
-    item.on('mouseout', (event) => { 
+    item.Texture.on('mouseout', (event) => { 
         //toggle the tooltip as not drawable
         Remove_Highlight();
         Remove_Tooltip();
     }); 
 
     //
-    item.on('mousedown', (event) => { 
+    item.Texture.on('mousedown', (event) => { 
         // console.log("Left mouse button clicked on item, open conext menu to decide action");
         // Optionally, you can handle right mouse button click event
 
     });
 
     //DESKTOP ONLY
-    item.on('rightclick', (event) => { 
+    item.Texture.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
         let message;
@@ -143,61 +143,63 @@ export function Set_Send_On_Loot_Click_Listener_inv(item, panel, i, bag, itemID,
 }
 
 
-export function Set_Send_On_Loot_Click_Listener_Loot(item, panel, i, itemID, inv) {
-    //send the index of the item in the loot array
-    Set_Cursor_Hover(item, 'neutral');
 
-    item.on('mouseover', async (event) => { 
-        const mousePosition = event.data.global;
-
-        //toggle the tooltip as drawable / update the tooltip 
-        highlight = await inv(hover, i, 2.5, "") //border
-        await Draw_Tooltip(mousePosition.x, mousePosition.y, itemID);
-    });
-
-    item.on('mouseout', (event) => { 
-        //toggle the tooltip as not drawable
-        Remove_Highlight();
-        Remove_Tooltip();
-    }); 
-
-    //
-    item.on('mousedown', (event) => { 
-        // console.log("Left mouse button clicked on item, open conext menu to decide action");
-        // Optionally, you can handle right mouse button click event
-
-    });
-
-    //DESKTOP ONLY
-    let bag = "9"
-    item.on('rightclick', (event) => { 
-        // console.log("Right mouse button clicked on item");
-        // Optionally, you can handle right mouse button click event
-        let message;
-        //if ctrl clicked
-        if (event.ctrlKey) {
-            //drop sound
-            message = "2" + panel + "c" + bag + i;
-        }
-        //if shift clicked
-        else if (event.shiftKey) {
-            message = "2" + panel + "s" + bag + i;
-        }
-        //if alt clicked
-        else if (event.altKey) {
+export function Set_Send_On_Loot_Click_Listener_Loot(lootPanel, item, panel, i, Draw_Icon, iconSize) {
+        //send the index of the item in the loot array
+        Set_Cursor_Hover(lootPanel.Texture, 'neutral');
+    
+        lootPanel.Texture.on('mouseover', async (event) => { 
+            const mousePosition = event.data.global;
+    
+            //toggle the tooltip as drawable / update the tooltip 
+            highlight = await Draw_Icon(hover, i, iconSize) //border
+            await Draw_Tooltip(mousePosition.x, mousePosition.y, item);
+        });
+    
+        lootPanel.Texture.on('mouseout', (event) => { 
+            //toggle the tooltip as not drawable
+            Remove_Highlight();
+            Remove_Tooltip();
+        }); 
+    
+        //
+        lootPanel.Texture.on('mousedown', (event) => { 
+            // console.log("Left mouse button clicked on item, open conext menu to decide action");
+            // Optionally, you can handle right mouse button click event
+    
+        });
+    
+        //DESKTOP ONLY
+        let bag = "9"
+        lootPanel.Texture.on('rightclick', (event) => { 
+            // console.log("Right mouse button clicked on item");
+            // Optionally, you can handle right mouse button click event
+            let message;
+            //if ctrl clicked
+            if (event.ctrlKey) {
+                //drop sound
+                message = "2" + panel + "c" + bag + i;
+            }
+            //if shift clicked
+            else if (event.shiftKey) {
+                message = "2" + panel + "s" + bag + i;
+            }
+            //if alt clicked
+            else if (event.altKey) {
+                //equip sound
+                message = "2" + panel + "a" + bag + i;
+            }    
+            else {
+                message = "2" + panel + "0" + bag + i;
+            }  
+            
             //equip sound
-            message = "2" + panel + "a" + bag + i;
-        }    
-        else {
-            message = "2" + panel + "0" + bag + i;
-        }   
+            // console.log("message: ", message);
+            Send_Web_Socket_Message(message); 
+        });
+    }
+    
         
-        //equip sound
-        // console.log("message: ", message);
-        Send_Web_Socket_Message(message); 
-    });
-}
-
 
 // In PIXI.js, you can use various mouse and pointer event listeners to handle different types of user interactions. Here are some common event listeners you can use:
 

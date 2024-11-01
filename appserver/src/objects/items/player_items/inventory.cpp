@@ -30,11 +30,11 @@ namespace Inventory {
      std::string Get_Inventory(const Items::Backpack &backpack, const Items::Max_Slots &maxSlots) {
 	     std::string inventoryStr = Utils::Prepend_Zero_By_Digits((int)Items::BagType::SIZE, 1);
 
-	     for (int j = 0; j < (int) Items::BagType::SIZE; ++j) {
+	     for (auto j = 0; j < (int)Items::BagType::SIZE; ++j) {
 		     uint8_t numItems = 0;
 		     std::string bagStr;
 
-		     for (int i = 0; i < maxSlots[j]; ++i) {
+		     for (auto i = 0; i < maxSlots[j]; ++i) {
 
 			     auto slot = Utils::Prepend_Zero_By_Digits(i, 2);
 			     std::cout << "slot: "  << slot << std::endl;
