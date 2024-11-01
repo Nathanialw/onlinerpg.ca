@@ -41,8 +41,6 @@ gamey
 
 
 short term:
--64px icons at 1080p
--new inventory parsing
 -enemies to follow between map chunks with pathing
 -login and db to save game state
 -spells 
@@ -54,7 +52,6 @@ short term:
 
 -come up with a list of spells
 
--if the data is already loaded it doesn't fetch it again, unless there is new info to grab
 -text feedback for actions
 -time system
   -1 move/attack = 1 minute
@@ -64,7 +61,6 @@ short term:
 -right click on map will move to that location, server will send the move updates one at a time
 -crate unit locations to place on map ie. ogre mound with ogre around itw
 
--draw the ui game panels 
 -get traits from server as IDs and fetch the IDs from the db to get the trait names and descriptions
 -add a action bar
 -add a spellbook

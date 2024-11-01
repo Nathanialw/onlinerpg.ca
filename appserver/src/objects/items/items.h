@@ -92,6 +92,24 @@ namespace Items {
 		}
 	}
 
+          explicit Item(ItemID itemID) {
+	          // passin the power level of item to create
+	          // get a random uID from the db of that level
+	          // roll for rarity
+	          // roll for modifers based on rarity
+	          // set the icon
+	          uID = itemID; // 0-255 name of the icon png in the directory referenced in the db
+	          // set the durability
+	          durability = 255; // probably will be random later
+	          // set the rarity
+//		rarity =  Utils::Random(0, 7);
+	          rarity = 0;
+	          // set the modifiers
+	          for (auto &modifier: modifiers) {
+		          modifier.Set_Empty();
+	          }
+          }
+
 	//TODO: add a constructor that takes the level and the species of the unit and generates the item based on that
 	void Generate(ItemID _uID) {
 		// passin the power level of item to create
@@ -142,7 +160,7 @@ namespace Items {
 	void Set(const ItemID &_uID = 0, const uint8_t &_rarity = 0, const uint8_t &_durability = 255, const std::array<Mod, numModifiers> &_modifier = {}) {
 		uID = _uID;
 		rarity = _rarity;
-		durability = 100;
+		durability = _durability;
 		modifiers = _modifier;
 	}
 

@@ -11,7 +11,7 @@ function Set_From_Right(textSprite, frameWidth) {
 
 export async function Draw_Tooltip(x, y, item) {
     Remove_Tooltip();
-    console.log("asdaaa", item)
+    console.log("Item hovered: ", item)
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
 
@@ -43,9 +43,9 @@ export async function Draw_Tooltip(x, y, item) {
     if (itemStats.AC !== null) {
         properties.push("Armour: " + itemStats.AC);
     }
-    if (item.Durability !== null) {
+    if (item.Durability !== null && item.Durability !== undefined) {
         //TODO: query db for max durability
-        properties.push("Durability: " + (item.Durability/255 * 100) + "/" + ("100")); 
+        properties.push("Durability: " + (item.Durability/255 * itemStats.durability) + "/" + (itemStats.durability)); 
     }
     // properties.push("Speed: 1.5");
     if (itemStats.equipSlot == "consumable") {

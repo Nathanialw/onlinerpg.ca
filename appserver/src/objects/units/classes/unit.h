@@ -137,8 +137,8 @@ namespace Unit {
      struct Stats {
 	uint16_t health = 0;
 	uint16_t healthMax = 0;
-          uint16_t mana= 100;
-          uint16_t manaMax = 100;
+	uint16_t mana = 100;
+	uint16_t manaMax = 100;
 
 
 	uint8_t minDamage = 0;
@@ -153,8 +153,8 @@ namespace Unit {
 	uint8_t maxSpeed = 0;
 	uint8_t AC = 0;
 
-          //every unit can have one of these for unarmed combat
-          uint8_t onHit = 0;
+	//every unit can have one of these for unarmed combat
+	uint8_t onHit = 0;
      };
 
      struct Position {
@@ -166,7 +166,7 @@ namespace Unit {
 
 
      class Unit {
-          public:
+	public:
 	Items::Equipped equipment;
 	Items::Backpack pack;
 	Def def;
