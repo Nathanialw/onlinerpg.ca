@@ -44,6 +44,14 @@ namespace Utils {
 	     return str;
      }
 
+     std::string Prepend_Zero_By_Digits(size_t num, int numDigits) {
+	     std::string str = std::to_string(num);
+	     while (str.length() < numDigits) {
+		     str = "0" + str;
+	     }
+	     return str;
+     }
+
      int8_t Add(int8_t a, int8_t b) {
 	     return a + b;
      }

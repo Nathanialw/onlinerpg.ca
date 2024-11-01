@@ -1,5 +1,5 @@
 'use strict'
-import { app, Wait_For_Load, Draw_UI, Draw_Vision_Background } from '../graphics/graphics.js';
+import { app, Draw_UI, Draw_Vision_Background } from '../graphics/graphics.js';
 import { Make_Map} from '../map/map.js';
 import { Species} from '../units/unitdef.js';
 import { Update_Loot } from '../objects/loot.js';
@@ -72,8 +72,6 @@ export function Update_Screen() {
 
 export async function Game_Update(dataStr) {
     Parse_Recieved(dataStr);
-    await Wait_For_Load();
-    Update_Screen();
 }
 
 // Function to remove event listeners from an array of objects

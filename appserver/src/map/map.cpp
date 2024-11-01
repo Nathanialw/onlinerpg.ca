@@ -182,7 +182,7 @@ namespace Map {
 
 	     //print map
 	     auto sentMap = mapSegment.substr(mapSegment.size() - (vision * 2 + 1) * (vision * 2 + 1));
-	     Print_Map(game, sentMap);
+//	     Print_Map(game, sentMap);
 
 	     std::cout << "map sent!" << std::endl;
 	     return mapSegment;

@@ -55,6 +55,10 @@ namespace Items {
 		return false;
 	}
 
+	[[nodiscard]] std::string As_String() const {
+		return std::to_string(uID);
+	}
+
 	void Set_Empty() { uID = 0; }
 
 	bool operator==(const Mod &rhs) const { return uID == rhs.uID; }
@@ -104,7 +108,7 @@ namespace Items {
 	          // set the rarity
 //		rarity =  Utils::Random(0, 7);
 	          rarity = 0;
-	          // set the modifiers
+
 	          for (auto &modifier: modifiers) {
 		          modifier.Set_Empty();
 	          }
@@ -124,9 +128,16 @@ namespace Items {
 		// set the rarity
 		rarity = Utils::Random(0, 7);
 		// set the modifiers
-		for (auto &modifier: modifiers) {
-			modifier.Set_Empty();
+
+		//get a random number 1-8
+		auto numMods = Utils::Random(1, 8);
+		for (auto i = 0; i < numMods; ++i) {
+			modifiers[i].uID = Utils::Random(1, 255);
 		}
+		for (int i = numMods; i < numModifiers ; ++i) {
+			modifiers[i].Set_Empty();
+		}
+		std::cout << "numMods: " << numMods << std::endl;
 	}
 
 	void Durability_Down(uint8_t damage) { durability -= damage; }
@@ -178,6 +189,10 @@ namespace Items {
 		for (auto &modifier: modifiers) {
 			modifier.Set_Empty();
 		}
+	}
+
+          [[nodiscard]] std::array<Mod, numModifiers> Get_Modifiers() const {
+	          return modifiers;
 	}
 
 	[[nodiscard]] std::string As_Sendable_String() const {

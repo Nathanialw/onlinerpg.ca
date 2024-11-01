@@ -1,5 +1,7 @@
-import {classes} from '/js/frontend/classes.js';
-import {Strip_Leading_Zeroes} from '/js/utils/utils.js';
+import { classes } from '/js/frontend/classes.js';
+import { Strip_Leading_Zeroes } from '/js/utils/utils.js';
+import { Update_Screen } from '/js/frontend/ui.js';
+import { Wait_For_Load } from '../graphics/graphics.js';
 
 export let Gender = ["Male", "Female"];
 export let UnitClass = ["Fighter", "Mystic"];
@@ -96,7 +98,7 @@ export let characterInfo = {
     //level 
     //exp
 
-export function UpdatePlayerInfo(characterCreate) {
+export async function UpdatePlayerInfo(characterCreate) {
     let length = characterCreate.length;
 
     //health/max
@@ -144,5 +146,6 @@ export function UpdatePlayerInfo(characterCreate) {
     //speed
     //max speed
     //+damage
-    
+    await Wait_For_Load();
+    Update_Screen();   
 }

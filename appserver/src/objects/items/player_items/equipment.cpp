@@ -42,7 +42,7 @@ namespace Equipment {
 	     std::cout << "no space in inventory" << std::endl;
      }
 
-     int Dual_Equip(Items::Equipped &equipment, int slot0, int slot1) {
+     int8_t Dual_Equip(Items::Equipped &equipment, int8_t slot0, int8_t slot1) {
 	     if (equipment[slot0].Empty())
 		     return slot0;
 	     else if (equipment[slot1].Empty())
@@ -57,10 +57,10 @@ namespace Equipment {
 	     std::cout << "equip slot num: " << slotNum << std::endl;
 
 	     //if slotNum == Items::ItemSlot::mainHand, then it can fit in Items::ItemSlot::mainHand or Items::ItemSlot::offHand
-	     if (slotNum == (int) Items::ItemSlot::mainHand)
-		     slotNum = Dual_Equip(equipment, (int) Items::ItemSlot::mainHand, (int) Items::ItemSlot::offHand);
-	     else if (slotNum == (int) Items::ItemSlot::ring0)
-		     slotNum = Dual_Equip(equipment, (int) Items::ItemSlot::ring0, (int) Items::ItemSlot::ring1);
+	     if (slotNum == (int8_t) Items::ItemSlot::mainHand)
+		     slotNum = Dual_Equip(equipment, (int8_t) Items::ItemSlot::mainHand, (int8_t) Items::ItemSlot::offHand);
+	     else if (slotNum == (int8_t) Items::ItemSlot::ring0)
+		     slotNum = Dual_Equip(equipment, (int8_t) Items::ItemSlot::ring0, (int8_t) Items::ItemSlot::ring1);
 
 	     std::cout << "equip slot num: " << slotNum << std::endl;
 
@@ -141,4 +141,4 @@ namespace Equipment {
 	     } else
 		     return "00";
      }
-};
+}

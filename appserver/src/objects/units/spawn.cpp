@@ -48,14 +48,18 @@ namespace Spawn {
 	     unit.name.firstName = name;
 	     unit.stats.age = 16;
 
-	     unit.stats.speed = 1;
-	     unit.stats.maxSpeed = unit.stats.speed;
-	     unit.stats.minDamage = 0;
-	     unit.stats.maxDamage = 10;
-	     unit.stats.vision = 6;
-	     unit.stats.AC = 10;
-	     unit.stats.health = 30;
-	     unit.stats.healthMax = unit.stats.health;
+	     unit.stats.minDamage = stoi(DB::Query("minDamage", "units", "uID", unit.def.SpeciesIDStr()));
+	     unit.stats.maxDamage = stoi(DB::Query("maxDamage", "units", "uID", unit.def.SpeciesIDStr()));
+	     unit.stats.healthMax = stoi(DB::Query("health", "units", "uID", unit.def.SpeciesIDStr()));
+	     unit.stats.manaMax = stoi(DB::Query("mana", "units", "uID", unit.def.SpeciesIDStr()));
+	     unit.stats.AC = stoi(DB::Query("AC", "units", "uID", unit.def.SpeciesIDStr()));
+	     unit.stats.maxSpeed = stoi(DB::Query("speed", "units", "uID", unit.def.SpeciesIDStr()));
+	     unit.stats.vision = stoi(DB::Query("vision", "units", "uID", unit.def.SpeciesIDStr()));
+
+	     unit.stats.speed = unit.stats.speed;
+	     unit.stats.health = unit.stats.healthMax ;
+	     unit.stats.mana = unit.stats.manaMax;
+	     unit.stats.speed = unit.stats.maxSpeed;
 
 	     auto &units = objects.units;
 	     auto &unitsPositions = objects.unitPositions;

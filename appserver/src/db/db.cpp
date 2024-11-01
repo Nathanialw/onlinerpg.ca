@@ -156,5 +156,4 @@ namespace DB {
 	     }
 	     return results;
      }
-
 };

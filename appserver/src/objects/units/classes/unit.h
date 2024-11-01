@@ -9,7 +9,7 @@
 #include "components.h"
 
 namespace Unit {
-     enum class Species {
+     enum class Species : uint8_t {
 	ALP,
 	BASILISK,
 	CENTAUR,
@@ -69,20 +69,20 @@ namespace Unit {
 	SIZE
      };
 
-     enum class Gender {
+     enum class Gender : uint8_t {
 	MALE,
 	FEMALE,
 	SIZE,
      };
 
-     enum class Class {
+     enum class Class : uint8_t {
 	FIGHTER,
 	MYSTIC,
 	SLAVE,
 	SIZE,
      };
 
-     enum class Alignment {
+     enum class Alignment : uint8_t {
 	GOOD,
 	NEUTRAL,
 	EVIL,
@@ -101,20 +101,52 @@ namespace Unit {
 	Gender gender = Gender::MALE;
 	Class unitClass = Class::FIGHTER;
 	Alignment alignment = Alignment::NEUTRAL;
+
+	[[nodiscard]] uint8_t SpeciesIDInt() const {
+		return (uint8_t) (species) + 1;
+	};
+
+	[[nodiscard]] std::string SpeciesIDStr() const {
+		return std::to_string((uint8_t) species + 1);
+	};
+
+	[[nodiscard]] uint8_t GenderIDInt() const {
+		return (uint8_t) gender;
+	}
+
+	[[nodiscard]] std::string GenderIDStr() const {
+		return std::to_string((uint8_t) gender);
+	}
+
+	[[nodiscard]] uint8_t ClassIDInt() const {
+		return (uint8_t) unitClass;
+	}
+
+	[[nodiscard]] std::string ClassIDStr() const {
+		return std::to_string((uint8_t) unitClass);
+	}
+
+	[[nodiscard]] uint8_t AlignmentIDInt() const {
+		return (uint8_t) alignment;
+	}
+
+	[[nodiscard]] std::string AlignmentIDStr() const {
+		return std::to_string((uint8_t) alignment);
+	}
      };
 
 
      struct Base_Stats {
-	uint8_t srength; // damage melee and ranged
+	uint8_t strength; // damage melee and ranged
 	uint8_t intelligence; // magic
-	uint8_t dexterity; // dual wielding
+	uint8_t dexterity; // dual wielding/stealth
 	uint8_t constitution; // health
 	uint8_t authority; // leadership
 	uint8_t charisma; // social interactions
 
 
 	Base_Stats() {
-		srength = 0;
+		strength = 0;
 		intelligence = 0;
 		dexterity = 0;
 		constitution = 0;
@@ -125,7 +157,7 @@ namespace Unit {
 	explicit Base_Stats(Def def) {
 		//query db for all of this based on def
 		//then add random modifiers
-		srength = 0;
+		strength = 0;
 		intelligence = 0;
 		dexterity = 0;
 		constitution = 0;
@@ -140,6 +172,8 @@ namespace Unit {
 	uint16_t mana = 100;
 	uint16_t manaMax = 100;
 
+	uint32_t XP = 0;
+	uint8_t level = 1;
 
 	uint8_t minDamage = 0;
 	uint8_t maxDamage = 0;
@@ -155,6 +189,7 @@ namespace Unit {
 
 	//every unit can have one of these for unarmed combat
 	uint8_t onHit = 0;
+
      };
 
      struct Position {

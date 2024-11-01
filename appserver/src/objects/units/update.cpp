@@ -134,13 +134,13 @@ namespace Update {
 	     //when updating the map, check if there is an item on the cell BEFORE resetting to default
 
 
-	     auto mapString = Map::Get_Map(game.Get_Map(level, location).chunk);
+//	     auto mapString = Map::Get_Map(game.Get_Map(level, location).chunk);
 
-	     std::cout << "Drawing map start: " << std::endl;
-	     for (int i = 0; i < Component::mapWidth; i++) {
-		     std::cout << mapString.substr(i * Component::mapWidth, Component::mapWidth) << std::endl;
-	     }
-	     std::cout << "Drawing map end: " << std::endl;
+//	     std::cout << "Drawing map start: " << std::endl;
+//	     for (int i = 0; i < Component::mapWidth; i++) {
+//		     std::cout << mapString.substr(i * Component::mapWidth, Component::mapWidth) << std::endl;
+//	     }
+//	     std::cout << "Drawing map end: " << std::endl;
      }
 
      std::string Update_Player(Game::Instance &game, const char *direction) {

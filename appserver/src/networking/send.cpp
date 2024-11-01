@@ -27,18 +27,13 @@ namespace Send {
 	     int level = 0;
 	     Component::Position location(0, 0);
 	     Component::Position startPos(6, 6);
-	     std::cout << "Init game" << std::endl;
 	     std::string map = Map::Init(game.Get_Map(level, location).defaultChunk, game.Get_Map(level, location).chunk, game.Get_Map(level, location).rooms, game.seed);
 	     Pathing::Init(game.Get_Map(level, location).pathing, map);
-	     std::cout << "Map created" << std::endl;
 	     Player::Spawn(game, level, location, startPos, msg);
-	     std::cout << "Player spawned" << std::endl;
 	     Spawn::Init(level, location, game.Get_Map(level, location).chunk, game.Get_Map(level, location).rooms, game.Get_Objects(level, location)); // msg->get_payload()
-	     std::cout << "Objects spawned" << std::endl;
-	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
-	     std::cout << "Player stats sent" << std::endl;
 
 	     if (!game.Get_Objects(level, location).units.empty()) {
+		     Player::Update_Stats(game.Get_Player());
 		     std::string action = "d    1";
 		     // append loot
 		     action.append(Loot::Query_Loot(game.Get_Items()));
@@ -49,16 +44,16 @@ namespace Send {
 		     // append equipment
 		     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
 		     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
+		     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 	     }
 
 	     std::cout << "Ready!" << std::endl;
      }
 
      void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
+	     Player::Update_Stats(game.Get_Player(), game.updateEquipment);
 	     //  update units
 	     auto action = Update::Update_Units(game, &msg[1]);
-	     //  send stats
-	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 	     // append loot
 	     action.append(Loot::Query_Loot(game.Get_Items()));
 	     // append inventory
@@ -69,13 +64,14 @@ namespace Send {
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment, game.updateEquipment));
 	     // send map
 	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
+	     //  send stats
+	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
      }
 
      void Full_Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
+	    Player::Update_Stats(game.Get_Player());
 	     //  update units
 	     auto action = Update::Update_Units(game, &msg[1]);
-	     //  send stats
-	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
 	     // append loot
 	     action.append(Loot::Query_Loot(game.Get_Items()));
 	     // append bags
@@ -86,6 +82,8 @@ namespace Send {
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
 	     // send map
 	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
+	     //  send stats
+	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
      }
 
      int8_t On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {

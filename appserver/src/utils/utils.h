@@ -20,6 +20,7 @@ namespace Utils {
 
      std::string Prepend_Zero_By_Digits(int num, int numDigits);
 
+     std::string Prepend_Zero_By_Digits(size_t num, int numDigits);
 
      int8_t Add(int8_t a, int8_t b);
 
