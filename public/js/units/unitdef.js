@@ -78,6 +78,16 @@ export let characterInfo = {
     MaxSpeed: 0,
     MinDamage: 0,
     MaxDamage: 0,
+    
+    IceResist: 0,
+    FirResist: 0,
+    PsnResist: 0,
+    ShwResist: 0,
+    HlyResist: 0,
+    PhyResist: 0,
+
+    XP: 0,
+    Level: 0,
 }
     
 
@@ -107,10 +117,14 @@ export async function UpdatePlayerInfo(characterCreate) {
     //damage/max
     
     //potrait
-    characterInfo.Name = characterCreate.substring(4, length - 24);
+    characterInfo.Name = characterCreate.substring(4, length - 28);
     characterInfo.Name = characterInfo.Name.charAt(0).toUpperCase() + characterInfo.Name.slice(1);
-    characterInfo.Potrait = characterCreate.substring(length-24, length-21);
+
+    characterInfo.Level = Strip_Leading_Zeroes(characterCreate.substring(length-28, length-26));
+    characterInfo.XP = Strip_Leading_Zeroes(characterCreate.substring(length-26, length-24));
+
     
+    characterInfo.Potrait = characterCreate.substring(length-24, length-21);
     characterInfo.AC = Strip_Leading_Zeroes(characterCreate.substring(length-21, length-19));
     characterInfo.Age = Strip_Leading_Zeroes(characterCreate.substring(length-19, length-16));
     characterInfo.Health = Strip_Leading_Zeroes(characterCreate.substring(length-16, length-13));
@@ -119,6 +133,7 @@ export async function UpdatePlayerInfo(characterCreate) {
     characterInfo.MaxSpeed = Strip_Leading_Zeroes(characterCreate.substring(length-9, length-8));
     characterInfo.MinDamage = Strip_Leading_Zeroes(characterCreate.substring(length-8, length-6));
     characterInfo.MaxDamage = Strip_Leading_Zeroes(characterCreate.substring(length-6, length-4));
+
     
     let genderIndex = characterCreate.charAt(length-4);
     let gender = Gender[parseInt(genderIndex)]
@@ -136,6 +151,8 @@ export async function UpdatePlayerInfo(characterCreate) {
     characterInfo.Class = UnitClass[parseInt(classIndex, 10)];
     characterInfo.Alignment = Alignment[parseInt(alignmentIndex, 10)];
         
+
+
 
 
     const key = speciesIndex + genderIndex + classIndex + alignmentIndex;

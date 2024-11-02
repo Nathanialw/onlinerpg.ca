@@ -18,8 +18,15 @@ namespace Use_Effects {
      }
 
      void Heal(Unit::Unit &unit, uint8_t value) {
-	     std::cout << "unit: " << unit.stats.health << " max value: " << (int)value << std::endl;
-	     unit.stats.health += Utils::Random(0, value);
+	     std::cout << "unit: " << unit.stats.health << " heal value: " << (int)value << std::endl;
+	     if ((unit.stats.health + value) > unit.stats.healthMax) {
+		     //increase max health on overheal
+		     auto  overHeal = (unit.stats.health + value) - unit.stats.healthMax;
+		     unit.stats.healthMax = unit.stats.healthMax + (overHeal/10);
+		     unit.stats.health = unit.stats.healthMax;
+	     } else {
+		     unit.stats.health += value;
+	     }
 	     std::cout << "unit: " << unit.stats.health << std::endl;
      }
 

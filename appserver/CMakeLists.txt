@@ -54,6 +54,10 @@ set(SOURCES
         src/objects/movement/movement.cpp
         src/objects/movement/pathing.cpp
 
+        src/objects/units/classes/xp.cpp
+        src/objects/units/classes/unit.cpp
+
+        src/objects/items/use_effects/use_effects.cpp
         src/objects/units/class/warrior.cpp
         src/objects/units/player.cpp
         src/objects/units/units.cpp
@@ -78,8 +82,6 @@ set(SOURCES
         src/abilities/debuffs/Disease.cpp
 
         src/procgen/procgen.cpp
-        src/objects/units/classes/unit.cpp
-        src/objects/items/use_effects/use_effects.cpp
 )
 
 add_executable(BrowserRPG ${SOURCES})

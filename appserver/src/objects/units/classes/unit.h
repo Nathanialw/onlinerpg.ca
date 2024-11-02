@@ -7,6 +7,7 @@
 #include "array"
 #include "items.h"
 #include "components.h"
+#include "xp.h"
 
 namespace Unit {
      enum class Species : uint8_t {
@@ -172,7 +173,7 @@ namespace Unit {
 	uint16_t mana = 100;
 	uint16_t manaMax = 100;
 
-	uint32_t XP = 0;
+	XP xp = XP();
 	uint8_t level = 1;
 
 	uint8_t minDamage = 0;

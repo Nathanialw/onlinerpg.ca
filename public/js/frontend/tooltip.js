@@ -11,7 +11,6 @@ function Set_From_Right(textSprite, frameWidth) {
 
 export async function Draw_Tooltip(x, y, item) {
     Remove_Tooltip();
-    console.log("Item hovered: ", item)
 
     const tooltipTexture = await PIXI.Assets.load('assets/graphics/ui/tooltip/tooltip.png');
 

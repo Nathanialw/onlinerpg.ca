@@ -77,9 +77,6 @@ export async function Draw_Loot() {
         loot.Panel[i].Name = await Draw_Loot_Text(stats[0].name.charAt(0).toUpperCase() + stats[0].name.slice(1), i, 2.5) //text
         loot.Items[i].Border = await Draw_Loot_Icons(itemBorders[loot.Items[i].Rarity], i, 2.5) //border
 
-        console.log("pan", loot.Panel[i])
-        console.log("loo", loot.Items[i])
-
         Set_Send_On_Loot_Click_Listener_Loot(loot.Panel[i], loot.Items[i], '0', i, Draw_Loot_Background, 2.5);  //0 means loot panel
     }
 }

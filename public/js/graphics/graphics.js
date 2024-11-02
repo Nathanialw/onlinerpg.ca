@@ -48,6 +48,9 @@ let target;
 let gamePanels = [];
 let targetImg;
 let playerImg;
+let healthBar;
+let ManaBar;
+let xpBar;
 export let mainMenuSprites = []
 export let mainMenuText = []
 export let gameMenuSprites = []
@@ -128,6 +131,9 @@ async function Init_Graphics() {
     invTabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory.png')
     playerImg = await Load_Texture(defaultPath)
+    healthBar = await Load_Texture(defaultPath)
+    ManaBar = await Load_Texture(defaultPath)
+    xpBar = await Load_Texture(defaultPath)
     target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
@@ -775,7 +781,7 @@ export function Draw_UI(index) {
 }
 
 function Display_Line(value, i, x, y) {
-    Create_Text_Line(value, (minimapCellSize*2), i, x, y);
+    Create_Text_Line(value, cellSize, i, x, y);
     i += 1.1;
     return i;
 }
@@ -796,24 +802,34 @@ function Draw_Stats() {
     line = Display_Line("        AC: " + characterInfo.AC, line, x, y);
     line = Display_Line("    Damage: " + characterInfo.MinDamage + "-" + characterInfo.MaxDamage, line, x, y);
     line = Display_Line("", line, x, y);
-    line = Display_Line("Ice Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Fir Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Psn Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Shw Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Hly Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
-    line = Display_Line("Phy Resist: " + characterInfo.MinDamage + "% & -" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("  Ice Resist: " + characterInfo.IceResist, line, x, y);
+    line = Display_Line("  Fir Resist: " + characterInfo.FirResist, line, x, y);
+    line = Display_Line(" Psn Resist: " + characterInfo.PsnResist, line, x, y);
+    line = Display_Line("Shw Resist: " + characterInfo.ShwResist, line, x, y);
+    line = Display_Line(" Hly Resist: " + characterInfo.HlyResist, line, x, y);
+    line = Display_Line(" Phy Resist: " + characterInfo.PhyResist, line, x, y);
 
     // combat stats
     
     x = leftPanelWidth + 10;
     y = 1;    
-
     line = 0;
+
+    const full = 22;
+
+    let xpBarWidth = (characterInfo.XP / 100) * 22;
+    let hpBarWidth = (characterInfo.Health / characterInfo.MaxHealth) * full;
+    let manaBarWidth = (characterInfo.Health / characterInfo.MaxHealth) * full;
+    
+    Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, xpBarWidth * cellSize, 0.5 * cellSize, xpBar);
+    line = Display_Line(" Level: " + characterInfo.Level, line, x, y);
+    Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, hpBarWidth * cellSize, 0.75 * cellSize, healthBar);
     line = Display_Line("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw health bar
+    Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, manaBarWidth * cellSize, 0.75 * cellSize, ManaBar);
     line = Display_Line("  Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw mana bar
-    line = Display_Line(" Speed: " + characterInfo.Speed + "/" + characterInfo.MaxSpeed, line, x, y);
+    line = Display_Line(" Speed: " + characterInfo.Speed, line, x, y);
     //draw one square for each move remaining
 
     //buffs

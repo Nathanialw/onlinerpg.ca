@@ -113,12 +113,14 @@ namespace Player {
 	     auto name = game.Get_Player().name.firstName;
 	     auto def = game.Get_Player().def;
 
+
+	     auto pic = "001";
 	     auto health = Utils::Prepend_Zero_3Digit(stats.health) + Utils::Prepend_Zero_3Digit(stats.healthMax);
 	     auto speed = std::to_string(stats.speed) + std::to_string(stats.maxSpeed);
 	     auto damage = Utils::Prepend_Zero(stats.minDamage) + Utils::Prepend_Zero(stats.maxDamage);
-	     auto variableStats = "001" + Utils::Prepend_Zero(stats.AC) + Utils::Prepend_Zero_3Digit(stats.age) + health + speed + damage;
+	     auto variableStats = pic + Utils::Prepend_Zero(stats.AC) + Utils::Prepend_Zero_3Digit(stats.age) + health + speed + damage;
 
-	     std::string statsStr = "1111" + game.player_names[name] + variableStats + std::to_string((int) def.gender) + std::to_string((int) def.species) + std::to_string((int) def.unitClass) + std::to_string((int) def.alignment);
+	     std::string statsStr = "1111" + game.player_names[name] +  stats.xp.As_Sendable_String() + variableStats + std::to_string((int) def.gender) + std::to_string((int) def.species) + std::to_string((int) def.unitClass) + std::to_string((int) def.alignment);
 	     std::cout << "3" + statsStr << " Char stats sent!" << std::endl;
 	     return "3" + statsStr;
      }

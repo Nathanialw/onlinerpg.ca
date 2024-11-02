@@ -70,6 +70,7 @@ namespace Attack {
 		     std::cout << "species: " << (int) target.def.species << std::endl;
 	     }
 	     else {
+		     attacker.stats.xp.Add_XP(target.stats.xp.Value());
 		     target.stats.health = 0;
 		     std::cout << "target dead" << std::endl;
 		     Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, position.Add(moveTo));
