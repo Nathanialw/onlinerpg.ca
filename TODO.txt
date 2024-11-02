@@ -80,6 +80,8 @@ long term:
 
 
 bugs:
+  possible bug: when you equip an item that increases your vision at the edge of the map it will not laod the new chunk 
+                  then crashes when you try to walk onto it, need to test
   pathing stops if target location is inaccessible, it should just find the closest cell and go there
 
 

@@ -131,9 +131,9 @@ async function Init_Graphics() {
     invTabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory.png')
     playerImg = await Load_Texture(defaultPath)
-    healthBar = await Load_Texture(defaultPath)
-    ManaBar = await Load_Texture(defaultPath)
-    xpBar = await Load_Texture(defaultPath)
+    healthBar = await Load_Texture("assets/graphics/ui/player_stats/srp_rage.png")
+    ManaBar = await Load_Texture("assets/graphics/ui/player_stats/srp_mana.png")
+    xpBar = await Load_Texture("assets/graphics/ui/player_stats/srp_dark_energy.png")
     target = await Load_Texture('assets/graphics/ui/overview/crafting_box_merge1.png')
 
     //load main menu buttons
@@ -820,9 +820,7 @@ function Draw_Stats() {
     let xpBarWidth = (characterInfo.XP / 100) * 22;
     let hpBarWidth = (characterInfo.Health / characterInfo.MaxHealth) * full;
     let manaBarWidth = (characterInfo.Health / characterInfo.MaxHealth) * full;
-    
-    Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, xpBarWidth * cellSize, 0.5 * cellSize, xpBar);
-    line = Display_Line(" Level: " + characterInfo.Level, line, x, y);
+
     Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, hpBarWidth * cellSize, 0.75 * cellSize, healthBar);
     line = Display_Line("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw health bar
@@ -830,6 +828,8 @@ function Draw_Stats() {
     line = Display_Line("  Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw mana bar
     line = Display_Line(" Speed: " + characterInfo.Speed, line, x, y);
+    Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, xpBarWidth * cellSize, 0.5 * cellSize, xpBar);
+    line = Display_Line(" Level: " + characterInfo.Level, line, x, y);
     //draw one square for each move remaining
 
     //buffs

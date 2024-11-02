@@ -35,7 +35,7 @@ uint16_t XP::Value() const {
 
 std::string XP::As_Sendable_String() const {
 	std::cout << "level: " << (int)level << " xpCurrent: " << xpCurrent << " xpToLevel: " << xpToLevel << std::endl;
-	auto percent = uint16_t (((float)xpCurrent / (float)xpToLevel) * 100);
+	auto percent = (uint16_t)(((float)xpCurrent / (float)xpToLevel) * 100);
 	std::cout << "percent: " << percent << "calc: " << (xpCurrent / xpToLevel) << "x100" << (xpCurrent / xpToLevel) * 100 << std::endl;
 	return Utils::Prepend_Zero_By_Digits(level, 2) + Utils::Prepend_Zero_By_Digits(percent, 2);
 }
