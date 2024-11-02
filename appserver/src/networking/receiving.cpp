@@ -54,8 +54,12 @@ namespace Network {
 
      void On_Message(const websocketpp::connection_hdl &hdl, const Server::server::message_ptr &msg) {
 	     int8_t code = Send::On_Message(hdl, msg->get_payload(), Server::Print_Server(), Server::Hdl(hdl));
-	     if (Server::Enter_Game(hdl, code))
+	     auto path = Server::Read_Code(hdl, code);
+	     if (path == "0")
 	          Send::Init(hdl, msg->get_payload(), Server::Print_Server(), Server::Hdl(hdl));
+	     else if (path == "41")
+	          Send::On_Message(hdl, path, Server::Print_Server(), Server::Hdl(hdl));
+
 
 	     //when a player moves, send the new position to all the clients except the one that sent it right away
 

@@ -204,9 +204,10 @@ namespace Unit {
 
 	public:
 	Traits() {
-		for (auto &trait: traits) {
+		auto numTraits = Utils::Random(0, 17);
+		for (auto i = 0; i < numTraits; ++i) {
 			auto uID = Utils::Random(1, 255);
-			trait = uID;
+			traits[i] = uID;
 		}
 	}
 

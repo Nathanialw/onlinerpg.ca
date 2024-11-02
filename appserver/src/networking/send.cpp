@@ -35,13 +35,9 @@ namespace Send {
 	     if (!game.Get_Objects(level, location).units.empty()) {
 		     Player::Update_Stats(game.Get_Player());
 		     std::string action = "d    1";
-		     // append loot
 		     action.append(Loot::Query_Loot(game.Get_Items()));
-		     // append bags
 		     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
-		     // append inventory
 		     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
-		     // append equipment
 		     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
 		     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
 		     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
@@ -52,37 +48,23 @@ namespace Send {
 
      void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
 	     Player::Update_Stats(game.Get_Player(), game.updateEquipment);
-	     //  update units
 	     auto action = Update::Update_Units(game, &msg[1]);
-	     // append loot
 	     action.append(Loot::Query_Loot(game.Get_Items()));
-	     // append inventory
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags, game.updateBag));
-	     // append inventory
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.updateInventory));
-//	      append equipment
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment, game.updateEquipment));
-	     // send map
 	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
-	     //  send stats
 	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
      }
 
      void Full_Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
-	    Player::Update_Stats(game.Get_Player());
-	     //  update units
+	     Player::Update_Stats(game.Get_Player());
 	     auto action = Update::Update_Units(game, &msg[1]);
-	     // append loot
 	     action.append(Loot::Query_Loot(game.Get_Items()));
-	     // append bags
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
-	     // append inventory
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
-	     // append equipment
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
-	     // send map
 	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
-	     //  send stats
 	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
      }
 
@@ -94,7 +76,7 @@ namespace Send {
 		     Update(hdl, msg, print_server, game);
 	     } else if (msg[0] == '2') {  // loot item
 		     auto itemEffect = Update_Items::Update(msg, game);
-		     Use::Update_Known_Usable_Effects(game.knownUsables, game.Get_Player(),hdl, print_server, itemEffect);
+		     Use::Update_Known_Usable_Effects(game.knownUsables, game.Get_Player(), hdl, print_server, itemEffect);
 		     std::string skip = "1 ";
 		     Update(hdl, skip, print_server, game);
 	     } else if (msg[0] == '3') { // New Game

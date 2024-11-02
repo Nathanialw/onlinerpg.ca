@@ -761,7 +761,7 @@ export function Draw_UI(index) {
     //overview //pass the current sprite active
     Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize, ((Get_Right_Panel_Origin_y() + (topPanelHeight / 4)) * cellSize), rightPanelWidth * cellSize, ((rightPanelHeight - (topPanelHeight / 4))  * cellSize) - (20 * minimapCellSize), gamePanels[index]);
     //chat
-    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize,( (Get_Right_Panel_Origin_y() + 41 - 2.6) * cellSize), rightPanelWidth * cellSize, 20 * minimapCellSize, chat);
+    Draw_Sprite(Get_Right_Panel_Origin_x() * cellSize,( (Get_Right_Panel_Origin_y() + 41 - 2.6) * cellSize), rightPanelWidth * cellSize, 21.2 * minimapCellSize, chat);
 
     //bottom
     Draw_Panel(0, (viewportHeight + topPanelHeight) * cellSize, bottomPanelWidth * cellSize, bottomPanelHeight * cellSize, black);

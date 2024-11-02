@@ -47,7 +47,7 @@ namespace Server {
 
      void Close_Connection(const websocketpp::connection_hdl &hdl);
 
-     bool Enter_Game(const websocketpp::connection_hdl &hdl, int8_t gg);
+     std::string Read_Code(const websocketpp::connection_hdl &hdl, int8_t gg);
 };
 
 

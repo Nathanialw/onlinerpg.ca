@@ -127,43 +127,60 @@ namespace Server {
 	     std::cout << "number of game instances: " << game_instances.size() << std::endl;
      }
 
-     bool Enter_Game(const websocketpp::connection_hdl &hdl, int8_t gg) {
-	     if (gg == 0) {
-		     Server::Close_Game(Server::Get_SessionID(hdl));
-		     auto session_id = Server::Get_SessionID(hdl);
-		     Server::Start_Game(session_id, hdl);
-	     } else if (gg == 1) { //close game
-		     Server::Exit_Game(Server::Get_SessionID(hdl));
-		     Server::Print_Server().close(hdl, websocketpp::close::status::normal, "Game Exited");
-	     } else if (gg == 2) { //create resume button
-		     //check if game exists based on session id
-		     auto session_id = Server::Get_SessionID(hdl);
-		     if (Server::Game_Instances().find(session_id) != Server::Game_Instances().end()) {
-			     // get the game
-			     std::cout << "Game Instance exists for session id: " << session_id << std::endl;
-			     auto game = Server::Game_Instances().at(session_id);
-			     if (game.Exists()) {
-				     std::string response = "8 ";
-				     std::cout << "Game exists for session id: " << session_id << std::endl;
-				     Server::Print_Server().send(hdl, response, websocketpp::frame::opcode::text);
+     std::string Read_Code(const websocketpp::connection_hdl &hdl, int8_t gg) {
+	     switch (gg) {
+		     case 0: {
+			     Server::Close_Game(Server::Get_SessionID(hdl));
+			     auto session_id = Server::Get_SessionID(hdl);
+			     Server::Start_Game(session_id, hdl);
+			     break;
+		     }
+		     case 1: {//close game
+			     Server::Exit_Game(Server::Get_SessionID(hdl));
+			     Server::Print_Server().close(hdl, websocketpp::close::status::normal, "Game Exited");
+			     break;
+		     }
+		     case 2: {//create resume button
+			     //check if game exists based on session id
+			     auto session_id = Server::Get_SessionID(hdl);
+			     if (Server::Game_Instances().find(session_id) != Server::Game_Instances().end()) {
+				     // get the game
+				     std::cout << "Game Instance exists for session id: " << session_id << std::endl;
+				     auto game = Server::Game_Instances().at(session_id);
+				     if (game.Exists()) {
+					     std::string response = "8 ";
+					     std::cout << "Game exists for session id: " << session_id << std::endl;
+					     Server::Print_Server().send(hdl, response, websocketpp::frame::opcode::text);
+				     } else {
+					     std::cout << "Game Exists, but bugged " << session_id << std::endl;
+				     }
 			     } else {
-				     std::cout << "Game Exists, but bugged " << session_id << std::endl;
+				     std::cout << "Game Instance does not exist for session id: " << session_id << std::endl;
 			     }
-		     } else {
-			     std::cout << "Game Instance does not exist for session id: " << session_id << std::endl;
+			     break;
 		     }
-	     } else if (gg == 3) { //resume game
-		     std::cout << "Resuming game" << std::endl;
-		     auto response = Server::Resume_Game(Server::Get_SessionID(hdl), hdl);
-		     if (!response.empty()) {
-			     return true;
+		     case 3: {//resume game
+			     std::cout << "Resuming game" << std::endl;
+			     auto response = Server::Resume_Game(Server::Get_SessionID(hdl), hdl);
+			     if (!response.empty()) {
+				     return response;
+			     }
+			     break ;
 		     }
-	     } else if (gg == 4) { //New Game
-		     std::cout << "No action taken" << std::endl;
-		     Server::Close_Game(Server::Get_SessionID(hdl));
-		     Server::Start_Game(Server::Get_SessionID(hdl), hdl);
-		     return true;
+		     case 4: {      //New Game
+			     std::cout << "No action taken" << std::endl;
+			     Server::Close_Game(Server::Get_SessionID(hdl));
+			     Server::Start_Game(Server::Get_SessionID(hdl), hdl);
+			     return "0";
+		     }
+		     default: {
+			     return "";
+		     }
 	     }
-	     return false;
+	     return "";
      }
-};
+
+
+
+
+}
