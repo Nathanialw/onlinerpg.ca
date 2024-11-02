@@ -73,6 +73,8 @@ export let characterInfo = {
     Age: 0,
     Health: 0,
     MaxHealth: 0,
+    Mana: 0,
+    MaxMana: 0,
     AC: 0,
     Speed: 0,
     MaxSpeed: 0,
@@ -117,13 +119,16 @@ export async function UpdatePlayerInfo(characterCreate) {
     //damage/max
     
     //potrait
-    characterInfo.Name = characterCreate.substring(4, length - 28);
+    characterInfo.Name = characterCreate.substring(4, length - 34);
     characterInfo.Name = characterInfo.Name.charAt(0).toUpperCase() + characterInfo.Name.slice(1);
 
-    characterInfo.Level = Strip_Leading_Zeroes(characterCreate.substring(length-28, length-26));
-    characterInfo.XP = Strip_Leading_Zeroes(characterCreate.substring(length-26, length-24));
+    characterInfo.Level = Strip_Leading_Zeroes(characterCreate.substring(length-34, length-32));
+    characterInfo.XP = Strip_Leading_Zeroes(characterCreate.substring(length-32, length-30));
 
-    
+    characterInfo.Mana = Strip_Leading_Zeroes(characterCreate.substring(length-30, length-27));
+    characterInfo.MaxMana = Strip_Leading_Zeroes(characterCreate.substring(length-27, length-24));
+
+
     characterInfo.Potrait = characterCreate.substring(length-24, length-21);
     characterInfo.AC = Strip_Leading_Zeroes(characterCreate.substring(length-21, length-19));
     characterInfo.Age = Strip_Leading_Zeroes(characterCreate.substring(length-19, length-16));

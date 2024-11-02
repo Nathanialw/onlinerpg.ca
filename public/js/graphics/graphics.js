@@ -819,13 +819,13 @@ function Draw_Stats() {
 
     let xpBarWidth = (characterInfo.XP / 100) * 22;
     let hpBarWidth = (characterInfo.Health / characterInfo.MaxHealth) * full;
-    let manaBarWidth = (characterInfo.Health / characterInfo.MaxHealth) * full;
+    let manaBarWidth = (characterInfo.Mana / characterInfo.MaxMana) * full;
 
     Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, hpBarWidth * cellSize, 0.75 * cellSize, healthBar);
     line = Display_Line("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw health bar
     Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, manaBarWidth * cellSize, 0.75 * cellSize, ManaBar);
-    line = Display_Line("  Mana: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
+    line = Display_Line("  Mana: " + characterInfo.Mana + "/" + characterInfo.MaxMana, line, x, y);
     //draw mana bar
     line = Display_Line(" Speed: " + characterInfo.Speed, line, x, y);
     Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, xpBarWidth * cellSize, 0.5 * cellSize, xpBar);

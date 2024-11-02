@@ -95,6 +95,15 @@ namespace Unit {
 	uint16_t surname;
 	uint16_t titlePrefix;
 	uint16_t titleSuffix;
+
+	std::string As_Sendable_String() {
+		std::string str;
+		str += Utils::Prepend_Zero_By_Digits(firstName, 4);
+//		str += Utils::Prepend_Zero_By_Digits(surname, 4);
+//		str += Utils::Prepend_Zero_By_Digits(titlePrefix, 4);
+//		str += Utils::Prepend_Zero_By_Digits(titleSuffix, 4);
+		return str;
+	}
      };
 
      struct Def {
@@ -102,6 +111,15 @@ namespace Unit {
 	Gender gender = Gender::MALE;
 	Class unitClass = Class::FIGHTER;
 	Alignment alignment = Alignment::NEUTRAL;
+
+	std::string As_Sendable_String() {
+		std::string str;
+		str += Utils::Prepend_Zero_By_Digits((uint8_t) species, 1);
+		str += Utils::Prepend_Zero_By_Digits((uint8_t) gender, 1);
+		str += Utils::Prepend_Zero_By_Digits((uint8_t) unitClass, 1);
+		str += Utils::Prepend_Zero_By_Digits((uint8_t) alignment, 1);
+		return str;
+	}
 
 	[[nodiscard]] uint8_t SpeciesIDInt() const {
 		return (uint8_t) (species) + 1;
@@ -188,8 +206,32 @@ namespace Unit {
 	uint8_t maxSpeed = 0;
 	uint8_t AC = 0;
 
-	//every unit can have one of these for unarmed combat
-	uint8_t onHit = 0;
+          //every unit can have one of these for unarmed combat
+          uint8_t onHit = 0;
+
+	std::string As_Sendable_String() {
+		std::string str;
+		str += xp.As_Sendable_String() ;
+		     //		str += Utils::Prepend_Zero_By_Digits(picNum, 3);
+		str += Utils::Prepend_Zero_By_Digits(mana, 3);
+		str += Utils::Prepend_Zero_By_Digits(manaMax, 3);
+		str += "001";
+		str += Utils::Prepend_Zero_By_Digits(AC, 2);
+		str += Utils::Prepend_Zero_By_Digits(age, 3);
+		str += Utils::Prepend_Zero_By_Digits(health, 3);
+		str += Utils::Prepend_Zero_By_Digits(healthMax, 3);
+		str += Utils::Prepend_Zero_By_Digits(speed, 1);
+		str += Utils::Prepend_Zero_By_Digits(maxSpeed, 1);
+		str += Utils::Prepend_Zero_By_Digits(minDamage, 2);
+		str += Utils::Prepend_Zero_By_Digits(maxDamage, 2);
+
+//		str += Utils::Prepend_Zero_By_Digits(level, 2);
+//		str += Utils::Prepend_Zero_By_Digits(unitID, 3);
+//		str += Utils::Prepend_Zero_By_Digits(vision, 2);
+//		str += Utils::Prepend_Zero_By_Digits(onHit, 2);
+		std::cout << "stats: " << str << std::endl;
+		return str;
+	}
 
      };
 

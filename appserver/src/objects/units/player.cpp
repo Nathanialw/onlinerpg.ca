@@ -13,6 +13,7 @@
 
 namespace Player {
 
+     //TODO: take into account permanent stat changes ie, potion overhealing gains max health
      void Set_Stats_Default(Unit::Def &def, Unit::Base_Stats &baseStats, Unit::Stats &stats) {
 	     std::cout << "Set stats default: " << stats.health << " " << stats.healthMax << std::endl;
 	     stats.minDamage = stoi(DB::Query("minDamage", "units", "uID", def.SpeciesIDStr()));
@@ -110,17 +111,11 @@ namespace Player {
 	     std::cout << "sending char stats back  to client" << std::endl;
 
 	     auto stats = game.Get_Player().stats;
-	     auto name = game.Get_Player().name.firstName;
+	     auto name = game.Get_Player().name;
 	     auto def = game.Get_Player().def;
 
-
-	     auto pic = "001";
-	     auto health = Utils::Prepend_Zero_3Digit(stats.health) + Utils::Prepend_Zero_3Digit(stats.healthMax);
-	     auto speed = std::to_string(stats.speed) + std::to_string(stats.maxSpeed);
-	     auto damage = Utils::Prepend_Zero(stats.minDamage) + Utils::Prepend_Zero(stats.maxDamage);
-	     auto variableStats = pic + Utils::Prepend_Zero(stats.AC) + Utils::Prepend_Zero_3Digit(stats.age) + health + speed + damage;
-
-	     std::string statsStr = "1111" + game.player_names[name] +  stats.xp.As_Sendable_String() + variableStats + std::to_string((int) def.gender) + std::to_string((int) def.species) + std::to_string((int) def.unitClass) + std::to_string((int) def.alignment);
+	     //	     std::string statsStr = "1111" + game.player_names[name] +  stats.As_Sendable_String() + def.As_Sendable_String();
+	     std::string statsStr = "1111" + name.As_Sendable_String() +  stats.As_Sendable_String() + def.As_Sendable_String();
 	     std::cout << "3" + statsStr << " Char stats sent!" << std::endl;
 	     return "3" + statsStr;
      }
@@ -133,23 +128,16 @@ namespace Player {
 	     auto name = game.Get_Player().name.firstName;
 	     auto def = game.Get_Player().def;
 
-	     auto health = Utils::Prepend_Zero_3Digit(stats.health) + Utils::Prepend_Zero_3Digit(stats.healthMax);
-	     auto speed = std::to_string(stats.speed) + std::to_string(stats.maxSpeed);
-	     auto damage = Utils::Prepend_Zero(stats.minDamage) + Utils::Prepend_Zero(stats.maxDamage);
-	     auto pic = "001";
-	     auto variableStats = pic + Utils::Prepend_Zero(stats.AC) + Utils::Prepend_Zero_3Digit(stats.age) + health + speed + damage;
-
-	     std::string statsStr = "1111" + game.player_names[name] + variableStats + std::to_string((int) def.gender) + std::to_string((int) def.species) + std::to_string((int) def.unitClass) + std::to_string((int) def.alignment);
-	     std::cout << "3" + statsStr << " Char stats sent!" << std::endl;
-	     return "3" + statsStr;
+//	     std::string statsStr = "1111" + game.player_names[name] + stats.As_Sendable_String() + std::to_string((int) def.gender) + std::to_string((int) def.species) + std::to_string((int) def.unitClass) + std::to_string((int) def.alignment);
+//	     std::cout << "3" + statsStr << " Char stats sent!" << std::endl;
+	     return "3";
      }
 
      void Spawn(Game::Instance &game, int level, Component::Position location, Component::Position position, const std::basic_string<char> &characterCreate) {
 	     auto length = characterCreate.size();
 
 	     std::cout << "Character create: " << characterCreate << std::endl;
-	     std::string name = characterCreate.substr(1, length - 5);
-	     std::cout << "Name: " << name << std::endl;
+
 	     std::string genderStr = characterCreate.substr(length - 4, 1);
 	     std::cout << "Gender: " << genderStr << std::endl;
 	     std::string speciesStr = characterCreate.substr(length - 3, 1);
@@ -165,11 +153,18 @@ namespace Player {
 	     auto alignment = (Unit::Alignment) std::stoi(alignmentStr);
 	     auto picNum = 0;
 
-	     std::cout << "Spawn player" << std::endl;
 	     Spawn::Add_Unit(game.Get_Objects(), level, location, position, game.player_id, gender, species, unitClass, alignment, picNum);
+
+	     std::vector<std::pair<std::string, std::string>> whereEquals = {{"race", Units::species[(int) species]}, {"type", Units::gender[(int) gender]}};
+	     auto names = DB::Get_List("uID", "names", whereEquals);
+	     uint16_t index = Utils::Random(0, (int) names.size() - 1);
+	     game.Get_Player().name.firstName = stoi(names[index]);//characterCreate.substr(1, length - 5);
+	     std::cout << "Name: " << game.Get_Player().name.firstName << std::endl;
+
+	     std::cout << "Spawn player" << std::endl;
 	     std::cout << "Player spawned" << std::endl;
-	     game.player_names.push_back(name);
-	     std::cout << "name: " << game.player_names[game.player_id] << std::endl;
+//	     game.player_names.push_back(name);
+//	     std::cout << "name: " << game.player_names[game.player_id] << std::endl;
 	     game.player_id++;
 	     std::cout << "size: " << game.Get_Objects().units.size() << std::endl;
 
