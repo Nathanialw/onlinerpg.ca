@@ -51,6 +51,7 @@ function MouseDown(item, panel, i, bag = "9") {
     item.Texture.on('rightclick', (event) => { 
         // console.log("Right mouse button clicked on item");
         // Optionally, you can handle right mouse button click event
+        console.log("right click");
         let message;
         //if ctrl clicked
         if (event.ctrlKey) {

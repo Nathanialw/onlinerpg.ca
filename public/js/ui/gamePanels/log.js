@@ -81,8 +81,6 @@ const action = new Map([
 
 
 export function Update_Log(direction, species, damage, isDead) {
-    console.log("direction, species, damage, isDead", direction, species, damage, isDead);
-    console.log("action[direction]", action);
     // Display_Damage(species, damage, isDead);
     action.get(direction)(species, damage, isDead);
     Render_Log();

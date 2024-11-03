@@ -1,7 +1,7 @@
 'use strict'
-import { app, Draw_UI, Draw_Vision_Background } from '../graphics/graphics.js';
+import { app, Draw_UI, Draw_Vision_Background, Wait_For_Load } from '../graphics/graphics.js';
 import { Make_Map } from '../map/map.js';
-import { Species } from '../units/unitdef.js';
+import { Species, Update_Player_Stats } from '../units/unitdef.js';
 import { Update_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Update_Inventory } from '../objects/inventory.js';
 import { Draw_Equipment, Update_Equipment } from '../objects/equipment.js';
@@ -9,6 +9,7 @@ import { Draw_Game_Menu, gamePanelIndex } from '../ui/menus/gameMenu.js';
 import { Draw_Main_Menu } from '../ui/menus/mainMenu.js';
 import { Render_Game_Panel } from '../ui/gamePanels/gamePanels.js';
 import { Update_Log } from '../ui/gamePanels/log.js';
+
 
 // import { Parse_Inventory } from '../parse/inventory.js';
 
@@ -40,6 +41,11 @@ function Parse_Player_Update(dataStr) {
     return dataStr
 }
 
+function Update_Map(dataStr) {    
+    serverMap = dataStr.substring(0, (visionWidth * visionWidth));
+    return dataStr.substring(visionWidth * visionWidth);
+}
+
 function Parse_Recieved(dataStr) {
     //call individual parse functions
     //each function returns the remaining string to be parsed
@@ -47,7 +53,9 @@ function Parse_Recieved(dataStr) {
     dataStr = Parse_Player_Update(dataStr);
     dataStr = Update_Loot(dataStr, direction);
     dataStr = Update_Inventory(dataStr);
-    serverMap = Update_Equipment(dataStr);
+    dataStr = Update_Equipment(dataStr);
+    dataStr = Update_Map(dataStr);
+    dataStr = Update_Player_Stats(dataStr);
 }
 
 export function Update_Screen() {
@@ -72,6 +80,8 @@ export function Update_Screen() {
 
 export async function Game_Update(dataStr) {
     Parse_Recieved(dataStr);
+    await Wait_For_Load();
+    Update_Screen();    
 }
 
 // Function to remove event listeners from an array of objects

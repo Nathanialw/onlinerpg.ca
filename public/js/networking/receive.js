@@ -1,7 +1,6 @@
 'use strict'
 
 import { Game_Update } from '../frontend/ui.js';
-import { UpdatePlayerInfo } from '../units/unitdef.js';
 import { Get_Target_Stats_From_Server } from '../ui/gamePanels/targetStats.js';
 import { OnReconnect } from '../frontend/newGame.js';
 import { Send_Web_Socket_Message } from './socket.js';
@@ -77,7 +76,7 @@ export let Update = {
     0: Message,
     1: Game_Update,
     2: Update_Inventory,
-    3: UpdatePlayerInfo,
+    // 3: ,
     4: Reconnect,
     5: Get_Target_Stats_From_Server,
     // 6: Startup,

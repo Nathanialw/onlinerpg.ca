@@ -36,13 +36,13 @@ namespace Update_Items {
      };
      
      std::pair<ItemID, ItemEffectUID> Loot(Game::Instance &game, const Item &item) {
-	     std::cout << "Looting item at index: " << item.index << std::endl;
+	     std::cout << "Looting item at index: " << (int)item.index << std::endl;
 	     Loot::Pick_Up_Item(game.Get_Items(), game.Get_Player().pack.inventory, game.Get_Player().pack.maxSlots, item.index, game.updateInventory);
 	     return {0, 0};
      }
 
      std::pair<ItemID, ItemEffectUID> Inventory(Game::Instance &game, const Item &item) {
-	     std::cout << "interacting with inventory at index: " << item.index << std::endl;
+	     std::cout << "interacting with inventory at index: " << (int)item.index << std::endl;
 	     switch (item.modKey) {
 		     case NONE: { // equip standard / use item
 			     std::cout << "unmodded clicked: " << item.modKey << std::endl;

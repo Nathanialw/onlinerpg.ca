@@ -111,8 +111,14 @@ export let characterInfo = {
     //exp
 
 export async function UpdatePlayerInfo(characterCreate) {
-    let length = characterCreate.length;
+    console.log 
+}
 
+export async function Update_Player_Stats(characterCreate) {
+    let length = characterCreate.length;
+    if (length === 0) {
+        return;
+    }
     //health/max
     //AC
     //speed/max
@@ -155,19 +161,7 @@ export async function UpdatePlayerInfo(characterCreate) {
     characterInfo.Species = Species[parseInt(speciesIndex, 10)];
     characterInfo.Class = UnitClass[parseInt(classIndex, 10)];
     characterInfo.Alignment = Alignment[parseInt(alignmentIndex, 10)];
-        
-
-
-
 
     const key = speciesIndex + genderIndex + classIndex + alignmentIndex;
     characterInfo.HeroClass = classes.get(key) || 'Unknown Class'; // Default to 'Unknown Class' if key is not found
-    //h
-    //max health
-    //AC
-    //speed
-    //max speed
-    //+damage
-    await Wait_For_Load();
-    Update_Screen();   
 }

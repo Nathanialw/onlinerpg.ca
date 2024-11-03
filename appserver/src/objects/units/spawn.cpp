@@ -15,17 +15,17 @@ namespace Spawn {
      const std::string pathToSpeciesImgs = "../public/assets/graphics/imgs/";
 
      char unitChars[(int) Unit::Species::SIZE] = {'a', 'b', 'c',
-                                                   'd', 'e', 'f', 'g',
-                                                   'h', 'i', 'j', 'k',
-                                                   'l', 'm', 'n', 'o',
-                                                   'p', 'q', 'r', 's',
-                                                   't', 'u', 'v', 'w',
-                                                   'x', 'y', 'z', 'A',
-                                                   'B', 'C', 'D', 'E', 'F',
-                                                   'G', 'H', 'I', 'J', 'K',
-                                                   'L', 'M', 'N', 'O', 'P',
-                                                   'Q', 'R', 'S', 'T', 'U',
-                                                   'V', 'W', 'X', 'Y', 'Z'};
+                                                  'd', 'e', 'f', 'g',
+                                                  'h', 'i', 'j', 'k',
+                                                  'l', 'm', 'n', 'o',
+                                                  'p', 'q', 'r', 's',
+                                                  't', 'u', 'v', 'w',
+                                                  'x', 'y', 'z', 'A',
+                                                  'B', 'C', 'D', 'E', 'F',
+                                                  'G', 'H', 'I', 'J', 'K',
+                                                  'L', 'M', 'N', 'O', 'P',
+                                                  'Q', 'R', 'S', 'T', 'U',
+                                                  'V', 'W', 'X', 'Y', 'Z'};
 
      char Get_Unit_Char(Unit::Species species) {
 	     return unitChars[(int) species];
@@ -57,7 +57,7 @@ namespace Spawn {
 	     unit.stats.vision = stoi(DB::Query("vision", "units", "uID", unit.def.SpeciesIDStr()));
 
 	     unit.stats.speed = unit.stats.speed;
-	     unit.stats.health = unit.stats.healthMax ;
+	     unit.stats.health = unit.stats.healthMax;
 	     unit.stats.mana = unit.stats.manaMax;
 	     unit.stats.speed = unit.stats.maxSpeed;
 

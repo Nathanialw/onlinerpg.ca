@@ -39,12 +39,16 @@ namespace Send {
 		     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 		     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
 		     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
-		     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
-		     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+
+		     auto response = Map::SendMapSegment(game, action) + Player::Get_Stats(game);
+		     print_server.send(hdl, response, websocketpp::frame::opcode::text);
 	     }
 
 	     std::cout << "Ready!" << std::endl;
      }
+
+     std::string stats;
+     std::string prevStats;
 
      void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
 	     Player::Update_Stats(game.Get_Player(), game.updateEquipment);
@@ -59,8 +63,17 @@ namespace Send {
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags, game.updateBag));
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.updateInventory));
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment, game.updateEquipment));
-	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
-	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+	     auto response = Map::SendMapSegment(game, action);
+
+	     //only send stats if they have changed
+	     stats = Player::Get_Stats(game);
+	     std::cout << "stats           : " << stats << std::endl;
+	     std::cout << "prevStats: " << prevStats << std::endl;
+	     if (prevStats != stats)
+		     response.append(Player::Get_Stats(game));
+	     prevStats = stats;
+
+	     print_server.send(hdl, response, websocketpp::frame::opcode::text);
      }
 
      void Full_Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
@@ -71,8 +84,9 @@ namespace Send {
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
 	     action.append(Equipment::Get_Equipment(game.Get_Player().equipment));
-	     print_server.send(hdl, Map::SendMapSegment(game, action), websocketpp::frame::opcode::text);
-	     print_server.send(hdl, Player::Get_Stats(game), websocketpp::frame::opcode::text);
+
+	     auto response = Map::SendMapSegment(game, action) + Player::Get_Stats(game);
+	     print_server.send(hdl, response, websocketpp::frame::opcode::text);
      }
 
      int8_t On_Message(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
