@@ -49,6 +49,12 @@ namespace Send {
      void Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
 	     Player::Update_Stats(game.Get_Player(), game.updateEquipment);
 	     auto action = Update::Update_Units(game, &msg[1]);
+	     if (action[0] == 'm') {
+		     auto move = Update::Move_Direction(game, &msg[1]);
+		     Component::Position targetPosition = game.Get_Player().position.position.Add(move);
+		     auto response = "5" + Species::Get_Unit_Data_As_string(game, targetPosition);
+		     print_server.send(hdl, response, websocketpp::frame::opcode::text);
+	     }
 	     action.append(Loot::Query_Loot(game.Get_Items()));
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags, game.updateBag));
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.updateInventory));
@@ -60,6 +66,7 @@ namespace Send {
      void Full_Update(const websocketpp::connection_hdl &hdl, const std::basic_string<char> &msg, websocketpp::server<websocketpp::config::asio> &print_server, Game::Instance &game) {
 	     Player::Update_Stats(game.Get_Player());
 	     auto action = Update::Update_Units(game, &msg[1]);
+
 	     action.append(Loot::Query_Loot(game.Get_Items()));
 	     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 	     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));

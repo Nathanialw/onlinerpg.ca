@@ -142,6 +142,10 @@ namespace Update {
      }
      const  std::string noAttack = "____0";
 
+     Component::Position Move_Direction(Game::Instance &game, const char *direction) {
+	     return updatePosition[*direction];
+     }
+
      std::string Update_Player(Game::Instance &game, const char *direction) {
 	     auto move = updatePosition[*direction];
 	     auto &location = game.Get_Player().position.location;

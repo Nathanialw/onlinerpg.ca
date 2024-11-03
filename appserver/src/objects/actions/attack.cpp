@@ -90,10 +90,10 @@ namespace Attack {
 	     //      check the chunk to the right
 	     //if visionrange.y < position
 	     //      check the chunk to the below
-//    if visionrange.x > position
-//          check the chunk to the left
-//    if visionrange.y > position
-//          check the chunk to the above
+	     //    if visionrange.x > position
+	     //          check the chunk to the left
+	     //    if visionrange.y > position
+	     //          check the chunk to the above
 
 	     if (abs(position.x - target.x) < visionRange && abs(position.y - target.y) < visionRange)
 		     return true;
@@ -127,6 +127,6 @@ namespace Attack {
 
      std::string As_Sendable_String(const Damage &damage) {
 	     return damage.target + Utils::Prepend_Zero_By_Digits(damage.damageDone, 2) + std::to_string(damage.isDead);
-
      }
+
 }
