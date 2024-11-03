@@ -2,6 +2,9 @@
 
 import { Update } from './receive.js';
 
+const local = "localhost:9002"
+const prod = "onlinerpg.ca"
+
 // Function to fetch the session ID from the PHP script
 async function getSessionId() {
     try {
@@ -42,8 +45,8 @@ export async function createWebSocket() {
     let i = 0;
 
     return new Promise((resolve, reject) => {
-        websocket = new WebSocket(`wss://www.onlinerpg.ca/ws?session_id=${sessionId}`);
-        // websocket = new WebSocket(`ws:localhost:9002/ws?session_id=${sessionId}`);
+        websocket = new WebSocket(`wss://www.` + prod + `/ws?session_id=${sessionId}`);
+        // websocket = new WebSocket(`ws:` + local + `/ws?session_id=${sessionId}`);
 
         websocket.onopen = () => {
             console.log("WebSocket connection opened");
