@@ -48,6 +48,7 @@ let target;
 let gamePanels = [];
 let targetImg;
 let playerImg;
+export let targetHealthBar;
 let healthBar;
 let ManaBar;
 let xpBar;
@@ -131,6 +132,7 @@ async function Init_Graphics() {
     invTabs = await Load_Texture('assets/graphics/ui/menu/main_menu.png')
     inventoryUI = await Load_Texture('assets/graphics/ui/inventory/inventory.png')
     playerImg = await Load_Texture(defaultPath)
+    targetHealthBar = await Load_Texture("assets/graphics/ui/player_stats/srp_rage.png")
     healthBar = await Load_Texture("assets/graphics/ui/player_stats/srp_rage.png")
     ManaBar = await Load_Texture("assets/graphics/ui/player_stats/srp_mana.png")
     xpBar = await Load_Texture("assets/graphics/ui/player_stats/srp_dark_energy.png")
@@ -800,14 +802,25 @@ function Draw_Stats() {
     line = Display_Line("       Age: " + characterInfo.Age, line, x, y);
     line = Display_Line("     Class: " + characterInfo.HeroClass, line, x, y);
     line = Display_Line("        AC: " + characterInfo.AC, line, x, y);
-    line = Display_Line("    Damage: " + characterInfo.MinDamage + "-" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line(" Damage: " + characterInfo.MinDamage + "-" + characterInfo.MaxDamage, line, x, y);
+    line = Display_Line("     Speed: " + characterInfo.Speed, line, x, y);
     line = Display_Line("", line, x, y);
-    line = Display_Line("  Ice Resist: " + characterInfo.IceResist, line, x, y);
-    line = Display_Line("  Fir Resist: " + characterInfo.FirResist, line, x, y);
-    line = Display_Line(" Psn Resist: " + characterInfo.PsnResist, line, x, y);
-    line = Display_Line("Shw Resist: " + characterInfo.ShwResist, line, x, y);
-    line = Display_Line(" Hly Resist: " + characterInfo.HlyResist, line, x, y);
-    line = Display_Line(" Phy Resist: " + characterInfo.PhyResist, line, x, y);
+    
+    line = Display_Line("       Resists: ", line, x, y);
+    let newline = line
+    
+    x = 7.5;
+    y = 3.5;
+    line = Display_Line("      Ice: " + characterInfo.IceResist, line, x, y);
+    line = Display_Line("     Fire: " + characterInfo.FirResist, line, x, y);
+    line = Display_Line("Poison: " + characterInfo.PsnResist, line, x, y);
+    
+    x = 15.5;
+    y = 3.5;
+    line = newline
+    line = Display_Line(" Shadow: " + characterInfo.ShwResist, line, x, y);
+    line = Display_Line("      Holy: " + characterInfo.HlyResist, line, x, y);
+    line = Display_Line("Physical: " + characterInfo.PhyResist, line, x, y);
 
     // combat stats
     
@@ -815,24 +828,22 @@ function Draw_Stats() {
     y = 1;    
     line = 0;
 
-    const full = 22;
+    const full = 21;
 
     let xpBarWidth = (characterInfo.XP / 100) * 22;
     let hpBarWidth = (characterInfo.Health / characterInfo.MaxHealth) * full;
     let manaBarWidth = (characterInfo.Mana / characterInfo.MaxMana) * full;
 
     Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, hpBarWidth * cellSize, 0.75 * cellSize, healthBar);
-    line = Display_Line("Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
+    line = Display_Line("  Health: " + characterInfo.Health + "/" + characterInfo.MaxHealth, line, x, y);
     //draw health bar
     Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, manaBarWidth * cellSize, 0.75 * cellSize, ManaBar);
-    line = Display_Line("  Mana: " + characterInfo.Mana + "/" + characterInfo.MaxMana, line, x, y);
+    line = Display_Line("    Mana: " + characterInfo.Mana + "/" + characterInfo.MaxMana, line, x, y);
     //draw mana bar
-    line = Display_Line(" Speed: " + characterInfo.Speed, line, x, y);
+    line = Display_Line("    Buffs: " + characterInfo.Speed, line, x, y);
+    line = Display_Line("Debuffs: " + characterInfo.Speed, line, x, y);
+    line = Display_Line("", line, x, y);
     Draw_Sprite((x + 8) * cellSize, (line + 1.15) * cellSize, xpBarWidth * cellSize, 0.5 * cellSize, xpBar);
-    line = Display_Line(" Level: " + characterInfo.Level, line, x, y);
+    line = Display_Line("   Level: " + characterInfo.Level, line, x, y);
     //draw one square for each move remaining
-
-    //buffs
-
-    // debuff
 }

@@ -3,7 +3,7 @@
 import { Get_Unit_Stats, Get_Unit_Name, Get_By_UID } from "../../db/db.js"
 import { Update_Screen } from "../../frontend/ui.js"
 //get string from server
-import {Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, minimapCellSize, Clear_Target} from "../../graphics/graphics.js"
+import { targetHealthBar, Draw_Sprite, Create_Text_Line, Get_Right_Panel_Origin_x, Get_Right_Panel_Origin_y, Load_Target_Image, cellSize, Clear_Target} from "../../graphics/graphics.js"
 import { Strip_Leading_Zeroes } from "../../utils/utils.js"
 import { Set_Game_Panel_Index } from "../menus/gameMenu.js"
 
@@ -32,6 +32,9 @@ export let targetStats = {
     vision: "??",
     bio: "??",
     traits: [],
+
+    Health: 0,
+    MaxHealth: 0,
 }
 
 export async function Get_Target_Stats_From_Server(statsString) {
@@ -43,6 +46,9 @@ export async function Get_Target_Stats_From_Server(statsString) {
     const genderIndex = Strip_Leading_Zeroes(statsString.substring(10, 11))
     targetStats.gender = gender[genderIndex];
     targetStats.health = Strip_Leading_Zeroes(statsString.substring(11, 14)) + "/" + Strip_Leading_Zeroes(statsString.substring(14, 17));
+    targetStats.Health = parseInt(Strip_Leading_Zeroes(statsString.substring(11, 14)));
+    targetStats.MaxHealth = parseInt(Strip_Leading_Zeroes(statsString.substring(14, 17)));
+
     targetStats.attack = Strip_Leading_Zeroes(statsString.substring(17, 19)) + "-" + Strip_Leading_Zeroes(statsString.substring(19, 21));
     targetStats.AC = Strip_Leading_Zeroes(statsString.substring(21, 23));
     const picNum = Strip_Leading_Zeroes(statsString.substring(23, 25));    
@@ -68,7 +74,7 @@ export async function Get_Target_Stats_From_Server(statsString) {
 }
 
 function Display_Line(value, i, x, y, right = false) {
-    targetStatsDisplay[i] = Create_Text_Line(value, (minimapCellSize*2), i, x, y);
+    targetStatsDisplay[i] = Create_Text_Line(value, cellSize, i, x, y);
     if (right) {
         Set_From_Right(targetStatsDisplay[i])            
     }
@@ -104,6 +110,9 @@ export async function Target_Stats() {
     line = Display_Line("Vision: " + targetStats.vision, line, x, y);
     line = Display_Line("Health: " + targetStats.health, line, x, y);
     // display health bar
+    const full = 14.5;
+    let hpBarWidth = (targetStats.Health / targetStats.MaxHealth) * full;
+    Draw_Sprite((x) * cellSize, (line + 4) * cellSize, hpBarWidth * cellSize, 0.75 * cellSize, targetHealthBar);
     
     x = Get_Right_Panel_Origin_x() + 21;
     y = Get_Right_Panel_Origin_y() + 5; 
