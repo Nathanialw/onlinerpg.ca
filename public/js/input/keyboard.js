@@ -29,12 +29,11 @@ let Update = {
     f: Action_Bar,
 }
 
+let keyIntervals = {};
+const repeatInterval = 200; // 200ms
+
 export function Init_Keybinds() {
     document.addEventListener("keypress", (event) => {
-        //key held down
-    })
-                
-    document.addEventListener("keydown", (event) => {
         if (event.repeat) {
             return;
         }
@@ -49,10 +48,27 @@ export function Init_Keybinds() {
         }
 
         const keyName = event.key;
-        //use a hash map instead
-        if (Update[keyName](keyName)) {
-            return;
+        if (Update[keyName]) {
+            if (!keyIntervals[keyName]) {
+                Update[keyName](keyName); // Initial action
+                keyIntervals[keyName] = setInterval(() => {
+                    Update[keyName](keyName);
+                }, repeatInterval);
+            }
         }
+    });
+
+    document.addEventListener("keyup", (event) => {
+        const keyName = event.key;
+        if (keyIntervals[keyName]) {
+            clearInterval(keyIntervals[keyName]);
+            delete keyIntervals[keyName];
+        }
+    });
+    
+                
+    document.addEventListener("keydown", (event) => {
+        
         
         //if cast spell
         //if attack
