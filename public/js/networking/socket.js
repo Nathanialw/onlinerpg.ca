@@ -45,7 +45,7 @@ export async function createWebSocket() {
     let i = 0;
 
     return new Promise((resolve, reject) => {
-        const prod = 'example.com'; // Replace with your production domain
+        const prod = 'onlinerpg.ca'; // Replace with your production domain
         const local = 'localhost:9002'; // Replace with your local domain and port
         
         const isProduction = window.location.hostname === prod;
