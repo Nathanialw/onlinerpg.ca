@@ -1,7 +1,7 @@
 'use strict'
 import { app, Draw_UI, Draw_Vision_Background } from '../graphics/graphics.js';
-import { Make_Map} from '../map/map.js';
-import { Species} from '../units/unitdef.js';
+import { Make_Map } from '../map/map.js';
+import { Species } from '../units/unitdef.js';
 import { Update_Loot } from '../objects/loot.js';
 import { Draw_Inventory, Update_Inventory } from '../objects/inventory.js';
 import { Draw_Equipment, Update_Equipment } from '../objects/equipment.js';
@@ -19,10 +19,10 @@ import { Update_Log } from '../ui/gamePanels/log.js';
 
 let visionWidth;
 let direction;
-let species;
-let damage;
-let isDead;
-let serverMap;
+let species = "";
+let damage = "";
+let isDead = "";
+let serverMap = "";
 
 // visionWidth = parseInt(data.substring(0, 2), 10);
 // direction = data.substring(2,3);
@@ -31,6 +31,7 @@ let serverMap;
 // isDead = data.substring(6,7);
 
 function Parse_Player_Update(dataStr) {
+    [species, damage, isDead] = ["", "", ""];
     [visionWidth, dataStr] = [parseInt(dataStr.substring(0, 2), 10), dataStr.substring(2)];
     [direction, dataStr]   = [dataStr.substring(0, 1), dataStr.substring(1)];
     [species, dataStr]     = [Species[parseInt(dataStr.substring(0, 2), 10)], dataStr.substring(2)];
@@ -43,7 +44,6 @@ function Parse_Recieved(dataStr) {
     //call individual parse functions
     //each function returns the remaining string to be parsed
     //pass the remaining string to the next function
-
     dataStr = Parse_Player_Update(dataStr);
     dataStr = Update_Loot(dataStr, direction);
     dataStr = Update_Inventory(dataStr);
@@ -63,7 +63,7 @@ export function Update_Screen() {
     Draw_Main_Menu();
     Draw_Game_Menu();
 
-    Update_Log(species, damage, isDead);  
+    Update_Log(direction, species, damage, isDead);  
     Render_Game_Panel(gamePanelIndex);    //render fame panel ie. target stats, spell book, combat log, minimap, crafting
 
     Draw_Inventory();

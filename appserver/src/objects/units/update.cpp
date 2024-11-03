@@ -109,10 +109,9 @@ namespace Update {
 
 							     auto targetLocation = Attack::Check_Target_Location(attacker, moveTo);
 							     auto &targetList = game.Get_Objects(level, targetLocation);
-							     auto defaultChunk = game.Get_Map(level, targetLocation).defaultChunk;
 							     auto targetChunk = game.Get_Map(level, targetLocation).chunk;
 
-							     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, unit.position, moveTo);
+							     auto melee = Attack::Melee(attacker, targetList, targetChunk, unit.position, moveTo);
 							     continue;
 						     }
 
@@ -141,6 +140,7 @@ namespace Update {
 //	     }
 //	     std::cout << "Drawing map end: " << std::endl;
      }
+     const  std::string noAttack = "____0";
 
      std::string Update_Player(Game::Instance &game, const char *direction) {
 	     auto move = updatePosition[*direction];
@@ -148,31 +148,22 @@ namespace Update {
 	     auto &position = game.Get_Player().position.position;
 	     auto &level = game.Get_Player().position.level;
 
+
 	     std::cout << "num entities on update: " << game.Get_Objects().units.size() << std::endl;
 	     std::cout << "successfully grabbed player from units[]" << std::endl;
-
-//    //skip 1 turn
-//    if (*direction == ' ') {
-//      std::string r = " ";
-//      std::cout << "skipping turn" << std::endl;
-//      return r + " " + "  " + "1" + items;
-//    }
 
 	     // collision
 	     if (Collision::Wall_Collision(game, level, location, position.Add(move))) {
 		     std::cout << "wall collision" << std::endl;
 		     std::string c = "c";
-		     return c + " " + "   " + "1" ;
+		     return c + noAttack ;
 	     }
 
 	     //rest
 	     if (*direction == 'r') {
 		     std::string r = "r";
-		     std::cout << "rest" << std::endl;
-		     if (game.Get_Player().stats.health < game.Get_Player().stats.healthMax) {
-			     game.Get_Player().stats.health += 5;
-		     }
-		     return r + " " + "   " + "1" ;
+		     std::cout << "resting, skipping turn" << std::endl;
+		     return r + noAttack ;
 	     }
 
 	     // if the nearby cell is an enemy, attack
@@ -181,13 +172,12 @@ namespace Update {
 
 	     auto targetLocation = Attack::Check_Target_Location(attacker, move);
 	     auto &targetList = game.Get_Objects(level, targetLocation);
-	     auto &defaultChunk = game.Get_Map(level, targetLocation).defaultChunk;
 	     auto &targetChunk = game.Get_Map(level, targetLocation).chunk;
 
-	     auto melee = Attack::Melee(attacker, targetList, defaultChunk, targetChunk, position, move);
-	     if (melee.damageDone > 0 && !melee.isDead) {
+	     auto melee = Attack::Melee(attacker, targetList, targetChunk, position, move);
+	     if (melee.targetExists && !melee.isDead) {
 		     std::cout << "attack goblin" << std::endl;
-		     return "m" + melee.target + Utils::Prepend_Zero(melee.damageDone) + "1" ;
+		     return "m" + Attack::As_Sendable_String(melee);
 	     }
 
 	     // if the unit survives, return, else move to the cell
@@ -195,23 +185,17 @@ namespace Update {
 	     Map::Check_Map_Chunk(game);
 	     std::string m = direction;
 
-	     //generate items
-	     if (melee.isDead) {
+	     if (melee.targetExists && melee.isDead) {
 		     Loot::Generate_Loot(game.Get_Items());
-	     }
-
-//    query for items
-
-	     if (melee.isDead) {
 		     std::cout << "goblin dead" << std::endl;
-		     return m + melee.target + Utils::Prepend_Zero(melee.damageDone) + "0" ;
+		     return m + Attack::As_Sendable_String(melee);
 	     }
-	     return m + " " + "   " + "1" ;
+	     return m + noAttack ;
      }
 
      std::string Update_Units(Game::Instance &game, const char *direction) {
-	     if (*direction == ' ') {
-		     return "     1";
+	     if (*direction == '_') {
+		     return "l" + noAttack;
 	     }
 
 	     auto action = Update_Player(game, direction);

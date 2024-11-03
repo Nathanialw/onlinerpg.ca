@@ -1,7 +1,7 @@
 'use strict';
 import { Create_Combat_Log_Line } from '../../graphics/graphics.js';
 import { SoundAttack } from '../../sound/sound.js';
-
+import { Strip_Leading_Zeroes } from '../../utils/utils.js';
 
 let log = [];
 let logDisplay = [];
@@ -35,7 +35,7 @@ function Render_Log() {
 }
 
 function Display_Damage_Taken(species, damageTaken) {
-    if (damage === "  ") {
+    if (damage === "__") {
         return
     }
     let text = "You have been struck by a " + species + " for " + damageTaken + " damage"
@@ -43,19 +43,47 @@ function Display_Damage_Taken(species, damageTaken) {
 }
 
 function Display_Damage(species, damage, isDead) {
-    if (damage === "  ") {
+    if (damage === "__") {
         return
     }
-    let text = "You have done " + damage + " damage to a " + species; 
-    if (isDead === 0) {
+    let text = "You have done " + Strip_Leading_Zeroes(damage) + " damage to a " + species; 
+    if (isDead === 1) {
         text += " and killed it!";
     }
     SoundAttack(); //play attack sound based on weapon equipped
     Add_Line(text);
 }
 
+function Resting(species, damage, isDead) {
+    Add_Line("You are resting");
+}
 
-export function Update_Log(species, damage, isDead) {
-    Display_Damage(species, damage, isDead);
+function Looting(species, damage, isDead) {
+    Add_Line("You have looted an item");
+}
+
+function Collision(species, damage, isDead) {
+    Add_Line("You have bumped into a wall");
+}
+
+
+const action = new Map([
+    ['r', Resting],
+    ['0', Resting],
+    ['m', Display_Damage],
+    ['a', Display_Damage],
+    ['d', Display_Damage],
+    ['w', Display_Damage],
+    ['s', Display_Damage],
+    ['l', Looting],
+    ['c', Collision],
+]);
+
+
+export function Update_Log(direction, species, damage, isDead) {
+    console.log("direction, species, damage, isDead", direction, species, damage, isDead);
+    console.log("action[direction]", action);
+    // Display_Damage(species, damage, isDead);
+    action.get(direction)(species, damage, isDead);
     Render_Log();
 }

@@ -17,17 +17,20 @@ let iconPath = "assets/graphics/icons/"
 const groundSlots = 14;
 
 
-
-// Array(groundSlots).fill().map(() => ({ Texture: null, Name: null }))
-// let loot = Array(groundSlots).fill().map(() => ({ ... item}));
 let loot = {
     NumItems: 0,
     Panel: Array(groundSlots).fill().map(() => ({ Texture: null, Name: null })),
     Items: Array(groundSlots).fill().map(() => (deepCopyItem() ))
 }
 
+const Check_Moved = new Map();
+Check_Moved.set('a', true)
+Check_Moved.set('d', true)
+Check_Moved.set('w', true)
+Check_Moved.set('s', true)
+
 export function Open_Loot_Panel(direction) {
-    if (loot.NumItems > 0 && (direction == 'a' || direction == 'd' || direction == 'w' || direction == 's')) {
+    if (loot.NumItems > 0 && Check_Moved.has(direction)) {
         Set_Game_Panel_Index(3);
     }
 }
@@ -46,9 +49,6 @@ function Set_Icon(uID) {
 }
 
 export function Update_Loot(dataStr, direction) {
-    //clear the loot array
-    // loot = []
-    // loot = Array(groundSlots).fill().map(() => ({ ... item}));
     dataStr = Parse_Loot(dataStr, loot)
     for (let i = 0; i < loot.NumItems; ++i) {            
         loot.Items[i].IconPath = Set_Icon(loot.Items[i].ItemID);

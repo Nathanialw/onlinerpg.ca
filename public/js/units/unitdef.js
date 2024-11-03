@@ -1,6 +1,6 @@
-import { classes } from '/js/frontend/classes.js';
-import { Strip_Leading_Zeroes } from '/js/utils/utils.js';
-import { Update_Screen } from '/js/frontend/ui.js';
+import { classes } from '../frontend/classes.js';
+import { Strip_Leading_Zeroes } from '../utils/utils.js';
+import { Update_Screen } from '../frontend/ui.js';
 import { Wait_For_Load } from '../graphics/graphics.js';
 
 export let Gender = ["Male", "Female"];

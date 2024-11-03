@@ -1,5 +1,5 @@
-import { socket } from '/js/networking/socket.js';
-import { classes } from '/js/frontend/classes.js';
+import { socket } from '../networking/socket.js';
+import { classes } from '../frontend/classes.js';
 
 // add html to newGame.html
 

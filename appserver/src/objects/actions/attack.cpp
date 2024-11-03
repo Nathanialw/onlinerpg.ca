@@ -52,36 +52,37 @@ namespace Attack {
      //then grab the index of the attacker
      //then grab the index of the target
      //which may be in a different chunk
-     Damage Melee(Unit::Unit &attacker, Units::Objects &targets, Chunk::Chunk defaultChunk, Chunk::Chunk chunk, Component::Position &position, Component::Position &moveTo) {
+     Damage Melee(Unit::Unit &attacker, Units::Objects &targets, Chunk::Chunk chunk, Component::Position &position, Component::Position &moveTo) {
 	     auto targetIndex = Check_Target(targets, position, moveTo);
+	     Damage target;
 
 	     if (targetIndex == -1) {
 		     std::cout << "no target found" << std::endl;
-		     return {"", 0, false};
+		     return target;
 	     }
-	     std::cout << "attacking: " << targetIndex << std::endl;
-	     auto &target = targets.units[targetIndex];
 
-	     auto damage = Utils::Random(attacker.stats.minDamage, attacker.stats.maxDamage);
+	     std::cout << "attacking: " << targetIndex << std::endl;
+	     auto &targetUnit = targets.units[targetIndex];
+
+	     target.target = Utils::Prepend_Zero_By_Digits((int) targetUnit.def.species, 2);
+	     target.damageDone = Utils::Random(attacker.stats.minDamage, attacker.stats.maxDamage);
+	     target.targetExists = true;
+
 	     //TODO: //need to add the AC of the target to the damage calculation
-	     if (target.stats.health > damage) {
-		     target.stats.health -= damage;
-		     std::cout << Spawn::Get_Unit_Char(attacker.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(target.def.species) << " for " << (int) attacker.stats.maxDamage << " damage, " << (int) target.stats.health << " health remaining" << std::endl;
-		     std::cout << "species: " << (int) target.def.species << std::endl;
+	     if (targetUnit.stats.health > target.damageDone) {
+		     targetUnit.stats.health -= target.damageDone;
+		     std::cout << Spawn::Get_Unit_Char(attacker.def.species) << " has attacked a: " << Spawn::Get_Unit_Char(targetUnit.def.species) << " for " << (int) target.damageDone << " damage, " << (int) targetUnit.stats.health << " health remaining" << std::endl;
+		     std::cout << "species: " << (int) targetUnit.def.species << std::endl;
+		     return target;
 	     }
-	     else {
-		     attacker.stats.xp.Add_XP(target.stats.xp.Value());
-		     target.stats.health = 0;
-		     std::cout << "target dead" << std::endl;
-		     Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, position.Add(moveTo));
-		     //need the grab the chunk the target is in
-		     //if items drop
-		     //send the uIDs of the items to the client when he moves over them
-		     //else
-		     chunk[position.y + moveTo.y][position.x + moveTo.x] = ',';
-		     return {Utils::Prepend_Zero_By_Digits((int) target.def.species, 2), attacker.stats.maxDamage, true};
-	     }
-	     return {Utils::Prepend_Zero_By_Digits((int) target.def.species, 2), attacker.stats.maxDamage, false};
+
+	     attacker.stats.xp.Add_XP(targetUnit.stats.xp.Value());
+	     targetUnit.stats.health = 0;
+	     std::cout << "target dead" << std::endl;
+	     Units::Remove_Unit(targets.unitPositions, targets.emptyUnitSlots, position.Add(moveTo));
+	     chunk[position.y + moveTo.y][position.x + moveTo.x] = ',';
+	     target.isDead = true;
+	     return target;
      }
 
      bool Check_For_Target(const Component::Position &position, const Component::Position &target, uint8_t visionRange) {
@@ -122,5 +123,10 @@ namespace Attack {
 	     } else if (target.y >= Component::mapWidth) {
 		     //target is on the bottom map chunk
 	     }
+     }
+
+     std::string As_Sendable_String(const Damage &damage) {
+	     return damage.target + Utils::Prepend_Zero_By_Digits(damage.damageDone, 2) + std::to_string(damage.isDead);
+
      }
 }

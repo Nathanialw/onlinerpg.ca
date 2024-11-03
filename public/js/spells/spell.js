@@ -1,10 +1,19 @@
 'use strict'
-import {Send_Web_Socket_Message} from "../networking/socket.js"
+import {Send_Web_Socket_Message, socket} from "../networking/socket.js"
 
 
 function Spell(keyName) {
     console.log("spell", keyName)
+    let conn = socket()
+    console.log("sending key", keyName)
+    if (conn.isConnected) {
+        conn.websocket.send("1" + keyName);
+        // conn.websocket.send("1".concat(keyName));
+        return true;       
+    }
+    return false;
 }
+
 
 let actionBar = {
     q: Spell,

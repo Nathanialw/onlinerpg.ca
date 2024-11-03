@@ -34,7 +34,7 @@ namespace Send {
 
 	     if (!game.Get_Objects(level, location).units.empty()) {
 		     Player::Update_Stats(game.Get_Player());
-		     std::string action = "d    1";
+		     std::string action = "d____1";
 		     action.append(Loot::Query_Loot(game.Get_Items()));
 		     action.append(Backpack::Get_Bags(game.Get_Player().pack.bags));
 		     action.append(Inventory::Get_Inventory(game.Get_Player().pack, game.Get_Player().pack.maxSlots));
@@ -77,14 +77,13 @@ namespace Send {
 	     } else if (msg[0] == '2') {  // loot item
 		     auto itemEffect = Update_Items::Update(msg, game);
 		     Use::Update_Known_Usable_Effects(game.knownUsables, game.Get_Player(), hdl, print_server, itemEffect);
-		     std::string skip = "1 ";
+		     std::string skip = "1_";
 		     Update(hdl, skip, print_server, game);
 	     } else if (msg[0] == '3') { // New Game
 		     return 4;
 	     } else if (msg[0] == '4') { // Reconnect
 		     print_server.send(hdl, msg, websocketpp::frame::opcode::text);
 		     response.append(msg.substr(1));
-		     std::string skip = "1 ";
 		     Full_Update(hdl, response, print_server, game);
 	     } else if (msg[0] == '5') { // send unit stats
 		     response.append(msg.substr(1, 4));

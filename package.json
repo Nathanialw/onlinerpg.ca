@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jsdom": "^25.0.1",
     "lodash": "^4.17.21",
     "pixi.js": "^8.5.0"
   },

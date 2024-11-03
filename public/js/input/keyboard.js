@@ -11,7 +11,7 @@ let Update = {
     w: Move,
     s: Move,
     d: Move,
-    // r: Move, //rest
+    r: Move, //rest
     ' ': Move,
     1: Action_Bar,
     2: Action_Bar,
