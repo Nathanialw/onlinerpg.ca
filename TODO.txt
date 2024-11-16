@@ -59,7 +59,7 @@ short term:
 -scroll bar on the combat log
 -fog of war/vision blocking by terrain
 -right click on map will move to that location, server will send the move updates one at a time
--crate unit locations to place on map ie. ogre mound with ogre around itw
+-create unit locations to place on map ie. ogre mound with ogre around itw
 
 -get traits from server as IDs and fetch the IDs from the db to get the trait names and descriptions
 -add a action bar
@@ -80,8 +80,8 @@ long term:
 
 
 bugs:
-  possible bug: when you equip an item that increases your vision at the edge of the map it will not laod the new chunk 
-                  then crashes when you try to walk onto it, need to test
+  when you equip an item that increases your vision at the edge of the map it will not laod the new chunk 
+    then crashes when you try to walk onto it, need to test
   pathing stops if target location is inaccessible, it should just find the closest cell and go there
 
 
