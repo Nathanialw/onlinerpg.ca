@@ -2,6 +2,8 @@ Tested for lunix running Ubuntu
 
 Currently hosted at https://www.onlinerpg.ca
 
+To run locally:
+
 Required libraries:
 
     sudo apt install update
@@ -18,9 +20,9 @@ Run instructions:
     chmod +x run.sh                                     #if you need to add permission for the script
     ./run.sh                                            #command will:    build   ->  Open a browser at the correct port  ->  Run the backend application
 
-You may pass a port humber as a argument to, otherwise it will default to port 9010    eg. ./run.sh 10020
+You may pass a port number as a argument, otherwise it will default to port 9010    eg. ./run.sh 10020
 
-It will also work with WSL on windows 10 everything same as above.
+It will also work with WSL on windows 10, follow instructions above in the WSL terminal.
 
 Issues:
     If xdg-open gives an error that it cannot find a default browser, assuming you use the default port you can manually go to localhost:9010
