@@ -20,7 +20,7 @@ Run instructions:
     chmod +x run.sh                                     #if you need to add permission for the script
     ./run.sh                                            #command will:    build   ->  Open a browser at the correct port  ->  Run the backend application
 
-You may pass a port number as a argument, otherwise it will default to port 9010    eg. ./run.sh 10020
+You may pass a port number as an argument, otherwise it will default to port 9010    eg. ./run.sh 10020
 
 It will also work with WSL on windows 10, follow instructions above in the WSL terminal.
 
