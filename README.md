@@ -15,10 +15,10 @@ Required libraries:
 
 Run instructions:
 
-    git clone git@github.com:Nathanialw/RPG-old.git     #clone the repo
-    cd onlinerpg.ca                                     #Navigate to onlinerpg.ca directory
-    chmod +x run.sh                                     #if you need to add permission for the script
-    ./run.sh                                            #command will:    build   ->  Open a browser at the correct port  ->  Run the backend application
+    git clone https://github.com/Nathanialw/onlinerpg.ca.git    #clone the repo
+    cd onlinerpg.ca                                             #Navigate to onlinerpg.ca directory
+    chmod +x run.sh                                             #if you need to add permission for the script
+    ./run.sh                                                    #command will:    build   ->  Open a browser at the correct port  ->  Run the backend application
 
 You may pass a port number as an argument, otherwise it will default to port 9010    eg. ./run.sh 10020
 
