@@ -4,8 +4,8 @@ Currently hosted at https://www.onlinerpg.ca
 
 Required libraries:
 
-    -sudo apt install libwebsocketpp-dev
-    -sudo apt install build-essential g++ python3-dev autotools-dev libicu-dev libbz2-dev libboost-all-dev
+    sudo apt install libwebsocketpp-dev
+    sudo apt install build-essential g++ python3-dev autotools-dev libicu-dev libbz2-dev libboost-all-dev
 
 Run instructions:
 
