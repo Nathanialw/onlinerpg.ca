@@ -10,5 +10,6 @@ Required libraries:
 Run instructions:
 
     -Navigate to onlinerpg.ca directory
-    -./run.sh     #command will:    build   ->  Open a browser at the correct port  ->  Run the backend application
+    -chmod +x run.sh     #if you need to add permission for the script
+    -./run.sh             #command will:    build   ->  Open a browser at the correct port  ->  Run the backend application
     -You may pass a port humber as a argument to, otherwise it will default to port 9010    eg. ./run.sh 10020
