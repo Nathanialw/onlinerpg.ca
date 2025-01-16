@@ -37,20 +37,20 @@
             </div>
             
             <nav>
-                <ul class='nav-links' id='nav-links'>
+                <!-- <ul class='nav-links' id='nav-links'> -->
                     <!-- <li><a href="index.php">Home</a></li>  -->
-                    <li><a href="about.php">About Us</a></li> 
+                    <!-- <li><a href="about.php">About Us</a></li>  -->
                     <!-- <li><a href="blog.php">Find Blogs</a></li>  -->
                     <!-- <li><a href="/goapp">Go App</a></li>  -->
-                    <?php 
-                    if (isset($_SESSION["useruid"])) {
-                        echo "<li><a href='profile.php'>Profile Page</a></li>";
-                        echo "<li><a href='logout.php'>Log Out</a></li>";
-                    }
-                    else {
-                        echo "<li><a href='signup.php'>Sign Up</a></li>";
-                        echo "<li><a href='login.php'>Log in</a></li>";
-                    }
+                    <?php
+                    // if (isset($_SESSION["useruid"])) {
+                        // echo "<li><a href='profile.php'>Profile Page</a></li>";
+                        // echo "<li><a href='logout.php'>Log Out</a></li>";
+                    // }
+                    // else {
+                        // echo "<li><a href='signup.php'>Sign Up</a></li>";
+                        // echo "<li><a href='login.php'>Log in</a></li>";
+                    // }
                     ?>
                 </ul>
             </nav>
